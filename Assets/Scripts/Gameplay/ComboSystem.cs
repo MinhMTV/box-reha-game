@@ -21,6 +21,7 @@ public class ComboSystem : MonoBehaviour
 
     void OnEnable()
     {
+        // Updated event signature
         HitZoneEvaluator.OnHitEvaluated += HandleHit;
         HitZoneEvaluator.OnTargetMissed += HandleMiss;
     }
@@ -31,7 +32,7 @@ public class ComboSystem : MonoBehaviour
         HitZoneEvaluator.OnTargetMissed -= HandleMiss;
     }
 
-    private void HandleHit(HitQuality quality, int score)
+    private void HandleHit(HitQuality quality, int score, LaneType lane)
     {
         CurrentCombo++;
         if (CurrentCombo > MaxCombo)

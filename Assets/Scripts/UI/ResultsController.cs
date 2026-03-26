@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Phase 4: Shows reaction time in results. Updated event signature.
+/// </summary>
 public class ResultsController : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
@@ -12,6 +15,7 @@ public class ResultsController : MonoBehaviour
     [SerializeField] private Text lateText;
     [SerializeField] private Text missText;
     [SerializeField] private Text maxComboText;
+    [SerializeField] private Text reactionTimeText;
 
     void Start()
     {
@@ -32,6 +36,7 @@ public class ResultsController : MonoBehaviour
         if (lateText != null) lateText.text = $"Late: {stats.LateHits}";
         if (missText != null) missText.text = $"Misses: {stats.Misses}";
         if (maxComboText != null) maxComboText.text = $"Max Combo: {stats.MaxCombo}";
+        if (reactionTimeText != null) reactionTimeText.text = $"Avg Reaction: {stats.AverageReactionTime:F2}s";
     }
 
     public void OnRestartButton()

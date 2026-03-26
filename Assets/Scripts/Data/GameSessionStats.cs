@@ -13,6 +13,17 @@ public class GameSessionStats
     public int Score;
     public int FinalCombo;
 
+    // Phase 2: Track reaction times for averaging
+    private float totalReactionTime;
+    private int reactionTimeCount;
+
+    public void TrackReactionTime(float reactionTime)
+    {
+        totalReactionTime += reactionTime;
+        reactionTimeCount++;
+        AverageReactionTime = reactionTimeCount > 0 ? totalReactionTime / reactionTimeCount : 0f;
+    }
+
     public void Reset()
     {
         TotalTargets = 0;
@@ -25,5 +36,7 @@ public class GameSessionStats
         AverageReactionTime = 0f;
         Score = 0;
         FinalCombo = 0;
+        totalReactionTime = 0f;
+        reactionTimeCount = 0;
     }
 }

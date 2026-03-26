@@ -9,6 +9,7 @@ public class ScoreSystem : MonoBehaviour
 
     void OnEnable()
     {
+        // Updated event signature: now includes LaneType
         HitZoneEvaluator.OnHitEvaluated += HandleHit;
     }
 
@@ -17,7 +18,7 @@ public class ScoreSystem : MonoBehaviour
         HitZoneEvaluator.OnHitEvaluated -= HandleHit;
     }
 
-    private void HandleHit(HitQuality quality, int baseScore)
+    private void HandleHit(HitQuality quality, int baseScore, LaneType lane)
     {
         int combo = ComboSystem.Instance != null ? ComboSystem.Instance.CurrentCombo : 0;
         float multiplier = Mathf.Min(1f + combo * 0.1f, 3f);

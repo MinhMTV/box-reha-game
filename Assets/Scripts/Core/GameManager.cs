@@ -5,9 +5,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public GameState CurrentState { get; private set; }
+    public GameState CurrentState { get; set; }
     public GameSessionStats SessionStats { get; private set; }
     public LevelDefinition CurrentLevel { get; private set; }
+    // Phase 4: Track selected level number
+    public int SelectedLevel { get; private set; } = 1;
 
     [SerializeField] private string bootSceneName = "Boot";
     [SerializeField] private string mainMenuSceneName = "MainMenu";
@@ -28,10 +30,25 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Menu;
     }
 
+    /// <summary>
+    /// Phase 4: Set level by number. Default is level 1.
+    /// </summary>
+    public void SetLevel(int levelNumber)
+    {
+        SelectedLevel = levelNumber;
+        switch (levelNumber)
+        {
+            case 2: CurrentLevel = LevelDefinition.CreateLevel2(); break;
+            case 3: CurrentLevel = LevelDefinition.CreateLevel3(); break;
+            default: CurrentLevel = LevelDefinition.CreateLevel1(); break;
+        }
+    }
+
     public void StartGame()
     {
         SessionStats.Reset();
-        CurrentLevel = LevelDefinition.CreateLevel1();
+        if (CurrentLevel == null)
+            CurrentLevel = LevelDefinition.CreateLevel1();
         CurrentState = GameState.Playing;
         SceneManager.LoadScene(gameSceneName);
     }

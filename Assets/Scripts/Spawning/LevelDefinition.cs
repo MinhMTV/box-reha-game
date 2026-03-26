@@ -11,6 +11,8 @@ public class LevelDefinition : ScriptableObject
     public TargetType[] AllowedTargetTypes = { TargetType.Punch };
     public LaneType[] AllowedLanes = { LaneType.Left, LaneType.Center, LaneType.Right };
     public float MinPower = 0f;
+    // Phase 3: Allowed vertical positions
+    public VerticalPosition[] AllowedVerticalPositions = { VerticalPosition.Mid };
 
     public static LevelDefinition CreateLevel1()
     {
@@ -23,6 +25,7 @@ public class LevelDefinition : ScriptableObject
         level.AllowedTargetTypes = new TargetType[] { TargetType.Punch };
         level.AllowedLanes = new LaneType[] { LaneType.Left, LaneType.Center, LaneType.Right };
         level.MinPower = 0f;
+        level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Mid };
         return level;
     }
 
@@ -37,6 +40,7 @@ public class LevelDefinition : ScriptableObject
         level.AllowedTargetTypes = new TargetType[] { TargetType.Punch, TargetType.Block };
         level.AllowedLanes = new LaneType[] { LaneType.Left, LaneType.Center, LaneType.Right };
         level.MinPower = 0f;
+        level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Mid };
         return level;
     }
 
@@ -51,6 +55,7 @@ public class LevelDefinition : ScriptableObject
         level.AllowedTargetTypes = new TargetType[] { TargetType.Punch, TargetType.Block, TargetType.Dodge };
         level.AllowedLanes = new LaneType[] { LaneType.Left, LaneType.Center, LaneType.Right };
         level.MinPower = 0f;
+        level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Low, VerticalPosition.Mid, VerticalPosition.High };
         return level;
     }
 }

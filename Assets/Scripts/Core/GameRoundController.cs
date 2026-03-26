@@ -24,6 +24,7 @@ public class GameRoundController : MonoBehaviour
     void OnEnable()
     {
         SessionTimer.OnTimeUp += HandleTimeUp;
+        // Updated event signature
         HitZoneEvaluator.OnHitEvaluated += TrackHit;
         HitZoneEvaluator.OnTargetMissed += TrackMiss;
     }
@@ -87,7 +88,7 @@ public class GameRoundController : MonoBehaviour
         }
     }
 
-    private void TrackHit(HitQuality quality, int score)
+    private void TrackHit(HitQuality quality, int score, LaneType lane)
     {
         sessionStats.TotalTargets++;
 

@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Phase 3: Supports vertical position offset on spawned targets.
+/// Phase 4: Uses ActionVisualFeedback for lane flashes.
+/// </summary>
 public class TargetSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject targetPrefab;
@@ -8,6 +12,7 @@ public class TargetSpawner : MonoBehaviour
     [SerializeField] private Transform spawnPointCenter;
     [SerializeField] private Transform spawnPointRight;
     [SerializeField] private float missZoneZ = 0f;
+    [SerializeField] private GameConfig gameConfig;
 
     private LevelDefinition currentLevel;
     private bool isSpawning;
@@ -16,6 +21,7 @@ public class TargetSpawner : MonoBehaviour
     {
         currentLevel = level;
         isSpawning = true;
+        SpawnPatternGenerator.Reset();
         StartCoroutine(SpawnRoutine());
     }
 
@@ -42,7 +48,14 @@ public class TargetSpawner : MonoBehaviour
         Transform spawnPoint = GetSpawnPoint(pattern.Lane);
         if (spawnPoint == null) return;
 
-        GameObject targetObj = CreateTargetObject(spawnPoint.position);
+        // Phase 3: Apply vertical offset
+        Vector3 spawnPos = spawnPoint.position;
+        if (gameConfig != null)
+        {
+            spawnPos.y += gameConfig.GetVerticalOffset(pattern.VerticalPos);
+        }
+
+        GameObject targetObj = CreateTargetObject(spawnPos, pattern.Type);
         if (targetObj == null) return;
 
         TargetObject target = targetObj.GetComponent<TargetObject>();
@@ -55,6 +68,7 @@ public class TargetSpawner : MonoBehaviour
             target.MoveSpeed = pattern.Speed;
             target.HitWindow = currentLevel.HitWindowSeconds;
             target.MinPower = currentLevel.MinPower;
+            target.VertPosition = pattern.VerticalPos;
         }
 
         if (mover != null)
@@ -74,24 +88,41 @@ public class TargetSpawner : MonoBehaviour
         }
     }
 
-    private GameObject CreateTargetObject(Vector3 position)
+    private GameObject CreateTargetObject(Vector3 position, TargetType type)
     {
         if (targetPrefab != null)
         {
             return Instantiate(targetPrefab, position, Quaternion.identity);
         }
 
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.position = position;
-        cube.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-        cube.AddComponent<TargetObject>();
-        cube.AddComponent<TargetMover>();
-        Rigidbody rb = cube.GetComponent<Rigidbody>();
+        // Phase 4: Distinct shapes per target type
+        GameObject target;
+        switch (type)
+        {
+            case TargetType.Block:
+                target = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                target.transform.localScale = new Vector3(1.8f, 1.8f, 0.3f);
+                break;
+            case TargetType.Dodge:
+                target = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                target.transform.localScale = new Vector3(2.5f, 0.8f, 0.8f);
+                break;
+            default: // Punch
+                target = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                target.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                target.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+                break;
+        }
+
+        target.transform.position = position;
+        target.AddComponent<TargetObject>();
+        target.AddComponent<TargetMover>();
+        Rigidbody rb = target.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.useGravity = false;
             rb.isKinematic = true;
         }
-        return cube;
+        return target;
     }
 }

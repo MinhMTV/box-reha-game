@@ -36,9 +36,19 @@ Use Unity 2022.3 LTS or later.
    - Add Component: `MainMenuController`
 5. Create Button "Start Game" inside Panel:
    - On Click → MainMenuController → OnStartGameButton
-6. Create Button "Quit" inside Panel:
+6. Create Text "BoxReha" (title) inside Panel
+7. **Level Selection (Phase 4):**
+   Create 3 buttons for level selection:
+   - Button "Level 1 - Easy": On Click → MainMenuController → OnStartLevel1
+   - Button "Level 2 - Medium": On Click → MainMenuController → OnStartLevel2
+   - Button "Level 3 - Hard": On Click → MainMenuController → OnStartLevel3
+8. Create Button "Quit" inside Panel:
    - On Click → MainMenuController → OnQuitButton
-7. Create Text "BoxReha" (title) inside Panel
+
+**Alternative: Use LevelSelectController**
+- Add `LevelSelectController` to a separate Panel
+- Drag the 3 level buttons to Level1/2/3 Button fields
+- Each button auto-wires via Start()
 
 ### Scene 3: Game
 1. File → New Scene → Basic (Built-in)
@@ -60,6 +70,7 @@ Use Unity 2022.3 LTS or later.
    - Position: (0, 2.5, 5)
 9. Create empty GameObject: "InputManager"
    - Add Component: `MouseTouchInputProvider`
+   - (Optional) Add `GameConfig` ScriptableObject reference
 10. Create empty GameObject: "PlayerRoot"
     - Position: (0, 0, 5)
 11. Create empty GameObject: "SpawnRoot"
@@ -73,20 +84,37 @@ Use Unity 2022.3 LTS or later.
 14. Create empty GameObject: "SpawnPoint_Right"
     - Parent: SpawnRoot
     - Position: (3, 1, 30)
-15. Create Canvas for HUD
-16. Create Text "ScoreText" inside Canvas
+15. **Lane Visual Feedback (Phase 4):**
+    Create 3 plane/cube objects as lane floor indicators:
+    - "Lane_Left": Position (-3, 0, 5), Scale (2, 0.1, 8), dark gray material
+    - "Lane_Center": Position (0, 0, 5), Scale (2, 0.1, 8), gray material
+    - "Lane_Right": Position (3, 0, 5), Scale (2, 0.1, 8), dark gray material
+    Create empty GameObject: "ActionVisualFeedback"
+    - Add Component: `ActionVisualFeedback`
+    - Drag Lane renderers to Left/Center/Right fields
+16. **Debug UI (Phase 4):**
+    Create a separate Canvas or child: "DebugCanvas"
+    - Add Text "DebugText" (top-left, font size 16)
+    - Add Component: `DebugUI` to DebugCanvas
+    - Drag DebugText to Debug Text field
+17. Create Canvas for HUD
+18. Create Text "ScoreText" inside Canvas
     - Position: Top-left area
     - Font Size: 24
-17. Create Text "ComboText" inside Canvas
+19. Create Text "ComboText" inside Canvas
     - Position: Top-center area
     - Font Size: 28
-18. Create Text "TimerText" inside Canvas
+20. Create Text "TimerText" inside Canvas
     - Position: Top-right area
     - Font Size: 32
-19. Add `HUDController` to Canvas
+21. Create Text "AccuracyText" inside Canvas
+    - Position: Below ScoreText
+    - Font Size: 20
+22. Add `HUDController` to Canvas
     - Drag ScoreText → Score Text field
     - Drag ComboText → Combo Text field
     - Drag TimerText → Timer Text field
+    - Drag AccuracyText → Accuracy Text field
 
 **GameRoundController Inspector Setup:**
 - Target Spawner: Drag TargetSpawner GameObject
@@ -102,6 +130,7 @@ Use Unity 2022.3 LTS or later.
 - Spawn Point Center: Drag SpawnPoint_Center
 - Spawn Point Right: Drag SpawnPoint_Right
 - Miss Zone Z: 0
+- Game Config: (Optional) Drag GameConfig asset
 
 **Camera Setup:**
 - Position: (0, 5, -10)
@@ -122,6 +151,7 @@ Use Unity 2022.3 LTS or later.
    - LateText
    - MissText
    - MaxComboText
+   - **ReactionTimeText** (Phase 4: Shows average reaction time)
 6. Create Button "Restart"
    - On Click → ResultsController → OnRestartButton
 7. Create Button "Main Menu"
@@ -129,8 +159,18 @@ Use Unity 2022.3 LTS or later.
 
 **ResultsController Inspector Setup:**
 - Drag all Text elements to corresponding fields
+- Drag ReactionTimeText → Reaction Time Text field
 
-## Step 4: Build Settings
+## Step 4: GameConfig (Optional)
+1. In Project window: Right-click → Create → BoxReha → GameConfig
+2. Configure values:
+   - **Timing**: PerfectWindow 0.1s, GoodWindow 0.25s, EarlyLateWindow 0.5s
+   - **Scoring**: Perfect 100, Good 50, Early/Late 25, Block 75, Dodge 75
+   - **Input**: BlockHoldDuration 0.5s, SwipeMinDistance 200px, SwipeMaxDuration 0.3s
+   - **Visual**: Punch red, Block blue, Dodge green
+3. Drag GameConfig asset to MouseTouchInputProvider and TargetSpawner
+
+## Step 5: Build Settings
 1. File → Build Settings
 2. Add scenes in order:
    - Boot (index 0)
@@ -139,24 +179,36 @@ Use Unity 2022.3 LTS or later.
    - Results (index 3)
 3. Ensure "Boot" is at index 0
 
-## Step 5: Play
+## Step 6: Play
 1. Open Boot scene
 2. Press Play
 3. Game should:
-   - Boot → Load MainMenu
-   - Click Start → Load Game
-   - Click/tap screen to punch targets
-   - Timer counts down
-   - When time up → Load Results
-   - Shows stats
+   - Boot → Load MainMenu with level selection
+   - Select level → Load Game with appropriate targets
+   - Click to Punch (red), Hold to Block (blue), Swipe to Dodge (green)
+   - Timer counts down with accuracy display
+   - When time up → Load Results with reaction time
    - Can Restart or return to Main Menu
+
+## Input Actions Reference
+
+| Action | Input | Visual |
+|--------|-------|--------|
+| Punch | Quick click/release | Red cube (rotated 45°) |
+| Block | Hold >0.5s without moving | Blue flat cube |
+| Dodge | Fast swipe >200px in <0.3s | Green stretched cube |
+
+## Debug Features
+- Press **D** to toggle debug overlay (FPS, state, targets)
+- Accuracy shown in real-time during gameplay
+- Reaction time tracked per hit
 
 ## Troubleshooting
 
 ### Scripts not compiling
 - Ensure all scripts are in `Assets/Scripts/` folder
-- Check for missing semicolons or braces
-- Unity Console will show compilation errors
+- Check Unity Console for compilation errors
+- Verify no duplicate class names
 
 ### Game doesn't start
 - Check Boot scene is first in Build Settings
@@ -177,6 +229,11 @@ Use Unity 2022.3 LTS or later.
 - Check HUDController has all Text references
 - Ensure events are subscribed (OnEnable/OnDisable)
 - Verify ScoreSystem and ComboSystem are active
+
+### Debug overlay not showing
+- Press D key during gameplay
+- Ensure DebugUI component is in scene
+- Check DebugText reference is assigned
 
 ## Inspector Reference Values
 
@@ -207,10 +264,3 @@ Use Unity 2022.3 LTS or later.
 
 ### Player Root
 - Position: (0, 0, 5)
-
-## Notes
-- Phase 1: Only Punch targets
-- Mouse/Touch input only
-- 60-second rounds
-- Score and combo tracking
-- Results screen with full stats
