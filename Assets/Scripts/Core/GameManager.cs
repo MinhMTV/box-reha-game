@@ -28,6 +28,13 @@ public class GameManager : MonoBehaviour
 
         SessionStats = new GameSessionStats();
         CurrentState = GameState.Menu;
+
+        // Ensure AudioManager exists
+        if (AudioManager.Instance == null)
+        {
+            GameObject audioObj = new GameObject("AudioManager");
+            audioObj.AddComponent<AudioManager>();
+        }
     }
 
     /// <summary>

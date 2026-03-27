@@ -21,6 +21,7 @@ public class HUDController : MonoBehaviour
     {
         ScoreSystem.OnScoreChanged += UpdateScore;
         ComboSystem.OnComboChanged += UpdateCombo;
+        ComboSystem.OnComboMilestone += ShowComboMilestone;
         SessionTimer.OnTimeChanged += UpdateTimer;
         HitZoneEvaluator.OnHitEvaluated += TrackAccuracy;
         HitZoneEvaluator.OnTargetMissed += TrackMissForAccuracy;
@@ -30,6 +31,7 @@ public class HUDController : MonoBehaviour
     {
         ScoreSystem.OnScoreChanged -= UpdateScore;
         ComboSystem.OnComboChanged -= UpdateCombo;
+        ComboSystem.OnComboMilestone -= ShowComboMilestone;
         SessionTimer.OnTimeChanged -= UpdateTimer;
         HitZoneEvaluator.OnHitEvaluated -= TrackAccuracy;
         HitZoneEvaluator.OnTargetMissed -= TrackMissForAccuracy;
@@ -109,5 +111,10 @@ public class HUDController : MonoBehaviour
     {
         if (inputStateText != null)
             inputStateText.text = state;
+    }
+
+    private void ShowComboMilestone(int combo)
+    {
+        ComboMilestonePopup.Show(combo);
     }
 }

@@ -16,11 +16,15 @@ public class TargetSpawner : MonoBehaviour
 
     private LevelDefinition currentLevel;
     private bool isSpawning;
+    private float speedMultiplier = 1f;
+    private float intervalMultiplier = 1f;
 
     public void StartSpawning(LevelDefinition level)
     {
         currentLevel = level;
         isSpawning = true;
+        speedMultiplier = 1f;
+        intervalMultiplier = 1f;
         SpawnPatternGenerator.Reset();
         StartCoroutine(SpawnRoutine());
     }
@@ -31,14 +35,25 @@ public class TargetSpawner : MonoBehaviour
         StopAllCoroutines();
     }
 
+    /// <summary>
+    /// Set difficulty modifiers from GameRoundController.
+    /// </summary>
+    public void SetDifficultyModifiers(float speedMult, float intervalMult)
+    {
+        speedMultiplier = speedMult;
+        intervalMultiplier = intervalMult;
+    }
+
     private IEnumerator SpawnRoutine()
     {
         while (isSpawning)
         {
-            yield return new WaitForSeconds(currentLevel.SpawnInterval);
+            float interval = currentLevel.SpawnInterval * intervalMultiplier;
+            yield return new WaitForSeconds(interval);
             if (!isSpawning) yield break;
 
             SpawnPatternData pattern = SpawnPatternGenerator.GetNextPattern(currentLevel);
+            pattern.Speed = currentLevel.TargetSpeed * speedMultiplier;
             SpawnTarget(pattern);
         }
     }

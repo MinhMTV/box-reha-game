@@ -137,6 +137,24 @@ Use Unity 2022.3 LTS or later.
 - Rotation: (20, 0, 0)
 - Field of View: 60
 
+### Pause Menu (NEW: v2)
+Create a Panel inside the HUD Canvas:
+1. Create Panel "PausePanel" (full screen, semi-transparent black background)
+   - Add Component: `PauseMenuController`
+   - Set Pause Panel field to itself
+2. Create Button "ResumeButton" inside PausePanel
+   - On Click → PauseMenuController → OnResume
+3. Create Button "QuitButton" inside PausePanel
+   - On Click → PauseMenuController → OnQuitToMenu
+4. Create Text "PAUSED" as title inside PausePanel
+
+**PauseMenuController Inspector:**
+- Resume Button: Drag ResumeButton
+- Quit Button: Drag QuitButton
+- Pause Panel: Drag PausePanel
+
+**Note:** ESC key automatically toggles pause. Time.timeScale is set to 0 on pause.
+
 ### Scene 4: Results
 1. File → New Scene → Basic (Built-in)
 2. Save as `Assets/Scenes/Results.unity`
@@ -152,6 +170,10 @@ Use Unity 2022.3 LTS or later.
    - MissText
    - MaxComboText
    - **ReactionTimeText** (Phase 4: Shows average reaction time)
+   - **StarsText** (v2: Shows ★★★ star rating, font size 48)
+   - **BestScoreText** (v2: Shows best score for this level)
+   - **NewHighScoreText** (v2: Shows "★ NEW HIGH SCORE! ★" when applicable)
+   - **GamesPlayedText** (v2: Shows total games played)
 6. Create Button "Restart"
    - On Click → ResultsController → OnRestartButton
 7. Create Button "Main Menu"

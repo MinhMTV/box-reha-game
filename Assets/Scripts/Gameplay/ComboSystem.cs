@@ -9,6 +9,8 @@ public class ComboSystem : MonoBehaviour
     public int CurrentCombo { get; private set; }
     public int MaxCombo { get; private set; }
 
+    public static event Action<int> OnComboMilestone;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -40,6 +42,15 @@ public class ComboSystem : MonoBehaviour
             MaxCombo = CurrentCombo;
         }
         OnComboChanged?.Invoke(CurrentCombo);
+
+        // Fire milestone event at combo milestones: 5, 10, 15, 20, 30, 50
+        if (ComboMilestonePopup.IsMilestone(CurrentCombo))
+        {
+            OnComboMilestone?.Invoke(CurrentCombo);
+            // Play combo sound
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayComboSound();
+        }
     }
 
     private void HandleMiss(int lane)

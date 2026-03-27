@@ -13,6 +13,7 @@ public class GameRoundController : MonoBehaviour
 
     private LevelDefinition currentLevel;
     private GameSessionStats sessionStats;
+    private float roundStartTime;
 
     public static event Action<GameSessionStats> OnRoundEnd;
 
@@ -36,6 +37,42 @@ public class GameRoundController : MonoBehaviour
         HitZoneEvaluator.OnTargetMissed -= TrackMiss;
     }
 
+    void Update()
+    {
+        // Difficulty ramp-up: update spawner speed/interval based on elapsed time
+        if (currentLevel == null || targetSpawner == null) return;
+        if (GameManager.Instance == null || GameManager.Instance.CurrentState != GameState.Playing) return;
+
+        float elapsed = Time.time - roundStartTime;
+        float ratio = Mathf.Clamp01(elapsed / currentLevel.DurationSeconds);
+
+        // Speed: 80% → 130%
+        float speedMultiplier = Mathf.Lerp(0.8f, 1.3f, ratio);
+        // Spawn interval: 100% → 70%
+        float intervalMultiplier = Mathf.Lerp(1f, 0.7f, ratio);
+
+        targetSpawner.SetDifficultyModifiers(speedMultiplier, intervalMultiplier);
+    }
+
+    /// <summary>
+    /// Get the current speed multiplier based on elapsed time (for use by spawner).
+    /// </summary>
+    public float GetCurrentSpeedMultiplier()
+    {
+        if (currentLevel == null) return 1f;
+        float elapsed = Time.time - roundStartTime;
+        float ratio = Mathf.Clamp01(elapsed / currentLevel.DurationSeconds);
+        return Mathf.Lerp(0.8f, 1.3f, ratio);
+    }
+
+    public float GetCurrentIntervalMultiplier()
+    {
+        if (currentLevel == null) return 1f;
+        float elapsed = Time.time - roundStartTime;
+        float ratio = Mathf.Clamp01(elapsed / currentLevel.DurationSeconds);
+        return Mathf.Lerp(1f, 0.7f, ratio);
+    }
+
     private void InitializeRound()
     {
         if (GameManager.Instance == null) return;
@@ -48,6 +85,7 @@ public class GameRoundController : MonoBehaviour
 
         sessionStats = GameManager.Instance.SessionStats;
         sessionStats.Reset();
+        roundStartTime = Time.time;
 
         if (inputProvider != null)
         {

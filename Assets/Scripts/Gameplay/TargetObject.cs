@@ -17,14 +17,66 @@ public class TargetObject : MonoBehaviour
 
     private Renderer cachedRenderer;
     private Color originalColor;
+    private MaterialPropertyBlock propBlock;
+    private bool glowEnabled;
 
     public float SpawnTime { get; private set; }
+
+    // HitZone Z position for glow calculation
+    private const float HitZoneZ = 5f;
+    private const float GlowActivateDistance = 10f;
+    private const float GlowSpeed = 4f;
 
     void Start()
     {
         SpawnTime = Time.time;
         cachedRenderer = GetComponent<Renderer>();
+        propBlock = new MaterialPropertyBlock();
         ApplyVisuals();
+    }
+
+    void Update()
+    {
+        UpdateGlowEffect();
+    }
+
+    /// <summary>
+    /// Pulsing glow effect as target approaches hit zone.
+    /// Uses emission color intensity that increases as Z position decreases toward HitZone.
+    /// </summary>
+    private void UpdateGlowEffect()
+    {
+        if (cachedRenderer == null) return;
+
+        float distanceToHitZone = transform.position.z - HitZoneZ;
+
+        if (distanceToHitZone < GlowActivateDistance && distanceToHitZone > 0f)
+        {
+            glowEnabled = true;
+
+            // Proximity factor: 0 at 10 units, 1 at hit zone
+            float proximity = 1f - (distanceToHitZone / GlowActivateDistance);
+
+            // Sine wave pulse
+            float pulse = 0.3f + 0.7f * Mathf.Abs(Mathf.Sin(Time.time * GlowSpeed));
+
+            // Emission intensity increases with proximity
+            float intensity = pulse * (0.3f + proximity * 0.7f);
+
+            Color emissionColor = originalColor * intensity;
+
+            cachedRenderer.GetPropertyBlock(propBlock);
+            propBlock.SetColor("_EmissionColor", emissionColor);
+            cachedRenderer.SetPropertyBlock(propBlock);
+        }
+        else if (glowEnabled)
+        {
+            // Disable glow
+            glowEnabled = false;
+            cachedRenderer.GetPropertyBlock(propBlock);
+            propBlock.SetColor("_EmissionColor", Color.black);
+            cachedRenderer.SetPropertyBlock(propBlock);
+        }
     }
 
     /// <summary>

@@ -95,6 +95,35 @@ public class HitZoneEvaluator : MonoBehaviour
 
         int score = GetScoreForQuality(quality, bestTarget.Type);
 
+        // Play audio feedback
+        if (AudioManager.Instance != null)
+        {
+            switch (quality)
+            {
+                case HitQuality.Miss:
+                    AudioManager.Instance.PlayMissSound();
+                    break;
+                case HitQuality.Perfect:
+                case HitQuality.Good:
+                case HitQuality.Early:
+                case HitQuality.Late:
+                    switch (bestTarget.Type)
+                    {
+                        case TargetType.Punch: AudioManager.Instance.PlayHitSound(); break;
+                        case TargetType.Block: AudioManager.Instance.PlayBlockSound(); break;
+                        case TargetType.Dodge: AudioManager.Instance.PlayDodgeSound(); break;
+                    }
+                    break;
+            }
+        }
+
+        // Spawn particle effect on hit
+        if (quality != HitQuality.Miss)
+        {
+            Color particleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
+            HitParticleEffect.Spawn(bestTarget.transform.position, particleColor);
+        }
+
         // Phase 2: Track reaction time (time from spawn to player action)
         float reactionTime = (float)(Time.realtimeSinceStartupAsDouble - bestTarget.SpawnTime);
         if (GameManager.Instance?.SessionStats != null)
