@@ -21,6 +21,7 @@ public class HitZoneEvaluator : MonoBehaviour
     // Phase 2: Visual feedback events
     public static event Action<HitQuality, LaneType, Vector3> OnHitVisualFeedback;
     public static event Action<LaneType, Vector3> OnMissVisualFeedback;
+    public static event Action<ForceBand, float> OnSensorForceEvaluated;
 
     private List<TargetObject> activeTargets = new List<TargetObject>();
 
@@ -50,6 +51,8 @@ public class HitZoneEvaluator : MonoBehaviour
     public const int RapidFireChainBonus = 500;
 
     [SerializeField] private Transform hitZoneCenter;
+    [SerializeField] private float minimumSensorPowerMultiplier = 0.75f;
+    [SerializeField] private float maximumSensorPowerMultiplier = 1.25f;
 
     void Start()
     {
@@ -195,6 +198,7 @@ public class HitZoneEvaluator : MonoBehaviour
 
         // Normal hit scoring
         int normalScore = GetScoreForQuality(quality, bestTarget.Type);
+        normalScore = ApplyPowerNormalization(normalScore, action);
 
         // Play audio feedback
         if (AudioManager.Instance != null)
@@ -228,6 +232,13 @@ public class HitZoneEvaluator : MonoBehaviour
         if (GameManager.Instance?.SessionStats != null)
         {
             GameManager.Instance.SessionStats.TrackReactionTime(reactionTime2);
+            if (action.SourceType == InputSourceType.Sensor && action.RawForce > 0f)
+            {
+                PlayerProfile profile = GameManager.Instance.PlayerProfile;
+                ForceBand forceBand = profile != null ? profile.GetForceBand(action.Power) : ForceBand.OnTarget;
+                GameManager.Instance.SessionStats.TrackForce(action.RawForce, action.Power, forceBand);
+                OnSensorForceEvaluated?.Invoke(forceBand, action.Power);
+            }
         }
 
         OnHitEvaluated?.Invoke(quality, normalScore, bestTarget.Lane);
@@ -286,6 +297,17 @@ public class HitZoneEvaluator : MonoBehaviour
             case TargetType.ToughPunch: return Mathf.Max(baseScore, PerfectScore); // Tough targets give full punch score
             default: return baseScore;
         }
+    }
+
+    private int ApplyPowerNormalization(int baseScore, PlayerActionEvent action)
+    {
+        if (action.SourceType != InputSourceType.Sensor)
+        {
+            return baseScore;
+        }
+
+        float multiplier = Mathf.Clamp(action.Power, minimumSensorPowerMultiplier, maximumSensorPowerMultiplier);
+        return Mathf.RoundToInt(baseScore * multiplier);
     }
 
     void OnTriggerEnter(Collider other)

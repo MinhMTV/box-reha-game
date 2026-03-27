@@ -42,7 +42,7 @@ public class SensorDataBuffer
     /// </summary>
     public SensorReading GetLatest()
     {
-        if (count == 0) return default;
+        if (count == 0) return default(SensorReading);
         int index = (head - 1 + capacity) % capacity;
         return buffer[index];
     }

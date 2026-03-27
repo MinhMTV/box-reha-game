@@ -10,6 +10,7 @@ using System.Collections;
 public class ComboMilestonePopup : MonoBehaviour
 {
     private static readonly int[] Milestones = { 5, 10, 15, 20, 30, 50 };
+    private const string BuiltInFontName = "LegacyRuntime.ttf";
 
     [SerializeField] private float popupDuration = 1.2f;
     [SerializeField] private float scalePunch = 1.5f;
@@ -40,18 +41,23 @@ public class ComboMilestonePopup : MonoBehaviour
 
         Text text = obj.AddComponent<Text>();
         text.text = $"COMBO {combo}!";
+        text.font = Resources.GetBuiltinResource<Font>(BuiltInFontName);
         text.fontSize = 64;
         text.fontStyle = FontStyle.Bold;
         text.alignment = TextAnchor.MiddleCenter;
-        text.color = Color.yellow;
+        text.color = new Color(1f, 0.92f, 0.22f, 1f);
 
         Outline outline = obj.AddComponent<Outline>();
-        outline.effectColor = Color.black;
-        outline.effectDistance = new Vector2(2, -2);
+        outline.effectColor = new Color(0.02f, 0.06f, 0.1f, 1f);
+        outline.effectDistance = new Vector2(3f, -3f);
+
+        Shadow shadow = obj.AddComponent<Shadow>();
+        shadow.effectColor = new Color(0f, 0f, 0f, 0.5f);
+        shadow.effectDistance = new Vector2(0f, -5f);
 
         RectTransform rect = obj.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(500, 100);
-        rect.anchoredPosition = Vector2.zero;
+        rect.sizeDelta = new Vector2(560, 120);
+        rect.anchoredPosition = new Vector2(0f, -40f);
 
         ComboMilestonePopup popup = obj.AddComponent<ComboMilestonePopup>();
         popup.popupText = text;

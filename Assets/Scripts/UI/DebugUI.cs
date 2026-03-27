@@ -52,7 +52,14 @@ public class DebugUI : MonoBehaviour
         if (debugText == null) return;
 
         string inputState = GameManager.Instance != null ? GameManager.Instance.CurrentState.ToString() : "N/A";
-        string level = GameManager.Instance != null ? GameManager.Instance.SelectedLevel.ToString() : "N/A";
+        string level = "N/A";
+        if (GameManager.Instance != null)
+        {
+            LevelDefinition currentLevel = GameManager.Instance.CurrentLevel;
+            level = currentLevel != null && !string.IsNullOrEmpty(currentLevel.DisplayName)
+                ? currentLevel.DisplayName
+                : GameManager.Instance.SelectedLevel.ToString();
+        }
 
         debugText.text = $"[DEBUG]\n" +
                          $"FPS: {currentFps:F0}\n" +

@@ -14,12 +14,12 @@ public class ActionVisualFeedback : MonoBehaviour
     [SerializeField] private float flashDuration = 0.15f;
 
     [Header("Colors")]
-    [SerializeField] private Color hitFlashColor = Color.green;
-    [SerializeField] private Color missFlashColor = Color.red;
-    [SerializeField] private Color perfectColor = Color.yellow;
-    [SerializeField] private Color defaultLeftColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-    [SerializeField] private Color defaultCenterColor = new Color(0.4f, 0.4f, 0.4f, 1f);
-    [SerializeField] private Color defaultRightColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+    [SerializeField] private Color hitFlashColor = new Color(0.3f, 1f, 0.65f, 1f);
+    [SerializeField] private Color missFlashColor = new Color(1f, 0.25f, 0.35f, 1f);
+    [SerializeField] private Color perfectColor = new Color(1f, 0.9f, 0.2f, 1f);
+    [SerializeField] private Color defaultLeftColor = new Color(0.11f, 0.33f, 0.55f, 1f);
+    [SerializeField] private Color defaultCenterColor = new Color(0.16f, 0.52f, 0.72f, 1f);
+    [SerializeField] private Color defaultRightColor = new Color(0.11f, 0.33f, 0.55f, 1f);
 
     void OnEnable()
     {

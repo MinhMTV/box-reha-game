@@ -7,6 +7,8 @@ using UnityEngine.UI;
 /// </summary>
 public class TextPopup : MonoBehaviour
 {
+    private const string BuiltInFontName = "LegacyRuntime.ttf";
+
     [SerializeField] private float floatSpeed = 50f;
     [SerializeField] private float lifetime = 0.8f;
 
@@ -59,12 +61,21 @@ public class TextPopup : MonoBehaviour
         Text uiText = popupObj.AddComponent<Text>();
         uiText.text = text;
         uiText.color = color;
-        uiText.fontSize = 32;
+        uiText.font = Resources.GetBuiltinResource<Font>(BuiltInFontName);
+        uiText.fontSize = 36;
         uiText.fontStyle = FontStyle.Bold;
         uiText.alignment = TextAnchor.MiddleCenter;
 
+        Outline outline = popupObj.AddComponent<Outline>();
+        outline.effectColor = new Color(0.02f, 0.06f, 0.1f, 0.95f);
+        outline.effectDistance = new Vector2(2.5f, -2.5f);
+
+        Shadow shadow = popupObj.AddComponent<Shadow>();
+        shadow.effectColor = new Color(0f, 0f, 0f, 0.55f);
+        shadow.effectDistance = new Vector2(0f, -4f);
+
         RectTransform rect = popupObj.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(200, 50);
+        rect.sizeDelta = new Vector2(280, 68);
 
         // Convert world position to screen position
         Camera cam = Camera.main;
@@ -91,23 +102,23 @@ public class TextPopup : MonoBehaviour
         {
             case HitQuality.Perfect:
                 text = "PERFECT!";
-                color = Color.yellow;
+                color = new Color(1f, 0.92f, 0.25f, 1f);
                 break;
             case HitQuality.Good:
                 text = "GOOD";
-                color = Color.green;
+                color = new Color(0.35f, 1f, 0.65f, 1f);
                 break;
             case HitQuality.Early:
                 text = "EARLY";
-                color = Color.cyan;
+                color = new Color(0.35f, 0.9f, 1f, 1f);
                 break;
             case HitQuality.Late:
                 text = "LATE";
-                color = new Color(1f, 0.5f, 0f); // orange
+                color = new Color(1f, 0.6f, 0.15f, 1f);
                 break;
             default:
                 text = "MISS";
-                color = Color.red;
+                color = new Color(1f, 0.28f, 0.35f, 1f);
                 break;
         }
 

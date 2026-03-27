@@ -22,6 +22,8 @@ public class TargetSpawner : MonoBehaviour
     private bool isSpawning;
     private float speedMultiplier = 1f;
     private float intervalMultiplier = 1f;
+    private float toughChanceBonus;
+    private float rapidFireChanceBonus;
 
     public void StartSpawning(LevelDefinition level)
     {
@@ -29,6 +31,8 @@ public class TargetSpawner : MonoBehaviour
         isSpawning = true;
         speedMultiplier = 1f;
         intervalMultiplier = 1f;
+        toughChanceBonus = 0f;
+        rapidFireChanceBonus = 0f;
         SpawnPatternGenerator.Reset();
         StartCoroutine(SpawnRoutine());
     }
@@ -42,10 +46,12 @@ public class TargetSpawner : MonoBehaviour
     /// <summary>
     /// Set difficulty modifiers from GameRoundController.
     /// </summary>
-    public void SetDifficultyModifiers(float speedMult, float intervalMult)
+    public void SetDifficultyModifiers(float speedMult, float intervalMult, float toughChanceExtra = 0f, float rapidFireChanceExtra = 0f)
     {
         speedMultiplier = speedMult;
         intervalMultiplier = intervalMult;
+        toughChanceBonus = toughChanceExtra;
+        rapidFireChanceBonus = rapidFireChanceExtra;
     }
 
     private IEnumerator SpawnRoutine()
@@ -57,7 +63,8 @@ public class TargetSpawner : MonoBehaviour
             if (!isSpawning) yield break;
 
             // v3: Check for rapid fire chain
-            if (Random.value < currentLevel.RapidFireChance)
+            float rapidFireChance = Mathf.Clamp01(currentLevel.RapidFireChance + rapidFireChanceBonus);
+            if (Random.value < rapidFireChance)
             {
                 yield return StartCoroutine(SpawnRapidFireChain());
                 continue;
@@ -67,7 +74,8 @@ public class TargetSpawner : MonoBehaviour
             pattern.Speed = currentLevel.TargetSpeed * speedMultiplier;
 
             // v3: Check for tough target
-            if (Random.value < currentLevel.ToughTargetChance)
+            float toughChance = Mathf.Clamp01(currentLevel.ToughTargetChance + toughChanceBonus);
+            if (Random.value < toughChance)
             {
                 SpawnToughTarget(pattern);
             }
@@ -256,11 +264,13 @@ public class TargetSpawner : MonoBehaviour
         target.AddComponent<TargetObject>();
         target.AddComponent<TargetMover>();
         Rigidbody rb = target.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (rb == null)
         {
-            rb.useGravity = false;
-            rb.isKinematic = true;
+            rb = target.AddComponent<Rigidbody>();
         }
+
+        rb.useGravity = false;
+        rb.isKinematic = true;
         return target;
     }
 }

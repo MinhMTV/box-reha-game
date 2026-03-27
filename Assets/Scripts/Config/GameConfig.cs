@@ -23,6 +23,10 @@ public class GameConfig : ScriptableObject
     public float BlockHoldDuration = 0.5f;
     public float SwipeMaxDuration = 0.3f;
     public float BlockMaxMovement = 10f;
+    public float SensorPunchAccelerationThreshold = 18f;
+    public float SensorBlockAccelerationThreshold = 9f;
+    public float SensorDodgeGyroThreshold = 6f;
+    public float SensorActionCooldown = 0.35f;
 
     [Header("Visual")]
     public Color PunchColor = Color.red;

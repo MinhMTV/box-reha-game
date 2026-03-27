@@ -12,6 +12,9 @@ public class MouseTouchInputProvider : MonoBehaviour, IPlayerActionInputProvider
 {
     public event System.Action<PlayerActionEvent> OnActionDetected;
     public bool IsEnabled { get; set; }
+    public InputSourceType SourceType => InputSourceType.Mouse;
+    public bool IsReady => true;
+    public string Status => IsEnabled ? "Mouse/Touch active" : "Mouse/Touch standby";
 
     [SerializeField] private GameConfig gameConfig;
 

@@ -26,6 +26,7 @@ public class TargetObject : MonoBehaviour
     private Color originalColor;
     private MaterialPropertyBlock propBlock;
     private bool glowEnabled;
+    private TextMesh labelMesh;
 
     // v3: Health bar reference
     private ToughTargetHealthBar healthBar;
@@ -91,23 +92,34 @@ public class TargetObject : MonoBehaviour
         if (cachedRenderer == null) cachedRenderer = GetComponent<Renderer>();
         if (cachedRenderer == null) return;
 
+        string labelText = "PUNCH";
+        Color accentColor = Color.red;
+
         switch (Type)
         {
             case TargetType.Punch:
-                cachedRenderer.material.color = Color.red;
+                accentColor = new Color(1f, 0.22f, 0.22f, 1f);
+                labelText = "PUNCH";
+                ApplyTargetMaterial(accentColor, 1.9f);
                 transform.rotation = Quaternion.Euler(0f, 45f, 0f);
                 break;
             case TargetType.Block:
-                cachedRenderer.material.color = Color.blue;
+                accentColor = new Color(0.2f, 0.75f, 1f, 1f);
+                labelText = "BLOCK";
+                ApplyTargetMaterial(accentColor, 1.7f);
                 transform.localScale = new Vector3(1.8f, 1.8f, 0.3f);
                 break;
             case TargetType.Dodge:
-                cachedRenderer.material.color = Color.green;
+                accentColor = new Color(0.35f, 1f, 0.55f, 1f);
+                labelText = "DODGE";
+                ApplyTargetMaterial(accentColor, 1.6f);
                 transform.localScale = new Vector3(2.5f, 0.8f, 0.8f);
                 break;
             case TargetType.ToughPunch:
                 // Dark red, slightly larger
-                cachedRenderer.material.color = new Color(0.6f, 0.05f, 0.05f, 1f);
+                accentColor = new Color(1f, 0.55f, 0.1f, 1f);
+                labelText = "POWER";
+                ApplyTargetMaterial(new Color(0.75f, 0.08f, 0.08f, 1f), 2.2f);
                 transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
                 transform.rotation = Quaternion.Euler(0f, 45f, 0f);
                 // Create health bar
@@ -116,6 +128,7 @@ public class TargetObject : MonoBehaviour
         }
 
         originalColor = cachedRenderer.material.color;
+        EnsureLabel(labelText, accentColor);
     }
 
     /// <summary>
@@ -201,6 +214,46 @@ public class TargetObject : MonoBehaviour
     {
         if (cachedRenderer != null)
             cachedRenderer.material.color = originalColor;
+    }
+
+    private void ApplyTargetMaterial(Color baseColor, float emissionIntensity)
+    {
+        Material material = cachedRenderer.material;
+        material.color = baseColor;
+        material.SetFloat("_Metallic", 0.15f);
+        material.SetFloat("_Glossiness", 0.72f);
+        material.EnableKeyword("_EMISSION");
+        material.SetColor("_EmissionColor", baseColor * emissionIntensity);
+    }
+
+    private void EnsureLabel(string actionLabel, Color accentColor)
+    {
+        if (labelMesh == null)
+        {
+            Transform existing = transform.Find("TargetLabel");
+            if (existing != null)
+            {
+                labelMesh = existing.GetComponent<TextMesh>();
+            }
+        }
+
+        if (labelMesh == null)
+        {
+            GameObject labelObject = new GameObject("TargetLabel");
+            labelObject.transform.SetParent(transform, false);
+            labelMesh = labelObject.AddComponent<TextMesh>();
+            labelMesh.alignment = TextAlignment.Center;
+            labelMesh.anchor = TextAnchor.MiddleCenter;
+            labelMesh.characterSize = 0.11f;
+            labelMesh.fontSize = 56;
+        }
+
+        string verticalLabel = VertPosition.ToString().ToUpperInvariant();
+        labelMesh.text = actionLabel + "\n" + verticalLabel;
+        labelMesh.color = Color.Lerp(Color.white, accentColor, 0.2f);
+        labelMesh.transform.localPosition = new Vector3(0f, 0f, -0.42f);
+        labelMesh.transform.localRotation = Quaternion.identity;
+        labelMesh.transform.localScale = Vector3.one;
     }
 
     public float GetTimeInZone()

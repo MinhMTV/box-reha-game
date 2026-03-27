@@ -38,6 +38,7 @@ public class HUDController : MonoBehaviour
         // v3: Rapid fire events
         HitZoneEvaluator.OnRapidFireChainProgress += ShowRapidFireProgress;
         HitZoneEvaluator.OnRapidFireChainComplete += ShowRapidFireComplete;
+        HitZoneEvaluator.OnSensorForceEvaluated += ShowSensorForceFeedback;
     }
 
     void OnDisable()
@@ -52,6 +53,7 @@ public class HUDController : MonoBehaviour
         HitZoneEvaluator.OnToughTargetDestroyed -= ShowToughDestroyedFeedback;
         HitZoneEvaluator.OnRapidFireChainProgress -= ShowRapidFireProgress;
         HitZoneEvaluator.OnRapidFireChainComplete -= ShowRapidFireComplete;
+        HitZoneEvaluator.OnSensorForceEvaluated -= ShowSensorForceFeedback;
     }
 
     void Update()
@@ -101,6 +103,14 @@ public class HUDController : MonoBehaviour
             int minutes = Mathf.FloorToInt(time / 60f);
             int seconds = Mathf.FloorToInt(time % 60f);
             timerText.text = $"{minutes:00}:{seconds:00}";
+        }
+    }
+
+    public void SetTimerLabel(string label)
+    {
+        if (timerText != null)
+        {
+            timerText.text = label;
         }
     }
 
@@ -178,6 +188,32 @@ public class HUDController : MonoBehaviour
             feedbackText.color = Color.yellow;
             feedbackTimer = 2f;
         }
+    }
+
+    private void ShowSensorForceFeedback(ForceBand forceBand, float normalizedForce)
+    {
+        if (feedbackText == null)
+        {
+            return;
+        }
+
+        switch (forceBand)
+        {
+            case ForceBand.Low:
+                feedbackText.text = $"FORCE LOW ({normalizedForce:P0})";
+                feedbackText.color = new Color(0.45f, 0.85f, 1f);
+                break;
+            case ForceBand.OnTarget:
+                feedbackText.text = $"FORCE ON TARGET ({normalizedForce:P0})";
+                feedbackText.color = Color.green;
+                break;
+            default:
+                feedbackText.text = $"FORCE HIGH ({normalizedForce:P0})";
+                feedbackText.color = new Color(1f, 0.55f, 0.15f);
+                break;
+        }
+
+        feedbackTimer = FeedbackDuration;
     }
 
     public void UpdateDebug(string message)

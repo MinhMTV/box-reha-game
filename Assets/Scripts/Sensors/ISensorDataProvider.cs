@@ -47,6 +47,9 @@ public struct SensorReading
     /// <summary>Timestamp of the reading (seconds since start)</summary>
     public double Timestamp;
 
+    /// <summary>Optional force/impact value directly delivered by the glove.</summary>
+    public float ImpactForce;
+
     /// <summary>Device identifier (e.g., "left_hand", "right_hand")</summary>
     public string DeviceId;
 }

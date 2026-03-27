@@ -8,12 +8,13 @@ public class GameRoundController : MonoBehaviour
     [SerializeField] private ScoreSystem scoreSystem;
     [SerializeField] private ComboSystem comboSystem;
     [SerializeField] private HitZoneEvaluator hitZoneEvaluator;
-    [SerializeField] private MouseTouchInputProvider inputProvider;
+    [SerializeField] private InputProviderRouter inputProvider;
     [SerializeField] private HUDController hudController;
 
     private LevelDefinition currentLevel;
     private GameSessionStats sessionStats;
     private float roundStartTime;
+    private bool roundEnded;
 
     public static event Action<GameSessionStats> OnRoundEnd;
 
@@ -25,7 +26,6 @@ public class GameRoundController : MonoBehaviour
     void OnEnable()
     {
         SessionTimer.OnTimeUp += HandleTimeUp;
-        // Updated event signature
         HitZoneEvaluator.OnHitEvaluated += TrackHit;
         HitZoneEvaluator.OnTargetMissed += TrackMiss;
     }
@@ -39,53 +39,78 @@ public class GameRoundController : MonoBehaviour
 
     void Update()
     {
-        // Difficulty ramp-up: update spawner speed/interval based on elapsed time
-        if (currentLevel == null || targetSpawner == null) return;
-        if (GameManager.Instance == null || GameManager.Instance.CurrentState != GameState.Playing) return;
+        if (currentLevel == null || targetSpawner == null)
+        {
+            return;
+        }
+
+        if (GameManager.Instance == null || GameManager.Instance.CurrentState != GameState.Playing)
+        {
+            return;
+        }
+
+        if (hudController != null && inputProvider != null)
+        {
+            hudController.UpdateInputState(inputProvider.GetStatusLine());
+        }
+
+        if (currentLevel.IsEndless && Input.GetKeyDown(KeyCode.Return))
+        {
+            EndRound();
+            return;
+        }
 
         float elapsed = Time.time - roundStartTime;
-        float ratio = Mathf.Clamp01(elapsed / currentLevel.DurationSeconds);
+        float difficultyProgress = GetDifficultyProgress(elapsed);
+        float speedMultiplier = Mathf.Lerp(currentLevel.StartSpeedMultiplier, currentLevel.MaxSpeedMultiplier, difficultyProgress);
+        float intervalMultiplier = Mathf.Lerp(currentLevel.StartIntervalMultiplier, currentLevel.MinIntervalMultiplier, difficultyProgress);
+        float toughChanceExtra = Mathf.Lerp(0f, Mathf.Max(0f, currentLevel.MaxToughTargetChance - currentLevel.ToughTargetChance), difficultyProgress);
+        float rapidFireChanceExtra = Mathf.Lerp(0f, Mathf.Max(0f, currentLevel.MaxRapidFireChance - currentLevel.RapidFireChance), difficultyProgress);
 
-        // Speed: 80% → 130%
-        float speedMultiplier = Mathf.Lerp(0.8f, 1.3f, ratio);
-        // Spawn interval: 100% → 70%
-        float intervalMultiplier = Mathf.Lerp(1f, 0.7f, ratio);
-
-        targetSpawner.SetDifficultyModifiers(speedMultiplier, intervalMultiplier);
+        targetSpawner.SetDifficultyModifiers(speedMultiplier, intervalMultiplier, toughChanceExtra, rapidFireChanceExtra);
     }
 
-    /// <summary>
-    /// Get the current speed multiplier based on elapsed time (for use by spawner).
-    /// </summary>
     public float GetCurrentSpeedMultiplier()
     {
-        if (currentLevel == null) return 1f;
+        if (currentLevel == null)
+        {
+            return 1f;
+        }
+
         float elapsed = Time.time - roundStartTime;
-        float ratio = Mathf.Clamp01(elapsed / currentLevel.DurationSeconds);
-        return Mathf.Lerp(0.8f, 1.3f, ratio);
+        return Mathf.Lerp(currentLevel.StartSpeedMultiplier, currentLevel.MaxSpeedMultiplier, GetDifficultyProgress(elapsed));
     }
 
     public float GetCurrentIntervalMultiplier()
     {
-        if (currentLevel == null) return 1f;
+        if (currentLevel == null)
+        {
+            return 1f;
+        }
+
         float elapsed = Time.time - roundStartTime;
-        float ratio = Mathf.Clamp01(elapsed / currentLevel.DurationSeconds);
-        return Mathf.Lerp(1f, 0.7f, ratio);
+        return Mathf.Lerp(currentLevel.StartIntervalMultiplier, currentLevel.MinIntervalMultiplier, GetDifficultyProgress(elapsed));
     }
 
     private void InitializeRound()
     {
-        if (GameManager.Instance == null) return;
+        GameManager manager = GameManager.EnsureInstance();
+        if (manager == null)
+        {
+            return;
+        }
 
-        currentLevel = GameManager.Instance.CurrentLevel;
+        currentLevel = manager.CurrentLevel;
         if (currentLevel == null)
         {
             currentLevel = LevelDefinition.CreateLevel1();
         }
 
-        sessionStats = GameManager.Instance.SessionStats;
+        manager.CurrentState = GameState.Playing;
+        sessionStats = manager.SessionStats;
         sessionStats.Reset();
         roundStartTime = Time.time;
+        roundEnded = false;
 
         if (inputProvider != null)
         {
@@ -104,12 +129,24 @@ public class GameRoundController : MonoBehaviour
 
         if (sessionTimer != null)
         {
-            sessionTimer.StartTimer(currentLevel.DurationSeconds);
+            if (currentLevel.IsEndless)
+            {
+                sessionTimer.StopTimer();
+            }
+            else
+            {
+                sessionTimer.StartTimer(currentLevel.DurationSeconds);
+            }
         }
 
         if (targetSpawner != null)
         {
             targetSpawner.StartSpawning(currentLevel);
+        }
+
+        if (hudController != null && currentLevel.IsEndless)
+        {
+            hudController.SetTimerLabel("ENDLESS");
         }
 
         if (inputProvider != null)
@@ -157,6 +194,13 @@ public class GameRoundController : MonoBehaviour
 
     private void EndRound()
     {
+        if (roundEnded)
+        {
+            return;
+        }
+
+        roundEnded = true;
+
         if (inputProvider != null)
         {
             inputProvider.IsEnabled = false;
@@ -183,5 +227,15 @@ public class GameRoundController : MonoBehaviour
         {
             GameManager.Instance.EndGame();
         }
+    }
+
+    private float GetDifficultyProgress(float elapsed)
+    {
+        if (currentLevel == null)
+        {
+            return 0f;
+        }
+
+        return Mathf.Clamp01(elapsed / Mathf.Max(1f, currentLevel.RampDurationSeconds));
     }
 }

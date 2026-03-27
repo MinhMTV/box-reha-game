@@ -17,11 +17,17 @@ public class ResultsController : MonoBehaviour
     [SerializeField] private Text missText;
     [SerializeField] private Text maxComboText;
     [SerializeField] private Text reactionTimeText;
-    // New fields
     [SerializeField] private Text starsText;
     [SerializeField] private Text bestScoreText;
     [SerializeField] private Text newHighScoreText;
     [SerializeField] private Text gamesPlayedText;
+    [SerializeField] private Text forceText;
+    [SerializeField] private Text normalizedForceText;
+    [SerializeField] private Text profileBaselineText;
+    [SerializeField] private Text forceBandSummaryText;
+
+    private int totalGamesPlayed;
+    private bool isNewHighScore;
 
     void Start()
     {
@@ -35,11 +41,11 @@ public class ResultsController : MonoBehaviour
 
         GameSessionStats stats = GameManager.Instance.SessionStats;
         int level = GameManager.Instance.SelectedLevel;
+        int previousBestScore = LeaderboardManager.GetBestScore(level);
 
-        // Increment games played
-        int gamesPlayed = LeaderboardManager.IncrementGamesPlayed();
+        isNewHighScore = stats.Score > previousBestScore;
+        totalGamesPlayed = LeaderboardManager.IncrementGamesPlayed();
 
-        // Save score to leaderboard
         LeaderboardManager.SaveScore(level, stats.Score, stats.Accuracy, stats.MaxCombo);
     }
 
@@ -49,6 +55,7 @@ public class ResultsController : MonoBehaviour
 
         GameSessionStats stats = GameManager.Instance.SessionStats;
         int level = GameManager.Instance.SelectedLevel;
+        string levelLabel = GetCurrentLevelLabel();
 
         if (scoreText != null) scoreText.text = $"Final Score: {stats.Score}";
         if (accuracyText != null) accuracyText.text = $"Accuracy: {stats.Accuracy:P0}";
@@ -59,8 +66,20 @@ public class ResultsController : MonoBehaviour
         if (missText != null) missText.text = $"Misses: {stats.Misses}";
         if (maxComboText != null) maxComboText.text = $"Max Combo: {stats.MaxCombo}";
         if (reactionTimeText != null) reactionTimeText.text = $"Avg Reaction: {stats.AverageReactionTime:F2}s";
+        if (forceText != null) forceText.text = $"Avg Force: {stats.AverageRawForce:F0} N";
+        if (normalizedForceText != null) normalizedForceText.text = $"Force vs Profile: {stats.AverageNormalizedForce:P0}";
 
-        // Star rating
+        PlayerProfile profile = GameManager.Instance.PlayerProfile;
+        if (profileBaselineText != null && profile != null)
+        {
+            profileBaselineText.text = $"Profile Baseline: {profile.GetEstimatedAveragePunchForce():F0} N";
+        }
+        if (forceBandSummaryText != null)
+        {
+            forceBandSummaryText.text =
+                $"Force bands - Low: {stats.LowForceHits} | On target: {stats.OnTargetForceHits} | High: {stats.HighForceHits}";
+        }
+
         int stars = StarRating.CalculateStars(stats.Accuracy);
         if (starsText != null)
         {
@@ -69,31 +88,27 @@ public class ResultsController : MonoBehaviour
             starsText.fontSize = 48;
         }
 
-        // Best score for this level
         int bestScore = LeaderboardManager.GetBestScore(level);
         if (bestScoreText != null)
-            bestScoreText.text = $"Best Score (Lv{level}): {bestScore}";
+            bestScoreText.text = $"Best Score ({levelLabel}): {bestScore}";
 
-        // New high score indicator
         if (newHighScoreText != null)
         {
-            if (LeaderboardManager.IsNewHighScore(level, stats.Score))
+            if (isNewHighScore)
             {
-                newHighScoreText.text = "★ NEW HIGH SCORE! ★";
+                newHighScoreText.text = "NEW HIGH SCORE!";
                 newHighScoreText.color = Color.yellow;
                 newHighScoreText.fontSize = 36;
             }
             else
             {
-                newHighScoreText.text = "";
+                newHighScoreText.text = string.Empty;
             }
         }
 
-        // Games played
         if (gamesPlayedText != null)
         {
-            int totalGames = LeaderboardManager.GetGamesPlayed();
-            gamesPlayedText.text = $"Games Played: {totalGames}";
+            gamesPlayedText.text = $"Games Played: {totalGamesPlayed}";
         }
     }
 
@@ -105,5 +120,17 @@ public class ResultsController : MonoBehaviour
     public void OnMainMenuButton()
     {
         GameManager.Instance?.LoadMainMenu();
+    }
+
+    private string GetCurrentLevelLabel()
+    {
+        LevelDefinition currentLevel = GameManager.Instance != null ? GameManager.Instance.CurrentLevel : null;
+        if (currentLevel != null && !string.IsNullOrEmpty(currentLevel.DisplayName))
+        {
+            return currentLevel.DisplayName;
+        }
+
+        int level = GameManager.Instance != null ? GameManager.Instance.SelectedLevel : 1;
+        return $"Level {level}";
     }
 }

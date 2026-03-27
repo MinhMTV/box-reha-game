@@ -6,39 +6,30 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
-    private const string GameSceneName = "Game";
-
     public void OnStartGameButton()
     {
-        GameManager.Instance?.StartGame();
+        GameManager.EnsureInstance().StartGame();
     }
 
     // Phase 4: Level selection buttons
     public void OnStartLevel1()
     {
-        if (GameManager.Instance == null) return;
-        GameManager.Instance.SessionStats.Reset();
-        GameManager.Instance.SetLevel(1);
-        GameManager.Instance.CurrentState = GameState.Playing;
-        SceneManager.LoadScene(GameSceneName);
+        StartLevel(1);
     }
 
     public void OnStartLevel2()
     {
-        if (GameManager.Instance == null) return;
-        GameManager.Instance.SessionStats.Reset();
-        GameManager.Instance.SetLevel(2);
-        GameManager.Instance.CurrentState = GameState.Playing;
-        SceneManager.LoadScene(GameSceneName);
+        StartLevel(2);
     }
 
     public void OnStartLevel3()
     {
-        if (GameManager.Instance == null) return;
-        GameManager.Instance.SessionStats.Reset();
-        GameManager.Instance.SetLevel(3);
-        GameManager.Instance.CurrentState = GameState.Playing;
-        SceneManager.LoadScene(GameSceneName);
+        StartLevel(3);
+    }
+
+    public void OnStartEndless()
+    {
+        StartLevel(4);
     }
 
     public void OnQuitButton()
@@ -48,5 +39,12 @@ public class MainMenuController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private void StartLevel(int level)
+    {
+        GameManager manager = GameManager.EnsureInstance();
+        manager.SetLevel(level);
+        manager.StartGame();
     }
 }

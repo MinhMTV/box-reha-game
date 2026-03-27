@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameState CurrentState { get; set; }
     public GameSessionStats SessionStats { get; private set; }
     public LevelDefinition CurrentLevel { get; private set; }
+    public PlayerProfile PlayerProfile { get; private set; }
     // Phase 4: Track selected level number
     public int SelectedLevel { get; private set; } = 1;
 
@@ -15,6 +16,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string mainMenuSceneName = "MainMenu";
     [SerializeField] private string gameSceneName = "Game";
     [SerializeField] private string resultsSceneName = "Results";
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void EnsureRuntimeInstance()
+    {
+        EnsureInstance();
+    }
+
+    public static GameManager EnsureInstance()
+    {
+        if (Instance != null)
+        {
+            return Instance;
+        }
+
+        GameObject managerObject = new GameObject("GameManager");
+        return managerObject.AddComponent<GameManager>();
+    }
 
     void Awake()
     {
@@ -26,7 +44,14 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        SessionStats = new GameSessionStats();
+        if (SessionStats == null)
+        {
+            SessionStats = new GameSessionStats();
+        }
+        if (PlayerProfile == null)
+        {
+            PlayerProfile = PlayerProfileStore.Load();
+        }
         CurrentState = GameState.Menu;
 
         // Ensure AudioManager exists
@@ -47,12 +72,15 @@ public class GameManager : MonoBehaviour
         {
             case 2: CurrentLevel = LevelDefinition.CreateLevel2(); break;
             case 3: CurrentLevel = LevelDefinition.CreateLevel3(); break;
+            case 4: CurrentLevel = LevelDefinition.CreateEndless(); break;
             default: CurrentLevel = LevelDefinition.CreateLevel1(); break;
         }
     }
 
     public void StartGame()
     {
+        Time.timeScale = 1f;
+        PlayerProfile = PlayerProfileStore.Load();
         SessionStats.Reset();
         if (CurrentLevel == null)
             CurrentLevel = LevelDefinition.CreateLevel1();
@@ -62,12 +90,14 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        Time.timeScale = 1f;
         CurrentState = GameState.Results;
         SceneManager.LoadScene(resultsSceneName);
     }
 
     public void LoadMainMenu()
     {
+        Time.timeScale = 1f;
         CurrentState = GameState.Menu;
         SceneManager.LoadScene(mainMenuSceneName);
     }
@@ -100,6 +130,17 @@ public class GameManager : MonoBehaviour
             case SceneType.Results: return resultsSceneName;
             default: return mainMenuSceneName;
         }
+    }
+
+    public void SetPlayerProfile(PlayerProfile profile)
+    {
+        if (profile == null)
+        {
+            return;
+        }
+
+        PlayerProfile = profile;
+        PlayerProfileStore.Save(profile);
     }
 }
 
