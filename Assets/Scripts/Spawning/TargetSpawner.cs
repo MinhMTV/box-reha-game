@@ -58,6 +58,12 @@ public class TargetSpawner : MonoBehaviour
     {
         while (isSpawning)
         {
+            if (HasActiveToughTarget())
+            {
+                yield return new WaitForSeconds(0.1f);
+                continue;
+            }
+
             float interval = currentLevel.SpawnInterval * intervalMultiplier;
             yield return new WaitForSeconds(interval);
             if (!isSpawning) yield break;
@@ -228,6 +234,21 @@ public class TargetSpawner : MonoBehaviour
         }
     }
 
+    private bool HasActiveToughTarget()
+    {
+        TargetObject[] activeObjects = FindObjectsOfType<TargetObject>();
+        for (int i = 0; i < activeObjects.Length; i++)
+        {
+            TargetObject target = activeObjects[i];
+            if (target != null && target.IsTough && !target.IsBreaking)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private GameObject CreateTargetObject(Vector3 position, TargetType type)
     {
         if (targetPrefab != null)
@@ -235,32 +256,32 @@ public class TargetSpawner : MonoBehaviour
             return Instantiate(targetPrefab, position, Quaternion.identity);
         }
 
-        // Phase 4: Distinct shapes per target type
-        GameObject target;
+        GameObject target = new GameObject(type + "Target");
+        target.transform.position = position;
+
+        BoxCollider collider = target.AddComponent<BoxCollider>();
+        collider.center = Vector3.zero;
+
         switch (type)
         {
             case TargetType.Block:
-                target = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                target.transform.localScale = new Vector3(1.8f, 1.8f, 0.3f);
+                BuildBlockTarget(target.transform);
+                collider.size = new Vector3(1.9f, 2.1f, 0.9f);
                 break;
             case TargetType.Dodge:
-                target = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                target.transform.localScale = new Vector3(2.5f, 0.8f, 0.8f);
+                BuildDodgeTarget(target.transform);
+                collider.size = new Vector3(2.8f, 1.0f, 1.0f);
                 break;
             case TargetType.ToughPunch:
-                // v3: Slightly larger dark red cube
-                target = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                target.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
-                target.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+                BuildTargetDisc(target.transform, new Color(0.85f, 0.18f, 0.12f, 1f), true);
+                collider.size = new Vector3(1.9f, 1.9f, 0.9f);
                 break;
             default: // Punch
-                target = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                target.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                target.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+                BuildTargetDisc(target.transform, new Color(1f, 0.24f, 0.18f, 1f), false);
+                collider.size = new Vector3(1.7f, 1.7f, 0.8f);
                 break;
         }
 
-        target.transform.position = position;
         target.AddComponent<TargetObject>();
         target.AddComponent<TargetMover>();
         Rigidbody rb = target.GetComponent<Rigidbody>();
@@ -272,5 +293,115 @@ public class TargetSpawner : MonoBehaviour
         rb.useGravity = false;
         rb.isKinematic = true;
         return target;
+    }
+
+    private void BuildTargetDisc(Transform parent, Color targetColor, bool heavyTarget)
+    {
+        float baseRadius = heavyTarget ? 0.95f : 0.82f;
+        float depth = heavyTarget ? 0.26f : 0.22f;
+
+        GameObject backPlate = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        backPlate.name = "BackPlate";
+        backPlate.transform.SetParent(parent, false);
+        backPlate.transform.localPosition = Vector3.zero;
+        backPlate.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        backPlate.transform.localScale = new Vector3(baseRadius, depth, baseRadius);
+        ApplyMaterial(backPlate, new Color(0.09f, 0.13f, 0.18f, 1f), 0.3f);
+
+        GameObject outerRing = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        outerRing.name = "OuterRing";
+        outerRing.transform.SetParent(parent, false);
+        outerRing.transform.localPosition = new Vector3(0f, 0f, -0.03f);
+        outerRing.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        outerRing.transform.localScale = new Vector3(baseRadius * 0.92f, depth * 0.65f, baseRadius * 0.92f);
+        ApplyMaterial(outerRing, targetColor, heavyTarget ? 2.4f : 1.9f);
+
+        GameObject midRing = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        midRing.name = "MidRing";
+        midRing.transform.SetParent(parent, false);
+        midRing.transform.localPosition = new Vector3(0f, 0f, -0.06f);
+        midRing.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        midRing.transform.localScale = new Vector3(baseRadius * 0.62f, depth * 0.55f, baseRadius * 0.62f);
+        ApplyMaterial(midRing, new Color(1f, 0.93f, 0.82f, 1f), 0.8f);
+
+        GameObject bullseye = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        bullseye.name = "Bullseye";
+        bullseye.transform.SetParent(parent, false);
+        bullseye.transform.localPosition = new Vector3(0f, 0f, -0.09f);
+        bullseye.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        bullseye.transform.localScale = new Vector3(baseRadius * 0.28f, depth * 0.42f, baseRadius * 0.28f);
+        ApplyMaterial(bullseye, heavyTarget ? new Color(1f, 0.72f, 0.12f, 1f) : new Color(1f, 0.96f, 0.35f, 1f), heavyTarget ? 2.8f : 2.2f);
+
+        GameObject mount = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        mount.name = "Mount";
+        mount.transform.SetParent(parent, false);
+        mount.transform.localPosition = new Vector3(0f, 0f, 0.18f);
+        mount.transform.localScale = new Vector3(baseRadius * 1.2f, baseRadius * 1.2f, 0.08f);
+        ApplyMaterial(mount, new Color(0.12f, 0.18f, 0.25f, 1f), 0.25f);
+    }
+
+    private void BuildBlockTarget(Transform parent)
+    {
+        GameObject shield = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        shield.name = "Shield";
+        shield.transform.SetParent(parent, false);
+        shield.transform.localPosition = Vector3.zero;
+        shield.transform.localScale = new Vector3(1.65f, 1.95f, 0.42f);
+        ApplyMaterial(shield, new Color(0.18f, 0.72f, 1f, 1f), 1.7f);
+
+        GameObject core = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        core.name = "ShieldCore";
+        core.transform.SetParent(parent, false);
+        core.transform.localPosition = new Vector3(0f, 0f, -0.08f);
+        core.transform.localScale = new Vector3(1.0f, 1.2f, 0.20f);
+        ApplyMaterial(core, new Color(0.05f, 0.14f, 0.22f, 1f), 0.4f);
+    }
+
+    private void BuildDodgeTarget(Transform parent)
+    {
+        GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        bar.name = "DodgeBar";
+        bar.transform.SetParent(parent, false);
+        bar.transform.localPosition = Vector3.zero;
+        bar.transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
+        bar.transform.localScale = new Vector3(0.42f, 1.45f, 0.42f);
+        ApplyMaterial(bar, new Color(0.30f, 1f, 0.58f, 1f), 1.5f);
+
+        GameObject leftCap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        leftCap.name = "DodgeCapLeft";
+        leftCap.transform.SetParent(parent, false);
+        leftCap.transform.localPosition = new Vector3(-1.4f, 0f, 0f);
+        leftCap.transform.localScale = Vector3.one * 0.45f;
+        ApplyMaterial(leftCap, new Color(0.74f, 1f, 0.85f, 1f), 1.0f);
+
+        GameObject rightCap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        rightCap.name = "DodgeCapRight";
+        rightCap.transform.SetParent(parent, false);
+        rightCap.transform.localPosition = new Vector3(1.4f, 0f, 0f);
+        rightCap.transform.localScale = Vector3.one * 0.45f;
+        ApplyMaterial(rightCap, new Color(0.74f, 1f, 0.85f, 1f), 1.0f);
+    }
+
+    private void ApplyMaterial(GameObject visual, Color color, float emissionStrength)
+    {
+        Collider primitiveCollider = visual.GetComponent<Collider>();
+        if (primitiveCollider != null)
+        {
+            Destroy(primitiveCollider);
+        }
+
+        Renderer renderer = visual.GetComponent<Renderer>();
+        if (renderer == null)
+        {
+            return;
+        }
+
+        Material material = new Material(Shader.Find("Standard"));
+        material.color = color;
+        material.SetFloat("_Metallic", 0.12f);
+        material.SetFloat("_Glossiness", 0.75f);
+        material.EnableKeyword("_EMISSION");
+        material.SetColor("_EmissionColor", color * emissionStrength);
+        renderer.sharedMaterial = material;
     }
 }

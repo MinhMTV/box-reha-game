@@ -15,6 +15,9 @@ public class GameRoundController : MonoBehaviour
     private GameSessionStats sessionStats;
     private float roundStartTime;
     private bool roundEnded;
+    private static readonly Vector3 GameplayCameraPosition = new Vector3(0f, 2.45f, -7.8f);
+    private static readonly Vector3 GameplayCameraRotation = new Vector3(10f, 0f, 0f);
+    private const float GameplayCameraFov = 52f;
 
     public static event Action<GameSessionStats> OnRoundEnd;
 
@@ -111,6 +114,7 @@ public class GameRoundController : MonoBehaviour
         sessionStats.Reset();
         roundStartTime = Time.time;
         roundEnded = false;
+        EnsureGameplayCameraView();
 
         if (inputProvider != null)
         {
@@ -237,5 +241,18 @@ public class GameRoundController : MonoBehaviour
         }
 
         return Mathf.Clamp01(elapsed / Mathf.Max(1f, currentLevel.RampDurationSeconds));
+    }
+
+    private void EnsureGameplayCameraView()
+    {
+        Camera camera = Camera.main;
+        if (camera == null)
+        {
+            return;
+        }
+
+        camera.transform.position = GameplayCameraPosition;
+        camera.transform.rotation = Quaternion.Euler(GameplayCameraRotation);
+        camera.fieldOfView = GameplayCameraFov;
     }
 }

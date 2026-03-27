@@ -57,8 +57,8 @@ public class LevelDefinition : ScriptableObject
         level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Mid };
         // v3: Easy tough targets
         level.ToughTargetChance = 0.10f;
-        level.MinToughHits = 3;
-        level.MaxToughHits = 4;
+        level.MinToughHits = 5;
+        level.MaxToughHits = 6;
         level.RapidFireChance = 0.05f;
         level.MinChainLength = 3;
         level.MaxChainLength = 4;
@@ -88,8 +88,8 @@ public class LevelDefinition : ScriptableObject
         level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Mid };
         // v3: Medium tough targets
         level.ToughTargetChance = 0.15f;
-        level.MinToughHits = 3;
-        level.MaxToughHits = 5;
+        level.MinToughHits = 6;
+        level.MaxToughHits = 7;
         level.RapidFireChance = 0.10f;
         level.MinChainLength = 3;
         level.MaxChainLength = 5;
@@ -119,8 +119,8 @@ public class LevelDefinition : ScriptableObject
         level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Low, VerticalPosition.Mid, VerticalPosition.High };
         // v3: Hard tough targets
         level.ToughTargetChance = 0.20f;
-        level.MinToughHits = 4;
-        level.MaxToughHits = 5;
+        level.MinToughHits = 7;
+        level.MaxToughHits = 8;
         level.RapidFireChance = 0.15f;
         level.MinChainLength = 4;
         level.MaxChainLength = 5;
@@ -149,8 +149,8 @@ public class LevelDefinition : ScriptableObject
         level.MinPower = 0f;
         level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Low, VerticalPosition.Mid, VerticalPosition.High };
         level.ToughTargetChance = 0.16f;
-        level.MinToughHits = 3;
-        level.MaxToughHits = 5;
+        level.MinToughHits = 6;
+        level.MaxToughHits = 9;
         level.RapidFireChance = 0.12f;
         level.MinChainLength = 3;
         level.MaxChainLength = 6;

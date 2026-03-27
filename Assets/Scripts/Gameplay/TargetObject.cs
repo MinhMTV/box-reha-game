@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 /// <summary>
 /// Target behavior and properties. Phase 2: Enhanced visuals per type.
@@ -21,8 +22,10 @@ public class TargetObject : MonoBehaviour
     public int MaxHits { get; set; } = 1;
     public int CurrentHits { get; set; } = 0;
     public bool IsTough => MaxHits > 1;
+    public bool IsBreaking { get; private set; }
 
     private Renderer cachedRenderer;
+    private Renderer[] cachedRenderers;
     private Color originalColor;
     private MaterialPropertyBlock propBlock;
     private bool glowEnabled;
@@ -41,7 +44,8 @@ public class TargetObject : MonoBehaviour
     void Start()
     {
         SpawnTime = Time.time;
-        cachedRenderer = GetComponent<Renderer>();
+        cachedRenderer = GetComponentInChildren<Renderer>();
+        cachedRenderers = GetComponentsInChildren<Renderer>(true);
         propBlock = new MaterialPropertyBlock();
         ApplyVisuals();
     }
@@ -89,7 +93,7 @@ public class TargetObject : MonoBehaviour
     /// </summary>
     private void ApplyVisuals()
     {
-        if (cachedRenderer == null) cachedRenderer = GetComponent<Renderer>();
+        if (cachedRenderer == null) cachedRenderer = GetComponentInChildren<Renderer>();
         if (cachedRenderer == null) return;
 
         string labelText = "PUNCH";
@@ -144,6 +148,11 @@ public class TargetObject : MonoBehaviour
     /// </summary>
     public bool TakeHit()
     {
+        if (IsBreaking)
+        {
+            return false;
+        }
+
         CurrentHits++;
         int hitsLeft = MaxHits - CurrentHits;
 
@@ -205,7 +214,7 @@ public class TargetObject : MonoBehaviour
     /// </summary>
     public void Flash(Color flashColor, float duration = 0.15f)
     {
-        if (cachedRenderer == null) return;
+        if (cachedRenderer == null || IsBreaking) return;
         cachedRenderer.material.color = flashColor;
         Invoke(nameof(RestoreColor), duration);
     }
@@ -251,7 +260,13 @@ public class TargetObject : MonoBehaviour
         string verticalLabel = VertPosition.ToString().ToUpperInvariant();
         labelMesh.text = actionLabel + "\n" + verticalLabel;
         labelMesh.color = Color.Lerp(Color.white, accentColor, 0.2f);
-        labelMesh.transform.localPosition = new Vector3(0f, 0f, -0.42f);
+        float labelDepth = -0.42f;
+        if (cachedRenderer != null)
+        {
+            labelDepth = -Mathf.Max(0.42f, cachedRenderer.bounds.extents.z * 1.1f);
+        }
+
+        labelMesh.transform.localPosition = new Vector3(0f, 0f, labelDepth);
         labelMesh.transform.localRotation = Quaternion.identity;
         labelMesh.transform.localScale = Vector3.one;
     }
@@ -259,5 +274,59 @@ public class TargetObject : MonoBehaviour
     public float GetTimeInZone()
     {
         return Time.time - SpawnTime;
+    }
+
+    public void PlayDestroyAnimation(Action onComplete = null)
+    {
+        if (IsBreaking)
+        {
+            return;
+        }
+
+        IsBreaking = true;
+        TargetMover mover = GetComponent<TargetMover>();
+        if (mover != null)
+        {
+            mover.enabled = false;
+        }
+
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = false;
+        }
+
+        StartCoroutine(DestroyAnimationCoroutine(onComplete));
+    }
+
+    private IEnumerator DestroyAnimationCoroutine(Action onComplete)
+    {
+        Vector3 startScale = transform.localScale;
+        float duration = 0.24f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            float scale = 1f + Mathf.Sin(t * Mathf.PI) * 0.28f;
+            transform.localScale = startScale * scale;
+            transform.Rotate(Vector3.forward, 480f * Time.deltaTime, Space.Self);
+
+            if (cachedRenderers != null)
+            {
+                for (int i = 0; i < cachedRenderers.Length; i++)
+                {
+                    Renderer renderer = cachedRenderers[i];
+                    if (renderer == null) continue;
+                    Color current = renderer.material.color;
+                    renderer.material.color = new Color(current.r, current.g, current.b, 1f - t);
+                }
+            }
+
+            yield return null;
+        }
+
+        onComplete?.Invoke();
     }
 }

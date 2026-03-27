@@ -21,6 +21,15 @@ public static class SceneAutoSetup
     private const string FloorModelPath = "Assets/Imported/Kenney/Prototype/Models/floor-thick.fbx";
     private const string ColumnModelPath = "Assets/Imported/Kenney/Prototype/Models/column-rounded.fbx";
     private const string IndicatorModelPath = "Assets/Imported/Kenney/Prototype/Models/indicator-square-a.fbx";
+    private const string SpaceFloorModelPath = "Assets/Imported/Kenney/SpaceKit/Models/template-floor-big.fbx";
+    private const string SpaceFloorDetailModelPath = "Assets/Imported/Kenney/SpaceKit/Models/template-floor-detail-a.fbx";
+    private const string SpaceWallModelPath = "Assets/Imported/Kenney/SpaceKit/Models/template-wall.fbx";
+    private const string SpaceWallHalfModelPath = "Assets/Imported/Kenney/SpaceKit/Models/template-wall-half.fbx";
+    private const string SpaceGateModelPath = "Assets/Imported/Kenney/SpaceKit/Models/gate-door-window.fbx";
+    private const string SpaceGateLaserModelPath = "Assets/Imported/Kenney/SpaceKit/Models/gate-lasers.fbx";
+    private const string SpaceCablesModelPath = "Assets/Imported/Kenney/SpaceKit/Models/cables.fbx";
+    private const string TargetModelPath = "Assets/Imported/Kenney/Prototype/Models/target-a-square.fbx";
+    private const string TargetPrefabPath = "Assets/Resources/Generated/TargetPrefab.prefab";
 
     public static void CreateAllScenes()
     {
@@ -28,9 +37,10 @@ public static class SceneAutoSetup
         PrepareImportedAssets();
 
         GameConfig config = EnsureGameConfig();
+        GameObject targetPrefab = EnsureTargetPrefab();
         CreateBootScene();
         CreateMainMenuScene();
-        CreateGameScene(config);
+        CreateGameScene(config, targetPrefab);
         CreateResultsScene();
         UpdateBuildSettings();
 
@@ -102,6 +112,49 @@ public static class SceneAutoSetup
         config = ScriptableObject.CreateInstance<GameConfig>();
         AssetDatabase.CreateAsset(config, GameConfigPath);
         return config;
+    }
+
+    private static GameObject EnsureTargetPrefab()
+    {
+        EnsureFolder("Assets/Resources/Generated");
+
+        GameObject existingPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(TargetPrefabPath);
+        if (existingPrefab != null)
+        {
+            return existingPrefab;
+        }
+
+        GameObject root = new GameObject("TargetPrefab");
+        root.AddComponent<TargetObject>();
+        root.AddComponent<TargetMover>();
+
+        Rigidbody rigidbody = root.AddComponent<Rigidbody>();
+        rigidbody.useGravity = false;
+        rigidbody.isKinematic = true;
+
+        BoxCollider collider = root.AddComponent<BoxCollider>();
+        collider.isTrigger = true;
+        collider.size = new Vector3(1.5f, 1.5f, 1.5f);
+
+        GameObject modelAsset = AssetDatabase.LoadAssetAtPath<GameObject>(TargetModelPath);
+        if (modelAsset != null)
+        {
+            GameObject modelInstance = PrefabUtility.InstantiatePrefab(modelAsset) as GameObject;
+            if (modelInstance != null)
+            {
+                modelInstance.name = "Visual";
+                modelInstance.transform.SetParent(root.transform, false);
+                modelInstance.transform.localPosition = Vector3.zero;
+                modelInstance.transform.localRotation = Quaternion.identity;
+                modelInstance.transform.localScale = Vector3.one * 1.25f;
+                ApplyRendererColor(modelInstance, new Color(1f, 0.22f, 0.22f, 1f), 1.8f);
+            }
+        }
+
+        GameObject prefab = PrefabUtility.SaveAsPrefabAsset(root, TargetPrefabPath);
+        Object.DestroyImmediate(root);
+        AssetDatabase.SaveAssets();
+        return prefab;
     }
 
     private static void CreateBootScene()
@@ -203,7 +256,7 @@ public static class SceneAutoSetup
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), MainMenuScenePath);
     }
 
-    private static void CreateGameScene(GameConfig config)
+    private static void CreateGameScene(GameConfig config, GameObject targetPrefab)
     {
         EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
         EnsureEventSystem();
@@ -211,13 +264,14 @@ public static class SceneAutoSetup
         Camera mainCamera = Camera.main;
         if (mainCamera == null)
         {
-            mainCamera = CreateMainCamera(new Vector3(0f, 3.6f, -11.5f), Quaternion.Euler(8f, 0f, 0f));
+            mainCamera = CreateMainCamera(new Vector3(0f, 2.45f, -7.8f), Quaternion.Euler(10f, 0f, 0f));
+            mainCamera.fieldOfView = 52f;
         }
         else
         {
-            mainCamera.transform.position = new Vector3(0f, 3.6f, -11.5f);
-            mainCamera.transform.rotation = Quaternion.Euler(8f, 0f, 0f);
-            mainCamera.fieldOfView = 60f;
+            mainCamera.transform.position = new Vector3(0f, 2.45f, -7.8f);
+            mainCamera.transform.rotation = Quaternion.Euler(10f, 0f, 0f);
+            mainCamera.fieldOfView = 52f;
         }
 
         GameObject roundControllerObject = new GameObject("GameRoundController");
@@ -257,8 +311,10 @@ public static class SceneAutoSetup
         Transform spawnCenter = CreateChild(spawnRoot.transform, "SpawnPoint_Center", new Vector3(0f, 1f, 0f));
         Transform spawnRight = CreateChild(spawnRoot.transform, "SpawnPoint_Right", new Vector3(3f, 1f, 0f));
 
-        CreateArenaSurface("ArenaBackdrop", new Vector3(0f, 1.6f, 28.5f), new Vector3(10.5f, 4.8f, 0.2f), new Color(0.05f, 0.10f, 0.16f, 1f));
+        CreateSciFiBackdrop();
         CreatePrototypeFloor("ArenaFloor", new Vector3(0f, -0.42f, 13f), new Vector3(4.6f, 0.16f, 9.6f), new Color(0.13f, 0.21f, 0.31f, 1f));
+        CreateSciFiFloor("ArenaFloorDeck", new Vector3(0f, -0.55f, 13f), new Vector3(6.2f, 0.4f, 11.5f), new Color(0.14f, 0.22f, 0.30f, 1f));
+        CreateArenaLighting();
 
         Renderer leftLane = CreatePrototypeGuide("Guide_Left", new Vector3(-3f, 1.4f, 14f), new Vector3(0.42f, 4.2f, 0.42f), new Color(0.10f, 0.34f, 0.58f, 1f));
         Renderer centerLane = CreatePrototypeGuide("Guide_Center", new Vector3(0f, 1.4f, 14f), new Vector3(0.50f, 4.4f, 0.50f), new Color(0.16f, 0.50f, 0.73f, 1f));
@@ -311,6 +367,7 @@ public static class SceneAutoSetup
         SetPrivateField(targetSpawner, "missZoneZ", 0f);
         SetPrivateField(targetSpawner, "gameConfig", config);
         SetPrivateField(targetSpawner, "hitZoneEvaluator", hitZoneEvaluator);
+        SetPrivateField(targetSpawner, "targetPrefab", targetPrefab);
 
         SetPrivateField(visualFeedback, "leftLaneRenderer", leftLane);
         SetPrivateField(visualFeedback, "centerLaneRenderer", centerLane);
@@ -565,6 +622,40 @@ public static class SceneAutoSetup
         renderer.sharedMaterial.SetColor("_EmissionColor", color * 0.6f);
     }
 
+    private static void CreateSciFiBackdrop()
+    {
+        CreateSciFiModule(SpaceGateModelPath, "BackGate", new Vector3(0f, 1.4f, 28.3f), Quaternion.identity, new Vector3(4.6f, 4.0f, 1f), new Color(0.18f, 0.30f, 0.42f, 1f), 1.0f);
+        CreateSciFiModule(SpaceGateLaserModelPath, "BackGateLasers", new Vector3(0f, 1.25f, 27.75f), Quaternion.identity, new Vector3(4.0f, 3.5f, 1f), new Color(0.18f, 0.70f, 1f, 1f), 1.8f);
+        CreateSciFiModule(SpaceWallModelPath, "BackWallLeft", new Vector3(-6.2f, 1.3f, 24f), Quaternion.Euler(0f, 90f, 0f), new Vector3(4.2f, 3.6f, 1f), new Color(0.14f, 0.24f, 0.35f, 1f), 0.8f);
+        CreateSciFiModule(SpaceWallModelPath, "BackWallRight", new Vector3(6.2f, 1.3f, 24f), Quaternion.Euler(0f, -90f, 0f), new Vector3(4.2f, 3.6f, 1f), new Color(0.14f, 0.24f, 0.35f, 1f), 0.8f);
+        CreateSciFiModule(SpaceWallHalfModelPath, "FrontWallLeft", new Vector3(-6.2f, 1.2f, 9.5f), Quaternion.Euler(0f, 90f, 0f), new Vector3(3.2f, 3.0f, 1f), new Color(0.12f, 0.20f, 0.30f, 1f), 0.6f);
+        CreateSciFiModule(SpaceWallHalfModelPath, "FrontWallRight", new Vector3(6.2f, 1.2f, 9.5f), Quaternion.Euler(0f, -90f, 0f), new Vector3(3.2f, 3.0f, 1f), new Color(0.12f, 0.20f, 0.30f, 1f), 0.6f);
+        CreateSciFiModule(SpaceCablesModelPath, "CeilingCables", new Vector3(0f, 4.3f, 18f), Quaternion.Euler(0f, 90f, 0f), new Vector3(6.5f, 1f, 1f), new Color(0.18f, 0.40f, 0.56f, 1f), 0.9f);
+    }
+
+    private static void CreateSciFiFloor(string name, Vector3 position, Vector3 scale, Color color)
+    {
+        GameObject floor = CreatePrototypeObject(SpaceFloorModelPath, name, position, Quaternion.identity, scale);
+        if (floor == null)
+        {
+            return;
+        }
+
+        ApplyRendererColor(floor, color, 0.7f);
+        CreateSciFiModule(SpaceFloorDetailModelPath, name + "_Detail", position + new Vector3(0f, 0.06f, 0f), Quaternion.identity, new Vector3(scale.x * 0.92f, scale.y, scale.z * 0.92f), new Color(0.18f, 0.60f, 0.82f, 1f), 1.1f);
+    }
+
+    private static void CreateSciFiModule(string assetPath, string name, Vector3 position, Quaternion rotation, Vector3 scale, Color color, float emission)
+    {
+        GameObject module = CreatePrototypeObject(assetPath, name, position, rotation, scale);
+        if (module == null)
+        {
+            return;
+        }
+
+        ApplyRendererColor(module, color, emission);
+    }
+
     private static void CreatePrototypeFloor(string name, Vector3 position, Vector3 scale, Color color)
     {
         GameObject prototype = CreatePrototypeObject(FloorModelPath, name, position, Quaternion.identity, scale);
@@ -631,7 +722,33 @@ public static class SceneAutoSetup
 
                 Color color = col == 1 ? new Color(0.32f, 0.78f, 1f, 1f) : new Color(0.18f, 0.46f, 0.72f, 1f);
                 ApplyRendererColor(pad, color, 2.1f);
+                CreatePadFrame("HitPadFrame_" + row + "_" + col, position, new Vector3(1.55f, 0.08f, 0.72f), color * 0.9f);
             }
+        }
+    }
+
+    private static void CreatePadFrame(string name, Vector3 position, Vector3 scale, Color color)
+    {
+        GameObject frame = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        frame.name = name;
+        frame.transform.position = position + new Vector3(0f, 0f, 0.18f);
+        frame.transform.localScale = scale;
+
+        Collider collider = frame.GetComponent<Collider>();
+        if (collider != null)
+        {
+            Object.DestroyImmediate(collider);
+        }
+
+        Renderer renderer = frame.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            Material material = new Material(Shader.Find("Standard"));
+            material.color = color;
+            material.SetFloat("_Glossiness", 0.78f);
+            material.EnableKeyword("_EMISSION");
+            material.SetColor("_EmissionColor", color * 1.8f);
+            renderer.sharedMaterial = material;
         }
     }
 
@@ -709,6 +826,24 @@ public static class SceneAutoSetup
 
         RectTransform rect = starObject.GetComponent<RectTransform>();
         AnchorRect(rect, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), anchoredPosition, new Vector2(64f, 64f));
+    }
+
+    private static void CreateArenaLighting()
+    {
+        CreateAccentLight("AccentLight_Left", new Vector3(-4.8f, 3.6f, 10f), new Color(0.18f, 0.72f, 1f, 1f), 4.5f, 18f);
+        CreateAccentLight("AccentLight_Right", new Vector3(4.8f, 3.6f, 10f), new Color(0.18f, 0.72f, 1f, 1f), 4.5f, 18f);
+        CreateAccentLight("AccentLight_Back", new Vector3(0f, 3.4f, 23f), new Color(1f, 0.36f, 0.22f, 1f), 5.5f, 20f);
+    }
+
+    private static void CreateAccentLight(string name, Vector3 position, Color color, float intensity, float range)
+    {
+        GameObject lightObject = new GameObject(name);
+        lightObject.transform.position = position;
+        Light light = lightObject.AddComponent<Light>();
+        light.type = LightType.Point;
+        light.color = color;
+        light.intensity = intensity;
+        light.range = range;
     }
 
     private static Transform CreateChild(Transform parent, string name, Vector3 localPosition)

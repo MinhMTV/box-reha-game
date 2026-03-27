@@ -53,12 +53,18 @@ public class HitZoneEvaluator : MonoBehaviour
     [SerializeField] private Transform hitZoneCenter;
     [SerializeField] private float minimumSensorPowerMultiplier = 0.75f;
     [SerializeField] private float maximumSensorPowerMultiplier = 1.25f;
+    [SerializeField] private bool createRuntimeHitGuide = true;
 
     void Start()
     {
         if (hitZoneCenter == null)
         {
             hitZoneCenter = transform;
+        }
+
+        if (createRuntimeHitGuide)
+        {
+            EnsureHitGuide();
         }
     }
 
@@ -177,7 +183,7 @@ public class HitZoneEvaluator : MonoBehaviour
             TextPopup.CreateForHitQuality(quality, bestTarget.transform.position);
 
             activeTargets.Remove(bestTarget);
-            Destroy(bestTarget.gameObject);
+            bestTarget.PlayDestroyAnimation(() => Destroy(bestTarget.gameObject));
             return;
         }
 
@@ -246,7 +252,7 @@ public class HitZoneEvaluator : MonoBehaviour
         TextPopup.CreateForHitQuality(quality, bestTarget.transform.position);
 
         activeTargets.Remove(bestTarget);
-        Destroy(bestTarget.gameObject);
+        bestTarget.PlayDestroyAnimation(() => Destroy(bestTarget.gameObject));
     }
 
     /// <summary>
@@ -313,7 +319,7 @@ public class HitZoneEvaluator : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         TargetObject target = other.GetComponent<TargetObject>();
-        if (target != null && !target.HasSpawnedInHitZone)
+        if (target != null && !target.HasSpawnedInHitZone && !target.IsBreaking)
         {
             target.HasSpawnedInHitZone = true;
             RegisterTarget(target);
@@ -325,7 +331,7 @@ public class HitZoneEvaluator : MonoBehaviour
         TargetObject target = other.GetComponent<TargetObject>();
         if (target != null)
         {
-            if (activeTargets.Contains(target))
+            if (!target.IsBreaking && activeTargets.Contains(target))
             {
                 OnTargetMissed?.Invoke(target.Lane.GetHashCode());
                 OnMissVisualFeedback?.Invoke(target.Lane, target.transform.position);
@@ -333,5 +339,50 @@ public class HitZoneEvaluator : MonoBehaviour
                 activeTargets.Remove(target);
             }
         }
+    }
+
+    private void EnsureHitGuide()
+    {
+        if (transform.Find("HitGuideRoot") != null)
+        {
+            return;
+        }
+
+        GameObject guideRoot = new GameObject("HitGuideRoot");
+        guideRoot.transform.SetParent(transform, false);
+        guideRoot.transform.localPosition = Vector3.zero;
+
+        CreateGuideBar(guideRoot.transform, "HitLine", new Vector3(0f, -2.25f, 0f), new Vector3(9.5f, 0.08f, 0.08f), new Color(0.20f, 0.82f, 1f, 1f), 2.4f);
+        CreateGuideBar(guideRoot.transform, "HitFrameTop", new Vector3(0f, 2.25f, 0f), new Vector3(9.5f, 0.08f, 0.08f), new Color(0.12f, 0.42f, 0.72f, 1f), 1.2f);
+        CreateGuideBar(guideRoot.transform, "HitFrameLeft", new Vector3(-4.5f, 0f, 0f), new Vector3(0.08f, 4.6f, 0.08f), new Color(0.12f, 0.42f, 0.72f, 1f), 1.2f);
+        CreateGuideBar(guideRoot.transform, "HitFrameRight", new Vector3(4.5f, 0f, 0f), new Vector3(0.08f, 4.6f, 0.08f), new Color(0.12f, 0.42f, 0.72f, 1f), 1.2f);
+    }
+
+    private void CreateGuideBar(Transform parent, string name, Vector3 localPosition, Vector3 localScale, Color color, float emissionStrength)
+    {
+        GameObject guide = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        guide.name = name;
+        guide.transform.SetParent(parent, false);
+        guide.transform.localPosition = localPosition;
+        guide.transform.localScale = localScale;
+
+        Collider guideCollider = guide.GetComponent<Collider>();
+        if (guideCollider != null)
+        {
+            Destroy(guideCollider);
+        }
+
+        Renderer renderer = guide.GetComponent<Renderer>();
+        if (renderer == null)
+        {
+            return;
+        }
+
+        Material material = new Material(Shader.Find("Standard"));
+        material.color = color;
+        material.SetFloat("_Glossiness", 0.85f);
+        material.EnableKeyword("_EMISSION");
+        material.SetColor("_EmissionColor", color * emissionStrength);
+        renderer.sharedMaterial = material;
     }
 }
