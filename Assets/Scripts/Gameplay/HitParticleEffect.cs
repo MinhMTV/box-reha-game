@@ -23,6 +23,7 @@ public class HitParticleEffect : MonoBehaviour
             case TargetType.Punch: return Color.red;
             case TargetType.Block: return Color.blue;
             case TargetType.Dodge: return Color.green;
+            case TargetType.ToughPunch: return new Color(0.8f, 0.1f, 0.1f); // Dark red
             default: return Color.white;
         }
     }

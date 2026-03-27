@@ -5,17 +5,34 @@ using System.Collections.Generic;
 /// <summary>
 /// Evaluates hits against targets in the hit zone.
 /// Phase 2: Handles Block and Dodge targets, tracks reaction time.
-/// Phase 2: Fires visual feedback events.
+/// v3: ToughTarget multi-hit support. RapidFire chain tracking.
 /// </summary>
 public class HitZoneEvaluator : MonoBehaviour
 {
     public static event Action<HitQuality, int, LaneType> OnHitEvaluated;
     public static event Action<int> OnTargetMissed;
+    // v3: Tough target events
+    public static event Action<int, int, LaneType, Vector3> OnToughTargetHit; // hitsLeft, maxHits, lane, position
+    public static event Action<HitQuality, LaneType, Vector3> OnToughTargetDestroyed;
+    // v3: Rapid fire chain events
+    public static event Action<int, int, LaneType> OnRapidFireChainProgress; // current, total, lane
+    public static event Action<int, LaneType> OnRapidFireChainComplete; // bonus, lane
+
     // Phase 2: Visual feedback events
     public static event Action<HitQuality, LaneType, Vector3> OnHitVisualFeedback;
     public static event Action<LaneType, Vector3> OnMissVisualFeedback;
 
     private List<TargetObject> activeTargets = new List<TargetObject>();
+
+    // v3: Rapid fire chain tracking
+    private struct RapidFireChain
+    {
+        public LaneType Lane;
+        public int Total;
+        public int Completed;
+        public bool Active;
+    }
+    private RapidFireChain currentChain;
 
     private const float PerfectWindow = 0.1f;
     private const float GoodWindow = 0.25f;
@@ -27,6 +44,11 @@ public class HitZoneEvaluator : MonoBehaviour
     private const int BlockScore = 75;
     private const int DodgeScore = 75;
 
+    // v3: Partial hit score for tough targets
+    private const int ToughPartialScore = 10;
+    // v3: Rapid fire chain bonus
+    public const int RapidFireChainBonus = 500;
+
     [SerializeField] private Transform hitZoneCenter;
 
     void Start()
@@ -35,6 +57,20 @@ public class HitZoneEvaluator : MonoBehaviour
         {
             hitZoneCenter = transform;
         }
+    }
+
+    /// <summary>
+    /// v3: Start a rapid fire chain in a lane.
+    /// </summary>
+    public void StartRapidFireChain(LaneType lane, int totalTargets)
+    {
+        currentChain = new RapidFireChain
+        {
+            Lane = lane,
+            Total = totalTargets,
+            Completed = 0,
+            Active = true
+        };
     }
 
     public void RegisterTarget(TargetObject target)
@@ -66,7 +102,6 @@ public class HitZoneEvaluator : MonoBehaviour
 
             if (target.Lane != action.Lane) continue;
 
-            // Phase 2: Check action type matches target type
             if (!DoesActionMatchTarget(action.ActionType, target.Type)) continue;
 
             float distance = Mathf.Abs(target.transform.position.z - hitZoneCenter.position.z);
@@ -86,14 +121,80 @@ public class HitZoneEvaluator : MonoBehaviour
         {
             OnTargetMissed?.Invoke(bestTarget.Lane.GetHashCode());
             OnMissVisualFeedback?.Invoke(bestTarget.Lane, bestTarget.transform.position);
-            // Phase 4: Miss popup
             TextPopup.CreateMiss(bestTarget.transform.position);
             activeTargets.Remove(bestTarget);
             Destroy(bestTarget.gameObject);
             return;
         }
 
-        int score = GetScoreForQuality(quality, bestTarget.Type);
+        // v3: Handle tough targets
+        if (bestTarget.IsTough)
+        {
+            bool destroyed = bestTarget.TakeHit();
+            int hitsLeft = bestTarget.MaxHits - bestTarget.CurrentHits;
+
+            if (!destroyed)
+            {
+                // Partial hit - give small score, don't count as full hit
+                ScoreSystem.AddToughPartialHit(ToughPartialScore);
+
+                // Show tough hit feedback
+                OnToughTargetHit?.Invoke(hitsLeft, bestTarget.MaxHits, bestTarget.Lane, bestTarget.transform.position);
+
+                // Play tough hit sound
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.PlayToughHitSound();
+
+                // Show popup
+                TextPopup.Create(bestTarget.transform.position, $"HITS LEFT: {hitsLeft}", new Color(1f, 0.3f, 0.3f));
+
+                // Flash
+                bestTarget.Flash(Color.yellow, 0.1f);
+                return; // Don't destroy, don't count in combo
+            }
+
+            // Destroyed - full scoring
+            int score = GetScoreForQuality(quality, bestTarget.Type);
+
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayToughBreakSound();
+
+            Color particleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
+            HitParticleEffect.Spawn(bestTarget.transform.position, particleColor);
+
+            float reactionTime = (float)(Time.realtimeSinceStartupAsDouble - bestTarget.SpawnTime);
+            if (GameManager.Instance?.SessionStats != null)
+            {
+                GameManager.Instance.SessionStats.TrackReactionTime(reactionTime);
+            }
+
+            OnToughTargetDestroyed?.Invoke(quality, bestTarget.Lane, bestTarget.transform.position);
+            OnHitEvaluated?.Invoke(quality, score, bestTarget.Lane);
+            OnHitVisualFeedback?.Invoke(quality, bestTarget.Lane, bestTarget.transform.position);
+            TextPopup.CreateForHitQuality(quality, bestTarget.transform.position);
+
+            activeTargets.Remove(bestTarget);
+            Destroy(bestTarget.gameObject);
+            return;
+        }
+
+        // v3: Rapid fire chain tracking
+        if (currentChain.Active && bestTarget.Lane == currentChain.Lane)
+        {
+            currentChain.Completed++;
+            OnRapidFireChainProgress?.Invoke(currentChain.Completed, currentChain.Total, currentChain.Lane);
+
+            if (currentChain.Completed >= currentChain.Total)
+            {
+                // Chain complete!
+                OnRapidFireChainComplete?.Invoke(RapidFireChainBonus, currentChain.Lane);
+                ScoreSystem.AddRapidFireChainBonus(RapidFireChainBonus);
+                currentChain.Active = false;
+            }
+        }
+
+        // Normal hit scoring
+        int normalScore = GetScoreForQuality(quality, bestTarget.Type);
 
         // Play audio feedback
         if (AudioManager.Instance != null)
@@ -117,24 +218,20 @@ public class HitZoneEvaluator : MonoBehaviour
             }
         }
 
-        // Spawn particle effect on hit
         if (quality != HitQuality.Miss)
         {
             Color particleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
             HitParticleEffect.Spawn(bestTarget.transform.position, particleColor);
         }
 
-        // Phase 2: Track reaction time (time from spawn to player action)
-        float reactionTime = (float)(Time.realtimeSinceStartupAsDouble - bestTarget.SpawnTime);
+        float reactionTime2 = (float)(Time.realtimeSinceStartupAsDouble - bestTarget.SpawnTime);
         if (GameManager.Instance?.SessionStats != null)
         {
-            GameManager.Instance.SessionStats.TrackReactionTime(reactionTime);
+            GameManager.Instance.SessionStats.TrackReactionTime(reactionTime2);
         }
 
-        OnHitEvaluated?.Invoke(quality, score, bestTarget.Lane);
+        OnHitEvaluated?.Invoke(quality, normalScore, bestTarget.Lane);
         OnHitVisualFeedback?.Invoke(quality, bestTarget.Lane, bestTarget.transform.position);
-
-        // Phase 4: Spawn floating text popup
         TextPopup.CreateForHitQuality(quality, bestTarget.transform.position);
 
         activeTargets.Remove(bestTarget);
@@ -142,13 +239,15 @@ public class HitZoneEvaluator : MonoBehaviour
     }
 
     /// <summary>
-    /// Phase 2: Check if the player's action matches the target type.
+    /// Check if the player's action matches the target type.
+    /// v3: ToughPunch matches Punch action.
     /// </summary>
     private bool DoesActionMatchTarget(ActionType action, TargetType target)
     {
         switch (target)
         {
             case TargetType.Punch: return action == ActionType.Punch;
+            case TargetType.ToughPunch: return action == ActionType.Punch;
             case TargetType.Block: return action == ActionType.Block;
             case TargetType.Dodge: return action == ActionType.Dodge;
             default: return false;
@@ -180,11 +279,11 @@ public class HitZoneEvaluator : MonoBehaviour
             default: return 0;
         }
 
-        // Block and Dodge get bonus based on type
         switch (targetType)
         {
             case TargetType.Block: return Mathf.Max(baseScore, BlockScore);
             case TargetType.Dodge: return Mathf.Max(baseScore, DodgeScore);
+            case TargetType.ToughPunch: return Mathf.Max(baseScore, PerfectScore); // Tough targets give full punch score
             default: return baseScore;
         }
     }
@@ -204,12 +303,10 @@ public class HitZoneEvaluator : MonoBehaviour
         TargetObject target = other.GetComponent<TargetObject>();
         if (target != null)
         {
-            // Auto-miss targets that leave the zone without being hit
             if (activeTargets.Contains(target))
             {
                 OnTargetMissed?.Invoke(target.Lane.GetHashCode());
                 OnMissVisualFeedback?.Invoke(target.Lane, target.transform.position);
-                // Phase 4: Miss popup for auto-missed targets
                 TextPopup.CreateMiss(target.transform.position);
                 activeTargets.Remove(target);
             }

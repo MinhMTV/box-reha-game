@@ -53,4 +53,20 @@ public class AudioManager : MonoBehaviour
     {
         Debug.Log("[AudioManager] PlayCountdownTick");
     }
+
+    /// <summary>
+    /// v3: Sound when hitting a tough target (not destroyed yet).
+    /// </summary>
+    public void PlayToughHitSound()
+    {
+        Debug.Log("[AudioManager] PlayToughHitSound");
+    }
+
+    /// <summary>
+    /// v3: Sound when a tough target is finally destroyed.
+    /// </summary>
+    public void PlayToughBreakSound()
+    {
+        Debug.Log("[AudioManager] PlayToughBreakSound");
+    }
 }
