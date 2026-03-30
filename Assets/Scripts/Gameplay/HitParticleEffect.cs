@@ -18,28 +18,27 @@ public class HitParticleEffect : MonoBehaviour
 
     public static Color GetColorForTargetType(TargetType type)
     {
-        switch (type)
-        {
-            case TargetType.Punch: return Color.red;
-            case TargetType.Block: return Color.blue;
-            case TargetType.Dodge: return Color.green;
-            case TargetType.ToughPunch: return new Color(0.8f, 0.1f, 0.1f); // Dark red
-            default: return Color.white;
-        }
+        return GameVisualPalette.GetTargetColor(type);
+    }
+
+    public static int GetParticleCountForTargetType(TargetType type)
+    {
+        return GameVisualPalette.GetParticleCount(type);
     }
 
     private void Initialize(ParticleSystem ps, Color color, int particleCount)
     {
         var main = ps.main;
-        main.startLifetime = 0.5f;
-        main.startSpeed = 3f;
-        main.startSize = 0.15f;
+        bool intenseBurst = particleCount >= 28;
+        main.startLifetime = intenseBurst ? 0.9f : 0.65f;
+        main.startSpeed = intenseBurst ? 5.8f : 4.5f;
+        main.startSize = intenseBurst ? 0.22f : 0.18f;
         main.startColor = color;
         main.maxParticles = particleCount;
         main.simulationSpace = ParticleSystemSimulationSpace.World;
         main.loop = false;
         main.playOnAwake = false;
-        main.gravityModifier = 1f;
+        main.gravityModifier = 0.35f;
 
         var emission = ps.emission;
         emission.enabled = true;
@@ -49,14 +48,44 @@ public class HitParticleEffect : MonoBehaviour
         });
 
         var shape = ps.shape;
-        shape.shapeType = ParticleSystemShapeType.Sphere;
-        shape.radius = 0.2f;
+        shape.shapeType = intenseBurst ? ParticleSystemShapeType.Hemisphere : ParticleSystemShapeType.Sphere;
+        shape.radius = intenseBurst ? 0.34f : 0.26f;
+
+        var velocityOverLifetime = ps.velocityOverLifetime;
+        velocityOverLifetime.enabled = true;
+        velocityOverLifetime.orbitalY = intenseBurst ? 1.2f : 0.7f;
+
+        var colorOverLifetime = ps.colorOverLifetime;
+        colorOverLifetime.enabled = true;
+        Gradient gradient = new Gradient();
+        Color highlight = Color.Lerp(color, Color.white, 0.45f);
+        gradient.SetKeys(
+            new[] {
+                new GradientColorKey(color, 0f),
+                new GradientColorKey(highlight, 0.35f),
+                new GradientColorKey(Color.Lerp(color, Color.black, 0.15f), 1f)
+            },
+            new[] {
+                new GradientAlphaKey(1f, 0f),
+                new GradientAlphaKey(0.85f, 0.4f),
+                new GradientAlphaKey(0f, 1f)
+            });
+        colorOverLifetime.color = gradient;
+
+        var sizeOverLifetime = ps.sizeOverLifetime;
+        sizeOverLifetime.enabled = true;
+        AnimationCurve curve = new AnimationCurve();
+        curve.AddKey(0f, intenseBurst ? 0.55f : 0.4f);
+        curve.AddKey(0.25f, intenseBurst ? 1.2f : 1f);
+        curve.AddKey(1f, 0.1f);
+        sizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1f, curve);
 
         var renderer = ps.GetComponent<ParticleSystemRenderer>();
         renderer.material = new Material(Shader.Find("Particles/Standard Unlit"));
         renderer.material.color = color;
+        renderer.renderMode = ParticleSystemRenderMode.Billboard;
 
         ps.Play();
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 1.2f);
     }
 }

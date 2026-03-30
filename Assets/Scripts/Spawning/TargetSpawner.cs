@@ -78,6 +78,9 @@ public class TargetSpawner : MonoBehaviour
 
             SpawnPatternData pattern = SpawnPatternGenerator.GetNextPattern(currentLevel);
             pattern.Speed = currentLevel.TargetSpeed * speedMultiplier;
+            ShowSpawnWarning(pattern.Lane, pattern.VerticalPos, pattern.Type);
+            yield return new WaitForSeconds(0.16f);
+            if (!isSpawning) yield break;
 
             // v3: Check for tough target
             float toughChance = Mathf.Clamp01(currentLevel.ToughTargetChance + toughChanceBonus);
@@ -162,6 +165,10 @@ public class TargetSpawner : MonoBehaviour
             {
                 spawnPos.y += gameConfig.GetVerticalOffset(VerticalPosition.Mid);
             }
+
+            ShowSpawnWarning(chainLane, VerticalPosition.Mid, TargetType.Punch);
+            yield return new WaitForSeconds(0.12f);
+            if (!isSpawning) yield break;
 
             GameObject targetObj = CreateTargetObject(spawnPos, TargetType.Punch);
             if (targetObj == null) yield break;
@@ -273,11 +280,11 @@ public class TargetSpawner : MonoBehaviour
                 collider.size = new Vector3(2.8f, 1.0f, 1.0f);
                 break;
             case TargetType.ToughPunch:
-                BuildTargetDisc(target.transform, new Color(0.85f, 0.18f, 0.12f, 1f), true);
+                BuildTargetDisc(target.transform, GameVisualPalette.GetTargetColor(TargetType.ToughPunch), true);
                 collider.size = new Vector3(1.9f, 1.9f, 0.9f);
                 break;
             default: // Punch
-                BuildTargetDisc(target.transform, new Color(1f, 0.24f, 0.18f, 1f), false);
+                BuildTargetDisc(target.transform, GameVisualPalette.GetTargetColor(TargetType.Punch), false);
                 collider.size = new Vector3(1.7f, 1.7f, 0.8f);
                 break;
         }
@@ -293,6 +300,24 @@ public class TargetSpawner : MonoBehaviour
         rb.useGravity = false;
         rb.isKinematic = true;
         return target;
+    }
+
+    private void ShowSpawnWarning(LaneType lane, VerticalPosition verticalPosition, TargetType type)
+    {
+        Transform spawnPoint = GetSpawnPoint(lane);
+        if (spawnPoint == null)
+        {
+            return;
+        }
+
+        Vector3 effectPosition = new Vector3(spawnPoint.position.x, spawnPoint.position.y, 5f);
+        if (gameConfig != null)
+        {
+            effectPosition.y = gameConfig.GetVerticalOffset(verticalPosition);
+        }
+
+        Color warningColor = GameVisualPalette.GetTargetColor(type);
+        SpawnWarningEffect.Create(effectPosition, warningColor, GameVisualPalette.GetSpawnWarningDuration(type));
     }
 
     private void BuildTargetDisc(Transform parent, Color targetColor, bool heavyTarget)
@@ -347,7 +372,7 @@ public class TargetSpawner : MonoBehaviour
         shield.transform.SetParent(parent, false);
         shield.transform.localPosition = Vector3.zero;
         shield.transform.localScale = new Vector3(1.65f, 1.95f, 0.42f);
-        ApplyMaterial(shield, new Color(0.18f, 0.72f, 1f, 1f), 1.7f);
+        ApplyMaterial(shield, GameVisualPalette.GetTargetColor(TargetType.Block), 1.7f);
 
         GameObject core = GameObject.CreatePrimitive(PrimitiveType.Cube);
         core.name = "ShieldCore";
@@ -365,21 +390,21 @@ public class TargetSpawner : MonoBehaviour
         bar.transform.localPosition = Vector3.zero;
         bar.transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
         bar.transform.localScale = new Vector3(0.42f, 1.45f, 0.42f);
-        ApplyMaterial(bar, new Color(0.30f, 1f, 0.58f, 1f), 1.5f);
+        ApplyMaterial(bar, GameVisualPalette.GetTargetColor(TargetType.Dodge), 1.5f);
 
         GameObject leftCap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         leftCap.name = "DodgeCapLeft";
         leftCap.transform.SetParent(parent, false);
         leftCap.transform.localPosition = new Vector3(-1.4f, 0f, 0f);
         leftCap.transform.localScale = Vector3.one * 0.45f;
-        ApplyMaterial(leftCap, new Color(0.74f, 1f, 0.85f, 1f), 1.0f);
+        ApplyMaterial(leftCap, GameVisualPalette.GetTargetHighlight(TargetType.Dodge), 1.0f);
 
         GameObject rightCap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         rightCap.name = "DodgeCapRight";
         rightCap.transform.SetParent(parent, false);
         rightCap.transform.localPosition = new Vector3(1.4f, 0f, 0f);
         rightCap.transform.localScale = Vector3.one * 0.45f;
-        ApplyMaterial(rightCap, new Color(0.74f, 1f, 0.85f, 1f), 1.0f);
+        ApplyMaterial(rightCap, GameVisualPalette.GetTargetHighlight(TargetType.Dodge), 1.0f);
     }
 
     private void ApplyMaterial(GameObject visual, Color color, float emissionStrength)

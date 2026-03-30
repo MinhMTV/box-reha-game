@@ -169,7 +169,7 @@ public class HitZoneEvaluator : MonoBehaviour
                 AudioManager.Instance.PlayToughBreakSound();
 
             Color particleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
-            HitParticleEffect.Spawn(bestTarget.transform.position, particleColor);
+            HitParticleEffect.Spawn(bestTarget.transform.position, particleColor, HitParticleEffect.GetParticleCountForTargetType(bestTarget.Type));
 
             float reactionTime = (float)(Time.realtimeSinceStartupAsDouble - bestTarget.SpawnTime);
             if (GameManager.Instance?.SessionStats != null)
@@ -231,7 +231,7 @@ public class HitZoneEvaluator : MonoBehaviour
         if (quality != HitQuality.Miss)
         {
             Color particleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
-            HitParticleEffect.Spawn(bestTarget.transform.position, particleColor);
+            HitParticleEffect.Spawn(bestTarget.transform.position, particleColor, HitParticleEffect.GetParticleCountForTargetType(bestTarget.Type));
         }
 
         float reactionTime2 = (float)(Time.realtimeSinceStartupAsDouble - bestTarget.SpawnTime);
@@ -352,10 +352,10 @@ public class HitZoneEvaluator : MonoBehaviour
         guideRoot.transform.SetParent(transform, false);
         guideRoot.transform.localPosition = Vector3.zero;
 
-        CreateGuideBar(guideRoot.transform, "HitLine", new Vector3(0f, -2.25f, 0f), new Vector3(9.5f, 0.08f, 0.08f), new Color(0.20f, 0.82f, 1f, 1f), 2.4f);
-        CreateGuideBar(guideRoot.transform, "HitFrameTop", new Vector3(0f, 2.25f, 0f), new Vector3(9.5f, 0.08f, 0.08f), new Color(0.12f, 0.42f, 0.72f, 1f), 1.2f);
-        CreateGuideBar(guideRoot.transform, "HitFrameLeft", new Vector3(-4.5f, 0f, 0f), new Vector3(0.08f, 4.6f, 0.08f), new Color(0.12f, 0.42f, 0.72f, 1f), 1.2f);
-        CreateGuideBar(guideRoot.transform, "HitFrameRight", new Vector3(4.5f, 0f, 0f), new Vector3(0.08f, 4.6f, 0.08f), new Color(0.12f, 0.42f, 0.72f, 1f), 1.2f);
+        CreateGuideBar(guideRoot.transform, "HitLine", new Vector3(0f, -2.25f, 0f), new Vector3(9.5f, 0.08f, 0.08f), GameVisualPalette.BlockColor, 2.4f);
+        CreateGuideBar(guideRoot.transform, "HitFrameTop", new Vector3(0f, 2.25f, 0f), new Vector3(9.5f, 0.08f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Center), 1.2f);
+        CreateGuideBar(guideRoot.transform, "HitFrameLeft", new Vector3(-4.5f, 0f, 0f), new Vector3(0.08f, 4.6f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Left), 1.2f);
+        CreateGuideBar(guideRoot.transform, "HitFrameRight", new Vector3(4.5f, 0f, 0f), new Vector3(0.08f, 4.6f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Right), 1.2f);
     }
 
     private void CreateGuideBar(Transform parent, string name, Vector3 localPosition, Vector3 localScale, Color color, float emissionStrength)

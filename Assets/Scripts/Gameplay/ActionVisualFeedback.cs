@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Phase 2 & 4: Visual feedback when player acts (brief color flash on lane).
@@ -20,6 +21,16 @@ public class ActionVisualFeedback : MonoBehaviour
     [SerializeField] private Color defaultLeftColor = new Color(0.11f, 0.33f, 0.55f, 1f);
     [SerializeField] private Color defaultCenterColor = new Color(0.16f, 0.52f, 0.72f, 1f);
     [SerializeField] private Color defaultRightColor = new Color(0.11f, 0.33f, 0.55f, 1f);
+
+    void Awake()
+    {
+        defaultLeftColor = GameVisualPalette.GetLaneBaseColor(LaneType.Left);
+        defaultCenterColor = GameVisualPalette.GetLaneBaseColor(LaneType.Center);
+        defaultRightColor = GameVisualPalette.GetLaneBaseColor(LaneType.Right);
+        hitFlashColor = GameVisualPalette.DodgeColor;
+        missFlashColor = GameVisualPalette.MissColor;
+        perfectColor = GameVisualPalette.PerfectColor;
+    }
 
     void OnEnable()
     {
@@ -75,10 +86,26 @@ public class ActionVisualFeedback : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator FlashCoroutine(Renderer renderer, Color flashColor, Color defaultColor)
+    private IEnumerator FlashCoroutine(Renderer renderer, Color flashColor, Color defaultColor)
     {
-        renderer.material.color = flashColor;
-        yield return new WaitForSeconds(flashDuration);
-        renderer.material.color = defaultColor;
+        Material material = renderer.material;
+        Vector3 originalScale = renderer.transform.localScale;
+        float elapsed = 0f;
+
+        material.EnableKeyword("_EMISSION");
+        while (elapsed < flashDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / flashDuration);
+            float pulse = 1f + Mathf.Sin(t * Mathf.PI) * 0.08f;
+            renderer.transform.localScale = originalScale * pulse;
+            material.color = Color.Lerp(flashColor, defaultColor, t);
+            material.SetColor("_EmissionColor", Color.Lerp(flashColor * 2f, defaultColor * 1.2f, t));
+            yield return null;
+        }
+
+        renderer.transform.localScale = originalScale;
+        material.color = defaultColor;
+        material.SetColor("_EmissionColor", defaultColor * 1.2f);
     }
 }

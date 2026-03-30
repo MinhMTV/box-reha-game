@@ -97,5 +97,6 @@ public class PlayerProfilePanelController : MonoBehaviour
         summaryText.text =
             $"Estimated avg punch force: {profile.GetEstimatedAveragePunchForce():F0} N\n" +
             "Used to normalize glove force fairly across players.";
+        summaryText.color = new Color(0.78f, 0.90f, 1f, 1f);
     }
 }
