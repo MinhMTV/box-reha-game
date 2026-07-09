@@ -96,7 +96,8 @@ public class PlayerProfilePanelController : MonoBehaviour
         PlayerProfile profile = ReadProfileFromUi();
         summaryText.text =
             $"Estimated avg punch force: {profile.GetEstimatedAveragePunchForce():F0} N\n" +
-            "Used to normalize glove force fairly across players.";
+            $"Estimated avg kick power: {profile.GetEstimatedAverageKickForce():F0} N\n" +
+            "Used to normalize ALPHA glove and DELTA foot values fairly across players.";
         summaryText.color = new Color(0.78f, 0.90f, 1f, 1f);
     }
 }

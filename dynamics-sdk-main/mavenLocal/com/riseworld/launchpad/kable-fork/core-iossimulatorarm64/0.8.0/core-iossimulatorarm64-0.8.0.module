@@ -1,0 +1,163 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../core/0.8.0/core-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "core",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "models",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "exceptions",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.32.1"
+          }
+        },
+        {
+          "group": "com.juul.tuulbox",
+          "module": "collections",
+          "version": {
+            "requires": "8.1.0"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "core-iosSimulatorArm64Main-0.8.0.klib",
+          "url": "core-iossimulatorarm64-0.8.0.klib",
+          "size": 235603,
+          "sha512": "abe258b4ded489904f65ca24bbe868295c09defbdff4357cec7c14d9f2fd724d4cd5eb853a51e62ed10c2273012832f1fdbb048185360a4aac68edcd0d9dcae0",
+          "sha256": "c96ba3719af870ecdd612d6b912fd2bfcf10c03fe4fe7ea240878668ef9b4127",
+          "sha1": "87b7f08f1f7838849fd3f002de3482adecb66708",
+          "md5": "511ec00034f36cb50011a0b0ed01be39"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "models",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "exceptions",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.32.1"
+          }
+        },
+        {
+          "group": "com.juul.tuulbox",
+          "module": "collections",
+          "version": {
+            "requires": "8.1.0"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "core-iossimulatorarm64-0.8.0-metadata.jar",
+          "url": "core-iossimulatorarm64-0.8.0-metadata.jar",
+          "size": 24427,
+          "sha512": "089846deb94e57de6928da60bfdab90d328ea4cfa6ff833e82b23975f81f6d46723a3678892df30b0c409ab365cc56ff439374ec1668f167f8f472967c45ed68",
+          "sha256": "809fc1ac366cb757788e1387a9f12089df053b4a237f64929b8004401e0d9bae",
+          "sha1": "b3231b9a878023e9eb27e3823cec35ffd76022d8",
+          "md5": "85a5d5caa153e1eb771558ce10db7157"
+        }
+      ]
+    }
+  ]
+}

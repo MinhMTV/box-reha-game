@@ -1,0 +1,275 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-ble/0.25.6/dynamics-ble-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-ble",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-models",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-math",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-models-composite",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-ble-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-constants",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "androidx.startup",
+          "module": "startup-runtime",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "com.juul.tuulbox",
+          "module": "collections",
+          "version": {
+            "requires": "8.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.17.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-ble-iosSimulatorArm64Main-0.25.6.klib",
+          "url": "dynamics-ble-iossimulatorarm64-0.25.6.klib",
+          "size": 274392,
+          "sha512": "0784e81d3132214d2cdf48930a64a6b6cd8470d5988e56011ff8b5841cf3590af9e1e902ab42485e6a88775ccb3e0ff50d75d249c01385db7b98617743b50899",
+          "sha256": "e0ec93758035af2a9c51f4323578e2bba17bd0044253f2f2d6b9cce567cf1ef3",
+          "sha1": "f1b8ae9f38a3c6e24de98da53896b44a3b529f82",
+          "md5": "b59647e0fbe3014563d0698d2f8d8a2a"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-models",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-math",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-models-composite",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-ble-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-constants",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "androidx.startup",
+          "module": "startup-runtime",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "com.juul.tuulbox",
+          "module": "collections",
+          "version": {
+            "requires": "8.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.17.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-ble-iossimulatorarm64-0.25.6-metadata.jar",
+          "url": "dynamics-ble-iossimulatorarm64-0.25.6-metadata.jar",
+          "size": 5568,
+          "sha512": "78952c34f19b3af34e03dd075f4110cb2f3ba12e29cf8c08e997c07b4bf19201c0198471c5a6cdd80d90af8af842bc7b410f1ae07cc427c96c0b9fc7d548a66c",
+          "sha256": "9e2b8af667b47d43138cd67b7f9de549994e28c0b094d1950bd82686419e6b6e",
+          "sha1": "5ff113a08e0225755a63231db117c48694b7f94c",
+          "md5": "9b402dda0d1cc1e2b59206a7b74f6078"
+        }
+      ]
+    }
+  ]
+}

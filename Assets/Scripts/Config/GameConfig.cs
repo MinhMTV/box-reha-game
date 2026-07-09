@@ -14,6 +14,7 @@ public class GameConfig : ScriptableObject
     public int EarlyLateScore = 25;
     public int BlockScore = 75;
     public int DodgeScore = 75;
+    public int KickScore = 100;
     public float MaxComboMultiplier = 3f;
     public float ComboMultiplierStep = 0.1f;
 
@@ -24,12 +25,14 @@ public class GameConfig : ScriptableObject
     public float SwipeMaxDuration = 0.3f;
     public float BlockMaxMovement = 10f;
     public float SensorPunchAccelerationThreshold = 18f;
+    public float SensorKickAccelerationThreshold = 16f;
     public float SensorBlockAccelerationThreshold = 9f;
     public float SensorDodgeGyroThreshold = 6f;
     public float SensorActionCooldown = 0.35f;
 
     [Header("Visual")]
     public Color PunchColor = Color.red;
+    public Color KickColor = new Color(0.18f, 1f, 0.72f, 1f);
     public Color BlockColor = Color.blue;
     public Color DodgeColor = Color.green;
     public Color HitFlashColor = Color.green;
@@ -46,9 +49,9 @@ public class GameConfig : ScriptableObject
     public float HitZoneDistance = 5f;
 
     [Header("Vertical Position")]
-    public float VerticalOffsetHigh = 2.5f;
-    public float VerticalOffsetMid = 1.2f;
-    public float VerticalOffsetLow = 0.2f;
+    public float VerticalOffsetHigh = 2.6f;
+    public float VerticalOffsetMid = 1.55f;
+    public float VerticalOffsetLow = 0.45f;
 
     // Phase 3: Input source selection
     [Header("Input Source")]

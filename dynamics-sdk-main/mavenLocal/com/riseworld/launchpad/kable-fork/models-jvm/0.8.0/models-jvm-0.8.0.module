@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../models/0.8.0/models-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "models",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models-jvm-0.8.0.jar",
+          "url": "models-jvm-0.8.0.jar",
+          "size": 1251,
+          "sha512": "0880c6d13446b798022a7b2643db612c6969839731f58593bf01ef70500dd78ba515ec88e1f1540b43bc59d63554accee5c32a0bd645b695afacb02b366c5105",
+          "sha256": "d7bc68ea509a9ab6164b06801d668faaa586abc55f77808b40b576005a53ab95",
+          "sha1": "b45a4a6a62c27edd7ac6eeea39591ad12b9e6dc1",
+          "md5": "ceda470ea76533870f509cd957dc476c"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models-jvm-0.8.0.jar",
+          "url": "models-jvm-0.8.0.jar",
+          "size": 1251,
+          "sha512": "0880c6d13446b798022a7b2643db612c6969839731f58593bf01ef70500dd78ba515ec88e1f1540b43bc59d63554accee5c32a0bd645b695afacb02b366c5105",
+          "sha256": "d7bc68ea509a9ab6164b06801d668faaa586abc55f77808b40b576005a53ab95",
+          "sha1": "b45a4a6a62c27edd7ac6eeea39591ad12b9e6dc1",
+          "md5": "ceda470ea76533870f509cd957dc476c"
+        }
+      ]
+    }
+  ]
+}

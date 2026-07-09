@@ -1,0 +1,102 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ble-multiplex-uuid/0.24.0/ble-multiplex-uuid-0.24.0.module",
+    "group": "com.riseworld.launchpad.ble",
+    "module": "ble-multiplex-uuid",
+    "version": "0.24.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-uuid-iosX64Main-0.24.0.klib",
+          "url": "ble-multiplex-uuid-iosx64-0.24.0.klib",
+          "size": 19702,
+          "sha512": "d3874301c3eb9c1826fbb0c3c7dd78c46050b9875888af550d66c0a86dabaf7001c5662557c17ed9d879439f09fd41304a51a2a19e3ac2fcf6b89fb6fb6ee180",
+          "sha256": "9b3b4914fc19e15dc8d787e0e3c90a707a6a3645dda60ae4e3f55c2b4572d284",
+          "sha1": "ef2f2301d18da135db0d3c9037b3c0a05aeb0ca1",
+          "md5": "f318cbb049ea5610d5c4afcc1dc47aa0"
+        }
+      ]
+    },
+    {
+      "name": "iosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "ble-multiplex-uuid-iosx64-0.24.0-sources.jar",
+          "url": "ble-multiplex-uuid-iosx64-0.24.0-sources.jar",
+          "size": 5312,
+          "sha512": "657be5bad06d8b0433e69300e69ff27001dcd011413018b2a35a4a57d114496c4377b9772497451e2b32c63069661ff1adb86e10727307f20b58b66ee225d45f",
+          "sha256": "3f65ad2ede237cd17358aa2e1dc55099d37b11aa73b94b6d14b5d3268dff2bc7",
+          "sha1": "61a3639d586529d2aef3c1242aa474d154d1f33c",
+          "md5": "955ae6eda77fd23bdf3ed218e95728e9"
+        }
+      ]
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-uuid-iosx64-0.24.0-metadata.jar",
+          "url": "ble-multiplex-uuid-iosx64-0.24.0-metadata.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    }
+  ]
+}

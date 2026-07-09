@@ -1,0 +1,107 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-math/0.25.6/dynamics-math-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-math",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-math.aar",
+          "url": "dynamics-math-android-0.25.6.aar",
+          "size": 25222,
+          "sha512": "8215b0643c53eccc8eef40e89514ce40a58cb10d4a346c51536905f028c0a4c988335e75c83b09e41d1a4a8de5184a726da738fe71ae6705de415372ac7cfc73",
+          "sha256": "fd04787430c25594e84fe050f1d5ea487e79c3dbe39c7d606f8833e3a1a3f92d",
+          "sha1": "2db3c11d88acadee6e9339b1a043592cbb6d8aff",
+          "md5": "a308156914784984c8a6c72878bde49d"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-models",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-constants",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-math.aar",
+          "url": "dynamics-math-android-0.25.6.aar",
+          "size": 25222,
+          "sha512": "8215b0643c53eccc8eef40e89514ce40a58cb10d4a346c51536905f028c0a4c988335e75c83b09e41d1a4a8de5184a726da738fe71ae6705de415372ac7cfc73",
+          "sha256": "fd04787430c25594e84fe050f1d5ea487e79c3dbe39c7d606f8833e3a1a3f92d",
+          "sha1": "2db3c11d88acadee6e9339b1a043592cbb6d8aff",
+          "md5": "a308156914784984c8a6c72878bde49d"
+        }
+      ]
+    }
+  ]
+}

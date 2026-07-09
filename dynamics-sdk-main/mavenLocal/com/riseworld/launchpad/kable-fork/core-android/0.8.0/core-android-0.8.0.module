@@ -1,0 +1,170 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../core/0.8.0/core-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "core",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "models",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "exceptions",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "core.aar",
+          "url": "core-android-0.8.0.aar",
+          "size": 308249,
+          "sha512": "2086f742eab6b1547fc1436c49fd6188bf4322689d48ec19b4618b43b6ae8f04e62dbb6124ac9fd4e8a88adac3ebfbf8683c0abf18c721368e4a678431199797",
+          "sha256": "6e073299444b47c08485d98c617c14365b150f68019f499b9cb5d4c29635957c",
+          "sha1": "321dccc35734738031548d33009c0626a19ace84",
+          "md5": "50e4b698c33f9da11c073e37090b17c1"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "models",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "exceptions",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.18.0"
+          }
+        },
+        {
+          "group": "androidx.startup",
+          "module": "startup-runtime",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.32.1"
+          }
+        },
+        {
+          "group": "com.juul.tuulbox",
+          "module": "collections",
+          "version": {
+            "requires": "8.1.0"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "core.aar",
+          "url": "core-android-0.8.0.aar",
+          "size": 308249,
+          "sha512": "2086f742eab6b1547fc1436c49fd6188bf4322689d48ec19b4618b43b6ae8f04e62dbb6124ac9fd4e8a88adac3ebfbf8683c0abf18c721368e4a678431199797",
+          "sha256": "6e073299444b47c08485d98c617c14365b150f68019f499b9cb5d4c29635957c",
+          "sha1": "321dccc35734738031548d33009c0626a19ace84",
+          "md5": "50e4b698c33f9da11c073e37090b17c1"
+        }
+      ]
+    }
+  ]
+}

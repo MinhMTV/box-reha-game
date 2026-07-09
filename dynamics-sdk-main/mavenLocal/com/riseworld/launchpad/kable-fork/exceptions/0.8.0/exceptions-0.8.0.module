@@ -1,0 +1,207 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "exceptions",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "exceptions-metadata-0.8.0.jar",
+          "url": "exceptions-0.8.0.jar",
+          "size": 3431,
+          "sha512": "98a07e5272c0a3b02f303684cadb507895c1a2ca31f88b78a04b5e1c27021c1b22d5b8ff83f2f3ce580120bf3c0b2834618e9b3c9f6781f04e6661294dd17ef6",
+          "sha256": "8d5c67d60e8211115bf8644a4cfc214971d96c491bd30e2f8934e382341e92d3",
+          "sha1": "a425f489cefde8f636548f1f6636b1cf75a7e8c4",
+          "md5": "031e89dddf99690a30b6532c6ff58171"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../exceptions-iosarm64/0.8.0/exceptions-iosarm64-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-iosarm64",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../exceptions-iosarm64/0.8.0/exceptions-iosarm64-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-iosarm64",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../exceptions-iossimulatorarm64/0.8.0/exceptions-iossimulatorarm64-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-iossimulatorarm64",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../exceptions-iossimulatorarm64/0.8.0/exceptions-iossimulatorarm64-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-iossimulatorarm64",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../exceptions-iosx64/0.8.0/exceptions-iosx64-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-iosx64",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../exceptions-iosx64/0.8.0/exceptions-iosx64-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-iosx64",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../exceptions-jvm/0.8.0/exceptions-jvm-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-jvm",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../exceptions-jvm/0.8.0/exceptions-jvm-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-jvm",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "macosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../exceptions-macosarm64/0.8.0/exceptions-macosarm64-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-macosarm64",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "name": "macosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "macos_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../exceptions-macosarm64/0.8.0/exceptions-macosarm64-0.8.0.module",
+        "group": "com.riseworld.launchpad.kable-fork",
+        "module": "exceptions-macosarm64",
+        "version": "0.8.0"
+      }
+    }
+  ]
+}

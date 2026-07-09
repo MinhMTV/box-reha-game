@@ -1,0 +1,121 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-models-composite/0.25.6/dynamics-models-composite-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-models-composite",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-models",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-models-composite.aar",
+          "url": "dynamics-models-composite-android-0.25.6.aar",
+          "size": 34255,
+          "sha512": "acabb877d17123fedef1a56fc112be1b8986090907c29526b39cb1ba4ea9acae315f3a949a27672a38c082ec937a551835a36ca36a59be4b23d138e46a19a5aa",
+          "sha256": "3207bc50915057022353ceaaefe81093590b38dfd178c2348847506f1ff9f3e4",
+          "sha1": "8e3795564817d0982214a52e686bf49f97ec6adb",
+          "md5": "ca7671b6771fef542f14520251569c8b"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-models",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-models",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-constants",
+          "version": {
+            "requires": "0.25.6"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-models-composite.aar",
+          "url": "dynamics-models-composite-android-0.25.6.aar",
+          "size": 34255,
+          "sha512": "acabb877d17123fedef1a56fc112be1b8986090907c29526b39cb1ba4ea9acae315f3a949a27672a38c082ec937a551835a36ca36a59be4b23d138e46a19a5aa",
+          "sha256": "3207bc50915057022353ceaaefe81093590b38dfd178c2348847506f1ff9f3e4",
+          "sha1": "8e3795564817d0982214a52e686bf49f97ec6adb",
+          "md5": "ca7671b6771fef542f14520251569c8b"
+        }
+      ]
+    }
+  ]
+}

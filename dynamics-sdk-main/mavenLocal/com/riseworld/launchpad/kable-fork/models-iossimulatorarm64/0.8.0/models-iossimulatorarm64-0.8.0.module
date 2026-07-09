@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../models/0.8.0/models-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "models",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models-iosSimulatorArm64Main-0.8.0.klib",
+          "url": "models-iossimulatorarm64-0.8.0.klib",
+          "size": 5033,
+          "sha512": "c47033f4d5b593e38211a57061bb81f1ae330a4d9b26d4cea8a0cfb863707b7cbc9879335cc4623781562fdbfebf0a16804b473543153b32ae1b4f58045699a1",
+          "sha256": "101e4531d7da32f204eb192db5cd39e607572a35186ad62bb20d51ac0742ad6b",
+          "sha1": "3bbcd02d47cb3e4e0b5a1e61c3ba623d0268596c",
+          "md5": "803b752ee5ba22f6358e7a9076ed8447"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models-iossimulatorarm64-0.8.0-metadata.jar",
+          "url": "models-iossimulatorarm64-0.8.0-metadata.jar",
+          "size": 2666,
+          "sha512": "f1a0873279ba7bf8b94b688c8ba2dedb71fdf064080cfd0d6a3f82b91758f83403fa319e347edd88d01f497b62082f8dbad32be51a0ae2363063504b2009a73c",
+          "sha256": "3373d0b5f1fe319fa25745f7d3cd80c258a962bfb639f2d14dcc7fc546843fe1",
+          "sha1": "7e4e32881105523256114518fc82ee356f1868ba",
+          "md5": "cb05d0367d315c1e0c59b3433c31a726"
+        }
+      ]
+    }
+  ]
+}

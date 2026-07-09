@@ -1,0 +1,191 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-ble-utils/0.25.6/dynamics-ble-utils-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-ble-utils",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-models",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-math",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-constants",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-ble-utils-iosX64Main-0.25.6.klib",
+          "url": "dynamics-ble-utils-iosx64-0.25.6.klib",
+          "size": 42242,
+          "sha512": "84ec431560b6ffccd0e99d71f0d0ea8bbbf28dee16e06f001be6772c2b97860b595b5cc54abf7d844a37ccc4082206ce255295676eed7a53ebaa9220c660c91d",
+          "sha256": "170ab34c5171f77a760b84225976a12c1486f0a6b9c415d8f8ba8270aa5d0a97",
+          "sha1": "ca9434d1ab2cb1a64796288c588459e2fde40341",
+          "md5": "0c74f25e1bf0409ebedf336a7f9f16aa"
+        }
+      ]
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-models",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-math",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-constants",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-ble-utils-iosx64-0.25.6-metadata.jar",
+          "url": "dynamics-ble-utils-iosx64-0.25.6-metadata.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    }
+  ]
+}

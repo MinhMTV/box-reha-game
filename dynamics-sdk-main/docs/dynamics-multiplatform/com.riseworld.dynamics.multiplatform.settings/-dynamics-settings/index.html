@@ -1,0 +1,494 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>DynamicsSettings</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    RISE Dynamics SDK
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">0.25.6
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":dynamics-multiplatform/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":dynamics-multiplatform/commonMain" data-filter=":dynamics-multiplatform/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    RISE Dynamics SDK
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="dynamics-multiplatform::com.riseworld.dynamics.multiplatform.settings/DynamicsSettings///PointingToDeclaration//-2135878978">
+  <div class="breadcrumbs"><a href="../../index.html">dynamics-multiplatform</a><span class="delimiter">/</span><a href="../index.html">com.riseworld.dynamics.multiplatform.settings</a><span class="delimiter">/</span><span class="current">DynamicsSettings</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Dynamics</span><wbr><span><span>Settings</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">DynamicsSettings</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">defaultSettings<span class="token operator">: </span><span data-unresolved-link="com.russhwolf.settings/ObservableSettings///PointingToDeclaration/">ObservableSettings</span></span></span><span class="token punctuation">)</span></div><p class="paragraph">Represents the settings for the dynamics module.</p><p class="paragraph">Please note that not all settings that represented here have implications on the internal state of the dynamics multiplatform module, some of the keys are only intended for the consumer.</p><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">Research Industrial Systems Engineering (RISE) Forschungs-, Entwicklungs- und Großprojektberatung GmbH</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="1290095909%2FConstructors%2F-2135878978" anchor-label="DynamicsSettings" id="1290095909%2FConstructors%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dynamics-settings.html"><span>Dynamics</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1290095909%2FConstructors%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">defaultSettings<span class="token operator">: </span><span data-unresolved-link="com.russhwolf.settings/ObservableSettings///PointingToDeclaration/">ObservableSettings</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="1251655450%2FClasslikes%2F-2135878978" anchor-label="Companion" id="1251655450%2FClasslikes%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1251655450%2FClasslikes%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="1358571940%2FFunctions%2F-2135878978" anchor-label="acceptAllPunches" id="1358571940%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="accept-all-punches.html"><span>accept</span><wbr><span>All</span><wbr><span><span>Punches</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1358571940%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="accept-all-punches.html"><span class="token function">acceptAllPunches</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The getter for <a href="set-accept-all-punches.html">setAcceptAllPunches</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1493412285%2FFunctions%2F-2135878978" anchor-label="advertisingPrefix" id="1493412285%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="advertising-prefix.html"><span>advertising</span><wbr><span><span>Prefix</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1493412285%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="advertising-prefix.html"><span class="token function">advertisingPrefix</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1707073308%2FFunctions%2F-2135878978" anchor-label="allowUnsetSerialNumberForPeripherals" id="1707073308%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="allow-unset-serial-number-for-peripherals.html"><span>allow</span><wbr><span>Unset</span><wbr><span>Serial</span><wbr><span>Number</span><wbr><span>For</span><wbr><span><span>Peripherals</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1707073308%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="allow-unset-serial-number-for-peripherals.html"><span class="token function">allowUnsetSerialNumberForPeripherals</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A flag that indicates if unset serial numbers for peripherals are allowed.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1798498972%2FFunctions%2F-2135878978" anchor-label="backgroundDisconnectTimeout" id="1798498972%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="background-disconnect-timeout.html"><span>background</span><wbr><span>Disconnect</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1798498972%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="background-disconnect-timeout.html"><span class="token function">backgroundDisconnectTimeout</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Observes the background disconnect timeout. Whenever the consumer (smartphone) transitions to background, all bluetooth peripherals are disconnected after this timeout.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-24943559%2FFunctions%2F-2135878978" anchor-label="firmwareUpdateBaseUrl" id="-24943559%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="firmware-update-base-url.html"><span>firmware</span><wbr><span>Update</span><wbr><span>Base</span><wbr><span><span>Url</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-24943559%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="firmware-update-base-url.html"><span class="token function">firmwareUpdateBaseUrl</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1137659060%2FFunctions%2F-2135878978" anchor-label="getDebuggingMode" id="-1137659060%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-debugging-mode.html"><span>get</span><wbr><span>Debugging</span><wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1137659060%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="get-debugging-mode.html"><span class="token function">getDebuggingMode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The debugging mode is intended as a flag for the consumers to show additional debugging functionality to the user.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-604579768%2FFunctions%2F-2135878978" anchor-label="getInstallationId" id="-604579768%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-installation-id.html"><span>get</span><wbr><span>Installation</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-604579768%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-installation-id.html"><span class="token function">getInstallationId</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1017213800%2FFunctions%2F-2135878978" anchor-label="getInstallationIdAsFlow" id="1017213800%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-installation-id-as-flow.html"><span>get</span><wbr><span>Installation</span><wbr><span>Id</span><wbr><span>As</span><wbr><span><span>Flow</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1017213800%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="get-installation-id-as-flow.html"><span class="token function">getInstallationIdAsFlow</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2031915347%2FFunctions%2F-2135878978" anchor-label="getKeepAllPunchDetails" id="-2031915347%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-keep-all-punch-details.html"><span>get</span><wbr><span>Keep</span><wbr><span>All</span><wbr><span>Punch</span><wbr><span><span>Details</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2031915347%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="get-keep-all-punch-details.html"><span class="token function">getKeepAllPunchDetails</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The getter for <a href="set-keep-all-punch-details.html">setKeepAllPunchDetails</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1879966299%2FFunctions%2F-2135878978" anchor-label="getShowOnboarding" id="-1879966299%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-show-onboarding.html"><span>get</span><wbr><span>Show</span><wbr><span><span>Onboarding</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1879966299%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="get-show-onboarding.html"><span class="token function">getShowOnboarding</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A flag that indicates if the onboarding UI should be shown at start-up or not. The consumer is responsible for honoring this flag.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1100121709%2FFunctions%2F-2135878978" anchor-label="isBatteryMockEnabled" id="-1100121709%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-battery-mock-enabled.html"><span>is</span><wbr><span>Battery</span><wbr><span>Mock</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1100121709%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="is-battery-mock-enabled.html"><span class="token function">isBatteryMockEnabled</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-524380876%2FFunctions%2F-2135878978" anchor-label="isDummyImpactDataEnabled" id="-524380876%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-dummy-impact-data-enabled.html"><span>is</span><wbr><span>Dummy</span><wbr><span>Impact</span><wbr><span>Data</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-524380876%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="is-dummy-impact-data-enabled.html"><span class="token function">isDummyImpactDataEnabled</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The getter for <a href="set-dummy-impact-data-enabled.html">setDummyImpactDataEnabled</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-776265837%2FFunctions%2F-2135878978" anchor-label="setAcceptAllPunches" id="-776265837%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-accept-all-punches.html"><span>set</span><wbr><span>Accept</span><wbr><span>All</span><wbr><span><span>Punches</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-776265837%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-accept-all-punches.html"><span class="token function">setAcceptAllPunches</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">acceptAllPunches<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Incoming punch data is usually not always persisted in the database, there are constraints that ignore punches, for example if the pressure is too low, then a punch is ignored.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2118083626%2FFunctions%2F-2135878978" anchor-label="setBackgroundDisconnectTimeout" id="2118083626%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-background-disconnect-timeout.html"><span>set</span><wbr><span>Background</span><wbr><span>Disconnect</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2118083626%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-background-disconnect-timeout.html"><span class="token function">setBackgroundDisconnectTimeout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">duration<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set the <a href="-companion/-b-a-c-k-g-r-o-u-n-d_-d-i-s-c-o-n-n-e-c-t_-t-i-m-e-o-u-t.html">BACKGROUND_DISCONNECT_TIMEOUT</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2085412404%2FFunctions%2F-2135878978" anchor-label="setBackgroundDisconnectTimeoutInSeconds" id="-2085412404%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-background-disconnect-timeout-in-seconds.html"><span>set</span><wbr><span>Background</span><wbr><span>Disconnect</span><wbr><span>Timeout</span><wbr><span>In</span><wbr><span><span>Seconds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2085412404%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-background-disconnect-timeout-in-seconds.html"><span class="token function">setBackgroundDisconnectTimeoutInSeconds</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">seconds<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set the <a href="-companion/-b-a-c-k-g-r-o-u-n-d_-d-i-s-c-o-n-n-e-c-t_-t-i-m-e-o-u-t.html">BACKGROUND_DISCONNECT_TIMEOUT</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1417602205%2FFunctions%2F-2135878978" anchor-label="setDebuggingMode" id="1417602205%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-debugging-mode.html"><span>set</span><wbr><span>Debugging</span><wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1417602205%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-debugging-mode.html"><span class="token function">setDebuggingMode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isEnabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1830439123%2FFunctions%2F-2135878978" anchor-label="setDummyImpactDataEnabled" id="-1830439123%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-dummy-impact-data-enabled.html"><span>set</span><wbr><span>Dummy</span><wbr><span>Impact</span><wbr><span>Data</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1830439123%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-dummy-impact-data-enabled.html"><span class="token function">setDummyImpactDataEnabled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isDummyDataEnabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">If the dummy impact data mode is enabled, then the glove firmware will send dummy data during a session (workout) instead of actively measuring real data.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1762847253%2FFunctions%2F-2135878978" anchor-label="setFirmwareUpdateBaseUrl" id="1762847253%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-firmware-update-base-url.html"><span>set</span><wbr><span>Firmware</span><wbr><span>Update</span><wbr><span>Base</span><wbr><span><span>Url</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1762847253%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-firmware-update-base-url.html"><span class="token function">setFirmwareUpdateBaseUrl</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set the <a href="-companion/-d-e-b-u-g_-f-i-r-m-w-a-r-e_-u-p-d-a-t-e_-b-a-s-e_-u-r-l.html">DEBUG_FIRMWARE_UPDATE_BASE_URL</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1610536642%2FFunctions%2F-2135878978" anchor-label="setKeepAllPunchDetails" id="-1610536642%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-keep-all-punch-details.html"><span>set</span><wbr><span>Keep</span><wbr><span>All</span><wbr><span>Punch</span><wbr><span><span>Details</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1610536642%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-keep-all-punch-details.html"><span class="token function">setKeepAllPunchDetails</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isEnabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Punch details are usually not always kept as soon as a training session is finished.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-887717218%2FFunctions%2F-2135878978" anchor-label="setShowOnboarding" id="-887717218%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-show-onboarding.html"><span>set</span><wbr><span>Show</span><wbr><span><span>Onboarding</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-887717218%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-show-onboarding.html"><span class="token function">setShowOnboarding</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isEnabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set the flag for showing onboarding UI for an app start.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1841808696%2FFunctions%2F-2135878978" anchor-label="setUseDebugImageForFirmwareUpdate" id="1841808696%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-use-debug-image-for-firmware-update.html"><span>set</span><wbr><span>Use</span><wbr><span>Debug</span><wbr><span>Image</span><wbr><span>For</span><wbr><span>Firmware</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1841808696%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-use-debug-image-for-firmware-update.html"><span class="token function">setUseDebugImageForFirmwareUpdate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">useDebug<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set the <a href="-companion/-d-e-b-u-g_-u-s-e_-d-e-b-u-g_-f-i-r-m-w-a-r-e_-u-p-d-a-t-e_-i-m-a-g-e.html">DEBUG_USE_DEBUG_FIRMWARE_UPDATE_IMAGE</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-519424631%2FFunctions%2F-2135878978" anchor-label="useDebugImageForFirmwareUpdate" id="-519424631%2FFunctions%2F-2135878978" data-filterable-set=":dynamics-multiplatform/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-multiplatform/commonMain" data-filterable-set=":dynamics-multiplatform/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="use-debug-image-for-firmware-update.html"><span>use</span><wbr><span>Debug</span><wbr><span>Image</span><wbr><span>For</span><wbr><span>Firmware</span><wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-519424631%2FFunctions%2F-2135878978"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-multiplatform/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">fun </span><a href="use-debug-image-for-firmware-update.html"><span class="token function">useDebugImageForFirmwareUpdate</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

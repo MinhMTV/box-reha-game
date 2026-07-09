@@ -3,6 +3,7 @@ using UnityEngine;
 public static class GameVisualPalette
 {
     public static readonly Color PunchColor = new Color(1f, 0.29f, 0.22f, 1f);
+    public static readonly Color KickColor = new Color(0.18f, 1f, 0.72f, 1f);
     public static readonly Color ToughPunchColor = new Color(1f, 0.62f, 0.16f, 1f);
     public static readonly Color BlockColor = new Color(0.20f, 0.78f, 1f, 1f);
     public static readonly Color DodgeColor = new Color(0.34f, 1f, 0.62f, 1f);
@@ -13,6 +14,8 @@ public static class GameVisualPalette
     {
         switch (type)
         {
+            case TargetType.Kick:
+                return KickColor;
             case TargetType.Block:
                 return BlockColor;
             case TargetType.Dodge:
@@ -28,6 +31,8 @@ public static class GameVisualPalette
     {
         switch (type)
         {
+            case TargetType.Kick:
+                return new Color(0.78f, 1f, 0.90f, 1f);
             case TargetType.Block:
                 return new Color(0.82f, 0.97f, 1f, 1f);
             case TargetType.Dodge:
@@ -58,6 +63,8 @@ public static class GameVisualPalette
     {
         switch (type)
         {
+            case TargetType.Kick:
+                return 24;
             case TargetType.Block:
                 return 18;
             case TargetType.Dodge:
@@ -75,6 +82,8 @@ public static class GameVisualPalette
         {
             case TargetType.ToughPunch:
                 return 0.42f;
+            case TargetType.Kick:
+                return 0.26f;
             case TargetType.Block:
                 return 0.28f;
             case TargetType.Dodge:

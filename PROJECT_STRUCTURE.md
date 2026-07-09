@@ -2,6 +2,16 @@
 
 A 2.5D boxing/rehab rhythm game inspired by Beat Saber, designed for physical rehabilitation and exercise.
 
+## Current Playable Controls
+
+- Hold/release Left Arrow: left punch, RD ALPHA-style mock input, left lane
+- Hold/release Right Arrow: right punch, RD ALPHA-style mock input, right lane
+- Hold/release A: left kick, RD DELTA-style mock input, left lane
+- Hold/release D: right kick, RD DELTA-style mock input, right lane
+- F1: toggle debug overlay
+
+Normal targets now use only left/right lanes. The center lane is reserved for Heavy Center Targets, which must be destroyed before the wave continues. Dodge/duck targets are disabled for the non-VR gameplay pass.
+
 ## Overview
 
 This project implements a Unity-based rhythm game where players react to incoming targets with boxing-style movements (punch, block, dodge). The game is designed with clean architecture to support future BLE/IMU sensor integration.
@@ -39,7 +49,7 @@ This project implements a Unity-based rhythm game where players react to incomin
 - **LevelSelectController**: Dedicated level selection UI
 - **ResultsController**: Results screen with reaction time display
 - **TextPopup**: Floating text popups for hit/miss feedback
-- **DebugUI**: Debug overlay (toggle with D key)
+- **DebugUI**: Debug overlay (toggle with F1 key)
 
 ### Data
 - **Enums**: Core enumerations (ActionType, LaneType, VerticalPosition, etc.)
@@ -124,10 +134,10 @@ Boot → MainMenu → Game → Results
 ## Visual Feedback
 - Hit: Brief green/yellow flash on lane + "PERFECT"/"GOOD" text popup
 - Miss: Brief red flash on lane + "MISS" text popup
-- Debug overlay: Press D to toggle FPS, state, target count
+- Debug overlay: Press F1 to toggle FPS, state, target count
 
 ## Debug UI
-Press **D** to toggle the debug overlay showing:
+Press **F1** to toggle the debug overlay showing:
 - Current FPS
 - Game state
 - Selected level

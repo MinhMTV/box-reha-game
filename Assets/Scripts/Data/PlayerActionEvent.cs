@@ -14,10 +14,13 @@ public struct PlayerActionEvent
     public float RawForce;
     // Phase 3: Vertical position for future high/low punches
     public VerticalPosition VerticalPos;
+    public SensorDeviceType SensorDevice;
+    public BodySide BodySide;
 
     public static PlayerActionEvent Create(ActionType action, LaneType lane, float power,
         Vector2 startPos, Vector2 endPos, float holdDuration, InputSourceType source,
-        VerticalPosition verticalPos = VerticalPosition.Mid, float rawForce = 0f)
+        VerticalPosition verticalPos = VerticalPosition.Mid, float rawForce = 0f,
+        SensorDeviceType sensorDevice = SensorDeviceType.Unknown, BodySide bodySide = BodySide.Unknown)
     {
         return new PlayerActionEvent
         {
@@ -30,7 +33,9 @@ public struct PlayerActionEvent
             HoldDuration = holdDuration,
             SourceType = source,
             RawForce = rawForce,
-            VerticalPos = verticalPos
+            VerticalPos = verticalPos,
+            SensorDevice = sensorDevice,
+            BodySide = bodySide
         };
     }
 }

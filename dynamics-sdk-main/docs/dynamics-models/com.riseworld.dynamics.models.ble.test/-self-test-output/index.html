@@ -1,0 +1,554 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>SelfTestOutput</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    RISE Dynamics SDK
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">0.25.6
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":dynamics-models/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":dynamics-models/commonMain" data-filter=":dynamics-models/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    RISE Dynamics SDK
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="dynamics-models::com.riseworld.dynamics.models.ble.test/SelfTestOutput///PointingToDeclaration//708848828">
+  <div class="breadcrumbs"><a href="../../index.html">dynamics-models</a><span class="delimiter">/</span><a href="../index.html">com.riseworld.dynamics.models.ble.test</a><span class="delimiter">/</span><span class="current">SelfTestOutput</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Self</span><wbr><span>Test</span><wbr><span><span>Output</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">SelfTestOutput</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>isBatteryBeingCharged<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>isChargerAttached<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>adcSelfTestCannotTurnOffMosfet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>adcSelfTestBadBatteryVoltage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>adcAcquisitionError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>adcGenericError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spiNorSelfTestNoCommunication<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spiNorSelfTestWrongJedecId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>ms5837SelfTestI2cError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>ms5837SelfTestPromCrcError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kx134SelfTestInternalCommunicationError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kx134SelfTestAsicError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kx134SelfTestDigitizerError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kx134SelfTestInt1Error<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kx134SelfTestInt2Error<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kx134SelfTestPartIdError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kx134SelfTestUnspecifiedError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bmi270SelfTestInternalCommunicationError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bmi270SelfTestAccError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bmi270SelfTestGyroDriveError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bmi270SelfTestGyroSenseError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bmi270SelfTestGyroDataPathError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bmi270SelfTestInt1Error<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bmi270SelfTestInt2Error<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bmi270SelfTestPartIdError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">Research Industrial Systems Engineering (RISE) Forschungs-, Entwicklungs- und Großprojektberatung GmbH</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1805546047%2FConstructors%2F708848828" anchor-label="SelfTestOutput" id="-1805546047%2FConstructors%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-self-test-output.html"><span>Self</span><wbr><span>Test</span><wbr><span><span>Output</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1805546047%2FConstructors%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isBatteryBeingCharged<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">isChargerAttached<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">adcSelfTestCannotTurnOffMosfet<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">adcSelfTestBadBatteryVoltage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">adcAcquisitionError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">adcGenericError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">spiNorSelfTestNoCommunication<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">spiNorSelfTestWrongJedecId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">ms5837SelfTestI2cError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">ms5837SelfTestPromCrcError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">kx134SelfTestInternalCommunicationError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">kx134SelfTestAsicError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">kx134SelfTestDigitizerError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">kx134SelfTestInt1Error<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">kx134SelfTestInt2Error<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">kx134SelfTestPartIdError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">kx134SelfTestUnspecifiedError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">bmi270SelfTestInternalCommunicationError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">bmi270SelfTestAccError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">bmi270SelfTestGyroDriveError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">bmi270SelfTestGyroSenseError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">bmi270SelfTestGyroDataPathError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">bmi270SelfTestInt1Error<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">bmi270SelfTestInt2Error<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">bmi270SelfTestPartIdError<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="1646926084%2FProperties%2F708848828" anchor-label="adcAcquisitionError" id="1646926084%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="adc-acquisition-error.html"><span>adc</span><wbr><span>Acquisition</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1646926084%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="adc-acquisition-error.html">adcAcquisitionError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="482604750%2FProperties%2F708848828" anchor-label="adcGenericError" id="482604750%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="adc-generic-error.html"><span>adc</span><wbr><span>Generic</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="482604750%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="adc-generic-error.html">adcGenericError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1830018045%2FProperties%2F708848828" anchor-label="adcSelfTestBadBatteryVoltage" id="-1830018045%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="adc-self-test-bad-battery-voltage.html"><span>adc</span><wbr><span>Self</span><wbr><span>Test</span><wbr><span>Bad</span><wbr><span>Battery</span><wbr><span><span>Voltage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1830018045%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="adc-self-test-bad-battery-voltage.html">adcSelfTestBadBatteryVoltage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="622594726%2FProperties%2F708848828" anchor-label="adcSelfTestCannotTurnOffMosfet" id="622594726%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="adc-self-test-cannot-turn-off-mosfet.html"><span>adc</span><wbr><span>Self</span><wbr><span>Test</span><wbr><span>Cannot</span><wbr><span>Turn</span><wbr><span>Off</span><wbr><span><span>Mosfet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="622594726%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="adc-self-test-cannot-turn-off-mosfet.html">adcSelfTestCannotTurnOffMosfet</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2105705481%2FProperties%2F708848828" anchor-label="bmi270SelfTestAccError" id="2105705481%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bmi270-self-test-acc-error.html"><span>bmi270Self</span><wbr><span>Test</span><wbr><span>Acc</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2105705481%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bmi270-self-test-acc-error.html">bmi270SelfTestAccError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="106400256%2FProperties%2F708848828" anchor-label="bmi270SelfTestGyroDataPathError" id="106400256%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bmi270-self-test-gyro-data-path-error.html"><span>bmi270Self</span><wbr><span>Test</span><wbr><span>Gyro</span><wbr><span>Data</span><wbr><span>Path</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="106400256%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bmi270-self-test-gyro-data-path-error.html">bmi270SelfTestGyroDataPathError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2067773411%2FProperties%2F708848828" anchor-label="bmi270SelfTestGyroDriveError" id="2067773411%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bmi270-self-test-gyro-drive-error.html"><span>bmi270Self</span><wbr><span>Test</span><wbr><span>Gyro</span><wbr><span>Drive</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2067773411%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bmi270-self-test-gyro-drive-error.html">bmi270SelfTestGyroDriveError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1140583175%2FProperties%2F708848828" anchor-label="bmi270SelfTestGyroSenseError" id="1140583175%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bmi270-self-test-gyro-sense-error.html"><span>bmi270Self</span><wbr><span>Test</span><wbr><span>Gyro</span><wbr><span>Sense</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1140583175%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bmi270-self-test-gyro-sense-error.html">bmi270SelfTestGyroSenseError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1354585956%2FProperties%2F708848828" anchor-label="bmi270SelfTestInt1Error" id="1354585956%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bmi270-self-test-int1-error.html"><span>bmi270Self</span><wbr><span>Test</span><wbr><span><span>Int1Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1354585956%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bmi270-self-test-int1-error.html">bmi270SelfTestInt1Error</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1705385893%2FProperties%2F708848828" anchor-label="bmi270SelfTestInt2Error" id="1705385893%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bmi270-self-test-int2-error.html"><span>bmi270Self</span><wbr><span>Test</span><wbr><span><span>Int2Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1705385893%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bmi270-self-test-int2-error.html">bmi270SelfTestInt2Error</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1044868833%2FProperties%2F708848828" anchor-label="bmi270SelfTestInternalCommunicationError" id="1044868833%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bmi270-self-test-internal-communication-error.html"><span>bmi270Self</span><wbr><span>Test</span><wbr><span>Internal</span><wbr><span>Communication</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1044868833%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bmi270-self-test-internal-communication-error.html">bmi270SelfTestInternalCommunicationError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1634248336%2FProperties%2F708848828" anchor-label="bmi270SelfTestPartIdError" id="-1634248336%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bmi270-self-test-part-id-error.html"><span>bmi270Self</span><wbr><span>Test</span><wbr><span>Part</span><wbr><span>Id</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1634248336%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="bmi270-self-test-part-id-error.html">bmi270SelfTestPartIdError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="344562251%2FProperties%2F708848828" anchor-label="isBatteryBeingCharged" id="344562251%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-battery-being-charged.html"><span>is</span><wbr><span>Battery</span><wbr><span>Being</span><wbr><span><span>Charged</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="344562251%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-battery-being-charged.html">isBatteryBeingCharged</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1772167705%2FProperties%2F708848828" anchor-label="isChargerAttached" id="-1772167705%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-charger-attached.html"><span>is</span><wbr><span>Charger</span><wbr><span><span>Attached</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1772167705%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-charger-attached.html">isChargerAttached</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="963090818%2FProperties%2F708848828" anchor-label="kx134SelfTestAsicError" id="963090818%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kx134-self-test-asic-error.html"><span>kx134Self</span><wbr><span>Test</span><wbr><span>Asic</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="963090818%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="kx134-self-test-asic-error.html">kx134SelfTestAsicError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1170290591%2FProperties%2F708848828" anchor-label="kx134SelfTestDigitizerError" id="1170290591%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kx134-self-test-digitizer-error.html"><span>kx134Self</span><wbr><span>Test</span><wbr><span>Digitizer</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1170290591%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="kx134-self-test-digitizer-error.html">kx134SelfTestDigitizerError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1909108824%2FProperties%2F708848828" anchor-label="kx134SelfTestInt1Error" id="1909108824%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kx134-self-test-int1-error.html"><span>kx134Self</span><wbr><span>Test</span><wbr><span><span>Int1Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1909108824%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="kx134-self-test-int1-error.html">kx134SelfTestInt1Error</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2035058535%2FProperties%2F708848828" anchor-label="kx134SelfTestInt2Error" id="-2035058535%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kx134-self-test-int2-error.html"><span>kx134Self</span><wbr><span>Test</span><wbr><span><span>Int2Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2035058535%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="kx134-self-test-int2-error.html">kx134SelfTestInt2Error</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="966827117%2FProperties%2F708848828" anchor-label="kx134SelfTestInternalCommunicationError" id="966827117%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kx134-self-test-internal-communication-error.html"><span>kx134Self</span><wbr><span>Test</span><wbr><span>Internal</span><wbr><span>Communication</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="966827117%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="kx134-self-test-internal-communication-error.html">kx134SelfTestInternalCommunicationError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1313716892%2FProperties%2F708848828" anchor-label="kx134SelfTestPartIdError" id="-1313716892%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kx134-self-test-part-id-error.html"><span>kx134Self</span><wbr><span>Test</span><wbr><span>Part</span><wbr><span>Id</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1313716892%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="kx134-self-test-part-id-error.html">kx134SelfTestPartIdError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="416726475%2FProperties%2F708848828" anchor-label="kx134SelfTestUnspecifiedError" id="416726475%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kx134-self-test-unspecified-error.html"><span>kx134Self</span><wbr><span>Test</span><wbr><span>Unspecified</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="416726475%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="kx134-self-test-unspecified-error.html">kx134SelfTestUnspecifiedError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2018324542%2FProperties%2F708848828" anchor-label="ms5837SelfTestI2cError" id="-2018324542%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ms5837-self-test-i2c-error.html"><span>ms5837Self</span><wbr><span>Test</span><wbr><span>I2c</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2018324542%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="ms5837-self-test-i2c-error.html">ms5837SelfTestI2cError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1564539268%2FProperties%2F708848828" anchor-label="ms5837SelfTestPromCrcError" id="-1564539268%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ms5837-self-test-prom-crc-error.html"><span>ms5837Self</span><wbr><span>Test</span><wbr><span>Prom</span><wbr><span>Crc</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1564539268%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="ms5837-self-test-prom-crc-error.html">ms5837SelfTestPromCrcError</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2067998931%2FProperties%2F708848828" anchor-label="spiNorSelfTestNoCommunication" id="-2067998931%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="spi-nor-self-test-no-communication.html"><span>spi</span><wbr><span>Nor</span><wbr><span>Self</span><wbr><span>Test</span><wbr><span>No</span><wbr><span><span>Communication</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2067998931%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="spi-nor-self-test-no-communication.html">spiNorSelfTestNoCommunication</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="680844323%2FProperties%2F708848828" anchor-label="spiNorSelfTestWrongJedecId" id="680844323%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="spi-nor-self-test-wrong-jedec-id.html"><span>spi</span><wbr><span>Nor</span><wbr><span>Self</span><wbr><span>Test</span><wbr><span>Wrong</span><wbr><span>Jedec</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="680844323%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="spi-nor-self-test-wrong-jedec-id.html">spiNorSelfTestWrongJedecId</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1046800903%2FFunctions%2F708848828" anchor-label="reportErrors" id="-1046800903%2FFunctions%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../report-errors.html"><span>report</span><wbr><span><span>Errors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1046800903%2FFunctions%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">SelfTestOutput</a><span class="token punctuation">.</span><a href="../report-errors.html"><span class="token function">reportErrors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">delimiter<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">""</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1732053009%2FFunctions%2F708848828" anchor-label="toString" id="-1732053009%2FFunctions%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-string.html"><span>to</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1732053009%2FFunctions%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

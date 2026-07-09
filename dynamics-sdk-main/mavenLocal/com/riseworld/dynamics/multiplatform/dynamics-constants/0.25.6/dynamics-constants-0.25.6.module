@@ -1,0 +1,214 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-constants",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-uuid",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-constants-metadata-0.25.6.jar",
+          "url": "dynamics-constants-0.25.6.jar",
+          "size": 6201,
+          "sha512": "8aced348998b9335ee5d0a164012177bd1198e848c8e50eab7fa6fe5e8ee6cdcac77043e1f6f29bbf7475305f564c43686a3de7f180b66ff79551378c3093527",
+          "sha256": "3ea265def108be14be54afae4a78d868f9131ff9921f128d5707e7e8d7fd03cf",
+          "sha1": "8355413f87dc3131c100db68805a1d0586c3451b",
+          "md5": "7b288b24afc3ec5749184f7d8842927e"
+        }
+      ]
+    },
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-android/0.25.6/dynamics-constants-android-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-android",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-android/0.25.6/dynamics-constants-android-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-android",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-iosarm64/0.25.6/dynamics-constants-iosarm64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-iosarm64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-iosarm64/0.25.6/dynamics-constants-iosarm64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-iosarm64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-iossimulatorarm64/0.25.6/dynamics-constants-iossimulatorarm64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-iossimulatorarm64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-iossimulatorarm64/0.25.6/dynamics-constants-iossimulatorarm64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-iossimulatorarm64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-iosx64/0.25.6/dynamics-constants-iosx64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-iosx64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-iosx64/0.25.6/dynamics-constants-iosx64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-iosx64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-jvm/0.25.6/dynamics-constants-jvm-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-jvm",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../dynamics-constants-jvm/0.25.6/dynamics-constants-jvm-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-constants-jvm",
+        "version": "0.25.6"
+      }
+    }
+  ]
+}

@@ -34,6 +34,33 @@ public class PlayerProfile
         return measuredForce / baseline;
     }
 
+    /// <summary>
+    /// Heuristic baseline for expected kick/step power.
+    /// DELTA has no explicit contact sensor, so this normalizes power-like IMU values conservatively.
+    /// </summary>
+    public float GetEstimatedAverageKickForce()
+    {
+        float clampedHeight = Mathf.Clamp(HeightCm, 120f, 220f);
+        float clampedWeight = Mathf.Clamp(WeightKg, 30f, 180f);
+
+        float weightComponent = clampedWeight * 13.2f;
+        float heightComponent = Mathf.Max(0f, clampedHeight - 135f) * 2.2f;
+        float sexFactor = Mathf.Lerp(GetSexFactor(), 1f, 0.35f);
+
+        return Mathf.Max(190f, (weightComponent + heightComponent) * sexFactor);
+    }
+
+    public float NormalizeKickForce(float measuredForce)
+    {
+        float baseline = GetEstimatedAverageKickForce();
+        if (baseline <= 0f)
+        {
+            return 1f;
+        }
+
+        return measuredForce / baseline;
+    }
+
     public ForceBand GetForceBand(float normalizedForce)
     {
         if (normalizedForce < 0.85f) return ForceBand.Low;

@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-constants/0.25.6/dynamics-constants-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-constants",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-uuid",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-constants-jvm-0.25.6.jar",
+          "url": "dynamics-constants-jvm-0.25.6.jar",
+          "size": 19919,
+          "sha512": "d546e65083e0a3cf5ed2fc13c7453af81a45c28b15d9737dc0385ee7ed1261a68f81aab2252e2f8d481ca2e717f227571b34f6468399ba0550324efb1e0a8402",
+          "sha256": "56830dd7d4c0e8a8e17d9cc38d46fcc7e401756f008f9a9be3b6966d2b3b04c5",
+          "sha1": "98e323d9b671e326420d11ba580b70c9010a9be7",
+          "md5": "70872038999145cb4e8192d162480ffe"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-uuid",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-constants-jvm-0.25.6.jar",
+          "url": "dynamics-constants-jvm-0.25.6.jar",
+          "size": 19919,
+          "sha512": "d546e65083e0a3cf5ed2fc13c7453af81a45c28b15d9737dc0385ee7ed1261a68f81aab2252e2f8d481ca2e717f227571b34f6468399ba0550324efb1e0a8402",
+          "sha256": "56830dd7d4c0e8a8e17d9cc38d46fcc7e401756f008f9a9be3b6966d2b3b04c5",
+          "sha1": "98e323d9b671e326420d11ba580b70c9010a9be7",
+          "md5": "70872038999145cb4e8192d162480ffe"
+        }
+      ]
+    }
+  ]
+}

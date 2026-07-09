@@ -212,6 +212,23 @@ Create a Panel inside the HUD Canvas:
    - When time up → Load Results with reaction time
    - Can Restart or return to Main Menu
 
+## Current Keyboard Controls
+
+| Action | Input | Lane |
+|--------|-------|------|
+| Left punch | Hold/release Left Arrow | Left |
+| Right punch | Hold/release Right Arrow | Right |
+| Left kick | Hold/release A | Left |
+| Right kick | Hold/release D | Right |
+| Debug overlay | F1 | - |
+
+Normal punch/kick targets spawn only left/right. The center lane is reserved for the Heavy Center Target.
+
+To tune difficulty in code, edit `Assets/Scripts/Spawning/LevelDefinition.cs`:
+- `TargetSpeed` controls how fast targets move.
+- `SpawnInterval` controls how often targets spawn.
+- `MinToughHits` / `MaxToughHits` control Heavy Target life.
+
 ## Input Actions Reference
 
 | Action | Input | Visual |
@@ -253,7 +270,7 @@ Create a Panel inside the HUD Canvas:
 - Verify ScoreSystem and ComboSystem are active
 
 ### Debug overlay not showing
-- Press D key during gameplay
+- Press F1 key during gameplay
 - Ensure DebugUI component is in scene
 - Check DebugText reference is assigned
 

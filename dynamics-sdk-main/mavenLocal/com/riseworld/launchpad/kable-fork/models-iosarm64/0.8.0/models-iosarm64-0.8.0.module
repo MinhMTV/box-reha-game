@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../models/0.8.0/models-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "models",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models-iosArm64Main-0.8.0.klib",
+          "url": "models-iosarm64-0.8.0.klib",
+          "size": 4970,
+          "sha512": "1baed8e7a9d49b89f47ce44748e6325b604b132a84d7fbefecc1028ede8b9434ac32dddc7e61f087e7e5793a6d1aa4d1a5d48d6651c6fad9438b024247e447fc",
+          "sha256": "ce4d236fa9cdc62659361675a16be9467662c4b90d5feb34c46dee751e5322f3",
+          "sha1": "5d2f9691ebbd932c3e21f4615d197b8346c8babe",
+          "md5": "826e82751f603a5259bfb0902350a478"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models-iosarm64-0.8.0-metadata.jar",
+          "url": "models-iosarm64-0.8.0-metadata.jar",
+          "size": 2666,
+          "sha512": "f1a0873279ba7bf8b94b688c8ba2dedb71fdf064080cfd0d6a3f82b91758f83403fa319e347edd88d01f497b62082f8dbad32be51a0ae2363063504b2009a73c",
+          "sha256": "3373d0b5f1fe319fa25745f7d3cd80c258a962bfb639f2d14dcc7fc546843fe1",
+          "sha1": "7e4e32881105523256114518fc82ee356f1868ba",
+          "md5": "cb05d0367d315c1e0c59b3433c31a726"
+        }
+      ]
+    }
+  ]
+}

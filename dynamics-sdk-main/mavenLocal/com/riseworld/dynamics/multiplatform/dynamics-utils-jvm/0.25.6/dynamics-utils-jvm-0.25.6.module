@@ -1,0 +1,114 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-utils/0.25.6/dynamics-utils-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-utils",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-utils-jvm-0.25.6.jar",
+          "url": "dynamics-utils-jvm-0.25.6.jar",
+          "size": 74510,
+          "sha512": "0a462ab029f3a97b2aaf572546647e21d9e2c5598822b5d2bab4a75c56fbbad7b1cfe0e73f8e554c60d595f812c2a5c3eb9d6af9c395dd03bbe7437638eb28af",
+          "sha256": "6472abb0525661856b0a9a62df485e2404e827bcdb4cddaa339c4d67494c8d58",
+          "sha1": "05ff3b12d54172cb3d0dd9699edbd36928c83c2d",
+          "md5": "9199cee1dabbd0af7c28c26b30341859"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.17.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-utils-jvm-0.25.6.jar",
+          "url": "dynamics-utils-jvm-0.25.6.jar",
+          "size": 74510,
+          "sha512": "0a462ab029f3a97b2aaf572546647e21d9e2c5598822b5d2bab4a75c56fbbad7b1cfe0e73f8e554c60d595f812c2a5c3eb9d6af9c395dd03bbe7437638eb28af",
+          "sha256": "6472abb0525661856b0a9a62df485e2404e827bcdb4cddaa339c4d67494c8d58",
+          "sha1": "05ff3b12d54172cb3d0dd9699edbd36928c83c2d",
+          "md5": "9199cee1dabbd0af7c28c26b30341859"
+        }
+      ]
+    }
+  ]
+}

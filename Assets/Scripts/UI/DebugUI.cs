@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Phase 4: Debug UI overlay. Toggle with D key.
+/// Phase 4: Debug UI overlay. Toggle with F1 key.
 /// Shows FPS, input state, active target count.
 /// Attach to Canvas in Game scene.
 /// </summary>
@@ -27,7 +27,7 @@ public class DebugUI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             isVisible = !isVisible;
             if (debugText != null)
@@ -66,7 +66,7 @@ public class DebugUI : MonoBehaviour
                          $"State: {inputState}\n" +
                          $"Level: {level}\n" +
                          $"Targets: {activeTargetCount}\n" +
-                         $"Press D to toggle";
+                         $"Press F1 to toggle";
     }
 
     public void SetActiveTargetCount(int count)

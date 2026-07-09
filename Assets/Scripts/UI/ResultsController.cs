@@ -129,14 +129,18 @@ public class ResultsController : MonoBehaviour
         SetText(missText, $"Misses: {stats.Misses}", new Color(1f, 0.38f, 0.44f, 1f));
         SetText(maxComboText, $"Max Combo: {stats.MaxCombo}", new Color(1f, 0.86f, 0.28f, 1f));
         SetText(reactionTimeText, $"Avg Reaction: {stats.AverageReactionTime:F2}s", new Color(0.84f, 0.92f, 1f, 1f));
-        SetText(forceText, $"Avg Force: {stats.AverageRawForce:F0} N", new Color(1f, 0.80f, 0.42f, 1f));
-        SetText(normalizedForceText, $"Force vs Profile: {stats.AverageNormalizedForce:P0}", new Color(0.76f, 0.92f, 1f, 1f));
+        SetText(forceText,
+            $"Arm: {stats.ArmHits}/{stats.ArmTargets} | Leg: {stats.LegHits}/{stats.LegTargets}",
+            new Color(1f, 0.80f, 0.42f, 1f));
+        SetText(normalizedForceText,
+            $"Force vs Profile: total {stats.AverageNormalizedForce:P0} | arm {stats.AverageArmNormalizedForce:P0} | leg {stats.AverageLegNormalizedForce:P0}",
+            new Color(0.76f, 0.92f, 1f, 1f));
 
         PlayerProfile profile = GameManager.Instance != null ? GameManager.Instance.PlayerProfile : null;
         if (profileBaselineText != null)
         {
             profileBaselineText.text = profile != null
-                ? $"Profile Baseline: {profile.GetEstimatedAveragePunchForce():F0} N"
+                ? $"Profile Baseline: Punch {profile.GetEstimatedAveragePunchForce():F0} N | Kick {profile.GetEstimatedAverageKickForce():F0} N"
                 : "Profile Baseline: n/a";
             profileBaselineText.color = new Color(0.72f, 0.84f, 0.96f, 1f);
         }

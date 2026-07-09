@@ -1,0 +1,242 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-utils",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.17.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-utils-metadata-0.25.6.jar",
+          "url": "dynamics-utils-0.25.6.jar",
+          "size": 15874,
+          "sha512": "48235ad85a00733752341efa5e6cf3d210346d3feb13a50835668c1ea2deff7a96bfd04398a6f8f3560246070597f5a33fb62ee9d537afdf5e4939d85e14548b",
+          "sha256": "2e78620125712e5453516ae131d8c2b9f91bc4e4b289168be3c487bbce52aa67",
+          "sha1": "ac12c392a9f3b3f9c22efd94a48bf0cffb4ed5b3",
+          "md5": "2efa66759239fa638b52d3319ee65d22"
+        }
+      ]
+    },
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-android/0.25.6/dynamics-utils-android-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-android",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-android/0.25.6/dynamics-utils-android-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-android",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-iosarm64/0.25.6/dynamics-utils-iosarm64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-iosarm64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-iosarm64/0.25.6/dynamics-utils-iosarm64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-iosarm64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-iossimulatorarm64/0.25.6/dynamics-utils-iossimulatorarm64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-iossimulatorarm64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-iossimulatorarm64/0.25.6/dynamics-utils-iossimulatorarm64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-iossimulatorarm64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-iosx64/0.25.6/dynamics-utils-iosx64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-iosx64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-iosx64/0.25.6/dynamics-utils-iosx64-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-iosx64",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-jvm/0.25.6/dynamics-utils-jvm-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-jvm",
+        "version": "0.25.6"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../dynamics-utils-jvm/0.25.6/dynamics-utils-jvm-0.25.6.module",
+        "group": "com.riseworld.dynamics.multiplatform",
+        "module": "dynamics-utils-jvm",
+        "version": "0.25.6"
+      }
+    }
+  ]
+}

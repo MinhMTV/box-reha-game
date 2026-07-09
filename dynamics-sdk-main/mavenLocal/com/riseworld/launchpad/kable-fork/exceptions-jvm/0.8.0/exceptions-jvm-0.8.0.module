@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../exceptions/0.8.0/exceptions-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "exceptions",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "exceptions-jvm-0.8.0.jar",
+          "url": "exceptions-jvm-0.8.0.jar",
+          "size": 27540,
+          "sha512": "1b593d58aee4ca904c898ee825005d785f6246218a709d5114f114c85a4013bc16dd3802e3cdf3cb2db2ac4b82827eb78cc80d2488c0fa51a16001eab2b7d0c5",
+          "sha256": "ba68504c33ce46c526a950e32712c1b60992cf2b17ed23746a98edefbb92cff6",
+          "sha1": "6a83ad0828f3360924ad97a03ef561065d434804",
+          "md5": "c1d5876ecdc5feeba210b0660e17abc0"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "exceptions-jvm-0.8.0.jar",
+          "url": "exceptions-jvm-0.8.0.jar",
+          "size": 27540,
+          "sha512": "1b593d58aee4ca904c898ee825005d785f6246218a709d5114f114c85a4013bc16dd3802e3cdf3cb2db2ac4b82827eb78cc80d2488c0fa51a16001eab2b7d0c5",
+          "sha256": "ba68504c33ce46c526a950e32712c1b60992cf2b17ed23746a98edefbb92cff6",
+          "sha1": "6a83ad0828f3360924ad97a03ef561065d434804",
+          "md5": "c1d5876ecdc5feeba210b0660e17abc0"
+        }
+      ]
+    }
+  ]
+}

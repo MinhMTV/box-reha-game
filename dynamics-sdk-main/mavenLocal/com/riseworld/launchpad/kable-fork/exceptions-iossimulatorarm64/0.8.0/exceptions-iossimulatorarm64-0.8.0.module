@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../exceptions/0.8.0/exceptions-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "exceptions",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "exceptions-iosSimulatorArm64Main-0.8.0.klib",
+          "url": "exceptions-iossimulatorarm64-0.8.0.klib",
+          "size": 15497,
+          "sha512": "654d685f9c521517ca5e908437c1fce150db44f4c498cb8c8463f203ea5f7a3ac5963620e74c6d0482fe38ff61e843eda55a4d3b3bb2d030a986b2d5a33451f0",
+          "sha256": "3f18500c474f51e1c5a46154703e96e634ee12e2780d539360ec56498536de0f",
+          "sha1": "5fd594521f09662b448433cfecf50ad38b1d6ef0",
+          "md5": "5f09726581ec4e62bafa7178c2e1977f"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "exceptions-iossimulatorarm64-0.8.0-metadata.jar",
+          "url": "exceptions-iossimulatorarm64-0.8.0-metadata.jar",
+          "size": 3303,
+          "sha512": "384291963296948a57a58fed2b1fcbbc8365552ac6bd119b35455a90e136fa6cd67d3694fe4478b4e58e793c5069841cf4b73c3926a74f63fa2446bff805d21e",
+          "sha256": "b487069979cba4b2ebd24647a188ffdf7ad5b164e98fd163bc92ed8d40875ab5",
+          "sha1": "e096d41cc6dfd8e60d18ec6513199be76e3f78a4",
+          "md5": "b1675248a0994e31ac446ecbe37afb90"
+        }
+      ]
+    }
+  ]
+}

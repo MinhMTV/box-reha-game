@@ -8,12 +8,19 @@ using System.Collections;
 /// </summary>
 public class TargetSpawner : MonoBehaviour
 {
+    private const string PunchVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_PunchTarget_NeonRed.prefab";
+    private const string KickVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_KickPad_NeonBlue.prefab";
+    private const string ToughVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_HeavyCore_GoldBlocker.prefab";
+
     [SerializeField] private GameObject targetPrefab;
     [SerializeField] private Transform spawnPointLeft;
     [SerializeField] private Transform spawnPointCenter;
     [SerializeField] private Transform spawnPointRight;
     [SerializeField] private float missZoneZ = 0f;
     [SerializeField] private GameConfig gameConfig;
+    [SerializeField] private GameObject punchVisualPrefab;
+    [SerializeField] private GameObject kickVisualPrefab;
+    [SerializeField] private GameObject toughVisualPrefab;
 
     // v3: Reference to evaluator for rapid fire chains
     [SerializeField] private HitZoneEvaluator hitZoneEvaluator;
@@ -25,8 +32,14 @@ public class TargetSpawner : MonoBehaviour
     private float toughChanceBonus;
     private float rapidFireChanceBonus;
 
+    void Awake()
+    {
+        EnsureGeneratedVisualPrefabs();
+    }
+
     public void StartSpawning(LevelDefinition level)
     {
+        EnsureGeneratedVisualPrefabs();
         currentLevel = level;
         isSpawning = true;
         speedMultiplier = 1f;
@@ -54,6 +67,26 @@ public class TargetSpawner : MonoBehaviour
         rapidFireChanceBonus = rapidFireChanceExtra;
     }
 
+    private void EnsureGeneratedVisualPrefabs()
+    {
+#if UNITY_EDITOR
+        if (punchVisualPrefab == null)
+        {
+            punchVisualPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(PunchVisualAssetPath);
+        }
+
+        if (kickVisualPrefab == null)
+        {
+            kickVisualPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(KickVisualAssetPath);
+        }
+
+        if (toughVisualPrefab == null)
+        {
+            toughVisualPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(ToughVisualAssetPath);
+        }
+#endif
+    }
+
     private IEnumerator SpawnRoutine()
     {
         while (isSpawning)
@@ -76,17 +109,27 @@ public class TargetSpawner : MonoBehaviour
                 continue;
             }
 
+            float toughChance = Mathf.Clamp01(currentLevel.ToughTargetChance + toughChanceBonus);
+            bool shouldSpawnTough = Random.value < toughChance;
             SpawnPatternData pattern = SpawnPatternGenerator.GetNextPattern(currentLevel);
             pattern.Speed = currentLevel.TargetSpeed * speedMultiplier;
-            ShowSpawnWarning(pattern.Lane, pattern.VerticalPos, pattern.Type);
+
+            if (shouldSpawnTough)
+            {
+                ShowSpawnWarning(LaneType.Center, VerticalPosition.High, TargetType.ToughPunch);
+            }
+            else
+            {
+                ShowSpawnWarning(pattern.Lane, pattern.VerticalPos, pattern.Type);
+            }
+
             yield return new WaitForSeconds(0.16f);
             if (!isSpawning) yield break;
 
             // v3: Check for tough target
-            float toughChance = Mathf.Clamp01(currentLevel.ToughTargetChance + toughChanceBonus);
-            if (Random.value < toughChance)
+            if (shouldSpawnTough)
             {
-                SpawnToughTarget(pattern);
+                SpawnToughTarget();
             }
             else
             {
@@ -98,19 +141,21 @@ public class TargetSpawner : MonoBehaviour
     /// <summary>
     /// v3: Spawn a tough target with multi-hit requirement.
     /// </summary>
-    private void SpawnToughTarget(SpawnPatternData pattern)
+    private void SpawnToughTarget()
     {
-        Transform spawnPoint = GetSpawnPoint(pattern.Lane);
+        LaneType toughLane = LaneType.Center;
+        VerticalPosition toughVertical = VerticalPosition.High;
+        Transform spawnPoint = GetSpawnPoint(toughLane);
         if (spawnPoint == null) return;
 
         Vector3 spawnPos = spawnPoint.position;
         if (gameConfig != null)
         {
-            spawnPos.y += gameConfig.GetVerticalOffset(pattern.VerticalPos);
+            spawnPos.y = gameConfig.GetVerticalOffset(toughVertical);
         }
 
         // Tough targets are 20% slower
-        float toughSpeed = pattern.Speed * 0.8f;
+        float toughSpeed = currentLevel.TargetSpeed * speedMultiplier * 0.8f;
 
         GameObject targetObj = CreateTargetObject(spawnPos, TargetType.ToughPunch);
         if (targetObj == null) return;
@@ -120,12 +165,12 @@ public class TargetSpawner : MonoBehaviour
 
         if (target != null)
         {
-            target.Lane = pattern.Lane;
+            target.Lane = toughLane;
             target.Type = TargetType.ToughPunch;
             target.MoveSpeed = toughSpeed;
             target.HitWindow = currentLevel.HitWindowSeconds;
             target.MinPower = currentLevel.MinPower;
-            target.VertPosition = pattern.VerticalPos;
+            target.VertPosition = toughVertical;
             target.MaxHits = Random.Range(currentLevel.MinToughHits, currentLevel.MaxToughHits + 1);
         }
 
@@ -140,9 +185,7 @@ public class TargetSpawner : MonoBehaviour
     /// </summary>
     private IEnumerator SpawnRapidFireChain()
     {
-        // Pick a random lane
-        LaneType[] lanes = currentLevel.AllowedLanes;
-        LaneType chainLane = lanes[Random.Range(0, lanes.Length)];
+        LaneType chainLane = GetRandomNormalLane();
         int chainLength = Random.Range(currentLevel.MinChainLength, currentLevel.MaxChainLength + 1);
 
         // Notify evaluator of chain start
@@ -163,10 +206,10 @@ public class TargetSpawner : MonoBehaviour
             Vector3 spawnPos = spawnPoint.position;
             if (gameConfig != null)
             {
-                spawnPos.y += gameConfig.GetVerticalOffset(VerticalPosition.Mid);
+                spawnPos.y = gameConfig.GetVerticalOffset(VerticalPosition.High);
             }
 
-            ShowSpawnWarning(chainLane, VerticalPosition.Mid, TargetType.Punch);
+            ShowSpawnWarning(chainLane, VerticalPosition.High, TargetType.Punch);
             yield return new WaitForSeconds(0.12f);
             if (!isSpawning) yield break;
 
@@ -183,7 +226,7 @@ public class TargetSpawner : MonoBehaviour
                 target.MoveSpeed = chainSpeed;
                 target.HitWindow = currentLevel.HitWindowSeconds;
                 target.MinPower = currentLevel.MinPower;
-                target.VertPosition = VerticalPosition.Mid;
+                target.VertPosition = VerticalPosition.High;
             }
 
             if (mover != null)
@@ -205,7 +248,7 @@ public class TargetSpawner : MonoBehaviour
         Vector3 spawnPos = spawnPoint.position;
         if (gameConfig != null)
         {
-            spawnPos.y += gameConfig.GetVerticalOffset(pattern.VerticalPos);
+            spawnPos.y = gameConfig.GetVerticalOffset(pattern.VerticalPos);
         }
 
         GameObject targetObj = CreateTargetObject(spawnPos, pattern.Type);
@@ -241,6 +284,47 @@ public class TargetSpawner : MonoBehaviour
         }
     }
 
+    private LaneType GetRandomNormalLane()
+    {
+        LaneType[] lanes = currentLevel != null ? currentLevel.AllowedLanes : null;
+        if (lanes == null || lanes.Length == 0)
+        {
+            return Random.value < 0.5f ? LaneType.Left : LaneType.Right;
+        }
+
+        int validCount = 0;
+        for (int i = 0; i < lanes.Length; i++)
+        {
+            if (lanes[i] != LaneType.Center)
+            {
+                validCount++;
+            }
+        }
+
+        if (validCount == 0)
+        {
+            return Random.value < 0.5f ? LaneType.Left : LaneType.Right;
+        }
+
+        int selected = Random.Range(0, validCount);
+        for (int i = 0; i < lanes.Length; i++)
+        {
+            if (lanes[i] == LaneType.Center)
+            {
+                continue;
+            }
+
+            if (selected == 0)
+            {
+                return lanes[i];
+            }
+
+            selected--;
+        }
+
+        return LaneType.Left;
+    }
+
     private bool HasActiveToughTarget()
     {
         TargetObject[] activeObjects = FindObjectsOfType<TargetObject>();
@@ -258,11 +342,6 @@ public class TargetSpawner : MonoBehaviour
 
     private GameObject CreateTargetObject(Vector3 position, TargetType type)
     {
-        if (targetPrefab != null)
-        {
-            return Instantiate(targetPrefab, position, Quaternion.identity);
-        }
-
         GameObject target = new GameObject(type + "Target");
         target.transform.position = position;
 
@@ -271,6 +350,13 @@ public class TargetSpawner : MonoBehaviour
 
         switch (type)
         {
+            case TargetType.Kick:
+                if (!TryAttachVisualPrefab(kickVisualPrefab, target.transform))
+                {
+                    BuildKickTarget(target.transform);
+                }
+                collider.size = new Vector3(1.9f, 1.25f, 0.9f);
+                break;
             case TargetType.Block:
                 BuildBlockTarget(target.transform);
                 collider.size = new Vector3(1.9f, 2.1f, 0.9f);
@@ -280,11 +366,17 @@ public class TargetSpawner : MonoBehaviour
                 collider.size = new Vector3(2.8f, 1.0f, 1.0f);
                 break;
             case TargetType.ToughPunch:
-                BuildTargetDisc(target.transform, GameVisualPalette.GetTargetColor(TargetType.ToughPunch), true);
-                collider.size = new Vector3(1.9f, 1.9f, 0.9f);
+                if (!TryAttachVisualPrefab(toughVisualPrefab, target.transform))
+                {
+                    BuildTargetDisc(target.transform, GameVisualPalette.GetTargetColor(TargetType.ToughPunch), true);
+                }
+                collider.size = new Vector3(2.7f, 2.9f, 1.1f);
                 break;
             default: // Punch
-                BuildTargetDisc(target.transform, GameVisualPalette.GetTargetColor(TargetType.Punch), false);
+                if (!TryAttachVisualPrefab(punchVisualPrefab, target.transform))
+                {
+                    BuildTargetDisc(target.transform, GameVisualPalette.GetTargetColor(TargetType.Punch), false);
+                }
                 collider.size = new Vector3(1.7f, 1.7f, 0.8f);
                 break;
         }
@@ -300,6 +392,31 @@ public class TargetSpawner : MonoBehaviour
         rb.useGravity = false;
         rb.isKinematic = true;
         return target;
+    }
+
+    private bool TryAttachVisualPrefab(GameObject prefab, Transform parent)
+    {
+        if (prefab == null)
+        {
+            return false;
+        }
+
+        GameObject visual = Instantiate(prefab, parent);
+        visual.name = prefab.name + "_Visual";
+        visual.transform.localPosition = Vector3.zero;
+        visual.transform.localRotation = Quaternion.identity;
+        visual.transform.localScale = Vector3.one;
+        RemoveColliders(visual);
+        return true;
+    }
+
+    private void RemoveColliders(GameObject root)
+    {
+        Collider[] colliders = root.GetComponentsInChildren<Collider>(true);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Destroy(colliders[i]);
+        }
     }
 
     private void ShowSpawnWarning(LaneType lane, VerticalPosition verticalPosition, TargetType type)
@@ -357,12 +474,102 @@ public class TargetSpawner : MonoBehaviour
         bullseye.transform.localScale = new Vector3(baseRadius * 0.28f, depth * 0.42f, baseRadius * 0.28f);
         ApplyMaterial(bullseye, heavyTarget ? new Color(1f, 0.72f, 0.12f, 1f) : new Color(1f, 0.96f, 0.35f, 1f), heavyTarget ? 2.8f : 2.2f);
 
+        GameObject innerGlow = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        innerGlow.name = heavyTarget ? "HeavyCoreGlow" : "PunchCoreGlow";
+        innerGlow.transform.SetParent(parent, false);
+        innerGlow.transform.localPosition = new Vector3(0f, 0f, -0.13f);
+        innerGlow.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        innerGlow.transform.localScale = new Vector3(baseRadius * 0.16f, depth * 0.25f, baseRadius * 0.16f);
+        ApplyMaterial(innerGlow, Color.white, heavyTarget ? 2.6f : 1.8f);
+
         GameObject mount = GameObject.CreatePrimitive(PrimitiveType.Cube);
         mount.name = "Mount";
         mount.transform.SetParent(parent, false);
         mount.transform.localPosition = new Vector3(0f, 0f, 0.18f);
         mount.transform.localScale = new Vector3(baseRadius * 1.2f, baseRadius * 1.2f, 0.08f);
         ApplyMaterial(mount, new Color(0.12f, 0.18f, 0.25f, 1f), 0.25f);
+
+        int markerCount = heavyTarget ? 8 : 4;
+        for (int i = 0; i < markerCount; i++)
+        {
+            float angle = i * (360f / markerCount);
+            Vector3 markerPosition = Quaternion.Euler(0f, 0f, angle) * new Vector3(0f, baseRadius * 0.92f, -0.15f);
+            GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            marker.name = heavyTarget ? "HeavyWarningTick" : "PunchAimTick";
+            marker.transform.SetParent(parent, false);
+            marker.transform.localPosition = markerPosition;
+            marker.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
+            marker.transform.localScale = new Vector3(0.08f, heavyTarget ? 0.34f : 0.24f, 0.08f);
+            ApplyMaterial(marker, heavyTarget ? new Color(1f, 0.23f, 0.08f, 1f) : new Color(1f, 0.86f, 0.25f, 1f), heavyTarget ? 2.8f : 1.7f);
+        }
+
+        if (heavyTarget)
+        {
+            GameObject shieldFrame = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            shieldFrame.name = "HeavyBlockerFrame";
+            shieldFrame.transform.SetParent(parent, false);
+            shieldFrame.transform.localPosition = new Vector3(0f, 0f, 0.04f);
+            shieldFrame.transform.localScale = new Vector3(baseRadius * 2.1f, 0.16f, 0.18f);
+            ApplyMaterial(shieldFrame, new Color(1f, 0.34f, 0.08f, 1f), 2.4f);
+
+            GameObject warningSlash = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            warningSlash.name = "HeavyDiagonalWarning";
+            warningSlash.transform.SetParent(parent, false);
+            warningSlash.transform.localPosition = new Vector3(0f, 0f, -0.18f);
+            warningSlash.transform.localRotation = Quaternion.Euler(0f, 0f, -35f);
+            warningSlash.transform.localScale = new Vector3(baseRadius * 1.55f, 0.13f, 0.08f);
+            ApplyMaterial(warningSlash, new Color(1f, 0.92f, 0.18f, 1f), 2.3f);
+        }
+    }
+
+    private void BuildKickTarget(Transform parent)
+    {
+        Color kickColor = GameVisualPalette.GetTargetColor(TargetType.Kick);
+
+        GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        pad.name = "KickPad";
+        pad.transform.SetParent(parent, false);
+        pad.transform.localPosition = Vector3.zero;
+        pad.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        pad.transform.localScale = new Vector3(0.98f, 0.22f, 0.62f);
+        ApplyMaterial(pad, kickColor, 2.0f);
+
+        GameObject core = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        core.name = "KickCore";
+        core.transform.SetParent(parent, false);
+        core.transform.localPosition = new Vector3(0f, 0f, -0.09f);
+        core.transform.localScale = new Vector3(1.15f, 0.42f, 0.16f);
+        ApplyMaterial(core, GameVisualPalette.GetTargetHighlight(TargetType.Kick), 1.4f);
+
+        GameObject soleLine = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        soleLine.name = "KickSoleLine";
+        soleLine.transform.SetParent(parent, false);
+        soleLine.transform.localPosition = new Vector3(0f, -0.34f, -0.18f);
+        soleLine.transform.localScale = new Vector3(1.42f, 0.09f, 0.08f);
+        ApplyMaterial(soleLine, new Color(0.88f, 1f, 0.86f, 1f), 1.7f);
+
+        GameObject leftStripe = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        leftStripe.name = "KickStripeLeft";
+        leftStripe.transform.SetParent(parent, false);
+        leftStripe.transform.localPosition = new Vector3(-0.32f, -0.08f, -0.16f);
+        leftStripe.transform.localRotation = Quaternion.Euler(0f, 0f, -18f);
+        leftStripe.transform.localScale = new Vector3(0.12f, 0.78f, 0.10f);
+        ApplyMaterial(leftStripe, new Color(0.04f, 0.16f, 0.18f, 1f), 0.35f);
+
+        GameObject rightStripe = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        rightStripe.name = "KickStripeRight";
+        rightStripe.transform.SetParent(parent, false);
+        rightStripe.transform.localPosition = new Vector3(0.32f, -0.08f, -0.16f);
+        rightStripe.transform.localRotation = Quaternion.Euler(0f, 0f, 18f);
+        rightStripe.transform.localScale = new Vector3(0.12f, 0.78f, 0.10f);
+        ApplyMaterial(rightStripe, new Color(0.04f, 0.16f, 0.18f, 1f), 0.35f);
+
+        GameObject toeCap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        toeCap.name = "KickToeCap";
+        toeCap.transform.SetParent(parent, false);
+        toeCap.transform.localPosition = new Vector3(0f, 0.25f, -0.12f);
+        toeCap.transform.localScale = new Vector3(0.78f, 0.28f, 0.16f);
+        ApplyMaterial(toeCap, new Color(0.08f, 0.34f, 0.32f, 1f), 0.6f);
     }
 
     private void BuildBlockTarget(Transform parent)

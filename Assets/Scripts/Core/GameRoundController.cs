@@ -15,9 +15,9 @@ public class GameRoundController : MonoBehaviour
     private GameSessionStats sessionStats;
     private float roundStartTime;
     private bool roundEnded;
-    private static readonly Vector3 GameplayCameraPosition = new Vector3(0f, 2.45f, -7.8f);
-    private static readonly Vector3 GameplayCameraRotation = new Vector3(10f, 0f, 0f);
-    private const float GameplayCameraFov = 52f;
+    private static readonly Vector3 GameplayCameraPosition = new Vector3(0f, 3.25f, -9.4f);
+    private static readonly Vector3 GameplayCameraRotation = new Vector3(12f, 0f, 0f);
+    private const float GameplayCameraFov = 48f;
 
     public static event Action<GameSessionStats> OnRoundEnd;
 

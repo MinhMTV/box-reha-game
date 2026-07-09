@@ -30,11 +30,18 @@ public static class SceneAutoSetup
     private const string SpaceCablesModelPath = "Assets/Imported/Kenney/SpaceKit/Models/cables.fbx";
     private const string TargetModelPath = "Assets/Imported/Kenney/Prototype/Models/target-a-square.fbx";
     private const string TargetPrefabPath = "Assets/Resources/Generated/TargetPrefab.prefab";
+    private const string NeonPunchTargetPrefabPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_PunchTarget_NeonRed.prefab";
+    private const string NeonKickPadPrefabPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_KickPad_NeonBlue.prefab";
+    private const string NeonHeavyCorePrefabPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_HeavyCore_GoldBlocker.prefab";
+    private const string NeonRunwayPrefabPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_RunwaySegment_TriLane.prefab";
+    private const string NeonWallGatePrefabPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_SciFiWallGate_BlueRed.prefab";
+    private const string NeonHitLinePrefabPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_HitLine_MagentaBeam.prefab";
 
     public static void CreateAllScenes()
     {
         EnsureFolders();
         PrepareImportedAssets();
+        NeonCombatAssetGenerator.GenerateAll();
 
         GameConfig config = EnsureGameConfig();
         GameObject targetPrefab = EnsureTargetPrefab();
@@ -106,12 +113,34 @@ public static class SceneAutoSetup
         GameConfig config = AssetDatabase.LoadAssetAtPath<GameConfig>(GameConfigPath);
         if (config != null)
         {
+            ApplyGameplayConfigDefaults(config);
             return config;
         }
 
         config = ScriptableObject.CreateInstance<GameConfig>();
+        ApplyGameplayConfigDefaults(config);
         AssetDatabase.CreateAsset(config, GameConfigPath);
         return config;
+    }
+
+    private static void ApplyGameplayConfigDefaults(GameConfig config)
+    {
+        if (config == null)
+        {
+            return;
+        }
+
+        config.PunchColor = GameVisualPalette.PunchColor;
+        config.KickColor = GameVisualPalette.KickColor;
+        config.BlockColor = GameVisualPalette.BlockColor;
+        config.DodgeColor = GameVisualPalette.DodgeColor;
+        config.VerticalOffsetHigh = 2.6f;
+        config.VerticalOffsetMid = 1.55f;
+        config.VerticalOffsetLow = 0.45f;
+        config.SensorKickAccelerationThreshold = 16f;
+        config.DefaultTargetSpeed = 8.8f;
+        config.DefaultSpawnInterval = 1.0f;
+        EditorUtility.SetDirty(config);
     }
 
     private static GameObject EnsureTargetPrefab()
@@ -264,14 +293,14 @@ public static class SceneAutoSetup
         Camera mainCamera = Camera.main;
         if (mainCamera == null)
         {
-            mainCamera = CreateMainCamera(new Vector3(0f, 2.45f, -7.8f), Quaternion.Euler(10f, 0f, 0f));
-            mainCamera.fieldOfView = 52f;
+            mainCamera = CreateMainCamera(new Vector3(0f, 3.25f, -9.4f), Quaternion.Euler(12f, 0f, 0f));
+            mainCamera.fieldOfView = 48f;
         }
         else
         {
-            mainCamera.transform.position = new Vector3(0f, 2.45f, -7.8f);
-            mainCamera.transform.rotation = Quaternion.Euler(10f, 0f, 0f);
-            mainCamera.fieldOfView = 52f;
+            mainCamera.transform.position = new Vector3(0f, 3.25f, -9.4f);
+            mainCamera.transform.rotation = Quaternion.Euler(12f, 0f, 0f);
+            mainCamera.fieldOfView = 48f;
         }
 
         GameObject roundControllerObject = new GameObject("GameRoundController");
@@ -301,24 +330,28 @@ public static class SceneAutoSetup
         BleSensorInputProvider bleSensorInputProvider = inputObject.AddComponent<BleSensorInputProvider>();
         InputProviderRouter inputProvider = inputObject.AddComponent<InputProviderRouter>();
 
+        GameObject dynamicsBridgeObject = new GameObject(DynamicsSdkBridge.GameObjectName);
+        DynamicsSdkBridge dynamicsBridge = dynamicsBridgeObject.AddComponent<DynamicsSdkBridge>();
+
         GameObject playerRoot = new GameObject("PlayerRoot");
         playerRoot.transform.position = new Vector3(0f, 0f, 5f);
 
         GameObject spawnRoot = new GameObject("SpawnRoot");
         spawnRoot.transform.position = new Vector3(0f, 0f, 30f);
 
-        Transform spawnLeft = CreateChild(spawnRoot.transform, "SpawnPoint_Left", new Vector3(-3f, 1f, 0f));
-        Transform spawnCenter = CreateChild(spawnRoot.transform, "SpawnPoint_Center", new Vector3(0f, 1f, 0f));
-        Transform spawnRight = CreateChild(spawnRoot.transform, "SpawnPoint_Right", new Vector3(3f, 1f, 0f));
+        Transform spawnLeft = CreateChild(spawnRoot.transform, "SpawnPoint_Left", new Vector3(-3f, 0f, 0f));
+        Transform spawnCenter = CreateChild(spawnRoot.transform, "SpawnPoint_Center", new Vector3(0f, 0f, 0f));
+        Transform spawnRight = CreateChild(spawnRoot.transform, "SpawnPoint_Right", new Vector3(3f, 0f, 0f));
 
+        CreateNeonCombatArena();
         CreateSciFiBackdrop();
         CreatePrototypeFloor("ArenaFloor", new Vector3(0f, -0.42f, 13f), new Vector3(4.6f, 0.16f, 9.6f), new Color(0.13f, 0.21f, 0.31f, 1f));
         CreateSciFiFloor("ArenaFloorDeck", new Vector3(0f, -0.55f, 13f), new Vector3(6.2f, 0.4f, 11.5f), new Color(0.14f, 0.22f, 0.30f, 1f));
         CreateArenaLighting();
 
-        Renderer leftLane = CreatePrototypeGuide("Guide_Left", new Vector3(-3f, 1.4f, 14f), new Vector3(0.42f, 4.2f, 0.42f), new Color(0.10f, 0.34f, 0.58f, 1f));
-        Renderer centerLane = CreatePrototypeGuide("Guide_Center", new Vector3(0f, 1.4f, 14f), new Vector3(0.50f, 4.4f, 0.50f), new Color(0.16f, 0.50f, 0.73f, 1f));
-        Renderer rightLane = CreatePrototypeGuide("Guide_Right", new Vector3(3f, 1.4f, 14f), new Vector3(0.42f, 4.2f, 0.42f), new Color(0.10f, 0.34f, 0.58f, 1f));
+        Renderer leftLane = CreateLane("Guide_Left", new Vector3(-3f, -0.34f, 14f), new Vector3(0.13f, 0.055f, 18f), new Color(0.10f, 0.58f, 0.95f, 1f));
+        Renderer centerLane = CreateLane("Guide_CenterHeavy", new Vector3(0f, -0.33f, 14f), new Vector3(0.10f, 0.05f, 18f), new Color(1f, 0.38f, 0.12f, 1f));
+        Renderer rightLane = CreateLane("Guide_Right", new Vector3(3f, -0.34f, 14f), new Vector3(0.13f, 0.055f, 18f), new Color(0.10f, 0.58f, 0.95f, 1f));
         CreateHitGrid(config);
 
         GameObject visualFeedbackObject = new GameObject("ActionVisualFeedback");
@@ -361,6 +394,7 @@ public static class SceneAutoSetup
         SetPrivateField(inputProvider, "gameConfig", config);
         SetPrivateField(inputProvider, "mouseTouchInputProvider", mouseInputProvider);
         SetPrivateField(inputProvider, "bleSensorInputProvider", bleSensorInputProvider);
+        SetPrivateField(dynamicsBridge, "sensorInputProvider", bleSensorInputProvider);
         SetPrivateField(targetSpawner, "spawnPointLeft", spawnLeft);
         SetPrivateField(targetSpawner, "spawnPointCenter", spawnCenter);
         SetPrivateField(targetSpawner, "spawnPointRight", spawnRight);
@@ -368,6 +402,9 @@ public static class SceneAutoSetup
         SetPrivateField(targetSpawner, "gameConfig", config);
         SetPrivateField(targetSpawner, "hitZoneEvaluator", hitZoneEvaluator);
         SetPrivateField(targetSpawner, "targetPrefab", targetPrefab);
+        SetPrivateField(targetSpawner, "punchVisualPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(NeonPunchTargetPrefabPath));
+        SetPrivateField(targetSpawner, "kickVisualPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(NeonKickPadPrefabPath));
+        SetPrivateField(targetSpawner, "toughVisualPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(NeonHeavyCorePrefabPath));
 
         SetPrivateField(visualFeedback, "leftLaneRenderer", leftLane);
         SetPrivateField(visualFeedback, "centerLaneRenderer", centerLane);
@@ -605,6 +642,11 @@ public static class SceneAutoSetup
         Renderer renderer = lane.GetComponent<Renderer>();
         renderer.sharedMaterial = new Material(Shader.Find("Standard"));
         renderer.sharedMaterial.color = color;
+        renderer.sharedMaterial.SetFloat("_Glossiness", 0.86f);
+        renderer.sharedMaterial.EnableKeyword("_EMISSION");
+        renderer.sharedMaterial.SetColor("_EmissionColor", color * 1.8f);
+        ArenaPulseAnimator pulse = lane.AddComponent<ArenaPulseAnimator>();
+        pulse.Configure(color, 0.9f, 2.2f, 2.1f);
         return renderer;
     }
 
@@ -631,6 +673,36 @@ public static class SceneAutoSetup
         CreateSciFiModule(SpaceWallHalfModelPath, "FrontWallLeft", new Vector3(-6.2f, 1.2f, 9.5f), Quaternion.Euler(0f, 90f, 0f), new Vector3(3.2f, 3.0f, 1f), new Color(0.12f, 0.20f, 0.30f, 1f), 0.6f);
         CreateSciFiModule(SpaceWallHalfModelPath, "FrontWallRight", new Vector3(6.2f, 1.2f, 9.5f), Quaternion.Euler(0f, -90f, 0f), new Vector3(3.2f, 3.0f, 1f), new Color(0.12f, 0.20f, 0.30f, 1f), 0.6f);
         CreateSciFiModule(SpaceCablesModelPath, "CeilingCables", new Vector3(0f, 4.3f, 18f), Quaternion.Euler(0f, 90f, 0f), new Vector3(6.5f, 1f, 1f), new Color(0.18f, 0.40f, 0.56f, 1f), 0.9f);
+    }
+
+    private static void CreateNeonCombatArena()
+    {
+        InstantiateGeneratedPrefab(NeonRunwayPrefabPath, "NeonRunway_Front", new Vector3(0f, -0.44f, 8.5f), Quaternion.identity, new Vector3(1f, 1f, 1.25f));
+        InstantiateGeneratedPrefab(NeonRunwayPrefabPath, "NeonRunway_Back", new Vector3(0f, -0.44f, 19.6f), Quaternion.identity, new Vector3(1f, 1f, 1.35f));
+        InstantiateGeneratedPrefab(NeonWallGatePrefabPath, "NeonGate_Back", new Vector3(0f, 0.35f, 27.4f), Quaternion.identity, Vector3.one * 1.15f);
+        InstantiateGeneratedPrefab(NeonWallGatePrefabPath, "NeonGate_Mid", new Vector3(0f, 0.15f, 16.5f), Quaternion.identity, new Vector3(1.05f, 0.92f, 0.9f));
+        InstantiateGeneratedPrefab(NeonHitLinePrefabPath, "NeonHitLine", new Vector3(0f, 0.02f, 5f), Quaternion.identity, Vector3.one);
+    }
+
+    private static GameObject InstantiateGeneratedPrefab(string assetPath, string name, Vector3 position, Quaternion rotation, Vector3 scale)
+    {
+        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+        if (prefab == null)
+        {
+            return null;
+        }
+
+        GameObject instance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+        if (instance == null)
+        {
+            return null;
+        }
+
+        instance.name = name;
+        instance.transform.position = position;
+        instance.transform.rotation = rotation;
+        instance.transform.localScale = scale;
+        return instance;
     }
 
     private static void CreateSciFiFloor(string name, Vector3 position, Vector3 scale, Color color)
@@ -697,34 +769,36 @@ public static class SceneAutoSetup
 
     private static void CreateHitGrid(GameConfig config)
     {
-        float[] lanePositions = { -3f, 0f, 3f };
-        float[] heightPositions =
-        {
-            config != null ? config.GetVerticalOffset(VerticalPosition.Low) : 0.2f,
-            config != null ? config.GetVerticalOffset(VerticalPosition.Mid) : 1.2f,
-            config != null ? config.GetVerticalOffset(VerticalPosition.High) : 2.5f
-        };
+        float low = config != null ? config.GetVerticalOffset(VerticalPosition.Low) : 0.45f;
+        float mid = config != null ? config.GetVerticalOffset(VerticalPosition.Mid) : 1.55f;
+        float high = config != null ? config.GetVerticalOffset(VerticalPosition.High) : 2.6f;
+        Color heavyColor = new Color(1f, 0.38f, 0.12f, 1f);
 
-        for (int row = 0; row < heightPositions.Length; row++)
-        {
-            for (int col = 0; col < lanePositions.Length; col++)
-            {
-                Vector3 position = new Vector3(lanePositions[col], heightPositions[row], 5f);
-                Vector3 scale = new Vector3(1.2f, 0.22f, 0.48f);
-                GameObject pad = CreatePrototypeObject(IndicatorModelPath, "HitPad_" + row + "_" + col, position, Quaternion.Euler(90f, 0f, 0f), scale);
-                if (pad == null)
-                {
-                    pad = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    pad.name = "HitPad_" + row + "_" + col;
-                    pad.transform.position = position;
-                    pad.transform.localScale = scale;
-                }
+        CreatePadFrame("PunchHitLine", new Vector3(0f, high, 5f), new Vector3(7.6f, 0.055f, 0.08f), GameVisualPalette.PunchColor);
+        CreatePadFrame("KickHitLine", new Vector3(0f, low, 5f), new Vector3(7.6f, 0.055f, 0.08f), GameVisualPalette.KickColor);
+        CreatePadFrame("LeftLaneGuide", new Vector3(-3f, mid, 5f), new Vector3(0.055f, 2.75f, 0.08f), new Color(0.18f, 0.72f, 1f, 1f));
+        CreatePadFrame("RightLaneGuide", new Vector3(3f, mid, 5f), new Vector3(0.055f, 2.75f, 0.08f), new Color(0.18f, 0.72f, 1f, 1f));
+        CreatePadFrame("HeavyGateTop", new Vector3(0f, high + 0.72f, 5f), new Vector3(2.35f, 0.08f, 0.10f), heavyColor);
+        CreatePadFrame("HeavyGateBottom", new Vector3(0f, mid - 0.32f, 5f), new Vector3(2.35f, 0.08f, 0.10f), heavyColor);
+        CreatePadFrame("HeavyGateLeft", new Vector3(-1.18f, mid + 0.2f, 5f), new Vector3(0.08f, 1.7f, 0.10f), heavyColor);
+        CreatePadFrame("HeavyGateRight", new Vector3(1.18f, mid + 0.2f, 5f), new Vector3(0.08f, 1.7f, 0.10f), heavyColor);
 
-                Color color = col == 1 ? new Color(0.32f, 0.78f, 1f, 1f) : new Color(0.18f, 0.46f, 0.72f, 1f);
-                ApplyRendererColor(pad, color, 2.1f);
-                CreatePadFrame("HitPadFrame_" + row + "_" + col, position, new Vector3(1.55f, 0.08f, 0.72f), color * 0.9f);
-            }
-        }
+        CreateWorldLabel("PunchHitLabel", "ALPHA PUNCH", new Vector3(-4.65f, high, 5.05f), GameVisualPalette.PunchColor);
+        CreateWorldLabel("KickHitLabel", "DELTA KICK", new Vector3(-4.65f, low, 5.05f), GameVisualPalette.KickColor);
+        CreateWorldLabel("HeavyGateLabel", "BREAK ZONE", new Vector3(2.15f, mid + 0.75f, 5.05f), heavyColor);
+    }
+
+    private static void CreateWorldLabel(string name, string text, Vector3 position, Color color)
+    {
+        GameObject labelObject = new GameObject(name);
+        labelObject.transform.position = position;
+        TextMesh mesh = labelObject.AddComponent<TextMesh>();
+        mesh.text = text;
+        mesh.anchor = TextAnchor.MiddleRight;
+        mesh.alignment = TextAlignment.Right;
+        mesh.characterSize = 0.14f;
+        mesh.fontSize = 42;
+        mesh.color = color;
     }
 
     private static void CreatePadFrame(string name, Vector3 position, Vector3 scale, Color color)
@@ -750,6 +824,9 @@ public static class SceneAutoSetup
             material.SetColor("_EmissionColor", color * 1.8f);
             renderer.sharedMaterial = material;
         }
+
+        ArenaPulseAnimator pulse = frame.AddComponent<ArenaPulseAnimator>();
+        pulse.Configure(color, 1.1f, 2.4f, 2.2f);
     }
 
     private static GameObject CreatePrototypeObject(string assetPath, string name, Vector3 position, Quaternion rotation, Vector3 scale)

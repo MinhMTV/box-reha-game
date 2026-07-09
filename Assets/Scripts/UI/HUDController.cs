@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Phase 2: Shows accuracy. Phase 4: Debug toggle with D key.
+/// Phase 2: Shows accuracy. Phase 4: Debug toggle with F1 key.
 /// v3: Tough target and rapid fire chain feedback display.
 /// </summary>
 public class HUDController : MonoBehaviour
@@ -59,7 +59,7 @@ public class HUDController : MonoBehaviour
     void Update()
     {
         // Phase 4: Debug toggle
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             debugVisible = !debugVisible;
             if (debugText != null) debugText.gameObject.SetActive(debugVisible);

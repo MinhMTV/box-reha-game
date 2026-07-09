@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>All modules</title>
+    <link href="images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="scripts/sourceset_dependencies.js" async="async"></script>
+<link href="styles/style.css" rel="Stylesheet">
+<link href="styles/main.css" rel="Stylesheet">
+<link href="styles/prism.css" rel="Stylesheet">
+<link href="styles/logo-styles.css" rel="Stylesheet">
+<link href="ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="ui-kit/ui-kit.min.js" defer="defer"></script>
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="index.html" tabindex="1">
+                    RISE Dynamics SDK
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+0.25.6        </div>
+        <div class="navigation-controls">
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    RISE Dynamics SDK
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" id="content" pageIds="RISE Dynamics SDK::.ext/allModules///PointingToDeclaration//0">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <div class="cover ">
+      <h1 class="">RISE Dynamics SDK</h1>
+      <blockquote class="quotation">
+        <p class="paragraph">⚠️ The SDK is currently compatible with firmware versions up to 0.10.3</p>
+      </blockquote>
+      <h2 class="">Introduction</h2>
+      <p class="paragraph">The RISE Dynamics Mobile SDK encapsulates many different tasks that are required to communicate with the RISE Smartglove (<strong>SG</strong>), it allows the consumer to easily connect with the SGs via Bluetooth Low Energy (<strong>BLE</strong>) and receive structured punch data from it.</p>
+      <p class="paragraph">The SDK handles the following tasks:</p>
+      <ul>
+        <li>
+          <p class="paragraph">Managing BLE-related operations, including scanning the environment for new SGs, pairing,   connecting, reconnecting if needed, and setting up the required BLE characteristics for   communication with the SG.</p>
+        </li>
+        <li>
+          <p class="paragraph">Overseeing the internal SG states at the app level to regulate the flow of incoming data.</p>
+        </li>
+        <li>
+          <p class="paragraph">Decoding raw byte data from the internal RISE SG protocol.</p>
+        </li>
+        <li>
+          <p class="paragraph">Performing computations on raw data from the Inertial Measurement Unit (IMU) and barometric   sensors.</p>
+        </li>
+        <li>
+          <p class="paragraph">Storing punch data in a SQLite database.</p>
+        </li>
+        <li>
+          <p class="paragraph">Exporting punch data.</p>
+        </li>
+      </ul>
+      <h2 class="">How to start?</h2>
+      <h2 class="">SDK's Tech stack</h2>
+      <ul>
+        <li>
+          <p class="paragraph">Java 17</p>
+        </li>
+        <li>
+          <p class="paragraph">The SDK is built with <a href="https://kotlinlang.org/docs/multiplatform.html">Kotlin Multiplatform v2.3.21</a> and supports Android and iOS targets.</p>
+        </li>
+        <li>
+          <p class="paragraph">The SDK heavily relies on the usage of <a href="https://github.com/Kotlin/kotlinx.coroutines">Kotlin Coroutines</a>.</p>
+        </li>
+      </ul>
+      <h2 class="">Import of the SDK</h2>
+      <p class="paragraph">The SDK is structured as follows:</p>
+      <div class="sample-container">
+        <pre><code class="block lang-kotlin" theme="idea">dynamics-sdk<br>├── ios # binaries for iOS (.xcframework)<br>├── doc # kotlin documentation<br>├── mavenLocal # Kotlin Multiplatform Maven Dependencies</code></pre>
+<span class="copy-tooltip">
+          <div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div>
+<span class="copy-icon"></span></span></div>
+      <h3 class="">Android & Kotlin Multiplatform</h3>
+      <p class="paragraph">In your project's <code class="lang-kotlin">settings.gradle.kts</code>, add the maven local repo:</p>
+      <div class="sample-container">
+        <pre><code class="block lang-kotlin" theme="idea">dependencyResolutionManagement {<br>    repositories {<br>        mavenLocal {<br>            // replace by real location<br>            url = uri(&quot;/Path/To/Maven/RISEDynamicsSDK/mavenLocal&quot;)<br>        }<br>        google()<br>        mavenCentral()<br>    }<br>}</code></pre>
+<span class="copy-tooltip">
+          <div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div>
+<span class="copy-icon"></span></span></div>
+      <p class="paragraph">Add the main RISE Dynamics SDK artifact into your gradle version catalog:</p>
+      <div class="sample-container">
+        <pre><code class="block lang-toml" theme="idea">dynamics-multiplatform = { module = &quot;com.riseworld.dynamics.multiplatform:dynamics-multiplatform&quot;, version = &quot;0.25.6&quot; }</code></pre>
+<span class="copy-tooltip">
+          <div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div>
+<span class="copy-icon"></span></span></div>
+      <p class="paragraph">Add the dependency to your android app's dependencies.</p>
+      <div class="sample-container">
+        <pre><code class="block lang-kotlin" theme="idea">dependencies {<br>    implementation(libs.dynamics.multiplatform)<br>  <br>    // ... <br>}</code></pre>
+<span class="copy-tooltip">
+          <div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div>
+<span class="copy-icon"></span></span></div>
+      <h3 class="">iOS</h3>
+      <blockquote class="quotation">
+        <p class="paragraph">⚠️ The SDK uses many Kotlin-specific features that do not translate well to the iOS API, mainly due to limitations of the Objective-C header and language differences between Kotlin and Swift. At this point, please consider whether using Android for scientific or prototyping purposes might be an easier long-term choice for you.</p>
+      </blockquote>
+      <ol>
+        <li>
+          <p class="paragraph">Locate the zipped <code class="lang-kotlin">DynamicsMultiplatform.xframework</code> in the provided SDK.</p>
+        </li>
+        <li>
+          <p class="paragraph">Import the dynamic framework to your <code class="lang-kotlin">XCode</code> project.</p>
+        </li>
+        <li>
+          <p class="paragraph">Add the following permissions to your project's Info.plist:</p>
+        </li>
+        <ol>
+          <li>
+            <p class="paragraph"><a href="https://developer.apple.com/documentation/BundleResources/Information-Property-List/NSBluetoothAlwaysUsageDescription"><code class="lang-kotlin">NSBluetoothAlwaysUsageDescription</code></a>: Is required for accessing bluetooth APIs.</p>
+          </li>
+          <li>
+            <p class="paragraph"><a href="https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription"><code class="lang-kotlin">NSMotionUsageDescription</code></a>: Is required for pulling atmospheric pressure from the smartphone's sensor.</p>
+          </li>
+        </ol>
+        <li>
+          <p class="paragraph">Add the library <a href="https://github.com/rickclephas/KMP-NativeCoroutines"><code class="lang-kotlin">KMP-NativeCoroutines v1.0.2</code></a> to your project as well. The library is used to map Kotlin Flows to <a href="https://developer.apple.com/documentation/swift/asyncsequence">AsyncSequence</a> and Kotlin Coroutines Functions to <a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/">Swift Async Functions</a>.   </p>
+        </li>
+        <li>
+          <p class="paragraph">Be aware that many Kotlin specifics do not translate well to the iOS API (mainly due to the limitations of the Objective-C header and language differences between Kotlin and Swift/Objective-C), such as:</p>
+        </li>
+        <ol>
+          <li>
+            <p class="paragraph">Kotlin sealed classes and interfaces do not translate to Swift enums. Therefore, their advantages are lost and must be handled manually. However, if manual mapping to Swift enums is done, watch out for breaking changes when updating the SDK.</p>
+          </li>
+          <li>
+            <p class="paragraph">Kotlin classes do not conform to <code class="lang-kotlin">Identifiable</code> or <code class="lang-kotlin">Equatable</code> by default. This may be important if such classes are used directly in SwiftUI.</p>
+          </li>
+          <li>
+            <p class="paragraph">Some types, such as <code class="lang-kotlin">Date</code>, or any classes wrapped in a Kotlin value class, are not translated to Swift by default but only into a “primitive” form.</p>
+          </li>
+        </ol>
+      </ol>
+      <h2 class="">Initialization</h2>
+      <p class="paragraph">See package <code class="lang-kotlin">com.riseworld.dynamics.di</code> in the <code class="lang-kotlin">dynamics-multiplatform</code> module.</p>
+    </div>
+    <h2 class="">All modules:</h2>
+    <div class="table"><a data-name="-180645718%2FMain%2F0" anchor-label="dynamics-models" id="-180645718%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row table-row_multimodule">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="dynamics-models/index.html">dynamics-models</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-180645718%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment">
+              <p class="paragraph">Contains the main data transfer objects (&quot;models&quot;) that are used across all other modules.</p>
+            </span></div>
+        </div>
+      </div>
+<a data-name="-1311054416%2FMain%2F0" anchor-label="dynamics-models-composite" id="-1311054416%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row table-row_multimodule">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="dynamics-models-composite/index.html">dynamics-models-composite</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1311054416%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment">
+              <p class="paragraph">Contains the main data transfer objects that have dependencies on other internal BLE related objects.</p>
+            </span></div>
+        </div>
+      </div>
+<a data-name="732771330%2FMain%2F0" anchor-label="dynamics-multiplatform" id="732771330%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row table-row_multimodule">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="dynamics-multiplatform/index.html">dynamics-multiplatform</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="732771330%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment">
+              <p class="paragraph">The primary module for interacting with the SDK.</p>
+            </span></div>
+        </div>
+      </div>
+<a data-name="222004381%2FMain%2F0" anchor-label="dynamics-utils" id="222004381%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row table-row_multimodule">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="dynamics-utils/index.html">dynamics-utils</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="222004381%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment">
+              <p class="paragraph">This is module dynamics-utils</p>
+            </span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright © 2026 Research Industrial Systems Engineering (RISE) Forschungs-, Entwicklungs- und Großprojektberatung GmbH. All rights reserved.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

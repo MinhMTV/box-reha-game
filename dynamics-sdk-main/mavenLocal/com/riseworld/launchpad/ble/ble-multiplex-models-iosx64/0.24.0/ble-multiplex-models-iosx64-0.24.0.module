@@ -1,0 +1,177 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ble-multiplex-models/0.24.0/ble-multiplex-models-0.24.0.module",
+    "group": "com.riseworld.launchpad.ble",
+    "module": "ble-multiplex-models",
+    "version": "0.24.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-uuid",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "core",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "exceptions",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-models-iosX64Main-0.24.0.klib",
+          "url": "ble-multiplex-models-iosx64-0.24.0.klib",
+          "size": 77431,
+          "sha512": "d3440390a41321381d20ef7571d64f5cdedbe7299536e5ae80326549c9ffb5933c7391d45bbe57ceb83e755dc32a9339833d8c5b24d531ec7d02d6ac471118ed",
+          "sha256": "9484426e73fe3876f6e7eddf83f5ce02ae66e915706851dc593a43980d4f3ce4",
+          "sha1": "48c708125990476ee979e1c37ca401f5325f3932",
+          "md5": "bb48759bdb3a94cfa7ebe353f1e01f87"
+        }
+      ]
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-uuid",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "core",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "exceptions",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-models-iosx64-0.24.0-metadata.jar",
+          "url": "ble-multiplex-models-iosx64-0.24.0-metadata.jar",
+          "size": 3190,
+          "sha512": "ab629548e4cc8493a4584e042cafc2af00e69ad0de48f536be7807a645cc3d891b715c0eded3de3505cb56dc61d66d7910dcc89ff097ab7072e9f7563ff7a19c",
+          "sha256": "cd085df0732d55492edffc7090c13c4776370fadea3234e40ba769424125af81",
+          "sha1": "5bcba9cdad6403f5d8b0615958dc8e7f95005da8",
+          "md5": "79a213948b4811f8b295259773cb0192"
+        }
+      ]
+    }
+  ]
+}

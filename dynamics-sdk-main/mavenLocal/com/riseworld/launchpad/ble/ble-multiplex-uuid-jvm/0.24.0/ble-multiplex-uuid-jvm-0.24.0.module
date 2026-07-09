@@ -1,0 +1,102 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ble-multiplex-uuid/0.24.0/ble-multiplex-uuid-0.24.0.module",
+    "group": "com.riseworld.launchpad.ble",
+    "module": "ble-multiplex-uuid",
+    "version": "0.24.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-uuid-jvm-0.24.0.jar",
+          "url": "ble-multiplex-uuid-jvm-0.24.0.jar",
+          "size": 13914,
+          "sha512": "cf7c53216419277ece45f8d8b9e40b328483741415ae7aaff8b193ec949e65abcaeae8b323fdc79b281612e37b3b103e38a7bda086eb93a503635e77d7d858e9",
+          "sha256": "cca65e838c3e49eefea0183de95c636a9eed1c79f5045b287b5c4c023b421464",
+          "sha1": "1f32b283e6b2f915944330fdb95a154e78c89500",
+          "md5": "1303f55c6d9138e106b8eeb6aa899304"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-uuid-jvm-0.24.0.jar",
+          "url": "ble-multiplex-uuid-jvm-0.24.0.jar",
+          "size": 13914,
+          "sha512": "cf7c53216419277ece45f8d8b9e40b328483741415ae7aaff8b193ec949e65abcaeae8b323fdc79b281612e37b3b103e38a7bda086eb93a503635e77d7d858e9",
+          "sha256": "cca65e838c3e49eefea0183de95c636a9eed1c79f5045b287b5c4c023b421464",
+          "sha1": "1f32b283e6b2f915944330fdb95a154e78c89500",
+          "md5": "1303f55c6d9138e106b8eeb6aa899304"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "ble-multiplex-uuid-jvm-0.24.0-sources.jar",
+          "url": "ble-multiplex-uuid-jvm-0.24.0-sources.jar",
+          "size": 5312,
+          "sha512": "657be5bad06d8b0433e69300e69ff27001dcd011413018b2a35a4a57d114496c4377b9772497451e2b32c63069661ff1adb86e10727307f20b58b66ee225d45f",
+          "sha256": "3f65ad2ede237cd17358aa2e1dc55099d37b11aa73b94b6d14b5d3268dff2bc7",
+          "sha1": "61a3639d586529d2aef3c1242aa474d154d1f33c",
+          "md5": "955ae6eda77fd23bdf3ed218e95728e9"
+        }
+      ]
+    }
+  ]
+}

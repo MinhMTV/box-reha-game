@@ -20,6 +20,7 @@ MonoBehaviour:
   EarlyLateScore: 25
   BlockScore: 75
   DodgeScore: 75
+  KickScore: 100
   MaxComboMultiplier: 3
   ComboMultiplierStep: 0.1
   PowerHoldThreshold: 0.3
@@ -27,9 +28,15 @@ MonoBehaviour:
   BlockHoldDuration: 0.5
   SwipeMaxDuration: 0.3
   BlockMaxMovement: 10
-  PunchColor: {r: 1, g: 0, b: 0, a: 1}
-  BlockColor: {r: 0, g: 0, b: 1, a: 1}
-  DodgeColor: {r: 0, g: 1, b: 0, a: 1}
+  SensorPunchAccelerationThreshold: 18
+  SensorKickAccelerationThreshold: 16
+  SensorBlockAccelerationThreshold: 9
+  SensorDodgeGyroThreshold: 6
+  SensorActionCooldown: 0.35
+  PunchColor: {r: 1, g: 0.29, b: 0.22, a: 1}
+  KickColor: {r: 0.18, g: 1, b: 0.72, a: 1}
+  BlockColor: {r: 0.2, g: 0.78, b: 1, a: 1}
+  DodgeColor: {r: 0.34, g: 1, b: 0.62, a: 1}
   HitFlashColor: {r: 0, g: 1, b: 0, a: 1}
   MissFlashColor: {r: 1, g: 0, b: 0, a: 1}
   DefaultTargetSpeed: 5
@@ -38,7 +45,7 @@ MonoBehaviour:
   LaneSpacing: 3
   SpawnDistance: 30
   HitZoneDistance: 5
-  VerticalOffsetHigh: 2.5
-  VerticalOffsetMid: 1.2
-  VerticalOffsetLow: 0.2
+  VerticalOffsetHigh: 2.6
+  VerticalOffsetMid: 1.55
+  VerticalOffsetLow: 0.45
   ActiveInputSourceType: 0

@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../resource/2.12.0/resource-2.12.0.module",
+    "group": "com.riseworld.launchpad.resource",
+    "module": "resource",
+    "version": "2.12.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.5.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "resource-jvm-2.12.0.jar",
+          "url": "resource-jvm-2.12.0.jar",
+          "size": 9120,
+          "sha512": "88a37af099a0e5c8e61b2ac3c8457fed2ed747348b82e4586beacd864a2f93c15ef665862da1818578507953ea04afc917b7565177ee3869c44250400679594f",
+          "sha256": "449e9484539255c73ff42ea54bad8a078f987cfc554646d4dfa106e7a7589791",
+          "sha1": "13b01be4590e708cba61727465152ea2caa7c370",
+          "md5": "14247a4acf629affcd207ca6ed68ccc4"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "resource-jvm-2.12.0.jar",
+          "url": "resource-jvm-2.12.0.jar",
+          "size": 9120,
+          "sha512": "88a37af099a0e5c8e61b2ac3c8457fed2ed747348b82e4586beacd864a2f93c15ef665862da1818578507953ea04afc917b7565177ee3869c44250400679594f",
+          "sha256": "449e9484539255c73ff42ea54bad8a078f987cfc554646d4dfa106e7a7589791",
+          "sha1": "13b01be4590e708cba61727465152ea2caa7c370",
+          "md5": "14247a4acf629affcd207ca6ed68ccc4"
+        }
+      ]
+    }
+  ]
+}

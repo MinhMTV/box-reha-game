@@ -1,0 +1,466 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AllImpactConfigs</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    RISE Dynamics SDK
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">0.25.6
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":dynamics-models/commonMain">common</button>
+                <button class="platform-tag platform-selector native-like" data-active="" aria-pressed="true" data-filter=":dynamics-models/iosMain">ios</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":dynamics-models/commonMain" data-filter=":dynamics-models/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                        <li role="option" class="dropdown--option platform-selector-option native-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":dynamics-models/iosMain" data-filter=":dynamics-models/iosMain">
+                                <span class="checkbox--icon"></span>
+                                ios
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    RISE Dynamics SDK
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="dynamics-models::com.riseworld.dynamics.models.ble.impact/AllImpactConfigs///PointingToDeclaration//708848828">
+  <div class="breadcrumbs"><a href="../../index.html">dynamics-models</a><span class="delimiter">/</span><a href="../index.html">com.riseworld.dynamics.models.ble.impact</a><span class="delimiter">/</span><span class="current">AllImpactConfigs</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>All</span><wbr><span>Impact</span><wbr><span><span>Configs</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">AllImpactConfigs</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>wakeUpTriggerThreshold<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.unit/-gravity/index.html">Gravity</a><span class="token operator"> = </span>Gravity(0.0)<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>wakeUpTriggerDebounceTime<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token operator"> = </span>Duration.ZERO<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>countOfPreTriggerSamples<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>countOfPostImpactSamples<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>minimumAbsoluteAccelerationForValidImpact<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.unit/-gravity/index.html">Gravity</a><span class="token operator"> = </span>Gravity(0.0)<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maximumWaitingTimeForValidation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token operator"> = </span>Duration.ZERO<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>magnetoCalibrationOffsetValues<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="../../com.riseworld.dynamics.models.ble.unit/-micro-tesla/index.html">MicroTesla</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Vector3d(
+            MicroTesla(0.0),
+            MicroTesla(0.0),
+            MicroTesla(0.0),
+        )<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>magnetoCalibrationScaleValues<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="../../com.riseworld.dynamics.models.ble.unit/-q15-float/index.html">Q15Float</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Vector3d(
+            Q15Float(0.0F),
+            Q15Float(0.0F),
+            Q15Float(0.0F),
+        )<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>backToMeasurementIdleTimeout<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token operator"> = </span>Duration.ZERO<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>capDetectionDirection<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Vector3d(false, false, false)<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>capCombination<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-combination/index.html">CapCombination</a><span class="token operator"> = </span>CapCombination.UNKNOWN<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>capOptions<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-options/index.html">CapOptions</a><span class="token operator"> = </span>CapOptions(false)<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>capShape<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-shape/index.html">CapShape</a><span class="token operator"> = </span>CapShape(listOf(MeterPerSec2(0.0)), CapShapeMeta(1, 0))</span></span><span class="token punctuation">)</span></div><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">Research Industrial Systems Engineering (RISE) Forschungs-, Entwicklungs- und Großprojektberatung GmbH</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-713127997%2FConstructors%2F708848828" anchor-label="AllImpactConfigs" id="-713127997%2FConstructors%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-all-impact-configs.html"><span>All</span><wbr><span>Impact</span><wbr><span><span>Configs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-713127997%2FConstructors%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">wakeUpTriggerThreshold<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.unit/-gravity/index.html">Gravity</a><span class="token operator"> = </span>Gravity(0.0)<span class="token punctuation">, </span></span><span class="parameter ">wakeUpTriggerDebounceTime<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token operator"> = </span>Duration.ZERO<span class="token punctuation">, </span></span><span class="parameter ">countOfPreTriggerSamples<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter ">countOfPostImpactSamples<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter ">minimumAbsoluteAccelerationForValidImpact<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.unit/-gravity/index.html">Gravity</a><span class="token operator"> = </span>Gravity(0.0)<span class="token punctuation">, </span></span><span class="parameter ">maximumWaitingTimeForValidation<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token operator"> = </span>Duration.ZERO<span class="token punctuation">, </span></span><span class="parameter ">magnetoCalibrationOffsetValues<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="../../com.riseworld.dynamics.models.ble.unit/-micro-tesla/index.html">MicroTesla</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Vector3d(
+            MicroTesla(0.0),
+            MicroTesla(0.0),
+            MicroTesla(0.0),
+        )<span class="token punctuation">, </span></span><span class="parameter ">magnetoCalibrationScaleValues<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="../../com.riseworld.dynamics.models.ble.unit/-q15-float/index.html">Q15Float</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Vector3d(
+            Q15Float(0.0F),
+            Q15Float(0.0F),
+            Q15Float(0.0F),
+        )<span class="token punctuation">, </span></span><span class="parameter ">backToMeasurementIdleTimeout<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a><span class="token operator"> = </span>Duration.ZERO<span class="token punctuation">, </span></span><span class="parameter ">capDetectionDirection<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Vector3d(false, false, false)<span class="token punctuation">, </span></span><span class="parameter ">capCombination<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-combination/index.html">CapCombination</a><span class="token operator"> = </span>CapCombination.UNKNOWN<span class="token punctuation">, </span></span><span class="parameter ">capOptions<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-options/index.html">CapOptions</a><span class="token operator"> = </span>CapOptions(false)<span class="token punctuation">, </span></span><span class="parameter ">capShape<span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-shape/index.html">CapShape</a><span class="token operator"> = </span>CapShape(listOf(MeterPerSec2(0.0)), CapShapeMeta(1, 0))</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-595258721%2FProperties%2F708848828" anchor-label="backToMeasurementIdleTimeout" id="-595258721%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="back-to-measurement-idle-timeout.html"><span>back</span><wbr><span>To</span><wbr><span>Measurement</span><wbr><span>Idle</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-595258721%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">val </span><a href="back-to-measurement-idle-timeout.html">backToMeasurementIdleTimeout</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-200917304%2FProperties%2F-1306794120" anchor-label="backToMeasurementIdleTimeoutNanoSeconds" id="-200917304%2FProperties%2F-1306794120" data-filterable-set=":dynamics-models/iosMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.riseworld.dynamics.models/back-to-measurement-idle-timeout-nano-seconds.html"><span>back</span><wbr><span>To</span><wbr><span>Measurement</span><wbr><span>Idle</span><wbr><span>Timeout</span><wbr><span>Nano</span><wbr><span><span>Seconds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-200917304%2FProperties%2F-1306794120"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain" data-active="" data-toggle=":dynamics-models/iosMain">ios</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/iosMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-obj-c-name/index.html"><span class="token annotation builtin">ObjCName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"backToMeasurementIdleTimeout"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="index.html#750647661%2FMain%2F-1306794120">AllImpactConfigs</a><span class="token punctuation">.</span><a href="../../com.riseworld.dynamics.models/back-to-measurement-idle-timeout-nano-seconds.html">backToMeasurementIdleTimeoutNanoSeconds</a><span class="token operator">: </span><a href="../../../dynamics-utils/com.riseworld.dynamics.utils.misc/-nano-seconds/index.html">NanoSeconds</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1829406965%2FProperties%2F708848828" anchor-label="capCombination" id="1829406965%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cap-combination.html"><span>cap</span><wbr><span><span>Combination</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1829406965%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="cap-combination.html">capCombination</a><span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-combination/index.html">CapCombination</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-671077508%2FProperties%2F708848828" anchor-label="capDetectionDirection" id="-671077508%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cap-detection-direction.html"><span>cap</span><wbr><span>Detection</span><wbr><span><span>Direction</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-671077508%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">val </span><a href="cap-detection-direction.html">capDetectionDirection</a><span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="762442012%2FProperties%2F-1306794120" anchor-label="capDetectionDirectionVector3dBoolean" id="762442012%2FProperties%2F-1306794120" data-filterable-set=":dynamics-models/iosMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.riseworld.dynamics.models/cap-detection-direction-vector3d-boolean.html"><span>cap</span><wbr><span>Detection</span><wbr><span>Direction</span><wbr><span>Vector3d</span><wbr><span><span>Boolean</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="762442012%2FProperties%2F-1306794120"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain" data-active="" data-toggle=":dynamics-models/iosMain">ios</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/iosMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-obj-c-name/index.html"><span class="token annotation builtin">ObjCName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"capDetectionDirection"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="index.html#750647661%2FMain%2F-1306794120">AllImpactConfigs</a><span class="token punctuation">.</span><a href="../../com.riseworld.dynamics.models/cap-detection-direction-vector3d-boolean.html">capDetectionDirectionVector3dBoolean</a><span class="token operator">: </span><a href="../../../dynamics-models/com.riseworld.dynamics.models.ble.data.vector/-vector3d-boolean/index.html">Vector3dBoolean</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="12681094%2FProperties%2F708848828" anchor-label="capOptions" id="12681094%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cap-options.html"><span>cap</span><wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="12681094%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="cap-options.html">capOptions</a><span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-options/index.html">CapOptions</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1713517149%2FProperties%2F708848828" anchor-label="capShape" id="-1713517149%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cap-shape.html"><span>cap</span><wbr><span><span>Shape</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1713517149%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="cap-shape.html">capShape</a><span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.config/-cap-shape/index.html">CapShape</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1066109483%2FProperties%2F708848828" anchor-label="countOfPostImpactSamples" id="-1066109483%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="count-of-post-impact-samples.html"><span>count</span><wbr><span>Of</span><wbr><span>Post</span><wbr><span>Impact</span><wbr><span><span>Samples</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1066109483%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="count-of-post-impact-samples.html">countOfPostImpactSamples</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">Changed from <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a> to <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a> since the second hardware revision. As the count is independent of the used sampling rate.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1684390556%2FProperties%2F708848828" anchor-label="countOfPreTriggerSamples" id="-1684390556%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="count-of-pre-trigger-samples.html"><span>count</span><wbr><span>Of</span><wbr><span>Pre</span><wbr><span>Trigger</span><wbr><span><span>Samples</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1684390556%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="count-of-pre-trigger-samples.html">countOfPreTriggerSamples</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">Changed from <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a> to <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a> since the second hardware revision. As the count is independent of the used sampling rate.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1099494040%2FProperties%2F708848828" anchor-label="magnetoCalibrationOffsetValues" id="1099494040%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="magneto-calibration-offset-values.html"><span>magneto</span><wbr><span>Calibration</span><wbr><span>Offset</span><wbr><span><span>Values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1099494040%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">val </span><a href="magneto-calibration-offset-values.html">magnetoCalibrationOffsetValues</a><span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="../../com.riseworld.dynamics.models.ble.unit/-micro-tesla/index.html">MicroTesla</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-683970027%2FProperties%2F-1306794120" anchor-label="magnetoCalibrationOffsetValuesVector3dMicroTesla" id="-683970027%2FProperties%2F-1306794120" data-filterable-set=":dynamics-models/iosMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.riseworld.dynamics.models/magneto-calibration-offset-values-vector3d-micro-tesla.html"><span>magneto</span><wbr><span>Calibration</span><wbr><span>Offset</span><wbr><span>Values</span><wbr><span>Vector3d</span><wbr><span>Micro</span><wbr><span><span>Tesla</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-683970027%2FProperties%2F-1306794120"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain" data-active="" data-toggle=":dynamics-models/iosMain">ios</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/iosMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-obj-c-name/index.html"><span class="token annotation builtin">ObjCName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"magnetoCalibrationOffsetValues"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="index.html#750647661%2FMain%2F-1306794120">AllImpactConfigs</a><span class="token punctuation">.</span><a href="../../com.riseworld.dynamics.models/magneto-calibration-offset-values-vector3d-micro-tesla.html">magnetoCalibrationOffsetValuesVector3dMicroTesla</a><span class="token operator">: </span><a href="../../../dynamics-models/com.riseworld.dynamics.models.ble.data.vector/-vector3d-micro-tesla/index.html">Vector3dMicroTesla</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1432609951%2FProperties%2F708848828" anchor-label="magnetoCalibrationScaleValues" id="-1432609951%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="magneto-calibration-scale-values.html"><span>magneto</span><wbr><span>Calibration</span><wbr><span>Scale</span><wbr><span><span>Values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1432609951%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">val </span><a href="magneto-calibration-scale-values.html">magnetoCalibrationScaleValues</a><span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.data/-vector3d/index.html">Vector3d</a><span class="token operator">&lt;</span><a href="../../com.riseworld.dynamics.models.ble.unit/-q15-float/index.html">Q15Float</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-847521426%2FProperties%2F-1306794120" anchor-label="magnetoCalibrationScaleValuesVector3dQ15" id="-847521426%2FProperties%2F-1306794120" data-filterable-set=":dynamics-models/iosMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.riseworld.dynamics.models/magneto-calibration-scale-values-vector3d-q15.html"><span>magneto</span><wbr><span>Calibration</span><wbr><span>Scale</span><wbr><span>Values</span><wbr><span>Vector3d</span><wbr><span><span>Q15</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-847521426%2FProperties%2F-1306794120"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain" data-active="" data-toggle=":dynamics-models/iosMain">ios</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/iosMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-obj-c-name/index.html"><span class="token annotation builtin">ObjCName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"magnetoCalibrationScaleValues"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="index.html#750647661%2FMain%2F-1306794120">AllImpactConfigs</a><span class="token punctuation">.</span><a href="../../com.riseworld.dynamics.models/magneto-calibration-scale-values-vector3d-q15.html">magnetoCalibrationScaleValuesVector3dQ15</a><span class="token operator">: </span><a href="../../../dynamics-models/com.riseworld.dynamics.models.ble.data.vector/-vector3d-q15/index.html">Vector3dQ15</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1293890720%2FProperties%2F708848828" anchor-label="maximumWaitingTimeForValidation" id="-1293890720%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="maximum-waiting-time-for-validation.html"><span>maximum</span><wbr><span>Waiting</span><wbr><span>Time</span><wbr><span>For</span><wbr><span><span>Validation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1293890720%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">val </span><a href="maximum-waiting-time-for-validation.html">maximumWaitingTimeForValidation</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1033347127%2FProperties%2F-1306794120" anchor-label="maximumWaitingTimeForValidationNanoSeconds" id="1033347127%2FProperties%2F-1306794120" data-filterable-set=":dynamics-models/iosMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.riseworld.dynamics.models/maximum-waiting-time-for-validation-nano-seconds.html"><span>maximum</span><wbr><span>Waiting</span><wbr><span>Time</span><wbr><span>For</span><wbr><span>Validation</span><wbr><span>Nano</span><wbr><span><span>Seconds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1033347127%2FProperties%2F-1306794120"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain" data-active="" data-toggle=":dynamics-models/iosMain">ios</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/iosMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-obj-c-name/index.html"><span class="token annotation builtin">ObjCName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"maximumWaitingTimeForValidation"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="index.html#750647661%2FMain%2F-1306794120">AllImpactConfigs</a><span class="token punctuation">.</span><a href="../../com.riseworld.dynamics.models/maximum-waiting-time-for-validation-nano-seconds.html">maximumWaitingTimeForValidationNanoSeconds</a><span class="token operator">: </span><a href="../../../dynamics-utils/com.riseworld.dynamics.utils.misc/-nano-seconds/index.html">NanoSeconds</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1022874154%2FProperties%2F708848828" anchor-label="minimumAbsoluteAccelerationForValidImpact" id="1022874154%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minimum-absolute-acceleration-for-valid-impact.html"><span>minimum</span><wbr><span>Absolute</span><wbr><span>Acceleration</span><wbr><span>For</span><wbr><span>Valid</span><wbr><span><span>Impact</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1022874154%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="minimum-absolute-acceleration-for-valid-impact.html">minimumAbsoluteAccelerationForValidImpact</a><span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.unit/-gravity/index.html">Gravity</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="735960217%2FProperties%2F708848828" anchor-label="wakeUpTriggerDebounceTime" id="735960217%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="wake-up-trigger-debounce-time.html"><span>wake</span><wbr><span>Up</span><wbr><span>Trigger</span><wbr><span>Debounce</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="735960217%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-hidden-from-obj-c/index.html"><span class="token annotation builtin">HiddenFromObjC</span></a></div></div><span class="token keyword">val </span><a href="wake-up-trigger-debounce-time.html">wakeUpTriggerDebounceTime</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.time/-duration/index.html">Duration</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1171580464%2FProperties%2F-1306794120" anchor-label="wakeUpTriggerDebounceTimeNanoSeconds" id="1171580464%2FProperties%2F-1306794120" data-filterable-set=":dynamics-models/iosMain"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.riseworld.dynamics.models/wake-up-trigger-debounce-time-nano-seconds.html"><span>wake</span><wbr><span>Up</span><wbr><span>Trigger</span><wbr><span>Debounce</span><wbr><span>Time</span><wbr><span>Nano</span><wbr><span><span>Seconds</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1171580464%2FProperties%2F-1306794120"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":dynamics-models/iosMain" data-filterable-set=":dynamics-models/iosMain" data-active="" data-toggle=":dynamics-models/iosMain">ios</button></div>
+<div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/iosMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/-obj-c-name/index.html"><span class="token annotation builtin">ObjCName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"wakeUpTriggerDebounceTime"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="index.html#750647661%2FMain%2F-1306794120">AllImpactConfigs</a><span class="token punctuation">.</span><a href="../../com.riseworld.dynamics.models/wake-up-trigger-debounce-time-nano-seconds.html">wakeUpTriggerDebounceTimeNanoSeconds</a><span class="token operator">: </span><a href="../../../dynamics-utils/com.riseworld.dynamics.utils.misc/-nano-seconds/index.html">NanoSeconds</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-262109664%2FProperties%2F708848828" anchor-label="wakeUpTriggerThreshold" id="-262109664%2FProperties%2F708848828" data-filterable-set=":dynamics-models/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":dynamics-models/commonMain" data-filterable-set=":dynamics-models/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="wake-up-trigger-threshold.html"><span>wake</span><wbr><span>Up</span><wbr><span>Trigger</span><wbr><span><span>Threshold</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-262109664%2FProperties%2F708848828"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dynamics-models/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="wake-up-trigger-threshold.html">wakeUpTriggerThreshold</a><span class="token operator">: </span><a href="../../com.riseworld.dynamics.models.ble.unit/-gravity/index.html">Gravity</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

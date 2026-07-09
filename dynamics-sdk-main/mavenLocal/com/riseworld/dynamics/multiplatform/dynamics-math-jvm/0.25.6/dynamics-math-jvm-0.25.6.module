@@ -1,0 +1,107 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-math/0.25.6/dynamics-math-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-math",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-math-jvm-0.25.6.jar",
+          "url": "dynamics-math-jvm-0.25.6.jar",
+          "size": 47827,
+          "sha512": "41514c5453715ebbfffb303336b6126cd079e26389380bcbb3063a9f51096f1823b25acc64e2a56161661b08c8889c0f7318baa082780a01abf58636543e09c4",
+          "sha256": "e9d9159198896441f8d8acd6101fa9e3ab97bb1576465be405930c8cbe1b3104",
+          "sha1": "731316d434e128087953ec340698ff9760fb57af",
+          "md5": "61c4fa896614372c67c53d0f0c99c26a"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-utils",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-models",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "com.riseworld.dynamics.multiplatform",
+          "module": "dynamics-constants",
+          "version": {
+            "requires": "0.25.6"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-math-jvm-0.25.6.jar",
+          "url": "dynamics-math-jvm-0.25.6.jar",
+          "size": 47827,
+          "sha512": "41514c5453715ebbfffb303336b6126cd079e26389380bcbb3063a9f51096f1823b25acc64e2a56161661b08c8889c0f7318baa082780a01abf58636543e09c4",
+          "sha256": "e9d9159198896441f8d8acd6101fa9e3ab97bb1576465be405930c8cbe1b3104",
+          "sha1": "731316d434e128087953ec340698ff9760fb57af",
+          "md5": "61c4fa896614372c67c53d0f0c99c26a"
+        }
+      ]
+    }
+  ]
+}

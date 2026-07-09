@@ -1,0 +1,224 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.riseworld.launchpad.ble",
+    "module": "ble-multiplex",
+    "version": "0.24.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.kable-fork",
+          "module": "core",
+          "version": {
+            "requires": "0.8.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-uuid",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-models",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-metadata-0.24.0.jar",
+          "url": "ble-multiplex-0.24.0.jar",
+          "size": 21433,
+          "sha512": "346cd8e4912e55a98e9c5220e233478c3044e3ce818f1b93c3dc5e44bb33fbd3ec2096f9c652bf77579b750b4f50ac0963861c31d4f0538d8fbbea89599cb96f",
+          "sha256": "b431a821a048cdf404f340de72337ec693ffb77ebb40a90ff28d861f82737f8d",
+          "sha1": "1dc80771bb84aff9e9903e58174b4a1f74ad9c52",
+          "md5": "ee0fff43fc58b22cfea0ef0382198f08"
+        }
+      ]
+    },
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../ble-multiplex-android/0.24.0/ble-multiplex-android-0.24.0.module",
+        "group": "com.riseworld.launchpad.ble",
+        "module": "ble-multiplex-android",
+        "version": "0.24.0"
+      }
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../ble-multiplex-android/0.24.0/ble-multiplex-android-0.24.0.module",
+        "group": "com.riseworld.launchpad.ble",
+        "module": "ble-multiplex-android",
+        "version": "0.24.0"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ble-multiplex-iosarm64/0.24.0/ble-multiplex-iosarm64-0.24.0.module",
+        "group": "com.riseworld.launchpad.ble",
+        "module": "ble-multiplex-iosarm64",
+        "version": "0.24.0"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ble-multiplex-iosarm64/0.24.0/ble-multiplex-iosarm64-0.24.0.module",
+        "group": "com.riseworld.launchpad.ble",
+        "module": "ble-multiplex-iosarm64",
+        "version": "0.24.0"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ble-multiplex-iossimulatorarm64/0.24.0/ble-multiplex-iossimulatorarm64-0.24.0.module",
+        "group": "com.riseworld.launchpad.ble",
+        "module": "ble-multiplex-iossimulatorarm64",
+        "version": "0.24.0"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ble-multiplex-iossimulatorarm64/0.24.0/ble-multiplex-iossimulatorarm64-0.24.0.module",
+        "group": "com.riseworld.launchpad.ble",
+        "module": "ble-multiplex-iossimulatorarm64",
+        "version": "0.24.0"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ble-multiplex-iosx64/0.24.0/ble-multiplex-iosx64-0.24.0.module",
+        "group": "com.riseworld.launchpad.ble",
+        "module": "ble-multiplex-iosx64",
+        "version": "0.24.0"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../ble-multiplex-iosx64/0.24.0/ble-multiplex-iosx64-0.24.0.module",
+        "group": "com.riseworld.launchpad.ble",
+        "module": "ble-multiplex-iosx64",
+        "version": "0.24.0"
+      }
+    }
+  ]
+}

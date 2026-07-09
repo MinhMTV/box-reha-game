@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../models/0.8.0/models-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "models",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models-iosX64Main-0.8.0.klib",
+          "url": "models-iosx64-0.8.0.klib",
+          "size": 4957,
+          "sha512": "92f7b4d3f3c37f7a1c140a86232e13f4b6e805a8221414eaeee39c68414ac2de2dfd586266a02e0e893826df233516f0f36c5581534936c6684b909c23f14bdb",
+          "sha256": "80bf6bb408c12e9903c917d92e9a3a6d486398dd98bd2451c0c284c893dbbb52",
+          "sha1": "19269b415abf8bcc1fe6ac7370a64b3d0fb2a066",
+          "md5": "5b85b9ba902acf30bf55b0eab72b85f6"
+        }
+      ]
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models-iosx64-0.8.0-metadata.jar",
+          "url": "models-iosx64-0.8.0-metadata.jar",
+          "size": 2666,
+          "sha512": "f1a0873279ba7bf8b94b688c8ba2dedb71fdf064080cfd0d6a3f82b91758f83403fa319e347edd88d01f497b62082f8dbad32be51a0ae2363063504b2009a73c",
+          "sha256": "3373d0b5f1fe319fa25745f7d3cd80c258a962bfb639f2d14dcc7fc546843fe1",
+          "sha1": "7e4e32881105523256114518fc82ee356f1868ba",
+          "md5": "cb05d0367d315c1e0c59b3433c31a726"
+        }
+      ]
+    }
+  ]
+}

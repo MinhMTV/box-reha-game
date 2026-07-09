@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-constants/0.25.6/dynamics-constants-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-constants",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-uuid",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-constants.aar",
+          "url": "dynamics-constants-android-0.25.6.aar",
+          "size": 11661,
+          "sha512": "58e78af8e60b480ecff1b7484261633a57096bb4dcefff08954c9e1ec4b0ac4de4878c6a807a096bc91cd908ca894db23ee5498651f83a44f227df49330e1076",
+          "sha256": "72a0722657ef0dfa7e65bcc7b15dc816d34191034cdd1950c04404919bf19347",
+          "sha1": "1be323bdb3ac2013ce7b39329de2dd0d41e2f01b",
+          "md5": "3d66502147e945edc594889c222422a4"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.riseworld.launchpad.ble",
+          "module": "ble-multiplex-uuid",
+          "version": {
+            "requires": "0.24.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-constants.aar",
+          "url": "dynamics-constants-android-0.25.6.aar",
+          "size": 11661,
+          "sha512": "58e78af8e60b480ecff1b7484261633a57096bb4dcefff08954c9e1ec4b0ac4de4878c6a807a096bc91cd908ca894db23ee5498651f83a44f227df49330e1076",
+          "sha256": "72a0722657ef0dfa7e65bcc7b15dc816d34191034cdd1950c04404919bf19347",
+          "sha1": "1be323bdb3ac2013ce7b39329de2dd0d41e2f01b",
+          "md5": "3d66502147e945edc594889c222422a4"
+        }
+      ]
+    }
+  ]
+}

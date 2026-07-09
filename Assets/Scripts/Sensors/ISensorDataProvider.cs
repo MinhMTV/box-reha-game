@@ -50,6 +50,15 @@ public struct SensorReading
     /// <summary>Optional force/impact value directly delivered by the glove.</summary>
     public float ImpactForce;
 
+    /// <summary>Optional DELTA-style power index when no contact sensor is available.</summary>
+    public float PowerIndex;
+
+    /// <summary>Sensor family: ALPHA glove or DELTA foot sensor.</summary>
+    public SensorDeviceType SensorType;
+
+    /// <summary>Detected or configured body side for left/right alternation.</summary>
+    public BodySide BodySide;
+
     /// <summary>Device identifier (e.g., "left_hand", "right_hand")</summary>
     public string DeviceId;
 }

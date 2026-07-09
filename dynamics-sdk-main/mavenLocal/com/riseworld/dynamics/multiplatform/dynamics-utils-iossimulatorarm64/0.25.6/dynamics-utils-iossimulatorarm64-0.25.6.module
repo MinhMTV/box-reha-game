@@ -1,0 +1,149 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../dynamics-utils/0.25.6/dynamics-utils-0.25.6.module",
+    "group": "com.riseworld.dynamics.multiplatform",
+    "module": "dynamics-utils",
+    "version": "0.25.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.17.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-utils-iosSimulatorArm64Main-0.25.6.klib",
+          "url": "dynamics-utils-iossimulatorarm64-0.25.6.klib",
+          "size": 66303,
+          "sha512": "81b41e796237a0ba7f25f0dbeaaa56b59b99b8799e940344906e7ed27fb7fc2aed56abb6835361fb646d2952a449a11912cae437ad5f23e237c92322712d16fa",
+          "sha256": "5930eecf9e2b5b4e4ed525d2d9d4edeb47424cd21f5b1dd6a257be64180ac682",
+          "sha1": "bf9a10c1af13f5fef8f93d9ca2a7ffac22f826f6",
+          "md5": "413c1c5f055ab59773283090aa4c933a"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.17.0"
+          }
+        },
+        {
+          "group": "com.riseworld.launchpad.resource",
+          "module": "resource",
+          "version": {
+            "requires": "2.11.1"
+          }
+        },
+        {
+          "group": "io.github.aakira",
+          "module": "napier",
+          "version": {
+            "requires": "2.7.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamics-utils-iossimulatorarm64-0.25.6-metadata.jar",
+          "url": "dynamics-utils-iossimulatorarm64-0.25.6-metadata.jar",
+          "size": 3253,
+          "sha512": "3aff25990a6782f53660eec28c741eeb4495669c048c2f5e95b8d9569da23cbbc71ab071cd48f26bbb54caf441178993d99cce2200c172cb50ee5e099cf7133a",
+          "sha256": "f3f2056bbf029833d0a42356ba93bf49a0488ea0c16c2ee12a4493ca0cda8e15",
+          "sha1": "c4625cacca407a2e7d7b0dc7020008588e3aba39",
+          "md5": "2e8bf98e6e1289d8c401f27bbf95b34d"
+        }
+      ]
+    }
+  ]
+}

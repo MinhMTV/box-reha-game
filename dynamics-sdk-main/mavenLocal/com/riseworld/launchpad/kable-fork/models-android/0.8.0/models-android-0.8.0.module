@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../models/0.8.0/models-0.8.0.module",
+    "group": "com.riseworld.launchpad.kable-fork",
+    "module": "models",
+    "version": "0.8.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models.aar",
+          "url": "models-android-0.8.0.aar",
+          "size": 2675,
+          "sha512": "87409f0918a6fe5cf5f21d71349b1a36cfba02b4120ea03cc078cc7c21e71ddb960131a7da3c3cb1f752ce161454e7d3cd0868767aa0110775072a20d1b1fccf",
+          "sha256": "1fc3d4549fe21750c9224f1d52271cc3910dac5537a826eed6f81d69fcebeda5",
+          "sha1": "db6fb11228ffd534e6e6c5ed981ca73c169eebf2",
+          "md5": "9829e1768c39a14bba92a60152d5bce0"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "models.aar",
+          "url": "models-android-0.8.0.aar",
+          "size": 2675,
+          "sha512": "87409f0918a6fe5cf5f21d71349b1a36cfba02b4120ea03cc078cc7c21e71ddb960131a7da3c3cb1f752ce161454e7d3cd0868767aa0110775072a20d1b1fccf",
+          "sha256": "1fc3d4549fe21750c9224f1d52271cc3910dac5537a826eed6f81d69fcebeda5",
+          "sha1": "db6fb11228ffd534e6e6c5ed981ca73c169eebf2",
+          "md5": "9829e1768c39a14bba92a60152d5bce0"
+        }
+      ]
+    }
+  ]
+}

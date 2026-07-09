@@ -47,12 +47,14 @@ public class HitZoneEvaluator : MonoBehaviour
 
     // v3: Partial hit score for tough targets
     private const int ToughPartialScore = 10;
+    private const int ToughBreakBonus = 350;
     // v3: Rapid fire chain bonus
     public const int RapidFireChainBonus = 500;
 
     [SerializeField] private Transform hitZoneCenter;
     [SerializeField] private float minimumSensorPowerMultiplier = 0.75f;
     [SerializeField] private float maximumSensorPowerMultiplier = 1.25f;
+    [SerializeField] private float heavyMinimumPower = 0.5f;
     [SerializeField] private bool createRuntimeHitGuide = true;
 
     void Start()
@@ -109,9 +111,11 @@ public class HitZoneEvaluator : MonoBehaviour
                 continue;
             }
 
-            if (target.Lane != action.Lane) continue;
+            if (!DoesLaneMatch(action, target)) continue;
 
             if (!DoesActionMatchTarget(action.ActionType, target.Type)) continue;
+
+            if (!DoesVerticalMatch(action, target)) continue;
 
             float distance = Mathf.Abs(target.transform.position.z - hitZoneCenter.position.z);
             if (distance < bestDistance)
@@ -121,16 +125,24 @@ public class HitZoneEvaluator : MonoBehaviour
             }
         }
 
+        if (bestTarget == null)
+        {
+            bestTarget = FindLockedToughTarget(action);
+        }
+
         if (bestTarget == null) return;
 
         float timingOffset = (hitZoneCenter.position.z - bestTarget.transform.position.z) / bestTarget.MoveSpeed;
-        HitQuality quality = DetermineHitQuality(timingOffset);
+        HitQuality quality = bestTarget.IsTough && bestTarget.IsLockedInHitZone
+            ? HitQuality.Good
+            : DetermineHitQuality(timingOffset);
 
         if (quality == HitQuality.Miss)
         {
             OnTargetMissed?.Invoke(bestTarget.Lane.GetHashCode());
             OnMissVisualFeedback?.Invoke(bestTarget.Lane, bestTarget.transform.position);
             TextPopup.CreateMiss(bestTarget.transform.position);
+            TrackResolvedTarget(bestTarget.Type, false);
             activeTargets.Remove(bestTarget);
             Destroy(bestTarget.gameObject);
             return;
@@ -139,8 +151,16 @@ public class HitZoneEvaluator : MonoBehaviour
         // v3: Handle tough targets
         if (bestTarget.IsTough)
         {
-            bool destroyed = bestTarget.TakeHit();
-            int hitsLeft = bestTarget.MaxHits - bestTarget.CurrentHits;
+            float requiredPower = Mathf.Max(heavyMinimumPower, bestTarget.MinPower);
+            if (action.Power < requiredPower)
+            {
+                TextPopup.Create(bestTarget.transform.position, "TOO WEAK", new Color(1f, 0.82f, 0.22f, 1f));
+                bestTarget.Flash(new Color(1f, 0.4f, 0.2f, 1f), 0.12f);
+                return;
+            }
+
+            bool destroyed = bestTarget.TakeHit(action.Power);
+            int hitsLeft = Mathf.Max(0, bestTarget.MaxHits - bestTarget.CurrentHits);
 
             if (!destroyed)
             {
@@ -149,6 +169,9 @@ public class HitZoneEvaluator : MonoBehaviour
 
                 // Show tough hit feedback
                 OnToughTargetHit?.Invoke(hitsLeft, bestTarget.MaxHits, bestTarget.Lane, bestTarget.transform.position);
+
+                Color hitParticleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
+                HitParticleEffect.Spawn(bestTarget.transform.position, hitParticleColor, 12);
 
                 // Play tough hit sound
                 if (AudioManager.Instance != null)
@@ -163,7 +186,7 @@ public class HitZoneEvaluator : MonoBehaviour
             }
 
             // Destroyed - full scoring
-            int score = GetScoreForQuality(quality, bestTarget.Type);
+            int score = ApplyPowerNormalization(GetScoreForQuality(quality, bestTarget.Type), action) + ToughBreakBonus;
 
             if (AudioManager.Instance != null)
                 AudioManager.Instance.PlayToughBreakSound();
@@ -176,6 +199,7 @@ public class HitZoneEvaluator : MonoBehaviour
             {
                 GameManager.Instance.SessionStats.TrackReactionTime(reactionTime);
             }
+            TrackResolvedTarget(bestTarget.Type, true);
 
             OnToughTargetDestroyed?.Invoke(quality, bestTarget.Lane, bestTarget.transform.position);
             OnHitEvaluated?.Invoke(quality, score, bestTarget.Lane);
@@ -221,6 +245,7 @@ public class HitZoneEvaluator : MonoBehaviour
                     switch (bestTarget.Type)
                     {
                         case TargetType.Punch: AudioManager.Instance.PlayHitSound(); break;
+                        case TargetType.Kick: AudioManager.Instance.PlayKickSound(); break;
                         case TargetType.Block: AudioManager.Instance.PlayBlockSound(); break;
                         case TargetType.Dodge: AudioManager.Instance.PlayDodgeSound(); break;
                     }
@@ -242,11 +267,12 @@ public class HitZoneEvaluator : MonoBehaviour
             {
                 PlayerProfile profile = GameManager.Instance.PlayerProfile;
                 ForceBand forceBand = profile != null ? profile.GetForceBand(action.Power) : ForceBand.OnTarget;
-                GameManager.Instance.SessionStats.TrackForce(action.RawForce, action.Power, forceBand);
+                GameManager.Instance.SessionStats.TrackForce(action.RawForce, action.Power, forceBand, bestTarget.Type == TargetType.Kick);
                 OnSensorForceEvaluated?.Invoke(forceBand, action.Power);
             }
         }
 
+        TrackResolvedTarget(bestTarget.Type, true);
         OnHitEvaluated?.Invoke(quality, normalScore, bestTarget.Lane);
         OnHitVisualFeedback?.Invoke(quality, bestTarget.Lane, bestTarget.transform.position);
         TextPopup.CreateForHitQuality(quality, bestTarget.transform.position);
@@ -264,6 +290,7 @@ public class HitZoneEvaluator : MonoBehaviour
         switch (target)
         {
             case TargetType.Punch: return action == ActionType.Punch;
+            case TargetType.Kick: return action == ActionType.Kick;
             case TargetType.ToughPunch: return action == ActionType.Punch;
             case TargetType.Block: return action == ActionType.Block;
             case TargetType.Dodge: return action == ActionType.Dodge;
@@ -300,9 +327,48 @@ public class HitZoneEvaluator : MonoBehaviour
         {
             case TargetType.Block: return Mathf.Max(baseScore, BlockScore);
             case TargetType.Dodge: return Mathf.Max(baseScore, DodgeScore);
+            case TargetType.Kick: return baseScore;
             case TargetType.ToughPunch: return Mathf.Max(baseScore, PerfectScore); // Tough targets give full punch score
             default: return baseScore;
         }
+    }
+
+    private bool DoesLaneMatch(PlayerActionEvent action, TargetObject target)
+    {
+        if (target.IsTough)
+        {
+            return action.ActionType == ActionType.Punch;
+        }
+
+        return target.Lane == action.Lane;
+    }
+
+    private TargetObject FindLockedToughTarget(PlayerActionEvent action)
+    {
+        if (action.ActionType != ActionType.Punch)
+        {
+            return null;
+        }
+
+        TargetObject[] targets = FindObjectsOfType<TargetObject>();
+        for (int i = 0; i < targets.Length; i++)
+        {
+            TargetObject target = targets[i];
+            if (target == null || !target.IsTough || target.IsBreaking || !target.IsLockedInHitZone)
+            {
+                continue;
+            }
+
+            if (!DoesVerticalMatch(action, target))
+            {
+                continue;
+            }
+
+            RegisterTarget(target);
+            return target;
+        }
+
+        return null;
     }
 
     private int ApplyPowerNormalization(int baseScore, PlayerActionEvent action)
@@ -322,6 +388,10 @@ public class HitZoneEvaluator : MonoBehaviour
         if (target != null && !target.HasSpawnedInHitZone && !target.IsBreaking)
         {
             target.HasSpawnedInHitZone = true;
+            if (target.IsTough)
+            {
+                target.LockInHitZone(hitZoneCenter.position.z);
+            }
             RegisterTarget(target);
         }
     }
@@ -336,8 +406,37 @@ public class HitZoneEvaluator : MonoBehaviour
                 OnTargetMissed?.Invoke(target.Lane.GetHashCode());
                 OnMissVisualFeedback?.Invoke(target.Lane, target.transform.position);
                 TextPopup.CreateMiss(target.transform.position);
+                TrackResolvedTarget(target.Type, false);
                 activeTargets.Remove(target);
             }
+        }
+    }
+
+    private bool DoesVerticalMatch(PlayerActionEvent action, TargetObject target)
+    {
+        if (target.IsTough)
+        {
+            return action.VerticalPos == VerticalPosition.High || action.VerticalPos == VerticalPosition.Mid;
+        }
+
+        if (target.Type == TargetType.Kick)
+        {
+            return action.VerticalPos == VerticalPosition.Low;
+        }
+
+        if (target.Type == TargetType.Punch)
+        {
+            return action.VerticalPos == VerticalPosition.High || action.VerticalPos == VerticalPosition.Mid;
+        }
+
+        return action.VerticalPos == target.VertPosition;
+    }
+
+    private void TrackResolvedTarget(TargetType targetType, bool wasHit)
+    {
+        if (GameManager.Instance?.SessionStats != null)
+        {
+            GameManager.Instance.SessionStats.TrackTargetType(targetType, wasHit);
         }
     }
 
@@ -352,10 +451,13 @@ public class HitZoneEvaluator : MonoBehaviour
         guideRoot.transform.SetParent(transform, false);
         guideRoot.transform.localPosition = Vector3.zero;
 
-        CreateGuideBar(guideRoot.transform, "HitLine", new Vector3(0f, -2.25f, 0f), new Vector3(9.5f, 0.08f, 0.08f), GameVisualPalette.BlockColor, 2.4f);
-        CreateGuideBar(guideRoot.transform, "HitFrameTop", new Vector3(0f, 2.25f, 0f), new Vector3(9.5f, 0.08f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Center), 1.2f);
-        CreateGuideBar(guideRoot.transform, "HitFrameLeft", new Vector3(-4.5f, 0f, 0f), new Vector3(0.08f, 4.6f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Left), 1.2f);
-        CreateGuideBar(guideRoot.transform, "HitFrameRight", new Vector3(4.5f, 0f, 0f), new Vector3(0.08f, 4.6f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Right), 1.2f);
+        CreateGuideBar(guideRoot.transform, "ArmHitLine", new Vector3(0f, 0.1f, 0f), new Vector3(9.5f, 0.08f, 0.08f), GameVisualPalette.PunchColor, 2.8f);
+        CreateGuideBar(guideRoot.transform, "LegHitLine", new Vector3(0f, -2.05f, 0f), new Vector3(9.5f, 0.08f, 0.08f), GameVisualPalette.KickColor, 2.8f);
+        CreateGuideBar(guideRoot.transform, "ZoneSplit", new Vector3(0f, -0.95f, 0f), new Vector3(9.5f, 0.05f, 0.05f), GameVisualPalette.GetLaneBaseColor(LaneType.Center), 1.2f);
+        CreateGuideBar(guideRoot.transform, "LaneSplitLeft", new Vector3(-1.5f, -0.95f, 0f), new Vector3(0.06f, 3.3f, 0.06f), GameVisualPalette.GetLaneBaseColor(LaneType.Left), 1.3f);
+        CreateGuideBar(guideRoot.transform, "LaneSplitRight", new Vector3(1.5f, -0.95f, 0f), new Vector3(0.06f, 3.3f, 0.06f), GameVisualPalette.GetLaneBaseColor(LaneType.Right), 1.3f);
+        CreateGuideBar(guideRoot.transform, "HitFrameLeft", new Vector3(-4.5f, -0.95f, 0f), new Vector3(0.08f, 3.45f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Left), 1.2f);
+        CreateGuideBar(guideRoot.transform, "HitFrameRight", new Vector3(4.5f, -0.95f, 0f), new Vector3(0.08f, 3.45f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Right), 1.2f);
     }
 
     private void CreateGuideBar(Transform parent, string name, Vector3 localPosition, Vector3 localScale, Color color, float emissionStrength)

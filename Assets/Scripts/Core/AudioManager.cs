@@ -42,6 +42,11 @@ public class AudioManager : MonoBehaviour
         Play("Hit", 1f);
     }
 
+    public void PlayKickSound()
+    {
+        Play("Kick", 1f);
+    }
+
     public void PlayMissSound()
     {
         Play("Miss", 0.85f);
@@ -108,6 +113,7 @@ public class AudioManager : MonoBehaviour
     {
         clips = new Dictionary<string, AudioClip>();
         clips["Hit"] = CreateImpactClip("Hit", 110f, 190f, 0.12f, 0.14f, 0.28f);
+        clips["Kick"] = CreateImpactClip("Kick", 76f, 145f, 0.15f, 0.18f, 0.34f);
         clips["Miss"] = CreateSweepClip("Miss", 280f, 140f, 0.14f, 0.07f, 0.12f);
         clips["Combo"] = CreateArpeggioClip("Combo", new float[] { 440f, 554f, 659f }, 0.23f, 0.06f);
         clips["Block"] = CreateImpactClip("Block", 220f, 120f, 0.10f, 0.03f, 0.22f);

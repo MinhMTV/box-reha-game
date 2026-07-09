@@ -1,0 +1,102 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../ble-multiplex-uuid/0.24.0/ble-multiplex-uuid-0.24.0.module",
+    "group": "com.riseworld.launchpad.ble",
+    "module": "ble-multiplex-uuid",
+    "version": "0.24.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-uuid.aar",
+          "url": "ble-multiplex-uuid-android-0.24.0.aar",
+          "size": 9954,
+          "sha512": "17199af0287efc8d5c916ddc2e394040b1585bcc24d25259aaa389853d51c05baf2c33eb72953b8673f6e35617af683fc659809bd2e70cc06c35cd1c32964b62",
+          "sha256": "9e1fb85436acbe4418c57330658660db84229466843d8dfa858014661840ec18",
+          "sha1": "e0d3801b11e95d909ed9ae8748388dbb34ef2d36",
+          "md5": "4c17aa4de24cd2d6888e093d6adeeb27"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ble-multiplex-uuid.aar",
+          "url": "ble-multiplex-uuid-android-0.24.0.aar",
+          "size": 9954,
+          "sha512": "17199af0287efc8d5c916ddc2e394040b1585bcc24d25259aaa389853d51c05baf2c33eb72953b8673f6e35617af683fc659809bd2e70cc06c35cd1c32964b62",
+          "sha256": "9e1fb85436acbe4418c57330658660db84229466843d8dfa858014661840ec18",
+          "sha1": "e0d3801b11e95d909ed9ae8748388dbb34ef2d36",
+          "md5": "4c17aa4de24cd2d6888e093d6adeeb27"
+        }
+      ]
+    },
+    {
+      "name": "androidSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "ble-multiplex-uuid-android-0.24.0-sources.jar",
+          "url": "ble-multiplex-uuid-android-0.24.0-sources.jar",
+          "size": 5312,
+          "sha512": "657be5bad06d8b0433e69300e69ff27001dcd011413018b2a35a4a57d114496c4377b9772497451e2b32c63069661ff1adb86e10727307f20b58b66ee225d45f",
+          "sha256": "3f65ad2ede237cd17358aa2e1dc55099d37b11aa73b94b6d14b5d3268dff2bc7",
+          "sha1": "61a3639d586529d2aef3c1242aa474d154d1f33c",
+          "md5": "955ae6eda77fd23bdf3ed218e95728e9"
+        }
+      ]
+    }
+  ]
+}
