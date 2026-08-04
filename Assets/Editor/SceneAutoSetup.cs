@@ -14,7 +14,7 @@ public static class SceneAutoSetup
     private const string GameScenePath = "Assets/Scenes/Game.unity";
     private const string ResultsScenePath = "Assets/Scenes/Results.unity";
     private const string GameConfigPath = "Assets/Resources/GameConfig.asset";
-    private const string UiFontPath = "Assets/Imported/Kenney/UI/Fonts/Kenney Future.ttf";
+    private const string UiFontPath = "Assets/Art/Generated/DigitalDojo/Fonts/Bahnschrift.ttf";
     private const string ButtonSpritePath = "Assets/Imported/Kenney/UI/Sprites/button_blue.png";
     private const string PanelSpritePath = "Assets/Imported/Kenney/UI/Sprites/panel_grey.png";
     private const string StarSpritePath = "Assets/Imported/Kenney/UI/Sprites/star_yellow.png";
@@ -37,6 +37,7 @@ public static class SceneAutoSetup
     private const string NeonWallGatePrefabPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_SciFiWallGate_BlueRed.prefab";
     private const string NeonHitLinePrefabPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_HitLine_MagentaBeam.prefab";
 
+    [MenuItem("BoxReha/Create All Scenes")]
     public static void CreateAllScenes()
     {
         EnsureFolders();
@@ -46,13 +47,14 @@ public static class SceneAutoSetup
         GameConfig config = EnsureGameConfig();
         GameObject targetPrefab = EnsureTargetPrefab();
         CreateBootScene();
-        CreateMainMenuScene();
+        DigitalDojoSceneGenerator.BuildDigitalDojoMenuScene();
         CreateGameScene(config, targetPrefab);
         CreateResultsScene();
         UpdateBuildSettings();
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+        EditorSceneManager.OpenScene(MainMenuScenePath);
         Debug.Log("Scene auto-setup completed.");
     }
 
@@ -343,10 +345,6 @@ public static class SceneAutoSetup
         Transform spawnCenter = CreateChild(spawnRoot.transform, "SpawnPoint_Center", new Vector3(0f, 0f, 0f));
         Transform spawnRight = CreateChild(spawnRoot.transform, "SpawnPoint_Right", new Vector3(3f, 0f, 0f));
 
-        CreateNeonCombatArena();
-        CreateSciFiBackdrop();
-        CreatePrototypeFloor("ArenaFloor", new Vector3(0f, -0.42f, 13f), new Vector3(4.6f, 0.16f, 9.6f), new Color(0.13f, 0.21f, 0.31f, 1f));
-        CreateSciFiFloor("ArenaFloorDeck", new Vector3(0f, -0.55f, 13f), new Vector3(6.2f, 0.4f, 11.5f), new Color(0.14f, 0.22f, 0.30f, 1f));
         CreateArenaLighting();
 
         Renderer leftLane = CreateLane("Guide_Left", new Vector3(-3f, -0.34f, 14f), new Vector3(0.13f, 0.055f, 18f), new Color(0.10f, 0.58f, 0.95f, 1f));
@@ -359,11 +357,12 @@ public static class SceneAutoSetup
 
         Canvas hudCanvas = CreateCanvas("HUDCanvas");
         HUDController hudController = hudCanvas.gameObject.AddComponent<HUDController>();
+        hudCanvas.gameObject.AddComponent<DigitalDojoHudSkin>();
 
-        Text scoreText = CreateHudText(hudCanvas.transform, "ScoreText", "Score: 0", 24, new Vector2(120f, -30f), new Vector2(220f, 40f), TextAnchor.MiddleLeft);
+        Text scoreText = CreateHudText(hudCanvas.transform, "ScoreText", "0", 24, new Vector2(120f, -30f), new Vector2(220f, 40f), TextAnchor.MiddleLeft);
         Text comboText = CreateHudText(hudCanvas.transform, "ComboText", string.Empty, 28, new Vector2(0f, -30f), new Vector2(240f, 40f), TextAnchor.MiddleCenter);
         Text timerText = CreateHudText(hudCanvas.transform, "TimerText", "01:00", 32, new Vector2(-120f, -30f), new Vector2(220f, 40f), TextAnchor.MiddleRight, rightAnchor: true);
-        Text accuracyText = CreateHudText(hudCanvas.transform, "AccuracyText", "Accuracy: 0%", 20, new Vector2(120f, -65f), new Vector2(220f, 30f), TextAnchor.MiddleLeft);
+        Text accuracyText = CreateHudText(hudCanvas.transform, "AccuracyText", "0%", 20, new Vector2(120f, -65f), new Vector2(220f, 30f), TextAnchor.MiddleLeft);
         Text debugText = CreateHudText(hudCanvas.transform, "DebugText", string.Empty, 16, new Vector2(120f, -110f), new Vector2(260f, 70f), TextAnchor.UpperLeft);
         Text inputStateText = CreateHudText(hudCanvas.transform, "InputStateText", string.Empty, 16, new Vector2(120f, -180f), new Vector2(260f, 40f), TextAnchor.UpperLeft);
         Text feedbackText = CreateHudText(hudCanvas.transform, "FeedbackText", string.Empty, 28, new Vector2(0f, -90f), new Vector2(520f, 40f), TextAnchor.MiddleCenter);
@@ -772,33 +771,19 @@ public static class SceneAutoSetup
         float low = config != null ? config.GetVerticalOffset(VerticalPosition.Low) : 0.45f;
         float mid = config != null ? config.GetVerticalOffset(VerticalPosition.Mid) : 1.55f;
         float high = config != null ? config.GetVerticalOffset(VerticalPosition.High) : 2.6f;
-        Color heavyColor = new Color(1f, 0.38f, 0.12f, 1f);
+        Color heavyColor = new Color(1f, 0.24f, 0.16f, 1f);
+        Color redGuide = new Color(1f, 0.18f, 0.14f, 1f);
+        Color blueGuide = new Color(0.18f, 0.62f, 1f, 1f);
+        Color warmGuide = new Color(1f, 0.70f, 0.34f, 1f);
 
-        CreatePadFrame("PunchHitLine", new Vector3(0f, high, 5f), new Vector3(7.6f, 0.055f, 0.08f), GameVisualPalette.PunchColor);
-        CreatePadFrame("KickHitLine", new Vector3(0f, low, 5f), new Vector3(7.6f, 0.055f, 0.08f), GameVisualPalette.KickColor);
-        CreatePadFrame("LeftLaneGuide", new Vector3(-3f, mid, 5f), new Vector3(0.055f, 2.75f, 0.08f), new Color(0.18f, 0.72f, 1f, 1f));
-        CreatePadFrame("RightLaneGuide", new Vector3(3f, mid, 5f), new Vector3(0.055f, 2.75f, 0.08f), new Color(0.18f, 0.72f, 1f, 1f));
-        CreatePadFrame("HeavyGateTop", new Vector3(0f, high + 0.72f, 5f), new Vector3(2.35f, 0.08f, 0.10f), heavyColor);
-        CreatePadFrame("HeavyGateBottom", new Vector3(0f, mid - 0.32f, 5f), new Vector3(2.35f, 0.08f, 0.10f), heavyColor);
-        CreatePadFrame("HeavyGateLeft", new Vector3(-1.18f, mid + 0.2f, 5f), new Vector3(0.08f, 1.7f, 0.10f), heavyColor);
-        CreatePadFrame("HeavyGateRight", new Vector3(1.18f, mid + 0.2f, 5f), new Vector3(0.08f, 1.7f, 0.10f), heavyColor);
-
-        CreateWorldLabel("PunchHitLabel", "ALPHA PUNCH", new Vector3(-4.65f, high, 5.05f), GameVisualPalette.PunchColor);
-        CreateWorldLabel("KickHitLabel", "DELTA KICK", new Vector3(-4.65f, low, 5.05f), GameVisualPalette.KickColor);
-        CreateWorldLabel("HeavyGateLabel", "BREAK ZONE", new Vector3(2.15f, mid + 0.75f, 5.05f), heavyColor);
-    }
-
-    private static void CreateWorldLabel(string name, string text, Vector3 position, Color color)
-    {
-        GameObject labelObject = new GameObject(name);
-        labelObject.transform.position = position;
-        TextMesh mesh = labelObject.AddComponent<TextMesh>();
-        mesh.text = text;
-        mesh.anchor = TextAnchor.MiddleRight;
-        mesh.alignment = TextAlignment.Right;
-        mesh.characterSize = 0.14f;
-        mesh.fontSize = 42;
-        mesh.color = color;
+        CreatePadFrame("PunchHitLine", new Vector3(0f, high, 5f), new Vector3(6.65f, 0.038f, 0.055f), redGuide);
+        CreatePadFrame("KickHitLine", new Vector3(0f, low, 5f), new Vector3(6.65f, 0.038f, 0.055f), blueGuide);
+        CreatePadFrame("LeftLaneGuide", new Vector3(-3f, mid, 5f), new Vector3(0.035f, 2.35f, 0.055f), redGuide);
+        CreatePadFrame("RightLaneGuide", new Vector3(3f, mid, 5f), new Vector3(0.035f, 2.35f, 0.055f), blueGuide);
+        CreatePadFrame("HeavyGateTop", new Vector3(0f, high + 0.62f, 5f), new Vector3(1.95f, 0.055f, 0.08f), heavyColor);
+        CreatePadFrame("HeavyGateBottom", new Vector3(0f, mid - 0.24f, 5f), new Vector3(1.95f, 0.055f, 0.08f), warmGuide);
+        CreatePadFrame("HeavyGateLeft", new Vector3(-1.03f, mid + 0.18f, 5f), new Vector3(0.055f, 1.50f, 0.08f), heavyColor);
+        CreatePadFrame("HeavyGateRight", new Vector3(1.03f, mid + 0.18f, 5f), new Vector3(0.055f, 1.50f, 0.08f), heavyColor);
     }
 
     private static void CreatePadFrame(string name, Vector3 position, Vector3 scale, Color color)
@@ -821,12 +806,12 @@ public static class SceneAutoSetup
             material.color = color;
             material.SetFloat("_Glossiness", 0.78f);
             material.EnableKeyword("_EMISSION");
-            material.SetColor("_EmissionColor", color * 1.8f);
+            material.SetColor("_EmissionColor", color * 1.25f);
             renderer.sharedMaterial = material;
         }
 
         ArenaPulseAnimator pulse = frame.AddComponent<ArenaPulseAnimator>();
-        pulse.Configure(color, 1.1f, 2.4f, 2.2f);
+        pulse.Configure(color, 0.85f, 1.45f, 1.65f);
     }
 
     private static GameObject CreatePrototypeObject(string assetPath, string name, Vector3 position, Quaternion rotation, Vector3 scale)

@@ -20,10 +20,13 @@ public static class NeonCombatAssetGenerator
         Material neonYellow = CreateMaterial("M_NeonYellowCore", new Color(1f, 0.7f, 0.08f, 1f), new Color(1f, 0.55f, 0.04f, 1f) * 3.8f, 0.1f, 0.9f);
         Material whiteGlow = CreateMaterial("M_WhiteIconGlow", Color.white, Color.white * 2.2f, 0f, 0.8f);
         Material glassPanel = CreateMaterial("M_HologlassPanel", new Color(0.02f, 0.08f, 0.12f, 0.62f), new Color(0.02f, 0.35f, 0.55f, 1f) * 1.5f, 0f, 0.65f);
+        Material warmWhitePad = CreateMaterial("M_WarmWhitePad", new Color(0.78f, 0.72f, 0.64f, 1f), Color.black, 0.02f, 0.62f);
+        Material deepRedPad = CreateMaterial("M_DeepRedPad", new Color(0.62f, 0.08f, 0.055f, 1f), new Color(0.95f, 0.08f, 0.04f, 1f) * 1.2f, 0.02f, 0.78f);
+        Material steelTrim = CreateMaterial("M_SoftSteelTrim", new Color(0.62f, 0.60f, 0.55f, 1f), Color.black, 0.35f, 0.72f);
 
-        CreatePunchTargetPrefab(darkMetal, rubberBlack, neonRed, whiteGlow);
-        CreateKickPadPrefab(darkMetal, rubberBlack, neonBlue, whiteGlow);
-        CreateHeavyCorePrefab(darkMetal, rubberBlack, neonYellow, whiteGlow);
+        CreatePunchTargetPrefab(darkMetal, rubberBlack, neonRed, deepRedPad, steelTrim, whiteGlow);
+        CreateKickPadPrefab(darkMetal, rubberBlack, neonBlue, steelTrim, whiteGlow);
+        CreateHeavyCorePrefab(darkMetal, rubberBlack, neonRed, deepRedPad, warmWhitePad, steelTrim, whiteGlow);
         CreateRunwaySegmentPrefab(darkMetal, neonBlue, neonRed, neonYellow);
         CreateWallGatePrefab(darkMetal, neonBlue, neonRed);
         CreateHitLinePrefab(neonMagenta);
@@ -74,15 +77,23 @@ public static class NeonCombatAssetGenerator
     {
         string path = MaterialFolder + "/" + name + ".mat";
         Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+        Shader shader = GetCompatibleLitShader();
         if (material == null)
         {
-            material = new Material(Shader.Find("Standard"));
+            material = new Material(shader);
             AssetDatabase.CreateAsset(material, path);
+        }
+        else if (material.shader == null || material.shader.name == "Standard")
+        {
+            material.shader = shader;
         }
 
         material.color = baseColor;
-        material.SetFloat("_Metallic", metallic);
-        material.SetFloat("_Glossiness", smoothness);
+        SetColorIfPresent(material, "_BaseColor", baseColor);
+        SetColorIfPresent(material, "_Color", baseColor);
+        SetFloatIfPresent(material, "_Metallic", metallic);
+        SetFloatIfPresent(material, "_Glossiness", smoothness);
+        SetFloatIfPresent(material, "_Smoothness", smoothness);
         if (emissionColor.maxColorComponent > 0f)
         {
             material.EnableKeyword("_EMISSION");
@@ -98,66 +109,99 @@ public static class NeonCombatAssetGenerator
         return material;
     }
 
-    private static void CreatePunchTargetPrefab(Material darkMetal, Material rubberBlack, Material neonRed, Material whiteGlow)
+    private static Shader GetCompatibleLitShader()
+    {
+        return Shader.Find("Universal Render Pipeline/Lit")
+               ?? Shader.Find("Standard")
+               ?? Shader.Find("Sprites/Default");
+    }
+
+    private static void SetColorIfPresent(Material material, string propertyName, Color color)
+    {
+        if (material.HasProperty(propertyName))
+        {
+            material.SetColor(propertyName, color);
+        }
+    }
+
+    private static void SetFloatIfPresent(Material material, string propertyName, float value)
+    {
+        if (material.HasProperty(propertyName))
+        {
+            material.SetFloat(propertyName, value);
+        }
+    }
+
+    private static void CreatePunchTargetPrefab(Material darkMetal, Material rubberBlack, Material neonRed, Material deepRedPad, Material steelTrim, Material whiteGlow)
     {
         GameObject root = new GameObject("PF_PunchTarget_NeonRed");
-        AddDisc(root.transform, "BackPlate", 0.92f, 0.18f, new Vector3(0f, 0f, 0.08f), darkMetal);
-        AddDisc(root.transform, "OuterRedRing", 0.82f, 0.08f, Vector3.zero, neonRed);
-        AddDisc(root.transform, "InnerPad", 0.58f, 0.09f, new Vector3(0f, 0f, -0.05f), rubberBlack);
-        AddDisc(root.transform, "CoreGlow", 0.34f, 0.05f, new Vector3(0f, 0f, -0.11f), neonRed);
+        AddDisc(root.transform, "ShadowBackPlate", 1.02f, 0.18f, new Vector3(0f, 0f, 0.14f), darkMetal);
+        AddDisc(root.transform, "SteelOuterBezel", 0.93f, 0.10f, new Vector3(0f, 0f, 0.04f), steelTrim);
+        AddDisc(root.transform, "BlackInset", 0.82f, 0.12f, new Vector3(0f, 0f, -0.02f), rubberBlack);
+        AddDisc(root.transform, "NeonOuterRing", 0.72f, 0.045f, new Vector3(0f, 0f, -0.11f), neonRed);
+        AddDisc(root.transform, "DeepRedStrikePad", 0.58f, 0.08f, new Vector3(0f, 0f, -0.16f), deepRedPad);
+        AddDisc(root.transform, "InnerBlackCore", 0.38f, 0.055f, new Vector3(0f, 0f, -0.23f), rubberBlack);
 
-        AddBox(root.transform, "FistPalm", new Vector3(0f, -0.03f, -0.18f), new Vector3(0.36f, 0.24f, 0.06f), whiteGlow);
+        AddBox(root.transform, "FistPalm", new Vector3(0f, -0.04f, -0.30f), new Vector3(0.40f, 0.25f, 0.055f), whiteGlow);
         for (int i = 0; i < 4; i++)
         {
-            AddBox(root.transform, "FistKnuckle_" + i, new Vector3(-0.18f + i * 0.12f, 0.13f, -0.19f), new Vector3(0.09f, 0.11f, 0.06f), whiteGlow);
+            AddBox(root.transform, "FistKnuckle_" + i, new Vector3(-0.19f + i * 0.125f, 0.13f, -0.31f), new Vector3(0.095f, 0.115f, 0.055f), whiteGlow);
         }
-        AddBox(root.transform, "FistThumb", new Vector3(0.25f, -0.04f, -0.19f), new Vector3(0.08f, 0.22f, 0.06f), whiteGlow, Quaternion.Euler(0f, 0f, -28f));
+        AddBox(root.transform, "FistThumb", new Vector3(0.27f, -0.045f, -0.31f), new Vector3(0.085f, 0.22f, 0.055f), whiteGlow, Quaternion.Euler(0f, 0f, -28f));
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 12; i++)
         {
-            float angle = i * 45f;
-            Vector3 pos = Quaternion.Euler(0f, 0f, angle) * new Vector3(0f, 0.98f, -0.02f);
-            AddBox(root.transform, "RedTick_" + i, pos, new Vector3(0.045f, 0.20f, 0.045f), neonRed, Quaternion.Euler(0f, 0f, angle));
+            float angle = i * 30f;
+            Vector3 pos = Quaternion.Euler(0f, 0f, angle) * new Vector3(0f, 0.98f, -0.06f);
+            AddBox(root.transform, "OuterArmorTick_" + i, pos, new Vector3(0.055f, i % 3 == 0 ? 0.22f : 0.14f, 0.05f), i % 2 == 0 ? neonRed : darkMetal, Quaternion.Euler(0f, 0f, angle));
         }
 
         SavePrefab(root, "PF_PunchTarget_NeonRed");
     }
 
-    private static void CreateKickPadPrefab(Material darkMetal, Material rubberBlack, Material neonBlue, Material whiteGlow)
+    private static void CreateKickPadPrefab(Material darkMetal, Material rubberBlack, Material neonBlue, Material steelTrim, Material whiteGlow)
     {
         GameObject root = new GameObject("PF_KickPad_NeonBlue");
-        AddDisc(root.transform, "MetalBase", 0.78f, 0.16f, new Vector3(0f, 0f, 0.08f), darkMetal, new Vector3(1.35f, 1f, 0.7f));
-        AddDisc(root.transform, "BlueRim", 0.69f, 0.08f, Vector3.zero, neonBlue, new Vector3(1.32f, 1f, 0.64f));
-        AddBox(root.transform, "RubberFootPad", new Vector3(0f, -0.05f, -0.08f), new Vector3(0.95f, 0.40f, 0.08f), rubberBlack);
-        AddBox(root.transform, "SoleGlow", new Vector3(0f, -0.30f, -0.14f), new Vector3(1.05f, 0.055f, 0.06f), neonBlue);
+        AddRoundedPad(root.transform, "OuterSteelFrame", new Vector3(0f, 0f, 0.08f), 0.88f, 1.28f, 0.16f, steelTrim);
+        AddRoundedPad(root.transform, "BlueNeonFrame", new Vector3(0f, 0f, -0.03f), 0.74f, 1.12f, 0.08f, neonBlue);
+        AddRoundedPad(root.transform, "BlackRubberKickPad", new Vector3(0f, 0f, -0.12f), 0.58f, 0.92f, 0.10f, rubberBlack);
+        AddBox(root.transform, "BottomGlowLip", new Vector3(0f, -0.61f, -0.18f), new Vector3(0.70f, 0.045f, 0.055f), neonBlue);
+        AddBox(root.transform, "TopGlossLine", new Vector3(0f, 0.51f, -0.18f), new Vector3(0.52f, 0.035f, 0.045f), whiteGlow);
 
-        AddBox(root.transform, "FootSole", new Vector3(0f, -0.02f, -0.18f), new Vector3(0.33f, 0.48f, 0.06f), whiteGlow);
+        AddBox(root.transform, "FootSole", new Vector3(0f, -0.03f, -0.23f), new Vector3(0.30f, 0.48f, 0.05f), whiteGlow);
         for (int i = 0; i < 5; i++)
         {
-            AddDisc(root.transform, "FootToe_" + i, 0.052f, 0.025f, new Vector3(-0.18f + i * 0.09f, 0.31f, -0.20f), whiteGlow);
+            AddDisc(root.transform, "FootToe_" + i, 0.048f, 0.022f, new Vector3(-0.17f + i * 0.085f, 0.30f, -0.25f), whiteGlow);
         }
 
         SavePrefab(root, "PF_KickPad_NeonBlue");
     }
 
-    private static void CreateHeavyCorePrefab(Material darkMetal, Material rubberBlack, Material neonYellow, Material whiteGlow)
+    private static void CreateHeavyCorePrefab(Material darkMetal, Material rubberBlack, Material neonRed, Material deepRedPad, Material warmWhitePad, Material steelTrim, Material whiteGlow)
     {
         GameObject root = new GameObject("PF_HeavyCore_GoldBlocker");
-        AddDisc(root.transform, "ArmorBack", 1.24f, 0.24f, new Vector3(0f, 0f, 0.12f), darkMetal);
-        AddDisc(root.transform, "GoldOuterRing", 1.06f, 0.12f, Vector3.zero, neonYellow);
-        AddDisc(root.transform, "BlackCore", 0.72f, 0.12f, new Vector3(0f, 0f, -0.07f), rubberBlack);
-        AddDisc(root.transform, "GoldInnerRing", 0.50f, 0.08f, new Vector3(0f, 0f, -0.14f), neonYellow);
-        AddDisc(root.transform, "ShieldCore", 0.28f, 0.05f, new Vector3(0f, 0f, -0.20f), whiteGlow);
+        AddDisc(root.transform, "HeavyBackPlate", 1.36f, 0.26f, new Vector3(0f, 0f, 0.14f), darkMetal);
+        AddDisc(root.transform, "OuterLeatherRing", 1.22f, 0.12f, new Vector3(0f, 0f, 0.02f), rubberBlack);
+        AddDisc(root.transform, "WarmWhitePaddedRing", 0.98f, 0.10f, new Vector3(0f, 0f, -0.08f), warmWhitePad);
+        AddDisc(root.transform, "RedPaddedRing", 0.72f, 0.10f, new Vector3(0f, 0f, -0.16f), deepRedPad);
+        AddDisc(root.transform, "BlackStrikeCore", 0.48f, 0.10f, new Vector3(0f, 0f, -0.24f), rubberBlack);
 
-        for (int i = 0; i < 12; i++)
+        AddBox(root.transform, "HeavyFistPalm", new Vector3(0f, -0.035f, -0.34f), new Vector3(0.42f, 0.26f, 0.055f), whiteGlow);
+        for (int i = 0; i < 4; i++)
         {
-            float angle = i * 30f;
-            Vector3 pos = Quaternion.Euler(0f, 0f, angle) * new Vector3(0f, 1.18f, -0.02f);
-            AddBox(root.transform, "ArmorTooth_" + i, pos, new Vector3(0.16f, 0.34f, 0.12f), i % 2 == 0 ? darkMetal : neonYellow, Quaternion.Euler(0f, 0f, angle));
+            AddBox(root.transform, "HeavyFistKnuckle_" + i, new Vector3(-0.20f + i * 0.13f, 0.14f, -0.35f), new Vector3(0.10f, 0.12f, 0.055f), whiteGlow);
+        }
+        AddBox(root.transform, "HeavyFistThumb", new Vector3(0.29f, -0.035f, -0.35f), new Vector3(0.09f, 0.23f, 0.055f), whiteGlow, Quaternion.Euler(0f, 0f, -28f));
+
+        for (int i = 0; i < 16; i++)
+        {
+            float angle = i * 22.5f;
+            Vector3 pos = Quaternion.Euler(0f, 0f, angle) * new Vector3(0f, 1.30f, -0.04f);
+            AddBox(root.transform, "HeavyArmorSegment_" + i, pos, new Vector3(0.10f, i % 2 == 0 ? 0.28f : 0.19f, 0.11f), i % 4 == 0 ? neonRed : steelTrim, Quaternion.Euler(0f, 0f, angle));
         }
 
         AddBox(root.transform, "HealthBarBack", new Vector3(0f, 1.62f, -0.03f), new Vector3(1.7f, 0.08f, 0.08f), rubberBlack);
-        AddBox(root.transform, "HealthBarGold", new Vector3(0f, 1.62f, -0.09f), new Vector3(1.55f, 0.045f, 0.045f), neonYellow);
+        AddBox(root.transform, "HealthBarRed", new Vector3(0f, 1.62f, -0.09f), new Vector3(1.55f, 0.045f, 0.045f), neonRed);
         SavePrefab(root, "PF_HeavyCore_GoldBlocker");
     }
 
@@ -247,6 +291,18 @@ public static class NeonCombatAssetGenerator
         box.transform.localScale = localScale;
         AssignMaterialAndRemoveCollider(box, material);
         return box;
+    }
+
+    private static void AddRoundedPad(Transform parent, string name, Vector3 localPosition, float width, float height, float depth, Material material)
+    {
+        Transform root = new GameObject(name).transform;
+        root.SetParent(parent, false);
+        root.localPosition = localPosition;
+        root.localRotation = Quaternion.identity;
+
+        AddBox(root, "Center", Vector3.zero, new Vector3(width, height - width, depth), material);
+        AddDisc(root, "TopCap", width * 0.5f, depth, new Vector3(0f, (height - width) * 0.5f, 0f), material, new Vector3(1f, 1f, 1f));
+        AddDisc(root, "BottomCap", width * 0.5f, depth, new Vector3(0f, -(height - width) * 0.5f, 0f), material, new Vector3(1f, 1f, 1f));
     }
 
     private static void AssignMaterialAndRemoveCollider(GameObject obj, Material material)

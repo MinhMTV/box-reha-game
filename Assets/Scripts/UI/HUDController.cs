@@ -87,13 +87,13 @@ public class HUDController : MonoBehaviour
     private void UpdateScore(int score)
     {
         if (scoreText != null)
-            scoreText.text = $"Score: {score}";
+            scoreText.text = score.ToString("N0");
     }
 
     private void UpdateCombo(int combo)
     {
         if (comboText != null)
-            comboText.text = combo > 0 ? $"Combo: {combo}x" : "";
+            comboText.text = combo > 0 ? combo.ToString() : "";
     }
 
     private void UpdateTimer(float time)
@@ -134,7 +134,7 @@ public class HUDController : MonoBehaviour
         if (accuracyText != null)
         {
             float accuracy = totalHits > 0 ? (float)goodOrBetterHits / totalHits * 100f : 0f;
-            accuracyText.text = $"Accuracy: {accuracy:F0}%";
+            accuracyText.text = $"{accuracy:F0}%";
         }
     }
 
