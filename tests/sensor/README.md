@@ -21,8 +21,8 @@ Passing here is not evidence that that Unity command has run.
 **NOT VERIFIED WITH PHYSICAL HARDWARE.**
 
 The host runner also links production GameplayRules, GameSessionStats, PlayerProfile,
-LevelDefinition and ResearchSessionLog. It runs 25 check groups: 16 shared sensor groups,
-3 host input/buffer/routing groups, 5 gameplay rule/statistics groups and 1 logger group.
+LevelDefinition, ResearchSessionLog and SessionHistoryStore. It runs 26 check groups: 16 shared sensor groups,
+3 host input/buffer/routing groups, 5 gameplay rule/statistics groups, 1 logger group and 1 history preservation group.
 The logger check writes an explicitly synthetic JSONL recording to
 `artifacts/validation/synthetic/production-logger.synthetic.jsonl`. TargetObject and Unity
 environment values in that check are typed fixtures, not an emulated game scene. All records

@@ -91,11 +91,19 @@
     },
     {
       "path": "tests/sensor/Program.cs",
-      "sha256": "326181b17880ebef70e4eebc208bf21cabbaa0f730fe32ca1f318ba018b62bb4"
+      "sha256": "4675ab09ffd3afdaa9a45474878e2fb5097c8742dae93b7327d33ac52fa08236"
     },
     {
       "path": "tests/sensor/UnityHostStubs.cs",
-      "sha256": "ef46893e67dc71114a596287e71596c05b72bced4c8104e8c2d5d9c272d4234e"
+      "sha256": "9e12752055154303753248d9173744473c93f7e07b8ada728373b30f629c993b"
+    },
+    {
+      "path": "Assets/Scripts/Data/SessionHistoryStore.cs",
+      "sha256": "1d1541ec4be4806bb80b6caffc0561904bf72936e72eef78c4963c21ff8f3eaa"
+    },
+    {
+      "path": "tests/sensor/HistoryHostCheck.cs",
+      "sha256": "399307537a498db71b1e9742fa9440479ba6c7013637da68b4c53b8ae16b4e7c"
     }
   ]
 }

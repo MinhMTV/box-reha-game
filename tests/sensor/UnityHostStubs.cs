@@ -79,8 +79,8 @@ namespace UnityEngine
     {
         public static T FromJson<T>(string json) => System.Text.Json.JsonSerializer.Deserialize<T>(json,
             new System.Text.Json.JsonSerializerOptions { IncludeFields = true });
-        public static string ToJson(object value) => System.Text.Json.JsonSerializer.Serialize(value,
-            value.GetType(), new System.Text.Json.JsonSerializerOptions { IncludeFields = true, IgnoreReadOnlyProperties = true });
+        public static string ToJson(object value, bool prettyPrint = false) => System.Text.Json.JsonSerializer.Serialize(value,
+            value.GetType(), new System.Text.Json.JsonSerializerOptions { IncludeFields = true, IgnoreReadOnlyProperties = true, WriteIndented = prettyPrint });
     }
     public class TextAsset { public string text; }
     public static class Resources { public static T Load<T>(string path) where T : class => null; }

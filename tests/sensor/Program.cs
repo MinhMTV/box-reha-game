@@ -14,6 +14,7 @@ internal static class Program
             Console.WriteLine("HOST_ADDITIONAL_PASS 3 checks (provider key transitions, concurrent buffer, explicit routing).");
             GameplayHostChecks.Run();
             LoggerHostCheck.Run();
+            HistoryHostCheck.Run();
             return 0;
         }
         catch (Exception ex)

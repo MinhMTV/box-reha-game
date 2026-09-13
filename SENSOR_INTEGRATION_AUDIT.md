@@ -68,6 +68,8 @@ Current code: `Assets/Scripts/Sensors/SensorEventProcessor.cs` (queue/lifecycle/
 
 The contract preserves source UUID, device alias, connection epoch, side/family, provenance, clock/time, receipt time, native age, validity, quantity/unit and original SDK components. Unknown/invalid identities and stale samples fail closed. Raw acceleration detection is explicitly unvalidated and off by default. Default freshness is 0.5 s, connection heartbeat timeout 10 s, queue capacity 128/device, identity capacity 100,000/device/process. Serialized GameConfig controls action cooldown; these policies require qualification before a sensor study.
 
+The saved Game scene has sensor keyboard simulation disabled; opting into the sensor source does not implicitly enable keyboard events.
+
 Keyboard is one event per key-down through the same abstract action pipeline. Pause disables forwarding and clears pending input; repeated/disconnected/retired streams cannot produce ghost actions. Sensor data never receives demographic force normalization.
 
 ## Verification evidence
@@ -86,9 +88,10 @@ SENSOR_REGRESSION_PASS 16 deterministic checks; NOT VERIFIED WITH PHYSICAL HARDW
 HOST_ADDITIONAL_PASS 3 checks (provider key transitions, concurrent buffer, explicit routing).
 GAMEPLAY_HOST_PASS 5 production rule/statistics checks; not Unity runtime tests.
 LOGGER_HOST_PASS 1 production JSONL lifecycle/privacy check; SYNTHETIC / NOT EMPIRICAL DATA.
+HISTORY_HOST_PASS 1 production IO preservation/profile-filter check; SYNTHETIC / NOT EMPIRICAL DATA.
 ```
 
-Fixtures in the check source are **SYNTHETIC / NOT EMPIRICAL DATA**. Sixteen sensor groups cover queue consumption/overflow, simultaneous sides, independent cooldown, buffered timing, UUID/sequence replay, stale/future/native age, invalid values, family/unit/provenance mismatch, disconnect/reconnect/old state, pause, raw opt-in/edge detection, SDK mapping, keyboard identity, neutral uncalibrated action, HR validation and heartbeat expiry. Three host groups exercise keyboard key transitions, producer/consumer buffer accounting and explicit routing without silent fallback. Five host gameplay groups cover mapping, timing boundaries/nonfinite windows, repeated same-side heavy rules, combo caps and statistics definitions/reset. A final group executes the actual production logger lifecycle and checks privacy and synthetic labelling (25 groups total).
+Fixtures in the check source are **SYNTHETIC / NOT EMPIRICAL DATA**. Sixteen sensor groups cover queue consumption/overflow, simultaneous sides, independent cooldown, buffered timing, UUID/sequence replay, stale/future/native age, invalid values, family/unit/provenance mismatch, disconnect/reconnect/old state, pause, raw opt-in/edge detection, SDK mapping, keyboard identity, neutral uncalibrated action, HR validation and heartbeat expiry. Three host groups exercise keyboard key transitions, producer/consumer buffer accounting and explicit routing without silent fallback. Five host gameplay groups cover mapping, timing boundaries/nonfinite windows, repeated same-side heavy rules, combo caps and statistics definitions/reset. A final group executes the actual production logger lifecycle and checks privacy and synthetic labelling (26 groups total including the additional history preservation group).
 
 Actual stdout: [sensor-host-checks.txt](artifacts/validation/sensor-host-checks.txt). The production logger emitted [production-logger.synthetic.jsonl](artifacts/validation/synthetic/production-logger.synthetic.jsonl) through typed host fixtures; the analysis pipeline replayed it successfully in [production-logger.replay.json](artifacts/validation/synthetic/production-logger.replay.json). These artifacts are explicitly synthetic, not a played session or participant evidence.
 
@@ -102,6 +105,7 @@ Only `SensorRegressionChecks.RunAll` is exposed as a Unity editor menu/executeMe
 | Unbounded/NaN gameplay half-window accepted | P1 | Review of GameplayRules.Timing during integration | Reported to gameplay owner, finite guard implemented and host boundary checks pass |
 | Legacy mixed-unit force aggregate API could be reused | P1 | Review of GameSessionStats.TrackForce during integration | Reported to gameplay owner; unused API/fields removed |
 | Router silently changed input source when a selected component was absent | P1 | Coordinator review of InputProviderRouter.SelectProvider | Explicit unavailable state and host routing/menu/pause checks added |
+| History Save accepted incomplete incoming identity and could replace unreadable data | P1 | Coordinator/gameplay/sensor cross-review of SessionHistoryStore | Gameplay owner guards both IDs and aborts on load error; production IO host test preserves existing bytes |
 | Unity scene/mobile/hardware tests absent | P0 for study | No executable Unity editor/device tests performed | External qualification remains open |
 | Native session/clock/dependency integration absent | P0 for sensor study | SDK and plugin code audit | Exact integration contract prepared; no fabricated implementation claim |
 

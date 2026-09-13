@@ -1946,7 +1946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deviceId: default_sensor
   gameConfig: {fileID: 11400000, guid: a44fd588752a53a4ca9fd9eccdeb57d7, type: 2}
-  enableKeyboardSimulation: 1
+  enableKeyboardSimulation: 0
   simulatedLane: 1
   simulatedVerticalPosition: 1
 --- !u!114 &942232630

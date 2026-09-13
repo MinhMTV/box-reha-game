@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "data_status": "SYNTHETIC / NOT EMPIRICAL DATA",
-  "session_id": "d324a6ff55c742b69be33e6c05d79b0b",
+  "session_id": "c499d35f35f243e2800a54d2c2fbf38a",
   "study_id": "SYNTHETIC_NOT_EMPIRICAL_DATA",
   "mode": "SYNTHETIC / NOT EMPIRICAL DATA",
   "build_revision": "unrecorded",
@@ -121,5 +121,5 @@
   ],
   "reconciliation": "PASS: recorded relationships, clocks, counts and score arithmetic; not full gameplay or sensor validation",
   "frequency_boundary": "Observed accepted events divided by active game time, including potential channel outages; not coverage-corrected physical action frequency",
-  "input_sha256": "d4fe4fe15016885fe880cbf60a0b90e126c5c6253d19cb6435e84d873f5c8107"
+  "input_sha256": "4403543ab53e2a953242ea86afc19eabc6c2f566ed33940969ebe3cc8272112d"
 }
