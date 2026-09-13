@@ -6,7 +6,11 @@ using UnityEngine;
 public static class SessionHistoryStore
 {
     [Serializable] private class History { public List<GameSessionStats> sessions; }
-    public static string PathName => Path.Combine(Application.persistentDataPath, "session-history-v1.json");
+    public static string PathName => Path.Combine(Application.persistentDataPath,
+#if UNITY_EDITOR
+        Environment.GetEnvironmentVariable("DOJO_VISUAL_QA") == "1" ? "synthetic-visual-qa-history.json" :
+#endif
+        "session-history-v1.json");
     public static string Error { get; private set; }
     public static List<GameSessionStats> Load(string studyId = null)
     {

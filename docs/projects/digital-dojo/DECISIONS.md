@@ -1,0 +1,8 @@
+# Decisions
+
+- 2026-09-14: Correct outdated installation premise. Unity 6000.6.0f1 exists at C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Unity.exe; Blender 5.2.1 LTS at D:/Program Files/Blender Foundation/Blender 5.2/blender.exe. Android module absent at initial inspection; installation started.
+- Keep Built-in rendering (GraphicsSettings has no custom pipeline) and uGUI. Installed VFX Graph does not establish an active render pipeline. No gratuitous URP/UI framework migration.
+- Apply Linear Method locally: SPEC, milestone, hardened issues, prework, execution, review and fixes. Toolkit cloned into ignored .agent-tooling/codex-linear-method-toolkit; no account/tool dependency. User explicitly permits routine autonomous decisions and makes worktrees optional. Use agent root, one new branch in the existing checkout so the installed project path stays authoritative; preserve four pre-existing tracked Gradle cache changes. Ordinary Git commits replace Graphite branches and local documents replace Linear. No remote publication.
+- Existing Coplay Unity MCP package detected. No second MCP installed. No Unity Editor process was running initially; CLI status reported no Pipeline instance. Use actual Editor batch methods to import, generate assets and validate; no manual scene YAML manipulation.
+- Existing SDK failures require revalidation. A dependency substitution or bytecode workaround must not be called a supported vendor release. Keep original SDK repository untouched and distinguish build diagnostics from physical qualification.
+- Profile body data required by the native SDK is justified setup data, not a game force calibration. Optional HR must remain visibly unavailable until a real provider is integrated.

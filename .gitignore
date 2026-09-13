@@ -23,10 +23,12 @@ Assets/Resources/ResearchBuildInfo.txt.meta
 *.VC.db
 *.pidb.meta
 *.pdb.meta
-*.meta
-!*.cs.meta
 
 # OS
+.agent-tooling/
+*.blend1
+artifacts/validation/*-module-install.log
+artifacts/validation/unity-6.6-baseline-import.log
 .gradle/
 .kotlin/
 tools/android/local.properties

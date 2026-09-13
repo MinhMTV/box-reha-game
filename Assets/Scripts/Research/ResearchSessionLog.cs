@@ -46,7 +46,11 @@ public static class ResearchSessionLog
         startTime = Time.time;
         try
         {
-            string directory = Path.Combine(Application.persistentDataPath, "research");
+            string directory = Path.Combine(Application.persistentDataPath,
+#if UNITY_EDITOR
+                Environment.GetEnvironmentVariable("DOJO_VISUAL_QA") == "1" ? "synthetic-visual-qa" :
+#endif
+                "research");
             Directory.CreateDirectory(directory);
             CurrentPath = Path.Combine(directory, sessionId + ".jsonl");
             writer = new StreamWriter(CurrentPath, false, new UTF8Encoding(false));
