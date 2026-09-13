@@ -1,0 +1,101 @@
+{
+  "evidence_kind": "HOST LOGIC TESTS WITH UNITY API STUBS",
+  "physical_hardware": "NOT VERIFIED WITH PHYSICAL HARDWARE",
+  "unity_compile": "NOT PERFORMED",
+  "sdk": "dotnet 10.0.112",
+  "source_tree_note": "Sensor commit 548ac7d plus concurrently reviewed gameplay/logger working-tree source; hashes identify exact source bytes.",
+  "source_files": [
+    {
+      "path": "Assets/Editor/SensorRegressionChecks.cs",
+      "sha256": "74bbe6c0edf0011f0e77a8a95495c4f6e2ef68af341d9250077cbbff2db70d72"
+    },
+    {
+      "path": "Assets/Scripts/Data/Enums.cs",
+      "sha256": "f18a39469ada8517f92211d4f6031578ef25632708671e83d40fa0fb5b37348a"
+    },
+    {
+      "path": "Assets/Scripts/Data/GameSessionStats.cs",
+      "sha256": "6e3ccbd3dd2b5f089d3d54e99983efd9b297f746bb0c27d9609ebf63b4132cef"
+    },
+    {
+      "path": "Assets/Scripts/Data/PlayerActionEvent.cs",
+      "sha256": "ba3fbd42b40d28921c95e31a25a533f2770634fe1e21d0115a2d86146d0d621d"
+    },
+    {
+      "path": "Assets/Scripts/Data/PlayerProfile.cs",
+      "sha256": "96eb2c545295c9b4f42d962644474ee67c7884dc63eb5ab0720c249047bbc86d"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/GameplayRules.cs",
+      "sha256": "2027c4836076be18481a4a6fde31c56af147419e1778ce85d4e15a1b4a7e8930"
+    },
+    {
+      "path": "Assets/Scripts/Input/InputInterpreter.cs",
+      "sha256": "f1120b95350d50622a978779ac5c50ff285ef82a05f521459f097c61a4688c59"
+    },
+    {
+      "path": "Assets/Scripts/Input/InputProviderRouter.cs",
+      "sha256": "8363be6da78e5b40fb89f49a5d9dc20308fe1e1b7cd6154d270bc900cc081521"
+    },
+    {
+      "path": "Assets/Scripts/Input/IPlayerActionInputProvider.cs",
+      "sha256": "24769f468e87e65de630fb6b9b76ca5e120dd61025a8e68bc753b76f47fbdb71"
+    },
+    {
+      "path": "Assets/Scripts/Input/KeyboardActionFactory.cs",
+      "sha256": "ec04f89fa39c13fdaac0b466a3a3bb2f5c850bc70f9fb53a789876accd779d34"
+    },
+    {
+      "path": "Assets/Scripts/Input/MouseTouchInputProvider.cs",
+      "sha256": "c750db951b1a2e5ca464c6479eeed3ff02ae8252d8ddb2112d38ca0866affb96"
+    },
+    {
+      "path": "Assets/Scripts/Research/ResearchSessionLog.cs",
+      "sha256": "e2a56dfda28f923c367223b43a6e34e38a2f0ae662f56ea3e4a0b6c0958ccd9f"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/BleSensorInputProvider.cs",
+      "sha256": "fbe610359391c662cf52178c9740acf8a6b51638b446966fb0e508de542c488b"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/DynamicsSdkBridge.cs",
+      "sha256": "dcaddec7646f7e1e2318744775f6476d86920ff36b26cfb7e335fbc35711ac0c"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/HeartRateChannel.cs",
+      "sha256": "3accf0c382f9803323bdbbfc0d83bd615b9a9b2aa872949c4e0f7104df06a4fa"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/ISensorDataProvider.cs",
+      "sha256": "a3f981e41a5437bb3630ca0e0ccc1c868dc6884d8fd98979cd27b6b15e1e1bb4"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/SensorDataBuffer.cs",
+      "sha256": "cb4e7de4f8fe8eebeafb3bd1bac134963360c3735f4c60e02594b3d3a690e7db"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/SensorEventProcessor.cs",
+      "sha256": "2bbb3430c8b22aef1df8b8f0d3e856bc60482027931a7549fa0f69593b76eafe"
+    },
+    {
+      "path": "Assets/Scripts/Spawning/LevelDefinition.cs",
+      "sha256": "51c8c9b30fbb317f0e487774f4544696acdac79e9171c6115eb9ee44ca821e43"
+    },
+    {
+      "path": "tests/sensor/GameplayHostChecks.cs",
+      "sha256": "e2ab30cf2a5089fc9889395e58c002ee2fb2913a8e901a8c41d46d0b4a21f8e1"
+    },
+    {
+      "path": "tests/sensor/LoggerHostCheck.cs",
+      "sha256": "9b8b23f4e9167795d164261f2541dc2c66760e4c1b4bb3384f639a151090b7fa"
+    },
+    {
+      "path": "tests/sensor/Program.cs",
+      "sha256": "326181b17880ebef70e4eebc208bf21cabbaa0f730fe32ca1f318ba018b62bb4"
+    },
+    {
+      "path": "tests/sensor/UnityHostStubs.cs",
+      "sha256": "ef46893e67dc71114a596287e71596c05b72bced4c8104e8c2d5d9c272d4234e"
+    }
+  ]
+}

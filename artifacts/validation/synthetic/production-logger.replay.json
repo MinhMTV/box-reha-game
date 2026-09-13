@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "data_status": "SYNTHETIC / NOT EMPIRICAL DATA",
+  "session_id": "d324a6ff55c742b69be33e6c05d79b0b",
+  "study_id": "SYNTHETIC_NOT_EMPIRICAL_DATA",
+  "mode": "SYNTHETIC / NOT EMPIRICAL DATA",
+  "build_revision": "unrecorded",
+  "stop_reason": "synthetic_complete",
+  "provenance_counts": {
+    "keyboard": 1,
+    "sdk_mock": 1
+  },
+  "condition_mixed": true,
+  "active_seconds": 3.0,
+  "wall_seconds": 3,
+  "action_count": 2,
+  "observed_event_frequency_per_active_game_second": 0.6666666666666666,
+  "action_types": {
+    "Punch": 2
+  },
+  "action_sides": {
+    "Left": 1,
+    "Right": 1
+  },
+  "target_types": {
+    "Punch": 1
+  },
+  "target_lanes": {
+    "Left": 1
+  },
+  "spawned": 1,
+  "resolved": 1,
+  "aborted": 0,
+  "outcomes": {
+    "hit": 1
+  },
+  "hit_quality": {
+    "Perfect": 1
+  },
+  "good_or_better_accuracy": 1.0,
+  "completion_rate": 1.0,
+  "heavy_impact_count": 0,
+  "score": 100,
+  "max_combo": 1,
+  "hit_target_resolution_seconds": {
+    "n": 1,
+    "missing": 0,
+    "mean": 2.0,
+    "sd_sample": null,
+    "median": 2.0,
+    "q1": 2.0,
+    "q3": 2.0,
+    "iqr": 0.0,
+    "min": 2.0,
+    "max": 2.0,
+    "range": 0.0
+  },
+  "hit_timing_offset_seconds": {
+    "n": 1,
+    "missing": 0,
+    "mean": 0.0,
+    "sd_sample": null,
+    "median": 0.0,
+    "q1": 0.0,
+    "q3": 0.0,
+    "iqr": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "range": 0.0
+  },
+  "gameplay_power_by_provenance": {
+    "keyboard": {
+      "n": 1,
+      "missing": 0,
+      "mean": 1.0,
+      "sd_sample": null,
+      "median": 1.0,
+      "q1": 1.0,
+      "q3": 1.0,
+      "iqr": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "range": 0.0
+    },
+    "sdk_mock": {
+      "n": 1,
+      "missing": 0,
+      "mean": 1.0,
+      "sd_sample": null,
+      "median": 1.0,
+      "q1": 1.0,
+      "q3": 1.0,
+      "iqr": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "range": 0.0
+    }
+  },
+  "quantities": [
+    {
+      "provenance": "sdk_mock",
+      "device_type": "Alpha",
+      "device_id": "SYNTHETIC_DEVICE_RIGHT",
+      "side": "Right",
+      "quantity": "alpha.impact",
+      "unit": "unknown",
+      "summary": {
+        "n": 1,
+        "missing": 0,
+        "mean": 30.0,
+        "sd_sample": null,
+        "median": 30.0,
+        "q1": 30.0,
+        "q3": 30.0,
+        "iqr": 0.0,
+        "min": 30.0,
+        "max": 30.0,
+        "range": 0.0
+      }
+    }
+  ],
+  "reconciliation": "PASS: recorded relationships, clocks, counts and score arithmetic; not full gameplay or sensor validation",
+  "frequency_boundary": "Observed accepted events divided by active game time, including potential channel outages; not coverage-corrected physical action frequency",
+  "input_sha256": "d4fe4fe15016885fe880cbf60a0b90e126c5c6253d19cb6435e84d873f5c8107"
+}

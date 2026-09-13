@@ -1,0 +1,6 @@
+HOST LOGIC TESTS: narrow Unity API stubs; not a Unity compile or physical sensor test.
+SENSOR_REGRESSION_PASS 16 deterministic checks; NOT VERIFIED WITH PHYSICAL HARDWARE.
+HOST_ADDITIONAL_PASS 3 checks (provider key transitions, concurrent buffer, explicit routing).
+GAMEPLAY_HOST_PASS 5 production rule/statistics checks; not Unity runtime tests.
+LOGGER_HOST_PASS 1 production JSONL lifecycle/privacy check; SYNTHETIC / NOT EMPIRICAL DATA.
+SYNTHETIC_LOG_PATH E:\Programming Projekte\box-reha-game\artifacts\validation\synthetic\production-logger.synthetic.jsonl

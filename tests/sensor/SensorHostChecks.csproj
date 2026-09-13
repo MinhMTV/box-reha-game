@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <NoWarn>0649;0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="UnityHostStubs.cs" />
+    <Compile Include="GameplayHostChecks.cs" />
+    <Compile Include="LoggerHostCheck.cs" />
+    <Compile Include="../../Assets/Scripts/Data/Enums.cs" Link="Production/Enums.cs" />
+    <Compile Include="../../Assets/Scripts/Data/PlayerActionEvent.cs" Link="Production/PlayerActionEvent.cs" />
+    <Compile Include="../../Assets/Scripts/Data/GameSessionStats.cs" Link="Production/GameSessionStats.cs" />
+    <Compile Include="../../Assets/Scripts/Data/PlayerProfile.cs" Link="Production/PlayerProfile.cs" />
+    <Compile Include="../../Assets/Scripts/Gameplay/GameplayRules.cs" Link="Production/GameplayRules.cs" />
+    <Compile Include="../../Assets/Scripts/Spawning/LevelDefinition.cs" Link="Production/LevelDefinition.cs" />
+    <Compile Include="../../Assets/Scripts/Research/ResearchSessionLog.cs" Link="Production/ResearchSessionLog.cs" />
+    <Compile Include="../../Assets/Scripts/Sensors/*.cs" Link="Production/Sensors/%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/Scripts/Input/*.cs" Link="Production/Input/%(Filename)%(Extension)" />
+    <Compile Include="../../Assets/Editor/SensorRegressionChecks.cs" Link="Checks/SensorRegressionChecks.cs" />
+  </ItemGroup>
+</Project>
