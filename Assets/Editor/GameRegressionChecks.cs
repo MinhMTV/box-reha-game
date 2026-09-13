@@ -1,0 +1,150 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEditor.Build.Reporting;
+using UnityEngine;
+
+/// <summary>Batch Editor checks; this is not a substitute for a rendered Play Mode walkthrough.</summary>
+public static class GameRegressionChecks
+{
+    private static string ProjectRoot => Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+    [Serializable] private class CandidateBuildSummary
+    {
+        public string scope = "DEVELOPMENT BUILD CANDIDATE ONLY / NOT STUDY-READY OR HARDWARE QUALIFIED";
+        public string utc, unityVersion, result, outputPath, totalBytes;
+        public int errors, warnings;
+        public double durationSeconds;
+    }
+    [Serializable] private class Report
+    {
+        public string scope = "UNITY EDITOR CHECKS / NOT PHYSICAL HARDWARE VERIFICATION";
+        public string utc, unityVersion;
+        public int passed, failed;
+        public List<string> checks = new List<string>();
+    }
+    private static Report report;
+
+    public static void BuildStudyCandidate()
+    {
+        if (!Application.isBatchMode) throw new InvalidOperationException("Run in a dedicated Unity batch process.");
+        List<string> enabledScenes = new List<string>();
+        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+            if (scene.enabled) enabledScenes.Add(scene.path);
+        if (enabledScenes.Count == 0) throw new InvalidOperationException("No enabled scenes to build.");
+        string directory = Path.Combine(ProjectRoot, "Builds", "StudyCandidate");
+        Directory.CreateDirectory(directory);
+        BuildReport build = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+        {
+            scenes = enabledScenes.ToArray(),
+            locationPathName = Path.Combine(directory, "DigitalDojo.exe"),
+            target = BuildTarget.StandaloneWindows64,
+            options = BuildOptions.Development
+        });
+        CandidateBuildSummary summary = new CandidateBuildSummary
+        {
+            utc = DateTime.UtcNow.ToString("O"), unityVersion = Application.unityVersion,
+            result = build.summary.result.ToString(), outputPath = build.summary.outputPath,
+            totalBytes = build.summary.totalSize.ToString(), errors = build.summary.totalErrors,
+            warnings = build.summary.totalWarnings, durationSeconds = build.summary.totalTime.TotalSeconds
+        };
+        string reportPath = Path.Combine(ProjectRoot, "artifacts", "validation", "unity-candidate-build.json");
+        Directory.CreateDirectory(Path.GetDirectoryName(reportPath));
+        File.WriteAllText(reportPath, JsonUtility.ToJson(summary, true));
+        Debug.Log("Development candidate build report: " + reportPath);
+        if (build.summary.result != BuildResult.Succeeded || build.summary.totalErrors > 0)
+            throw new Exception("Development candidate build failed: " + build.summary.result);
+    }
+
+    public static void RunBatch()
+    {
+        if (!Application.isBatchMode) throw new InvalidOperationException("Run in a dedicated Unity batch process.");
+        report = new Report { utc = DateTime.UtcNow.ToString("O"), unityVersion = Application.unityVersion };
+        Check("timing boundaries and signs", () =>
+        {
+            Require(GameplayRules.Timing(0.1f, 0.45f) == HitQuality.Perfect);
+            Require(GameplayRules.Timing(-0.25f, 0.45f) == HitQuality.Good);
+            Require(GameplayRules.Timing(-0.45f, 0.45f) == HitQuality.Early);
+            Require(GameplayRules.Timing(0.45f, 0.45f) == HitQuality.Late);
+            Require(GameplayRules.Timing(0.451f, 0.45f) == HitQuality.Miss);
+            Require(GameplayRules.Timing(float.NaN, 0.45f) == HitQuality.Miss);
+        });
+        Check("four action mappings, wrong side/action and repeated heavy side", () =>
+        {
+            foreach (BodySide side in new[] { BodySide.Left, BodySide.Right })
+            {
+                LaneType lane = side == BodySide.Left ? LaneType.Left : LaneType.Right;
+                Require(GameplayRules.Matches(ActionType.Punch, side, lane, VerticalPosition.High, TargetType.Punch, lane, false));
+                Require(GameplayRules.Matches(ActionType.Kick, side, lane, VerticalPosition.Low, TargetType.Kick, lane, false));
+                Require(!GameplayRules.Matches(ActionType.Kick, side, lane, VerticalPosition.Low, TargetType.Punch, lane, false));
+                Require(!GameplayRules.Matches(ActionType.Punch, side, lane, VerticalPosition.High, TargetType.Punch,
+                    lane == LaneType.Left ? LaneType.Right : LaneType.Left, false));
+                for (int i = 0; i < 5; i++)
+                    Require(GameplayRules.Matches(ActionType.Punch, side, lane, VerticalPosition.High, TargetType.ToughPunch, LaneType.Center, true));
+            }
+        });
+        Check("heavy damage and bounded combo scoring", () =>
+        {
+            Require(GameplayRules.HeavyDamage(0.9f) == 1 && GameplayRules.HeavyDamage(1.65f) == 2);
+            Require(GameplayRules.HeavyDamage(float.NaN) == 0);
+            Require(Math.Abs(GameplayRules.ComboMultiplier(1) - 1f) < 0.001f);
+            Require(Math.Abs(GameplayRules.ComboMultiplier(2) - 1.1f) < 0.001f);
+            Require(GameplayRules.ComboMultiplier(100) == 3f);
+        });
+        Check("levels and endless lane policy", () =>
+        {
+            foreach (LevelDefinition level in new[] { LevelDefinition.CreateLevel1(), LevelDefinition.CreateLevel2(),
+                LevelDefinition.CreateLevel3(), LevelDefinition.CreateEndless() })
+            {
+                Require(level.IsEndless ? level.DurationSeconds == 0f : level.DurationSeconds > 0f);
+                for (int i = 0; i < 250; i++)
+                {
+                    SpawnPatternData pattern = SpawnPatternGenerator.GetNextPattern(level);
+                    Require(pattern.Lane != LaneType.Center);
+                    Require(pattern.Type == TargetType.Punch ? pattern.VerticalPos == VerticalPosition.High : pattern.VerticalPos == VerticalPosition.Low);
+                }
+                UnityEngine.Object.DestroyImmediate(level);
+            }
+        });
+        Check("session metrics distinguish timing and completion", () =>
+        {
+            GameSessionStats stats = new GameSessionStats { TotalTargets = 4, PerfectHits = 1, GoodHits = 1, EarlyHits = 1, Misses = 1 };
+            Require(stats.Accuracy == 0.5f && stats.CompletionRate == 0.75f);
+            stats.TrackReactionTime(2f); stats.TrackReactionTime(float.NaN); stats.TrackReactionTime(-1f);
+            Require(stats.AverageReactionTime == 2f);
+            stats.Reset(); Require(stats.TotalTargets == 0 && stats.AverageReactionTime == 0f);
+        });
+        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+        {
+            if (!scene.enabled) continue;
+            Check("scene references: " + scene.path, () => InspectScene(scene.path));
+        }
+        string path = Path.Combine(ProjectRoot, "artifacts", "validation", "unity-editor-checks.json");
+        Directory.CreateDirectory(Path.GetDirectoryName(path));
+        File.WriteAllText(path, JsonUtility.ToJson(report, true));
+        Debug.Log("Game regression report: " + path + " / passed=" + report.passed + " failed=" + report.failed);
+        if (report.failed != 0) throw new Exception("Game regression failures; see report.");
+    }
+    private static void InspectScene(string path)
+    {
+        Require(AssetDatabase.LoadAssetAtPath<SceneAsset>(path) != null);
+        var scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+        foreach (GameObject root in scene.GetRootGameObjects())
+            foreach (Transform child in root.GetComponentsInChildren<Transform>(true))
+                Require(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(child.gameObject) == 0);
+        if (scene.name != "Game") return;
+        GameRoundController round = UnityEngine.Object.FindObjectOfType<GameRoundController>();
+        Require(round != null);
+        SerializedObject serialized = new SerializedObject(round);
+        foreach (string field in new[] { "targetSpawner", "sessionTimer", "scoreSystem", "comboSystem", "hitZoneEvaluator", "inputProvider", "hudController" })
+            Require(serialized.FindProperty(field).objectReferenceValue != null);
+        Require(UnityEngine.Object.FindObjectOfType<PauseMenuController>() != null);
+    }
+    private static void Check(string name, Action action)
+    {
+        try { action(); report.passed++; report.checks.Add("PASS " + name); }
+        catch (Exception ex) { report.failed++; report.checks.Add("FAIL " + name + ": " + ex.Message); }
+    }
+    private static void Require(bool condition) { if (!condition) throw new Exception("Assertion failed"); }
+}
