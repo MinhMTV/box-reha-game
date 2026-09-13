@@ -104,6 +104,13 @@ public class GameRoundController : MonoBehaviour
             return;
         }
 
+        if (SessionInputSelection.Physical && !AndroidDynamicsController.EnsureInstance().Running)
+        {
+            if (inputProvider != null) inputProvider.IsEnabled = false;
+            manager.LoadMainMenu();
+            return;
+        }
+
         currentLevel = manager.CurrentLevel;
         if (currentLevel == null)
         {
@@ -120,8 +127,9 @@ public class GameRoundController : MonoBehaviour
         sessionStats.Mode = currentLevel.DisplayName;
         sessionStats.StudyId = manager.PlayerProfile.StudyId;
         sessionStats.SessionId = ResearchSessionLog.Begin(manager.PlayerProfile, currentLevel,
-            inputProvider != null ? inputProvider.GetStatusLine() : "No input provider",
-            targetSpawner != null ? targetSpawner.Configuration : null);
+            SessionInputSelection.Label + " | " + (inputProvider != null ? inputProvider.GetStatusLine() : "No input provider"),
+            targetSpawner != null ? targetSpawner.Configuration : null,
+            SessionInputSelection.Physical ? AndroidDynamicsController.EnsureInstance().AcquisitionJson() : null);
         // Avoid exporting an absolute OS user-directory path with a pseudonymous session summary.
         sessionStats.LogPath = System.IO.Path.GetFileName(ResearchSessionLog.CurrentPath);
         EnsureGameplayCameraView();

@@ -5,6 +5,8 @@ public class ResultsController : MonoBehaviour
 {
     private Font font;
     private RectTransform card;
+    private UnityEngine.UI.Text nativeStatus;
+    private string modeSummary;
     void Start()
     {
         foreach (Transform child in transform) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
@@ -17,9 +19,10 @@ public class ResultsController : MonoBehaviour
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             scaler.matchWidthOrHeight = 0.5f;
         }
-        RectTransform background = Panel(transform, "Background", new Color(0.045f, 0.046f, 0.049f, 1f));
+        Transform safeArea = MobileSafeArea.Create(transform);
+        RectTransform background = Panel(safeArea, "Background", new Color(0.045f, 0.046f, 0.049f, 1f));
         Stretch(background, Vector2.zero, Vector2.one);
-        card = Panel(transform, "ResultsCard", new Color(0.085f, 0.088f, 0.09f, 1f));
+        card = Panel(safeArea, "ResultsCard", new Color(0.085f, 0.088f, 0.09f, 1f));
         Stretch(card, new Vector2(0.1f, 0.07f), new Vector2(0.9f, 0.93f));
         Text("Eyebrow", "DIGITAL DOJO  /  SESSION RESULTS", 18, 38f, 38f, 1150f, 30f, Color.gray);
         GameSessionStats stats = GameManager.Instance?.SessionStats;
@@ -30,8 +33,9 @@ public class ResultsController : MonoBehaviour
             return;
         }
         Text("Score", stats.Score.ToString("N0") + " pts", 66, 38f, 95f, 570f, 100f, Color.white);
-        Text("Mode", stats.Mode + "\n" + stats.DurationSeconds.ToString("F1") + " active seconds  /  " + stats.StopReason,
-            22, 670f, 118f, 530f, 100f, new Color(0.85f, 0.85f, 0.82f));
+        modeSummary = stats.Mode + "\n" + stats.DurationSeconds.ToString("F1") + " active seconds  /  " + stats.StopReason;
+        nativeStatus = Text("Mode", modeSummary,
+            19, 670f, 105f, 530f, 125f, new Color(0.85f, 0.85f, 0.82f));
         Text("Timing", "TIMING ACCURACY\n" + stats.Accuracy.ToString("P0"), 27, 40f, 250f, 365f, 90f, Color.white);
         Text("Completion", "TARGET COMPLETION\n" + stats.CompletionRate.ToString("P0"), 27, 445f, 250f, 365f, 90f, Color.white);
         Text("Combo", "BEST COMBO\n" + stats.MaxCombo, 27, 850f, 250f, 330f, 90f, new Color(1f, 0.38f, 0.3f));
@@ -47,13 +51,26 @@ public class ResultsController : MonoBehaviour
             stats.OtherActions + " other.  No force or heart-rate baseline is inferred.", 17, 40f, 570f, 1170f, 42f, Color.gray);
         Text("Definition", "Timing accuracy: Perfect + Good / resolved. Completion: all hits / resolved. Unfinished targets are excluded.",
             16, 40f, 615f, 1170f, 35f, Color.gray);
-        Button("Train again", 40f, 682f, OnRestartButton);
+        Button(SessionInputSelection.Physical ? "Prepare next session" : "Train again", 40f, 682f, OnRestartButton);
         Button("Main menu", 450f, 682f, OnMainMenuButton);
         string issue = ResearchSessionLog.Error ?? SessionHistoryStore.Error;
         if (!string.IsNullOrEmpty(issue))
             Text("SaveError", "Data save needs attention: " + issue, 16, 850f, 670f, 330f, 85f, new Color(1f, 0.5f, 0.35f));
     }
-    public void OnRestartButton() { GameManager.Instance?.StartGame(); }
+    void Update()
+    {
+        if (nativeStatus != null && SessionInputSelection.Physical)
+            nativeStatus.text = modeSummary + "\n" + AndroidDynamicsController.EnsureInstance().Notice;
+    }
+    public void OnRestartButton()
+    {
+        if (SessionInputSelection.Physical)
+        {
+            DigitalDojoMenuController.OpenSensorSessionOnStart = true;
+            GameManager.Instance?.LoadMainMenu();
+        }
+        else GameManager.Instance?.StartGame();
+    }
     public void OnMainMenuButton() { GameManager.Instance?.LoadMainMenu(); }
     private RectTransform Panel(Transform parent, string name, Color color)
     {
@@ -63,13 +80,14 @@ public class ResultsController : MonoBehaviour
         go.GetComponent<Image>().raycastTarget = false;
         return go.GetComponent<RectTransform>();
     }
-    private void Text(string name, string value, int size, float x, float y, float w, float h, Color color)
+    private UnityEngine.UI.Text Text(string name, string value, int size, float x, float y, float w, float h, Color color)
     {
         GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
         go.transform.SetParent(card, false);
         Text text = go.GetComponent<Text>(); text.font = font; text.fontSize = size;
         text.text = value; text.color = color; text.raycastTarget = false;
         Place(text.rectTransform, x, y, w, h);
+        return text;
     }
     private void Button(string label, float x, float y, UnityEngine.Events.UnityAction callback)
     {

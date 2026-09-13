@@ -1,0 +1,6 @@
+<linker>
+  <!-- Called by Java through UnitySendMessage; preserve the native callback endpoint. -->
+  <assembly fullname="Assembly-CSharp">
+    <type fullname="DynamicsSdkBridge" preserve="all" />
+  </assembly>
+</linker>

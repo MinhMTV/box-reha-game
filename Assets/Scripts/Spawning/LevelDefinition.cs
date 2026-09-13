@@ -41,6 +41,20 @@ public class LevelDefinition : ScriptableObject
     [Range(0f, 1f)]
     public float MaxRapidFireChance = 0.25f;
 
+    public void RestrictToSensorFamily(string family)
+    {
+        if (family != "Alpha" && family != "Delta") throw new System.ArgumentException("Unsupported sensor family", nameof(family));
+        bool alpha = family == "Alpha";
+        AllowedTargetTypes = new[] { alpha ? TargetType.Punch : TargetType.Kick };
+        AllowedVerticalPositions = new[] { alpha ? VerticalPosition.High : VerticalPosition.Low };
+        DisplayName += alpha ? " / Alpha punches" : " / Delta kick mapping (experimental)";
+        if (!alpha)
+        {
+            ToughTargetChance = MaxToughTargetChance = 0f;
+            RapidFireChance = MaxRapidFireChance = 0f;
+        }
+    }
+
     public static LevelDefinition CreateLevel1()
     {
         LevelDefinition level = CreateInstance<LevelDefinition>();

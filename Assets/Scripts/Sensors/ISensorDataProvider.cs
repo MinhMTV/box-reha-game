@@ -23,7 +23,11 @@ public struct SensorReading
     public double Timestamp; // Original timestamp; interpreted only with SourceClock.
     public string SourceClock;
     public double ReceivedTimestamp; // Unity monotonic seconds, assigned at ingress.
-    public double SourceAgeSeconds; // Native monotonic age at forwarding.
+    public double SourceAgeSeconds; // Age at Unity receipt: native source age plus measured Android transport age when available.
+    public double NativeSourceAgeSeconds;
+    public double NativeTransportAgeSeconds;
+    public bool HasNativeTransportTiming;
+    public double EmittedAndroidMonotonicSeconds; // Android elapsedRealtime seconds; never an absolute Unity timestamp.
     public bool HasTiming;
     public int SchemaVersion;
     public long Sequence; // Strictly increasing per connection, not coarse device clock.

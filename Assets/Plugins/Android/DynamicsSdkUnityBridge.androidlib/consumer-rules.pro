@@ -1,0 +1,2 @@
+-keep class com.boxreha.dynamics.DynamicsUnityBridge { public static *; }
+-keep class com.boxreha.dynamics.DynamicsPermissionFragment { *; }

@@ -39,12 +39,23 @@ internal static class LoggerHostCheck
             Provenance = "sdk_mock", IsValid = true, HasTiming = true, IsComputedPunch = true,
             Sequence = 1, Timestamp = 1700000002.7, SourceClock = "unix_seconds", ReceivedTimestamp = 102.8,
             SourceAgeSeconds = 0.1, RawValue = 30, AlphaImpact = 30, Quantity = "alpha.impact", Unit = "unknown",
+            NativeSourceAgeSeconds = 0.08, NativeTransportAgeSeconds = 0.02, HasNativeTransportTiming = true,
+            EmittedAndroidMonotonicSeconds = 77.5,
             ValidityReason = "synthetic_computed_valid", Detector = "sdk_computed_punch"
         };
         Time.time = 2.8f; Time.realtimeSinceStartupAsDouble = 102.8;
         action = BleSensorInputProvider.CreateSensorAction(reading);
         ResearchSessionLog.Action(action);
         stats.TrackAction(action);
+        // A deliberately unready/mock state exercises the metadata serializer, never a physical start claim.
+        ResearchSessionLog.Acquisition(JsonUtility.ToJson(new AndroidAcquisitionSnapshot
+        {
+            requestedFamily = "Alpha", effectiveFamily = "Alpha", sdkVersion = "SYNTHETIC_SDK_VERSION",
+            sdkSessionState = "error", initialized = true, permissionsGranted = true, profileReady = false,
+            profileReference = "", profileStudyId = profile.StudyId,
+            devices = new[] { new AndroidAcquisitionDevice { deviceId = "SYNTHETIC_DEVICE_RIGHT",
+                connectionId = "SYNTHETIC_CONNECTION", family = "Alpha", side = "Right", online = false, isMock = true } }
+        }));
         Time.time = 3; Time.realtimeSinceStartupAsDouble = 103;
         ResearchSessionLog.End(stats, "synthetic_complete");
         if (ResearchSessionLog.IsOpen || ResearchSessionLog.Error != null) throw new Exception("Logger end/close failed.");
@@ -52,14 +63,24 @@ internal static class LoggerHostCheck
         string destination = Path.Combine(Application.persistentDataPath, "production-logger.synthetic.jsonl");
         File.Move(actualPath, destination, true);
         string[] lines = File.ReadAllLines(destination);
-        if (lines.Length != 7) throw new Exception("Unexpected logger record count: " + lines.Length);
+        if (lines.Length != 8) throw new Exception("Unexpected logger record count: " + lines.Length);
+        int acquisitionRecords = 0;
         foreach (string line in lines)
         {
             using var record = System.Text.Json.JsonDocument.Parse(line);
             if (record.RootElement.GetProperty("studyId").GetString() != "SYNTHETIC_NOT_EMPIRICAL_DATA")
                 throw new Exception("Synthetic provenance marker missing.");
             if (line.Contains("DO_NOT_EXPORT_THIS_NAME")) throw new Exception("Player name leaked into research log.");
+            if (record.RootElement.GetProperty("kind").GetString() == "acquisition_state")
+            {
+                acquisitionRecords++;
+                using var snapshot = System.Text.Json.JsonDocument.Parse(record.RootElement.GetProperty("acquisitionJson").GetString());
+                if (snapshot.RootElement.GetProperty("profileReady").GetBoolean()
+                    || !snapshot.RootElement.GetProperty("devices")[0].GetProperty("isMock").GetBoolean())
+                    throw new Exception("Synthetic unready/mock acquisition metadata was changed.");
+            }
         }
+        if (acquisitionRecords != 1) throw new Exception("Acquisition metadata record missing.");
         Console.WriteLine("LOGGER_HOST_PASS 1 production JSONL lifecycle/privacy check; SYNTHETIC / NOT EMPIRICAL DATA.");
         Console.WriteLine("SYNTHETIC_LOG_PATH " + destination);
     }

@@ -14,6 +14,7 @@ public static class ResearchSessionLog
         public double monotonicSeconds;
         public float gameplaySeconds;
         public string mode, buildVersion, buildRevision, unityVersion, configJson, gameConfigJson, stopReason, statsJson, inputStatus;
+        public string acquisitionJson;
         public string actionType, side, lane, inputSource, deviceType, deviceId, provenance;
         public string sourceEventId, sourceClock, quantity, unit, validityReason;
         public string connectionId, detector, sensorEvidenceJson;
@@ -36,7 +37,7 @@ public static class ResearchSessionLog
     public static string Error { get; private set; }
     public static bool IsOpen => writer != null;
 
-    public static string Begin(PlayerProfile profile, LevelDefinition level, string inputStatus, GameConfig config = null)
+    public static string Begin(PlayerProfile profile, LevelDefinition level, string inputStatus, GameConfig config = null, string acquisitionJson = null)
     {
         Close();
         Error = null;
@@ -55,11 +56,16 @@ public static class ResearchSessionLog
                 buildVersion = Application.version, unityVersion = Application.unityVersion,
                 buildRevision = build != null ? build.text.Trim() : "unrecorded",
                 configJson = JsonUtility.ToJson(level), gameConfigJson = config != null ? JsonUtility.ToJson(config) : null,
-                inputStatus = inputStatus });
+                inputStatus = inputStatus, acquisitionJson = acquisitionJson });
         }
         catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
         { Fail(ex); }
         return sessionId;
+    }
+
+    public static void Acquisition(string snapshotJson)
+    {
+        Write(new Record { kind = "acquisition_state", acquisitionJson = snapshotJson });
     }
 
     public static void Action(PlayerActionEvent action)

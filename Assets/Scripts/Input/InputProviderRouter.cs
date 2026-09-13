@@ -74,7 +74,7 @@ public class InputProviderRouter : MonoBehaviour, IPlayerActionInputProvider
 
     private void RefreshProvider(bool forceRebind)
     {
-        InputSourceType requestedSource = gameConfig != null ? gameConfig.ActiveInputSourceType : InputSourceType.Mouse;
+        InputSourceType requestedSource = SessionInputSelection.Override ?? (gameConfig != null ? gameConfig.ActiveInputSourceType : InputSourceType.Mouse);
         if (!forceRebind && requestedSource == lastRequestedSource && activeProvider != null)
         {
             return;

@@ -13,6 +13,9 @@
     <Compile Include="GameplayHostChecks.cs" />
     <Compile Include="LoggerHostCheck.cs" />
     <Compile Include="HistoryHostCheck.cs" />
+    <Compile Include="AndroidPolicyHostChecks.cs" />
+    <Compile Include="../../Assets/Scripts/Platform/AndroidSessionPolicy.cs" Link="Production/AndroidSessionPolicy.cs" />
+    <Compile Include="../../Assets/Scripts/Platform/AndroidNativeClock.cs" Link="Production/AndroidNativeClock.cs" />
     <Compile Include="../../Assets/Scripts/Data/Enums.cs" Link="Production/Enums.cs" />
     <Compile Include="../../Assets/Scripts/Data/PlayerActionEvent.cs" Link="Production/PlayerActionEvent.cs" />
     <Compile Include="../../Assets/Scripts/Data/GameSessionStats.cs" Link="Production/GameSessionStats.cs" />

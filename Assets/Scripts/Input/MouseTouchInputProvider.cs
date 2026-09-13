@@ -38,15 +38,20 @@ public class MouseTouchInputProvider : MonoBehaviour, IPlayerActionInputProvider
     }
     private void ProcessMouse()
     {
-        if (Input.GetMouseButtonDown(0)) Begin(Input.mousePosition);
+        if (Input.GetMouseButtonDown(0) && !OverInterface()) Begin(Input.mousePosition);
         if (Input.GetMouseButtonUp(0) && isPointerDown) End(Input.mousePosition, InputSourceType.Mouse);
     }
     private void ProcessTouch()
     {
         Touch touch = Input.GetTouch(0);
-        if (touch.phase == TouchPhase.Began) Begin(touch.position);
+        if (touch.phase == TouchPhase.Began && !OverInterface(touch.fingerId)) Begin(touch.position);
         else if (touch.phase == TouchPhase.Ended && isPointerDown) End(touch.position, InputSourceType.Touch);
         else if (touch.phase == TouchPhase.Canceled) isPointerDown = false;
+    }
+    private static bool OverInterface(int pointerId = -1)
+    {
+        UnityEngine.EventSystems.EventSystem events = UnityEngine.EventSystems.EventSystem.current;
+        return events != null && events.IsPointerOverGameObject(pointerId);
     }
     private void Begin(Vector2 position)
     {

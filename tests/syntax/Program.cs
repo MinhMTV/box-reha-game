@@ -14,7 +14,7 @@ class Program
     {
         string root = args.Length > 0 ? Path.GetFullPath(args[0]) : Directory.GetCurrentDirectory();
         string[] files = Directory.GetFiles(Path.Combine(root, "Assets"), "*.cs", SearchOption.AllDirectories);
-        string[][] symbolSets = { new[] { "UNITY_EDITOR", "UNITY_STANDALONE_WIN" },
+        string[][] symbolSets = { new[] { "UNITY_EDITOR", "UNITY_STANDALONE_WIN" }, new[] { "UNITY_EDITOR", "UNITY_ANDROID" },
             new[] { "UNITY_ANDROID" }, new[] { "UNITY_IOS" }, new[] { "UNITY_STANDALONE_WIN" } };
         var errors = new List<string>();
         foreach (string[] symbols in symbolSets)

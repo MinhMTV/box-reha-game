@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
             PlayerProfile = PlayerProfileStore.Load();
         }
         CurrentState = GameState.Menu;
+        AndroidDynamicsController.EnsureInstance().SelectParticipant(PlayerProfile.StudyId);
 
         // Ensure AudioManager exists
         if (AudioManager.Instance == null)
@@ -79,17 +80,37 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        if (SessionInputSelection.Physical)
+        {
+            AndroidDynamicsController.EnsureInstance().RequestGameStart();
+            return;
+        }
+        StartRoundScene();
+    }
+
+    public void StartAcknowledgedSensorGame()
+    {
+        if (SessionInputSelection.Physical && AndroidDynamicsController.EnsureInstance().Running) StartRoundScene();
+    }
+
+    private void StartRoundScene()
+    {
         Time.timeScale = 1f;
         PlayerProfile = PlayerProfileStore.Load();
         SessionStats.Reset();
-        if (CurrentLevel == null)
-            CurrentLevel = LevelDefinition.CreateLevel1();
+        SetLevel(SelectedLevel);
+        if (SessionInputSelection.Physical)
+        {
+            CurrentLevel.RestrictToSensorFamily(SessionInputSelection.Family);
+            CurrentLevel.AllowedLanes = AndroidSessionPolicy.ConnectedLanes(AndroidDynamicsController.EnsureInstance().Status, SessionInputSelection.Family);
+        }
         CurrentState = GameState.Playing;
         SceneManager.LoadScene(gameSceneName);
     }
 
     public void EndGame()
     {
+        AndroidDynamicsController.Instance?.FinishSession();
         Time.timeScale = 1f;
         CurrentState = GameState.Results;
         SceneManager.LoadScene(resultsSceneName);
@@ -97,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        AndroidDynamicsController.Instance?.FinishSession();
         Time.timeScale = 1f;
         CurrentState = GameState.Menu;
         SceneManager.LoadScene(mainMenuSceneName);
@@ -111,11 +133,23 @@ public class GameManager : MonoBehaviour
             InputProviderRouter router = FindObjectOfType<InputProviderRouter>();
             if (router != null) router.IsEnabled = false;
             Time.timeScale = 0f;
+            AndroidDynamicsController.Instance?.PauseSession();
         }
     }
 
     public void ResumeGame()
     {
+        if (SessionInputSelection.Physical)
+        {
+            AndroidDynamicsController.EnsureInstance().RequestResume();
+            return;
+        }
+        ResumeAcknowledgedSensorGame();
+    }
+
+    public void ResumeAcknowledgedSensorGame()
+    {
+        if (SessionInputSelection.Physical && !AndroidDynamicsController.EnsureInstance().Running) return;
         if (CurrentState == GameState.Paused)
         {
             CurrentState = GameState.Playing;
@@ -147,6 +181,7 @@ public class GameManager : MonoBehaviour
 
         PlayerProfile = profile;
         PlayerProfileStore.Save(profile);
+        AndroidDynamicsController.EnsureInstance().SelectParticipant(profile.StudyId);
     }
 }
 

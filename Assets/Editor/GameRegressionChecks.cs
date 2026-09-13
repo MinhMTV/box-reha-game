@@ -28,18 +28,59 @@ public static class GameRegressionChecks
 
     public static void BuildStudyCandidate()
     {
+        BuildCandidate(BuildTarget.StandaloneWindows64, "StudyCandidate", "DigitalDojo.exe", "unity-candidate-build.json");
+    }
+
+    public static void PrepareAndroidCandidate()
+    {
+        if (!Application.isBatchMode) throw new InvalidOperationException("Run in a dedicated Unity batch process.");
+        if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android))
+            throw new InvalidOperationException("Install Android Build Support for this project's exact Editor, including SDK/NDK and OpenJDK.");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.boxreha.digitaldojo");
+        PlayerSettings.Android.minSdkVersion = RequiredAndroidMinimum();
+        PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)36;
+        PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
+        PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+        PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
+        PlayerSettings.allowedAutorotateToPortrait = false;
+        PlayerSettings.allowedAutorotateToPortraitUpsideDown = false;
+        EditorUserBuildSettings.buildAppBundle = false;
+        AssetDatabase.SaveAssets();
+    }
+
+    private static AndroidSdkVersions RequiredAndroidMinimum()
+    {
+        // Unity 6.6 migration is a separate, explicit project import gate.
+        return (AndroidSdkVersions)(Application.unityVersion.StartsWith("6000.6.", StringComparison.Ordinal) ? 26 : 23);
+    }
+
+    public static void BuildAndroidCandidate()
+    {
+        if (PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.Android) != "com.boxreha.digitaldojo"
+            || PlayerSettings.Android.minSdkVersion != RequiredAndroidMinimum()
+            || (int)PlayerSettings.Android.targetSdkVersion != 36
+            || PlayerSettings.GetScriptingBackend(BuildTargetGroup.Android) != ScriptingImplementation.IL2CPP
+            || PlayerSettings.Android.targetArchitectures != AndroidArchitecture.ARM64
+            || PlayerSettings.defaultInterfaceOrientation != UIOrientation.LandscapeLeft
+            || EditorUserBuildSettings.buildAppBundle)
+            throw new InvalidOperationException("Run PrepareAndroidCandidate before stamping the source manifest and building.");
+        BuildCandidate(BuildTarget.Android, "AndroidCandidate", "DigitalDojo.apk", "unity-android-candidate-build.json");
+    }
+
+    private static void BuildCandidate(BuildTarget target, string subdirectory, string fileName, string reportName)
+    {
         if (!Application.isBatchMode) throw new InvalidOperationException("Run in a dedicated Unity batch process.");
         List<string> enabledScenes = new List<string>();
         foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
             if (scene.enabled) enabledScenes.Add(scene.path);
         if (enabledScenes.Count == 0) throw new InvalidOperationException("No enabled scenes to build.");
-        string directory = Path.Combine(ProjectRoot, "Builds", "StudyCandidate");
+        string directory = Path.Combine(ProjectRoot, "Builds", subdirectory);
         Directory.CreateDirectory(directory);
         BuildReport build = BuildPipeline.BuildPlayer(new BuildPlayerOptions
         {
             scenes = enabledScenes.ToArray(),
-            locationPathName = Path.Combine(directory, "DigitalDojo.exe"),
-            target = BuildTarget.StandaloneWindows64,
+            locationPathName = Path.Combine(directory, fileName),
+            target = target,
             options = BuildOptions.Development
         });
         CandidateBuildSummary summary = new CandidateBuildSummary
@@ -49,7 +90,7 @@ public static class GameRegressionChecks
             totalBytes = build.summary.totalSize.ToString(), errors = build.summary.totalErrors,
             warnings = build.summary.totalWarnings, durationSeconds = build.summary.totalTime.TotalSeconds
         };
-        string reportPath = Path.Combine(ProjectRoot, "artifacts", "validation", "unity-candidate-build.json");
+        string reportPath = Path.Combine(ProjectRoot, "artifacts", "validation", reportName);
         Directory.CreateDirectory(Path.GetDirectoryName(reportPath));
         File.WriteAllText(reportPath, JsonUtility.ToJson(summary, true));
         Debug.Log("Development candidate build report: " + reportPath);

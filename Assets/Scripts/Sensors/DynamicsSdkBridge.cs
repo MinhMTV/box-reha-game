@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>Validated Unity endpoint. Native SDK initialization/collection remains a separate integration gate.</summary>
@@ -9,6 +10,8 @@ public class DynamicsSdkBridge : MonoBehaviour
     [SerializeField] private bool logIncomingPayloads;
     public static DynamicsSdkBridge Instance { get; private set; }
     public int RejectedPayloadCount { get; private set; }
+    public static event Action<string> NativeStatusReceived;
+    private readonly Dictionary<string, DynamicsDeviceStatePayload> deviceStates = new Dictionary<string, DynamicsDeviceStatePayload>();
 
     void Awake()
     {
@@ -24,25 +27,46 @@ public class DynamicsSdkBridge : MonoBehaviour
         if (Instance != null) return Instance;
         return new GameObject(GameObjectName).AddComponent<DynamicsSdkBridge>();
     }
-    public void SetInputProvider(BleSensorInputProvider provider) { sensorInputProvider = provider; }
+    public void SetInputProvider(BleSensorInputProvider provider)
+    {
+        sensorInputProvider = provider;
+        if (provider == null) return;
+        foreach (DynamicsDeviceStatePayload state in deviceStates.Values) ApplyDeviceState(state);
+    }
+    public void ReceiveNativeStatusJson(string json) { NativeStatusReceived?.Invoke(json); }
     public void ReceiveSensorDataJson(string json) { ReceiveReading(json, false); }
     public void ReceivePunchJson(string json) { ReceiveReading(json, true); }
 
     public void ReceiveDeviceStateJson(string json)
     {
-        if (!ResolveInputProvider() || string.IsNullOrWhiteSpace(json)) return;
+        if (string.IsNullOrWhiteSpace(json)) return;
         try
         {
             DynamicsDeviceStatePayload payload = JsonUtility.FromJson<DynamicsDeviceStatePayload>(json);
-            if (payload == null || payload.schemaVersion != 2
+            if (payload == null || payload.schemaVersion != 2 || string.IsNullOrWhiteSpace(payload.deviceId)
                 || (payload.status != "online" && payload.status != "offline" && payload.status != "error"))
             { Reject("invalid_device_state"); return; }
-            if (!sensorInputProvider.SetDeviceConnection(payload.deviceId, payload.connectionId,
+            if (!DeviceStateIsFresh(payload)) return;
+            deviceStates[payload.deviceId] = payload;
+            if (ResolveInputProvider()) ApplyDeviceState(payload);
+        }
+        catch (Exception) { Reject("malformed_device_state_json"); }
+    }
+    private void ApplyDeviceState(DynamicsDeviceStatePayload payload)
+    {
+        if (!DeviceStateIsFresh(payload)) return;
+        if (!sensorInputProvider.SetDeviceConnection(payload.deviceId, payload.connectionId,
                 DynamicsSensorPayload.ParseSensorType(payload.sensorType),
                 DynamicsSensorPayload.ParseBodySide(payload.bodySide), payload.provenance, payload.status == "online"))
                 Reject("device_state_rejected");
-        }
-        catch (Exception) { Reject("malformed_device_state_json"); }
+    }
+    private bool DeviceStateIsFresh(DynamicsDeviceStatePayload payload)
+    {
+        if (!AndroidNativeClock.IsDeviceRuntime) return true;
+        if (AndroidNativeClock.TryTransportAge(payload.emittedAndroidMonotonicSeconds, out double age)
+            && age <= AndroidSessionPolicy.StatusTimeoutSeconds) return true;
+        Reject("missing_or_stale_android_device_state");
+        return false;
     }
 
     private void ReceiveReading(string json, bool computedPunch)
@@ -52,7 +76,11 @@ public class DynamicsSdkBridge : MonoBehaviour
         {
             DynamicsSensorPayload payload = JsonUtility.FromJson<DynamicsSensorPayload>(json);
             if (payload == null) { Reject("null_payload"); return; }
-            SensorReading reading = payload.ToSensorReading(Time.realtimeSinceStartupAsDouble, computedPunch);
+            double transportAge = 0;
+            bool measuredTransport = AndroidNativeClock.IsDeviceRuntime;
+            if (measuredTransport && !AndroidNativeClock.TryTransportAge(payload.emittedAndroidMonotonicSeconds, out transportAge))
+            { Reject("missing_or_invalid_android_emission_clock"); return; }
+            SensorReading reading = payload.ToSensorReading(Time.realtimeSinceStartupAsDouble, computedPunch, transportAge, measuredTransport);
             if (!sensorInputProvider.PushSensorReading(reading)) Reject("reading_rejected");
             else if (logIncomingPayloads) Debug.Log("[DynamicsSdkBridge] Validated " + reading.Provenance + " " + reading.Quantity);
         }
@@ -76,6 +104,7 @@ public class DynamicsSdkBridge : MonoBehaviour
 public class DynamicsDeviceStatePayload
 {
     public int schemaVersion;
+    public double emittedAndroidMonotonicSeconds;
     public string deviceId;
     public string connectionId;
     public string sensorType;
@@ -102,6 +131,7 @@ public class DynamicsSensorPayload
     public string timestampClock;
     public bool hasTiming;
     public double sourceAgeSeconds;
+    public double emittedAndroidMonotonicSeconds;
     public float ax, ay, az;
     public float gx, gy, gz;
     public bool hasMagnetometer;
@@ -122,7 +152,7 @@ public class DynamicsSensorPayload
     public double punchDurationSeconds;
     public double contactDurationSeconds;
 
-    public SensorReading ToSensorReading(double receivedAt, bool computedPunch)
+    public SensorReading ToSensorReading(double receivedAt, bool computedPunch, double transportAgeSeconds = 0, bool measuredTransport = false)
     {
         float value = new Vector3(ax, ay, az).magnitude;
         if (computedPunch)
@@ -142,7 +172,9 @@ public class DynamicsSensorPayload
             EventId = eventId, Sequence = sequence, Provenance = provenance,
             IsValid = isValid && (!computedPunch || areComputedValuesValid), ValidityReason = validityReason,
             IsComputedPunch = computedPunch, Timestamp = timestamp, SourceClock = timestampClock,
-            ReceivedTimestamp = receivedAt, HasTiming = hasTiming, SourceAgeSeconds = sourceAgeSeconds,
+            ReceivedTimestamp = receivedAt, HasTiming = hasTiming, SourceAgeSeconds = sourceAgeSeconds + transportAgeSeconds,
+            NativeSourceAgeSeconds = sourceAgeSeconds, NativeTransportAgeSeconds = transportAgeSeconds,
+            HasNativeTransportTiming = measuredTransport, EmittedAndroidMonotonicSeconds = emittedAndroidMonotonicSeconds,
             Acceleration = new Vector3(ax, ay, az), Gyroscope = new Vector3(gx, gy, gz),
             HasMagnetometer = hasMagnetometer, Magnetometer = new Vector3(mx, my, mz),
             HasBarometer = hasBarometer, Barometer = barometerPa,

@@ -64,7 +64,7 @@ namespace UnityEngine
     public static class Screen { public static int width = 1920; public static int height = 1080; }
     public enum KeyCode { LeftArrow, RightArrow, A, D }
     public enum TouchPhase { Began, Moved, Stationary, Ended, Canceled }
-    public struct Touch { public TouchPhase phase; public Vector2 position; }
+    public struct Touch { public TouchPhase phase; public Vector2 position; public int fingerId; }
     public static class Input
     {
         public static readonly HashSet<KeyCode> DownKeys = new HashSet<KeyCode>();
@@ -119,3 +119,12 @@ public class TargetObject
     public bool IsTough;
 }
 public class HitZoneEvaluator { public float HitZoneZ = 5f; }
+namespace UnityEngine.EventSystems
+{
+    public class EventSystem
+    {
+        public static EventSystem current;
+        public bool PointerOverUi;
+        public bool IsPointerOverGameObject(int pointerId = -1) => PointerOverUi;
+    }
+}

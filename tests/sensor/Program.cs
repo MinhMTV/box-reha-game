@@ -15,6 +15,7 @@ internal static class Program
             GameplayHostChecks.Run();
             LoggerHostCheck.Run();
             HistoryHostCheck.Run();
+            AndroidPolicyHostChecks.Run();
             return 0;
         }
         catch (Exception ex)

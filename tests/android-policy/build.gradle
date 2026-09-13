@@ -1,0 +1,13 @@
+plugins { id 'org.jetbrains.kotlin.jvm' version '2.3.21' }
+repositories { mavenCentral() }
+kotlin { jvmToolchain(17) }
+kotlin.sourceSets.main.kotlin {
+    srcDir '../../Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics'
+    include 'CollectorPolicy.kt'
+}
+kotlin.sourceSets.test.kotlin {
+    srcDir '../../Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/test/java/com/boxreha/dynamics'
+    include 'CollectorPolicyTest.kt'
+}
+dependencies { testImplementation 'junit:junit:4.13.2' }
+test { testLogging { events 'passed', 'failed', 'skipped' } }

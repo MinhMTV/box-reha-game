@@ -35,7 +35,7 @@ public class DigitalDojoHudSkin : MonoBehaviour
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             scaler.matchWidthOrHeight = 0.5f;
         }
-        Transform canvas = hud.transform;
+        Transform canvas = MobileSafeArea.Create(hud.transform);
         RectTransform bar = Panel(canvas, "DojoTopBar");
         bar.anchorMin = new Vector2(0.015f, 0.89f); bar.anchorMax = new Vector2(0.985f, 0.99f);
         bar.offsetMin = bar.offsetMax = Vector2.zero; bar.SetAsFirstSibling();
@@ -48,6 +48,7 @@ public class DigitalDojoHudSkin : MonoBehaviour
             if (go != null)
             {
                 Text live = go.GetComponent<Text>(); live.font = font; live.fontSize = 32;
+                live.transform.SetParent(canvas, false);
                 live.alignment = TextAnchor.MiddleCenter; live.raycastTarget = false;
                 Anchor(live.rectTransform, x, 0.925f, 330f, 43f);
             }
@@ -58,6 +59,7 @@ public class DigitalDojoHudSkin : MonoBehaviour
         if (feedbackObject != null)
         {
             Text feedback = feedbackObject.GetComponent<Text>();
+            feedback.transform.SetParent(canvas, false);
             feedback.font = font; feedback.fontSize = 29; feedback.raycastTarget = false;
             Anchor(feedback.rectTransform, 0.5f, 0.18f, 960f, 48f);
         }
@@ -65,8 +67,18 @@ public class DigitalDojoHudSkin : MonoBehaviour
         if (oldInput != null) oldInput.SetActive(false);
         inputStatus = Label(canvas, "LiveInputStatus", "Keyboard practice", 16);
         Anchor(inputStatus.rectTransform, 0.5f, 0.045f, 1450f, 32f);
-        Text controls = Label(canvas, "ControlGuide", "LEFT / RIGHT ARROW  punch     A / D  kick     ESC  pause", 19);
-        Anchor(controls.rectTransform, 0.5f, 0.085f, 1350f, 32f);
+        Text controls = Label(canvas, "ControlGuide", SessionInputSelection.Physical
+            ? SessionInputSelection.Family + " physical sensors / use PAUSE to stop or finish"
+            : "LEFT / RIGHT ARROW  punch     A / D  kick     ESC  pause", 19);
+        Anchor(controls.rectTransform, 0.45f, 0.085f, 1140f, 32f);
+        RectTransform pause = Panel(canvas, "TouchPauseButton");
+        Anchor(pause, 0.89f, 0.1f, 230f, 72f);
+        pause.GetComponent<UnityEngine.UI.Image>().raycastTarget = true;
+        UnityEngine.UI.Button pauseButton = pause.gameObject.AddComponent<UnityEngine.UI.Button>();
+        pauseButton.targetGraphic = pause.GetComponent<UnityEngine.UI.Image>();
+        pauseButton.onClick.AddListener(() => FindObjectOfType<PauseMenuController>()?.Pause());
+        Text pauseLabel = Label(pause, "Label", "PAUSE", 25);
+        Anchor(pauseLabel.rectTransform, 0.5f, 0.5f, 220f, 60f);
         yield return null;
     }
     void Update()
@@ -75,7 +87,8 @@ public class DigitalDojoHudSkin : MonoBehaviour
         if (refreshTimer < 0.5f || inputStatus == null) return;
         refreshTimer = 0f;
         InputProviderRouter router = FindObjectOfType<InputProviderRouter>();
-        inputStatus.text = ResearchSessionLog.Error ?? (router != null ? router.GetStatusLine() : "No input provider");
+        inputStatus.text = ResearchSessionLog.Error ?? (SessionInputSelection.Physical
+            ? AndroidDynamicsController.EnsureInstance().Notice : router != null ? router.GetStatusLine() : "No input provider");
         inputStatus.color = ResearchSessionLog.Error != null ? new Color(1f, 0.45f, 0.35f) : new Color(0.82f, 0.84f, 0.83f);
     }
     private RectTransform Panel(Transform parent, string name)
