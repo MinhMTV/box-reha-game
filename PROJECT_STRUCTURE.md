@@ -1,176 +1,38 @@
-# BoxReha Game - Unity Boxing/Rhythm Rehabilitation Game
+# Project structure
 
-A 2.5D boxing/rehab rhythm game inspired by Beat Saber, designed for physical rehabilitation and exercise.
+This is the existing Unity **2022.3.62f3** project at `E:\Programming Projekte\box-reha-game`. Open this project directly. Do not create a replacement project or copy its scripts into a new template.
 
-## Current Playable Controls
+## Runtime flow
 
-- Hold/release Left Arrow: left punch, RD ALPHA-style mock input, left lane
-- Hold/release Right Arrow: right punch, RD ALPHA-style mock input, right lane
-- Hold/release A: left kick, RD DELTA-style mock input, left lane
-- Hold/release D: right kick, RD DELTA-style mock input, right lane
-- F1: toggle debug overlay
+Enabled scenes: `Boot -> MainMenu -> Game -> Results`.
 
-Normal targets now use only left/right lanes. The center lane is reserved for Heavy Center Targets, which must be destroyed before the wave continues. Dodge/duck targets are disabled for the non-VR gameplay pass.
+| Area | Main implementation | Responsibility |
+|---|---|---|
+| Round/state | Assets/Scripts/Core/GameManager.cs, GameRoundController.cs | Level selection, timed/endless sessions, pause, finish and scene transitions |
+| Input | Assets/Scripts/Input/ | KeyboardActionFactory, pointer provider and InputProviderRouter emit the common PlayerActionEvent |
+| Sensors | Assets/Scripts/Sensors/ | Explicit native contract, per-device identity/queues, validity/freshness and provenance; HR is separate |
+| Gameplay | Assets/Scripts/Gameplay/ | Time-based target matching, heavy health/timeout, score, combo and effects; GameplayRules contains deterministic policy |
+| Spawning | Assets/Scripts/Spawning/ | Existing level presets, left/right regular targets, center heavy targets and explicit rapid-chain membership |
+| Profile/statistics | Assets/Scripts/Data/ | Display name and pseudonymous ID, session summaries and local history |
+| Research logging | Assets/Scripts/Research/ResearchSessionLog.cs | Append-only JSONL with session/action/target/score linkage |
+| Interface | Assets/Scripts/UI/, Assets/Scripts/Visuals/ | Runtime Digital Dojo hub, live HUD, results and reused dojo dressing |
+| Configuration | Assets/Resources/GameConfig.asset, ProjectSettings/, Packages/ | Existing input/configuration, enabled scenes and package resolution |
+| Qualification | Assets/Editor/GameRegressionChecks.cs, tests/, scripts/verify-unity.ps1 | Separate host, static, Editor and candidate-build gates |
 
-## Overview
+Left/Right Arrow emit left/right punches on **KeyDown**; A/D emit left/right kicks. A held key does not add a charged-release second action. Development input has explicit provenance and uses the same abstract event route as sensor input. ESC pauses/resumes; Enter finishes endless. Pause -> Finish & Results also ends a session.
 
-This project implements a Unity-based rhythm game where players react to incoming targets with boxing-style movements (punch, block, dodge). The game is designed with clean architecture to support future BLE/IMU sensor integration.
+The current DigitalDojoMenuController rebuilds its UI in Awake from actual state. Historical concept panels remain serialized in MainMenu.unity but are disabled/replaced before rendering. An Editor preview outside Play Mode may therefore show obsolete concept values; it is not an implementation screenshot. Calibration is explicitly unavailable, with its intended comfortable-action procedure explained.
 
-## Architecture
+## Data
 
-### Core Systems
-- **GameManager**: Singleton managing game state, scene transitions, and level selection
-- **Bootstrapper**: Initializes core systems on boot
-- **SceneLoader**: Static utility for scene management
-- **GameRoundController**: Orchestrates gameplay rounds
+Research JSONL: `Application.persistentDataPath/research/<sessionId>.jsonl`.
+Recent summaries: `Application.persistentDataPath/session-history-v1.json`.
+Profile/settings use local PlayerPrefs. Display-name changes preserve the current study ID; New participant ID creates a different ID without deleting earlier records. Corrupt history is preserved and reported instead of replaced with an empty history.
 
-### Input System
-- **IPlayerActionInputProvider**: Abstraction for input sources
-- **MouseTouchInputProvider**: Mouse/touch input with Punch/Block/Dodge detection
-- **InputInterpreter**: Static helper for input classification and vertical position mapping
+See RESEARCH_LOG_SCHEMA.md for fields, clocks, denominator rules and limits. Timing accuracy is Perfect+Good over resolved targets; completion also includes Early/Late. Neither measures sensor recognition accuracy. Calibration, HR and adaptation producers are not active gameplay channels.
 
-### Gameplay
-- **TargetObject**: Target behavior with distinct visuals per type
-- **TargetMover**: Moves targets along Z-axis
-- **HitZoneEvaluator**: Hit detection, quality assessment, and visual feedback events
-- **ScoreSystem**: Score calculation with combo multipliers
-- **ComboSystem**: Combo tracking
-- **ActionVisualFeedback**: Lane flash effects on hit/miss
-- **SessionTimer**: Round timer management
+## Evidence boundaries
 
-### Spawning
-- **TargetSpawner**: Spawns targets at spawn points with vertical position support
-- **SpawnPatternGenerator**: Generates spawn patterns with vertical positions
-- **LevelDefinition**: ScriptableObject for level configuration
+Source inspection establishes what is written. Host tests execute production logic against minimal Unity stubs. Syntax/static-YAML checks do not compile or run Unity. Editor checks, actual player interaction and physical-sensor verification are separate gates. Synthetic fixtures are labelled and isolated; they are not empirical results.
 
-### UI
-- **HUDController**: In-game HUD with score, combo, timer, accuracy, and debug overlay
-- **MainMenuController**: Main menu with level selection
-- **LevelSelectController**: Dedicated level selection UI
-- **ResultsController**: Results screen with reaction time display
-- **TextPopup**: Floating text popups for hit/miss feedback
-- **DebugUI**: Debug overlay (toggle with F1 key)
-
-### Data
-- **Enums**: Core enumerations (ActionType, LaneType, VerticalPosition, etc.)
-- **PlayerActionEvent**: Action event structure with vertical position
-- **TargetSpawnData**: Spawn data structure with vertical position
-- **GameSessionStats**: Session statistics with reaction time tracking
-
-### Config
-- **GameConfig**: Global game configuration with scoring, timing, and input settings
-
-### Sensors (Phase 3 - Stub)
-- **ISensorDataProvider**: Interface for raw sensor data
-- **BleSensorInputProvider**: Stub BLE input provider for future integration
-- **SensorDataBuffer**: Circular buffer for sensor readings
-
-## Scene Flow
-
-```
-Boot → MainMenu → Game → Results
-  ↑           │         │
-  │      Level Select    │
-  └──────────────────────┘
-```
-
-## Input Mapping
-
-### Punch (Red targets)
-- Quick click/release (hold < 0.5s, minimal movement)
-
-### Block (Blue targets)
-- Hold mouse button without movement (> 0.5s, < 10px movement)
-
-### Dodge (Green targets)
-- Fast horizontal swipe (> 200px in < 0.3s)
-
-### Vertical Position (Phase 3)
-- Screen top third → High
-- Screen middle third → Mid
-- Screen bottom third → Low
-
-## Target Types
-- **Punch** (Red): Red cube with slight rotation (45°)
-- **Block** (Blue): Blue flat cube (shield-like, 1.8×1.8×0.3)
-- **Dodge** (Green): Green stretched cube (2.5×0.8×0.8)
-
-## Hit Quality
-- **Perfect**: ±0.1s from hit zone center (100pts)
-- **Good**: ±0.25s from hit zone center (50pts)
-- **Early**: -0.5s to -0.25s (25pts)
-- **Late**: +0.25s to +0.5s (25pts)
-- **Miss**: Outside timing windows (0pts)
-
-## Scoring
-- Base scores per hit quality
-- Block/Dodge targets get minimum 75pts
-- Combo multiplier: 1 + (combo × 0.1), max 3×
-- Final score = base × multiplier
-
-## Level Design
-
-### Level 1
-- Duration: 60 seconds
-- Spawn Interval: 2.5 seconds
-- Speed: 4 units/s
-- Only Punch targets
-- All lanes, Mid vertical position
-
-### Level 2
-- Duration: 60 seconds
-- Spawn Interval: 2 seconds
-- Speed: 5 units/s
-- Punch + Block targets
-- All lanes, Mid vertical position
-
-### Level 3
-- Duration: 60 seconds
-- Spawn Interval: 1.5 seconds
-- Speed: 6 units/s
-- Punch + Block + Dodge targets
-- All lanes, Low/Mid/High vertical positions
-
-## Visual Feedback
-- Hit: Brief green/yellow flash on lane + "PERFECT"/"GOOD" text popup
-- Miss: Brief red flash on lane + "MISS" text popup
-- Debug overlay: Press F1 to toggle FPS, state, target count
-
-## Debug UI
-Press **F1** to toggle the debug overlay showing:
-- Current FPS
-- Game state
-- Selected level
-- Active target count
-
-## Scene Setup
-
-See `Scenes/` folder for scene setup instructions.
-
-## Requirements
-
-- Unity 2022.3 LTS or later
-- No external dependencies
-- Legacy UI (UnityEngine.UI)
-
-## Project Structure
-
-```
-Assets/
-  Scenes/           # Unity scenes (see setup guide)
-  Scripts/
-    Core/           # Game management
-    Gameplay/       # Gameplay mechanics
-    Input/          # Input handling
-    Spawning/       # Target spawning
-    UI/             # User interface
-    Data/           # Data structures
-    Config/         # Configuration
-    Sensors/        # Sensor interfaces (Phase 3)
-```
-
-## Future Roadmap
-
-- **Phase 5**: Visual effects, particle systems, audio feedback
-- **Phase 6**: BLE/IMU sensor integration (interface ready)
-- **Phase 7**: Leaderboards and achievements
+Current status and limitations: GAME_STATUS.md, GAME_KNOWN_ISSUES.md, GAMEPLAY_UI_AUDIT.md and SENSOR_INTEGRATION_AUDIT.md. Setup and exact qualification commands: SETUP_GUIDE.md.

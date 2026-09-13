@@ -1,43 +1,23 @@
-# Digital Dojo Design Pass
+# Digital Dojo interface
 
-This project now contains a generated Digital Dojo UI pass based on the provided references.
+The existing warm wood / matte dark dojo environment and target assets are retained. The current hub is built by DigitalDojoMenuController at runtime and replaces the old concept-only UI children in Awake.
 
-## How To Build The Menu Scene
+The hub includes Home, Level Mode, Endless Mode, Calibration, Statistics, Player Profile, Settings and Exit. Level Mode now offers all three presets. Statistics are loaded from local session history for the active pseudonymous ID. Profile provides a display name and explicit New participant ID action. Settings apply actual SFX volume and reduced motion.
 
-Open the project in Unity 2022.3 and run:
+The top HUD uses live score, combo, time and timing accuracy. The bottom shows controls and actual input provider status. Invented limb percentages, calibration values and demographic force estimates were removed. Results distinguish completion, timing, active target-resolution time, action side split and unfinished targets.
 
-`BoxReha > Build Digital Dojo Menu Scene`
+The UI uses Unity UGUI and a 1600x900 reference with CanvasScaler Expand. Layout, contrast and target occlusion still require inspection in a running Unity build. No actual screenshots have been produced by this source-only change.
 
-This rebuilds `Assets/Scenes/MainMenu.unity` with:
+## Scene generator
 
-- Dark dojo background with wood floor, warm wall lights, red/blue lane accents
-- Large left-side main menu card
-- Home, Calibration, Statistics, Player Profile, and Settings panels
-- Buttons wired to the existing `GameManager`
-- Existing generated punch, kick, and heavy target prefabs used as the scene preview
+BoxReha > Build Digital Dojo Menu Scene now creates the room, canvas and runtime hub controller. It no longer generates fabricated profile, calibration, sensor-status or statistics values.
 
-You can also run:
+The current serialized MainMenu.unity still contains historical concept children. They are disabled/destroyed before runtime rendering, but an Editor screenshot without entering Play Mode may display that old concept. Such an image is not evidence of the implemented data-backed hub. Regenerate only in a controlled Unity session after compile and runtime checks.
 
-`BoxReha > Create All Scenes`
+BoxReha > Create All Scenes rewrites all scenes and generated assets. Do not run it merely to inspect the project or verify these changes.
 
-This now uses the Digital Dojo menu generator instead of the older placeholder menu.
+## Implemented limits
 
-## Runtime Game Dressing
+Calibration is a clearly identified preparation screen; sensor data collection and baseline persistence are not yet implemented there. There is no active HR display or physiological adaptation UI. Effects are reused or reduced for readability; no claim of AAA quality or validated accessibility is made without rendered and user review.
 
-The playable `Game` scene receives a Digital Dojo environment at runtime through:
-
-`Assets/Scripts/Visuals/DigitalDojoRuntimeDressing.cs`
-
-It creates:
-
-- Warm dark dojo room shell
-- Wood floor and wall slats
-- Red hit line
-- Red, blue, and center lane lights
-- Camera and light polish for the front-view rhythm game
-
-This does not change the sensor/input/gameplay architecture.
-
-## Current Limitation
-
-The design is recreated with Unity primitives, UGUI, materials, emission, and generated prefabs. It is not pixel-perfect image reproduction, but it follows the same composition and visual language so the game remains editable and dependency-free.
+See GAMEPLAY_UI_AUDIT.md for rationale and verification gates.

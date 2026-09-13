@@ -1,40 +1,25 @@
-# Current Gameplay State
+# Current gameplay source status
 
-This Unity 2022.3 project is a 2.5D rhythm/combat serious game for boxing and kicking rehab training.
+This Unity 2022.3.62f3 project is an existing 2.5D combat-fitness prototype. Source changes are not a claim that Unity compilation, runtime behavior or physical hardware has been verified. See GAME_STATUS.md for the current evidence gate and GAMEPLAY_UI_AUDIT.md for findings.
 
-## Keyboard Controls
+| Key | Action | Side / height |
+|---|---|---|
+| Left Arrow | One punch per key press | Left / upper |
+| Right Arrow | One punch per key press | Right / upper |
+| A | One kick per key press | Left / lower |
+| D | One kick per key press | Right / lower |
+| Escape | Pause / resume | Inputs disabled while paused |
+| Enter | Finish endless and show results | Endless only |
+| F1 | Debug information | Development aid |
 
-| Input | Action | Sensor Equivalent | Lane |
-| --- | --- | --- | --- |
-| Hold/release Left Arrow | Left punch, hold longer = stronger | RD ALPHA | Left |
-| Hold/release Right Arrow | Right punch, hold longer = stronger | RD ALPHA | Right |
-| Hold/release A | Left kick, hold longer = stronger | RD DELTA | Left |
-| Hold/release D | Right kick, hold longer = stronger | RD DELTA | Right |
-| F1 | Toggle debug UI | Debug only | - |
+Keyboard, mouse/touch and validated sensor actions enter the same PlayerActionEvent router. Keyboard input has explicit development provenance and does not claim a physical ALPHA/DELTA device. There is no charged-release second keyboard action.
 
-Keyboard input is implemented as a mock/debug input provider and emits the same `PlayerActionEvent` structure that sensor input uses.
+Normal targets use left/right lanes; the center is reserved for the heavy disc. Heavy accepts repeated punches from the same side, locks on the hit line, and times out after 12 active seconds if incomplete. No forced left/right alternation exists. Uncalibrated sensor actions use neutral unitless gameplay damage, with raw sensor semantics retained separately.
 
-## Gameplay
+Level presets last 60 active seconds. Endless uses the existing bounded difficulty ramp. Pause freezes target movement, spawn intervals, timer and heavy timeout. Finish & Results records unfinished targets as aborted rather than discarded misses.
 
-- Normal punch targets spawn only in the left or right upper lanes.
-- Normal kick targets spawn only in the left or right lower lanes.
-- The center lane is reserved for the Heavy Center Target.
-- Heavy Center Targets can be damaged by repeated valid punches from either side.
-- Heavy Targets no longer require strict left/right alternation.
-- Heavy Targets stop in the hit zone and must be destroyed before the wave continues.
-- Dodge/duck targets are currently disabled for non-VR play.
-- The game can still run without RD ALPHA/RD DELTA hardware.
+Matching uses the full per-level HitWindowSeconds split around arrival at the hit line. A premature action outside this window cannot destroy a distant target. Combo increments explicitly before scoring; the first target multiplier is 1, subsequent completions add 0.1 up to 3.
 
-## Tuning
+Local pseudonymous sessions, actions, target outcomes and score increments are recorded as JSONL. Recent statistics use actual saved sessions. Timing accuracy and target completion are separate metrics, and neither is sensor detection accuracy. See RESEARCH_LOG_SCHEMA.md.
 
-- Target speed is controlled by `TargetSpeed` in `Assets/Scripts/Spawning/LevelDefinition.cs`.
-- Spawn timing is controlled by `SpawnInterval` in `Assets/Scripts/Spawning/LevelDefinition.cs`.
-- Heavy Target life is controlled by `MinToughHits` and `MaxToughHits` in `Assets/Scripts/Spawning/LevelDefinition.cs`.
-- If you later use serialized `LevelDefinition` assets, the same fields are editable in the Unity Inspector.
-
-## Sensor Integration
-
-- RD ALPHA maps to punch-style actions.
-- RD DELTA maps to kick/foot-style actions.
-- `BleSensorInputProvider`, `SensorReading`, and `DynamicsSdkBridge` remain the integration path for real hardware.
-- The native SDK bridge still needs calibrated real device data for production tuning, but the gameplay loop is already separated from the concrete input source.
+Calibration currently explains the planned comfortable-action protocol and clearly states that no baseline is available. Capture/persistence of real calibration remains unimplemented. No fabricated force, power, heart rate or sensor connection appears in the runtime HUD or hub.
