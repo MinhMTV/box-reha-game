@@ -5,3 +5,4 @@ GAMEPLAY_HOST_PASS 5 production rule/statistics checks; not Unity runtime tests.
 LOGGER_HOST_PASS 1 production JSONL lifecycle/privacy check; SYNTHETIC / NOT EMPIRICAL DATA.
 SYNTHETIC_LOG_PATH E:\Programming Projekte\box-reha-game\artifacts\validation\synthetic\production-logger.synthetic.jsonl
 HISTORY_HOST_PASS 1 production IO preservation/profile-filter check; SYNTHETIC / NOT EMPIRICAL DATA.
+ANDROID_POLICY_HOST_PASS 47 assertions; state fixtures only, no JNI or hardware execution.

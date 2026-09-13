@@ -17,7 +17,8 @@ JsonUtility writes the full record class for every kind. **Only the fields defin
 
 | kind | Relevant additional fields | Meaning |
 |---|---|---|
-| session_start | mode, buildVersion, buildRevision, unityVersion, configJson, gameConfigJson, inputStatus | LevelDefinition and GameConfig JSON are embedded strings. buildRevision is contents of optional Resources/ResearchBuildInfo.txt, or unrecorded. |
+| session_start | mode, buildVersion, buildRevision, unityVersion, configJson, gameConfigJson, inputStatus, acquisitionJson (optional) | LevelDefinition and GameConfig JSON are embedded strings. buildRevision is contents of optional Resources/ResearchBuildInfo.txt, or unrecorded. Acquisition is SDK configuration/status metadata, not sensor measurements. |
+| acquisition_state | acquisitionJson | Optional Android SDK state change during an open game recording. Unchanged heartbeat snapshots are suppressed. No body values, gender or device display names are included. |
 | action | actionType, side, lane, inputSource, deviceType, deviceId, connectionId, provenance, sourceEventId, sourceTimestamp, sourceClock, receivedTimestamp, power, normalizationValid, rawValue, quantity, unit, isValid, validityReason, detector, sensorEvidenceJson | An input action routed to a playing round. Native source event identity and original SensorReading evidence are retained separately from Unity action identity. |
 | target_spawn | targetId, targetType, lane, spawnGameplaySeconds, hitWindowSeconds, targetSpeed, hitZoneZ, expectedHitGameplaySeconds, maxHealth, remainingHealth, heavyTimeoutSeconds | Full hit window is symmetric around expected hit time. Max/remaining health represent gameplay counters, not sensor quantities. |
 | heavy_impact | target fields, matchedEventId, healthDamage | Accepted heavy impact. healthDamage is distinct from score. |
@@ -60,4 +61,10 @@ GameSessionStats serializes fields using PascalCase. Derived properties are not 
 
 ## Limits
 
-Calibration, HR sample and adaptation decision record producers are not implemented here. Device status is summarized at session start; full connection transitions and rejected reading diagnostics require additional instrumentation. Raw SDK identity is preserved for emitted actions only, not every continuous packet. Crash durability is best-effort local flush, not a transactional database. History retains 200 summaries, while JSONL files are not automatically deleted.
+Calibration, HR sample and adaptation decision record producers are not implemented here. Android acquisition snapshots report observed status changes, but full BLE transition coverage, rejected reading diagnostics and continuous packet capture require additional instrumentation. Raw SDK identity is preserved for emitted actions only, not every continuous packet. Crash durability is best-effort local flush, not a transactional database. History retains 200 summaries, while JSONL files are not automatically deleted.
+
+## Android acquisition metadata (added 2026-09-14)
+
+`acquisitionJson` is an optional embedded JSON object with `platform`, `source`, `requestedFamily`, `effectiveFamily`, `sdkVersion`, `sdkSessionState`, `profileReference`, `profileStudyId`, `initialized`, `permissionsGranted`, `profileReady`, and `devices`. Each device has `deviceId`, `connectionId`, `family`, `side`, `firmwareVersion`, `online` and `isMock`. Unknown SDK fields remain unknown; an online snapshot does not establish continuous connection coverage or physical detection accuracy. Existing recordings without this optional field remain valid.
+
+The SDK additionally stores body profiles and finished sessions in its own local database. The game JSONL deliberately omits weight, height and gender; `profileReference` links only to a separately protected SDK configuration record. Participant transitions require fresh SDK profile confirmation and a correlated start acknowledgement. Export, retention, backup and deletion of both stores must be qualified before participant use. No demographic force normalization is added to gameplay.

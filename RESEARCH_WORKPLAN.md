@@ -1,5 +1,7 @@
 # Research and development workplan
 
+**14 September continuation:** The user selected Android as the complete game/SDK runtime, with Windows as development/build host. OnePlus 15 or Galaxy Tab S3 are target candidates; Unity 6.6 installation/import is pending. Android collector, Unity control/UI and build integration are now implemented in source. The actual standard native build is blocked by missing vendor resource 2.11.1; compileSdk 36 is required by the SDK AARs. Current details/evidence are in `GAME_STATUS.md` and `ANDROID_VALIDATION_2026-09-14.md`. The sections below retain the dated 13 September baseline and disposition.
+
 Baseline inspected 2026-09-13. This record is an audit and implementation plan, not evidence of study readiness.
 
 ## Sources and working paths

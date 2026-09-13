@@ -1,8 +1,31 @@
 # Gameplay / UI audit and engineering handoff
 
-Audit date: 2026-09-13. Source branch: codex/research-hardening-2026-09-13.
+Audit dates: 2026-09-13 and Android extension 2026-09-14. Source branch: codex/research-hardening-2026-09-13.
 Scope: Unity gameplay, interface, persistence, research event recording and QA.
 This document records source inspection and changes. It is not evidence of a Unity build, rendered scene test, sensor accuracy, or participant evaluation.
+
+## Android extension and review
+
+Android is the deployment target for the entire Unity game plus Dynamics SDK. Windows supplies development/testing tools; no PC gateway is introduced. The checked-in Editor is still 2022.3.62f3. Unity 6.6 is being installed and requires an explicit import/build qualification before claiming migration. OnePlus 15 and Galaxy Tab S3 are intended physical test devices.
+
+**Native compile result: BLOCKED.** The collector is implemented in source against the documented SDK API. The standard dependency graph requires absent `resource:2.11.1`; a separate diagnostic use of 2.12.0 then exposed stripped Kotlin metadata/InnerClasses in the delivered Android AARs, preventing compilation of that documented API. Host policy passes are independent of both failures. Detailed evidence and vendor prerequisites: [SDK package blockers](SDK_PACKAGE_BLOCKERS_2026-09-14.md).
+
+| Concern | Source implementation | Required next evidence |
+|---|---|---|
+| Native SDK ownership and visible connection state | Platform/AndroidDynamicsController issues JNI commands; Sensors/DynamicsSdkBridge forwards status and replays current device states when the game provider binds. Early punch packets are not replayed. | Actual Android JNI/SDK startup, permissions, scan, pair, reconnect and scene transition |
+| No implicit physical input fallback | Android SessionInputSelection defaults Sensor; InputProviderRouter honors explicit transient selection. Development remains selectable and labelled. | Android install and wrong/missing-device walkthrough |
+| Stale start/participant acknowledgement | Status sequence filter, request-ID running acknowledgement, current study/profile reference/family checks; New participant requests finish and invalidates profile readiness | Delayed callback, denied body profile and participant-isolation cases on device |
+| Unsupported simultaneous hardware assumption | One or two unique devices of one family, explicit physical sides, no mock devices; connected-side AllowedLanes; Delta excludes punch chains/heavy | Separate Alpha and Delta qualification, including single Delta foot sensor; mixed/three-device rejection |
+| SDK demographic dependency | Empty weight/height and no selected MALE/FEMALE; SDK bounds validated, local SDK persistence acknowledged. No demographic damage model or body values in game JSONL. | Actual SDK profile acceptance/rejection/storage and participant change |
+| Android touch/lifecycle | Safe-area roots, landscape, visible PAUSE; Resume waits for native acknowledgement; Finish & Results always accessible; setup has End SDK session recovery; pending scene start cancels on background | Real screen/touch/soft keyboard checks, background/foreground and disconnect while paused |
+| Stalled collector / JNI failure | One-second native status heartbeat, three-second monotonic C# freshness gate; Update pauses physical gameplay whenever Running becomes false, including command failures | Stop callbacks during a round, force JNI failure, recover without replaying paused actions |
+| JNI delivery delay omitted from source age | Native emittedAndroidMonotonicSeconds plus callback SystemClock read; effective action age adds transport and Unity queue; old/missing Android status/device emission time cannot refresh readiness | Freeze Unity's main thread, release delayed callbacks and verify stale punch/status rejection |
+| Reconstructable configuration | acquisitionJson on session_start and acquisition_state records, requested/effective family, SDK/profile/device/connection/firmware metadata with no body values/device names | Real JSONL and SDK session reconciliation; raw packet/rejection stream remains outside this logger |
+| Candidate build | PrepareAndroidCandidate saves settings before source stamping; BuildAndroidCandidate verifies prepared settings and builds ARM64 IL2CPP Development APK with a BuildReport | Exact installed Editor/module/toolchain and APK execution |
+
+Host policy tests exercise SDK-readiness fixtures, required body bounds, single/pair family/side policy, mock rejection, connected lanes and request/profile/family acknowledgement checks. They do not execute JNI or Unity lifecycle. The source parser passes all conditional configurations, but it is not Unity API compilation. Full device qualification remains open.
+
+Independent native/C# review also corrected an observer-start race (register lazy watchers before starting), silent native dedup-capacity exhaustion (explicit pause/error; reset only for a new SDK session), and a participant-switch recovery dead end (retry native selection until the requested study ID is acknowledged). SDK Dokka and AAR manifests confirmed init-before-repositories, Android Startup providers, explicit-side pairing, remove/deinitialize semantics, first-packet timestamps and chronological punch list order. These source findings do not substitute for an Android run.
 
 ## Initial findings and disposition
 
@@ -58,8 +81,8 @@ The target style remains warm wood, matte dark surfaces and restrained red accen
 3. Required Play Mode/build gates: actual four-key input, repeated heavy damage/completion/timeout, chain failure, level/endless, Escape/resume/finish, profile/history round-trip, logging failure, pause/reconnect and scene lifecycle.
 4. Required screenshots from a running build: main menu, punch, kick, heavy, calibration preparation, results, statistics and profile. Do not substitute historical mock panels or generated illustrations.
 5. Real calibration capture and baseline persistence remain unimplemented. The current screen states this; no baseline is inferred from demographics.
-6. No Unity runtime, Android/iOS build, BLE lifecycle or physical sensor test is claimed here. Hardware status: NOT VERIFIED WITH PHYSICAL HARDWARE.
-7. Calibration-specific and HR/adaptation event producers are absent. Native bridge messages still require a collector; HR controller status is owned by sensor review.
+6. No Unity runtime, Android APK, BLE lifecycle or physical sensor test is claimed here. Hardware status: NOT VERIFIED WITH PHYSICAL HARDWARE. Native compiler evidence, if available, is recorded separately by the sensor review.
+7. Calibration-specific and HR/adaptation event producers are absent. The Android collector is source-integrated; acquisition-state snapshots do not constitute a complete raw-packet or rejection audit.
 8. Profile switching currently creates a new active ID; a list for restoring an older profile is not implemented. Its histories remain on disk.
 9. A crash/power loss can leave a JSONL session without session_end. Treat it as incomplete, not as a completed study session.
 10. The existing MainMenu scene asset contains the old serialized concept children. They are unreachable at runtime because the hub replaces them before rendering; regenerate the scene only in a controlled Unity session when ready to remove that historical serialization.

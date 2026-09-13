@@ -109,7 +109,7 @@ Only `SensorRegressionChecks.RunAll` is exposed as a Unity editor menu/executeMe
 | Unity scene/mobile/hardware tests absent | P0 for study | No executable Unity editor/device tests performed | External qualification remains open |
 | Native session/clock/dependency integration absent | P0 for sensor study | SDK and plugin code audit | Exact integration contract prepared; no fabricated implementation claim |
 
-## Next sensor tasks
+## Next sensor tasks (13 September baseline, superseded by Android continuation below)
 
 1. Install/locate Unity 2022.3.62f3, run real editor checks, build keyboard prototype and inspect scene behavior.
 2. Resolve SDK dependency packaging and mixed-session supported modes with vendor documentation/hardware.
@@ -118,3 +118,9 @@ Only `SensorRegressionChecks.RunAll` is exposed as a Unity editor menu/executeMe
 5. Run physical ALPHA and DELTA evaluation with independently annotated events and hardware latency measurements.
 6. Implement metric-specific, side-specific calibration with provenance and persistence before normalized metric feedback.
 7. Add HR adapter/adaptation only after approved study scope and actual valid HR data exist.
+
+## Android continuation, 14 September 2026
+
+The user selected Windows development with the complete game/SDK runtime on Android. Native Kotlin acquisition, permission/pairing/profile/session lifecycle, Unity request acknowledgements, same-family one/two-device modes and touch controls are now implemented in source. See `DynamicsSdkBridgeNotes.md`, `GAME_STATUS.md` and `ANDROID_VALIDATION_2026-09-14.md` for current findings. The earlier statement that native endpoints only forward payloads describes the prior baseline.
+
+Actual Gradle dependency resolution confirms the missing `com.riseworld.launchpad.resource:resource:2.11.1` package. The supplied 2.12.0 artifact is used only in an explicitly separate diagnostic compile, not silently substituted into the production graph. AAR metadata independently establishes compileSdk 36. A real Unity 6.6 import, JNI/game APK execution, permissions, physical timing and mixed-family hardware support remain unverified. OnePlus 15 and Galaxy Tab S3 are possible test devices, not passed device configurations.

@@ -1,10 +1,10 @@
-# Engineering decisions, 13 September 2026
+# Engineering decisions, updated 14 September 2026
 
 These are implementation decisions within the user's authorized scope. They are not supervisor approval or empirical findings. Source hierarchy and baseline revisions are in `RESEARCH_WORKPLAN.md`; external decisions are in `OPEN_DECISIONS.md`.
 
 | ID | Decision and reason | Evidence / remaining qualification |
 |---|---|---|
-| GD01 | Keep the existing Unity project and four-scene flow; use exact Editor 2022.3.62f3. | Existing scene/configuration assets retained. Full import and player build pending. |
+| GD01 | Keep the existing Unity project and four-scene flow. The recorded baseline is 2022.3.62f3; the user is installing Unity 6.6 for Android. | Real Editor import/migration must precede a 6.6 qualification claim. GD16 updates the deployment target. |
 | GD02 | Produce one keyboard action per key down through the shared provider/router; arrows punch, A/D kick. | Production provider/factory host tests. Keyboard remains keyboard provenance, never SDK measurement. |
 | GD03 | Selected provider must exist and the game must be Playing; fail closed otherwise. | Host routing tests include missing sensor source and paused/finished states. |
 | GD04 | Keep per-device, per-connection event consumption, duplicate history and cooldown; retire old epochs across reconnect. | Sensor regression groups and retained source hashes. Physical reconnect not verified. |
@@ -19,5 +19,10 @@ These are implementation decisions within the user's authorized scope. They are 
 | GD13 | Keep HR provider/scaffold separate and inactive; calibration view explicitly unavailable. | No false connection, baselines, HR display or adaptation claim. Scope and actual implementation still pending. |
 | GD14 | Pin the existing Unity MCP dependency to its already resolved commit b92c05a25820cfc9f59ce4094eb46aaec8632ea2 instead of mutable main. | Manifest and lock agree; no new dependency resolution is claimed. |
 | GD15 | Separate C# syntax, host logic, static assets, Unity build/runtime and physical qualification. | Each report states its boundary; overall status remains RED while the required gates are absent. |
+| GD16 | Develop/build on Windows; run the full game plus native Dynamics SDK on Android. | Explicit user decision, 14 September. No Windows BLE port or phone-to-PC gateway is part of this route. |
+| GD17 | Start with separate same-family ALPHA/DELTA modes, one device or an explicit left/right pair; target only connected sides. | SDK exposes ALPHA or DELTA session type. Three-device mixed-family use remains unconfirmed, not silently represented by separate tests. |
+| GD18 | Require explicit SDK body-profile input and acknowledgement for each participant, with correlated start/resume and bounded status freshness. | SDK readiness requirement; no preset personal values and no restored demographic force normalization. SDK database/export/deletion require separate qualification. |
+| GD19 | Preserve SDK 0.25.6's production dependency requests; label any alternate resource-version compilation diagnostic only. | Actual standard Gradle resolution lacks resource 2.11.1. Vendor-supplied 2.12.0 alone is not compatibility approval. |
+| GD20 | Compile against Android API 36, retain Java 17/Kotlin 2.3.21 and configure the generated Unity export explicitly. | Actual SDK AAR metadata requires API 36. Standalone native compilation and the different Unity 6.6 Gradle/AGP toolchain need separate evidence. |
 
 The documentary benchmark in `GAME_BENCHMARK_REVIEW.md` guides readability, feedback, progression and restrained information density. It is not a hands-on comparative game evaluation, and its principles still need rendered/user checks in this prototype.

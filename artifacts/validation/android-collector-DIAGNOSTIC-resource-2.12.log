@@ -1,0 +1,116 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :bridge:preBuild UP-TO-DATE
+> Task :bridge:preDebugBuild UP-TO-DATE
+> Task :bridge:mergeDebugJniLibFolders UP-TO-DATE
+> Task :bridge:checkDebugAarMetadata
+> Task :bridge:mergeDebugNativeLibs NO-SOURCE
+> Task :bridge:stripDebugDebugSymbols NO-SOURCE
+> Task :bridge:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :bridge:copyDebugJniLibsProjectAndLocalJars
+> Task :bridge:generateDebugResValues
+> Task :bridge:generateDebugResources
+> Task :bridge:packageDebugResources
+> Task :bridge:processDebugNavigationResources
+> Task :bridge:extractDeepLinksForAarDebug
+> Task :bridge:mergeDebugShaders
+> Task :bridge:compileDebugShaders NO-SOURCE
+> Task :bridge:generateDebugAssets UP-TO-DATE
+> Task :bridge:mergeDebugAssets
+> Task :bridge:parseDebugLocalResources
+> Task :bridge:javaPreCompileDebug
+> Task :bridge:prepareDebugArtProfile
+> Task :bridge:prepareLintJarForPublish
+> Task :bridge:generateDebugRFile
+> Task :bridge:processDebugManifest
+> Task :bridge:compileDebugKotlin
+> Task :bridge:preDebugUnitTestBuild UP-TO-DATE
+> Task :bridge:writeDebugAarMetadata
+> Task :bridge:javaPreCompileDebugUnitTest
+> Task :bridge:generateDebugUnitTestStubRFile
+
+> Task :bridge:compileDebugKotlin
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:194:55 Unresolved reference 'id'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:202:58 Unresolved reference 'not' for operator '!'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:202:84 Unresolved reference 'nameNumberOfCharactersRange'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:204:72 Unresolved reference 'weightRange'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:205:72 Unresolved reference 'heightRange'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:210:40 Unresolved reference 'name'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:210:63 Unresolved reference 'id'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:210:69 Resolution to the classifier 'class BodyProfileId : Any' is not appropriate here.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:211:49 Resolution to the classifier 'class Kilogram : Any' is not appropriate here.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:211:69 Resolution to the classifier 'class Centimeter : Any' is not appropriate here.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:211:91 No value passed for parameter 'p5'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:214:31 Unresolved reference 'value'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:227:102 Unresolved reference 'Free'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:254:59 Unresolved reference 'Resumed'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:255:63 Unresolved reference 'Paused'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:255:119 Unresolved reference 'Ready'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:259:147 Unresolved reference 'Resumed'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:274:59 Unresolved reference 'Resumed'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:293:103 Unresolved reference 'name'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:300:159 Unresolved reference 'Online'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:310:62 Unresolved reference 'id'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:310:76 Unresolved reference 'id'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:313:111 Unresolved reference 'Online'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:322:45 Unresolved reference 'Error'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:323:41 Unresolved reference 'scannerError'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:324:58 Unresolved reference 'MissingScanningRequirements'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:334:53 Unresolved reference 'Resumed'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:335:53 Unresolved reference 'Ready'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:335:92 Unresolved reference 'Paused'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:336:53 Unresolved reference 'Initializing'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:343:115 Inapplicable candidate(s): fun forwardPunch(punch: Punch): Unit
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:364:159 Unresolved reference 'Online'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:388:29 Unresolved reference 'id'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:397:49 Unresolved reference 'id'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:397:61 Unresolved reference 'peripheralId'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:402:22 'when' expression must be exhaustive. Add an 'else' branch.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:402:51 Unresolved reference 'Alpha'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:402:78 Unresolved reference 'Delta'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:420:23 'when' expression must be exhaustive. Add an 'else' branch.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:420:65 Unresolved reference 'Alpha'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:420:80 Unresolved reference 'impact'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:420:97 Unresolved reference 'Delta'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:420:112 Unresolved reference 'powerIndex'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:422:19 Unresolved reference 'punchDuration'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:422:71 Unresolved reference 'contactDuration'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:423:65 'operator' modifier is required on 'fun <T> Comparable<T>.compareTo(other: T): Int'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:423:94 Unresolved reference 'Alpha'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:423:116 Unresolved reference 'peakForceBasedOnBaro'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:423:162 Unresolved reference 'peakForceBasedOnBaro'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:432:22 Unresolved reference 'Alpha'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:432:88 Unresolved reference 'impact'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:432:96 Unresolved reference 'put'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:432:130 Unresolved reference 'peakForceBasedOnBaro'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:433:22 Unresolved reference 'Delta'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:433:97 Unresolved reference 'powerIndex'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:445:77 Unresolved reference 'Online'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:464:29 Unresolved reference 'id'.
+e: file:///E:/Programming%20Projekte/box-reha-game/Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt:482:79 Unresolved reference 'Online'.
+
+> Task :bridge:compileDebugKotlin FAILED
+
+[Incubating] Problems report is available at: file:///E:/Programming%20Projekte/box-reha-game/tools/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':bridge:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1m 45s
+20 actionable tasks: 19 executed, 1 up-to-date

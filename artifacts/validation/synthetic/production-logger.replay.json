@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "data_status": "SYNTHETIC / NOT EMPIRICAL DATA",
-  "session_id": "70fcfe35a7b242c0a7af6097f3d63aa4",
+  "session_id": "bd0a3de16df64acf855cb57f7f947ef8",
   "study_id": "SYNTHETIC_NOT_EMPIRICAL_DATA",
   "mode": "SYNTHETIC / NOT EMPIRICAL DATA",
   "build_revision": "unrecorded",
@@ -119,7 +119,45 @@
       }
     }
   ],
+  "acquisition_metadata": {
+    "availability": "recorded",
+    "snapshots": [
+      {
+        "record_event_id": "a3ca056e60f94ef185830afad1bad44d",
+        "kind": "acquisition_state",
+        "monotonic_seconds": 102.8,
+        "gameplay_seconds": 2.8,
+        "snapshot": {
+          "platform": "Android",
+          "source": "physical_sensor",
+          "requestedFamily": "Alpha",
+          "effectiveFamily": "Alpha",
+          "sdkVersion": "SYNTHETIC_SDK_VERSION",
+          "sdkSessionState": "error",
+          "profileReference": "",
+          "profileStudyId": "SYNTHETIC_NOT_EMPIRICAL_DATA",
+          "initialized": true,
+          "permissionsGranted": true,
+          "profileReady": false,
+          "devices": [
+            {
+              "deviceId": "SYNTHETIC_DEVICE_RIGHT",
+              "connectionId": "SYNTHETIC_CONNECTION",
+              "family": "Alpha",
+              "side": "Right",
+              "firmwareVersion": null,
+              "online": false,
+              "isMock": true
+            }
+          ]
+        }
+      }
+    ],
+    "snapshot_checked_sensor_actions": 0,
+    "sensor_actions_without_prior_snapshot": 1,
+    "boundary": "Reported Android configuration/status only; not sensor samples, authenticated hardware, valid-coverage intervals or physiological evidence"
+  },
   "reconciliation": "PASS: recorded relationships, clocks, counts and score arithmetic; not full gameplay or sensor validation",
   "frequency_boundary": "Observed accepted events divided by active game time, including potential channel outages; not coverage-corrected physical action frequency",
-  "input_sha256": "02e5075400b65594b3d3b34bafcf5b11752390af896e169df63d7bf7caa9bc59"
+  "input_sha256": "46e54eaadb9d637425ab9fab54ffff912b4c8bc13da7117d58e003c285c3483a"
 }

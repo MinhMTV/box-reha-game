@@ -1,0 +1,34 @@
+AAR: C:\dynamics-sdk-main\mavenLocal\com\riseworld\dynamics\multiplatform\dynamics-models-android\0.25.6\dynamics-models-android-0.25.6.aar
+SHA256: 05F95B816ED3490B836588A5719D1B2DC8E45FB7C93301B9357CB967FB936DA0
+CLASS: com.riseworld.dynamics.models.domain.punch.Power
+SourceFile: "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+containsKotlinMetadata=False
+containsInnerClasses=False
+AAR: C:\dynamics-sdk-main\mavenLocal\com\riseworld\dynamics\multiplatform\dynamics-models-composite-android\0.25.6\dynamics-models-composite-android-0.25.6.aar
+SHA256: 3207BC50915057022353CEAAEFE81093590B38DFD178C2348847506F1FF9F3E4
+CLASS: com.riseworld.dynamics.composite.ble.BleGloveState
+   #8 = Utf8               Lkotlin/Metadata;
+SourceFile: "r8-map-id-634e41f3d2c4713a6ef5dc7f1160db377a1b40a09ac8e11430639e8f7eb3a90b"
+RuntimeVisibleAnnotations:
+    kotlin.Metadata(
+containsKotlinMetadata=True
+containsInnerClasses=False
+AAR: C:\dynamics-sdk-main\mavenLocal\com\riseworld\launchpad\ble\ble-multiplex-models-android\0.24.0\ble-multiplex-models-android-0.24.0.aar
+SHA256: 94B6789918B0A4B7E239E7112B5465C06D67989C0BB698075BED0A3519C60198
+CLASS: com.riseworld.launchpad.ble.multiplex.models.domain.ScannerState
+    #8 = Utf8               Lkotlin/Metadata;
+SourceFile: "r8-map-id-aa257da896c2ca57533af8ffd846bf4b1f6bffaf7fee79c961b9bb72caf0f127"
+RuntimeVisibleAnnotations:
+    kotlin.Metadata(
+containsKotlinMetadata=True
+containsInnerClasses=False
+JVM comparison (not a replacement Android artifact):
+JAR: C:\dynamics-sdk-main\mavenLocal\com\riseworld\dynamics\multiplatform\dynamics-models-jvm\0.25.6\dynamics-models-jvm-0.25.6.jar
+SHA256: 8F9DA5DC807299D04F1F39A2B8E5F3895E840DA7FAD1D8E5B2B76BDB58FE5A8E
+CLASS: com.riseworld.dynamics.models.domain.punch.Power
+containsKotlinMetadata=True
+containsInnerClasses=True
+InnerClasses:
+  public static final #51= #6 of #2;      // Alpha=class com/riseworld/dynamics/models/domain/punch/Power$Alpha of class com/riseworld/dynamics/models/domain/punch/Power
+  public static final #52= #8 of #2;      // Delta=class com/riseworld/dynamics/models/domain/punch/Power$Delta of class com/riseworld/dynamics/models/domain/punch/Power
+SourceFile: "Punch.kt"
