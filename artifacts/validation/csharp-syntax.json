@@ -1,0 +1,9 @@
+{
+  "generatedUtc": "2026-09-13T15:52:55.7009237Z",
+  "language": "C# 9",
+  "status": "PASS",
+  "fileCount": 61,
+  "configurationCount": 4,
+  "errors": [],
+  "boundary": "Syntax parsing only. NOT Unity API compilation, player build, runtime or hardware qualification."
+}
