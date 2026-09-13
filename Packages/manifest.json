@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.coplaydev.unity-mcp": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main",
+    "com.coplaydev.unity-mcp": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#b92c05a25820cfc9f59ce4094eb46aaec8632ea2",
     "com.unity.cinemachine": "3.1.7",
     "com.unity.probuilder": "5.2.4",
     "com.unity.ugui": "1.0.0",

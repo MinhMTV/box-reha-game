@@ -7,6 +7,11 @@
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 *.csproj
+!tests/**/*.csproj
+tests/**/bin/
+tests/**/obj/
+Assets/Resources/ResearchBuildInfo.txt
+Assets/Resources/ResearchBuildInfo.txt.meta
 *.sln
 *.suo
 *.user
