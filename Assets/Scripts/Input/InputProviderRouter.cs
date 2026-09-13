@@ -26,9 +26,9 @@ public class InputProviderRouter : MonoBehaviour, IPlayerActionInputProvider
         }
     }
 
-    public InputSourceType SourceType => activeProvider != null ? activeProvider.SourceType : InputSourceType.Mouse;
+    public InputSourceType SourceType => activeProvider != null ? activeProvider.SourceType : lastRequestedSource;
     public bool IsReady => activeProvider != null && activeProvider.IsReady;
-    public string Status => activeProvider != null ? activeProvider.Status : "No input provider";
+    public string Status => activeProvider != null ? activeProvider.Status : "Selected " + lastRequestedSource + " input unavailable (missing provider)";
 
     void Awake()
     {
@@ -58,11 +58,12 @@ public class InputProviderRouter : MonoBehaviour, IPlayerActionInputProvider
     void Update()
     {
         RefreshProvider(forceRebind: false);
+        ApplyProviderState();
     }
 
     public void UpdateInput()
     {
-        activeProvider?.UpdateInput();
+        if (AllowsInput()) activeProvider?.UpdateInput();
     }
 
     public string GetStatusLine()
@@ -95,17 +96,17 @@ public class InputProviderRouter : MonoBehaviour, IPlayerActionInputProvider
 
     private IPlayerActionInputProvider SelectProvider(InputSourceType requestedSource)
     {
-        if (requestedSource == InputSourceType.Sensor && bleSensorInputProvider != null)
+        if (requestedSource == InputSourceType.Sensor)
         {
             return bleSensorInputProvider;
         }
 
-        if (mouseTouchInputProvider != null)
+        if (requestedSource == InputSourceType.Mouse || requestedSource == InputSourceType.Touch || requestedSource == InputSourceType.Keyboard)
         {
             return mouseTouchInputProvider;
         }
 
-        return bleSensorInputProvider;
+        return null;
     }
 
     private void ApplyProviderState()
@@ -113,8 +114,8 @@ public class InputProviderRouter : MonoBehaviour, IPlayerActionInputProvider
         bool mouseIsActive = ReferenceEquals(activeProvider, mouseTouchInputProvider as IPlayerActionInputProvider);
         bool sensorIsActive = ReferenceEquals(activeProvider, bleSensorInputProvider as IPlayerActionInputProvider);
 
-        SetProviderEnabled(mouseTouchInputProvider, mouseIsActive && isEnabled);
-        SetProviderEnabled(bleSensorInputProvider, sensorIsActive && isEnabled);
+        SetProviderEnabled(mouseTouchInputProvider, mouseIsActive && AllowsInput());
+        SetProviderEnabled(bleSensorInputProvider, sensorIsActive && AllowsInput());
     }
 
     private void SetProviderEnabled(IPlayerActionInputProvider provider, bool enabled)
@@ -149,6 +150,13 @@ public class InputProviderRouter : MonoBehaviour, IPlayerActionInputProvider
 
     private void ForwardAction(PlayerActionEvent actionEvent)
     {
-        OnActionDetected?.Invoke(actionEvent);
+        if (AllowsInput() && actionEvent.IsValid) OnActionDetected?.Invoke(actionEvent);
+    }
+
+    private bool AllowsInput()
+    {
+        if (!isEnabled) return false;
+        GameManager manager = GameManager.Instance;
+        return manager == null || manager.CurrentState == GameState.Playing;
     }
 }

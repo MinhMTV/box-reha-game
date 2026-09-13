@@ -11,3 +11,8 @@ extern "C" void DynamicsUnityBridgeSendPunch(const char *json)
 {
     UnitySendMessage("DynamicsSdkBridge", "ReceivePunchJson", json != NULL ? json : "");
 }
+
+extern "C" void DynamicsUnityBridgeSendDeviceState(const char *json)
+{
+    UnitySendMessage("DynamicsSdkBridge", "ReceiveDeviceStateJson", json != NULL ? json : "");
+}

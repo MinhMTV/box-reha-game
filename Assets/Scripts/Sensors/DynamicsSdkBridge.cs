@@ -1,230 +1,177 @@
 using System;
 using UnityEngine;
 
-/// <summary>
-/// Unity-facing bridge endpoint for the RISE Dynamics SDK.
-/// Native Android/iOS SDK code can call these methods via UnitySendMessage.
-/// </summary>
+/// <summary>Validated Unity endpoint. Native SDK initialization/collection remains a separate integration gate.</summary>
 public class DynamicsSdkBridge : MonoBehaviour
 {
     public const string GameObjectName = "DynamicsSdkBridge";
-
     [SerializeField] private BleSensorInputProvider sensorInputProvider;
     [SerializeField] private bool logIncomingPayloads;
-
     public static DynamicsSdkBridge Instance { get; private set; }
+    public int RejectedPayloadCount { get; private set; }
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         gameObject.name = GameObjectName;
         DontDestroyOnLoad(gameObject);
         ResolveInputProvider();
     }
-
-    void Start()
-    {
-        ResolveInputProvider();
-    }
-
+    void OnDestroy() { if (Instance == this) Instance = null; }
     public static DynamicsSdkBridge EnsureInstance()
     {
-        if (Instance != null)
-        {
-            return Instance;
-        }
+        if (Instance != null) return Instance;
+        return new GameObject(GameObjectName).AddComponent<DynamicsSdkBridge>();
+    }
+    public void SetInputProvider(BleSensorInputProvider provider) { sensorInputProvider = provider; }
+    public void ReceiveSensorDataJson(string json) { ReceiveReading(json, false); }
+    public void ReceivePunchJson(string json) { ReceiveReading(json, true); }
 
-        GameObject bridgeObject = new GameObject(GameObjectName);
-        return bridgeObject.AddComponent<DynamicsSdkBridge>();
+    public void ReceiveDeviceStateJson(string json)
+    {
+        if (!ResolveInputProvider() || string.IsNullOrWhiteSpace(json)) return;
+        try
+        {
+            DynamicsDeviceStatePayload payload = JsonUtility.FromJson<DynamicsDeviceStatePayload>(json);
+            if (payload == null || payload.schemaVersion != 2
+                || (payload.status != "online" && payload.status != "offline" && payload.status != "error"))
+            { Reject("invalid_device_state"); return; }
+            if (!sensorInputProvider.SetDeviceConnection(payload.deviceId, payload.connectionId,
+                DynamicsSensorPayload.ParseSensorType(payload.sensorType),
+                DynamicsSensorPayload.ParseBodySide(payload.bodySide), payload.provenance, payload.status == "online"))
+                Reject("device_state_rejected");
+        }
+        catch (Exception) { Reject("malformed_device_state_json"); }
     }
 
-    public void SetInputProvider(BleSensorInputProvider provider)
+    private void ReceiveReading(string json, bool computedPunch)
     {
-        sensorInputProvider = provider;
-    }
-
-    /// <summary>
-    /// Expected JSON shape:
-    /// {"sensorType":"Alpha","bodySide":"Left","deviceId":"alpha_left","ax":0,"ay":0,"az":0,"gx":0,"gy":0,"gz":0,"impactForce":0,"powerIndex":0,"timestamp":0}
-    /// </summary>
-    public void ReceiveSensorDataJson(string json)
-    {
-        if (string.IsNullOrWhiteSpace(json))
-        {
-            return;
-        }
-
-        ResolveInputProvider();
-        if (sensorInputProvider == null)
-        {
-            Debug.LogWarning("[DynamicsSdkBridge] No BleSensorInputProvider found for sensor payload.");
-            return;
-        }
-
+        if (!ResolveInputProvider() || string.IsNullOrWhiteSpace(json)) return;
         try
         {
             DynamicsSensorPayload payload = JsonUtility.FromJson<DynamicsSensorPayload>(json);
-            SensorReading reading = payload.ToSensorReading();
-            sensorInputProvider.PushSensorReading(reading);
-
-            if (logIncomingPayloads)
-            {
-                Debug.Log($"[DynamicsSdkBridge] Sensor payload mapped: {reading.SensorType}/{reading.BodySide} {reading.DeviceId}");
-            }
+            if (payload == null) { Reject("null_payload"); return; }
+            SensorReading reading = payload.ToSensorReading(Time.realtimeSinceStartupAsDouble, computedPunch);
+            if (!sensorInputProvider.PushSensorReading(reading)) Reject("reading_rejected");
+            else if (logIncomingPayloads) Debug.Log("[DynamicsSdkBridge] Validated " + reading.Provenance + " " + reading.Quantity);
         }
-        catch (Exception ex)
-        {
-            Debug.LogWarning($"[DynamicsSdkBridge] Failed to parse sensor payload: {ex.Message}\n{json}");
-        }
+        catch (Exception) { Reject("malformed_reading_json"); }
     }
-
-    /// <summary>
-    /// Expected JSON shape:
-    /// {"sensorType":"Alpha","bodySide":"Right","deviceId":"alpha_right","impact":42,"peakForce":380,"powerIndex":0,"peakAcceleration":22,"timestamp":0}
-    /// </summary>
-    public void ReceivePunchJson(string json)
+    private void Reject(string reason)
     {
-        if (string.IsNullOrWhiteSpace(json))
-        {
-            return;
-        }
-
-        ResolveInputProvider();
-        if (sensorInputProvider == null)
-        {
-            Debug.LogWarning("[DynamicsSdkBridge] No BleSensorInputProvider found for punch payload.");
-            return;
-        }
-
-        try
-        {
-            DynamicsPunchPayload payload = JsonUtility.FromJson<DynamicsPunchPayload>(json);
-            SensorReading reading = payload.ToSensorReading();
-            sensorInputProvider.PushSensorReading(reading);
-
-            if (logIncomingPayloads)
-            {
-                Debug.Log($"[DynamicsSdkBridge] Punch payload mapped: {reading.SensorType}/{reading.BodySide} {reading.DeviceId}");
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.LogWarning($"[DynamicsSdkBridge] Failed to parse punch payload: {ex.Message}\n{json}");
-        }
+        RejectedPayloadCount++;
+        // Do not include raw payloads or device identifiers in ordinary diagnostic logs.
+        if (RejectedPayloadCount <= 5 || RejectedPayloadCount % 100 == 0)
+            Debug.LogWarning("[DynamicsSdkBridge] Rejected payload: " + reason);
     }
-
-    private void ResolveInputProvider()
+    private bool ResolveInputProvider()
     {
-        if (sensorInputProvider != null)
-        {
-            return;
-        }
-
-        sensorInputProvider = FindObjectOfType<BleSensorInputProvider>();
+        if (sensorInputProvider == null) sensorInputProvider = FindObjectOfType<BleSensorInputProvider>();
+        return sensorInputProvider != null;
     }
 }
 
 [Serializable]
-public struct DynamicsSensorPayload
+public class DynamicsDeviceStatePayload
 {
+    public int schemaVersion;
+    public string deviceId;
+    public string connectionId;
     public string sensorType;
     public string bodySide;
-    public string deviceId;
-    public double timestamp;
-    public float ax;
-    public float ay;
-    public float az;
-    public float gx;
-    public float gy;
-    public float gz;
-    public float impactForce;
-    public float powerIndex;
-
-    public SensorReading ToSensorReading()
-    {
-        return new SensorReading
-        {
-            Acceleration = new Vector3(ax, ay, az),
-            Gyroscope = new Vector3(gx, gy, gz),
-            Timestamp = timestamp > 0d ? timestamp : Time.realtimeSinceStartupAsDouble,
-            ImpactForce = impactForce,
-            PowerIndex = powerIndex,
-            SensorType = ParseSensorType(sensorType, deviceId, powerIndex),
-            BodySide = ParseBodySide(bodySide, deviceId),
-            DeviceId = deviceId
-        };
-    }
-
-    internal static SensorDeviceType ParseSensorType(string value, string fallbackId, float powerIndex)
-    {
-        string normalized = !string.IsNullOrWhiteSpace(value) ? value.Trim().ToLowerInvariant() : string.Empty;
-        string id = !string.IsNullOrWhiteSpace(fallbackId) ? fallbackId.Trim().ToLowerInvariant() : string.Empty;
-
-        if (normalized.Contains("delta") || id.Contains("delta") || id.Contains("foot") || id.Contains("leg") || powerIndex > 0f)
-        {
-            return SensorDeviceType.Delta;
-        }
-
-        if (normalized.Contains("alpha") || id.Contains("alpha") || id.Contains("glove") || id.Contains("hand"))
-        {
-            return SensorDeviceType.Alpha;
-        }
-
-        return SensorDeviceType.Unknown;
-    }
-
-    internal static BodySide ParseBodySide(string value, string fallbackId)
-    {
-        string normalized = !string.IsNullOrWhiteSpace(value) ? value.Trim().ToLowerInvariant() : string.Empty;
-        string id = !string.IsNullOrWhiteSpace(fallbackId) ? fallbackId.Trim().ToLowerInvariant() : string.Empty;
-
-        if (normalized.StartsWith("l") || id.Contains("left") || id.EndsWith("_l") || id.EndsWith("-l"))
-        {
-            return BodySide.Left;
-        }
-
-        if (normalized.StartsWith("r") || id.Contains("right") || id.EndsWith("_r") || id.EndsWith("-r"))
-        {
-            return BodySide.Right;
-        }
-
-        return BodySide.Unknown;
-    }
+    public string provenance;
+    public string status;
 }
 
 [Serializable]
-public struct DynamicsPunchPayload
+public class DynamicsSensorPayload
 {
+    public int schemaVersion;
     public string sensorType;
     public string bodySide;
     public string deviceId;
+    public string connectionId;
+    public string eventId;
+    public long sequence;
+    public string provenance;
+    public bool isValid;
+    public bool areComputedValuesValid;
+    public string validityReason;
     public double timestamp;
+    public string timestampClock;
+    public bool hasTiming;
+    public double sourceAgeSeconds;
+    public float ax, ay, az;
+    public float gx, gy, gz;
+    public bool hasMagnetometer;
+    public float mx, my, mz;
+    public bool hasBarometer;
+    public float barometerPa;
+    public int imuSamplingRateHz, barometerSamplingRateHz, magnetometerSamplingRateHz;
+    public int bleCounter, sampleIndex;
+    public double relativeTimeCounterSeconds;
+    public string quantity;
+    public string unit;
     public float impact;
-    public float peakForce;
+    public float peakForceBasedOnBaro;
     public float powerIndex;
     public float peakAcceleration;
+    public float peakVelocity;
+    public float displacement;
+    public double punchDurationSeconds;
+    public double contactDurationSeconds;
 
-    public SensorReading ToSensorReading()
+    public SensorReading ToSensorReading(double receivedAt, bool computedPunch)
     {
-        SensorDeviceType parsedSensorType = DynamicsSensorPayload.ParseSensorType(sensorType, deviceId, powerIndex);
-        float force = peakForce > 0f ? peakForce : impact;
-
+        float value = new Vector3(ax, ay, az).magnitude;
+        if (computedPunch)
+        {
+            switch (quantity)
+            {
+                case "alpha.impact": value = impact; break;
+                case "alpha.peak_force_baro": value = peakForceBasedOnBaro; break;
+                case "delta.power_index": value = powerIndex; break;
+                default: value = float.NaN; break;
+            }
+        }
         return new SensorReading
         {
-            Acceleration = new Vector3(Mathf.Max(0f, peakAcceleration), 0f, 0f),
-            Gyroscope = Vector3.zero,
-            Timestamp = timestamp > 0d ? timestamp : Time.realtimeSinceStartupAsDouble,
-            ImpactForce = parsedSensorType == SensorDeviceType.Alpha ? force : 0f,
-            PowerIndex = parsedSensorType == SensorDeviceType.Delta ? Mathf.Max(powerIndex, force) : powerIndex,
-            SensorType = parsedSensorType,
-            BodySide = DynamicsSensorPayload.ParseBodySide(bodySide, deviceId),
-            DeviceId = deviceId
+            SchemaVersion = schemaVersion, DeviceId = deviceId, ConnectionId = connectionId,
+            SensorType = ParseSensorType(sensorType), BodySide = ParseBodySide(bodySide),
+            EventId = eventId, Sequence = sequence, Provenance = provenance,
+            IsValid = isValid && (!computedPunch || areComputedValuesValid), ValidityReason = validityReason,
+            IsComputedPunch = computedPunch, Timestamp = timestamp, SourceClock = timestampClock,
+            ReceivedTimestamp = receivedAt, HasTiming = hasTiming, SourceAgeSeconds = sourceAgeSeconds,
+            Acceleration = new Vector3(ax, ay, az), Gyroscope = new Vector3(gx, gy, gz),
+            HasMagnetometer = hasMagnetometer, Magnetometer = new Vector3(mx, my, mz),
+            HasBarometer = hasBarometer, Barometer = barometerPa,
+            ImuSamplingRateHz = imuSamplingRateHz, BarometerSamplingRateHz = barometerSamplingRateHz,
+            MagnetometerSamplingRateHz = magnetometerSamplingRateHz, BleCounter = bleCounter, SampleIndex = sampleIndex,
+            RelativeTimeCounterSeconds = relativeTimeCounterSeconds,
+            Quantity = quantity, Unit = unit, RawValue = value,
+            AlphaImpact = impact, AlphaPeakForceBasedOnBaro = peakForceBasedOnBaro, DeltaPowerIndex = powerIndex,
+            PeakAcceleration = peakAcceleration, PeakVelocity = peakVelocity, Displacement = displacement,
+            PunchDurationSeconds = punchDurationSeconds, ContactDurationSeconds = contactDurationSeconds,
+            Detector = computedPunch ? "sdk_computed_punch" : "raw_telemetry"
         };
+    }
+    public static SensorDeviceType ParseSensorType(string value)
+    {
+        switch (value == null ? string.Empty : value.Trim().ToLowerInvariant())
+        {
+            case "alpha": return SensorDeviceType.Alpha;
+            case "delta": return SensorDeviceType.Delta;
+            default: return SensorDeviceType.Unknown;
+        }
+    }
+    public static BodySide ParseBodySide(string value)
+    {
+        switch (value == null ? string.Empty : value.Trim().ToLowerInvariant())
+        {
+            case "left": return BodySide.Left;
+            case "right": return BodySide.Right;
+            default: return BodySide.Unknown;
+        }
     }
 }

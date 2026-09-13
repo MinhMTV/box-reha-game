@@ -19,4 +19,8 @@ public final class DynamicsUnityBridge {
     public static void sendPunch(String json) {
         UnityPlayer.UnitySendMessage(UNITY_BRIDGE_OBJECT, "ReceivePunchJson", json);
     }
+
+    public static void sendDeviceState(String json) {
+        UnityPlayer.UnitySendMessage(UNITY_BRIDGE_OBJECT, "ReceiveDeviceStateJson", json);
+    }
 }

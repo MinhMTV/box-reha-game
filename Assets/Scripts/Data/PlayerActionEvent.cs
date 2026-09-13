@@ -16,6 +16,22 @@ public struct PlayerActionEvent
     public VerticalPosition VerticalPos;
     public SensorDeviceType SensorDevice;
     public BodySide BodySide;
+    public string EventId;
+    public string DeviceId;
+    public string ConnectionId;
+    public string Provenance;
+    public string SourceEventId;
+    public double SourceTimestamp;
+    public string SourceClock;
+    public double ReceivedTimestamp;
+    public bool IsValid;
+    public string ValidityReason;
+    public float RawValue;
+    public string Quantity;
+    public string Unit;
+    public bool NormalizationValid;
+    public string Detector;
+    public SensorReading SensorEvidence;
 
     public static PlayerActionEvent Create(ActionType action, LaneType lane, float power,
         Vector2 startPos, Vector2 endPos, float holdDuration, InputSourceType source,
@@ -24,6 +40,17 @@ public struct PlayerActionEvent
     {
         return new PlayerActionEvent
         {
+            EventId = System.Guid.NewGuid().ToString("N"),
+            Provenance = source.ToString().ToLowerInvariant(),
+            SourceClock = "unity_monotonic_seconds",
+            SourceTimestamp = Time.realtimeSinceStartupAsDouble,
+            ReceivedTimestamp = Time.realtimeSinceStartupAsDouble,
+            IsValid = source != InputSourceType.Sensor,
+            ValidityReason = source == InputSourceType.Sensor ? "requires_validated_sensor_evidence" : "input_event",
+            Quantity = "gameplay.relative_power",
+            Unit = "dimensionless",
+            RawValue = power,
+            NormalizationValid = source != InputSourceType.Sensor,
             ActionType = action,
             Lane = lane,
             Power = power,

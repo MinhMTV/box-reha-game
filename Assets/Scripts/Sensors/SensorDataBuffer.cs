@@ -1,116 +1,77 @@
+using System;
 using UnityEngine;
 
-/// <summary>
-/// Phase 3: Circular buffer for storing sensor readings.
-/// Thread-safe for producer-consumer pattern with BLE data.
-/// 
-/// Usage:
-///   var buffer = new SensorDataBuffer(256);
-///   buffer.Push(reading);
-///   var latest = buffer.GetLatest();
-/// </summary>
+/// <summary>Bounded, synchronized ring buffer. TryPop consumes each reading once.</summary>
 public class SensorDataBuffer
 {
-    private SensorReading[] buffer;
+    private readonly SensorReading[] buffer;
+    private readonly object gate = new object();
     private int head;
     private int count;
-    private readonly int capacity;
-
-    public int Count => count;
-    public int Capacity => capacity;
+    public int Count { get { lock (gate) return count; } }
+    public int Capacity => buffer.Length;
+    public int DroppedCount { get; private set; }
 
     public SensorDataBuffer(int capacity = 256)
     {
-        this.capacity = capacity;
+        if (capacity <= 0) throw new ArgumentOutOfRangeException(nameof(capacity));
         buffer = new SensorReading[capacity];
-        head = 0;
-        count = 0;
     }
 
-    /// <summary>
-    /// Push a new reading into the buffer. Overwrites oldest if full.
-    /// </summary>
     public void Push(SensorReading reading)
     {
-        buffer[head] = reading;
-        head = (head + 1) % capacity;
-        if (count < capacity) count++;
+        lock (gate)
+        {
+            buffer[head] = reading;
+            head = (head + 1) % Capacity;
+            if (count < Capacity) count++;
+            else DroppedCount++;
+        }
     }
 
-    /// <summary>
-    /// Get the most recent reading.
-    /// </summary>
+    public bool TryPop(out SensorReading reading)
+    {
+        lock (gate)
+        {
+            reading = default;
+            if (count == 0) return false;
+            int index = (head - count + Capacity) % Capacity;
+            reading = buffer[index];
+            buffer[index] = default;
+            count--;
+            return true;
+        }
+    }
+
     public SensorReading GetLatest()
     {
-        if (count == 0) return default(SensorReading);
-        int index = (head - 1 + capacity) % capacity;
-        return buffer[index];
+        lock (gate) return count == 0 ? default : buffer[(head - 1 + Capacity) % Capacity];
     }
 
-    /// <summary>
-    /// Get the N most recent readings in chronological order.
-    /// </summary>
     public SensorReading[] GetLatest(int n)
     {
-        n = Mathf.Min(n, count);
-        SensorReading[] result = new SensorReading[n];
-        for (int i = 0; i < n; i++)
+        lock (gate)
         {
-            int index = (head - n + i + capacity) % capacity;
-            result[i] = buffer[index];
+            n = Math.Max(0, Math.Min(n, count));
+            var result = new SensorReading[n];
+            for (int i = 0; i < n; i++) result[i] = buffer[(head - n + i + Capacity) % Capacity];
+            return result;
         }
-        return result;
     }
 
-    /// <summary>
-    /// Get all readings in chronological order.
-    /// </summary>
-    public SensorReading[] GetAll()
-    {
-        return GetLatest(count);
-    }
-
-    /// <summary>
-    /// Clear the buffer.
-    /// </summary>
-    public void Clear()
-    {
-        head = 0;
-        count = 0;
-    }
-
-    /// <summary>
-    /// Calculate average acceleration magnitude over the last N readings.
-    /// Useful for gesture detection (punch = spike, block = sustained).
-    /// </summary>
+    public SensorReading[] GetAll() { lock (gate) return GetLatest(count); }
+    public void Clear() { lock (gate) { Array.Clear(buffer, 0, Capacity); head = count = 0; } }
     public float GetAverageAccelerationMagnitude(int lastN)
     {
-        if (count == 0) return 0f;
-        lastN = Mathf.Min(lastN, count);
+        SensorReading[] readings = GetLatest(lastN);
         float sum = 0f;
-        for (int i = 0; i < lastN; i++)
-        {
-            int index = (head - 1 - i + capacity) % capacity;
-            sum += buffer[index].Acceleration.magnitude;
-        }
-        return sum / lastN;
+        foreach (SensorReading reading in readings) sum += reading.Acceleration.magnitude;
+        return readings.Length == 0 ? 0f : sum / readings.Length;
     }
-
-    /// <summary>
-    /// Get peak acceleration magnitude in the last N readings.
-    /// Useful for detecting punch spikes.
-    /// </summary>
     public float GetPeakAccelerationMagnitude(int lastN)
     {
-        if (count == 0) return 0f;
-        lastN = Mathf.Min(lastN, count);
         float peak = 0f;
-        for (int i = 0; i < lastN; i++)
-        {
-            int index = (head - 1 - i + capacity) % capacity;
-            float mag = buffer[index].Acceleration.magnitude;
-            if (mag > peak) peak = mag;
-        }
+        foreach (SensorReading reading in GetLatest(lastN)) peak = Mathf.Max(peak, reading.Acceleration.magnitude);
         return peak;
     }
 }

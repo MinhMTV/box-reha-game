@@ -1,64 +1,57 @@
 using System;
+using UnityEngine;
 
-/// <summary>
-/// Phase 3: Interface for raw sensor data from BLE/IMU devices.
-/// Implement this to provide sensor-based input to the game.
-/// </summary>
 public interface ISensorDataProvider
 {
-    /// <summary>
-    /// Fired when new sensor data is available.
-    /// </summary>
     event Action<SensorReading> OnDataReceived;
-
-    /// <summary>
-    /// Whether the sensor is currently connected and providing data.
-    /// </summary>
     bool IsConnected { get; }
-
-    /// <summary>
-    /// Attempt to connect to the sensor device.
-    /// </summary>
     void Connect();
-
-    /// <summary>
-    /// Disconnect from the sensor device.
-    /// </summary>
     void Disconnect();
-
-    /// <summary>
-    /// Get the latest sensor reading.
-    /// </summary>
     SensorReading GetLatestReading();
 }
 
-/// <summary>
-/// Represents a single sensor reading from an IMU or similar device.
-/// </summary>
-[System.Serializable]
+/// <summary>Contract v2. Missing identity, validity or clock is not a measurement.</summary>
+[Serializable]
 public struct SensorReading
 {
-    /// <summary>Acceleration vector (m/s²)</summary>
-    public UnityEngine.Vector3 Acceleration;
-
-    /// <summary>Gyroscope angular velocity (rad/s)</summary>
-    public UnityEngine.Vector3 Gyroscope;
-
-    /// <summary>Timestamp of the reading (seconds since start)</summary>
-    public double Timestamp;
-
-    /// <summary>Optional force/impact value directly delivered by the glove.</summary>
-    public float ImpactForce;
-
-    /// <summary>Optional DELTA-style power index when no contact sensor is available.</summary>
-    public float PowerIndex;
-
-    /// <summary>Sensor family: ALPHA glove or DELTA foot sensor.</summary>
-    public SensorDeviceType SensorType;
-
-    /// <summary>Detected or configured body side for left/right alternation.</summary>
-    public BodySide BodySide;
-
-    /// <summary>Device identifier (e.g., "left_hand", "right_hand")</summary>
+    public Vector3 Acceleration; // SDK accData: m/s^2.
+    public Vector3 Gyroscope; // SDK gyroData: degrees/s, NOT radians/s.
+    public Vector3 Magnetometer; // SDK magnetoData: microtesla.
+    public float Barometer; // SDK baroData: pascal.
+    public bool HasMagnetometer;
+    public bool HasBarometer;
+    public double Timestamp; // Original timestamp; interpreted only with SourceClock.
+    public string SourceClock;
+    public double ReceivedTimestamp; // Unity monotonic seconds, assigned at ingress.
+    public double SourceAgeSeconds; // Native monotonic age at forwarding.
+    public bool HasTiming;
+    public int SchemaVersion;
+    public long Sequence; // Strictly increasing per connection, not coarse device clock.
+    public string EventId;
+    public string ConnectionId;
     public string DeviceId;
+    public SensorDeviceType SensorType;
+    public BodySide BodySide;
+    public string Provenance; // dynamics_sdk or sdk_mock; never inferred from device name.
+    public bool IsValid;
+    public string ValidityReason;
+    public bool IsComputedPunch;
+    public float RawValue;
+    public string Quantity;
+    public string Unit;
+    public string Detector;
+    public int ImuSamplingRateHz;
+    public int BarometerSamplingRateHz;
+    public int MagnetometerSamplingRateHz;
+    public int BleCounter;
+    public int SampleIndex;
+    public double RelativeTimeCounterSeconds;
+    public float AlphaImpact;
+    public float AlphaPeakForceBasedOnBaro;
+    public float DeltaPowerIndex;
+    public float PeakAcceleration;
+    public float PeakVelocity;
+    public float Displacement;
+    public double PunchDurationSeconds;
+    public double ContactDurationSeconds;
 }

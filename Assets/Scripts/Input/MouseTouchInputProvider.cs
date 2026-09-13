@@ -1,175 +1,74 @@
 using UnityEngine;
 
-/// <summary>
-/// Enhanced input provider with Punch, Block, and Dodge detection.
-/// - Quick click/release = Punch
-/// - Hold without movement (>0.5s) = Block
-/// - Fast horizontal swipe (>200px in <0.3s) = Dodge
-/// 
-/// Phase 3: Maps vertical screen position to VerticalPosition.
-/// </summary>
+/// <summary>Mouse/touch gestures and four keyboard actions share the abstract input pipeline.</summary>
 public class MouseTouchInputProvider : MonoBehaviour, IPlayerActionInputProvider
 {
     public event System.Action<PlayerActionEvent> OnActionDetected;
-    public bool IsEnabled { get; set; }
+    public bool IsEnabled
+    {
+        get => isEnabled;
+        set { if (isEnabled != value) isPointerDown = false; isEnabled = value; }
+    }
     public InputSourceType SourceType => InputSourceType.Mouse;
     public bool IsReady => true;
-    public string Status => IsEnabled ? "Mouse/Touch active + keyboard hold sim (arrows punch, A/D kick)" : "Mouse/Touch standby";
-
+    public string Status => IsEnabled ? "Arrows: punch | A/D: kick | mouse/touch active" : "Keyboard / mouse / touch standby";
     [SerializeField] private GameConfig gameConfig;
+    private bool isEnabled;
+    private int lastInputFrame = -1;
+    private Vector2 downPosition;
+    private float downTime;
+    private bool isPointerDown;
 
-    private Vector2 mouseDownPosition;
-    private float mouseDownTime;
-    private bool isMouseDown;
-    private float leftPunchDownTime = -1f;
-    private float rightPunchDownTime = -1f;
-    private float leftKickDownTime = -1f;
-    private float rightKickDownTime = -1f;
-
-    private const float KeyboardTapPower = 0.9f;
-    private const float KeyboardMinPower = 0.75f;
-    private const float KeyboardMaxPower = 1.65f;
-    private const float KeyboardChargedReleaseThreshold = 0.18f;
-    private const float KeyboardFullPowerHoldSeconds = 0.75f;
-
-    // Fallback values if no GameConfig assigned
-    private float BlockHoldDuration => gameConfig != null ? gameConfig.BlockHoldDuration : 0.5f;
-    private float SwipeMinDistance => gameConfig != null ? gameConfig.SwipeMinDistance : 200f;
-    private float SwipeMaxDuration => gameConfig != null ? gameConfig.SwipeMaxDuration : 0.3f;
-    private float BlockMaxMovement => gameConfig != null ? gameConfig.BlockMaxMovement : 10f;
-
-    void Update()
-    {
-        if (!IsEnabled) return;
-        UpdateInput();
-    }
-
+    void Update() { UpdateInput(); }
     public void UpdateInput()
     {
-        ProcessKeyboardInput();
-        ProcessMouseInput();
-        ProcessTouchInput();
+        if (!isEnabled || lastInputFrame == Time.frameCount) return;
+        lastInputFrame = Time.frameCount;
+        EmitKeyboard(KeyCode.LeftArrow, ActionType.Punch, BodySide.Left);
+        EmitKeyboard(KeyCode.RightArrow, ActionType.Punch, BodySide.Right);
+        EmitKeyboard(KeyCode.A, ActionType.Kick, BodySide.Left);
+        EmitKeyboard(KeyCode.D, ActionType.Kick, BodySide.Right);
+        // Unity can synthesize mouse events from touch. Only process one pointer channel.
+        if (Input.touchCount > 0) ProcessTouch();
+        else ProcessMouse();
     }
-
-    private void ProcessKeyboardInput()
+    private void EmitKeyboard(KeyCode key, ActionType action, BodySide side)
     {
-        TrackKeyboardHold(KeyCode.LeftArrow, ActionType.Punch, BodySide.Left, LaneType.Left, VerticalPosition.High, ref leftPunchDownTime);
-        TrackKeyboardHold(KeyCode.RightArrow, ActionType.Punch, BodySide.Right, LaneType.Right, VerticalPosition.High, ref rightPunchDownTime);
-        TrackKeyboardHold(KeyCode.A, ActionType.Kick, BodySide.Left, LaneType.Left, VerticalPosition.Low, ref leftKickDownTime);
-        TrackKeyboardHold(KeyCode.D, ActionType.Kick, BodySide.Right, LaneType.Right, VerticalPosition.Low, ref rightKickDownTime);
+        if (Input.GetKeyDown(key)) OnActionDetected?.Invoke(KeyboardActionFactory.Create(action, side));
     }
-
-    private void TrackKeyboardHold(KeyCode key, ActionType actionType, BodySide bodySide, LaneType lane, VerticalPosition verticalPosition, ref float downTime)
+    private void ProcessMouse()
     {
-        if (Input.GetKeyDown(key))
-        {
-            downTime = Time.time;
-            EmitKeyboardAction(actionType, bodySide, lane, verticalPosition, KeyboardTapPower, 0f);
-        }
-
-        if (!Input.GetKeyUp(key))
-        {
-            return;
-        }
-
-        float holdDuration = downTime >= 0f ? Time.time - downTime : 0f;
-        downTime = -1f;
-        if (holdDuration < KeyboardChargedReleaseThreshold)
-        {
-            return;
-        }
-
-        EmitKeyboardAction(actionType, bodySide, lane, verticalPosition, GetKeyboardPower(holdDuration), holdDuration);
+        if (Input.GetMouseButtonDown(0)) Begin(Input.mousePosition);
+        if (Input.GetMouseButtonUp(0) && isPointerDown) End(Input.mousePosition, InputSourceType.Mouse);
     }
-
-    private float GetKeyboardPower(float holdDuration)
+    private void ProcessTouch()
     {
-        float t = Mathf.Clamp01(holdDuration / KeyboardFullPowerHoldSeconds);
-        return Mathf.Lerp(KeyboardMinPower, KeyboardMaxPower, t);
-    }
-
-    private void EmitKeyboardAction(ActionType actionType, BodySide bodySide, LaneType lane, VerticalPosition verticalPosition, float power, float holdDuration)
-    {
-        PlayerActionEvent actionEvent = PlayerActionEvent.Create(
-            actionType,
-            lane,
-            power,
-            Vector2.zero,
-            Vector2.zero,
-            holdDuration,
-            InputSourceType.Keyboard,
-            verticalPosition,
-            0f,
-            actionType == ActionType.Kick ? SensorDeviceType.Delta : SensorDeviceType.Alpha,
-            bodySide);
-        OnActionDetected?.Invoke(actionEvent);
-    }
-
-    private void ProcessMouseInput()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            mouseDownPosition = Input.mousePosition;
-            mouseDownTime = Time.time;
-            isMouseDown = true;
-        }
-
-        if (Input.GetMouseButtonUp(0) && isMouseDown)
-        {
-            isMouseDown = false;
-            Vector2 mouseUpPosition = Input.mousePosition;
-            float holdDuration = Time.time - mouseDownTime;
-            float swipeDistance = Vector2.Distance(mouseDownPosition, mouseUpPosition);
-
-            EmitAction(mouseDownPosition, mouseUpPosition, holdDuration, swipeDistance, InputSourceType.Mouse);
-        }
-    }
-
-    private void ProcessTouchInput()
-    {
-        if (Input.touchCount <= 0) return;
         Touch touch = Input.GetTouch(0);
-        switch (touch.phase)
-        {
-            case TouchPhase.Began:
-                mouseDownPosition = touch.position;
-                mouseDownTime = Time.time;
-                isMouseDown = true;
-                break;
-            case TouchPhase.Ended:
-                if (!isMouseDown) break;
-                isMouseDown = false;
-                float holdDuration = Time.time - mouseDownTime;
-                float swipeDistance = Vector2.Distance(mouseDownPosition, touch.position);
-                EmitAction(mouseDownPosition, touch.position, holdDuration, swipeDistance, InputSourceType.Touch);
-                break;
-        }
+        if (touch.phase == TouchPhase.Began) Begin(touch.position);
+        else if (touch.phase == TouchPhase.Ended && isPointerDown) End(touch.position, InputSourceType.Touch);
+        else if (touch.phase == TouchPhase.Canceled) isPointerDown = false;
     }
-
-    private void EmitAction(Vector2 startPos, Vector2 endPos, float holdDuration, float swipeDistance, InputSourceType source)
+    private void Begin(Vector2 position)
     {
-        float power = Mathf.Clamp01(holdDuration / 0.3f);
-        LaneType lane = InputInterpreter.GetLaneFromScreenX(endPos.x);
-
-        // Classify the action type
-        ActionType actionType = InputInterpreter.ClassifyAction(
-            holdDuration, swipeDistance, holdDuration,
-            BlockHoldDuration, SwipeMinDistance, SwipeMaxDuration, BlockMaxMovement
-        );
-
-        // Phase 3: Vertical position from screen Y
-        VerticalPosition vertPos = InputInterpreter.GetVerticalPositionFromScreenY(endPos.y);
-        if (vertPos == VerticalPosition.Low && actionType == ActionType.Punch)
-        {
-            actionType = ActionType.Kick;
-        }
-
-        BodySide bodySide = endPos.x < Screen.width * 0.5f ? BodySide.Left : BodySide.Right;
-
-        PlayerActionEvent actionEvent = PlayerActionEvent.Create(
-            actionType, lane, power, startPos, endPos, holdDuration, source, vertPos, 0f,
-            SensorDeviceType.Unknown, bodySide
-        );
-        OnActionDetected?.Invoke(actionEvent);
+        downPosition = position;
+        downTime = Time.unscaledTime;
+        isPointerDown = true;
+    }
+    private void End(Vector2 position, InputSourceType source)
+    {
+        isPointerDown = false;
+        float duration = Time.unscaledTime - downTime;
+        float distance = Vector2.Distance(downPosition, position);
+        ActionType action = InputInterpreter.ClassifyAction(duration, distance, duration,
+            gameConfig != null ? gameConfig.BlockHoldDuration : 0.5f,
+            gameConfig != null ? gameConfig.SwipeMinDistance : 200f,
+            gameConfig != null ? gameConfig.SwipeMaxDuration : 0.3f,
+            gameConfig != null ? gameConfig.BlockMaxMovement : 10f);
+        VerticalPosition vertical = InputInterpreter.GetVerticalPositionFromScreenY(position.y);
+        if (vertical == VerticalPosition.Low && action == ActionType.Punch) action = ActionType.Kick;
+        BodySide side = position.x < Screen.width * 0.5f ? BodySide.Left : BodySide.Right;
+        LaneType lane = side == BodySide.Left ? LaneType.Left : LaneType.Right;
+        OnActionDetected?.Invoke(PlayerActionEvent.Create(action, lane, 1f, downPosition, position,
+            duration, source, vertical, 0f, SensorDeviceType.Unknown, side));
     }
 }
