@@ -24,17 +24,20 @@ public class ComboSystem : MonoBehaviour
     void OnEnable()
     {
         // Updated event signature
-        HitZoneEvaluator.OnHitEvaluated += HandleHit;
         HitZoneEvaluator.OnTargetMissed += HandleMiss;
     }
 
     void OnDisable()
     {
-        HitZoneEvaluator.OnHitEvaluated -= HandleHit;
         HitZoneEvaluator.OnTargetMissed -= HandleMiss;
     }
 
-    private void HandleHit(HitQuality quality, int score, LaneType lane)
+    void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
+
+    public void RegisterHit()
     {
         CurrentCombo++;
         if (CurrentCombo > MaxCombo)

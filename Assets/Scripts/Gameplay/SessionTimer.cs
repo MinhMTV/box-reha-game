@@ -33,7 +33,7 @@ public class SessionTimer : MonoBehaviour
     {
         if (!isRunning) return;
 
-        timeRemaining -= Time.deltaTime;
+        timeRemaining = Mathf.Max(0f, timeRemaining - Time.deltaTime);
         OnTimeChanged?.Invoke(timeRemaining);
 
         if (!warned30 && timeRemaining <= 30f)

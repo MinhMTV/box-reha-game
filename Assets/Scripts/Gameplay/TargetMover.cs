@@ -15,7 +15,7 @@ public class TargetMover : MonoBehaviour
 
     void Update()
     {
-        if (targetObject != null && targetObject.IsTough && targetObject.HasSpawnedInHitZone && !targetObject.IsBreaking)
+        if (targetObject != null && (targetObject.IsResolved || targetObject.IsLockedInHitZone))
         {
             return;
         }
@@ -23,7 +23,10 @@ public class TargetMover : MonoBehaviour
         transform.Translate(Vector3.back * Speed * Time.deltaTime, Space.World);
         if (transform.position.z < missZoneZ)
         {
-            Destroy(gameObject);
+            HitZoneEvaluator evaluator = FindObjectOfType<HitZoneEvaluator>();
+            if (targetObject != null && !targetObject.IsResolved && evaluator != null)
+                evaluator.Miss(targetObject, "miss");
+            else Destroy(gameObject);
         }
     }
 }

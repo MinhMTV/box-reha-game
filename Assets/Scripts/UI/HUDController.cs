@@ -63,7 +63,6 @@ public class HUDController : MonoBehaviour
         {
             debugVisible = !debugVisible;
             if (debugText != null) debugText.gameObject.SetActive(debugVisible);
-            if (inputStateText != null) inputStateText.gameObject.SetActive(debugVisible);
         }
 
         // Phase 4: Show FPS in debug mode
@@ -145,7 +144,7 @@ public class HUDController : MonoBehaviour
     {
         if (feedbackText != null)
         {
-            feedbackText.text = $"TOUGH! HITS LEFT: {hitsLeft}";
+            feedbackText.text = $"HEAVY  {hitsLeft} / {maxHits}";
             feedbackText.color = new Color(1f, 0.3f, 0.3f);
             feedbackTimer = FeedbackDuration;
         }
@@ -158,7 +157,7 @@ public class HUDController : MonoBehaviour
     {
         if (feedbackText != null)
         {
-            feedbackText.text = "TOUGH TARGET BROKEN!";
+            feedbackText.text = "HEAVY COMPLETE";
             feedbackText.color = Color.yellow;
             feedbackTimer = FeedbackDuration;
         }
@@ -200,15 +199,15 @@ public class HUDController : MonoBehaviour
         switch (forceBand)
         {
             case ForceBand.Low:
-                feedbackText.text = $"FORCE LOW ({normalizedForce:P0})";
+                feedbackText.text = $"BELOW BASELINE ({normalizedForce:P0})";
                 feedbackText.color = new Color(0.45f, 0.85f, 1f);
                 break;
             case ForceBand.OnTarget:
-                feedbackText.text = $"FORCE ON TARGET ({normalizedForce:P0})";
+                feedbackText.text = $"NEAR BASELINE ({normalizedForce:P0})";
                 feedbackText.color = Color.green;
                 break;
             default:
-                feedbackText.text = $"FORCE HIGH ({normalizedForce:P0})";
+                feedbackText.text = $"ABOVE BASELINE ({normalizedForce:P0})";
                 feedbackText.color = new Color(1f, 0.55f, 0.15f);
                 break;
         }

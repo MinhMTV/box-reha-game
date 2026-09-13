@@ -8,6 +8,7 @@ using System.Collections;
 /// </summary>
 public class TargetSpawner : MonoBehaviour
 {
+    public GameConfig Configuration => gameConfig;
     private const string PunchVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_PunchTarget_NeonRed.prefab";
     private const string KickVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_KickPad_NeonBlue.prefab";
     private const string ToughVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_HeavyCore_GoldBlocker.prefab";
@@ -39,6 +40,7 @@ public class TargetSpawner : MonoBehaviour
 
     public void StartSpawning(LevelDefinition level)
     {
+        StopAllCoroutines();
         EnsureGeneratedVisualPrefabs();
         currentLevel = level;
         isSpawning = true;
@@ -189,10 +191,7 @@ public class TargetSpawner : MonoBehaviour
         int chainLength = Random.Range(currentLevel.MinChainLength, currentLevel.MaxChainLength + 1);
 
         // Notify evaluator of chain start
-        if (hitZoneEvaluator != null)
-        {
-            hitZoneEvaluator.StartRapidFireChain(chainLane, chainLength);
-        }
+        string chainId = hitZoneEvaluator != null ? hitZoneEvaluator.StartRapidFireChain(chainLane, chainLength) : null;
 
         float chainSpeed = currentLevel.TargetSpeed * speedMultiplier;
 
@@ -222,6 +221,7 @@ public class TargetSpawner : MonoBehaviour
             if (target != null)
             {
                 target.Lane = chainLane;
+                target.ChainId = chainId;
                 target.Type = TargetType.Punch;
                 target.MoveSpeed = chainSpeed;
                 target.HitWindow = currentLevel.HitWindowSeconds;

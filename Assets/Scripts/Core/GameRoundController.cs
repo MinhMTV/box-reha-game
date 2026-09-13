@@ -38,6 +38,7 @@ public class GameRoundController : MonoBehaviour
         SessionTimer.OnTimeUp -= HandleTimeUp;
         HitZoneEvaluator.OnHitEvaluated -= TrackHit;
         HitZoneEvaluator.OnTargetMissed -= TrackMiss;
+        if (inputProvider != null) inputProvider.OnActionDetected -= HandlePlayerAction;
     }
 
     void Update()
@@ -110,10 +111,19 @@ public class GameRoundController : MonoBehaviour
         }
 
         manager.CurrentState = GameState.Playing;
+        Time.timeScale = 1f;
         sessionStats = manager.SessionStats;
         sessionStats.Reset();
         roundStartTime = Time.time;
         roundEnded = false;
+        sessionStats.StartedUtc = DateTime.UtcNow.ToString("O");
+        sessionStats.Mode = currentLevel.DisplayName;
+        sessionStats.StudyId = manager.PlayerProfile.StudyId;
+        sessionStats.SessionId = ResearchSessionLog.Begin(manager.PlayerProfile, currentLevel,
+            inputProvider != null ? inputProvider.GetStatusLine() : "No input provider",
+            targetSpawner != null ? targetSpawner.Configuration : null);
+        // Avoid exporting an absolute OS user-directory path with a pseudonymous session summary.
+        sessionStats.LogPath = System.IO.Path.GetFileName(ResearchSessionLog.CurrentPath);
         EnsureGameplayCameraView();
 
         if (inputProvider != null)
@@ -161,6 +171,10 @@ public class GameRoundController : MonoBehaviour
 
     private void HandlePlayerAction(PlayerActionEvent action)
     {
+        if (roundEnded || sessionStats == null || GameManager.Instance == null ||
+            GameManager.Instance.CurrentState != GameState.Playing) return;
+        ResearchSessionLog.Action(action);
+        sessionStats.TrackAction(action);
         if (hitZoneEvaluator != null)
         {
             hitZoneEvaluator.EvaluateHit(action);
@@ -169,6 +183,7 @@ public class GameRoundController : MonoBehaviour
 
     private void TrackHit(HitQuality quality, int score, LaneType lane)
     {
+        if (sessionStats == null || roundEnded) return;
         sessionStats.TotalTargets++;
 
         switch (quality)
@@ -186,6 +201,7 @@ public class GameRoundController : MonoBehaviour
 
     private void TrackMiss(int lane)
     {
+        if (sessionStats == null || roundEnded) return;
         sessionStats.TotalTargets++;
         sessionStats.Misses++;
         sessionStats.FinalCombo = 0;
@@ -193,12 +209,17 @@ public class GameRoundController : MonoBehaviour
 
     private void HandleTimeUp()
     {
-        EndRound();
+        FinishRound("time_limit");
     }
 
     private void EndRound()
     {
-        if (roundEnded)
+        FinishRound("player_stop");
+    }
+
+    public void FinishRound(string reason = "player_stop")
+    {
+        if (roundEnded || sessionStats == null)
         {
             return;
         }
@@ -221,15 +242,36 @@ public class GameRoundController : MonoBehaviour
             sessionTimer.StopTimer();
         }
 
+        hitZoneEvaluator?.AbortRemaining();
+        sessionStats.DurationSeconds = Mathf.Max(0f, Time.time - roundStartTime);
+        sessionStats.StopReason = reason;
+
         sessionStats.Score = scoreSystem != null ? scoreSystem.CurrentScore : sessionStats.Score;
         sessionStats.FinalCombo = comboSystem != null ? comboSystem.CurrentCombo : sessionStats.FinalCombo;
         sessionStats.MaxCombo = comboSystem != null ? comboSystem.MaxCombo : sessionStats.MaxCombo;
+
+        ResearchSessionLog.End(sessionStats, reason);
+        SessionHistoryStore.Save(sessionStats);
 
         OnRoundEnd?.Invoke(sessionStats);
 
         if (GameManager.Instance != null)
         {
             GameManager.Instance.EndGame();
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        if (!roundEnded && sessionStats != null)
+        {
+            roundEnded = true;
+            hitZoneEvaluator?.AbortRemaining();
+            sessionStats.DurationSeconds = Mathf.Max(0f, Time.time - roundStartTime);
+            sessionStats.StopReason = "application_quit";
+            sessionStats.Score = scoreSystem != null ? scoreSystem.CurrentScore : sessionStats.Score;
+            ResearchSessionLog.End(sessionStats, "application_quit");
+            SessionHistoryStore.Save(sessionStats);
         }
     }
 

@@ -2,489 +2,214 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// Evaluates hits against targets in the hit zone.
-/// Phase 2: Handles Block and Dodge targets, tracks reaction time.
-/// v3: ToughTarget multi-hit support. RapidFire chain tracking.
-/// </summary>
+/// <summary>Time-based action matching. Targets resolve once; pause uses the scaled gameplay clock.</summary>
 public class HitZoneEvaluator : MonoBehaviour
 {
     public static event Action<HitQuality, int, LaneType> OnHitEvaluated;
     public static event Action<int> OnTargetMissed;
-    // v3: Tough target events
-    public static event Action<int, int, LaneType, Vector3> OnToughTargetHit; // hitsLeft, maxHits, lane, position
+    public static event Action<int, int, LaneType, Vector3> OnToughTargetHit;
     public static event Action<HitQuality, LaneType, Vector3> OnToughTargetDestroyed;
-    // v3: Rapid fire chain events
-    public static event Action<int, int, LaneType> OnRapidFireChainProgress; // current, total, lane
-    public static event Action<int, LaneType> OnRapidFireChainComplete; // bonus, lane
-
-    // Phase 2: Visual feedback events
+    public static event Action<int, int, LaneType> OnRapidFireChainProgress;
+    public static event Action<int, LaneType> OnRapidFireChainComplete;
     public static event Action<HitQuality, LaneType, Vector3> OnHitVisualFeedback;
     public static event Action<LaneType, Vector3> OnMissVisualFeedback;
     public static event Action<ForceBand, float> OnSensorForceEvaluated;
-
-    private List<TargetObject> activeTargets = new List<TargetObject>();
-
-    // v3: Rapid fire chain tracking
-    private struct RapidFireChain
-    {
-        public LaneType Lane;
-        public int Total;
-        public int Completed;
-        public bool Active;
-    }
-    private RapidFireChain currentChain;
-
-    private const float PerfectWindow = 0.1f;
-    private const float GoodWindow = 0.25f;
-    private const float EarlyLateWindow = 0.5f;
-
-    private const int PerfectScore = 100;
-    private const int GoodScore = 50;
-    private const int EarlyLateScore = 25;
-    private const int BlockScore = 75;
-    private const int DodgeScore = 75;
-
-    // v3: Partial hit score for tough targets
-    private const int ToughPartialScore = 10;
-    private const int ToughBreakBonus = 350;
-    // v3: Rapid fire chain bonus
     public const int RapidFireChainBonus = 500;
-
     [SerializeField] private Transform hitZoneCenter;
     [SerializeField] private float minimumSensorPowerMultiplier = 0.75f;
     [SerializeField] private float maximumSensorPowerMultiplier = 1.25f;
     [SerializeField] private float heavyMinimumPower = 0.5f;
     [SerializeField] private bool createRuntimeHitGuide = true;
+    private readonly List<TargetObject> activeTargets = new List<TargetObject>();
+    private class Chain { public int Total, Completed; public bool Failed; public LaneType Lane; }
+    private readonly Dictionary<string, Chain> chains = new Dictionary<string, Chain>();
+    public float HitZoneZ => hitZoneCenter != null ? hitZoneCenter.position.z : transform.position.z;
 
-    void Start()
+    void Start() { if (createRuntimeHitGuide) EnsureHitGuide(); }
+    public string StartRapidFireChain(LaneType lane, int totalTargets)
     {
-        if (hitZoneCenter == null)
-        {
-            hitZoneCenter = transform;
-        }
-
-        if (createRuntimeHitGuide)
-        {
-            EnsureHitGuide();
-        }
+        string id = Guid.NewGuid().ToString("N");
+        chains[id] = new Chain { Lane = lane, Total = totalTargets };
+        return id;
     }
-
-    /// <summary>
-    /// v3: Start a rapid fire chain in a lane.
-    /// </summary>
-    public void StartRapidFireChain(LaneType lane, int totalTargets)
-    {
-        currentChain = new RapidFireChain
-        {
-            Lane = lane,
-            Total = totalTargets,
-            Completed = 0,
-            Active = true
-        };
-    }
-
     public void RegisterTarget(TargetObject target)
     {
-        if (!activeTargets.Contains(target))
-        {
-            activeTargets.Add(target);
-        }
+        if (target != null && !target.IsResolved && !activeTargets.Contains(target)) activeTargets.Add(target);
     }
-
-    public void UnregisterTarget(TargetObject target)
+    public void UnregisterTarget(TargetObject target) { activeTargets.Remove(target); }
+    void Update()
     {
-        activeTargets.Remove(target);
-    }
-
-    public void EvaluateHit(PlayerActionEvent action)
-    {
-        TargetObject bestTarget = null;
-        float bestDistance = float.MaxValue;
-
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameState.Playing) return;
         for (int i = activeTargets.Count - 1; i >= 0; i--)
         {
             TargetObject target = activeTargets[i];
-            if (target == null)
+            if (target == null || target.IsResolved) { activeTargets.RemoveAt(i); continue; }
+            float offset = TimingOffset(target);
+            if (target.IsTough && target.transform.position.z <= HitZoneZ)
             {
-                activeTargets.RemoveAt(i);
-                continue;
+                target.HasSpawnedInHitZone = true;
+                target.LockInHitZone(HitZoneZ);
+                if (Time.time - target.LockedTime >= target.HeavyTimeoutSeconds) Miss(target, "heavy_timeout");
             }
-
-            if (!DoesLaneMatch(action, target)) continue;
-
-            if (!DoesActionMatchTarget(action.ActionType, target.Type)) continue;
-
-            if (!DoesVerticalMatch(action, target)) continue;
-
-            float distance = Mathf.Abs(target.transform.position.z - hitZoneCenter.position.z);
-            if (distance < bestDistance)
+            else if (offset > HalfWindow(target)) Miss(target, "miss");
+        }
+    }
+    public static float HalfWindow(TargetObject target) { return target.HitWindow * 0.5f; }
+    private float TimingOffset(TargetObject target)
+    { return (HitZoneZ - target.transform.position.z) / Mathf.Max(0.01f, target.MoveSpeed); }
+    public static HitQuality DetermineHitQuality(float offset, float halfWindow)
+    {
+        return GameplayRules.Timing(offset, halfWindow);
+    }
+    public static bool Matches(PlayerActionEvent action, TargetObject target)
+    {
+        if (target == null || target.IsBreaking || target.IsResolved) return false;
+        return GameplayRules.Matches(action.ActionType, action.BodySide, action.Lane, action.VerticalPos,
+            target.Type, target.Lane, target.IsTough);
+    }
+    public void EvaluateHit(PlayerActionEvent action)
+    {
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameState.Playing) return;
+        if (!action.IsValid || float.IsNaN(action.Power) || float.IsInfinity(action.Power) || action.Power < 0f) return;
+        TargetObject best = null;
+        float bestDistance = float.MaxValue;
+        foreach (TargetObject target in activeTargets)
+        {
+            if (!Matches(action, target)) continue;
+            float offset = TimingOffset(target);
+            if (!target.IsLockedInHitZone && Mathf.Abs(offset) > HalfWindow(target)) continue;
+            float distance = Mathf.Abs(offset);
+            if (distance < bestDistance) { best = target; bestDistance = distance; }
+        }
+        // An unmatched / premature action is logged by GameRoundController; it does not destroy a future target.
+        if (best == null) return;
+        float timing = TimingOffset(best);
+        HitQuality quality = best.IsLockedInHitZone ? HitQuality.Good : DetermineHitQuality(timing, HalfWindow(best));
+        if (quality == HitQuality.Miss) return;
+        if (best.IsTough)
+        {
+            // Uncalibrated sensor events receive neutral gameplay damage, never an invented physical baseline.
+            float power = action.NormalizationValid ? action.Power : 1f;
+            if (power < Mathf.Max(heavyMinimumPower, best.MinPower))
             {
-                bestDistance = distance;
-                bestTarget = target;
-            }
-        }
-
-        if (bestTarget == null)
-        {
-            bestTarget = FindLockedToughTarget(action);
-        }
-
-        if (bestTarget == null) return;
-
-        float timingOffset = (hitZoneCenter.position.z - bestTarget.transform.position.z) / bestTarget.MoveSpeed;
-        HitQuality quality = bestTarget.IsTough && bestTarget.IsLockedInHitZone
-            ? HitQuality.Good
-            : DetermineHitQuality(timingOffset);
-
-        if (quality == HitQuality.Miss)
-        {
-            OnTargetMissed?.Invoke(bestTarget.Lane.GetHashCode());
-            OnMissVisualFeedback?.Invoke(bestTarget.Lane, bestTarget.transform.position);
-            TextPopup.CreateMiss(bestTarget.transform.position);
-            TrackResolvedTarget(bestTarget.Type, false);
-            activeTargets.Remove(bestTarget);
-            Destroy(bestTarget.gameObject);
-            return;
-        }
-
-        // v3: Handle tough targets
-        if (bestTarget.IsTough)
-        {
-            float requiredPower = Mathf.Max(heavyMinimumPower, bestTarget.MinPower);
-            if (action.Power < requiredPower)
-            {
-                TextPopup.Create(bestTarget.transform.position, "TOO WEAK", new Color(1f, 0.82f, 0.22f, 1f));
-                bestTarget.Flash(new Color(1f, 0.4f, 0.2f, 1f), 0.12f);
+                TextPopup.Create(best.transform.position, "BELOW GAMEPLAY THRESHOLD", Color.white);
                 return;
             }
-
-            bool destroyed = bestTarget.TakeHit(action.Power);
-            int hitsLeft = Mathf.Max(0, bestTarget.MaxHits - bestTarget.CurrentHits);
-
-            if (!destroyed)
+            int before = best.CurrentHits;
+            bool broken = best.TakeHit(power);
+            ResearchSessionLog.HeavyImpact(best, action, best.CurrentHits - before);
+            if (!broken)
             {
-                // Partial hit - give small score, don't count as full hit
-                ScoreSystem.AddToughPartialHit(ToughPartialScore);
-
-                // Show tough hit feedback
-                OnToughTargetHit?.Invoke(hitsLeft, bestTarget.MaxHits, bestTarget.Lane, bestTarget.transform.position);
-
-                Color hitParticleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
-                HitParticleEffect.Spawn(bestTarget.transform.position, hitParticleColor, 12);
-
-                // Play tough hit sound
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlayToughHitSound();
-
-                // Show popup
-                TextPopup.Create(bestTarget.transform.position, $"HITS LEFT: {hitsLeft}", new Color(1f, 0.3f, 0.3f));
-
-                // Flash
-                bestTarget.Flash(Color.yellow, 0.1f);
-                return; // Don't destroy, don't count in combo
+                ScoreSystem.AddToughPartialHit(10, best.TargetId, action.EventId);
+                OnToughTargetHit?.Invoke(best.MaxHits - best.CurrentHits, best.MaxHits, best.Lane, best.transform.position);
+                HitParticleEffect.Spawn(best.transform.position, GameVisualPalette.PunchColor, 12);
+                AudioManager.Instance?.PlayToughHitSound();
+                best.Flash(Color.white, 0.08f);
+                return;
             }
-
-            // Destroyed - full scoring
-            int score = ApplyPowerNormalization(GetScoreForQuality(quality, bestTarget.Type), action) + ToughBreakBonus;
-
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlayToughBreakSound();
-
-            Color particleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
-            HitParticleEffect.Spawn(bestTarget.transform.position, particleColor, HitParticleEffect.GetParticleCountForTargetType(bestTarget.Type));
-
-            float reactionTime = (float)(Time.realtimeSinceStartupAsDouble - bestTarget.SpawnTime);
-            if (GameManager.Instance?.SessionStats != null)
-            {
-                GameManager.Instance.SessionStats.TrackReactionTime(reactionTime);
-            }
-            TrackResolvedTarget(bestTarget.Type, true);
-
-            OnToughTargetDestroyed?.Invoke(quality, bestTarget.Lane, bestTarget.transform.position);
-            OnHitEvaluated?.Invoke(quality, score, bestTarget.Lane);
-            OnHitVisualFeedback?.Invoke(quality, bestTarget.Lane, bestTarget.transform.position);
-            TextPopup.CreateForHitQuality(quality, bestTarget.transform.position);
-
-            activeTargets.Remove(bestTarget);
-            bestTarget.PlayDestroyAnimation(() => Destroy(bestTarget.gameObject));
-            return;
+            OnToughTargetDestroyed?.Invoke(quality, best.Lane, best.transform.position);
+            AudioManager.Instance?.PlayToughBreakSound();
         }
-
-        // v3: Rapid fire chain tracking
-        if (currentChain.Active && bestTarget.Lane == currentChain.Lane)
+        else
         {
-            currentChain.Completed++;
-            OnRapidFireChainProgress?.Invoke(currentChain.Completed, currentChain.Total, currentChain.Lane);
-
-            if (currentChain.Completed >= currentChain.Total)
-            {
-                // Chain complete!
-                OnRapidFireChainComplete?.Invoke(RapidFireChainBonus, currentChain.Lane);
-                ScoreSystem.AddRapidFireChainBonus(RapidFireChainBonus);
-                currentChain.Active = false;
-            }
+            if (best.Type == TargetType.Kick) AudioManager.Instance?.PlayKickSound();
+            else AudioManager.Instance?.PlayHitSound();
         }
-
-        // Normal hit scoring
-        int normalScore = GetScoreForQuality(quality, bestTarget.Type);
-        normalScore = ApplyPowerNormalization(normalScore, action);
-
-        // Play audio feedback
-        if (AudioManager.Instance != null)
+        if (!best.Resolve()) return;
+        int baseScore = quality == HitQuality.Perfect ? 100 : quality == HitQuality.Good ? 50 : 25;
+        if (best.IsTough) baseScore = 100;
+        if (action.SourceType == InputSourceType.Sensor && action.NormalizationValid)
         {
-            switch (quality)
+            baseScore = Mathf.RoundToInt(baseScore * Mathf.Clamp(action.Power, minimumSensorPowerMultiplier, maximumSensorPowerMultiplier));
+            ForceBand band = GameManager.Instance?.PlayerProfile != null
+                ? GameManager.Instance.PlayerProfile.GetForceBand(action.Power) : ForceBand.OnTarget;
+            OnSensorForceEvaluated?.Invoke(band, action.Power);
+        }
+        if (best.IsTough) baseScore += 350;
+        TrackResolution(best, true);
+        GameManager.Instance?.SessionStats?.TrackReactionTime(Mathf.Max(0f, Time.time - best.SpawnTime));
+        ResearchSessionLog.TargetResolved(best, "hit", action.EventId, quality, timing);
+        int awarded = ScoreSystem.AwardHit(baseScore, best.TargetId, action.EventId);
+        TrackChain(best, true, action.EventId);
+        OnHitEvaluated?.Invoke(quality, awarded, best.Lane);
+        OnHitVisualFeedback?.Invoke(quality, best.Lane, best.transform.position);
+        HitParticleEffect.Spawn(best.transform.position, HitParticleEffect.GetColorForTargetType(best.Type),
+            HitParticleEffect.GetParticleCountForTargetType(best.Type));
+        TextPopup.CreateForHitQuality(quality, best.transform.position);
+        activeTargets.Remove(best);
+        best.PlayDestroyAnimation(() => Destroy(best.gameObject));
+    }
+    public void Miss(TargetObject target, string outcome)
+    {
+        if (target == null || !target.Resolve()) return;
+        TrackResolution(target, false);
+        TrackChain(target, false, null);
+        if (outcome == "heavy_timeout" && GameManager.Instance?.SessionStats != null)
+            GameManager.Instance.SessionStats.HeavyTimeouts++;
+        ResearchSessionLog.TargetResolved(target, outcome);
+        OnTargetMissed?.Invoke((int)target.Lane);
+        OnMissVisualFeedback?.Invoke(target.Lane, target.transform.position);
+        TextPopup.CreateMiss(target.transform.position);
+        AudioManager.Instance?.PlayMissSound();
+        activeTargets.Remove(target);
+        Destroy(target.gameObject);
+    }
+    public void AbortRemaining()
+    {
+        // Include objects spawned this frame whose Start has not yet run.
+        foreach (TargetObject target in FindObjectsOfType<TargetObject>())
+        {
+            target.EnsureTrackedSpawn();
+            if (!target.IsResolved && target.Resolve())
             {
-                case HitQuality.Miss:
-                    AudioManager.Instance.PlayMissSound();
-                    break;
-                case HitQuality.Perfect:
-                case HitQuality.Good:
-                case HitQuality.Early:
-                case HitQuality.Late:
-                    switch (bestTarget.Type)
-                    {
-                        case TargetType.Punch: AudioManager.Instance.PlayHitSound(); break;
-                        case TargetType.Kick: AudioManager.Instance.PlayKickSound(); break;
-                        case TargetType.Block: AudioManager.Instance.PlayBlockSound(); break;
-                        case TargetType.Dodge: AudioManager.Instance.PlayDodgeSound(); break;
-                    }
-                    break;
+                if (GameManager.Instance?.SessionStats != null) GameManager.Instance.SessionStats.AbortedTargets++;
+                ResearchSessionLog.TargetResolved(target, "aborted");
             }
         }
-
-        if (quality != HitQuality.Miss)
-        {
-            Color particleColor = HitParticleEffect.GetColorForTargetType(bestTarget.Type);
-            HitParticleEffect.Spawn(bestTarget.transform.position, particleColor, HitParticleEffect.GetParticleCountForTargetType(bestTarget.Type));
-        }
-
-        float reactionTime2 = (float)(Time.realtimeSinceStartupAsDouble - bestTarget.SpawnTime);
-        if (GameManager.Instance?.SessionStats != null)
-        {
-            GameManager.Instance.SessionStats.TrackReactionTime(reactionTime2);
-            if (action.SourceType == InputSourceType.Sensor && action.RawForce > 0f)
-            {
-                PlayerProfile profile = GameManager.Instance.PlayerProfile;
-                ForceBand forceBand = profile != null ? profile.GetForceBand(action.Power) : ForceBand.OnTarget;
-                GameManager.Instance.SessionStats.TrackForce(action.RawForce, action.Power, forceBand, bestTarget.Type == TargetType.Kick);
-                OnSensorForceEvaluated?.Invoke(forceBand, action.Power);
-            }
-        }
-
-        TrackResolvedTarget(bestTarget.Type, true);
-        OnHitEvaluated?.Invoke(quality, normalScore, bestTarget.Lane);
-        OnHitVisualFeedback?.Invoke(quality, bestTarget.Lane, bestTarget.transform.position);
-        TextPopup.CreateForHitQuality(quality, bestTarget.transform.position);
-
-        activeTargets.Remove(bestTarget);
-        bestTarget.PlayDestroyAnimation(() => Destroy(bestTarget.gameObject));
+        activeTargets.Clear();
+        chains.Clear();
     }
-
-    /// <summary>
-    /// Check if the player's action matches the target type.
-    /// v3: ToughPunch matches Punch action.
-    /// </summary>
-    private bool DoesActionMatchTarget(ActionType action, TargetType target)
+    private void TrackResolution(TargetObject target, bool hit)
     {
-        switch (target)
-        {
-            case TargetType.Punch: return action == ActionType.Punch;
-            case TargetType.Kick: return action == ActionType.Kick;
-            case TargetType.ToughPunch: return action == ActionType.Punch;
-            case TargetType.Block: return action == ActionType.Block;
-            case TargetType.Dodge: return action == ActionType.Dodge;
-            default: return false;
-        }
+        if (GameManager.Instance?.SessionStats == null) return;
+        GameManager.Instance.SessionStats.TrackTargetType(target.Type, hit);
+        GameManager.Instance.SessionStats.TrackLane(target.Lane, hit);
     }
-
-    private HitQuality DetermineHitQuality(float timingOffset)
+    private void TrackChain(TargetObject target, bool hit, string actionId)
     {
-        float absOffset = Mathf.Abs(timingOffset);
-
-        if (absOffset <= PerfectWindow) return HitQuality.Perfect;
-        if (absOffset <= GoodWindow) return HitQuality.Good;
-        if (absOffset <= EarlyLateWindow)
+        if (string.IsNullOrEmpty(target.ChainId) || !chains.TryGetValue(target.ChainId, out Chain chain)) return;
+        if (!hit) chain.Failed = true;
+        chain.Completed++;
+        OnRapidFireChainProgress?.Invoke(chain.Completed, chain.Total, chain.Lane);
+        if (chain.Completed < chain.Total) return;
+        if (!chain.Failed)
         {
-            return timingOffset < 0 ? HitQuality.Early : HitQuality.Late;
+            ScoreSystem.AddRapidFireChainBonus(RapidFireChainBonus, target.TargetId, actionId);
+            OnRapidFireChainComplete?.Invoke(RapidFireChainBonus, chain.Lane);
         }
-        return HitQuality.Miss;
+        chains.Remove(target.ChainId);
     }
-
-    private int GetScoreForQuality(HitQuality quality, TargetType targetType)
-    {
-        int baseScore;
-        switch (quality)
-        {
-            case HitQuality.Perfect: baseScore = PerfectScore; break;
-            case HitQuality.Good: baseScore = GoodScore; break;
-            case HitQuality.Early:
-            case HitQuality.Late: baseScore = EarlyLateScore; break;
-            default: return 0;
-        }
-
-        switch (targetType)
-        {
-            case TargetType.Block: return Mathf.Max(baseScore, BlockScore);
-            case TargetType.Dodge: return Mathf.Max(baseScore, DodgeScore);
-            case TargetType.Kick: return baseScore;
-            case TargetType.ToughPunch: return Mathf.Max(baseScore, PerfectScore); // Tough targets give full punch score
-            default: return baseScore;
-        }
-    }
-
-    private bool DoesLaneMatch(PlayerActionEvent action, TargetObject target)
-    {
-        if (target.IsTough)
-        {
-            return action.ActionType == ActionType.Punch;
-        }
-
-        return target.Lane == action.Lane;
-    }
-
-    private TargetObject FindLockedToughTarget(PlayerActionEvent action)
-    {
-        if (action.ActionType != ActionType.Punch)
-        {
-            return null;
-        }
-
-        TargetObject[] targets = FindObjectsOfType<TargetObject>();
-        for (int i = 0; i < targets.Length; i++)
-        {
-            TargetObject target = targets[i];
-            if (target == null || !target.IsTough || target.IsBreaking || !target.IsLockedInHitZone)
-            {
-                continue;
-            }
-
-            if (!DoesVerticalMatch(action, target))
-            {
-                continue;
-            }
-
-            RegisterTarget(target);
-            return target;
-        }
-
-        return null;
-    }
-
-    private int ApplyPowerNormalization(int baseScore, PlayerActionEvent action)
-    {
-        if (action.SourceType != InputSourceType.Sensor)
-        {
-            return baseScore;
-        }
-
-        float multiplier = Mathf.Clamp(action.Power, minimumSensorPowerMultiplier, maximumSensorPowerMultiplier);
-        return Mathf.RoundToInt(baseScore * multiplier);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        TargetObject target = other.GetComponent<TargetObject>();
-        if (target != null && !target.HasSpawnedInHitZone && !target.IsBreaking)
-        {
-            target.HasSpawnedInHitZone = true;
-            if (target.IsTough)
-            {
-                target.LockInHitZone(hitZoneCenter.position.z);
-            }
-            RegisterTarget(target);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        TargetObject target = other.GetComponent<TargetObject>();
-        if (target != null)
-        {
-            if (!target.IsBreaking && activeTargets.Contains(target))
-            {
-                OnTargetMissed?.Invoke(target.Lane.GetHashCode());
-                OnMissVisualFeedback?.Invoke(target.Lane, target.transform.position);
-                TextPopup.CreateMiss(target.transform.position);
-                TrackResolvedTarget(target.Type, false);
-                activeTargets.Remove(target);
-            }
-        }
-    }
-
-    private bool DoesVerticalMatch(PlayerActionEvent action, TargetObject target)
-    {
-        if (target.IsTough)
-        {
-            return action.VerticalPos == VerticalPosition.High || action.VerticalPos == VerticalPosition.Mid;
-        }
-
-        if (target.Type == TargetType.Kick)
-        {
-            return action.VerticalPos == VerticalPosition.Low;
-        }
-
-        if (target.Type == TargetType.Punch)
-        {
-            return action.VerticalPos == VerticalPosition.High || action.VerticalPos == VerticalPosition.Mid;
-        }
-
-        return action.VerticalPos == target.VertPosition;
-    }
-
-    private void TrackResolvedTarget(TargetType targetType, bool wasHit)
-    {
-        if (GameManager.Instance?.SessionStats != null)
-        {
-            GameManager.Instance.SessionStats.TrackTargetType(targetType, wasHit);
-        }
-    }
-
+    // Physics overlap does not define temporal scoring windows; target movement is evaluated above.
     private void EnsureHitGuide()
     {
-        if (transform.Find("HitGuideRoot") != null)
-        {
-            return;
-        }
-
-        GameObject guideRoot = new GameObject("HitGuideRoot");
-        guideRoot.transform.SetParent(transform, false);
-        guideRoot.transform.localPosition = Vector3.zero;
-
-        CreateGuideBar(guideRoot.transform, "ArmHitLine", new Vector3(0f, 0.1f, 0f), new Vector3(9.5f, 0.08f, 0.08f), GameVisualPalette.PunchColor, 2.8f);
-        CreateGuideBar(guideRoot.transform, "LegHitLine", new Vector3(0f, -2.05f, 0f), new Vector3(9.5f, 0.08f, 0.08f), GameVisualPalette.KickColor, 2.8f);
-        CreateGuideBar(guideRoot.transform, "ZoneSplit", new Vector3(0f, -0.95f, 0f), new Vector3(9.5f, 0.05f, 0.05f), GameVisualPalette.GetLaneBaseColor(LaneType.Center), 1.2f);
-        CreateGuideBar(guideRoot.transform, "LaneSplitLeft", new Vector3(-1.5f, -0.95f, 0f), new Vector3(0.06f, 3.3f, 0.06f), GameVisualPalette.GetLaneBaseColor(LaneType.Left), 1.3f);
-        CreateGuideBar(guideRoot.transform, "LaneSplitRight", new Vector3(1.5f, -0.95f, 0f), new Vector3(0.06f, 3.3f, 0.06f), GameVisualPalette.GetLaneBaseColor(LaneType.Right), 1.3f);
-        CreateGuideBar(guideRoot.transform, "HitFrameLeft", new Vector3(-4.5f, -0.95f, 0f), new Vector3(0.08f, 3.45f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Left), 1.2f);
-        CreateGuideBar(guideRoot.transform, "HitFrameRight", new Vector3(4.5f, -0.95f, 0f), new Vector3(0.08f, 3.45f, 0.08f), GameVisualPalette.GetLaneBaseColor(LaneType.Right), 1.2f);
+        if (transform.Find("HitGuideRoot") != null) return;
+        GameObject root = new GameObject("HitGuideRoot");
+        root.transform.SetParent(transform, false);
+        CreateGuide(root.transform, new Vector3(0f, 0.1f, 0f), GameVisualPalette.PunchColor);
+        CreateGuide(root.transform, new Vector3(0f, -2.05f, 0f), GameVisualPalette.KickColor);
     }
-
-    private void CreateGuideBar(Transform parent, string name, Vector3 localPosition, Vector3 localScale, Color color, float emissionStrength)
+    private static void CreateGuide(Transform parent, Vector3 position, Color color)
     {
-        GameObject guide = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        guide.name = name;
-        guide.transform.SetParent(parent, false);
-        guide.transform.localPosition = localPosition;
-        guide.transform.localScale = localScale;
-
-        Collider guideCollider = guide.GetComponent<Collider>();
-        if (guideCollider != null)
-        {
-            Destroy(guideCollider);
-        }
-
-        Renderer renderer = guide.GetComponent<Renderer>();
-        if (renderer == null)
-        {
-            return;
-        }
-
+        GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        bar.name = "ActionHitLine";
+        bar.transform.SetParent(parent, false);
+        bar.transform.localPosition = position;
+        bar.transform.localScale = new Vector3(9.5f, 0.055f, 0.065f);
+        Destroy(bar.GetComponent<Collider>());
         Material material = new Material(Shader.Find("Standard"));
         material.color = color;
-        material.SetFloat("_Glossiness", 0.85f);
         material.EnableKeyword("_EMISSION");
-        material.SetColor("_EmissionColor", color * emissionStrength);
-        renderer.sharedMaterial = material;
+        material.SetColor("_EmissionColor", color * 1.2f);
+        bar.GetComponent<Renderer>().sharedMaterial = material;
     }
 }

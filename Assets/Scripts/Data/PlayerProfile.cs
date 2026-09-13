@@ -1,98 +1,22 @@
-using UnityEngine;
-
-[System.Serializable]
+using System;
+[Serializable]
 public class PlayerProfile
 {
-    public float HeightCm = 175f;
-    public float WeightKg = 70f;
-    public SexCategory Sex = SexCategory.Unspecified;
-
-    /// <summary>
-    /// Heuristic baseline for expected strike force.
-    /// This is not a medical measurement and is only used to normalize sensor values fairly.
-    /// </summary>
-    public float GetEstimatedAveragePunchForce()
+    public string Name = "Player";
+    public string StudyId = Guid.NewGuid().ToString("N");
+    public ForceBand GetForceBand(float value)
     {
-        float clampedHeight = Mathf.Clamp(HeightCm, 120f, 220f);
-        float clampedWeight = Mathf.Clamp(WeightKg, 30f, 180f);
-
-        float weightComponent = clampedWeight * 11.5f;
-        float heightComponent = Mathf.Max(0f, clampedHeight - 140f) * 1.75f;
-        float sexFactor = GetSexFactor();
-
-        return Mathf.Max(150f, (weightComponent + heightComponent) * sexFactor);
+        if (value < 0.85f) return ForceBand.Low;
+        return value <= 1.15f ? ForceBand.OnTarget : ForceBand.High;
     }
-
-    public float NormalizePunchForce(float measuredForce)
+    public string GetForceBandLabel(float value)
     {
-        float baseline = GetEstimatedAveragePunchForce();
-        if (baseline <= 0f)
+        switch (GetForceBand(value))
         {
-            return 1f;
-        }
-
-        return measuredForce / baseline;
-    }
-
-    /// <summary>
-    /// Heuristic baseline for expected kick/step power.
-    /// DELTA has no explicit contact sensor, so this normalizes power-like IMU values conservatively.
-    /// </summary>
-    public float GetEstimatedAverageKickForce()
-    {
-        float clampedHeight = Mathf.Clamp(HeightCm, 120f, 220f);
-        float clampedWeight = Mathf.Clamp(WeightKg, 30f, 180f);
-
-        float weightComponent = clampedWeight * 13.2f;
-        float heightComponent = Mathf.Max(0f, clampedHeight - 135f) * 2.2f;
-        float sexFactor = Mathf.Lerp(GetSexFactor(), 1f, 0.35f);
-
-        return Mathf.Max(190f, (weightComponent + heightComponent) * sexFactor);
-    }
-
-    public float NormalizeKickForce(float measuredForce)
-    {
-        float baseline = GetEstimatedAverageKickForce();
-        if (baseline <= 0f)
-        {
-            return 1f;
-        }
-
-        return measuredForce / baseline;
-    }
-
-    public ForceBand GetForceBand(float normalizedForce)
-    {
-        if (normalizedForce < 0.85f) return ForceBand.Low;
-        if (normalizedForce <= 1.15f) return ForceBand.OnTarget;
-        return ForceBand.High;
-    }
-
-    public string GetForceBandLabel(float normalizedForce)
-    {
-        switch (GetForceBand(normalizedForce))
-        {
-            case ForceBand.Low: return "Below target";
-            case ForceBand.OnTarget: return "On target";
-            default: return "Above target";
-        }
-    }
-
-    private float GetSexFactor()
-    {
-        switch (Sex)
-        {
-            case SexCategory.Female: return 0.82f;
-            case SexCategory.Male: return 1f;
-            case SexCategory.NonBinary: return 0.91f;
-            default: return 0.9f;
+            case ForceBand.Low: return "Below baseline";
+            case ForceBand.OnTarget: return "Near baseline";
+            default: return "Above baseline";
         }
     }
 }
-
-public enum ForceBand
-{
-    Low,
-    OnTarget,
-    High
-}
+public enum ForceBand { Low, OnTarget, High }

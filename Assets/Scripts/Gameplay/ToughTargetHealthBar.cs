@@ -103,7 +103,7 @@ public class ToughTargetHealthBar : MonoBehaviour
 
         // Shift fill left as it shrinks so it depletes from right
         float maxOffset = baseScale.x * 0.5f;
-        float fillOffset = maxOffset * (1f - ratio) * 0.5f;
+        float fillOffset = maxOffset * (1f - ratio);
         fillObj.transform.localPosition = new Vector3(-fillOffset, 0f, 0.001f);
 
         // Lerp color from full (red) to low (yellow)

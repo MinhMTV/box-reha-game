@@ -106,7 +106,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        oneShotSource.PlayOneShot(clip, masterVolume * volumeScale);
+        oneShotSource.PlayOneShot(clip, masterVolume * volumeScale * SettingsManager.SfxVolume);
     }
 
     private void BuildClips()

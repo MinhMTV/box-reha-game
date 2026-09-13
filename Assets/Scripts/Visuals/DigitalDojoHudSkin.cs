@@ -3,200 +3,99 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-/// <summary>
-/// Skins the existing HUDController output to match the Digital Dojo mockups.
-/// It keeps the live score/combo/timer/accuracy Text objects intact.
-/// </summary>
 public class DigitalDojoHudSkin : MonoBehaviour
 {
     private const string RootName = "DigitalDojoHudSkin";
-
     private Font font;
-
+    private Text inputStatus;
+    private float refreshTimer;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    private static void InstallForCurrentScene()
+    private static void Install()
     {
         TryCreate(SceneManager.GetActiveScene());
         SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
-    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        TryCreate(scene);
-    }
-
+    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode) { TryCreate(scene); }
     private static void TryCreate(Scene scene)
     {
-        if (!scene.isLoaded || scene.name != "Game" || GameObject.Find(RootName) != null || FindObjectOfType<DigitalDojoHudSkin>() != null)
-        {
-            return;
-        }
-
-        new GameObject(RootName).AddComponent<DigitalDojoHudSkin>();
+        if (scene.name == "Game" && FindObjectOfType<DigitalDojoHudSkin>() == null)
+            new GameObject(RootName).AddComponent<DigitalDojoHudSkin>();
     }
-
     private IEnumerator Start()
     {
-        Canvas hudCanvas = null;
-        for (int i = 0; i < 30 && hudCanvas == null; i++)
+        GameObject hud = GameObject.Find("HUDCanvas");
+        if (hud == null) yield break;
+        font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        CanvasScaler scaler = hud.GetComponent<CanvasScaler>();
+        if (scaler != null)
         {
-            GameObject hud = GameObject.Find("HUDCanvas");
-            hudCanvas = hud != null ? hud.GetComponent<Canvas>() : null;
-            yield return null;
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1600f, 900f);
+            scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+            scaler.matchWidthOrHeight = 0.5f;
         }
-
-        if (hudCanvas == null)
+        Transform canvas = hud.transform;
+        RectTransform bar = Panel(canvas, "DojoTopBar");
+        bar.anchorMin = new Vector2(0.015f, 0.89f); bar.anchorMax = new Vector2(0.985f, 0.99f);
+        bar.offsetMin = bar.offsetMax = Vector2.zero; bar.SetAsFirstSibling();
+        string[] ids = { "ScoreText", "ComboText", "TimerText", "AccuracyText" };
+        string[] labels = { "SCORE", "COMBO", "TIME", "TIMING ACCURACY" };
+        for (int i = 0; i < ids.Length; i++)
         {
-            yield break;
+            float x = 0.135f + i * 0.243f;
+            GameObject go = GameObject.Find(ids[i]);
+            if (go != null)
+            {
+                Text live = go.GetComponent<Text>(); live.font = font; live.fontSize = 32;
+                live.alignment = TextAnchor.MiddleCenter; live.raycastTarget = false;
+                Anchor(live.rectTransform, x, 0.925f, 330f, 43f);
+            }
+            Text label = Label(canvas, labels[i], labels[i], 15);
+            Anchor(label.rectTransform, x, 0.965f, 330f, 25f);
         }
-
-        font = Font.CreateDynamicFontFromOSFont("Bahnschrift", 24);
-        if (font == null)
+        GameObject feedbackObject = GameObject.Find("FeedbackText");
+        if (feedbackObject != null)
         {
-            font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            Text feedback = feedbackObject.GetComponent<Text>();
+            feedback.font = font; feedback.fontSize = 29; feedback.raycastTarget = false;
+            Anchor(feedback.rectTransform, 0.5f, 0.18f, 960f, 48f);
         }
-        BuildHud(hudCanvas.transform);
+        GameObject oldInput = GameObject.Find("InputStateText");
+        if (oldInput != null) oldInput.SetActive(false);
+        inputStatus = Label(canvas, "LiveInputStatus", "Keyboard practice", 16);
+        Anchor(inputStatus.rectTransform, 0.5f, 0.045f, 1450f, 32f);
+        Text controls = Label(canvas, "ControlGuide", "LEFT / RIGHT ARROW  punch     A / D  kick     ESC  pause", 19);
+        Anchor(controls.rectTransform, 0.5f, 0.085f, 1350f, 32f);
+        yield return null;
     }
-
-    private void BuildHud(Transform canvas)
+    void Update()
     {
-        Color redAccent = new Color(1f, 0.24f, 0.2f, 1f);
-        Color blueAccent = new Color(0.3f, 0.75f, 1f, 1f);
-        Color greenAccent = new Color(0.52f, 1f, 0.35f, 1f);
-
-        RectTransform topBar = CreatePanel(canvas, "DigitalDojoTopBar", new Color(0f, 0f, 0f, 0.78f));
-        Stretch(topBar, new Vector2(0.015f, 0.865f), new Vector2(0.985f, 0.985f));
-        topBar.SetAsFirstSibling();
-
-        StyleLiveText("ScoreText", "SCORE", new Vector2(130f, -38f), new Vector2(245f, 54f), TextAnchor.MiddleCenter, Color.white, 30);
-        StyleLiveText("ComboText", "COMBO", new Vector2(565f, -38f), new Vector2(245f, 54f), TextAnchor.MiddleCenter, redAccent, 30);
-        StyleLiveText("TimerText", "TIME", new Vector2(1000f, -38f), new Vector2(245f, 54f), TextAnchor.MiddleCenter, Color.white, 30);
-        StyleLiveText("AccuracyText", "ACCURACY", new Vector2(1435f, -38f), new Vector2(245f, 54f), TextAnchor.MiddleCenter, blueAccent, 30);
-
-        CreateTopLabel(canvas, "ScoreLabel", "SCORE", new Vector2(130f, -14f), Color.white);
-        CreateTopLabel(canvas, "ComboLabel", "COMBO", new Vector2(565f, -14f), redAccent);
-        CreateTopLabel(canvas, "TimerLabel", "TIME", new Vector2(1000f, -14f), Color.white);
-        CreateTopLabel(canvas, "AccuracyLabel", "ACCURACY", new Vector2(1435f, -14f), blueAccent);
-
-        RectTransform hitLineLabel = CreateText(canvas, "HitLineLabel", "HIT LINE", 24, TextAnchor.MiddleCenter, Color.white);
-        Anchor(hitLineLabel, new Vector2(0.5f, 0.13f), Vector2.zero, new Vector2(240f, 42f), new Vector2(0.5f, 0.5f));
-
-        Text feedback = GameObject.Find("FeedbackText") != null ? GameObject.Find("FeedbackText").GetComponent<Text>() : null;
-        if (feedback != null)
-        {
-            feedback.font = font;
-            feedback.fontSize = 38;
-            feedback.fontStyle = FontStyle.Bold;
-            feedback.alignment = TextAnchor.MiddleCenter;
-            feedback.color = new Color(1f, 0.82f, 0.25f, 1f);
-            Anchor(feedback.rectTransform, new Vector2(0.5f, 0.2f), Vector2.zero, new Vector2(720f, 60f), new Vector2(0.5f, 0.5f));
-        }
-
-        CreateLimbCard(canvas, "LeftArmCard", "LEFT ARM", "78%", new Vector2(0.12f, 0.045f), redAccent);
-        CreateLimbCard(canvas, "RightArmCard", "RIGHT ARM", "82%", new Vector2(0.36f, 0.045f), blueAccent);
-        CreateLimbCard(canvas, "LeftLegCard", "LEFT LEG", "74%", new Vector2(0.60f, 0.045f), greenAccent);
-        CreateLimbCard(canvas, "RightLegCard", "RIGHT LEG", "81%", new Vector2(0.84f, 0.045f), greenAccent);
+        refreshTimer += Time.unscaledDeltaTime;
+        if (refreshTimer < 0.5f || inputStatus == null) return;
+        refreshTimer = 0f;
+        InputProviderRouter router = FindObjectOfType<InputProviderRouter>();
+        inputStatus.text = ResearchSessionLog.Error ?? (router != null ? router.GetStatusLine() : "No input provider");
+        inputStatus.color = ResearchSessionLog.Error != null ? new Color(1f, 0.45f, 0.35f) : new Color(0.82f, 0.84f, 0.83f);
     }
-
-    private void StyleLiveText(string name, string fallback, Vector2 position, Vector2 size, TextAnchor alignment, Color color, int fontSize)
+    private RectTransform Panel(Transform parent, string name)
     {
-        GameObject go = GameObject.Find(name);
-        if (go == null)
-        {
-            return;
-        }
-
-        Text text = go.GetComponent<Text>();
-        if (text == null)
-        {
-            return;
-        }
-
-        text.font = font;
-        text.fontSize = fontSize;
-        text.fontStyle = FontStyle.Bold;
-        text.alignment = alignment;
-        text.color = color;
-        if (string.IsNullOrEmpty(text.text))
-        {
-            text.text = fallback;
-        }
-
-        Anchor(text.rectTransform, new Vector2(0f, 1f), position, size, new Vector2(0f, 1f));
-    }
-
-    private void CreateTopLabel(Transform parent, string name, string text, Vector2 position, Color color)
-    {
-        RectTransform label = CreateText(parent, name, text.ToUpperInvariant(), 16, TextAnchor.MiddleCenter, color);
-        Anchor(label, new Vector2(0f, 1f), position, new Vector2(245f, 28f), new Vector2(0f, 1f));
-    }
-
-    private void CreateLimbCard(Transform parent, string name, string title, string value, Vector2 anchor, Color accent)
-    {
-        RectTransform card = CreatePanel(parent, name, new Color(0f, 0f, 0f, 0.78f));
-        Anchor(card, anchor, Vector2.zero, new Vector2(300f, 82f), new Vector2(0.5f, 0.5f));
-
-        Outline outline = card.gameObject.AddComponent<Outline>();
-        outline.effectColor = new Color(1f, 1f, 1f, 0.14f);
-        outline.effectDistance = new Vector2(1.4f, -1.4f);
-
-        RectTransform icon = CreatePanel(card, "Accent", accent);
-        Anchor(icon, new Vector2(0f, 0.5f), new Vector2(28f, 0f), new Vector2(34f, 34f), new Vector2(0f, 0.5f));
-
-        RectTransform titleText = CreateText(card, "Title", title, 18, TextAnchor.MiddleLeft, Color.white);
-        Anchor(titleText, new Vector2(0f, 0.5f), new Vector2(78f, 10f), new Vector2(145f, 28f), new Vector2(0f, 0.5f));
-
-        RectTransform valueText = CreateText(card, "Value", value, 26, TextAnchor.MiddleLeft, Color.white);
-        Anchor(valueText, new Vector2(0f, 0.5f), new Vector2(78f, -18f), new Vector2(80f, 36f), new Vector2(0f, 0.5f));
-
-        RectTransform bars = CreatePanel(card, "Bars", new Color(1f, 1f, 1f, 0.1f));
-        Anchor(bars, new Vector2(1f, 0.5f), new Vector2(-92f, -18f), new Vector2(105f, 10f), new Vector2(1f, 0.5f));
-        RectTransform fill = CreatePanel(bars, "Fill", accent);
-        Anchor(fill, new Vector2(0f, 0.5f), Vector2.zero, new Vector2(75f, 10f), new Vector2(0f, 0.5f));
-    }
-
-    private RectTransform CreateText(Transform parent, string name, string value, int size, TextAnchor alignment, Color color)
-    {
-        GameObject go = new GameObject(name);
+        GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
         go.transform.SetParent(parent, false);
-        RectTransform rect = go.AddComponent<RectTransform>();
-        Text text = go.AddComponent<Text>();
-        text.text = value;
-        text.font = font;
-        text.fontSize = size;
-        text.fontStyle = FontStyle.Bold;
-        text.alignment = alignment;
-        text.color = color;
-        text.horizontalOverflow = HorizontalWrapMode.Overflow;
-        text.verticalOverflow = VerticalWrapMode.Overflow;
-        return rect;
+        Image image = go.GetComponent<Image>(); image.color = new Color(0.035f, 0.036f, 0.038f, 0.92f); image.raycastTarget = false;
+        return go.GetComponent<RectTransform>();
     }
-
-    private RectTransform CreatePanel(Transform parent, string name, Color color)
+    private Text Label(Transform parent, string name, string value, int size)
     {
-        GameObject go = new GameObject(name);
+        GameObject go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
         go.transform.SetParent(parent, false);
-        RectTransform rect = go.AddComponent<RectTransform>();
-        Image image = go.AddComponent<Image>();
-        image.color = color;
-        return rect;
+        Text text = go.GetComponent<Text>(); text.font = font; text.text = value; text.fontSize = size;
+        text.color = Color.white; text.raycastTarget = false; text.alignment = TextAnchor.MiddleCenter;
+        return text;
     }
-
-    private static void Stretch(RectTransform rect, Vector2 min, Vector2 max)
+    private static void Anchor(RectTransform rect, float x, float y, float width, float height)
     {
-        rect.anchorMin = min;
-        rect.anchorMax = max;
-        rect.offsetMin = Vector2.zero;
-        rect.offsetMax = Vector2.zero;
-    }
-
-    private static void Anchor(RectTransform rect, Vector2 anchor, Vector2 position, Vector2 size, Vector2 pivot)
-    {
-        rect.anchorMin = anchor;
-        rect.anchorMax = anchor;
-        rect.pivot = pivot;
-        rect.anchoredPosition = position;
-        rect.sizeDelta = size;
+        rect.anchorMin = rect.anchorMax = new Vector2(x, y); rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = Vector2.zero; rect.sizeDelta = new Vector2(width, height);
     }
 }

@@ -5,6 +5,11 @@ using UnityEngine;
 /// </summary>
 public static class SettingsManager
 {
+    public static bool ReducedMotion
+    {
+        get => PlayerPrefs.GetInt("dojo_reduced_motion", 0) == 1;
+        set { PlayerPrefs.SetInt("dojo_reduced_motion", value ? 1 : 0); PlayerPrefs.Save(); }
+    }
     private const string SfxVolumeKey = "settings_sfx_volume";
     private const string MusicVolumeKey = "settings_music_volume";
     private const string ShowDebugUIKey = "settings_show_debug_ui";

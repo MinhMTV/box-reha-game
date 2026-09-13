@@ -15,6 +15,11 @@ public class TargetObject : MonoBehaviour
     public float HitWindow { get; set; }
     public float MinPower { get; set; }
     public bool HasSpawnedInHitZone { get; set; }
+    public string TargetId { get; private set; } = Guid.NewGuid().ToString("N");
+    public string ChainId { get; set; }
+    public bool IsResolved { get; private set; }
+    public float LockedTime { get; private set; }
+    public float HeavyTimeoutSeconds { get; set; } = 12f;
     // Phase 3: Vertical position
     public VerticalPosition VertPosition { get; set; }
 
@@ -31,12 +36,16 @@ public class TargetObject : MonoBehaviour
     private Color originalColor;
     private MaterialPropertyBlock propBlock;
     private bool glowEnabled;
+    private Coroutine wiggle;
+    private Vector3 restingScale;
     private TextMesh labelMesh;
 
     // v3: Health bar reference
     private ToughTargetHealthBar healthBar;
 
     public float SpawnTime { get; private set; }
+    public float ExpectedHitTime { get; private set; }
+    private bool trackedSpawn;
 
     // HitZone Z position for glow calculation
     private const float HitZoneZ = 5f;
@@ -50,9 +59,23 @@ public class TargetObject : MonoBehaviour
 
     void Start()
     {
-        SpawnTime = Time.time;
+        EnsureTrackedSpawn();
         EnsureVisualReferences();
         ApplyVisuals();
+        restingScale = transform.localScale;
+    }
+
+    public void EnsureTrackedSpawn()
+    {
+        if (trackedSpawn) return;
+        trackedSpawn = true;
+        SpawnTime = Time.time;
+        HitZoneEvaluator evaluator = FindObjectOfType<HitZoneEvaluator>();
+        float zoneZ = evaluator != null ? evaluator.HitZoneZ : 5f;
+        ExpectedHitTime = SpawnTime + Mathf.Max(0f, transform.position.z - zoneZ) / Mathf.Max(0.01f, MoveSpeed);
+        if (evaluator != null) evaluator.RegisterTarget(this);
+        if (GameManager.Instance?.SessionStats != null) GameManager.Instance.SessionStats.SpawnedTargets++;
+        ResearchSessionLog.TargetSpawn(this);
     }
 
     private void EnsureVisualReferences()
@@ -76,6 +99,7 @@ public class TargetObject : MonoBehaviour
     /// </summary>
     private void UpdateGlowEffect()
     {
+        if (SettingsManager.ReducedMotion) return;
         if (propBlock == null || cachedRenderer == null)
         {
             EnsureVisualReferences();
@@ -185,6 +209,7 @@ public class TargetObject : MonoBehaviour
             return;
         }
 
+        if (!IsLockedInHitZone) LockedTime = Time.time;
         IsLockedInHitZone = true;
         Vector3 position = transform.position;
         position.z = hitZoneZ;
@@ -198,12 +223,13 @@ public class TargetObject : MonoBehaviour
 
     public bool TakeHit(float normalizedPower)
     {
-        if (IsBreaking)
+        if (IsBreaking || IsResolved)
         {
             return false;
         }
 
-        int damage = Mathf.Max(1, Mathf.RoundToInt(Mathf.Clamp(normalizedPower, 0.8f, 2.2f)));
+        if (float.IsNaN(normalizedPower) || float.IsInfinity(normalizedPower) || normalizedPower < 0f) return false;
+        int damage = GameplayRules.HeavyDamage(normalizedPower);
         CurrentHits = Mathf.Min(MaxHits, CurrentHits + damage);
         int hitsLeft = MaxHits - CurrentHits;
 
@@ -224,7 +250,12 @@ public class TargetObject : MonoBehaviour
         }
 
         // Scale wiggle on each hit
-        StartCoroutine(WiggleOnHit());
+        if (!SettingsManager.ReducedMotion)
+        {
+            if (wiggle != null) StopCoroutine(wiggle);
+            transform.localScale = restingScale;
+            wiggle = StartCoroutine(WiggleOnHit());
+        }
 
         if (hitsLeft <= 0)
         {
@@ -351,6 +382,13 @@ public class TargetObject : MonoBehaviour
         return Time.time - SpawnTime;
     }
 
+    public bool Resolve()
+    {
+        if (IsResolved) return false;
+        IsResolved = true;
+        return true;
+    }
+
     public void PlayDestroyAnimation(Action onComplete = null)
     {
         if (IsBreaking)
@@ -359,6 +397,7 @@ public class TargetObject : MonoBehaviour
         }
 
         IsBreaking = true;
+        if (wiggle != null) StopCoroutine(wiggle);
         TargetMover mover = GetComponent<TargetMover>();
         if (mover != null)
         {
@@ -369,6 +408,12 @@ public class TargetObject : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             colliders[i].enabled = false;
+        }
+
+        if (SettingsManager.ReducedMotion)
+        {
+            onComplete?.Invoke();
+            return;
         }
 
         StartCoroutine(DestroyAnimationCoroutine(onComplete));

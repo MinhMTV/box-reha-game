@@ -1,6 +1,15 @@
 [System.Serializable]
 public class GameSessionStats
 {
+    public string SessionId, StudyId, StartedUtc, Mode, StopReason, LogPath;
+    public float DurationSeconds;
+    public int SpawnedTargets, AbortedTargets, HeavyTimeouts;
+    public int Actions, LeftActions, RightActions, PunchActions, KickActions;
+    public int KeyboardActions, SensorActions, OtherActions;
+    public int LeftTargets, RightTargets, CenterTargets, LeftHits, RightHits, CenterHits;
+    public int SuccessfulHits => PerfectHits + GoodHits + EarlyHits + LateHits;
+    // Historical "Accuracy" is retained as good-or-better timing accuracy, not sensor accuracy.
+    public float CompletionRate => TotalTargets > 0 ? (float)SuccessfulHits / TotalTargets : 0f;
     public int TotalTargets;
     public int PerfectHits;
     public int GoodHits;
@@ -12,15 +21,6 @@ public class GameSessionStats
     public float AverageReactionTime;
     public int Score;
     public int FinalCombo;
-    public float AverageRawForce;
-    public float AverageNormalizedForce;
-    public float AverageArmRawForce;
-    public float AverageArmNormalizedForce;
-    public float AverageLegRawForce;
-    public float AverageLegNormalizedForce;
-    public int LowForceHits;
-    public int OnTargetForceHits;
-    public int HighForceHits;
     public int ArmTargets;
     public int ArmHits;
     public int ArmMisses;
@@ -31,54 +31,12 @@ public class GameSessionStats
     // Phase 2: Track reaction times for averaging
     private float totalReactionTime;
     private int reactionTimeCount;
-    private float totalRawForce;
-    private float totalNormalizedForce;
-    private int forceSampleCount;
-    private float totalArmRawForce;
-    private float totalArmNormalizedForce;
-    private int armForceSampleCount;
-    private float totalLegRawForce;
-    private float totalLegNormalizedForce;
-    private int legForceSampleCount;
-
     public void TrackReactionTime(float reactionTime)
     {
+        if (float.IsNaN(reactionTime) || float.IsInfinity(reactionTime) || reactionTime < 0f) return;
         totalReactionTime += reactionTime;
         reactionTimeCount++;
         AverageReactionTime = reactionTimeCount > 0 ? totalReactionTime / reactionTimeCount : 0f;
-    }
-
-    public void TrackForce(float rawForce, float normalizedForce, ForceBand forceBand, bool isLegStrike = false)
-    {
-        totalRawForce += rawForce;
-        totalNormalizedForce += normalizedForce;
-        forceSampleCount++;
-        AverageRawForce = forceSampleCount > 0 ? totalRawForce / forceSampleCount : 0f;
-        AverageNormalizedForce = forceSampleCount > 0 ? totalNormalizedForce / forceSampleCount : 0f;
-
-        if (isLegStrike)
-        {
-            totalLegRawForce += rawForce;
-            totalLegNormalizedForce += normalizedForce;
-            legForceSampleCount++;
-            AverageLegRawForce = totalLegRawForce / legForceSampleCount;
-            AverageLegNormalizedForce = totalLegNormalizedForce / legForceSampleCount;
-        }
-        else
-        {
-            totalArmRawForce += rawForce;
-            totalArmNormalizedForce += normalizedForce;
-            armForceSampleCount++;
-            AverageArmRawForce = totalArmRawForce / armForceSampleCount;
-            AverageArmNormalizedForce = totalArmNormalizedForce / armForceSampleCount;
-        }
-
-        switch (forceBand)
-        {
-            case ForceBand.Low: LowForceHits++; break;
-            case ForceBand.OnTarget: OnTargetForceHits++; break;
-            case ForceBand.High: HighForceHits++; break;
-        }
     }
 
     public void TrackTargetType(TargetType targetType, bool wasHit)
@@ -100,6 +58,12 @@ public class GameSessionStats
 
     public void Reset()
     {
+        SessionId = StudyId = StartedUtc = Mode = StopReason = LogPath = null;
+        DurationSeconds = 0f;
+        SpawnedTargets = AbortedTargets = HeavyTimeouts = 0;
+        Actions = LeftActions = RightActions = PunchActions = KickActions = 0;
+        KeyboardActions = SensorActions = OtherActions = 0;
+        LeftTargets = RightTargets = CenterTargets = LeftHits = RightHits = CenterHits = 0;
         TotalTargets = 0;
         PerfectHits = 0;
         GoodHits = 0;
@@ -108,15 +72,6 @@ public class GameSessionStats
         Misses = 0;
         MaxCombo = 0;
         AverageReactionTime = 0f;
-        AverageRawForce = 0f;
-        AverageNormalizedForce = 0f;
-        AverageArmRawForce = 0f;
-        AverageArmNormalizedForce = 0f;
-        AverageLegRawForce = 0f;
-        AverageLegNormalizedForce = 0f;
-        LowForceHits = 0;
-        OnTargetForceHits = 0;
-        HighForceHits = 0;
         ArmTargets = 0;
         ArmHits = 0;
         ArmMisses = 0;
@@ -127,14 +82,24 @@ public class GameSessionStats
         FinalCombo = 0;
         totalReactionTime = 0f;
         reactionTimeCount = 0;
-        totalRawForce = 0f;
-        totalNormalizedForce = 0f;
-        forceSampleCount = 0;
-        totalArmRawForce = 0f;
-        totalArmNormalizedForce = 0f;
-        armForceSampleCount = 0;
-        totalLegRawForce = 0f;
-        totalLegNormalizedForce = 0f;
-        legForceSampleCount = 0;
+    }
+
+    public void TrackAction(PlayerActionEvent action)
+    {
+        Actions++;
+        if (action.BodySide == BodySide.Left) LeftActions++;
+        if (action.BodySide == BodySide.Right) RightActions++;
+        if (action.ActionType == ActionType.Punch) PunchActions++;
+        if (action.ActionType == ActionType.Kick) KickActions++;
+        if (action.SourceType == InputSourceType.Keyboard) KeyboardActions++;
+        else if (action.SourceType == InputSourceType.Sensor) SensorActions++;
+        else OtherActions++;
+    }
+
+    public void TrackLane(LaneType lane, bool hit)
+    {
+        if (lane == LaneType.Left) { LeftTargets++; if (hit) LeftHits++; }
+        else if (lane == LaneType.Right) { RightTargets++; if (hit) RightHits++; }
+        else { CenterTargets++; if (hit) CenterHits++; }
     }
 }
