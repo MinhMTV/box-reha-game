@@ -1,0 +1,74 @@
+[
+  {
+    "name": "PunchTarget",
+    "triangles": 4588,
+    "meshes": 8,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  },
+  {
+    "name": "KickTarget",
+    "triangles": 1504,
+    "meshes": 8,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  },
+  {
+    "name": "HeavyTarget",
+    "triangles": 6224,
+    "meshes": 16,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  },
+  {
+    "name": "WallPanel_A",
+    "triangles": 564,
+    "meshes": 3,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  },
+  {
+    "name": "WoodSlatPanel",
+    "triangles": 2444,
+    "meshes": 13,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  },
+  {
+    "name": "FloorPanel",
+    "triangles": 940,
+    "meshes": 5,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  },
+  {
+    "name": "WoodenBeam",
+    "triangles": 188,
+    "meshes": 1,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  },
+  {
+    "name": "LightStripHousing",
+    "triangles": 376,
+    "meshes": 2,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  },
+  {
+    "name": "TrainingFrame",
+    "triangles": 564,
+    "meshes": 3,
+    "meters": true,
+    "front": "-Y Blender / -Z Unity",
+    "origin": "target center; room module floor center"
+  }
+]
