@@ -21,3 +21,6 @@
 The native vendor SDK dependency fails before full Kotlin integration can qualify. Permission/settings changes are source-implemented, not physical-device tested. ALPHA+DELTA mixed sessions, measured calibration, HR, touch/cutouts and mobile profiling remain separate gates. Existing thesis/expose scope and SDK repository are unchanged.
 
 Unity Editor Search logs an engine/package startup exception. Some owned batch Editors hang during shutdown after writing completed reports. These were not reported as clean process exits. The scripted verification wrapper and direct BuildPipeline attempt are described in ANDROID_STATUS.md.
+
+## Delivery verification
+Primary checkout fast-forwarded to the reviewed implementation and evidence. Four pre-existing Gradle cache files were hash-checked before and after transfer and remained unchanged. Validation worktree remains available; no remote publication. See RUN_STATE.md for commits and remaining external gates.

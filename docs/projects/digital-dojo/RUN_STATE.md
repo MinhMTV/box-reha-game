@@ -1,9 +1,11 @@
-# Run state — 2026-09-14
+# Run state — delivered 2026-09-14
 
-DD-M1 implementation and visual review completed in E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo, branch codex/agent-root-dd-validation. Deliver back to E:/Programming Projekte/box-reha-game on codex/agent-root-digital-dojo-2026-09-14. Preserve the four pre-existing tracked Gradle cache changes.
+The reviewed implementation and evidence are delivered to E:/Programming Projekte/box-reha-game on codex/agent-root-digital-dojo-2026-09-14. Validation worktree: E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo, codex/agent-root-dd-validation. No remote push or store publication.
 
-DD-001/002/003/004 completed. DD-006 review: 18 Play Mode assertions plus pause visibility, 9 Unity checks, host policy/syntax/export/scene checks passed; 46 final screenshots and nine original Blender models. Final source fixes are included. DD-005 has actual native and Unity Android failures on missing vendor resource 2.11.1; vendor/hardware gates remain blocked.
+Commits: d565fab (Unity migration/workflow), 4eb274a (Blender kit), 68914a5 (integrated gameplay/UI/native setup), 82d0a03 (qualification evidence). The primary checkout was fast-forwarded successfully; all four pre-existing user Gradle cache files retained their exact pre-merge hashes. No other uncommitted changes remained at delivery verification.
 
-Current action: finish the last source-stamped Android attempt, sanitize build-log environment dumps, commit reviewed source/evidence, fast-forward the primary checkout and verify only preserved user cache changes remain. No push or store publication. SDK/expose/thesis scope unchanged.
+DD-001/002/003/004/006 are complete within the defined prototype scope. DD-005 remains externally blocked: native and real Unity Android builds both fail on missing vendor resource 2.11.1. No successful APK, physical JNI/BLE session, measured calibration or active HR is claimed.
 
-Known tool limitation: Unity Editor Search startup exception and some batch shutdown hangs after completed reports. Never relabel a terminated Editor as a clean exit. Final Android results are authoritative in ANDROID_STATUS.md.
+Evidence: 9 Unity Editor checks, 18 synthetic Play Mode assertions plus pause visibility guards, 26 host groups plus 47 Android policy assertions, 13 export checks, zero syntax errors in 71 files x five configurations, 635 scene assertions. Nine Blender models and 46 final Play Mode camera screenshots are committed. Build source manifest remained unchanged through the final failed build.
+
+Remaining action requires corrected vendor artifacts and an authorized USB Android device, followed by APK/build, BLE side/family/lifecycle and mobile performance qualification. Combined two ALPHA plus DELTA needs a confirmed vendor route. Unity Editor Search startup exception and intermittent batch shutdown hangs remain documented tool issues. SDK/expose/thesis scope is unchanged.
