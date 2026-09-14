@@ -10,7 +10,7 @@ public class ResultsController : MonoBehaviour
     void Start()
     {
         foreach (Transform child in transform) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
-        font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        font = DojoUiStyle.Font;
         CanvasScaler scaler = GetComponent<CanvasScaler>();
         if (scaler != null)
         {
@@ -92,9 +92,10 @@ public class ResultsController : MonoBehaviour
     private void Button(string label, float x, float y, UnityEngine.Events.UnityAction callback)
     {
         RectTransform rect = Panel(card, label, new Color(0.65f, 0.13f, 0.11f, 1f));
-        Place(rect, x, y, 360f, 60f);
+        Place(rect, x, y, 360f, DojoUiStyle.TouchHeight);
         rect.GetComponent<Image>().raycastTarget = true;
         Button button = rect.gameObject.AddComponent<Button>(); button.targetGraphic = rect.GetComponent<Image>();
+        DojoUiStyle.Style(button);
         button.onClick.AddListener(callback);
         GameObject go = new GameObject("Label", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
         go.transform.SetParent(rect, false);

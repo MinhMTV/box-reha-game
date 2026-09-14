@@ -15,10 +15,12 @@ public class DigitalDojoMenuController : MonoBehaviour
     private UnityEngine.UI.Button sensorStartButton;
     private int nearbyIndex;
     private string sdkGender;
+    private int preparationStep;
+    private readonly Dictionary<string, UnityEngine.UI.Button> navigation = new Dictionary<string, UnityEngine.UI.Button>();
     public static bool OpenSensorSessionOnStart;
-    private readonly Color ink = new Color(0.065f, 0.067f, 0.069f, 0.96f);
-    private readonly Color red = new Color(0.78f, 0.16f, 0.13f, 1f);
-    private readonly Color muted = new Color(0.73f, 0.76f, 0.76f, 1f);
+    private readonly Color ink = DojoUiStyle.Ink;
+    private readonly Color red = DojoUiStyle.Red;
+    private readonly Color muted = DojoUiStyle.Muted;
 
     void Awake() { BuildInterface(); }
     void Start()
@@ -45,7 +47,7 @@ public class DigitalDojoMenuController : MonoBehaviour
             child.gameObject.SetActive(false);
             Destroy(child.gameObject);
         }
-        font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        font = DojoUiStyle.Font;
         CanvasScaler scaler = GetComponent<CanvasScaler>() ?? gameObject.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1600f, 900f);
@@ -66,15 +68,26 @@ public class DigitalDojoMenuController : MonoBehaviour
         string[] names = { "Home", "Level mode", "Endless mode", "Sensor setup", "Calibration", "Statistics", "Player profile", "Settings", "Exit" };
         UnityEngine.Events.UnityAction[] actions = { ShowHome, StartLevelMode, StartEndlessMode, ShowSensorSetup, ShowCalibration,
             ShowStatistics, ShowPlayerProfile, ShowSettings, Quit };
+        navigation.Clear();
         for (int i = 0; i < names.Length; i++)
-            Button(nav, names[i], new Vector2(24f, -62f - i * 69f), 355f, actions[i], i == 1);
+            navigation[names[i]] = Button(nav, names[i], new Vector2(24f, -62f - i * 69f), 355f, actions[i]);
         content = Panel(safeArea, "Content", ink);
         Stretch(content, new Vector2(0.305f, 0.07f), new Vector2(0.975f, 0.85f));
-        Label(safeArea, "Footer", "ANDROID: physical sensors + touch menus    |    DEVELOPMENT: arrows punch / A, D kick    |    PAUSE: visible button",
-            17, new Vector2(50f, -855f), new Vector2(1480f, 30f), Color.white);
+        Text footer = Label(safeArea, "Footer", "Move at your own pace. Pause whenever you need.",
+            DojoUiStyle.Caption, Vector2.zero, new Vector2(1480f, 30f), muted);
+        footer.rectTransform.anchorMin = footer.rectTransform.anchorMax = new Vector2(0f,0f);
+        footer.rectTransform.pivot = new Vector2(0f,0f); footer.rectTransform.anchoredPosition = new Vector2(50f,16f);
     }
     private void Page(string title, string eyebrow)
     {
+        string selected = eyebrow.StartsWith("Android", StringComparison.OrdinalIgnoreCase) ? "Sensor setup"
+            : title == "Your space. Your rhythm." ? "Home"
+            : eyebrow.IndexOf("preparation", StringComparison.OrdinalIgnoreCase) >= 0 ? "Calibration"
+            : title == "Your recent sessions" ? "Statistics"
+            : title.IndexOf("profile", StringComparison.OrdinalIgnoreCase) >= 0 ? "Player profile"
+            : title.IndexOf("settings", StringComparison.OrdinalIgnoreCase) >= 0 ? "Settings" : "Level mode";
+        foreach (var item in navigation) item.Value.GetComponent<Image>().color = item.Key == selected ? red : DojoUiStyle.Surface;
+        content.GetComponent<UnityEngine.UI.Image>().color = ink;
         sensorNotice = sensorDevices = nearbyLabel = null;
         sensorStartButton = null;
         foreach (Transform child in content) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
@@ -87,11 +100,12 @@ public class DigitalDojoMenuController : MonoBehaviour
     { Label(content, name, text, size, new Vector2(40f, -y), new Vector2(960f, height), muted); }
     public void ShowHome()
     {
-        Page("Find your rhythm.", "Combat fitness arcade");
-        Body("Intro", "Two sides. Clear actions. A training space at your pace.\nPunch the upper targets and kick the lower pads as they reach the hit line.", 180f, 120f, 25);
-        Body("HeavyGuide", "HEAVY TARGET\nThe large center disc accepts repeated punches from either side.\nIt waits at the hit line for up to 12 active seconds.", 345f, 130f);
-        Button(content, "Start Level 1", new Vector2(40f, -545f), 350f, StartTraining, true);
-        Body("Evidence", "Local practice prototype  /  No medical measurement or verified hardware connection is implied.", 630f, 50f, 16);
+        Page("Your space. Your rhythm.", "Digital Dojo / Training");
+        content.GetComponent<UnityEngine.UI.Image>().color = new Color(.03f,.035f,.04f,.78f);
+        Body("Intro", "Read the target. Find the beat.\nUpper circles: PUNCH. Lower upright pads: KICK.", 185f, 110f, 25);
+        Body("HeavyGuide", "THE CENTER CHALLENGE\nLand repeated punches on the heavy target.\nEither hand works. Keep a comfortable rhythm.", 355f, 130f);
+        Button(content, "Start training", new Vector2(40f, -535f), 420f, StartTraining, true);
+        Body("Evidence", SessionInputSelection.Physical ? "Connect your sensors before starting." : "Development practice / keyboard input is synthetic.", 625f, 50f, 18);
     }
     public void StartLevelMode()
     {
@@ -107,10 +121,33 @@ public class DigitalDojoMenuController : MonoBehaviour
     }
     public void ShowCalibration()
     {
-        Page("Sensor calibration", "Preparation");
-        Body("State", "NO VERIFIED BASELINE AVAILABLE", 180f, 45f, 27);
-        Body("Plan", "The planned routine uses repeated comfortable actions:\n\n01   Left punch     02   Right punch\n03   Left kick        04   Right kick\n\nBaselines must retain device, side, quantity, unit and provenance.\nALPHA impact and DELTA power index are different quantities.", 255f, 280f);
-        Body("Unavailable", "Collection and baseline persistence are not yet available in this screen.\nKeyboard power is a gameplay value. Heart rate is a separate optional channel.", 575f, 100f, 19);
+        preparationStep = 0;
+        ShowPreparationStep();
+    }
+    private void ShowPreparationStep()
+    {
+        string[] titles={"Check your sensors", "Left punch", "Right punch", "Left kick", "Right kick", "Heart rate (optional)", "Preparation summary"};
+        Page(titles[preparationStep], "Calibration preparation / " + (preparationStep + 1) + " of 7");
+        for(int i=0;i<7;i++) {var bar=Panel(content,"Step"+i,i<=preparationStep?red:DojoUiStyle.Surface);Place(bar,new Vector2(40+i*135,-170),new Vector2(118,5));}
+        var native=AndroidDynamicsController.EnsureInstance();
+        if(preparationStep==0)
+        {
+            Body("Guide","Put on the sensors and confirm the physical left/right assignments.\nUse Sensor setup to connect them before a measured session.",220,125,25);
+            Body("Readiness",native.Notice,385,125,22);
+        }
+        else if(preparationStep<5)
+        {
+            string family=preparationStep<3?"Alpha":"Delta";
+            string side=preparationStep==1||preparationStep==3?"Left":"Right";
+            bool connected=Array.Exists(native.Status?.devices??Array.Empty<AndroidNativeDevice>(),d=>d!=null&&d.family==family&&d.side==side&&d.online);
+            Body("Guide", "Prepare comfortable, repeatable movements on your " + side.ToLowerInvariant() + " side.\nKeep the sensor firmly attached. Stop if the movement feels uncomfortable.",220,130,25);
+            Body("Readiness","RD "+family.ToUpperInvariant()+" / "+side+": "+(connected?"SDK reports connected":"not connected")+"\nMeasured repetitions: unavailable\nNo measurement collection or baseline is active in this preparation wizard.",390,160,22);
+        }
+        else if(preparationStep==5) Body("Guide","No heart-rate provider is connected.\nThis optional step is skipped. Training uses its selected difficulty.\nHeart rate is separate from punch and kick measurements.",230,220,25);
+        else Body("Guide","Preparation reviewed. No measured baseline was created.\n\nConnect sensors to prepare a training session. ALPHA impact and\nDELTA power index retain their own meanings. Neither is presented\nas a calibrated force measurement.",220,270,25);
+        if(preparationStep>0) Button(content,"Back",new Vector2(40,-610),230,()=>{preparationStep--;ShowPreparationStep();});
+        Button(content,"Retry step",new Vector2(295,-610),250,ShowPreparationStep);
+        Button(content,preparationStep<6?"Next step":"Sensor setup",new Vector2(575,-610),380,()=>{if(preparationStep<6){preparationStep++;ShowPreparationStep();}else ShowSensorSetup();},true);
     }
     public void ShowStatistics()
     {
@@ -193,9 +230,12 @@ public class DigitalDojoMenuController : MonoBehaviour
         Page("Connect your sensors", "Android / 1 — connection");
         AndroidDynamicsController controller = AndroidDynamicsController.EnsureInstance();
         SessionInputSelection.Override = InputSourceType.Sensor;
+        Button(content, "Bluetooth settings", new Vector2(710f,-72f), 280f, controller.OpenBluetoothSettings);
         sensorNotice = Label(content, "NativeNotice", "", 21, new Vector2(40f, -175f), new Vector2(960f, 80f), muted);
         Button(content, "Initialize SDK", new Vector2(40f, -265f), 220f, controller.Initialize, true);
-        Button(content, "Permissions", new Vector2(280f, -265f), 220f, controller.RequestPermissions);
+        bool blockedPermissions = controller.Status?.code == "permissions_permanently_denied";
+        Button(content, blockedPermissions ? "App settings" : "Permissions", new Vector2(280f, -265f), 220f,
+            () => { if(controller.Status?.code == "permissions_permanently_denied")controller.OpenAppSettings();else controller.RequestPermissions(); });
         Button(content, "Scan", new Vector2(520f, -265f), 220f, controller.StartScan);
         Button(content, "Stop scan", new Vector2(760f, -265f), 220f, controller.StopScan);
         nearbyLabel = Label(content, "Nearby", "No discovery results", 20, new Vector2(40f, -340f), new Vector2(960f, 65f), Color.white);
@@ -283,9 +323,17 @@ public class DigitalDojoMenuController : MonoBehaviour
         if (sensorDevices != null)
         {
             string rows = "";
-            foreach (AndroidNativeDevice device in controller.Status?.devices ?? Array.Empty<AndroidNativeDevice>())
-                if (device != null) rows += device.side + " / " + device.family + " / " + (device.online ? "online" : "offline") + " / " + device.name + "\n";
-            sensorDevices.text = rows.Length > 0 ? rows : "No paired devices reported by the SDK.";
+            foreach(string family in new[]{"Alpha","Delta"})
+            {
+                rows += "RD " + family.ToUpperInvariant() + "   ";
+                foreach(string side in new[]{"Left","Right"})
+                {
+                    AndroidNativeDevice device = Array.Find(controller.Status?.devices ?? Array.Empty<AndroidNativeDevice>(),d=>d!=null&&d.family==family&&d.side==side);
+                    rows += side + ": " + (device==null?"not reported":device.online?"connected":"disconnected") + "    ";
+                }
+                rows += "\n";
+            }
+            sensorDevices.text = rows;
         }
         if (nearbyLabel != null)
         {
@@ -334,16 +382,13 @@ public class DigitalDojoMenuController : MonoBehaviour
     }
     private Button Button(Transform parent, string label, Vector2 position, float width, UnityEngine.Events.UnityAction action, bool primary = false)
     {
-        RectTransform rect = Panel(parent, label, primary ? red : new Color(0.15f, 0.16f, 0.17f, 1f));
-        Place(rect, position, new Vector2(width, 56f));
+        RectTransform rect = Panel(parent, label, primary ? red : DojoUiStyle.Surface);
+        Place(rect, position, new Vector2(width, DojoUiStyle.TouchHeight));
         rect.GetComponent<Image>().raycastTarget = true;
         Button button = rect.gameObject.AddComponent<Button>();
         button.targetGraphic = rect.GetComponent<Image>();
-        ColorBlock colors = button.colors;
-        colors.highlightedColor = new Color(1.25f, 1.25f, 1.25f, 1f);
-        colors.selectedColor = new Color(1.18f, 1.18f, 1.18f, 1f);
-        button.colors = colors;
-        Label(rect, "Label", label, 21, new Vector2(18f, -12f), new Vector2(width - 30f, 38f), Color.white);
+        DojoUiStyle.Style(button);
+        Label(rect, "Label", label, DojoUiStyle.Button, new Vector2(18f, -17f), new Vector2(width - 30f, 40f), DojoUiStyle.Paper);
         button.onClick.AddListener(action);
         return button;
     }

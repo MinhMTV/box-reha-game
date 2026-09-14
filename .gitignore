@@ -12,6 +12,10 @@ tests/**/bin/
 tests/**/obj/
 Assets/Resources/ResearchBuildInfo.txt
 Assets/Resources/ResearchBuildInfo.txt.meta
+Assets/Resources/PerformanceTestRunInfo.json*
+Assets/Resources/PerformanceTestRunSettings.json*
+DesignReferences/CurrentBuild/After-*/
+artifacts/validation/unity-capture-after-*.log
 *.sln
 *.suo
 *.user

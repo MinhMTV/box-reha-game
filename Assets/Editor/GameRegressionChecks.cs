@@ -37,6 +37,7 @@ public static class GameRegressionChecks
         if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android))
             throw new InvalidOperationException("Install Android Build Support for this project's exact Editor, including SDK/NDK and OpenJDK.");
         PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.boxreha.digitaldojo");
+        PlayerSettings.productName = "Digital Dojo";
         PlayerSettings.Android.minSdkVersion = RequiredAndroidMinimum();
         PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)36;
         PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);

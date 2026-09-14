@@ -54,7 +54,13 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
         blueLightMaterial = CreateMaterial("Runtime_Dojo_BlueLight", new Color(0.16f, 0.58f, 1f), 1.75f);
         warmLightMaterial = CreateMaterial("Runtime_Dojo_WarmLight", new Color(1f, 0.62f, 0.36f), 1.35f);
 
-        BuildRoomShell();
+        GameObject authoredRoom = Resources.Load<GameObject>("DigitalDojo/DojoRoom");
+        if (authoredRoom != null)
+        {
+            var room=Instantiate(authoredRoom, transform);
+            StaticBatchingUtility.Combine(room);
+        }
+        else BuildRoomShell();
         BuildLaneLighting();
         BuildCameraPolish();
     }
@@ -125,9 +131,9 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
         CreateCube("DojoRightArmLane", new Vector3(3f, -0.39f, 14.6f), new Vector3(0.075f, 0.035f, 20f), blueLightMaterial);
         CreateCube("DojoCenterHeavyLane", new Vector3(0f, -0.385f, 14.6f), new Vector3(0.05f, 0.035f, 20f), warmLightMaterial);
 
-        for (int i = 0; i < 14; i++)
+        for (int i = 0; i < 6; i++)
         {
-            float z = 4.6f + i * 1.25f;
+            float z = 5.8f + i * 3f;
             CreateCube("DojoFloorChevron_" + i, new Vector3(0f, -0.33f, z), new Vector3(0.75f, 0.035f, 0.08f), warmLightMaterial);
         }
     }
@@ -140,19 +146,26 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
             camera.transform.position = new Vector3(0f, 2.55f, -6.35f);
             camera.transform.LookAt(new Vector3(0f, 1.42f, 9.1f));
             camera.fieldOfView = 38f;
+            camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = new Color(0.010f, 0.008f, 0.006f, 1f);
         }
 
-        Light key = FindObjectOfType<Light>();
+        Light key = null;
+        foreach(var light in FindObjectsOfType<Light>())
+        {
+            if(light.type==LightType.Directional)key=light;
+            else if(light.name.StartsWith("AccentLight_"))light.enabled=false;
+        }
         if (key != null)
         {
-            key.color = new Color(1f, 0.78f, 0.58f, 1f);
-            key.intensity = 1.15f;
-            key.transform.rotation = Quaternion.Euler(58f, -18f, 0f);
+            key.color = new Color(1f, 0.9f, 0.79f, 1f);
+            key.intensity = 1.5f;
+            key.shadows = LightShadows.None; // Interior fill: the modular ceiling must not black out every target.
+            key.transform.rotation = Quaternion.Euler(28f, -18f, 0f);
         }
 
         RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-        RenderSettings.ambientLight = new Color(0.19f, 0.145f, 0.105f, 1f);
+        RenderSettings.ambientLight = new Color(0.38f, 0.35f, 0.32f, 1f);
     }
 
     private GameObject CreateCube(string name, Vector3 position, Vector3 scale, Material material)
@@ -219,9 +232,14 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
 
     private static Shader GetCompatibleLitShader()
     {
-        return Shader.Find("Universal Render Pipeline/Lit")
-               ?? Shader.Find("Standard")
+        return Shader.Find("Standard")
                ?? Shader.Find("Sprites/Default");
+    }
+
+    void OnDestroy()
+    {
+        foreach (Material material in new[] { wallMaterial, woodMaterial, redLightMaterial, blueLightMaterial, warmLightMaterial })
+            if (material != null) Destroy(material);
     }
 
     private static void SetColorIfPresent(Material material, string propertyName, Color color)

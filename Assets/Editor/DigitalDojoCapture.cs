@@ -21,6 +21,7 @@ public static class DigitalDojoCapture
     }
     public static void Run()
     {
+        GameRegressionChecks.RunBatch();
         Environment.SetEnvironmentVariable("DOJO_VISUAL_QA", "1");
         SessionState.SetBool(Key, true);
         SessionState.SetInt("DD.CaptureStep", 0);
@@ -41,13 +42,15 @@ public static class DigitalDojoCapture
                 if (step % 2 == 0) typeof(DigitalDojoMenuController).GetMethod(Pages[step / 2]).Invoke(menu, null);
                 else Capture(Pages[step / 2].Replace("Show", ""));
             }
-            else if (step == Pages.Length * 2) SceneManager.LoadScene("Game");
+            else if (step == Pages.Length * 2) { SessionInputSelection.Override = InputSourceType.Keyboard; SceneManager.LoadScene("Game"); }
             else if (step == Pages.Length * 2 + 1)
             {
-                GameManager.EnsureInstance().CurrentState = GameState.Paused;
+                GameManager.EnsureInstance().CurrentState = GameState.Playing;
+                Time.timeScale = 0;
                 var spawner = UnityEngine.Object.FindFirstObjectByType<TargetSpawner>();
                 spawner.StopSpawning();
                 foreach (var target in UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None)) UnityEngine.Object.Destroy(target.gameObject);
+                foreach (var warning in UnityEngine.Object.FindObjectsByType<SpawnWarningEffect>(FindObjectsSortMode.None)) UnityEngine.Object.Destroy(warning.gameObject);
                 var create = typeof(TargetSpawner).GetMethod("CreateTargetObject", BindingFlags.Instance | BindingFlags.NonPublic);
                 var types = new[] { TargetType.Punch, TargetType.Kick, TargetType.ToughPunch };
                 var positions = new[] { new Vector3(-3, 2.1f, 7), new Vector3(3, 0.45f, 7), new Vector3(0, 2.1f, 11) };
@@ -60,8 +63,10 @@ public static class DigitalDojoCapture
                 }
             }
             else if (step == Pages.Length * 2 + 2) Capture("Gameplay-Targets-HUD");
-            else if (step == Pages.Length * 2 + 3) SceneManager.LoadScene("Results");
-            else if (step == Pages.Length * 2 + 4) Capture("Results-Empty");
+            else if (step == Pages.Length * 2 + 3) UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().Pause();
+            else if (step == Pages.Length * 2 + 4) Capture("Pause");
+            else if (step == Pages.Length * 2 + 5) { UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().Resume(); VerifyGameplay(); UnityEngine.Object.FindFirstObjectByType<GameRoundController>().FinishRound("synthetic_qa_complete"); }
+            else if (step == Pages.Length * 2 + 6) Capture("Results-Synthetic-QA");
             else
             {
                 SessionState.SetBool(Key, false);
@@ -77,13 +82,85 @@ public static class DigitalDojoCapture
             Debug.LogException(ex); SessionState.SetBool(Key, false); EditorApplication.Exit(1);
         }
     }
+    static void VerifyGameplay()
+    {
+        var manager=GameManager.EnsureInstance();
+        var evaluator=UnityEngine.Object.FindFirstObjectByType<HitZoneEvaluator>();
+        var spawner=UnityEngine.Object.FindFirstObjectByType<TargetSpawner>();
+        var round=UnityEngine.Object.FindFirstObjectByType<GameRoundController>();
+        var checks=new System.Collections.Generic.List<string>();
+        Action<bool,string> require=(ok,name)=>{if(!ok)throw new Exception("Runtime QA: "+name);checks.Add("PASS "+name);};
+        foreach(var target in UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None))
+        { evaluator.UnregisterTarget(target); target.Resolve(); UnityEngine.Object.Destroy(target.gameObject); }
+        var create=typeof(TargetSpawner).GetMethod("CreateTargetObject",BindingFlags.NonPublic|BindingFlags.Instance);
+        var input=typeof(GameRoundController).GetMethod("HandlePlayerAction",BindingFlags.NonPublic|BindingFlags.Instance);
+        Action<ActionType,BodySide> act=(kind,side)=>input.Invoke(round,new object[]{KeyboardActionFactory.Create(kind,side)});
+        foreach(var kind in new[]{ActionType.Punch,ActionType.Kick}) foreach(var side in new[]{BodySide.Left,BodySide.Right})
+        {
+            var type=kind==ActionType.Punch?TargetType.Punch:TargetType.Kick;
+            var go=(GameObject)create.Invoke(spawner,new object[]{new Vector3(side==BodySide.Left?-3:3,kind==ActionType.Punch?2.1f:.45f,evaluator.HitZoneZ),type});
+            var target=go.GetComponent<TargetObject>();target.Type=type;target.Lane=side==BodySide.Left?LaneType.Left:LaneType.Right;
+            target.VertPosition=kind==ActionType.Punch?VerticalPosition.High:VerticalPosition.Low;target.MoveSpeed=4;target.HitWindow=1;
+            target.EnsureTrackedSpawn();
+            act(kind,side==BodySide.Left?BodySide.Right:BodySide.Left);
+            require(!target.IsResolved,kind+" "+side+" wrong side rejected");
+            act(kind==ActionType.Punch?ActionType.Kick:ActionType.Punch,side);
+            require(!target.IsResolved,kind+" "+side+" wrong action rejected");
+            act(kind,side);require(target.IsResolved,kind+" "+side+" resolves through game action handler");
+        }
+        var heavyObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(0,2,evaluator.HitZoneZ),TargetType.ToughPunch});
+        var heavy=heavyObject.GetComponent<TargetObject>();heavy.Type=TargetType.ToughPunch;heavy.Lane=LaneType.Center;
+        heavy.VertPosition=VerticalPosition.High;heavy.MaxHits=5;heavy.MoveSpeed=4;heavy.HitWindow=1;heavy.EnsureTrackedSpawn();heavy.LockInHitZone(evaluator.HitZoneZ);
+        for(int i=0;i<5;i++)
+        {
+            act(ActionType.Punch,BodySide.Left);
+            if(i==0)
+            {
+                var segment=Array.Find(heavy.GetComponentsInChildren<Renderer>(),r=>r.name.StartsWith("DamageSegment_"));
+                var propertyBlock=new MaterialPropertyBlock();segment.GetPropertyBlock(propertyBlock);
+                require(propertyBlock.GetColor("_EmissionColor")==Color.black,"heavy damage segment persists after hit flash");
+            }
+        }
+        require(heavy.IsResolved && heavy.CurrentHits==5,"heavy accepts five same-side punches");
+        require(manager.SessionStats.Score>0 && manager.SessionStats.MaxCombo>0,"score and combo recorded");
+        require(manager.SessionStats.SensorActions==0 && manager.SessionStats.KeyboardActions>0,"synthetic keyboard provenance retained");
+        manager.PauseGame();require(manager.CurrentState==GameState.Paused && Time.timeScale==0,"pause stops scaled time");
+        manager.ResumeGame();require(manager.CurrentState==GameState.Playing && Time.timeScale==1,"development resume restores gameplay");
+        File.WriteAllText(Path.GetFullPath("artifacts/validation/dd-runtime-checks.txt"),"UNITY PLAY MODE / SYNTHETIC ACTIONS / NO PHYSICAL HARDWARE\n"+string.Join("\n",checks));
+    }
     static void Capture(string label)
     {
         string pass = Environment.GetEnvironmentVariable("DOJO_CAPTURE_PASS") ?? "Before";
         string directory = Path.GetFullPath("DesignReferences/CurrentBuild/" + pass);
         Directory.CreateDirectory(directory);
+        if(label.StartsWith("Gameplay") || label=="Pause")
+        {
+            var pauseGroup=UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().GetComponent<CanvasGroup>();
+            if(pauseGroup==null || pauseGroup.alpha!=(label=="Pause"?1:0)) throw new Exception("Pause visibility does not match captured game state");
+            var lines=new System.Collections.Generic.List<string>{ "state="+GameManager.Instance.CurrentState };
+            foreach(var graphic in UnityEngine.Object.FindObjectsByType<Graphic>(FindObjectsInactive.Include,FindObjectsSortMode.None))
+                lines.Add(graphic.name+" parent="+graphic.transform.parent.name+" active="+graphic.gameObject.activeInHierarchy+" enabled="+graphic.enabled+" alpha="+graphic.canvasRenderer.GetInheritedAlpha());
+            File.WriteAllLines(Path.Combine(directory,label+"-ui-state.txt"),lines);
+        }
         foreach (var size in new[] { new Vector2Int(1920,1080), new Vector2Int(1280,720), new Vector2Int(2400,1080), new Vector2Int(1024,768) })
             Render(label, directory, size.x, size.y);
+        if(label=="Calibration")
+        {
+            for(int step=1;step<7;step++)
+            {
+                var nextButton=Array.Find(UnityEngine.Object.FindObjectsByType<UnityEngine.UI.Button>(FindObjectsSortMode.None), b=>b.gameObject.activeInHierarchy && b.GetComponentInChildren<UnityEngine.UI.Text>()?.text=="Next step");
+                if(nextButton==null)throw new Exception("Calibration next control missing");
+                nextButton.onClick.Invoke();
+                Render("Calibration-Step-"+(step+1),directory,1280,720);
+            }
+        }
+        if(label.StartsWith("Gameplay"))
+        {
+            var rows=new System.Collections.Generic.List<string>();
+            foreach(var r in UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsSortMode.None))
+                rows.Add(r.name+" | "+r.transform.position+" | "+r.bounds.size+" | "+(r.sharedMaterial==null?"MISSING":r.sharedMaterial.name+" / "+r.sharedMaterial.shader.name+" / "+(r.sharedMaterial.HasProperty("_Color")?r.sharedMaterial.color.ToString():"no color")));
+            File.WriteAllLines(Path.Combine(directory,"runtime-renderers.txt"),rows);
+        }
     }
     static void Render(string label, string directory, int width, int height)
     {

@@ -75,6 +75,8 @@ public class AndroidDynamicsController : MonoBehaviour
     }
     public void Initialize() { SelectParticipant(GameManager.EnsureInstance().PlayerProfile.StudyId); Call("initialize"); }
     public void RequestPermissions() { Call("requestPermissions"); }
+    public void OpenAppSettings() { Call("openAppSettings"); }
+    public void OpenBluetoothSettings() { Call("openBluetoothSettings"); }
     public void StartScan() { Call("startScan"); }
     public void StopScan() { Call("stopScan"); }
     public void Pair(string id, string side) { Call("pair", id, side); }

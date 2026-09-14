@@ -136,10 +136,11 @@ internal object DynamicsCollector {
         if (activity.fragmentManager.findFragmentByTag("dynamics_permissions") == null)
             activity.fragmentManager.beginTransaction().add(DynamicsPermissionFragment(), "dynamics_permissions").commit()
     }
-    @JvmStatic fun permissionsChanged() {
+    @JvmStatic fun permissionsChanged(permanentlyDenied: Boolean = false) {
         scope.launch {
             if (missingPermissions().isEmpty()) status(if (initialized) "ready" else "uninitialized", "permissions_granted", "Berechtigungen erteilt. Gerätesuche starten.")
-            else status("permissions_required", "permissions_denied", "Berechtigungen fehlen. In den Android-App-Einstellungen freigeben.")
+            else if (permanentlyDenied) status("permissions_required", "permissions_permanently_denied", "Bluetooth-Berechtigungen sind gesperrt. App-Einstellungen öffnen und Geräte in der Nähe freigeben.")
+            else status("permissions_required", "permissions_denied", "Bluetooth-Berechtigungen wurden nicht erteilt. Erneut anfragen oder App-Einstellungen öffnen.")
         }
     }
 

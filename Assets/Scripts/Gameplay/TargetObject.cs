@@ -39,6 +39,7 @@ public class TargetObject : MonoBehaviour
     private Coroutine wiggle;
     private Vector3 restingScale;
     private TextMesh labelMesh;
+    private DigitalDojoTargetVisual authoredVisual;
 
     // v3: Health bar reference
     private ToughTargetHealthBar healthBar;
@@ -54,6 +55,7 @@ public class TargetObject : MonoBehaviour
 
     void Awake()
     {
+        authoredVisual = GetComponentInChildren<DigitalDojoTargetVisual>();
         EnsureVisualReferences();
     }
 
@@ -99,6 +101,7 @@ public class TargetObject : MonoBehaviour
     /// </summary>
     private void UpdateGlowEffect()
     {
+        if (authoredVisual != null) return;
         if (SettingsManager.ReducedMotion) return;
         if (propBlock == null || cachedRenderer == null)
         {
@@ -140,6 +143,15 @@ public class TargetObject : MonoBehaviour
     {
         if (cachedRenderer == null) cachedRenderer = GetComponentInChildren<Renderer>();
         if (cachedRenderer == null) return;
+
+        if (authoredVisual != null)
+        {
+            originalColor = GameVisualPalette.GetTargetColor(Type);
+            transform.rotation = Quaternion.identity;
+            if (IsTough) { transform.localScale = Vector3.one * 1.8f; CreateHealthBar(); }
+            EnsureLabel(IsTough ? "HEAVY" : Type == TargetType.Kick ? "KICK" : "PUNCH", originalColor);
+            return;
+        }
 
         string labelText = "PUNCH";
         Color accentColor = Color.red;
@@ -242,8 +254,9 @@ public class TargetObject : MonoBehaviour
         // Visual crack effect: change color progressively
         // Dark red -> orange -> yellow as it weakens
         float t = (float)CurrentHits / MaxHits;
+        if (authoredVisual != null) authoredVisual.Hit(t);
         Color damageColor = Color.Lerp(new Color(0.6f, 0.05f, 0.05f), new Color(1f, 0.8f, 0f), t);
-        if (cachedRenderer != null)
+        if (cachedRenderer != null && authoredVisual == null)
         {
             cachedRenderer.material.color = damageColor;
             originalColor = damageColor;
@@ -302,6 +315,7 @@ public class TargetObject : MonoBehaviour
     /// </summary>
     public void Flash(Color flashColor, float duration = 0.15f)
     {
+        if (authoredVisual != null) { authoredVisual.Hit(); return; }
         if (cachedRenderer == null || IsBreaking) return;
         cachedRenderer.material.color = flashColor;
         Invoke(nameof(RestoreColor), duration);
@@ -351,12 +365,12 @@ public class TargetObject : MonoBehaviour
             labelMesh = labelObject.AddComponent<TextMesh>();
             labelMesh.alignment = TextAlignment.Center;
             labelMesh.anchor = TextAnchor.MiddleCenter;
-            labelMesh.characterSize = 0.11f;
+            labelMesh.characterSize = authoredVisual != null ? 0.05f : 0.11f;
             labelMesh.fontSize = 56;
         }
 
         string verticalLabel = VertPosition.ToString().ToUpperInvariant();
-        labelMesh.text = IsTough ? "HEAVY\nPUNCH" : actionLabel + "\n" + verticalLabel;
+        labelMesh.text = IsTough ? "HEAVY" : actionLabel;
         labelMesh.color = Color.Lerp(Color.white, accentColor, 0.2f);
         float labelDepth = -0.42f;
         if (cachedRenderer != null)
@@ -364,7 +378,7 @@ public class TargetObject : MonoBehaviour
             labelDepth = -Mathf.Max(0.42f, cachedRenderer.bounds.extents.z * 1.1f);
         }
 
-        labelMesh.transform.localPosition = new Vector3(0f, 0f, labelDepth);
+        labelMesh.transform.localPosition = new Vector3(0f, authoredVisual != null ? (IsTough ? -1.13f : -1.0f) : 0f, labelDepth);
         labelMesh.transform.localRotation = Quaternion.identity;
         labelMesh.transform.localScale = Vector3.one;
     }
@@ -373,7 +387,7 @@ public class TargetObject : MonoBehaviour
     {
         if (labelMesh != null && IsTough)
         {
-            labelMesh.text = "HEAVY\nPUNCH";
+            labelMesh.text = "HEAVY";
         }
     }
 
@@ -429,11 +443,11 @@ public class TargetObject : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            float scale = 1f + Mathf.Sin(t * Mathf.PI) * 0.28f;
+            float scale = Mathf.Lerp(1f, 0.88f, t);
             transform.localScale = startScale * scale;
-            transform.Rotate(Vector3.forward, 480f * Time.deltaTime, Space.Self);
+            transform.Rotate(Vector3.forward, 18f * Time.deltaTime, Space.Self);
 
-            if (cachedRenderers != null)
+            if (cachedRenderers != null && authoredVisual == null)
             {
                 for (int i = 0; i < cachedRenderers.Length; i++)
                 {

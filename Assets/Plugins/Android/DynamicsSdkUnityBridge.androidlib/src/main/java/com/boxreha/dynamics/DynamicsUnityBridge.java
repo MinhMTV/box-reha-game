@@ -11,6 +11,15 @@ public final class DynamicsUnityBridge {
 
     public static void initialize() { DynamicsCollector.initialize(); }
     public static void requestPermissions() { DynamicsCollector.requestPermissions(); }
+    public static void openAppSettings() {
+        UnityPlayer.currentActivity.runOnUiThread(() -> UnityPlayer.currentActivity.startActivity(
+            new android.content.Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                android.net.Uri.parse("package:" + UnityPlayer.currentActivity.getPackageName()))));
+    }
+    public static void openBluetoothSettings() {
+        UnityPlayer.currentActivity.runOnUiThread(() -> UnityPlayer.currentActivity.startActivity(
+            new android.content.Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS)));
+    }
     public static void selectParticipant(String studyId) { DynamicsCollector.selectParticipant(studyId); }
     public static void startScan() { DynamicsCollector.startScan(); }
     public static void stopScan() { DynamicsCollector.stopScan(); }

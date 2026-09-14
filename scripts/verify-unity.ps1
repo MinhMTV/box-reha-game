@@ -28,7 +28,8 @@ $unityBuildTarget = if ($Target -eq 'Android') { 'Android' } else { 'Win64' }
 if ($BuildCandidate -and $Target -eq 'Android') {
     $prepareLog = Join-Path $validationDir 'unity-android-prepare.log'
     $prepareArguments = @('-batchmode', '-nographics', '-quit', '-projectPath', ('"' + $projectRoot + '"'), '-buildTarget', 'Android', '-executeMethod', 'GameRegressionChecks.PrepareAndroidCandidate', '-logFile', ('"' + $prepareLog + '"'))
-    $prepareProcess = Start-Process -FilePath $UnityPath -ArgumentList $prepareArguments -PassThru -Wait -WindowStyle Hidden
+    $prepareProcess = Start-Process -FilePath $UnityPath -ArgumentList $prepareArguments -PassThru -WindowStyle Hidden
+    $prepareProcess.WaitForExit()
     if ($prepareProcess.ExitCode -ne 0) { throw "Android preparation failed. Inspect $prepareLog" }
     $importedVersion = ((Get-Content -LiteralPath (Join-Path $projectRoot 'ProjectSettings\ProjectVersion.txt') | Select-Object -First 1) -split ':', 2)[1].Trim()
     if ($importedVersion -ne $editorVersion) { throw 'Editor import changed ProjectVersion. Review and freeze the migration, then rerun verification.' }
@@ -50,7 +51,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Unable to record source revision.' }
 function Get-SourceSnapshot {
     $sourceFiles = foreach ($sourceRoot in @('Assets', 'Packages', 'ProjectSettings')) {
         Get-ChildItem -LiteralPath (Join-Path $projectRoot $sourceRoot) -Recurse -File |
-            Where-Object { $_.Name -notlike 'ResearchBuildInfo.txt*' -and $_.FullName -notmatch '[\\/](\.gradle|\.kotlin|build)[\\/]' } |
+            Where-Object { $_.Name -notlike 'ResearchBuildInfo.txt*' -and $_.Name -notlike 'PerformanceTestRunInfo.json*' -and $_.Name -notlike 'PerformanceTestRunSettings.json*' -and $_.FullName -notmatch '[\\/](\.gradle|\.kotlin|build)[\\/]' } |
             ForEach-Object { [PSCustomObject]@{ path = $_.FullName.Substring($projectRoot.Length + 1).Replace('\', '/'); sha256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant() } }
     }
     $sourceFiles = @($sourceFiles | Sort-Object path)
@@ -74,7 +75,9 @@ $editorLog = Join-Path $validationDir 'unity-editor.log'
 # Start-Process is hidden; quoted paths are necessary for this workspace's spaces.
 $arguments = @('-batchmode', '-nographics', '-quit', '-projectPath', ('"' + $projectRoot + '"'), '-buildTarget', $unityBuildTarget, '-executeMethod', 'GameRegressionChecks.RunBatch', '-logFile', ('"' + $editorLog + '"'))
 $checksStartedUtc = [DateTime]::UtcNow
-$process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -Wait -WindowStyle Hidden
+$process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -WindowStyle Hidden
+# Wait for this Editor, not every descendant: Unity can start long-lived workers/services.
+$process.WaitForExit()
 if ($process.ExitCode -ne 0) { throw "Unity qualification failed (exit $($process.ExitCode)). Inspect $editorLog" }
 $checks = Read-FreshUnityReport (Join-Path $validationDir 'unity-editor-checks.json') $checksStartedUtc @('utc', 'unityVersion', 'passed', 'failed', 'checks')
 if ($checks.failed -ne 0 -or $checks.passed -le 0 -or @($checks.checks).Count -ne ($checks.passed + $checks.failed)) { throw 'Unity regression report contains failures or an inconsistent check count.' }
@@ -85,7 +88,8 @@ if ($BuildCandidate) {
     $reportName = if ($Target -eq 'Android') { 'unity-android-candidate-build.json' } else { 'unity-candidate-build.json' }
     $arguments = @('-batchmode', '-nographics', '-quit', '-projectPath', ('"' + $projectRoot + '"'), '-buildTarget', $unityBuildTarget, '-executeMethod', $buildMethod, '-logFile', ('"' + $buildLog + '"'))
     $buildStartedUtc = [DateTime]::UtcNow
-    $process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -Wait -WindowStyle Hidden
+    $process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -WindowStyle Hidden
+    $process.WaitForExit()
     if ($process.ExitCode -ne 0) { throw "Candidate build failed (exit $($process.ExitCode)). Inspect $buildLog" }
     $build = Read-FreshUnityReport (Join-Path $validationDir $reportName) $buildStartedUtc @('utc', 'unityVersion', 'result', 'errors', 'outputPath')
     if ($build.result -ne 'Succeeded' -or $build.errors -ne 0) { throw 'Unity candidate report did not record a successful build without errors.' }

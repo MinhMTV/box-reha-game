@@ -21,11 +21,13 @@ public class HitZoneEvaluator : MonoBehaviour
     [SerializeField] private float heavyMinimumPower = 0.5f;
     [SerializeField] private bool createRuntimeHitGuide = true;
     private readonly List<TargetObject> activeTargets = new List<TargetObject>();
+    private readonly List<Material> guideMaterials = new List<Material>();
     private class Chain { public int Total, Completed; public bool Failed; public LaneType Lane; }
     private readonly Dictionary<string, Chain> chains = new Dictionary<string, Chain>();
     public float HitZoneZ => hitZoneCenter != null ? hitZoneCenter.position.z : transform.position.z;
 
     void Start() { if (createRuntimeHitGuide) EnsureHitGuide(); }
+    void OnDestroy() { foreach (var material in guideMaterials) if (material != null) Destroy(material); }
     public string StartRapidFireChain(LaneType lane, int totalTargets)
     {
         string id = Guid.NewGuid().ToString("N");
@@ -195,21 +197,32 @@ public class HitZoneEvaluator : MonoBehaviour
         if (transform.Find("HitGuideRoot") != null) return;
         GameObject root = new GameObject("HitGuideRoot");
         root.transform.SetParent(transform, false);
-        CreateGuide(root.transform, new Vector3(0f, 0.1f, 0f), GameVisualPalette.PunchColor);
-        CreateGuide(root.transform, new Vector3(0f, -2.05f, 0f), GameVisualPalette.KickColor);
+        Material punchMaterial = CreateGuideMaterial(GameVisualPalette.PunchColor);
+        Material kickMaterial = CreateGuideMaterial(GameVisualPalette.KickColor);
+        // Side brackets mark the scoring plane without drawing over target faces.
+        foreach (float x in new[] { -4.35f, -1.65f, 1.65f, 4.35f })
+        {
+            CreateGuide(root.transform, new Vector3(x, -0.4f, 0f), punchMaterial);
+            CreateGuide(root.transform, new Vector3(x, -2.05f, 0f), kickMaterial);
+        }
     }
-    private static void CreateGuide(Transform parent, Vector3 position, Color color)
+    private Material CreateGuideMaterial(Color color)
+    {
+        Material material = new Material(Shader.Find("Standard"));
+        material.color = color;
+        material.EnableKeyword("_EMISSION");
+        material.SetColor("_EmissionColor", color * 1.2f);
+        guideMaterials.Add(material);
+        return material;
+    }
+    private static void CreateGuide(Transform parent, Vector3 position, Material material)
     {
         GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
         bar.name = "ActionHitLine";
         bar.transform.SetParent(parent, false);
         bar.transform.localPosition = position;
-        bar.transform.localScale = new Vector3(9.5f, 0.055f, 0.065f);
+        bar.transform.localScale = new Vector3(0.3f, 0.055f, 0.065f);
         Destroy(bar.GetComponent<Collider>());
-        Material material = new Material(Shader.Find("Standard"));
-        material.color = color;
-        material.EnableKeyword("_EMISSION");
-        material.SetColor("_EmissionColor", color * 1.2f);
         bar.GetComponent<Renderer>().sharedMaterial = material;
     }
 }

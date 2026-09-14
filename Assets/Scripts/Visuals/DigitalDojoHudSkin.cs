@@ -26,7 +26,7 @@ public class DigitalDojoHudSkin : MonoBehaviour
     {
         GameObject hud = GameObject.Find("HUDCanvas");
         if (hud == null) yield break;
-        font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        font = DojoUiStyle.Font;
         CanvasScaler scaler = hud.GetComponent<CanvasScaler>();
         if (scaler != null)
         {
@@ -76,6 +76,7 @@ public class DigitalDojoHudSkin : MonoBehaviour
         pause.GetComponent<UnityEngine.UI.Image>().raycastTarget = true;
         UnityEngine.UI.Button pauseButton = pause.gameObject.AddComponent<UnityEngine.UI.Button>();
         pauseButton.targetGraphic = pause.GetComponent<UnityEngine.UI.Image>();
+        DojoUiStyle.Style(pauseButton);
         pauseButton.onClick.AddListener(() => FindObjectOfType<PauseMenuController>()?.Pause());
         Text pauseLabel = Label(pause, "Label", "PAUSE", 25);
         Anchor(pauseLabel.rectTransform, 0.5f, 0.5f, 220f, 60f);

@@ -3,8 +3,8 @@ using UnityEngine;
 public static class GameVisualPalette
 {
     public static readonly Color PunchColor = new Color(1f, 0.29f, 0.22f, 1f);
-    public static readonly Color KickColor = new Color(0.18f, 1f, 0.72f, 1f);
-    public static readonly Color ToughPunchColor = new Color(1f, 0.62f, 0.16f, 1f);
+    public static readonly Color KickColor = new Color(0.15f, 0.52f, 0.78f, 1f);
+    public static readonly Color ToughPunchColor = new Color(0.95f, 0.22f, 0.15f, 1f);
     public static readonly Color BlockColor = new Color(0.20f, 0.78f, 1f, 1f);
     public static readonly Color DodgeColor = new Color(0.34f, 1f, 0.62f, 1f);
     public static readonly Color PerfectColor = new Color(1f, 0.92f, 0.24f, 1f);

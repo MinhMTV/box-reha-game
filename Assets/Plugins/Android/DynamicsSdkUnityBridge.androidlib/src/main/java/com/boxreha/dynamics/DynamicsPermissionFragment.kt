@@ -13,7 +13,11 @@ class DynamicsPermissionFragment : Fragment() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode != 6402) return
-        DynamicsCollector.permissionsChanged()
+        val permanentlyDenied = permissions.indices.any { index ->
+            index < grantResults.size && grantResults[index] == android.content.pm.PackageManager.PERMISSION_DENIED &&
+                !shouldShowRequestPermissionRationale(permissions[index])
+        }
+        DynamicsCollector.permissionsChanged(permanentlyDenied)
         fragmentManager?.beginTransaction()?.remove(this)?.commitAllowingStateLoss()
     }
 }
