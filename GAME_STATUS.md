@@ -1,40 +1,27 @@
-# Current status — Android focus
+# Digital Dojo — current status
 
-Updated 2026-09-14. **Target: develop on Windows; run the game and native Dynamics SDK together on Android. Study readiness: RED.** The user selected OnePlus 15 or Samsung Galaxy Tab S3 as possible test devices and confirmed that Unity 6.6 is still being installed. Neither device has been qualified.
+Updated 2026-09-14. Windows development; Unity and the native Dynamics SDK run together on Android. **Unity prototype verified; physical Android integration remains unqualified.** This supersedes earlier reports that the Editor, Blender and runtime screenshots were unavailable.
 
-Game: `E:\Programming Projekte\box-reha-game`. Thesis: `E:\Programming Projekte\latex_diplom`. Approved expose: `E:\Programming Projekte\expose_latex_diplom`. Authoritative SDK: `C:\dynamics-sdk-main`, version 0.25.6. Expose and SDK remain unchanged. The project still records Unity 2022.3.62f3; Unity 6.6 migration is pending an actual Editor import. Editing the version text alone would not constitute a migration.
+Unity 6000.6.0f1 was imported with the actual Editor. Android Build Support, bundled SDK/NDK/OpenJDK are installed. Blender 5.2.1 LTS generated the original nine-model kit. Built-in rendering and uGUI remain the project architecture.
 
-## Implemented source
+## Delivered implementation
 
-- Android Kotlin collector initializes the SDK, requests permissions, scans, pairs with explicit side assignment, configures the SDK body profile, controls sessions and forwards computed punch events with original quantity/clock/identity evidence.
-- Unity uses an Android connection screen and native acknowledgements before starting or resuming. Participant, request, family and device configuration must match; stale or missing status blocks the physical game.
-- ALPHA punch mode and DELTA kick mapping accept one device or an explicit left/right pair of the same family. Targets use only connected sides. DELTA excludes punch-only heavy/chain mechanics. Two ALPHA gloves plus one DELTA together remain unsupported by this collector pending a confirmed SDK route.
-- Android touch pause/finish, landscape and safe-area handling are present. Windows keyboard/pointer input is explicitly a development condition.
-- Research JSONL retains sensor evidence plus optional sanitized Android acquisition metadata. Weight, height, gender and display names are excluded from that stream; the SDK's own local profile/session storage is separate.
-- Android preparation, APK build entrypoint, generated-Gradle integration and standalone native verification scripts are present.
-
-These are implementation claims. They do not establish that the game launches, the JNI bridge works on a device or physical detection is accurate.
-
-## Current build blocker
-
-The actual standard Gradle build fails to resolve `com.riseworld.launchpad.resource:resource:2.11.1`, requested by SDK 0.25.6 and its components. The supplied SDK repository contains 2.12.0 instead. See `artifacts/validation/android-collector-build.log`. The production dependency graph is not silently changed. A separately labelled diagnostic build using 2.12.0 can find source errors but cannot qualify the supplied SDK configuration.
-
-That diagnostic compile exposes a second package defect: Android `Power` lacks Kotlin metadata and inner-class attributes, while inspected `BleGloveState`/`ScannerState` retain Kotlin metadata but lack inner-class attributes. Documented nested/value-class APIs are consequently unavailable to the Kotlin compiler. No mangled-ABI/reflection workaround was added. Exact evidence and the required corrected vendor bundle are in `SDK_PACKAGE_BLOCKERS_2026-09-14.md`.
-
-SDK AAR metadata additionally requires **compileSdk 36**. The Android library/build preparation reflects this requirement. Java 17, Android API 36 and the standalone Gradle qualification tools are available; Unity 6.6 import/export/APK and device tests remain separate gates. Unity Personal is active, but an installed Editor was not available for these checks.
+- Reproducible Blender source, nine FBX models, shared Standard materials, identity-root gameplay prefabs and a modular dojo. Punch is circular/high; kick is upright/low; heavy has separate damage segments. Camera, lighting, feedback and scoring-plane brackets integrate with the existing spawner.
+- Shared menu, settings, profile, statistics, preparation wizard, HUD, pause and results presentation. Touch controls and safe-area handling remain. Navigation reflects the active page. Pause now creates its missing CanvasGroup correctly and disables hidden content while retaining the Escape handler.
+- Native permission-denial state distinguishes permanent denial; connection UI can open Android app/Bluetooth settings. Source implementation is not device verification.
+- Existing provenance, timestamps, device/side assignment and fail-closed session gates remain. Keyboard actions are synthetic and do not become physical sensor evidence.
+- Seven-step calibration **preparation** UI, including a skipped optional HR step. No measured baseline, HR adaptation or validated force calibration is claimed.
 
 ## Verification
 
-Current evidence is recorded in `ANDROID_VALIDATION_2026-09-14.md` and `artifacts/validation`. Deterministic host logic, pure Gradle-export transformations and static source/assets are checked independently of Unity. The 13 September checks remain historical in `VALIDATION_REPORT_2026-09-13.md` and must not be relabelled as current Android execution.
+Actual Unity Play Mode captures and synthetic gameplay checks are in [VISUAL_STATUS](VISUAL_STATUS.md). Unity regression checks passed 9 groups. The Play Mode action path passed 18 assertions: all four actions, wrong-side/action rejection, repeated same-hand heavy hits, scoring/provenance and pause/resume. Capture guards additionally verify visible/hidden pause state.
 
-No Unity compilation, APK, rendered scene walkthrough, physical BLE connection or sensor ground-truth evaluation has passed in this cycle. No real gameplay screenshots were generated. The UI layout and Android lifecycle still require runtime review.
+Host checks passed 26 groups plus 47 Android policy assertions; 13 Gradle-export transformation checks; 71 C# files across five conditional configurations; 635 static scene assertions. Host checks are not JNI/Bluetooth execution.
 
-## Remaining scope
+The real native dependency graph still fails on missing vendor artifact resource:2.11.1. See [ANDROID_STATUS](ANDROID_STATUS.md) for the full Unity Android attempt and hardware boundary. Previous diagnostic vendor metadata defects remain in [SDK_PACKAGE_BLOCKERS_2026-09-14](SDK_PACKAGE_BLOCKERS_2026-09-14.md).
 
-1. Obtain the matching missing SDK artifacts or vendor confirmation of an exact supported dependency replacement.
-2. Finish the Unity 6.6 installation with Android Build Support, SDK/NDK and OpenJDK; import the existing project, inspect migration changes, then run the Android verification command in `SETUP_GUIDE.md`.
-3. Install the development APK on the selected Android device and qualify permissions, each device/side, pause/background/reconnect, timing and local exports.
-4. Establish whether simultaneous two-glove plus foot-sensor use is supported. Separate ALPHA/DELTA tests do not answer that combined-device claim.
-5. Complete measured calibration and technical coverage/rejection instrumentation if required by the frozen study protocol. HR remains inactive.
+## Remaining qualification
 
-Research questions and substantive expose logic are unchanged. No clinical efficacy, completed interviews, user-study results, measured force normalization or study readiness is inferred from code or synthetic tests. Read `GAME_KNOWN_ISSUES.md`, `OPEN_DECISIONS.md` and the thesis status for the remaining methodological gates.
+Obtain a supported corrected SDK publication; build and install the Android candidate; qualify permissions, Bluetooth off, each side/device, foreground/background, reconnect, latency and exports on an attached phone/tablet. The user proposed OnePlus 15 or Galaxy Tab S3; neither is qualified. Simultaneous two ALPHA plus DELTA still needs a confirmed SDK session route. Current collector supports one/two devices of the same family. Study readiness remains RED.
+
+The approved expose, thesis scope and authoritative C:/dynamics-sdk-main were not changed. Local workflow and review: [project documents](docs/projects/digital-dojo/REVIEW.md).

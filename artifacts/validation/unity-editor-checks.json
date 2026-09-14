@@ -1,0 +1,18 @@
+{
+    "scope": "UNITY EDITOR CHECKS / NOT PHYSICAL HARDWARE VERIFICATION",
+    "utc": "2026-09-14T00:25:15.8653324Z",
+    "unityVersion": "6000.6.0f1",
+    "passed": 9,
+    "failed": 0,
+    "checks": [
+        "PASS timing boundaries and signs",
+        "PASS four action mappings, wrong side/action and repeated heavy side",
+        "PASS heavy damage and bounded combo scoring",
+        "PASS levels and endless lane policy",
+        "PASS session metrics distinguish timing and completion",
+        "PASS scene references: Assets/Scenes/Boot.unity",
+        "PASS scene references: Assets/Scenes/MainMenu.unity",
+        "PASS scene references: Assets/Scenes/Game.unity",
+        "PASS scene references: Assets/Scenes/Results.unity"
+    ]
+}

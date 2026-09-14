@@ -1,0 +1,439 @@
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 17600)
+VBCSCompiler prewarm took 3.00 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/respin/6000.6.0f1-fa21a270ab12' branch; Version is '6000.6.0f1 (f7f8ed4d1e24) revision 16251117'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi" at "2026-09-14T00:16:56.6621491Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'de' Physical Memory: 65349 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-14T00:16:56Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 71764, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              d34d00ded7b84c5ebf700158e4c26a99
+  Correlation Id:          e681d1d3abf0891d9dd07a202335ce1f
+  External correlation Id: 1897646561064102662
+  Machine Id:              RQAmcHbobxLfdLl5bNXrLWQKMso=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-manmi" (connect: 0.00s, validation: 0.00s, handshake: 0.03s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi-notifications" at "2026-09-14T00:16:56.6918936Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 9072372004883-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.03s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo
+-buildTarget
+Android
+-executeMethod
+GameRegressionChecks.RunBatch
+-logFile
+E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\artifacts\validation\unity-editor.log
+Successfully changed project path to: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo
+E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [44460]  Target information:
+
+Player connection [44460]  * "[IP] 169.254.123.79 [Port] 55504 [Flags] 2 [Guid] 2783570712 [EditorId] 2783570712 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [44460]  * "[IP] 192.168.253.1 [Port] 55504 [Flags] 2 [Guid] 2783570712 [EditorId] 2783570712 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [44460]  * "[IP] 192.168.150.1 [Port] 55504 [Flags] 2 [Guid] 2783570712 [EditorId] 2783570712 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [44460]  * "[IP] 172.28.32.1 [Port] 55504 [Flags] 2 [Guid] 2783570712 [EditorId] 2783570712 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [44460]  * "[IP] 10.5.0.2 [Port] 55504 [Flags] 2 [Guid] 2783570712 [EditorId] 2783570712 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [44460]  * "[IP] 192.168.0.90 [Port] 55504 [Flags] 2 [Guid] 2783570712 [EditorId] 2783570712 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [44460] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [44460] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-101684" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Unity Data Store running and initialised
+[Licensing::Client] Successfully resolved entitlement details
+Targeting platform: Android
+Initialize engine version: 6000.6.0f1 (f7f8ed4d1e24)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56684
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Registered in 0.002578 seconds.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.537 seconds
+Domain Reload Profiling: 979ms
+	BeginReloadAssembly (125ms)
+		CreateAndSetChildDomain (35ms)
+	RebuildCommonClasses (3ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (49ms)
+	LoadAllAssembliesAndSetupDomain (251ms)
+		LoadAssemblies (87ms)
+		TypeCache.Refresh (172ms)
+			TypeCache.ScanAssembly (161ms)
+		AnalyzeDomain (0ms)
+	FinalizeReload (538ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (74ms)
+			ProcessInitializeOnLoadAttributes (106ms)
+			ProcessInitializeOnLoadMethodAttributes (172ms)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 59 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.probuilder@6.1.2 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.probuilder@8be9724b2335)
+    com.unity.settings-manager@2.1.1 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+    com.unity.splines@2.9.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.splines@e6e1d5900acc)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.profiling.core@1.0.3 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.searcher@4.9.5 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.nuget.mono-cecil@1.11.6 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.cinemachine@6.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.cinemachine@f53aa49b3acc)
+    com.unity.multiplayer.center@2.0.1 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.multiplayer.center@549886182930)
+    com.unity.ugui@2.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.ugui@23caec89ae27)
+    com.unity.visualeffectgraph@17.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.visualeffectgraph@47051adff7cc)
+    com.unity.modules.accessibility@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.shadergraph@17.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.shadergraph@ef6135652377)
+    com.unity.render-pipelines.core@17.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.render-pipelines.core@2d66c71e606e)
+    com.unity.test-framework@1.8.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.test-framework@7a3849e09bd0)
+    com.unity.burst@2.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.collections@10fff0607388)
+    com.unity.graph-authoring@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.mathematics@1.4.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.mathematics@8306a64d0cd6)
+    com.unity.ext.nunit@2.1.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.test-framework.performance@6.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.test-framework.performance@0a60b857a52e)
+  Git packages:
+    com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#b92c05a25820cfc9f59ce4094eb46aaec8632ea2 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.coplaydev.unity-mcp@13fb3ee12774)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.01 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 0s204ms
+[650/831    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (0.18 seconds), 1 items updated, 831 evaluated
+AssetDatabase: script compilation time: 0.564682s
+Begin MonoManager ReloadAssembly
+Total cache size 97082424
+Total cache size after purge 97082424, took 00:00:00.1175494
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Digital Dojo
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.114 seconds
+Domain Reload Profiling: 1771ms
+	BeginReloadAssembly (228ms)
+		DisableScriptedObjects (77ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (369ms)
+		LoadAssemblies (209ms)
+		TypeCache.Refresh (87ms)
+			TypeCache.ScanAssembly (77ms)
+		AnalyzeDomain (45ms)
+			BuildScriptInfoCaches (39ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (1115ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (80ms)
+			ProcessInitializeOnLoadAttributes (666ms)
+			ProcessInitializeOnLoadMethodAttributes (159ms)
+			AfterProcessingInitializeOnLoad (6ms)
+		AwakeInstancesAfterBackupRestoration (29ms)
+Starting new worker id: 0 with log in E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo/Logs/AssetImportWorkerHW0.log
+Importing 'GUID: e7c18485b030d074ba45a7bd0e60fad6 - Path: Assets/Resources/ResearchBuildInfo.txt' with importer (TextScriptImporter)
+Imported 'GUID: e7c18485b030d074ba45a7bd0e60fad6' -> (Import Result ID: 'd95b359197c8d3400a567eddad10ce56') in 0.031 seconds [static dependencies only]. Details - ImportResultOutputID=9a5d9230f6fbd04bfc51b3957d643b5c DependenciesID=6287420e3902f5d12b46d6b529cb2ee2 StaticDependenciesID=6333b7e2445470606dbb9625e4f43f38 
+
+Asset Pipeline Refresh (id=5c4ebe05f64e34948bdaa264b556ba26): Total: 2.809 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=1 (actual=1, local cache=0, cache server=0)
+		Asset DB Process Time: managed=1 ms, native=1423 ms
+		Asset DB Callback time: managed=72 ms, native=17 ms
+		Scripting: domain reloads=1, domain reload time=693 ms, compile time=566 ms, other=34 ms
+		Project Asset Count: scripts=1024, non-scripts=2101
+		Asset File Changes: new=1, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 16.921ms
+	ApplyChangesToAssetFolders: 0.382ms
+	Scan: 83.348ms
+	Collect global state as custom dependencies: 5.669ms
+	OnSourceAssetsModified: 0.462ms
+	CategorizeScriptCompilationAssets: 13.905ms
+	ProcessAssetsWithTransientArtifactChanges: 41.445ms
+	CategorizeAssets: 22.131ms
+	CompileScripts: 566.408ms
+	ImportOutOfDateAssets: 1152.745ms (1116.709ms without children)
+		ImportManagerImport: 32.258ms (0.924ms without children)
+		UnloadImportedAssets: 0.059ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.269ms
+		ImportSchedulerStart: 3.443ms
+	PostProcessAllAssets: 72.002ms
+		XRBuildSystem.XRAssetImported 0.087ms
+		MonoPostProcessAllAssets: 71.542ms
+			AssetPostprocessor.OnPostprocessAllAssets 38.172ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 11.253ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.256ms
+			AssetChangedListener.OnPostprocessAllAssets 1.363ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.320ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.279ms
+			VFXGraphPreprocessor.OnPostprocessAllAssets 0.997ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.967ms
+			SyncVS.PostprocessSyncProject 0.788ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.626ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.540ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.457ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.421ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.381ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.297ms
+			CinemachineSettings.OnPostprocessAllAssets 0.266ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.230ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.204ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.202ms
+			AssetEvents.OnPostprocessAllAssets 0.185ms
+			PostProcessor.OnPostprocessAllAssets 0.146ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.135ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.132ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.127ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.114ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.113ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.105ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.096ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.093ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.064ms
+	PostAssetChangesProfiler: 1.307ms
+	UnloadStreamsBegin: 1.089ms
+	PersistCurrentRevisions: 0.114ms
+	GenerateScriptTypeHashes: 1.378ms
+	GenerateScriptTypeSerializationHashes: 2.455ms
+	Untracked: 814.806ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 5.870ms
+Initializing Unity extensions:
+Unloading 63 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4426 unused Assets / (2.7 MB). Loaded Objects now: 5157.
+Memory consumption went from 330.4 MB to 327.7 MB.
+Total: 5.846300 ms (FindLiveObjects: 0.368300 ms CreateObjectMapping: 0.129200 ms MarkObjects: 4.460000 ms  DeleteObjects: 0.718200 ms)
+
+Opening scene 'Assets/Scenes/Boot.unity'
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/Boot.unity'
+	Deserialize:            0.735 ms
+	Integration:            5.809 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.016 ms
+	Total Operation Time:   6.562 ms
+Unloading 4 unused Assets / (0.5 MB). Loaded Objects now: 5168.
+Memory consumption went from 322.9 MB to 322.4 MB.
+Total: 4.648400 ms (FindLiveObjects: 0.220000 ms CreateObjectMapping: 0.050200 ms MarkObjects: 4.162100 ms  DeleteObjects: 0.051900 ms)
+
+Opening scene 'Assets/Scenes/MainMenu.unity'
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/MainMenu.unity'
+	Deserialize:            18.699 ms
+	Integration:            50.600 ms
+	Integration of assets:  0.005 ms
+	Thread Wait Time:       0.015 ms
+	Total Operation Time:   69.319 ms
+Unloading 3 unused Assets / (259.8 KB). Loaded Objects now: 18022.
+Memory consumption went from 341.0 MB to 340.7 MB.
+Total: 6.542000 ms (FindLiveObjects: 0.622200 ms CreateObjectMapping: 0.213000 ms MarkObjects: 5.375000 ms  DeleteObjects: 0.049100 ms)
+
+Opening scene 'Assets/Scenes/Game.unity'
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/Game.unity'
+	Deserialize:            4.435 ms
+	Integration:            6.956 ms
+	Integration of assets:  1.695 ms
+	Thread Wait Time:       0.017 ms
+	Total Operation Time:   13.102 ms
+Unloading 5817 unused Assets / (6.3 MB). Loaded Objects now: 5527.
+Memory consumption went from 334.9 MB to 328.5 MB.
+Total: 7.625700 ms (FindLiveObjects: 0.540000 ms CreateObjectMapping: 0.241100 ms MarkObjects: 4.573400 ms  DeleteObjects: 2.027600 ms)
+
+Opening scene 'Assets/Scenes/Results.unity'
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/Results.unity'
+	Deserialize:            1.580 ms
+	Integration:            4.354 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.023 ms
+	Total Operation Time:   5.959 ms
+Unloading 179 unused Assets / (355.3 KB). Loaded Objects now: 5279.
+Memory consumption went from 329.2 MB to 328.9 MB.
+Total: 6.113900 ms (FindLiveObjects: 0.305400 ms CreateObjectMapping: 0.055000 ms MarkObjects: 5.349700 ms  DeleteObjects: 0.164400 ms)
+
+Game regression report: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\artifacts\validation\unity-editor-checks.json / passed=9 failed=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GameRegressionChecks:RunBatch () (at Assets/Editor/GameRegressionChecks.cs:168)
+
+(Filename: Assets/Editor/GameRegressionChecks.cs Line: 168)
+
+Batchmode quit successfully invoked - shutting down!
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: No process found listening on port 8080
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+MCPForUnity.Editor.Helpers.McpLog:Info (string,bool) (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Helpers/McpLog.cs:40)
+MCPForUnity.Editor.Services.ServerManagementService:StopLocalHttpServerInternal (bool,System.Nullable`1<int>,bool) (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/ServerManagementService.cs:712)
+MCPForUnity.Editor.Services.ServerManagementService:StopLocalHttpServer () (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/ServerManagementService.cs:349)
+MCPForUnity.Editor.Services.McpEditorShutdownCleanup:OnEditorQuitting () (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/McpEditorShutdownCleanup.cs:60)
+UnityEditor.EditorApplication:Internal_EditorApplicationQuit ()
+
+(Filename: ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Helpers/McpLog.cs Line: 40)
+
+Worker ready: AssetImportWorkerHW0 0
+Curl error 42: Callback aborted
+Curl error 42: Callback aborted

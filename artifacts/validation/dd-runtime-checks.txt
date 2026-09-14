@@ -1,0 +1,19 @@
+UNITY PLAY MODE / SYNTHETIC ACTIONS / NO PHYSICAL HARDWARE
+PASS Punch Left wrong side rejected
+PASS Punch Left wrong action rejected
+PASS Punch Left resolves through game action handler
+PASS Punch Right wrong side rejected
+PASS Punch Right wrong action rejected
+PASS Punch Right resolves through game action handler
+PASS Kick Left wrong side rejected
+PASS Kick Left wrong action rejected
+PASS Kick Left resolves through game action handler
+PASS Kick Right wrong side rejected
+PASS Kick Right wrong action rejected
+PASS Kick Right resolves through game action handler
+PASS heavy damage segment persists after hit flash
+PASS heavy accepts five same-side punches
+PASS score and combo recorded
+PASS synthetic keyboard provenance retained
+PASS pause stops scaled time
+PASS development resume restores gameplay

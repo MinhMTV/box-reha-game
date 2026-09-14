@@ -1,0 +1,655 @@
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 92048)
+VBCSCompiler prewarm took 3.14 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/respin/6000.6.0f1-fa21a270ab12' branch; Version is '6000.6.0f1 (f7f8ed4d1e24) revision 16251117'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi" at "2026-09-14T00:09:22.9182217Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'de' Physical Memory: 65349 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-14T00:09:22Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 71764, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              644e909e8bf0422187339dc343b2e506
+  Correlation Id:          e681d1d3abf0891d9dd07a202335ce1f
+  External correlation Id: 2278944174881634299
+  Machine Id:              RQAmcHbobxLfdLl5bNXrLWQKMso=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-manmi" (connect: 0.00s, validation: 0.00s, handshake: 0.03s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi-notifications" at "2026-09-14T00:09:22.949901Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 9072372004883-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.04s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo
+-executeMethod
+DigitalDojoAssetIntegration.Run
+-logFile
+E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\artifacts\validation\unity-asset-integration.log
+Successfully changed project path to: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo
+E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [34672]  Target information:
+
+Player connection [34672]  * "[IP] 169.254.123.79 [Port] 55504 [Flags] 2 [Guid] 902455984 [EditorId] 902455984 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [34672]  * "[IP] 192.168.253.1 [Port] 55504 [Flags] 2 [Guid] 902455984 [EditorId] 902455984 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [34672]  * "[IP] 192.168.150.1 [Port] 55504 [Flags] 2 [Guid] 902455984 [EditorId] 902455984 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [34672]  * "[IP] 172.28.32.1 [Port] 55504 [Flags] 2 [Guid] 902455984 [EditorId] 902455984 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [34672]  * "[IP] 10.5.0.2 [Port] 55504 [Flags] 2 [Guid] 902455984 [EditorId] 902455984 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [34672]  * "[IP] 192.168.0.90 [Port] 55504 [Flags] 2 [Guid] 902455984 [EditorId] 902455984 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [34672] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [34672] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-32104" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Unity Data Store running and initialised
+Initialize engine version: 6000.6.0f1 (f7f8ed4d1e24)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1080 Ti (ID=0x1b06)
+    Vendor:   NVIDIA
+    VRAM:     11107 MB
+    Driver:   32.0.15.8180
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56104
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Registered in 0.003784 seconds.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.509 seconds
+Domain Reload Profiling: 922ms
+	BeginReloadAssembly (91ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (51ms)
+	LoadAllAssembliesAndSetupDomain (253ms)
+		LoadAssemblies (86ms)
+		TypeCache.Refresh (170ms)
+			TypeCache.ScanAssembly (159ms)
+		AnalyzeDomain (0ms)
+	FinalizeReload (510ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (71ms)
+			ProcessInitializeOnLoadAttributes (96ms)
+			ProcessInitializeOnLoadMethodAttributes (164ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 59 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.probuilder@6.1.2 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.probuilder@8be9724b2335)
+    com.unity.settings-manager@2.1.1 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+    com.unity.splines@2.9.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.splines@e6e1d5900acc)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.profiling.core@1.0.3 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.searcher@4.9.5 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.nuget.mono-cecil@1.11.6 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.cinemachine@6.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.cinemachine@f53aa49b3acc)
+    com.unity.multiplayer.center@2.0.1 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.multiplayer.center@549886182930)
+    com.unity.ugui@2.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.ugui@23caec89ae27)
+    com.unity.visualeffectgraph@17.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.visualeffectgraph@47051adff7cc)
+    com.unity.modules.accessibility@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.shadergraph@17.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.shadergraph@ef6135652377)
+    com.unity.render-pipelines.core@17.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.render-pipelines.core@2d66c71e606e)
+    com.unity.test-framework@1.8.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.test-framework@7a3849e09bd0)
+    com.unity.burst@2.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.collections@10fff0607388)
+    com.unity.graph-authoring@1.0.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.mathematics@1.4.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.mathematics@8306a64d0cd6)
+    com.unity.ext.nunit@2.1.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.test-framework.performance@6.6.0 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.unity.test-framework.performance@0a60b857a52e)
+  Git packages:
+    com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#b92c05a25820cfc9f59ce4094eb46aaec8632ea2 (location: E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Library\PackageCache\com.coplaydev.unity-mcp@13fb3ee12774)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.01 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 0s942ms
+[648/831    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[823/831    0s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)
+Assets\Scripts\Gameplay\TargetMover.cs(26,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Gameplay\TargetObject.cs(75,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Core\GameManager.cs(133,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Core\GameManager.cs(158,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Research\ResearchSessionLog.cs(113,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Gameplay\HitZoneEvaluator.cs(160,41): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+
+Assets\Scripts\UI\ComboMilestonePopup.cs(36,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Sensors\DynamicsSdkBridge.cs(98,64): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(22,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\UI\TextPopup.cs(55,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(80,47): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Spawning\TargetSpawner.cs(330,40): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+
+Assets\Scripts\UI\PauseMenuController.cs(95,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(90,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Visuals\DigitalDojoRuntimeDressing.cs(154,30): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+[824/831    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 148 defines and 341 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[825/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[826/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+[827/831    0s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\Editor\GameRegressionChecks.cs(39,9): warning CS0618: 'PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)' is obsolete: 'Use SetApplicationIdentifier(NamedBuildTarget buildTarget, string identifier) instead'
+
+Assets\Editor\GameRegressionChecks.cs(43,9): warning CS0618: 'PlayerSettings.SetScriptingBackend(BuildTargetGroup, ScriptingImplementation)' is obsolete: 'Use SetScriptingBackend(NamedBuildTarget buildTarget, ScriptingImplementation backend) instead'
+
+Assets\Editor\GameRegressionChecks.cs(60,13): warning CS0618: 'PlayerSettings.GetApplicationIdentifier(BuildTargetGroup)' is obsolete: 'Use GetApplicationIdentifier(NamedBuildTarget buildTarget) instead'
+
+Assets\Editor\GameRegressionChecks.cs(63,16): warning CS0618: 'PlayerSettings.GetScriptingBackend(BuildTargetGroup)' is obsolete: 'Use GetScriptingBackend(NamedBuildTarget buildTarget) instead'
+
+Assets\Editor\DigitalDojoCapture.cs(40,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(50,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(52,91): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(52,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(67,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(70,72): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoSceneGenerator.cs(161,23): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Editor\DigitalDojoAssetIntegration.cs(68,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoAssetIntegration.cs(68,32): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoAssetIntegration.cs(90,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoAssetIntegration.cs(90,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\GameRegressionChecks.cs(179,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Editor\GameRegressionChecks.cs(184,17): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Editor\DigitalDojoCapture.cs(90,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(91,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(92,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(95,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(95,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(135,103): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(135,43): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(144,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(144,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoSceneGenerator.cs(340,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Editor\SceneAutoSetup.cs(534,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Editor\DigitalDojoCapture.cs(154,69): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(154,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+[828/831    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 146 defines and 355 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[829/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[830/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (0.92 seconds), 9 items updated, 831 evaluated
+Assets\Scripts\Gameplay\TargetMover.cs(26,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Gameplay\TargetObject.cs(75,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Core\GameManager.cs(133,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Core\GameManager.cs(158,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Research\ResearchSessionLog.cs(113,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Gameplay\HitZoneEvaluator.cs(160,41): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+Assets\Scripts\UI\ComboMilestonePopup.cs(36,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Sensors\DynamicsSdkBridge.cs(98,64): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(22,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\UI\TextPopup.cs(55,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(80,47): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Spawning\TargetSpawner.cs(330,40): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+Assets\Scripts\UI\PauseMenuController.cs(95,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(90,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Visuals\DigitalDojoRuntimeDressing.cs(154,30): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+Assets\Editor\GameRegressionChecks.cs(39,9): warning CS0618: 'PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)' is obsolete: 'Use SetApplicationIdentifier(NamedBuildTarget buildTarget, string identifier) instead'
+Assets\Editor\GameRegressionChecks.cs(43,9): warning CS0618: 'PlayerSettings.SetScriptingBackend(BuildTargetGroup, ScriptingImplementation)' is obsolete: 'Use SetScriptingBackend(NamedBuildTarget buildTarget, ScriptingImplementation backend) instead'
+Assets\Editor\GameRegressionChecks.cs(60,13): warning CS0618: 'PlayerSettings.GetApplicationIdentifier(BuildTargetGroup)' is obsolete: 'Use GetApplicationIdentifier(NamedBuildTarget buildTarget) instead'
+Assets\Editor\GameRegressionChecks.cs(63,16): warning CS0618: 'PlayerSettings.GetScriptingBackend(BuildTargetGroup)' is obsolete: 'Use GetScriptingBackend(NamedBuildTarget buildTarget) instead'
+Assets\Editor\DigitalDojoCapture.cs(40,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(50,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(52,91): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(52,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(67,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(70,72): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoSceneGenerator.cs(161,23): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Editor\DigitalDojoAssetIntegration.cs(68,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoAssetIntegration.cs(68,32): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoAssetIntegration.cs(90,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoAssetIntegration.cs(90,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\GameRegressionChecks.cs(179,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Editor\GameRegressionChecks.cs(184,17): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Editor\DigitalDojoCapture.cs(90,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(91,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(92,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(95,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(95,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(135,103): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(135,43): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(144,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(144,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoSceneGenerator.cs(340,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Editor\SceneAutoSetup.cs(534,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Editor\DigitalDojoCapture.cs(154,69): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(154,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+AssetDatabase: script compilation time: 1.317929s
+Total cache size 71427276
+Begin MonoManager ReloadAssembly
+Total cache size after purge 71427276, took 00:00:00.1021304
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-box-reha-game
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.061 seconds
+Domain Reload Profiling: 1702ms
+	BeginReloadAssembly (196ms)
+		DisableScriptedObjects (39ms)
+		CreateAndSetChildDomain (35ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (386ms)
+		LoadAssemblies (220ms)
+		TypeCache.Refresh (88ms)
+			TypeCache.ScanAssembly (79ms)
+		AnalyzeDomain (41ms)
+			BuildScriptInfoCaches (36ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (1062ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (3ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (79ms)
+			ProcessInitializeOnLoadAttributes (629ms)
+			ProcessInitializeOnLoadMethodAttributes (147ms)
+			AfterProcessingInitializeOnLoad (7ms)
+		AwakeInstancesAfterBackupRestoration (24ms)
+Starting new worker id: 0 with log in E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo/Logs/AssetImportWorkerHW0.log
+Importing 'GUID: b1560dbbb92f1d940955ddda17795321 - Path: Assets/Art/DigitalDojo/Models/HeavyTarget.fbx' with importer (FBXImporter)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Imported 'GUID: b1560dbbb92f1d940955ddda17795321' -> (Import Result ID: '319f20c18af5840cc7119cb88e7c53f2') in 0.068 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cf61c665c5e5c2bfd62ed4f8d8483bd8 DependenciesID=30055395e8661724f7d932bff767e0ce StaticDependenciesID=4909f2ba5aa04a36ee386afc1900b4a3 
+Importing 'GUID: 1297fec51cf400b43b9a0a229899d87e - Path: Assets/Art/DigitalDojo/Models/FloorPanel.fbx' with importer (FBXImporter)
+Imported 'GUID: 1297fec51cf400b43b9a0a229899d87e' -> (Import Result ID: 'c9382426187f3fda224bc4869662f6af') in 0.022 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1357fdd3060a7e250d7b2a33a2360596 DependenciesID=ca31d87c563c1ec37b3f35ecb3723108 StaticDependenciesID=a9b7ea7f5b9341b1a6ff0febc29353a9 
+Importing 'GUID: 528551fb64def71498bcca67161721ec - Path: Assets/Art/DigitalDojo/Models/WoodSlatPanel.fbx' with importer (FBXImporter)
+Imported 'GUID: 528551fb64def71498bcca67161721ec' -> (Import Result ID: '271202d4fa5115fdf2ab6f8c4aa3fe91') in 0.015 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f495682fe41e6b00d64e3104abe6fbe2 DependenciesID=58362ab3f8dafef68ade5970b8984237 StaticDependenciesID=5882d3842445b564735887584c9982db 
+Importing 'GUID: 72fc4c51bfd18a840bd4f1b56bc5d5f8 - Path: Assets/Art/DigitalDojo/Models/WoodenBeam.fbx' with importer (FBXImporter)
+Imported 'GUID: 72fc4c51bfd18a840bd4f1b56bc5d5f8' -> (Import Result ID: 'fd7b4c5122ce9e9bdd2a439aa643f22c') in 0.010 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0cb925220af7864b1df3e411bbb5aef5 DependenciesID=96be8ef8cb2216b47bdd674154f80573 StaticDependenciesID=32c69265092ee86d098205bc55c1105f 
+Importing 'GUID: 73c33a15b053cf7428dec6d4d33069f1 - Path: Assets/Art/DigitalDojo/Models/KickTarget.fbx' with importer (FBXImporter)
+Imported 'GUID: 73c33a15b053cf7428dec6d4d33069f1' -> (Import Result ID: '8c400e5f612417b1b4810cfb179276ad') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3a71c69955a4c2a3488664c61799989d DependenciesID=0502376e94e7e6d9e4c6e26ee77d4683 StaticDependenciesID=db6356965a9bcb7961f66ddb2b0e8314 
+Importing 'GUID: 86dc0fbd05a23464e8baf7a93c3318c9 - Path: Assets/Art/DigitalDojo/Models/LightStripHousing.fbx' with importer (FBXImporter)
+Imported 'GUID: 86dc0fbd05a23464e8baf7a93c3318c9' -> (Import Result ID: 'a06c7257b90d3bef136904c6bc5d2a99') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f191c53046030ca181a11f6e368ff71c DependenciesID=2edefecc12d8ccb9b689f16061c506f1 StaticDependenciesID=290cad65e2fdef2328b6016692e3e5a8 
+Importing 'GUID: 8bd569fc4b454d84dbcea912eee94e88 - Path: Assets/Art/DigitalDojo/Models/TrainingFrame.fbx' with importer (FBXImporter)
+Imported 'GUID: 8bd569fc4b454d84dbcea912eee94e88' -> (Import Result ID: '6fbc496df7d041e44a260d444cf8eed4') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=07797be5024caa53f0ed69fc713cf95d DependenciesID=d843b4c240cb212aac5db3257f2d7084 StaticDependenciesID=5ad77b2b1422ded30486753010541c3f 
+Importing 'GUID: 8cd378b5833b8584086081094065e58b - Path: Assets/Art/DigitalDojo/Models/WallPanel_A.fbx' with importer (FBXImporter)
+Imported 'GUID: 8cd378b5833b8584086081094065e58b' -> (Import Result ID: '1bf7221599079309c4ff92bdd0bec9be') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0ab416307a4b52bee9851dd58514eb74 DependenciesID=798604261d49728446745596aa70092a StaticDependenciesID=b74063701fda4cbd1ef6efec257a27f4 
+Importing 'GUID: 6dda2aad83e0e3f449c4ef3887092716 - Path: Assets/Art/DigitalDojo/Models/PunchTarget.fbx' with importer (FBXImporter)
+Imported 'GUID: 6dda2aad83e0e3f449c4ef3887092716' -> (Import Result ID: '9eefc0469811c9a02e102f66f2f83b3f') in 0.016 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2e104f26c37dd0c8d9ca613effbd71b4 DependenciesID=516decd236f1021204855fd4ad4133e2 StaticDependenciesID=7d05e5f7c4f087fe4e48c7334991101a 
+
+Asset Pipeline Refresh (id=1d769dbcbedccaf42afa1ee2a9c37627): Total: 3.595 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=9 (actual=9, local cache=0, cache server=0)
+		Asset DB Process Time: managed=4 ms, native=1475 ms
+		Asset DB Callback time: managed=70 ms, native=12 ms
+		Scripting: domain reloads=1, domain reload time=676 ms, compile time=1320 ms, other=35 ms
+		Project Asset Count: scripts=1024, non-scripts=2100
+		Asset File Changes: new=0, changed=16, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 9.822ms
+	ApplyChangesToAssetFolders: 0.532ms
+	Scan: 53.118ms
+	Collect global state as custom dependencies: 5.235ms
+	OnSourceAssetsModified: 0.512ms
+	CategorizeScriptCompilationAssets: 13.439ms
+	ProcessAssetsWithTransientArtifactChanges: 39.403ms
+	CategorizeAssets: 19.593ms
+	CompileScripts: 1319.611ms
+	ImportOutOfDateAssets: 1247.407ms (1063.785ms without children)
+		ImportManagerImport: 179.760ms (1.020ms without children)
+			UpdateCategorizedAssets: 0.053ms
+		UnloadImportedAssets: 0.069ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.276ms
+		ImportSchedulerStart: 3.512ms
+	PostProcessAllAssets: 73.046ms
+		VCAutoAddAssetPostprocess 0.808ms
+		XRBuildSystem.XRAssetImported 0.093ms
+		PostProcessCallbackCreateDeferredMaterials 0.067ms
+		MonoPostProcessAllAssets: 70.094ms
+			AssetPostprocessor.OnPostprocessAllAssets 34.719ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 10.470ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 3.777ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 2.360ms
+			AssetChangedListener.OnPostprocessAllAssets 2.343ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.807ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.143ms
+			VFXGraphPreprocessor.OnPostprocessAllAssets 1.078ms
+			SyncVS.PostprocessSyncProject 0.901ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.892ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.718ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.598ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.381ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.341ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.300ms
+			PostProcessor.OnPostprocessAllAssets 0.248ms
+			CinemachineSettings.OnPostprocessAllAssets 0.224ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.217ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.212ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.197ms
+			AssetEvents.OnPostprocessAllAssets 0.184ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.176ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.173ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.157ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.154ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.126ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.112ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.090ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.089ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.078ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.050ms
+	PostAssetChangesProfiler: 0.873ms
+	UnloadStreamsBegin: 1.121ms
+	PersistCurrentRevisions: 0.145ms
+	GenerateScriptTypeHashes: 1.141ms
+	GenerateScriptTypeSerializationHashes: 2.094ms
+	Untracked: 783.880ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 5.332ms
+Initializing Unity extensions:
+Unloading 72 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4435 unused Assets / (9.4 MB). Loaded Objects now: 5157.
+Memory consumption went from 360.7 MB to 351.3 MB.
+Total: 9.809200 ms (FindLiveObjects: 0.369000 ms CreateObjectMapping: 0.141600 ms MarkObjects: 5.249400 ms  DeleteObjects: 3.857000 ms)
+
+Asset Pipeline Refresh (id=bf5b44c19eabd794386130b798b59367): Total: 0.023 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+Importing 'GUID: 1297fec51cf400b43b9a0a229899d87e - Path: Assets/Art/DigitalDojo/Models/FloorPanel.fbx' with importer (FBXImporter)
+Imported 'GUID: 1297fec51cf400b43b9a0a229899d87e' -> (Import Result ID: 'c9382426187f3fda224bc4869662f6af') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1357fdd3060a7e250d7b2a33a2360596 DependenciesID=ca31d87c563c1ec37b3f35ecb3723108 StaticDependenciesID=a9b7ea7f5b9341b1a6ff0febc29353a9 
+Asset Pipeline Refresh (id=97f4c3bdd1ac3d043998bdfa723960de): Total: 0.025 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=6e28229d0f29ce6419ef8420e3ab8f85): Total: 0.005 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: b1560dbbb92f1d940955ddda17795321 - Path: Assets/Art/DigitalDojo/Models/HeavyTarget.fbx' with importer (FBXImporter)
+Imported 'GUID: b1560dbbb92f1d940955ddda17795321' -> (Import Result ID: '319f20c18af5840cc7119cb88e7c53f2') in 0.028 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cf61c665c5e5c2bfd62ed4f8d8483bd8 DependenciesID=30055395e8661724f7d932bff767e0ce StaticDependenciesID=4909f2ba5aa04a36ee386afc1900b4a3 
+Asset Pipeline Refresh (id=e78bcc2a0843d1645b443fb46a6de680): Total: 0.036 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=edda596adc1b00248bb035e182ac067d): Total: 0.005 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 73c33a15b053cf7428dec6d4d33069f1 - Path: Assets/Art/DigitalDojo/Models/KickTarget.fbx' with importer (FBXImporter)
+Imported 'GUID: 73c33a15b053cf7428dec6d4d33069f1' -> (Import Result ID: '8c400e5f612417b1b4810cfb179276ad') in 0.014 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3a71c69955a4c2a3488664c61799989d DependenciesID=0502376e94e7e6d9e4c6e26ee77d4683 StaticDependenciesID=db6356965a9bcb7961f66ddb2b0e8314 
+Asset Pipeline Refresh (id=6b9a70cd9690e834d82f46e5a53e2574): Total: 0.040 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=f0a4f7f3df632a84da805c33f92e457f): Total: 0.005 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 86dc0fbd05a23464e8baf7a93c3318c9 - Path: Assets/Art/DigitalDojo/Models/LightStripHousing.fbx' with importer (FBXImporter)
+Imported 'GUID: 86dc0fbd05a23464e8baf7a93c3318c9' -> (Import Result ID: 'a06c7257b90d3bef136904c6bc5d2a99') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f191c53046030ca181a11f6e368ff71c DependenciesID=2edefecc12d8ccb9b689f16061c506f1 StaticDependenciesID=290cad65e2fdef2328b6016692e3e5a8 
+Asset Pipeline Refresh (id=fa4b6016da09c1a45a7cc0adab9d7f15): Total: 0.020 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=d89d5dc59ff10a842bb67e7a51ac29d5): Total: 0.005 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 6dda2aad83e0e3f449c4ef3887092716 - Path: Assets/Art/DigitalDojo/Models/PunchTarget.fbx' with importer (FBXImporter)
+Imported 'GUID: 6dda2aad83e0e3f449c4ef3887092716' -> (Import Result ID: '9eefc0469811c9a02e102f66f2f83b3f') in 0.018 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2e104f26c37dd0c8d9ca613effbd71b4 DependenciesID=516decd236f1021204855fd4ad4133e2 StaticDependenciesID=7d05e5f7c4f087fe4e48c7334991101a 
+Asset Pipeline Refresh (id=9def7a0ce43895f42a88bd89398cfc66): Total: 0.027 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=22f895e5ece232748af302f806b1e4a9): Total: 0.005 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 8bd569fc4b454d84dbcea912eee94e88 - Path: Assets/Art/DigitalDojo/Models/TrainingFrame.fbx' with importer (FBXImporter)
+Imported 'GUID: 8bd569fc4b454d84dbcea912eee94e88' -> (Import Result ID: '6fbc496df7d041e44a260d444cf8eed4') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=07797be5024caa53f0ed69fc713cf95d DependenciesID=d843b4c240cb212aac5db3257f2d7084 StaticDependenciesID=5ad77b2b1422ded30486753010541c3f 
+Asset Pipeline Refresh (id=ae0d29bf801008941b915269ef429010): Total: 0.020 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=32b39fafefe33fb45a759aaeef4da662): Total: 0.005 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 8cd378b5833b8584086081094065e58b - Path: Assets/Art/DigitalDojo/Models/WallPanel_A.fbx' with importer (FBXImporter)
+Imported 'GUID: 8cd378b5833b8584086081094065e58b' -> (Import Result ID: '1bf7221599079309c4ff92bdd0bec9be') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0ab416307a4b52bee9851dd58514eb74 DependenciesID=798604261d49728446745596aa70092a StaticDependenciesID=b74063701fda4cbd1ef6efec257a27f4 
+Asset Pipeline Refresh (id=e4c05a7066b086b40a58079de6ec8dc0): Total: 0.021 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=182cf99574445544e8ef8f9cfe66e2b6): Total: 0.026 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 72fc4c51bfd18a840bd4f1b56bc5d5f8 - Path: Assets/Art/DigitalDojo/Models/WoodenBeam.fbx' with importer (FBXImporter)
+Imported 'GUID: 72fc4c51bfd18a840bd4f1b56bc5d5f8' -> (Import Result ID: 'fd7b4c5122ce9e9bdd2a439aa643f22c') in 0.010 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0cb925220af7864b1df3e411bbb5aef5 DependenciesID=96be8ef8cb2216b47bdd674154f80573 StaticDependenciesID=32c69265092ee86d098205bc55c1105f 
+Asset Pipeline Refresh (id=c4dca08dd4f0bd841896a442e10b3f65): Total: 0.019 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=8cbd235a545081d47b124ec34452d88a): Total: 0.005 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 528551fb64def71498bcca67161721ec - Path: Assets/Art/DigitalDojo/Models/WoodSlatPanel.fbx' with importer (FBXImporter)
+Imported 'GUID: 528551fb64def71498bcca67161721ec' -> (Import Result ID: '271202d4fa5115fdf2ab6f8c4aa3fe91') in 0.015 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f495682fe41e6b00d64e3104abe6fbe2 DependenciesID=58362ab3f8dafef68ade5970b8984237 StaticDependenciesID=5882d3842445b564735887584c9982db 
+Asset Pipeline Refresh (id=ae28246fd38aa0c42855dbea4ba6cb78): Total: 0.023 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=48e064e1e4cf564439552a0f3aae857d): Total: 0.005 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 4fe64c20fe70d1d49ac447f2ac40cfb9 - Path: Assets/Resources/DigitalDojo/DojoRoom.prefab' with importer (PrefabImporter)
+Imported 'GUID: 4fe64c20fe70d1d49ac447f2ac40cfb9' -> (Import Result ID: '9a418e9a62333fa5ee2d6d43a061d6c7') in 0.028 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ed141f95c325aefb3fb520887ac7ca32 DependenciesID=f218cc68af2acb4ec50a61beecd1095e StaticDependenciesID=11c8fae21ac89da42dd98420a108989c 
+Asset Pipeline Refresh (id=72215d8e59f8e8d47943ec5618733d81): Total: 0.069 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Opening scene 'Assets/Scenes/Game.unity'
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/Game.unity'
+	Deserialize:            7.029 ms
+	Integration:            21.002 ms
+	Integration of assets:  0.035 ms
+	Thread Wait Time:       0.029 ms
+	Total Operation Time:   28.095 ms
+Unloading 6063 unused Assets / (7.6 MB). Loaded Objects now: 5541.
+Memory consumption went from 363.1 MB to 355.5 MB.
+Total: 8.548000 ms (FindLiveObjects: 0.542500 ms CreateObjectMapping: 0.190200 ms MarkObjects: 4.911000 ms  DeleteObjects: 2.550700 ms)
+
+Importing 'GUID: 80050beb985073d4890a11c4dc7aa320 - Path: Assets/Art/DigitalDojo/Materials/M_DD_EmissiveBlue.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 80050beb985073d4890a11c4dc7aa320' -> (Import Result ID: '08bbb4722d30fc87a0a1f3dcadba777c') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=0a43caef311aaa31ed3579b9eb4f59e4 DependenciesID=bfdb03d7a804465371d2fa70ab5e7cf8 StaticDependenciesID=3e2dac16e1af31c0e62cb760ea7df9d9 
+Importing 'GUID: c27bf3d2cd339eb4c8ac58158f71ca47 - Path: Assets/Art/DigitalDojo/Materials/M_DD_Padding.mat' with importer (NativeFormatImporter)
+Imported 'GUID: c27bf3d2cd339eb4c8ac58158f71ca47' -> (Import Result ID: '3c84e9572f4e2973c8a594c806d51f3b') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=a704893625bd06eb36be8f04bc36bd5c DependenciesID=d7da5600234314043ce3078dc4cd70a3 StaticDependenciesID=bf6409e5b2cf7fcbc0f365e7f9f5daea 
+Importing 'GUID: 83cf751079fab0647b134a0295d3e496 - Path: Assets/Art/DigitalDojo/Materials/M_DD_MetalDark.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 83cf751079fab0647b134a0295d3e496' -> (Import Result ID: '1cb61e2a94652ef1cc5d8adde5e54e44') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=875e9b66460e2afc4a7d47fd46819639 DependenciesID=f2c7664823f6cd6dc88bdfd2ca06d10c StaticDependenciesID=c550005304f68a2663c38780b829eaea 
+Importing 'GUID: 9438690a4a03a1a4280ef6ebb1fe9230 - Path: Assets/Art/DigitalDojo/Materials/M_DD_BlueAccent.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 9438690a4a03a1a4280ef6ebb1fe9230' -> (Import Result ID: 'cd1312983c5008544f17f9e6286fe363') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=2c3e5de88230a40e7a11c6d90f03c55a DependenciesID=296ab778a512e575684da61c8cb5337e StaticDependenciesID=b728f447d870e375d1cb757e268c8036 
+Importing 'GUID: 65833eaf0a3d4324eb4260a973cc1685 - Path: Assets/Art/DigitalDojo/Materials/M_DD_MatteBlack.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 65833eaf0a3d4324eb4260a973cc1685' -> (Import Result ID: '8ce6f4bb941f9a582ab109cd88dab247') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=3c25e1724113c26f9726f1917d07d2e7 DependenciesID=ebcbd21071e7d775bba33ba8d81a9b19 StaticDependenciesID=5fcf196acc7efa3944df3b949a98bbaf 
+Importing 'GUID: 859239c2fc2aab04b939f4e5c8798beb - Path: Assets/Art/DigitalDojo/Materials/M_DD_Concrete.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 859239c2fc2aab04b939f4e5c8798beb' -> (Import Result ID: 'c6c587ac1c024b106a4033550e97fc65') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=3b4c6258846ede0adc7300ad9a15995d DependenciesID=82c03206173b9de5c0df61a7166b7594 StaticDependenciesID=92a34b07034a60ff8042d39e00163cfe 
+Importing 'GUID: 7612b56c93af29a4ab578869a6d35f04 - Path: Assets/Art/DigitalDojo/Materials/M_DD_Wood_Dark.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 7612b56c93af29a4ab578869a6d35f04' -> (Import Result ID: '4167eedaef12c697d783460ed214132e') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=35285367c814b27b9d10575f6041654e DependenciesID=634175cb33ca145266b4a6a66734a73a StaticDependenciesID=d44c92ac1dfd1b2ef571cc82eadd8db6 
+Importing 'GUID: f7646311206fd9e4e90a8e1585700d7c - Path: Assets/Art/DigitalDojo/Materials/M_DD_RedAccent.mat' with importer (NativeFormatImporter)
+Imported 'GUID: f7646311206fd9e4e90a8e1585700d7c' -> (Import Result ID: '1a38ad111ea01a30f8661b9d84ada47f') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=90e44deb998e2f822feaa94b5db6e4b6 DependenciesID=090777ac3e6fc92ee68b1629ee0bd56f StaticDependenciesID=70c6b8a469000ade53278a4e372af8a6 
+Importing 'GUID: 2865177c74841fb418e42c262a511ca1 - Path: Assets/Art/DigitalDojo/Materials/M_DD_EmissiveRed.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 2865177c74841fb418e42c262a511ca1' -> (Import Result ID: '5451ca7e99f76473202ab03c1a631165') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=34a94c823ef18003bdc3198e3f8a7de1 DependenciesID=66bf09885ecd5301d7703505a226c1e5 StaticDependenciesID=5ab4868b940245aa7ab9df5728436310 
+Importing 'GUID: a9c4dcf33acc95f4e8d1b7bda8091007 - Path: Assets/Art/DigitalDojo/Materials/M_DD_WarmLight.mat' with importer (NativeFormatImporter)
+Imported 'GUID: a9c4dcf33acc95f4e8d1b7bda8091007' -> (Import Result ID: '5e0ae9a2ea04aa771a3dc096e9284d5c') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=ec887327d0ddffde39fefaa7b1d8203d DependenciesID=a259adf5c2f5a64740804ae959f6beb0 StaticDependenciesID=422b4142c48e57bfec285307d0761994 
+Importing 'GUID: 7ea2adf30b6d7174bb6434750437f06c - Path: Assets/Art/DigitalDojo/Materials/M_DD_White.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 7ea2adf30b6d7174bb6434750437f06c' -> (Import Result ID: 'c4ce2adf15f1af5058f06cf7287fe8cd') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=398daa6ce58b3b9b15fff9743bf2cb4c DependenciesID=cc71b16d397dcb55fef244343a1976ac StaticDependenciesID=335aed4477030958ba00689cce400d0a 
+Asset Pipeline Refresh (id=eba6dd93a76e7d740bbb0cfc2a2840d6): Total: 0.023 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 23f0e33b981372b478ed0c08ce6f529a - Path: Assets/Scenes/Game.unity' with importer (DefaultImporter)
+Imported 'GUID: 23f0e33b981372b478ed0c08ce6f529a' -> (Import Result ID: '1b440dc42648dc63c7c7b158abc6035d') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=5d6cd3cc5b28af61b8f84505fe7276e8 DependenciesID=5bf5396cc8e7a979c5e604c4fb3e1709 StaticDependenciesID=b51225ebe1d2838e14f38ec3faf01f48 
+Asset Pipeline Refresh (id=0861f62145b05b44897948e9d9a794bf): Total: 0.009 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Opening scene 'Assets/Scenes/MainMenu.unity'
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/MainMenu.unity'
+	Deserialize:            13.013 ms
+	Integration:            29.382 ms
+	Integration of assets:  0.046 ms
+	Thread Wait Time:       -0.015 ms
+	Total Operation Time:   42.426 ms
+Unloading 101 unused Assets / (1.4 MB). Loaded Objects now: 18103.
+Memory consumption went from 370.9 MB to 369.6 MB.
+Total: 6.496600 ms (FindLiveObjects: 1.126800 ms CreateObjectMapping: 0.248100 ms MarkObjects: 4.588700 ms  DeleteObjects: 0.174000 ms)
+
+Importing 'GUID: f469c9313e3848e4ba70e302638e71aa - Path: Assets/Scenes/MainMenu.unity' with importer (DefaultImporter)
+Imported 'GUID: f469c9313e3848e4ba70e302638e71aa' -> (Import Result ID: '480bd4f0c8fd81fe7691e9e00d996d16') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=67a34c445811728a7dd014f6b4e7086c DependenciesID=2fba01d7f8f392305f1c5e23370c436b StaticDependenciesID=86c2f9a213624f2498a843b548592400 
+Asset Pipeline Refresh (id=53584a7e90ec14a4c9f8246b66ae223f): Total: 0.015 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+DIGITAL_DOJO_INTEGRATION_COMPLETE
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+DigitalDojoAssetIntegration:Run () (at Assets/Editor/DigitalDojoAssetIntegration.cs:92)
+
+(Filename: Assets/Editor/DigitalDojoAssetIntegration.cs Line: 92)
+
+Worker ready: AssetImportWorkerHW0 0
+Batchmode quit successfully invoked - shutting down!
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: No process found listening on port 8080
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+MCPForUnity.Editor.Helpers.McpLog:Info (string,bool) (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Helpers/McpLog.cs:40)
+MCPForUnity.Editor.Services.ServerManagementService:StopLocalHttpServerInternal (bool,System.Nullable`1<int>,bool) (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/ServerManagementService.cs:712)
+MCPForUnity.Editor.Services.ServerManagementService:StopLocalHttpServer () (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/ServerManagementService.cs:349)
+MCPForUnity.Editor.Services.McpEditorShutdownCleanup:OnEditorQuitting () (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/McpEditorShutdownCleanup.cs:60)
+UnityEditor.EditorApplication:Internal_EditorApplicationQuit ()
+
+(Filename: ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Helpers/McpLog.cs Line: 40)
+
+Curl error 42: Callback aborted
+Curl error 42: Callback aborted

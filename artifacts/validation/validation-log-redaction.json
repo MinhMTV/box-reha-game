@@ -1,0 +1,15 @@
+{
+  "scope": "Environment dumps omitted; original logs retained only in ignored local .agent-tooling/validation-raw",
+  "files": [
+    {
+      "file": "unity-player-build-first.log",
+      "redactedBlocks": 1,
+      "sha256": "9c660793ad11fc01e2826f8ebd1b66eec378e55133970426c22affa014d6fda0"
+    },
+    {
+      "file": "unity-player-build.log",
+      "redactedBlocks": 1,
+      "sha256": "6837d8a3e9f9bccb6dfdc38faed3c32677becf4745c518ab7c847b0b93b99fcf"
+    }
+  ]
+}

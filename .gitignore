@@ -30,6 +30,7 @@ artifacts/validation/unity-capture-after-*.log
 
 # OS
 .agent-tooling/
+.utmp/
 *.blend1
 artifacts/validation/*-module-install.log
 artifacts/validation/unity-6.6-baseline-import.log

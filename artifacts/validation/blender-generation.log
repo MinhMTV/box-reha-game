@@ -1,0 +1,35 @@
+E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\ArtSource\Blender\DigitalDojo\generate_dojo.py:25: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat=bpy.data.materials.new('M_DD_'+key); mat.diffuse_color=color; mat.use_nodes=True
+00:06.625  render           | Saved: 'E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\ArtSource\Blender\DigitalDojo\asset-review.png'
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\PunchTarget.fbx'
+export finished in 0.0112 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\KickTarget.fbx'
+export finished in 0.0081 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\HeavyTarget.fbx'
+export finished in 0.0134 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\WallPanel_A.fbx'
+export finished in 0.0043 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\WoodSlatPanel.fbx'
+export finished in 0.0090 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\FloorPanel.fbx'
+export finished in 0.0056 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\WoodenBeam.fbx'
+export finished in 0.0032 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\LightStripHousing.fbx'
+export finished in 0.0039 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Assets\\Art\\DigitalDojo\\Models\\TrainingFrame.fbx'
+export finished in 0.0042 sec.
+Info: Saved as "DigitalDojoKit.blend"
+DIGITAL_DOJO_KIT_COMPLETE [{"name": "PunchTarget", "triangles": 4588, "meshes": 8, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}, {"name": "KickTarget", "triangles": 1504, "meshes": 8, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}, {"name": "HeavyTarget", "triangles": 6224, "meshes": 16, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}, {"name": "WallPanel_A", "triangles": 564, "meshes": 3, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}, {"name": "WoodSlatPanel", "triangles": 2444, "meshes": 13, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}, {"name": "FloorPanel", "triangles": 940, "meshes": 5, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}, {"name": "WoodenBeam", "triangles": 188, "meshes": 1, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}, {"name": "LightStripHousing", "triangles": 376, "meshes": 2, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}, {"name": "TrainingFrame", "triangles": 564, "meshes": 3, "meters": true, "front": "-Y Blender / -Z Unity", "origin": "target center; room module floor center"}]
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

@@ -1,0 +1,14 @@
+PASS Kotlin added while Unity AGP preserved
+PASS Repository path encoded and existing repository mode preserved
+PASS AGP9 opt-out preserves other properties
+PASS Both Unity modules compile against SDK-required API 36
+PASS Higher compile SDK is preserved
+PASS Unresolved compile SDK expression fails explicitly
+PASS Repeated export transformation is idempotent
+PASS Old Unity AGP fails clearly rather than being silently replaced
+PASS Unsupported AGP export remains unchanged
+PASS Legacy project repositories include supplied SDK without dropping existing repositories
+PASS Missing SDK metadata fails before configuration
+PASS Non-export target is refused
+PASS Plugin DSL form identifies actual AGP
+13 host Gradle-export checks passed; SYNTHETIC FILE FIXTURES ONLY, NOT UNITY/ANDROID BUILD.

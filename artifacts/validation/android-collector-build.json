@@ -1,6 +1,6 @@
 {
   "status": "FAILED",
-  "generatedUtc": "2026-09-13T23:11:55.8517116Z",
+  "generatedUtc": "2026-09-14T00:11:02.0873871Z",
   "scope": "Native Android library compilation and local JVM policy tests; no Unity APK, JNI runtime or Bluetooth hardware verification",
   "gradle": "8.13",
   "agp": "8.13.2",
@@ -10,36 +10,36 @@
   "tests": 0,
   "sourceFiles": [
     {
-      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\build.gradle",
-      "sha256": "34979f73c2482bf516559a644847450c10d20ed57ec5a17220986aab0139197d"
+      "sha256": "4ab705ac522b958df406437bef42851c2f8e4b5ab516d69d9e5e073bfe6657e5",
+      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\build.gradle"
     },
     {
-      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\consumer-rules.pro",
-      "sha256": "cc4ee1a18e8245d738cec70eb033e4c43f3cc427ee2e5fee1741f6c65b5a1871"
+      "sha256": "db31f9f7e608fbee709ef0b08180c5751452a0544d5a69621a0a347453e8f957",
+      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\consumer-rules.pro"
     },
     {
-      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\AndroidManifest.xml",
-      "sha256": "3511bf43a8470702a55142e5578f1e39ce5f96c19664d7d98a56f24804d60272"
+      "sha256": "95395ad91367fdde65a87c0ba7d6c99abc98fe1ad55c8b9d93c6440d5d2f158d",
+      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\AndroidManifest.xml"
     },
     {
-      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\java\\com\\boxreha\\dynamics\\CollectorPolicy.kt",
-      "sha256": "861f1a894d13fa926fd25e83273c07cd67ecc421a7bd5598061fdc949c947f5d"
+      "sha256": "1d098aae42ade9eefebfea177f9e8762a1cbd35427e191868b0281a797d9b63e",
+      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\java\\com\\boxreha\\dynamics\\CollectorPolicy.kt"
     },
     {
-      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\java\\com\\boxreha\\dynamics\\DynamicsCollector.kt",
-      "sha256": "07de2ba62716248001e242c82594cc6e3a5f11d60183dffc16ba4a9feb0389a9"
+      "sha256": "304580d21d92b90681a628e82506aebd3577e5a6ea9b22741047cad9ad3f8e31",
+      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\java\\com\\boxreha\\dynamics\\DynamicsCollector.kt"
     },
     {
-      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\java\\com\\boxreha\\dynamics\\DynamicsPermissionFragment.kt",
-      "sha256": "da0959bd2c377ccb3a0cdea3040dae060abfdc86ab7678853202c0ba795f7d90"
+      "sha256": "fc2fb1012a068ea2521f922354a6a61d756446e8a6f2b7ca354a0cf06eb115ce",
+      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\java\\com\\boxreha\\dynamics\\DynamicsPermissionFragment.kt"
     },
     {
-      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\java\\com\\boxreha\\dynamics\\DynamicsUnityBridge.java",
-      "sha256": "5e8fb74d5635d1d87377c3473efb780d38b0a50663aca254f2e54e23fa4adae6"
+      "sha256": "67b417713e767f2810fd4409baeb2e8f3fa8fd250540a95b344474cc9fc646b6",
+      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\main\\java\\com\\boxreha\\dynamics\\DynamicsUnityBridge.java"
     },
     {
-      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\test\\java\\com\\boxreha\\dynamics\\CollectorPolicyTest.kt",
-      "sha256": "f1c8c67a7e7c1f37a63c51c73c333887a88b73bfe2d9615eb396fde0618d39f0"
+      "sha256": "79186793ce88746a424399ccd11be1494fb79e62df964fab2685b75b6d37d39d",
+      "path": "Assets\\Plugins\\Android\\DynamicsSdkUnityBridge.androidlib\\src\\test\\java\\com\\boxreha\\dynamics\\CollectorPolicyTest.kt"
     }
   ],
   "reason": "Native Gradle build failed; inspect android-collector-build.log."

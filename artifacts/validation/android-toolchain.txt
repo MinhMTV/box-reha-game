@@ -12,3 +12,4 @@ Ant:           Apache Ant(TM) version 1.10.15 compiled on August 25 2024
 Launcher JVM:  17.0.9 (JetBrains s.r.o. 17.0.9+0--11185874)
 Daemon JVM:    C:\Program Files\Android\Android Studio\jbr (no JDK specified, using current Java home)
 OS:            Windows 11 10.0 amd64
+

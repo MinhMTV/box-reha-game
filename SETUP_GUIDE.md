@@ -1,14 +1,14 @@
 # Setup and qualification
 
-Use the existing repository at `E:\Programming Projekte\box-reha-game` with **Unity 2022.3.62f3**, matching ProjectSettings/ProjectVersion.txt. Do not create a new Unity project, import scripts separately or regenerate scenes as a setup step.
+Use the existing repository at `E:\Programming Projekte\box-reha-game` with **Unity 6000.6.0f1**, matching ProjectSettings/ProjectVersion.txt. Do not create a new Unity project, import scripts separately or regenerate scenes as a setup step.
 
-The deployment target is the complete Unity game plus Dynamics SDK on Android. Windows is only the development host; no gateway PC is required at runtime. Unity 6.6 is being installed but has not yet been imported/qualified for this project. Keep the recorded version until the actual migration; record and review all import/package/build changes. OnePlus 15 and Galaxy Tab S3 are the intended device checks.
+The deployment target is the complete Unity game plus Dynamics SDK on Android. Windows is only the development host; no gateway PC is required at runtime. Unity 6000.6.0f1 has been installed and imported, with Android modules and actual Editor/Play Mode checks. The complete Android build reaches Gradle but is blocked by the supplied native SDK publication; see ANDROID_STATUS.md. OnePlus 15 and Galaxy Tab S3 are the intended device checks.
 
 **Android build prerequisite currently blocked:** the full collector exists as source against the documented SDK API, but the production graph lacks `resource:2.11.1`. A separate diagnostic substitution with 2.12.0 also fails to compile the documented API because the supplied Android AARs have stripped Kotlin metadata/InnerClasses. Obtain corrected SDK artifacts before expecting a native build/APK. Do not treat that substitution as a production dependency fix. See [SDK package blockers](SDK_PACKAGE_BLOCKERS_2026-09-14.md).
 
 ## Open the project
 
-1. Install/activate the exact recorded Editor through Unity Hub with Android Build Support, SDK/NDK and OpenJDK. A future Unity 6.6 migration uses that Editor's bundled Android toolchain, not a manually assumed compatible old export.
+1. Use the installed Unity 6000.6.0f1 through Unity Hub. Android Build Support, SDK/NDK and OpenJDK are installed for that Editor. On another machine, install these exact modules before building.
 2. In Hub, add the existing repository directory. Allow package resolution and inspect compiler/import errors.
 3. Open Assets/Scenes/Boot.unity and enter Play Mode for the normal scene flow.
 4. Windows Editor play uses development input: Left/Right Arrow = punches; A/D = kicks; each KeyDown emits one abstract action. Use the visible PAUSE button or ESC; Enter ends endless, or choose Pause -> Finish & Results.
@@ -30,7 +30,7 @@ The host harness uses .NET 10 and minimal Unity stubs. Its fixtures are **SYNTHE
 With a licensed Editor installed, run:
 
 ```powershell
-.\scripts\verify-unity.ps1 -UnityPath "C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Unity.exe" -BuildCandidate
+.\scripts\verify-unity.ps1 -UnityPath "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe" -BuildCandidate
 ```
 
 Replace the executable path with the exact installed and imported Editor. The Android verification path prepares PlayerSettings before stamping the source revision/hash, runs GameRegressionChecks.RunBatch and optionally builds an ARM64 IL2CPP Development APK. Omit -BuildCandidate for Editor checks only. Output goes to artifacts/validation/; Android candidate output is Builds/AndroidCandidate/DigitalDojo.apk with unity-android-candidate-build.json. The separate BuildStudyCandidate entrypoint remains a Windows development build, not the sensor deployment target.

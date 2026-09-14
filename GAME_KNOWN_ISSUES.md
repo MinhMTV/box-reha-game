@@ -1,3 +1,17 @@
+# Current review — Digital Dojo, 2026-09-14
+
+The current status is [GAME_STATUS](GAME_STATUS.md), [VISUAL_STATUS](VISUAL_STATUS.md) and [ANDROID_STATUS](ANDROID_STATUS.md). The older audit below is preserved as history; its statements that Unity is uninstalled or screenshots are unavailable are superseded.
+
+| Priority | Current issue | Evidence / disposition |
+|---|---|---|
+| P0 external | Supplied Dynamics SDK dependency/metadata publication | Normal native build fails on missing resource 2.11.1. Diagnostic 2.12.0 does not repair stripped Android metadata. Vendor correction required. |
+| P1 qualification | JNI, BLE, permissions and lifecycle on Android hardware | No qualified APK/device session. ADB query timed out; device presence remains unknown. |
+| P1 research | Mixed two-ALPHA plus DELTA session | Current collector intentionally supports same-family one/two devices. Need documented vendor route plus actual tests. |
+| P1 research | Measured calibration / HR | Preparation wizard exists; measured baselines and HR provider remain unavailable. No result is fabricated. |
+| P2 tools | Unity Editor Search startup exception and intermittent shutdown hang | ArgumentOutOfRangeException in UnityEditor.Search; completed results recorded, hung owned batch processes stopped after completion. Not a game C# compile error; not zero-Console-error qualification. |
+| P2 qualification | Mobile performance, native touch/cutouts, font legibility | Four-aspect Editor camera captures pass visual review, but no on-device profiling or touch test. |
+
+## Historical audit
 # Known issues and qualification gates
 
 Updated 2026-09-14. This is an Android-first source implementation, not a study-ready build. The full Unity game and Dynamics SDK are intended to run together on Android; Windows is the development host. The repository remains at Unity 2022.3.62f3; installation of Unity 6.6 does not establish a completed migration.

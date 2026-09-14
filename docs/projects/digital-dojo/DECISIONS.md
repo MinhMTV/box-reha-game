@@ -6,3 +6,7 @@
 - Existing Coplay Unity MCP package detected. No second MCP installed. No Unity Editor process was running initially; CLI status reported no Pipeline instance. Use actual Editor batch methods to import, generate assets and validate; no manual scene YAML manipulation.
 - Existing SDK failures require revalidation. A dependency substitution or bytecode workaround must not be called a supported vendor release. Keep original SDK repository untouched and distinguish build diagnostics from physical qualification.
 - Profile body data required by the native SDK is justified setup data, not a game force calibration. Optional HR must remain visibly unavailable until a real provider is integrated.
+
+- Validation moved to E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo on codex/agent-root-dd-validation when the primary project was opened interactively. The primary requested checkout remains the delivery destination; no user Editor was terminated. Four user Gradle cache modifications remain preserved there.
+- Android modules completed installation; actual 6000.6 import and Play Mode captures supersede the previous uninstalled-Editor premise. No manual ProjectVersion-only migration claim.
+- Calibration UI is explicitly preparation only. Missing measurements are shown as unavailable; no threshold/baseline or heart-rate adaptation is fabricated.

@@ -1,0 +1,11 @@
+{
+    "scope": "DEVELOPMENT BUILD CANDIDATE ONLY / NOT STUDY-READY OR HARDWARE QUALIFIED",
+    "utc": "2026-09-14T00:24:00.6380191Z",
+    "unityVersion": "6000.6.0f1",
+    "result": "Failed",
+    "outputPath": "E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo/Builds/AndroidCandidate/DigitalDojo.apk",
+    "totalBytes": "359137843",
+    "errors": 3,
+    "warnings": 15,
+    "durationSeconds": 249.67714139999998
+}
