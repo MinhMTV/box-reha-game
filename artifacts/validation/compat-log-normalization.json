@@ -1,0 +1,16 @@
+{
+  "operations": [
+    "Unity failure environment dump redacted in its separately labelled failure log",
+    "Trailing whitespace trimmed in current/new text evidence; diagnostics retained",
+    "Historical logs preserved from Git"
+  ],
+  "currentWhitespaceNormalized": [
+    "artifacts/validation/android-collector-build.log",
+    "artifacts/validation/COMPATIBILITY/android-collector-build.log",
+    "artifacts/validation/COMPATIBILITY/android-runtime-dependencies.txt",
+    "artifacts/validation/VENDOR-UNCHANGED/android-collector-build.log",
+    "artifacts/validation/android-runtime-dependencies.txt",
+    "artifacts/validation/sdk-compat-final.log",
+    "artifacts/validation/sdk-original-final.log"
+  ]
+}

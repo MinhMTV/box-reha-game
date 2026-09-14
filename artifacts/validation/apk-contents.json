@@ -1,0 +1,17 @@
+{
+  "scope": "APK DEX descriptor and native library inventory; not class loading or JNI execution",
+  "descriptors": {
+    "Lcom/boxreha/dynamics/DynamicsCollector;": true,
+    "Lcom/boxreha/dynamics/Sdk0256Compat;": true,
+    "Lcom/boxreha/dynamics/DynamicsUnityBridge;": true,
+    "Lcom/riseworld/dynamics/multiplatform/di/DynamicsMultiplatformKt;": true,
+    "Lcom/unity3d/player/UnityPlayer;": true
+  },
+  "nativeLibraries": [
+    "lib/arm64-v8a/libc++_shared.so",
+    "lib/arm64-v8a/libil2cpp.so",
+    "lib/arm64-v8a/libmain.so",
+    "lib/arm64-v8a/libswappywrapper.so",
+    "lib/arm64-v8a/libunity.so"
+  ]
+}

@@ -1,0 +1,298 @@
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.punch.Power$Alpha extends com.riseworld.dynamics.models.domain.punch.Power {
+  private final double a;
+  private final double b;
+  public com.riseworld.dynamics.models.domain.punch.Power$Alpha(double, double);
+  public static com.riseworld.dynamics.models.domain.punch.Power$Alpha copy$default(com.riseworld.dynamics.models.domain.punch.Power$Alpha, double, double, int, java.lang.Object);
+  public final double getImpact();
+  public final double getPeakForceBasedOnBaro();
+  public final double component1();
+  public final double component2();
+  public final com.riseworld.dynamics.models.domain.punch.Power$Alpha copy(double, double);
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.punch.Power$Delta extends com.riseworld.dynamics.models.domain.punch.Power {
+  private final double a;
+  public com.riseworld.dynamics.models.domain.punch.Power$Delta(double);
+  public static com.riseworld.dynamics.models.domain.punch.Power$Delta copy$default(com.riseworld.dynamics.models.domain.punch.Power$Delta, double, int, java.lang.Object);
+  public final double getPowerIndex();
+  public final double component1();
+  public final com.riseworld.dynamics.models.domain.punch.Power$Delta copy(double);
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.punch.Punch {
+  private final kotlin.uuid.Uuid a;
+  private final kotlin.uuid.Uuid b;
+  private final com.riseworld.dynamics.models.Side c;
+  private final kotlin.time.Instant d;
+  private final boolean e;
+  private final com.riseworld.dynamics.models.domain.punch.Speed f;
+  private final com.riseworld.dynamics.models.domain.punch.Power g;
+  public static com.riseworld.dynamics.models.domain.punch.Punch copy-pFRLFk8$default(com.riseworld.dynamics.models.domain.punch.Punch, kotlin.uuid.Uuid, kotlin.uuid.Uuid, com.riseworld.dynamics.models.Side, kotlin.time.Instant, boolean, com.riseworld.dynamics.models.domain.punch.Speed, com.riseworld.dynamics.models.domain.punch.Power, int, java.lang.Object);
+  public com.riseworld.dynamics.models.domain.punch.Punch(kotlin.uuid.Uuid, kotlin.uuid.Uuid, com.riseworld.dynamics.models.Side, kotlin.time.Instant, boolean, com.riseworld.dynamics.models.domain.punch.Speed, com.riseworld.dynamics.models.domain.punch.Power, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final kotlin.uuid.Uuid getId-x1nF_Dg();
+  public final kotlin.uuid.Uuid getPeripheralId-WPD2SKI();
+  public final com.riseworld.dynamics.models.Side getSide();
+  public final kotlin.time.Instant getTimestamp();
+  public final boolean getAreComputedValuesValid();
+  public final com.riseworld.dynamics.models.domain.punch.Speed getSpeed();
+  public final com.riseworld.dynamics.models.domain.punch.Power getPower();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public final kotlin.uuid.Uuid component1-x1nF_Dg();
+  public final kotlin.uuid.Uuid component2-WPD2SKI();
+  public final com.riseworld.dynamics.models.Side component3();
+  public final kotlin.time.Instant component4();
+  public final boolean component5();
+  public final com.riseworld.dynamics.models.domain.punch.Speed component6();
+  public final com.riseworld.dynamics.models.domain.punch.Power component7();
+  public final com.riseworld.dynamics.models.domain.punch.Punch copy-pFRLFk8(kotlin.uuid.Uuid, kotlin.uuid.Uuid, com.riseworld.dynamics.models.Side, kotlin.time.Instant, boolean, com.riseworld.dynamics.models.domain.punch.Speed, com.riseworld.dynamics.models.domain.punch.Power);
+  public java.lang.String toString();
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.punch.Speed {
+  private final long a;
+  private final long b;
+  private final double c;
+  private final double d;
+  private final double e;
+  public static com.riseworld.dynamics.models.domain.punch.Speed copy-ePrTys8$default(com.riseworld.dynamics.models.domain.punch.Speed, long, long, double, double, double, int, java.lang.Object);
+  public com.riseworld.dynamics.models.domain.punch.Speed(long, long, double, double, double, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final long getPunchDuration-UwyO8pc();
+  public final long getContactDuration-UwyO8pc();
+  public final double getPeakAcceleration();
+  public final double getPeakVelocity();
+  public final double getDisplacement();
+  public final long component1-UwyO8pc();
+  public final long component2-UwyO8pc();
+  public final double component3();
+  public final double component4();
+  public final double component5();
+  public final com.riseworld.dynamics.models.domain.punch.Speed copy-ePrTys8(long, long, double, double, double);
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.profile.body.BodyProfile {
+  public static final com.riseworld.dynamics.models.domain.profile.body.BodyProfile$Companion Companion;
+  private final kotlin.uuid.Uuid a;
+  private final java.lang.String b;
+  private final double c;
+  private final double d;
+  private final com.riseworld.dynamics.models.domain.profile.body.Gender e;
+  public static com.riseworld.dynamics.models.domain.profile.body.BodyProfile copy-Ib7LZ3E$default(com.riseworld.dynamics.models.domain.profile.body.BodyProfile, kotlin.uuid.Uuid, java.lang.String, double, double, com.riseworld.dynamics.models.domain.profile.body.Gender, int, java.lang.Object);
+  public com.riseworld.dynamics.models.domain.profile.body.BodyProfile(kotlin.uuid.Uuid, java.lang.String, double, double, com.riseworld.dynamics.models.domain.profile.body.Gender, kotlin.jvm.internal.DefaultConstructorMarker);
+  static {};
+  public final kotlin.uuid.Uuid getId-vSVUwiQ();
+  public final java.lang.String getName();
+  public final double getWeight-JShm8hk();
+  public final double getHeight-22MpHBk();
+  public final com.riseworld.dynamics.models.domain.profile.body.Gender getGender();
+  public java.lang.String toString();
+  public final kotlin.uuid.Uuid component1-vSVUwiQ();
+  public final java.lang.String component2();
+  public final double component3-JShm8hk();
+  public final double component4-22MpHBk();
+  public final com.riseworld.dynamics.models.domain.profile.body.Gender component5();
+  public final com.riseworld.dynamics.models.domain.profile.body.BodyProfile copy-Ib7LZ3E(kotlin.uuid.Uuid, java.lang.String, double, double, com.riseworld.dynamics.models.domain.profile.body.Gender);
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.profile.body.BodyProfileValidation {
+  public static final com.riseworld.dynamics.models.domain.profile.body.BodyProfileValidation$Companion Companion;
+  private static final kotlin.Lazy f;
+  private static final kotlin.Lazy g;
+  private static final kotlin.Lazy h;
+  private final com.riseworld.dynamics.models.validation.BasicValidation a;
+  private final com.riseworld.dynamics.models.validation.BasicValidation b;
+  private final com.riseworld.dynamics.models.validation.BasicValidation c;
+  private final com.riseworld.dynamics.models.validation.BasicValidation d;
+  private final boolean e;
+  public com.riseworld.dynamics.models.domain.profile.body.BodyProfileValidation(com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation);
+  public static com.riseworld.dynamics.models.domain.profile.body.BodyProfileValidation copy$default(com.riseworld.dynamics.models.domain.profile.body.BodyProfileValidation, com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation, int, java.lang.Object);
+  private static final kotlin.ranges.ClosedFloatingPointRange c();
+  private static final kotlin.ranges.ClosedFloatingPointRange a();
+  private static final kotlin.ranges.IntRange b();
+  public static final kotlin.Lazy access$getWeightRange$delegate$cp();
+  public static final kotlin.Lazy access$getHeightRange$delegate$cp();
+  public static final kotlin.Lazy access$getNameNumberOfCharactersRange$delegate$cp();
+  static {};
+  public final com.riseworld.dynamics.models.validation.BasicValidation getName();
+  public final com.riseworld.dynamics.models.validation.BasicValidation getWeight();
+  public final com.riseworld.dynamics.models.validation.BasicValidation getHeight();
+  public final com.riseworld.dynamics.models.validation.BasicValidation getGender();
+  public final boolean isValidationOk();
+  public java.lang.String toString();
+  public final com.riseworld.dynamics.models.validation.BasicValidation component1();
+  public final com.riseworld.dynamics.models.validation.BasicValidation component2();
+  public final com.riseworld.dynamics.models.validation.BasicValidation component3();
+  public final com.riseworld.dynamics.models.validation.BasicValidation component4();
+  public final com.riseworld.dynamics.models.domain.profile.body.BodyProfileValidation copy(com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation, com.riseworld.dynamics.models.validation.BasicValidation);
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.session.TrainingSessionSettings$Free extends com.riseworld.dynamics.models.domain.session.TrainingSessionSettings {
+  public com.riseworld.dynamics.models.domain.session.TrainingSessionSettings$Free(boolean);
+}
+Compiled from "r8-map-id-634e41f3d2c4713a6ef5dc7f1160db377a1b40a09ac8e11430639e8f7eb3a90b"
+public final class com.riseworld.dynamics.composite.ble.Glove {
+  private final com.riseworld.dynamics.models.PeripheralDto a;
+  private final com.riseworld.dynamics.composite.ble.BleGloveState b;
+  private final java.lang.String c;
+  private final com.riseworld.dynamics.composite.ble.GloveData d;
+  public com.riseworld.dynamics.composite.ble.Glove(com.riseworld.dynamics.models.PeripheralDto, com.riseworld.dynamics.composite.ble.BleGloveState);
+  public static com.riseworld.dynamics.composite.ble.Glove copy$default(com.riseworld.dynamics.composite.ble.Glove, com.riseworld.dynamics.models.PeripheralDto, com.riseworld.dynamics.composite.ble.BleGloveState, int, java.lang.Object);
+  public final com.riseworld.dynamics.models.PeripheralDto getDto();
+  public final com.riseworld.dynamics.composite.ble.BleGloveState getBleGloveState();
+  public final java.lang.String getAddress();
+  public final com.riseworld.dynamics.composite.ble.GloveData getData();
+  public java.lang.String toString();
+  public final com.riseworld.dynamics.models.PeripheralDto component1();
+  public final com.riseworld.dynamics.composite.ble.BleGloveState component2();
+  public final com.riseworld.dynamics.composite.ble.Glove copy(com.riseworld.dynamics.models.PeripheralDto, com.riseworld.dynamics.composite.ble.BleGloveState);
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.PeripheralDto {
+  public static final com.riseworld.dynamics.models.PeripheralDto$Companion Companion;
+  public static final java.lang.String NO_BLE_ADDRESS_DUE_TO_MOCK;
+  private final kotlin.uuid.Uuid a;
+  private final java.lang.String b;
+  private final java.lang.String c;
+  private final java.lang.String d;
+  private final java.lang.String e;
+  private final java.lang.String f;
+  private final java.lang.String g;
+  private final java.lang.String h;
+  private final com.riseworld.dynamics.models.Side i;
+  private final com.riseworld.dynamics.models.ble.BondState j;
+  private final boolean k;
+  private final java.lang.String l;
+  private com.riseworld.dynamics.models.PeripheralDto(kotlin.uuid.Uuid, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.riseworld.dynamics.models.Side, com.riseworld.dynamics.models.ble.BondState);
+  public static com.riseworld.dynamics.models.PeripheralDto copy-k9AFDGU$default(com.riseworld.dynamics.models.PeripheralDto, kotlin.uuid.Uuid, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.riseworld.dynamics.models.Side, com.riseworld.dynamics.models.ble.BondState, int, java.lang.Object);
+  public com.riseworld.dynamics.models.PeripheralDto(kotlin.uuid.Uuid, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.riseworld.dynamics.models.Side, com.riseworld.dynamics.models.ble.BondState, kotlin.jvm.internal.DefaultConstructorMarker);
+  static {};
+  public final kotlin.uuid.Uuid getId-WPD2SKI();
+  public final java.lang.String getAddress();
+  public final java.lang.String getModelNumber();
+  public final java.lang.String getManufacturerName();
+  public final java.lang.String getSerialNumber();
+  public final java.lang.String getFirmwareVersion();
+  public final java.lang.String getHardwareVersion();
+  public final java.lang.String getName();
+  public final com.riseworld.dynamics.models.Side getSide();
+  public final com.riseworld.dynamics.models.ble.BondState getBondState();
+  public final boolean isMock();
+  public final java.lang.String getIdAndAddressKey();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public final kotlin.uuid.Uuid component1-WPD2SKI();
+  public final java.lang.String component2();
+  public final java.lang.String component3();
+  public final java.lang.String component4();
+  public final java.lang.String component5();
+  public final java.lang.String component6();
+  public final java.lang.String component7();
+  public final java.lang.String component8();
+  public final com.riseworld.dynamics.models.Side component9();
+  public final com.riseworld.dynamics.models.ble.BondState component10();
+  public final com.riseworld.dynamics.models.PeripheralDto copy-k9AFDGU(kotlin.uuid.Uuid, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.riseworld.dynamics.models.Side, com.riseworld.dynamics.models.ble.BondState);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.profile.body.BodyProfileValidation$Companion {
+  public com.riseworld.dynamics.models.domain.profile.body.BodyProfileValidation$Companion(kotlin.jvm.internal.DefaultConstructorMarker);
+  public final kotlin.ranges.ClosedFloatingPointRange getWeightRange();
+  public final kotlin.ranges.ClosedFloatingPointRange getHeightRange();
+  public final kotlin.ranges.IntRange getNameNumberOfCharactersRange();
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.session.TrainingSessionStats {
+  public static final com.riseworld.dynamics.models.domain.session.TrainingSessionStats$Companion Companion;
+  private static final com.riseworld.dynamics.models.domain.session.TrainingSessionStats f;
+  private final com.riseworld.dynamics.models.domain.session.TrainingSessionStatsDetails a;
+  private final java.util.List b;
+  private final kotlin.Lazy c;
+  private final kotlin.Lazy d;
+  private final kotlin.Lazy e;
+  public com.riseworld.dynamics.models.domain.session.TrainingSessionStats(com.riseworld.dynamics.models.domain.session.TrainingSessionStatsDetails, java.util.List);
+  public static com.riseworld.dynamics.models.domain.session.TrainingSessionStats copy$default(com.riseworld.dynamics.models.domain.session.TrainingSessionStats, com.riseworld.dynamics.models.domain.session.TrainingSessionStatsDetails, java.util.List, int, java.lang.Object);
+  private static final com.riseworld.dynamics.models.domain.punch.Punch b(com.riseworld.dynamics.models.domain.session.TrainingSessionStats);
+  private static final com.riseworld.dynamics.models.domain.punch.Punch a(com.riseworld.dynamics.models.domain.session.TrainingSessionStats);
+  private static final com.riseworld.dynamics.models.domain.punch.Punch c(com.riseworld.dynamics.models.domain.session.TrainingSessionStats);
+  public static final com.riseworld.dynamics.models.domain.session.TrainingSessionStats access$getEMPTY$cp();
+  static {};
+  public final com.riseworld.dynamics.models.domain.session.TrainingSessionStatsDetails getStats();
+  public final java.util.List getPunches();
+  public final com.riseworld.dynamics.models.domain.punch.Punch getLastPunch();
+  public final com.riseworld.dynamics.models.domain.punch.Punch getLastLeftPunch();
+  public final com.riseworld.dynamics.models.domain.punch.Punch getLastRightPunch();
+  public final com.riseworld.dynamics.models.domain.session.TrainingSessionStatsDetails component1();
+  public final java.util.List component2();
+  public final com.riseworld.dynamics.models.domain.session.TrainingSessionStats copy(com.riseworld.dynamics.models.domain.session.TrainingSessionStatsDetails, java.util.List);
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.session.TrainingSessionExtendedState$Resumed extends com.riseworld.dynamics.models.domain.session.TrainingSessionExtendedState {
+  private final com.riseworld.dynamics.models.domain.session.TrainingSessionSensorType a;
+  private final kotlin.time.Instant b;
+  private final long c;
+  private final kotlin.time.Instant d;
+  public com.riseworld.dynamics.models.domain.session.TrainingSessionExtendedState$Resumed(com.riseworld.dynamics.models.domain.session.TrainingSessionSensorType, kotlin.time.Instant, long, kotlin.time.Instant, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final com.riseworld.dynamics.models.domain.session.TrainingSessionSensorType getSensorType();
+  public final kotlin.time.Instant getStartDateTime();
+  public final long getAccumulatedResumedDurationUntilLastPauseEvent-UwyO8pc();
+  public final kotlin.time.Instant getResumedSince();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "r8-map-id-aa257da896c2ca57533af8ffd846bf4b1f6bffaf7fee79c961b9bb72caf0f127"
+public final class com.riseworld.launchpad.ble.multiplex.models.domain.ScannerState$Error extends com.riseworld.launchpad.ble.multiplex.models.domain.ScannerState {
+  private final com.riseworld.launchpad.ble.multiplex.models.exception.ScannerError a;
+  public com.riseworld.launchpad.ble.multiplex.models.domain.ScannerState$Error(com.riseworld.launchpad.ble.multiplex.models.exception.ScannerError);
+  public final com.riseworld.launchpad.ble.multiplex.models.exception.ScannerError getScannerError();
+}
+Compiled from "r8-map-id-07daa5afff8b4a899fe7396a4c21f4034add25c5a5110399a2c8222ca22df43b"
+public final class com.riseworld.dynamics.multiplatform.repository.GloveRepository {
+  public static final com.riseworld.dynamics.multiplatform.repository.GloveRepository$Companion Companion;
+  private final com.riseworld.dynamics.db.Database a;
+  private final com.riseworld.dynamics.ble.GloveManager b;
+  private final kotlinx.coroutines.flow.Flow c;
+  public com.riseworld.dynamics.multiplatform.repository.GloveRepository(com.riseworld.dynamics.db.Database, com.riseworld.dynamics.ble.GloveManager);
+  public static void getSavedPeripherals$annotations();
+  private final kotlinx.coroutines.flow.Flow a(kotlin.jvm.functions.Function1);
+  static kotlinx.coroutines.flow.Flow a(com.riseworld.dynamics.multiplatform.repository.GloveRepository);
+  private static final java.lang.String a(kotlin.uuid.Uuid);
+  private static final java.lang.String a();
+  private static final boolean a(kotlin.uuid.Uuid, com.riseworld.dynamics.models.PeripheralDto);
+  private static final boolean a(com.riseworld.dynamics.models.PeripheralDto);
+  private static final com.riseworld.dynamics.composite.ble.Glove a(com.riseworld.dynamics.models.PeripheralDto, com.riseworld.dynamics.composite.ble.PeripheralData);
+  private static final com.riseworld.dynamics.composite.ble.AccStreamData a(com.riseworld.dynamics.models.PeripheralDto, com.riseworld.dynamics.models.ble.data.Vector3d);
+  static {};
+  public final kotlinx.coroutines.flow.Flow getSavedPeripherals();
+  public final java.lang.Object swapGloveSideForId-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+  public final java.lang.Object updateGlovePairNameByPeripheralId-R2WvUlk(kotlin.uuid.Uuid, java.lang.String, kotlin.coroutines.Continuation);
+  public final java.lang.Object updateGlovePairName-WPIley4(kotlin.uuid.Uuid, java.lang.String, kotlin.coroutines.Continuation);
+  public final java.lang.Object deleteGloveById-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+  public final java.lang.Object deleteAllGloves(kotlin.coroutines.Continuation);
+  public final kotlinx.coroutines.flow.Flow observeGloveById-16HgSWs(kotlin.uuid.Uuid);
+  public final kotlinx.coroutines.flow.Flow observeGloves();
+  public final kotlinx.coroutines.flow.Flow observeGlovesAccelerationStream();
+  public final kotlinx.coroutines.flow.Flow observeGlovePairs();
+  public final java.lang.Object getGlovePairByPeripheralId-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+  public final java.lang.Object getGlovePair-nYsn5iQ(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+  public final java.lang.Object getCommonDeviceForGlove-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+}

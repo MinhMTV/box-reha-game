@@ -1,11 +1,11 @@
-# Run state — delivered 2026-09-14
+# Run state — Android compatibility delivery, 2026-09-14
 
-The reviewed implementation and evidence are delivered to E:/Programming Projekte/box-reha-game on codex/agent-root-digital-dojo-2026-09-14. Validation worktree: E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo, codex/agent-root-dd-validation. No remote push or store publication.
+Work performed in `E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo`, branch `codex/dynamics-compat-2026-09-14`, starting at 064b9b4. Delivery target is `E:/Programming Projekte/box-reha-game`. No remote push or store publication.
 
-Commits: d565fab (Unity migration/workflow), 4eb274a (Blender kit), 68914a5 (integrated gameplay/UI/native setup), 82d0a03 (qualification evidence). The primary checkout was fast-forwarded successfully; all four pre-existing user Gradle cache files retained their exact pre-merge hashes. No other uncommitted changes remained at delivery verification.
+Highest result: LEVEL 5. The native collector and 16 JVM tests pass. Actual Unity 6000.6.0f1 Android APK builds with 0 errors/warnings, valid signing and 16-KB ZIP/ELF alignment. All 4,085 authoritative SDK files are unchanged. Mode is explicit COMPATIBILITY, with Resource 2.12.0 and an application Java/limited-reflection adapter; no SDK bytecode modification.
 
-DD-001/002/003/004/006 are complete within the defined prototype scope. DD-005 remains externally blocked: native and real Unity Android builds both fail on missing vendor resource 2.11.1. No successful APK, physical JNI/BLE session, measured calibration or active HR is claimed.
+Validation: 9 Editor groups, 18 synthetic Play Mode gameplay assertions, 50 actual camera/UI captures, 26 existing host groups + 47 Android policy + 17 reference-collection assertions, 18 export host checks, 18 isolated Kotlin policy tests including T1–T7, 72 C# files across five configurations, 635 static scene checks, and 60 existing Python analysis tests.
 
-Evidence: 9 Unity Editor checks, 18 synthetic Play Mode assertions plus pause visibility guards, 26 host groups plus 47 Android policy assertions, 13 export checks, zero syntax errors in 71 files x five configurations, 635 scene assertions. Nine Blender models and 46 final Play Mode camera screenshots are committed. Build source manifest remained unchanged through the final failed build.
+ADB now returns successfully with no devices; installation/launch, real JNI/BLE/events and every physical topology remain untested. Measured reference collection and local persistence exist, with UNQUALIFIED records and no baseline created here. Mixed-family gameplay and heart-rate adaptation remain unavailable. Current prepare/check/build/capture processes exit cleanly; prior Search exception is not reproduced.
 
-Remaining action requires corrected vendor artifacts and an authorized USB Android device, followed by APK/build, BLE side/family/lifecycle and mobile performance qualification. Combined two ALPHA plus DELTA needs a confirmed vendor route. Unity Editor Search startup exception and intermittent batch shutdown hangs remain documented tool issues. SDK/expose/thesis scope is unchanged.
+Current authority: root ANDROID_STATUS.md, GAME_STATUS.md, VISUAL_STATUS.md, SDK_COMPATIBILITY_REPORT.md and MULTI_SENSOR_REPORT.md. Final delivery hashes/checks are in artifacts/validation/android-compat-delivery.json. The four pre-existing user Gradle cache changes must remain untouched.

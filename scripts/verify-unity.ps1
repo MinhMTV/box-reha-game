@@ -1,6 +1,7 @@
 param(
     [string]$UnityPath,
     [switch]$BuildCandidate,
+    [ValidateSet('VENDOR-UNCHANGED', 'COMPATIBILITY')][string]$SdkMode = 'VENDOR-UNCHANGED',
     [ValidateSet('Android', 'WindowsDevelopment')][string]$Target = 'Android'
 )
 $ErrorActionPreference = 'Stop'
@@ -22,15 +23,66 @@ $projectRoot = (Resolve-Path -LiteralPath $projectRoot).Path
 $environmentReport = Join-Path $validationDir 'unity-environment.json'
 @{ status = 'INCOMPLETE'; reason = 'Verification started; success requires fresh validated reports'; requiredVersion = $editorVersion; checkedPath = $UnityPath; generatedUtc = [DateTime]::UtcNow.ToString('O') } |
     ConvertTo-Json | Set-Content -LiteralPath $environmentReport -Encoding utf8
+# Each owned Editor has a bounded lifetime; force termination is recorded independently of task success.
+$env:DYNAMICS_SDK_MODE = $SdkMode
+$ownedRuns = [Collections.Generic.List[object]]::new()
+function Get-JsonUtc($Value) {
+    if ($Value -is [DateTimeOffset]) { return $Value.UtcDateTime }
+    if ($Value -is [DateTime]) { return $Value.ToUniversalTime() }
+    return [DateTimeOffset]::Parse([string]$Value, [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::RoundtripKind).UtcDateTime
+}
+function Wait-OwnedEditor($OwnedProcess, [string]$LogPath, [string]$ReportPath, [DateTime]$Started, [string]$Marker) {
+    $completedAt = $null
+    $forced = $false
+    $timedOut = $false
+    while (-not $OwnedProcess.HasExited) {
+        $freshEvidence = $false
+        if ($ReportPath -and (Test-Path -LiteralPath $ReportPath)) {
+            try {
+                $item = Get-Item -LiteralPath $ReportPath
+                $data = Get-Content -LiteralPath $ReportPath -Raw | ConvertFrom-Json
+                $freshEvidence = $item.LastWriteTimeUtc -ge $Started -and (Get-JsonUtc $data.utc) -ge $Started
+            } catch { $freshEvidence = $false }
+        } elseif ($Marker -and (Test-Path -LiteralPath $LogPath)) {
+            $freshEvidence = (Get-Item -LiteralPath $LogPath).LastWriteTimeUtc -ge $Started -and (Select-String -LiteralPath $LogPath -SimpleMatch $Marker -Quiet)
+        }
+        if ($freshEvidence -and -not $completedAt) { $completedAt = [DateTime]::UtcNow }
+        $timedOut = ([DateTime]::UtcNow - $Started).TotalMinutes -gt 40
+        if ($timedOut -or ($completedAt -and ([DateTime]::UtcNow - $completedAt).TotalSeconds -ge 30)) {
+            # Keep the Process object/start time from Start-Process; never enumerate and kill unrelated Editors.
+            if (-not $OwnedProcess.HasExited) { $OwnedProcess.Kill(); $OwnedProcess.WaitForExit(); $forced = $true }
+            break
+        }
+        Start-Sleep -Milliseconds 500
+        $OwnedProcess.Refresh()
+    }
+    $OwnedProcess.WaitForExit()
+    $ownedRuns.Add(@{ pid = $OwnedProcess.Id; startedUtc = $Started.ToString('O'); forcedTermination = $forced; timedOut = $timedOut;
+        freshCompletionEvidence = [bool]$completedAt; exitCode = $OwnedProcess.ExitCode; sdkMode = $SdkMode; log = $LogPath })
+    $ownedRuns | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $validationDir 'unity-owned-processes.json') -Encoding utf8
+    if (Test-Path -LiteralPath $LogPath) {
+        $logContents = Get-Content -LiteralPath $LogPath -Raw
+        if ($logContents -match '(?m)^Environment Variables\s*:') {
+            $rawDirectory = Join-Path $projectRoot '.agent-tooling/validation-raw'
+            New-Item -ItemType Directory -Force $rawDirectory | Out-Null
+            Copy-Item -LiteralPath $LogPath -Destination (Join-Path $rawDirectory ($OwnedProcess.Id.ToString() + '-' + [IO.Path]::GetFileName($LogPath)))
+            $safeLog = [regex]::Replace($logContents, '(?ms)^Environment Variables\s*:.*?(?=^stderr\[|\z)', 'Environment Variables: [OMITTED FROM SHAREABLE EVIDENCE]' + "`n")
+            [IO.File]::WriteAllText($LogPath, $safeLog, [Text.UTF8Encoding]::new($false))
+        }
+    }
+    if ($timedOut) { throw 'Owned Unity process timed out without completing within 40 minutes.' }
+    if (-not $forced -and $OwnedProcess.ExitCode -ne 0) { throw "Unity exited with code $($OwnedProcess.ExitCode). See $LogPath" }
+    if ($forced -and -not $completedAt) { throw 'Forced Unity termination without fresh completion evidence.' }
+}
 # Android preparation deliberately precedes the source stamp: it persists the
 # candidate PlayerSettings. Subsequent checks/build must leave that source frozen.
 $unityBuildTarget = if ($Target -eq 'Android') { 'Android' } else { 'Win64' }
 if ($BuildCandidate -and $Target -eq 'Android') {
     $prepareLog = Join-Path $validationDir 'unity-android-prepare.log'
     $prepareArguments = @('-batchmode', '-nographics', '-quit', '-projectPath', ('"' + $projectRoot + '"'), '-buildTarget', 'Android', '-executeMethod', 'GameRegressionChecks.PrepareAndroidCandidate', '-logFile', ('"' + $prepareLog + '"'))
+    $prepareStarted = [DateTime]::UtcNow
     $prepareProcess = Start-Process -FilePath $UnityPath -ArgumentList $prepareArguments -PassThru -WindowStyle Hidden
-    $prepareProcess.WaitForExit()
-    if ($prepareProcess.ExitCode -ne 0) { throw "Android preparation failed. Inspect $prepareLog" }
+    Wait-OwnedEditor $prepareProcess $prepareLog $null $prepareStarted "BOXREHA_ANDROID_PREPARATION_COMPLETED"
     $importedVersion = ((Get-Content -LiteralPath (Join-Path $projectRoot 'ProjectSettings\ProjectVersion.txt') | Select-Object -First 1) -split ':', 2)[1].Trim()
     if ($importedVersion -ne $editorVersion) { throw 'Editor import changed ProjectVersion. Review and freeze the migration, then rerun verification.' }
 }
@@ -43,7 +95,7 @@ function Read-FreshUnityReport([string]$ReportPath, [DateTime]$StartedUtc, [stri
         if ($result.PSObject.Properties.Name -notcontains $field -or $null -eq $result.$field) { throw "Unity report is missing $field" }
     }
     if ($result.unityVersion -ne $editorVersion) { throw "Unexpected Unity version $($result.unityVersion); expected $editorVersion" }
-    if ([DateTimeOffset]::Parse($result.utc).UtcDateTime -lt $StartedUtc) { throw "Unity report timestamp is stale: $ReportPath" }
+    if ((Get-JsonUtc $result.utc) -lt $StartedUtc) { throw "Unity report timestamp is stale: $ReportPath" }
     return $result
 }
 $gitRevision = (& git -C $projectRoot rev-parse HEAD).Trim()
@@ -65,7 +117,7 @@ $snapshot = Get-SourceSnapshot
 $sourceFiles = $snapshot.files
 $sourceDigest = $snapshot.digest
 $dirty = @(& git -C $projectRoot status --porcelain -- Assets Packages ProjectSettings).Count -gt 0
-$buildIdentity = "revision=$gitRevision; sourceSha256=$sourceDigest; dirty=$dirty"
+$buildIdentity = "revision=$gitRevision; sourceSha256=$sourceDigest; dirty=$dirty; sdkMode=$SdkMode"
 $resourcePath = Join-Path $projectRoot 'Assets\Resources\ResearchBuildInfo.txt'
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $resourcePath) | Out-Null
 [IO.File]::WriteAllText($resourcePath, $buildIdentity + "`n", [Text.UTF8Encoding]::new($false))
@@ -77,8 +129,7 @@ $arguments = @('-batchmode', '-nographics', '-quit', '-projectPath', ('"' + $pro
 $checksStartedUtc = [DateTime]::UtcNow
 $process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -WindowStyle Hidden
 # Wait for this Editor, not every descendant: Unity can start long-lived workers/services.
-$process.WaitForExit()
-if ($process.ExitCode -ne 0) { throw "Unity qualification failed (exit $($process.ExitCode)). Inspect $editorLog" }
+Wait-OwnedEditor $process $editorLog (Join-Path $validationDir "unity-editor-checks.json") $checksStartedUtc $null
 $checks = Read-FreshUnityReport (Join-Path $validationDir 'unity-editor-checks.json') $checksStartedUtc @('utc', 'unityVersion', 'passed', 'failed', 'checks')
 if ($checks.failed -ne 0 -or $checks.passed -le 0 -or @($checks.checks).Count -ne ($checks.passed + $checks.failed)) { throw 'Unity regression report contains failures or an inconsistent check count.' }
 if ((Get-SourceSnapshot).digest -ne $sourceDigest) { throw 'Project source changed during Editor import/checks. Inspect the diff, freeze the imported source and rerun verification.' }
@@ -89,8 +140,7 @@ if ($BuildCandidate) {
     $arguments = @('-batchmode', '-nographics', '-quit', '-projectPath', ('"' + $projectRoot + '"'), '-buildTarget', $unityBuildTarget, '-executeMethod', $buildMethod, '-logFile', ('"' + $buildLog + '"'))
     $buildStartedUtc = [DateTime]::UtcNow
     $process = Start-Process -FilePath $UnityPath -ArgumentList $arguments -PassThru -WindowStyle Hidden
-    $process.WaitForExit()
-    if ($process.ExitCode -ne 0) { throw "Candidate build failed (exit $($process.ExitCode)). Inspect $buildLog" }
+    Wait-OwnedEditor $process $buildLog (Join-Path $validationDir $reportName) $buildStartedUtc $null
     $build = Read-FreshUnityReport (Join-Path $validationDir $reportName) $buildStartedUtc @('utc', 'unityVersion', 'result', 'errors', 'outputPath')
     if ($build.result -ne 'Succeeded' -or $build.errors -ne 0) { throw 'Unity candidate report did not record a successful build without errors.' }
     if (-not (Test-Path -LiteralPath $build.outputPath -PathType Leaf)) { throw 'Reported candidate artifact is missing.' }

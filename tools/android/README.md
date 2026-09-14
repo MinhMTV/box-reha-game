@@ -1,3 +1,5 @@
+> Update 2026-09-14: the explicit SDK COMPATIBILITY mode now passes full native compilation/tests and a real Unity 6000.6.0f1 APK build. Hardware remains untested. Current authority: root ANDROID_STATUS.md and SDK_COMPATIBILITY_REPORT.md. Older blocked-build statements below are historical.
+
 # Native Android collector qualification
 
 This standalone build compiles the actual `.androidlib` source against Dynamics SDK 0.25.6 and Android API 36, then executes local JVM policy tests. It does not launch Unity, produce the game APK, emulate Bluetooth or test a physical sensor. API 36 is required by the SDK's actual AAR metadata.

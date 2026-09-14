@@ -1,12 +1,10 @@
 {
-  "sourceSnapshotUnchanged": true,
   "requiredVersion": "6000.6.0f1",
-  "reason": "Vendor resource:2.11.1 missing in actual Unity Gradle build",
-  "status": "ANDROID BUILD FAILED",
-  "sourceSha256": "60538b4a9b9bc39142995381b0abdeeb1da16f79ae907a3aab036e5b4aa6d0d4",
-  "generatedUtc": "2026-09-14T00:32:38.4709947Z",
-  "candidateBuild": "FAILED",
-  "editorChecks": "PASSED 9",
-  "runtimeAndHardware": "18 synthetic Play Mode assertions passed; physical hardware NOT VERIFIED",
-  "processExit": "Failed build reported return code 1; lingering owned Editor terminated after report"
+  "generatedUtc": "2026-09-14T07:38:38.2525102Z",
+  "checkedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
+  "runtimeAndHardware": "NOT VERIFIED BY THIS SCRIPT",
+  "target": "Android",
+  "candidateBuild": "PASSED",
+  "sourceSha256": "d60dd92fe4a7627d2fabf232a2e09880ec981be790572265c0ee85fe8b145fbc",
+  "status": "EDITOR CHECKS PASSED"
 }

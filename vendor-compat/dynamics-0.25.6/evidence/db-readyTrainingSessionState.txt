@@ -1,0 +1,155 @@
+  public final java.lang.Object readyTrainingSessionState(com.riseworld.dynamics.models.domain.session.TrainingSessionSensorType, kotlin.coroutines.Continuation);
+    Code:
+       0: aload_2
+       1: instanceof    #962                // class com/riseworld/dynamics/db/d0
+       4: ifeq          39
+       7: aload_2
+       8: checkcast     #962                // class com/riseworld/dynamics/db/d0
+      11: dup
+      12: astore_3
+      13: getfield      #963                // Field com/riseworld/dynamics/db/d0.f:I
+      16: dup
+      17: istore        4
+      19: ldc_w         #274                // int -2147483648
+      22: iand
+      23: ifeq          39
+      26: aload_3
+      27: iload         4
+      29: ldc_w         #274                // int -2147483648
+      32: isub
+      33: putfield      #963                // Field com/riseworld/dynamics/db/d0.f:I
+      36: goto          49
+      39: new           #962                // class com/riseworld/dynamics/db/d0
+      42: dup
+      43: astore_3
+      44: aload_0
+      45: aload_2
+      46: invokespecial #964                // Method com/riseworld/dynamics/db/d0."<init>":(Lcom/riseworld/dynamics/db/Database;Lkotlin/coroutines/Continuation;)V
+      49: aload_3
+      50: dup
+      51: getfield      #967                // Field com/riseworld/dynamics/db/d0.d:Ljava/lang/Object;
+      54: astore_2
+      55: invokestatic  #289                // Method kotlin/coroutines/intrinsics/IntrinsicsKt.getCOROUTINE_SUSPENDED:()Ljava/lang/Object;
+      58: astore        4
+      60: getfield      #963                // Field com/riseworld/dynamics/db/d0.f:I
+      63: dup
+      64: istore        5
+      66: ifeq          152
+      69: iload         5
+      71: iconst_1
+      72: if_icmpeq     122
+      75: iload         5
+      77: iconst_2
+      78: if_icmpne     111
+      81: aload_2
+      82: dup
+      83: aload_3
+      84: dup
+      85: dup
+      86: getfield      #968                // Field com/riseworld/dynamics/db/d0.c:Ljava/lang/Object;
+      89: checkcast     #970                // class com/riseworld/dynamics/models/domain/profile/body/BodyProfile
+      92: pop
+      93: getfield      #971                // Field com/riseworld/dynamics/db/d0.b:Ljava/lang/Object;
+      96: checkcast     #279                // class kotlin/uuid/Uuid
+      99: pop
+     100: getfield      #972                // Field com/riseworld/dynamics/db/d0.a:Ljava/lang/Object;
+     103: checkcast     #966                // class com/riseworld/dynamics/models/domain/session/TrainingSessionSensorType
+     106: pop
+     107: invokestatic  #300                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     110: areturn
+     111: new           #302                // class java/lang/IllegalStateException
+     114: dup
+     115: ldc_w         #304                // String call to \'resume\' before \'invoke\' with coroutine
+     118: invokespecial #307                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     121: athrow
+     122: aload_2
+     123: aload_3
+     124: dup
+     125: getfield      #971                // Field com/riseworld/dynamics/db/d0.b:Ljava/lang/Object;
+     128: checkcast     #279                // class kotlin/uuid/Uuid
+     131: astore_1
+     132: getfield      #972                // Field com/riseworld/dynamics/db/d0.a:Ljava/lang/Object;
+     135: checkcast     #966                // class com/riseworld/dynamics/models/domain/session/TrainingSessionSensorType
+     138: astore        5
+     140: invokestatic  #300                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     143: aload_2
+     144: aload         5
+     146: astore_2
+     147: astore        5
+     149: goto          221
+     152: aload_0
+     153: aload_2
+     154: invokestatic  #300                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     157: invokespecial #975                // Method a:()Lcom/riseworld/launchpad/resource/Resource;
+     160: invokevirtual #978                // Method com/riseworld/launchpad/resource/Resource.getOrNull:()Ljava/lang/Object;
+     163: checkcast     #980                // class com/riseworld/dynamics/models/domain/session/TrainingSession
+     166: dup
+     167: astore_2
+     168: ifnull        179
+     171: aload_2
+     172: invokevirtual #983                // Method com/riseworld/dynamics/models/domain/session/TrainingSession."getId-CnpZ-Ss":()Lkotlin/uuid/Uuid;
+     175: astore_2
+     176: goto          181
+     179: aconst_null
+     180: astore_2
+     181: aload_0
+     182: getfield      #216                // Field c:Lcom/riseworld/dynamics/db/dao/impl/BodyProfileDaoImpl;
+     185: aload_3
+     186: dup
+     187: dup
+     188: aload_2
+     189: aload_3
+     190: aload_1
+     191: putfield      #972                // Field com/riseworld/dynamics/db/d0.a:Ljava/lang/Object;
+     194: putfield      #971                // Field com/riseworld/dynamics/db/d0.b:Ljava/lang/Object;
+     197: iconst_1
+     198: putfield      #963                // Field com/riseworld/dynamics/db/d0.f:I
+     201: invokeinterface #988,  2          // InterfaceMethod com/riseworld/dynamics/db/dao/BodyProfileDao.getBodyProfile:(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     206: dup
+     207: astore        5
+     209: aload         4
+     211: if_acmpne     217
+     214: goto          291
+     217: aload_2
+     218: aload_1
+     219: astore_2
+     220: astore_1
+     221: aload_0
+     222: aload         5
+     224: checkcast     #318                // class com/riseworld/launchpad/resource/Resource
+     227: invokevirtual #978                // Method com/riseworld/launchpad/resource/Resource.getOrNull:()Ljava/lang/Object;
+     230: checkcast     #970                // class com/riseworld/dynamics/models/domain/profile/body/BodyProfile
+     233: astore        5
+     235: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+     238: aload_3
+     239: dup
+     240: aload         5
+     242: aload_3
+     243: aload_1
+     244: aload_3
+     245: aload_2
+     246: aload_0
+     247: aload_1
+     248: aload         5
+     250: aload_2
+     251: invokedynamic #995,  0            // InvokeDynamic #36:invoke:(Lcom/riseworld/dynamics/db/Database;Lkotlin/uuid/Uuid;Lcom/riseworld/dynamics/models/domain/profile/body/BodyProfile;Lcom/riseworld/dynamics/models/domain/session/TrainingSessionSensorType;)Lkotlin/jvm/functions/Function0;
+     256: astore_0
+     257: invokestatic  #474                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     260: putfield      #972                // Field com/riseworld/dynamics/db/d0.a:Ljava/lang/Object;
+     263: invokestatic  #474                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     266: putfield      #971                // Field com/riseworld/dynamics/db/d0.b:Ljava/lang/Object;
+     269: invokestatic  #474                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     272: putfield      #968                // Field com/riseworld/dynamics/db/d0.c:Ljava/lang/Object;
+     275: iconst_2
+     276: putfield      #963                // Field com/riseworld/dynamics/db/d0.f:I
+     279: aload_0
+     280: aload_3
+     281: invokestatic  #248                // Method com/riseworld/dynamics/db/m0.a:(Lapp/cash/sqldelight/Transacter;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     284: dup
+     285: astore_0
+     286: aload         4
+     288: if_acmpne     294
+     291: aload         4
+     293: areturn
+     294: aload_0
+     295: areturn

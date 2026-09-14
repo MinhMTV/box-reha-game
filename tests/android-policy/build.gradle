@@ -8,6 +8,8 @@ kotlin.sourceSets.main.kotlin {
 kotlin.sourceSets.test.kotlin {
     srcDir '../../Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/test/java/com/boxreha/dynamics'
     include 'CollectorPolicyTest.kt'
+    srcDir '../../vendor-compat/dynamics-0.25.6/topology'
+    include 'TopologyPolicyTest.kt'
 }
 dependencies { testImplementation 'junit:junit:4.13.2' }
 test { testLogging { events 'passed', 'failed', 'skipped' } }

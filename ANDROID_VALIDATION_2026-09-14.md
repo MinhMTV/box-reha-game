@@ -1,3 +1,5 @@
+> Update 2026-09-14: the explicit SDK COMPATIBILITY mode now passes full native compilation/tests and a real Unity 6000.6.0f1 APK build. Hardware remains untested. Current authority: root ANDROID_STATUS.md and SDK_COMPATIBILITY_REPORT.md. Older blocked-build statements below are historical.
+
 # Android continuation: implementation and validation
 
 The user selected **Windows development with the complete Unity game and Dynamics SDK running together on Android**. OnePlus 15 or Samsung Galaxy Tab S3 are possible target devices. This record is software-development evidence, not a successful APK, sensor qualification or study result. Current readiness remains **RED**.

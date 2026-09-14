@@ -1,0 +1,275 @@
+  public final java.lang.Object initializeTrainingSession(com.riseworld.dynamics.models.domain.session.TrainingSessionInput, kotlin.coroutines.Continuation);
+    Code:
+       0: aload_2
+       1: instanceof    #813                // class com/riseworld/dynamics/db/y
+       4: ifeq          39
+       7: aload_2
+       8: checkcast     #813                // class com/riseworld/dynamics/db/y
+      11: dup
+      12: astore_3
+      13: getfield      #815                // Field com/riseworld/dynamics/db/y.h:I
+      16: dup
+      17: istore        4
+      19: ldc_w         #274                // int -2147483648
+      22: iand
+      23: ifeq          39
+      26: aload_3
+      27: iload         4
+      29: ldc_w         #274                // int -2147483648
+      32: isub
+      33: putfield      #815                // Field com/riseworld/dynamics/db/y.h:I
+      36: goto          49
+      39: new           #813                // class com/riseworld/dynamics/db/y
+      42: dup
+      43: astore_3
+      44: aload_0
+      45: aload_2
+      46: invokespecial #816                // Method com/riseworld/dynamics/db/y."<init>":(Lcom/riseworld/dynamics/db/Database;Lkotlin/coroutines/Continuation;)V
+      49: aload_3
+      50: getfield      #821                // Field com/riseworld/dynamics/db/y.f:Ljava/lang/Object;
+      53: astore_2
+      54: invokestatic  #289                // Method kotlin/coroutines/intrinsics/IntrinsicsKt.getCOROUTINE_SUSPENDED:()Ljava/lang/Object;
+      57: astore        4
+      59: aload_3
+      60: getfield      #815                // Field com/riseworld/dynamics/db/y.h:I
+      63: tableswitch   { // 0 to 3
+
+                     0: 212
+
+                     1: 181
+
+                     2: 136
+
+                     3: 103
+               default: 92
+          }
+      92: new           #302                // class java/lang/IllegalStateException
+      95: dup
+      96: ldc_w         #304                // String call to \'resume\' before \'invoke\' with coroutine
+      99: invokespecial #307                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     102: athrow
+     103: aload_2
+     104: dup
+     105: aload_3
+     106: getfield      #822                // Field com/riseworld/dynamics/db/y.c:Ljava/lang/Object;
+     109: checkcast     #279                // class kotlin/uuid/Uuid
+     112: pop
+     113: aload_3
+     114: getfield      #823                // Field com/riseworld/dynamics/db/y.b:Ljava/lang/Object;
+     117: checkcast     #740                // class java/util/List
+     120: pop
+     121: aload_3
+     122: getfield      #824                // Field com/riseworld/dynamics/db/y.a:Ljava/lang/Object;
+     125: checkcast     #818                // class com/riseworld/dynamics/models/domain/session/TrainingSessionInput
+     128: pop
+     129: invokestatic  #300                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     132: areturn
+     133: goto          509
+     136: aload_2
+     137: aload_3
+     138: getfield      #825                // Field com/riseworld/dynamics/db/y.e:I
+     141: istore_1
+     142: aload_3
+     143: getfield      #826                // Field com/riseworld/dynamics/db/y.d:I
+     146: istore        5
+     148: aload_3
+     149: getfield      #822                // Field com/riseworld/dynamics/db/y.c:Ljava/lang/Object;
+     152: checkcast     #279                // class kotlin/uuid/Uuid
+     155: astore        6
+     157: aload_3
+     158: getfield      #823                // Field com/riseworld/dynamics/db/y.b:Ljava/lang/Object;
+     161: checkcast     #740                // class java/util/List
+     164: astore        7
+     166: aload_3
+     167: getfield      #824                // Field com/riseworld/dynamics/db/y.a:Ljava/lang/Object;
+     170: checkcast     #818                // class com/riseworld/dynamics/models/domain/session/TrainingSessionInput
+     173: astore        8
+     175: invokestatic  #300                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     178: goto          368
+     181: aload_2
+     182: aload_3
+     183: getfield      #825                // Field com/riseworld/dynamics/db/y.e:I
+     186: istore_1
+     187: aload_3
+     188: getfield      #826                // Field com/riseworld/dynamics/db/y.d:I
+     191: istore        5
+     193: aload_3
+     194: getfield      #824                // Field com/riseworld/dynamics/db/y.a:Ljava/lang/Object;
+     197: checkcast     #818                // class com/riseworld/dynamics/models/domain/session/TrainingSessionInput
+     200: astore        6
+     202: invokestatic  #300                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     205: aload         6
+     207: astore        8
+     209: goto          273
+     212: aload_0
+     213: aload_2
+     214: invokestatic  #300                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     217: iconst_0
+     218: istore_2
+     219: iconst_0
+     220: istore        5
+     222: invokevirtual #828                // Method getAllGlovePairIds:()Lkotlinx/coroutines/flow/Flow;
+     225: aload_3
+     226: aload_1
+     227: putfield      #824                // Field com/riseworld/dynamics/db/y.a:Ljava/lang/Object;
+     230: aload_3
+     231: iload_2
+     232: putfield      #826                // Field com/riseworld/dynamics/db/y.d:I
+     235: aload_3
+     236: iload         5
+     238: putfield      #825                // Field com/riseworld/dynamics/db/y.e:I
+     241: aload_3
+     242: iconst_1
+     243: putfield      #815                // Field com/riseworld/dynamics/db/y.h:I
+     246: aload_3
+     247: invokestatic  #831                // Method kotlinx/coroutines/flow/FlowKt.first:(Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     250: dup
+     251: astore        6
+     253: aload         4
+     255: if_acmpne     261
+     258: goto          457
+     261: aload         6
+     263: aload_1
+     264: iload_2
+     265: iload         5
+     267: istore_1
+     268: istore        5
+     270: astore        8
+     272: astore_2
+     273: aload_2
+     274: checkcast     #740                // class java/util/List
+     277: dup
+     278: astore        7
+     280: invokeinterface #835,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     285: ifne          499
+     288: aload         7
+     290: invokeinterface #839,  1          // InterfaceMethod java/util/List.size:()I
+     295: iconst_1
+     296: if_icmpgt     489
+     299: aload_0
+     300: aload         7
+     302: invokestatic  #844                // Method kotlin/collections/CollectionsKt.first:(Ljava/util/List;)Ljava/lang/Object;
+     305: checkcast     #846                // class com/riseworld/dynamics/models/domain/glove/GlovePairId
+     308: invokevirtual #847                // Method com/riseworld/dynamics/models/domain/glove/GlovePairId."unbox-impl":()Lkotlin/uuid/Uuid;
+     311: astore        6
+     313: invokevirtual #662                // Method observeActiveTrainingSession:()Lkotlinx/coroutines/flow/Flow;
+     316: aload         7
+     318: aload_3
+     319: aload         8
+     321: putfield      #824                // Field com/riseworld/dynamics/db/y.a:Ljava/lang/Object;
+     324: invokestatic  #474                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     327: aload_3
+     328: swap
+     329: putfield      #823                // Field com/riseworld/dynamics/db/y.b:Ljava/lang/Object;
+     332: aload_3
+     333: aload         6
+     335: putfield      #822                // Field com/riseworld/dynamics/db/y.c:Ljava/lang/Object;
+     338: aload_3
+     339: iload         5
+     341: putfield      #826                // Field com/riseworld/dynamics/db/y.d:I
+     344: aload_3
+     345: iload_1
+     346: putfield      #825                // Field com/riseworld/dynamics/db/y.e:I
+     349: aload_3
+     350: iconst_2
+     351: putfield      #815                // Field com/riseworld/dynamics/db/y.h:I
+     354: aload_3
+     355: invokestatic  #685                // Method kotlinx/coroutines/flow/FlowKt.firstOrNull:(Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     358: dup
+     359: astore_2
+     360: aload         4
+     362: if_acmpne     368
+     365: goto          457
+     368: aload_2
+     369: ifnonnull     479
+     372: aload         8
+     374: invokevirtual #851                // Method com/riseworld/dynamics/models/domain/session/TrainingSessionInput.getState:()Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;
+     377: invokestatic  #857                // Method com/riseworld/dynamics/models/domain/session/TrainingSessionStateKt.isInitializing:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;)Z
+     380: ifeq          462
+     383: aload_0
+     384: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+     387: aload         6
+     389: aload         7
+     391: aload         8
+     393: aload_0
+     394: aload         8
+     396: aload         6
+     398: invokedynamic #864,  0            // InvokeDynamic #27:invoke:(Lcom/riseworld/dynamics/db/Database;Lcom/riseworld/dynamics/models/domain/session/TrainingSessionInput;Lkotlin/uuid/Uuid;)Lkotlin/jvm/functions/Function0;
+     403: astore_0
+     404: invokestatic  #474                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     407: aload_3
+     408: swap
+     409: putfield      #824                // Field com/riseworld/dynamics/db/y.a:Ljava/lang/Object;
+     412: invokestatic  #474                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     415: aload_3
+     416: swap
+     417: putfield      #823                // Field com/riseworld/dynamics/db/y.b:Ljava/lang/Object;
+     420: invokestatic  #474                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     423: astore_2
+     424: aload_0
+     425: aload_3
+     426: aload_2
+     427: putfield      #822                // Field com/riseworld/dynamics/db/y.c:Ljava/lang/Object;
+     430: aload_3
+     431: iload         5
+     433: putfield      #826                // Field com/riseworld/dynamics/db/y.d:I
+     436: aload_3
+     437: iload_1
+     438: putfield      #825                // Field com/riseworld/dynamics/db/y.e:I
+     441: aload_3
+     442: iconst_3
+     443: putfield      #815                // Field com/riseworld/dynamics/db/y.h:I
+     446: aload_3
+     447: invokestatic  #248                // Method com/riseworld/dynamics/db/m0.a:(Lapp/cash/sqldelight/Transacter;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     450: dup
+     451: astore_0
+     452: aload         4
+     454: if_acmpne     460
+     457: aload         4
+     459: areturn
+     460: aload_0
+     461: areturn
+     462: aload         8
+     464: invokevirtual #851                // Method com/riseworld/dynamics/models/domain/session/TrainingSessionInput.getState:()Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;
+     467: invokedynamic #869,  0            // InvokeDynamic #28:makeConcatWithConstants:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;)Ljava/lang/String;
+     472: aconst_null
+     473: iconst_2
+     474: aconst_null
+     475: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     478: athrow
+     479: ldc_w         #874                // String Unable to insert a new session as there is an ongoing session already!
+     482: aconst_null
+     483: iconst_2
+     484: aconst_null
+     485: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     488: athrow
+     489: ldc_w         #876                // String Insert of session failed, multiple glove pairs available!
+     492: aconst_null
+     493: iconst_2
+     494: aconst_null
+     495: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     498: athrow
+     499: ldc_w         #878                // String Insert of session failed, because no glove pair is available!
+     502: aconst_null
+     503: iconst_2
+     504: aconst_null
+     505: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     508: athrow
+     509: invokestatic  #503                // Method com/riseworld/launchpad/resource/ResourceKt.asFailureOrThrowOnCancellation:(Ljava/lang/Exception;)Lcom/riseworld/launchpad/resource/Resource;
+     512: areturn
+    Exception table:
+       from    to  target type
+         129   133   133   Class java/lang/Exception
+         175   181   133   Class java/lang/Exception
+         202   205   133   Class java/lang/Exception
+         222   250   133   Class java/lang/Exception
+         273   277   133   Class java/lang/Exception
+         280   285   133   Class java/lang/Exception
+         288   295   133   Class java/lang/Exception
+         299   311   133   Class java/lang/Exception
+         313   358   133   Class java/lang/Exception
+         372   380   133   Class java/lang/Exception
+         383   403   133   Class java/lang/Exception
+         404   423   133   Class java/lang/Exception
+         424   450   133   Class java/lang/Exception
+         462   509   133   Class java/lang/Exception

@@ -47,6 +47,7 @@ public static class GameRegressionChecks
         PlayerSettings.allowedAutorotateToPortraitUpsideDown = false;
         EditorUserBuildSettings.buildAppBundle = false;
         AssetDatabase.SaveAssets();
+        Debug.Log("BOXREHA_ANDROID_PREPARATION_COMPLETED");
     }
 
     private static AndroidSdkVersions RequiredAndroidMinimum()

@@ -1,3 +1,5 @@
+> Update 2026-09-14: the explicit SDK COMPATIBILITY mode now passes full native compilation/tests and a real Unity 6000.6.0f1 APK build. Hardware remains untested. Current authority: root ANDROID_STATUS.md and SDK_COMPATIBILITY_REPORT.md. Older blocked-build statements below are historical.
+
 # C# syntax gate
 
 Run from the game root: `dotnet run --project tests/syntax/SyntaxChecks.csproj -- .`

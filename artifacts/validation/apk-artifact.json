@@ -1,0 +1,10 @@
+{
+  "path": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Builds\\AndroidCandidate\\DigitalDojo.apk",
+  "hardware": "NOT TESTED - adb reports no devices",
+  "sha256": "4bb20600a7e17d41fbc3ef4dbdb9be32d348b82d1556f6b421ebfea3d5bff8d5",
+  "sdkMode": "COMPATIBILITY",
+  "bytes": 34182352,
+  "signatureExit": 0,
+  "alignmentExit": 0,
+  "unity": "6000.6.0f1"
+}

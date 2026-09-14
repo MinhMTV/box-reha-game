@@ -1,0 +1,11 @@
+vendor-compat\dynamics-0.25.6\JavaMangledProbe.java:3: error: cannot find symbol
+public class JavaMangledProbe { BodyProfile make(Uuid id) { return new BodyProfile(id,"test",70,170,Gender.MALE,null); } Uuid id(BodyProfile p) { return p.getId-vSVUwiQ(); } }
+                                                                                                                                                          ^
+  symbol:   variable getId
+  location: variable p of type BodyProfile
+vendor-compat\dynamics-0.25.6\JavaMangledProbe.java:3: error: cannot find symbol
+public class JavaMangledProbe { BodyProfile make(Uuid id) { return new BodyProfile(id,"test",70,170,Gender.MALE,null); } Uuid id(BodyProfile p) { return p.getId-vSVUwiQ(); } }
+                                                                                                                                                                 ^
+  symbol:   method vSVUwiQ()
+  location: class JavaMangledProbe
+2 errors

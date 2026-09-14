@@ -14,7 +14,7 @@ public static class DigitalDojoCapture
     const string Key = "DigitalDojoCapture.Active";
     static double next;
     static int step;
-    static readonly string[] Pages = { "ShowHome", "StartLevelMode", "ShowCalibration", "ShowStatistics", "ShowPlayerProfile", "ShowSettings", "ShowSensorSetup" };
+    static readonly string[] Pages = { "ShowHome", "StartLevelMode", "ShowCalibration", "ShowMeasuredCalibration", "ShowStatistics", "ShowPlayerProfile", "ShowSettings", "ShowSensorSetup" };
     static DigitalDojoCapture()
     {
         if (SessionState.GetBool(Key, false)) EditorApplication.update += Tick;

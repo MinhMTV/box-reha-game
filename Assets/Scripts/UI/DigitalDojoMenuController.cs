@@ -16,6 +16,7 @@ public class DigitalDojoMenuController : MonoBehaviour
     private int nearbyIndex;
     private string sdkGender;
     private int preparationStep;
+    private Text calibrationProgress;
     private readonly Dictionary<string, UnityEngine.UI.Button> navigation = new Dictionary<string, UnityEngine.UI.Button>();
     public static bool OpenSensorSessionOnStart;
     private readonly Color ink = DojoUiStyle.Ink;
@@ -39,6 +40,11 @@ public class DigitalDojoMenuController : MonoBehaviour
         }
         if (identity != null) identity.text = GameManager.EnsureInstance().PlayerProfile.Name;
         RefreshSensorStatus();
+        if (calibrationProgress != null)
+        {
+            var measured = MeasuredCalibration.Current;
+            calibrationProgress.text = AndroidDynamicsController.EnsureInstance().Notice + "\n" + measured.State + "\nMeasured repetitions: " + measured.SampleCount + "/5";
+        }
     }
     public void BuildInterface()
     {
@@ -80,6 +86,11 @@ public class DigitalDojoMenuController : MonoBehaviour
     }
     private void Page(string title, string eyebrow)
     {
+        if (calibrationProgress != null && title != "Collect a measured reference")
+        {
+            AndroidDynamicsController.EnsureInstance().FinishSession();
+            if (MeasuredCalibration.Current.Collecting) MeasuredCalibration.Current.Cancel("Reference page closed");
+        }
         string selected = eyebrow.StartsWith("Android", StringComparison.OrdinalIgnoreCase) ? "Sensor setup"
             : title == "Your space. Your rhythm." ? "Home"
             : eyebrow.IndexOf("preparation", StringComparison.OrdinalIgnoreCase) >= 0 ? "Calibration"
@@ -90,6 +101,7 @@ public class DigitalDojoMenuController : MonoBehaviour
         content.GetComponent<UnityEngine.UI.Image>().color = ink;
         sensorNotice = sensorDevices = nearbyLabel = null;
         sensorStartButton = null;
+        calibrationProgress = null;
         foreach (Transform child in content) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
         Label(content, "Eyebrow", eyebrow.ToUpperInvariant(), 15, new Vector2(40f, -26f), new Vector2(910f, 28f), muted);
         Label(content, "Title", title, 42, new Vector2(40f, -68f), new Vector2(920f, 64f), Color.white);
@@ -145,9 +157,37 @@ public class DigitalDojoMenuController : MonoBehaviour
         }
         else if(preparationStep==5) Body("Guide","No heart-rate provider is connected.\nThis optional step is skipped. Training uses its selected difficulty.\nHeart rate is separate from punch and kick measurements.",230,220,25);
         else Body("Guide","Preparation reviewed. No measured baseline was created.\n\nConnect sensors to prepare a training session. ALPHA impact and\nDELTA power index retain their own meanings. Neither is presented\nas a calibrated force measurement.",220,270,25);
+        if (preparationStep == 6) Button(content,"Collect measured reference",new Vector2(40,-520),500,ShowMeasuredCalibration,true);
         if(preparationStep>0) Button(content,"Back",new Vector2(40,-610),230,()=>{preparationStep--;ShowPreparationStep();});
         Button(content,"Retry step",new Vector2(295,-610),250,ShowPreparationStep);
         Button(content,preparationStep<6?"Next step":"Sensor setup",new Vector2(575,-610),380,()=>{if(preparationStep<6){preparationStep++;ShowPreparationStep();}else ShowSensorSetup();},true);
+    }
+    public void ShowMeasuredCalibration()
+    {
+        Page("Collect a measured reference", "Calibration preparation / measured samples");
+        Body("ReferenceGuide", "Connect one sensor family in Sensor setup and enter the SDK body profile.\nStart the reference session, then select one physical side. Collect five\ncomfortable repetitions. Each side and device is saved separately.\nThis reference remains unqualified and does not alter gameplay damage.",175,150,22);
+        var native = AndroidDynamicsController.EnsureInstance();
+        Button(content,"Start reference session",new Vector2(40,-340),460,native.RequestCalibrationSession,true);
+        Button(content,"End SDK session",new Vector2(530,-340),420,native.FinishSession);
+        Button(content,"Collect left",new Vector2(40,-430),290,()=>BeginReference("Left"));
+        Button(content,"Collect right",new Vector2(350,-430),290,()=>BeginReference("Right"));
+        Button(content,"Save reference",new Vector2(660,-430),290,()=> {
+            try { MeasuredCalibration.Current.Save(System.IO.Path.Combine(Application.persistentDataPath,"calibration"),GameManager.EnsureInstance().PlayerProfile.StudyId); }
+            catch (Exception e) { Debug.LogWarning("Reference save failed: " + e.GetType().Name); }
+        });
+        calibrationProgress = Label(content,"ReferenceStatus","",21,new Vector2(40,-525),new Vector2(950,115),Color.white);
+        Button(content,"Sensor setup",new Vector2(40,-665),440,()=>{ native.FinishSession(); ShowSensorSetup(); });
+        Button(content,"Cancel reference",new Vector2(510,-665),440,()=>{ MeasuredCalibration.Current.Cancel("Cancelled by user"); native.FinishSession(); });
+    }
+    private void BeginReference(string side)
+    {
+        var native = AndroidDynamicsController.EnsureInstance();
+        if (!native.CalibrationRunning) { MeasuredCalibration.Current.Cancel("Start and await the SDK reference session first"); return; }
+        AndroidNativeDevice device = Array.Find(native.Status.devices ?? Array.Empty<AndroidNativeDevice>(),
+            d=>d!=null && d.online && !d.isMock && d.side==side && d.family==SessionInputSelection.Family);
+        if (device == null) { MeasuredCalibration.Current.Cancel("No ready physical sensor on this side"); return; }
+        MeasuredCalibration.Current.Begin(GameManager.EnsureInstance().PlayerProfile.StudyId,device.id,device.connectionId,
+            device.family,side,native.Status.sdkBuildMode,Time.realtimeSinceStartupAsDouble);
     }
     public void ShowStatistics()
     {
@@ -319,6 +359,7 @@ public class DigitalDojoMenuController : MonoBehaviour
             ? SessionInputSelection.Family + " / Level " + GameManager.EnsureInstance().SelectedLevel + "\n" +
                 (controller.Pending ? controller.Notice : ready ? "SDK prerequisites reported ready. Tap Start to request a session." : reason)
             : controller.Notice;
+        if (sensorNotice != null && controller.Status?.sdkBuildMode == "COMPATIBILITY") sensorNotice.text += "\nLocal SDK compatibility build / hardware unqualified";
         if (sensorStartButton != null) sensorStartButton.interactable = ready && !controller.Pending;
         if (sensorDevices != null)
         {

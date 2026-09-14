@@ -1,0 +1,13 @@
+  public final java.lang.Object insertOrUpdatePeripheral(com.riseworld.dynamics.models.PeripheralDto, com.riseworld.dynamics.models.Side, java.lang.String, kotlin.coroutines.Continuation);
+    Code:
+       0: aload_0
+       1: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+       4: invokeinterface #224,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getPeripheralQueries:()Lcom/riseworld/dynamics/db/r1;
+       9: aload_1
+      10: aload_0
+      11: aload_2
+      12: aload_3
+      13: invokedynamic #243,  0            // InvokeDynamic #0:invoke:(Lcom/riseworld/dynamics/models/PeripheralDto;Lcom/riseworld/dynamics/db/Database;Lcom/riseworld/dynamics/models/Side;Ljava/lang/String;)Lkotlin/jvm/functions/Function0;
+      18: aload         4
+      20: invokestatic  #248                // Method com/riseworld/dynamics/db/m0.a:(Lapp/cash/sqldelight/Transacter;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+      23: areturn

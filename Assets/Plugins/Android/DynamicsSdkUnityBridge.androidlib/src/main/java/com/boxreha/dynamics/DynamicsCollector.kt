@@ -85,7 +85,8 @@ internal object DynamicsCollector {
                     emissionEnabled = false
                     policy.disarm()
                     status("error", e.code, e.message ?: e.code)
-                } catch (e: Exception) {
+                } catch (e: Throwable) {
+                    if (e !is Exception && e !is LinkageError) throw e
                     emissionEnabled = false
                     policy.disarm()
                     status("error", code + "_failed", "SDK-Aufruf fehlgeschlagen: " + e.javaClass.simpleName)
@@ -105,6 +106,7 @@ internal object DynamicsCollector {
                 it.setAcceptAllPunches(false)
                 it.setKeepAllPunchDetails(true)
                 it.setBackgroundDisconnectTimeoutInSeconds(1)
+                Sdk0256Compat.verifyAbi()
                 initSdk(dynamicsSettings = it)
             }
             activity.application.registerActivityLifecycleCallbacks(lifecycle)
@@ -192,7 +194,7 @@ internal object DynamicsCollector {
         if (trainingSessionRepository.activeTrainingSessionTime.first() != null) fail("finish_before_unpair", "SDK-Sitzung vor dem Entfernen beenden.")
         val glove = gloves.firstOrNull { alias(it) == deviceId } ?: fail("device_not_found", "Gerät nicht gefunden.")
         retire(glove)
-        if (gloveRepository.deleteGloveById(glove.dto.id).getOrNull() == null) fail("unpair_failed", "Gerät konnte nicht entfernt werden.")
+        if (gloveRepository.deleteGloveById(Sdk0256Compat.peripheralId(glove.dto)).getOrNull() == null) fail("unpair_failed", "Gerät konnte nicht entfernt werden.")
         status("ready", "unpaired", "Gerät entfernt und SDK-Bluetooth-Verbindung beendet.")
     }
 
@@ -200,19 +202,18 @@ internal object DynamicsCollector {
         if (trainingSessionRepository.activeTrainingSessionTime.first() != null) fail("finish_before_profile_change", "SDK-Sitzung vor Profiländerungen beenden.")
         profileReady = false
         profileReference = ""
-        if (studyId != participant || participant.length !in BodyProfileValidation.nameNumberOfCharactersRange)
+        if (studyId != participant || !Sdk0256Compat.validName(participant))
             fail("participant_mismatch", "Aktuelles pseudonymes Studienprofil fehlt oder stimmt nicht überein.")
-        if (!weightKg.isFinite() || weightKg !in BodyProfileValidation.weightRange ||
-            !heightCm.isFinite() || heightCm !in BodyProfileValidation.heightRange)
+        if (!weightKg.isFinite() || !heightCm.isFinite() || !Sdk0256Compat.validBody(weightKg, heightCm))
             fail("invalid_body_profile", "SDK-Bereiche: Gewicht 20–250 kg, Körpergröße 50–250 cm.")
         val parsedGender = when (gender) { "MALE" -> Gender.MALE; "FEMALE" -> Gender.FEMALE
             else -> fail("invalid_gender", "SDK 0.25.6 unterstützt MALE oder FEMALE. Keine automatische Zuordnung.") }
-        val previous = profileRepository.getBodyProfile().getOrNull()
-        val id = previous?.takeIf { it.name == participant }?.id ?: BodyProfileId(Uuid.random())
-        val body = BodyProfile(id, participant, Kilogram(weightKg), Centimeter(heightCm), parsedGender)
+        val previous = profileRepository.getBodyProfile().getOrNull() as? BodyProfile
+        val id = previous?.takeIf { it.name == participant }?.let { Sdk0256Compat.profileId(it) } ?: Uuid.random()
+        val body = Sdk0256Compat.body(id, participant, weightKg, heightCm, parsedGender)
         if (profileRepository.insertOrUpdateBodyProfile(body).getOrNull() == null) fail("body_profile_rejected", "SDK hat das Körperprofil abgelehnt.")
         profileReady = true
-        profileReference = id.value.toString()
+        profileReference = id.toString()
         status("ready", "profile_ready", "SDK-Körperprofil lokal gespeichert. Keine Kraftnormalisierung im Spiel.")
     }
 
@@ -225,7 +226,7 @@ internal object DynamicsCollector {
         stopScanning()
         sessionState = "starting"
         status("ready", "session_starting", "SDK-Sitzung wird vorbereitet.")
-        if (trainingSessionRepository.initializeActiveTrainingSession(false, TrainingSessionSettings.Free(false)).getOrNull() == null)
+        if (trainingSessionRepository.initializeActiveTrainingSession(false, Sdk0256Compat.freeSession()).getOrNull() == null)
             fail("session_initialize_failed", "SDK-Sitzung konnte nicht initialisiert werden.")
         ownedSession = true
         policy.resetForNewSession()
@@ -252,12 +253,12 @@ internal object DynamicsCollector {
         val active = trainingSessionRepository.activeTrainingSessionTime.first() ?: fail("no_session", "Keine aktive SDK-Sitzung.")
         // Never replay the SDK's rolling snapshot after a pause/reconnection/start.
         emissionEnabled = false
-        if (active.state !is TrainingSessionExtendedState.Resumed) {
-            if (active.state !is TrainingSessionExtendedState.Paused && active.state !is TrainingSessionExtendedState.Ready)
+        if (Sdk0256Compat.sessionState(active.state) != "Resumed") {
+            if (Sdk0256Compat.sessionState(active.state) != "Paused" && Sdk0256Compat.sessionState(active.state) != "Ready")
                 fail("session_not_ready", "SDK-Sitzung ist noch nicht bereit.")
             if (trainingSessionRepository.toggleActiveTrainingSessionState().getOrNull() == null) fail("resume_failed", "SDK-Sitzung konnte nicht fortgesetzt werden.")
         }
-        val confirmed = withTimeout(5000) { trainingSessionRepository.activeTrainingSessionTime.first { it?.state is TrainingSessionExtendedState.Resumed } }
+        val confirmed = withTimeout(5000) { trainingSessionRepository.activeTrainingSessionTime.first { Sdk0256Compat.sessionState(it?.state) == "Resumed" } }
         if (confirmed == null) fail("resume_unconfirmed", "SDK hat den Sitzungsstart nicht bestätigt.")
         requireForeground()
         validateSessionPrerequisites(sessionFamily)
@@ -272,7 +273,7 @@ internal object DynamicsCollector {
         emissionEnabled = false
         policy.disarm()
         val active = trainingSessionRepository.activeTrainingSessionTime.first()
-        if (active?.state is TrainingSessionExtendedState.Resumed) {
+        if (Sdk0256Compat.sessionState(active?.state) == "Resumed") {
             if (trainingSessionRepository.toggleActiveTrainingSessionState().getOrNull() == null) fail("pause_failed", "SDK-Pause fehlgeschlagen; Spieleingaben bleiben gesperrt.")
         }
         sessionState = if (active == null) "idle" else "paused"
@@ -291,14 +292,14 @@ internal object DynamicsCollector {
     }
 
     private suspend fun validateSessionPrerequisites(family: String) {
-        if (!profileReady || participant.isBlank() || profileRepository.getBodyProfile().getOrNull()?.name != participant)
+        if (!profileReady || participant.isBlank() || (profileRepository.getBodyProfile().getOrNull() as? BodyProfile)?.name != participant)
             fail("profile_required", "SDK-Körperprofil für das aktuelle Studienprofil bestätigen.")
         if (missingPermissions().isNotEmpty()) fail("permissions_required", "Bluetooth-Berechtigungen fehlen.")
         if (mockSettings || settings!!.isDummyImpactDataEnabled().first() || settings!!.isBatteryMockEnabled().first() || settings!!.acceptAllPunches().first())
             fail("mock_settings_rejected", "Dummy-, Mock- oder gelockerte SDK-Messoptionen sind nicht für physische Messungen freigegeben.")
         val current = gloveRepository.observeGloves().first()
         if (current.any { it.dto.isMock }) fail("mock_device_rejected", "SDK-Mock-Geräte sind nicht als physische Sensoren zugelassen.")
-        val error = CollectorPolicy.familyError(current.map(::familyOf), current.map { sideOf(it.dto.side) }, current.map { it.bleGloveState is BleGloveState.Online }, family)
+        val error = CollectorPolicy.familyError(current.map(::familyOf), current.map { sideOf(it.dto.side) }, current.map { Sdk0256Compat.online(it.bleGloveState) }, family)
         if (error != null) fail(error, "Geräte müssen online, eindeutig zugeordnet und vom gewählten selben Sensortyp sein. Maximal zwei Geräte; kein stiller Familienwechsel.")
         gloves = current
     }
@@ -308,10 +309,10 @@ internal object DynamicsCollector {
         observing = true
         observers += watch("devices") {
             gloveRepository.observeGloves().collect { current ->
-                gloves.filter { old -> current.none { it.dto.id == old.dto.id } }.forEach(::retire)
+                gloves.filter { old -> current.none { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(old.dto) } }.forEach(::retire)
                 gloves = current
                 reconcileConnections()
-                if (emissionEnabled && (current.isEmpty() || current.any { it.bleGloveState !is BleGloveState.Online || familyOf(it) != sessionFamily || it.dto.isMock })) {
+                if (emissionEnabled && (current.isEmpty() || current.any { !Sdk0256Compat.online(it.bleGloveState) || familyOf(it) != sessionFamily || it.dto.isMock })) {
                     emissionEnabled = false
                     deviceRecoveryPending = true
                     command("device_loss") { pauseInternal(); status("error", "device_changed", "Geräteverbindung oder Sensorfamilie geändert. Sitzung pausiert; explizit fortsetzen.") }
@@ -320,9 +321,8 @@ internal object DynamicsCollector {
         }
         observers += watch("scanner_state") {
             pairingRepository.scannerState.collect { scanner ->
-                if (scanner is ScannerState.Error) {
-                    val error = scanner.scannerError
-                    val code = if (error is ScannerError.MissingScanningRequirements) "scanning_requirements_missing" else "scanner_error"
+                if (Sdk0256Compat.scannerError(scanner)) {
+                    val code = if (Sdk0256Compat.missingScanningRequirements(scanner)) "scanning_requirements_missing" else "scanner_error"
                     status("error", code, "Bluetooth, Berechtigungen und gegebenenfalls Android-Standortdienst prüfen.")
                 }
             }
@@ -331,17 +331,17 @@ internal object DynamicsCollector {
             trainingSessionRepository.activeTrainingSessionTime.collect { active ->
                 // Command handlers await their own authoritative SDK state before acknowledging running.
                 if (commands.isLocked) return@collect
-                when (active?.state) {
-                    is TrainingSessionExtendedState.Resumed -> if (!emissionEnabled) sessionState = "paused"
-                    is TrainingSessionExtendedState.Ready, is TrainingSessionExtendedState.Paused -> { emissionEnabled = false; sessionState = "paused" }
-                    is TrainingSessionExtendedState.Initializing -> { emissionEnabled = false; sessionState = "starting" }
+                when (Sdk0256Compat.sessionState(active?.state)) {
+                    "Resumed" -> if (!emissionEnabled) sessionState = "paused"
+                    "Ready", "Paused" -> { emissionEnabled = false; sessionState = "paused" }
+                    "Initializing" -> { emissionEnabled = false; sessionState = "starting" }
                     else -> { emissionEnabled = false; if (sessionState != "finished") sessionState = "idle" }
                 }
                 status(state, if (active != null && !ownedSession) "existing_session" else "session_state", if (active != null && !ownedSession) "Vorhandene SDK-Sitzung zuerst ausdrücklich beenden." else "SDK-Sitzungsstatus aktualisiert.")
             }
         }
         observers += watch("punches") {
-            trainingSessionRepository.activeTrainingSessionStats.collect { snapshot -> snapshot.punches.forEach(::forwardPunch) }
+            trainingSessionRepository.activeTrainingSessionStats.collect { snapshot -> snapshot.punches.forEach { value -> forwardPunch(value as? Punch ?: error("SDK punch list contains unsupported value")) } }
         }
         observers += watch("physical_settings") {
             combine(settings!!.isDummyImpactDataEnabled(), settings!!.isBatteryMockEnabled(), settings!!.acceptAllPunches()) { dummy, battery, accept -> dummy || battery || accept }.collect { invalid ->
@@ -362,7 +362,7 @@ internal object DynamicsCollector {
                 reconcileConnections(heartbeat = true)
                 if (deviceRecoveryPending && !commands.isLocked && ownedSession && profileReady && !mockSettings && sessionState == "paused"
                     && gloves.none { it.dto.isMock }
-                    && CollectorPolicy.familyError(gloves.map(::familyOf), gloves.map { sideOf(it.dto.side) }, gloves.map { it.bleGloveState is BleGloveState.Online }, sessionFamily) == null) {
+                    && CollectorPolicy.familyError(gloves.map(::familyOf), gloves.map { sideOf(it.dto.side) }, gloves.map { Sdk0256Compat.online(it.bleGloveState) }, sessionFamily) == null) {
                     deviceRecoveryPending = false
                     status("ready", "devices_restored", "Geräte wieder bereit. SDK-Sitzung ausdrücklich fortsetzen.")
                 }
@@ -374,7 +374,8 @@ internal object DynamicsCollector {
     }
 
     private fun watch(code: String, block: suspend CoroutineScope.() -> Unit): Job = scope.launch(start = CoroutineStart.LAZY) {
-        try { block() } catch (e: CancellationException) { throw e } catch (e: Exception) {
+        try { block() } catch (e: CancellationException) { throw e } catch (e: Throwable) {
+                    if (e !is Exception && e !is LinkageError) throw e
             emissionEnabled = false
             policy.disarm()
             // An explicit initialize() can now restart all observers without duplicate subscriptions.
@@ -386,7 +387,7 @@ internal object DynamicsCollector {
     }
 
     private fun forwardPunch(punch: Punch) {
-        val eventId = punch.id.value.toString()
+        val eventId = Sdk0256Compat.punchId(punch)
         if (!policy.consume(eventId)) {
             if (policy.isSaturated && emissionEnabled) {
                 emissionEnabled = false
@@ -395,12 +396,12 @@ internal object DynamicsCollector {
             return
         }
         if (!emissionEnabled || !foreground || !ownedSession) return
-        val glove = gloves.firstOrNull { it.dto.id == punch.peripheralId } ?: return
+        val glove = gloves.firstOrNull { Sdk0256Compat.belongsTo(punch, it.dto) } ?: return
         val device = alias(glove)
         val epoch = epochs[device] ?: return
         if (glove.dto.isMock || mockSettings || epoch.provenance != "dynamics_sdk" || !punch.areComputedValuesValid) return
         val powerValue = punch.power
-        val family = when (powerValue) { is Power.Alpha -> "Alpha"; is Power.Delta -> "Delta" }
+        val family = Sdk0256Compat.family(powerValue)
         if (family != epoch.family || family != sessionFamily || sideOf(punch.side) != epoch.side) {
             emissionEnabled = false
             command("punch_identity") { pauseInternal(); status("error", "punch_identity_mismatch", "SDK-Ereignis passt nicht zur Gerätezuordnung oder Sitzungsfamilie.") }
@@ -418,10 +419,10 @@ internal object DynamicsCollector {
             return
         }
         val speed = punch.speed
-        val primary = when (val power = punch.power) { is Power.Alpha -> power.impact; is Power.Delta -> power.powerIndex }
+        val primary = Sdk0256Compat.primary(punch.power)
         val numeric = listOf(primary, speed.peakAcceleration, speed.peakVelocity, speed.displacement,
-            speed.punchDuration.toDouble(DurationUnit.SECONDS), speed.contactDuration.toDouble(DurationUnit.SECONDS))
-        if (numeric.any { !it.isFinite() || it < 0 } || primary <= 0 || (powerValue is Power.Alpha && (!powerValue.peakForceBasedOnBaro.isFinite() || powerValue.peakForceBasedOnBaro < 0))) return
+            Sdk0256Compat.punchSeconds(speed), Sdk0256Compat.contactSeconds(speed))
+        if (numeric.any { !it.isFinite() || it < 0 } || primary <= 0 || (family == "Alpha" && (!Sdk0256Compat.baro(powerValue).isFinite() || Sdk0256Compat.baro(powerValue) < 0))) return
         val sequence = (sequences[device] ?: 0) + 1
         sequences[device] = sequence
         val json = identity(device, epoch).put("emittedAndroidMonotonicSeconds", emittedAt).put("eventId", eventId).put("sequence", sequence)
@@ -429,9 +430,9 @@ internal object DynamicsCollector {
             .put("timestamp", timestamp).put("timestampClock", "unix_seconds").put("hasTiming", true).put("sourceAgeSeconds", sourceAge)
             .put("unit", "unknown").put("peakAcceleration", speed.peakAcceleration).put("peakVelocity", speed.peakVelocity)
             .put("displacement", speed.displacement).put("punchDurationSeconds", numeric[4]).put("contactDurationSeconds", numeric[5])
-        when (val power = punch.power) {
-            is Power.Alpha -> json.put("quantity", "alpha.impact").put("impact", power.impact).put("peakForceBasedOnBaro", power.peakForceBasedOnBaro)
-            is Power.Delta -> json.put("quantity", "delta.power_index").put("powerIndex", power.powerIndex)
+        when (family) {
+            "Alpha" -> json.put("quantity", "alpha.impact").put("impact", primary).put("peakForceBasedOnBaro", Sdk0256Compat.baro(powerValue))
+            "Delta" -> json.put("quantity", "delta.power_index").put("powerIndex", primary)
         }
         DynamicsUnityBridge.sendPunch(json.toString())
     }
@@ -443,7 +444,7 @@ internal object DynamicsCollector {
             val side = sideOf(glove.dto.side)
             val provenance = if (glove.dto.isMock) "sdk_mock" else "dynamics_sdk"
             val old = epochs[device]
-            val online = foreground && glove.bleGloveState is BleGloveState.Online && family != "Unknown"
+            val online = foreground && Sdk0256Compat.online(glove.bleGloveState) && family != "Unknown"
             if (!online) { retire(glove); return@forEach }
             if (old == null || old.family != family || old.side != side || old.provenance != provenance) {
                 if (old != null) DynamicsUnityBridge.sendDeviceState(identity(device, old).put("status", "offline").toString())
@@ -462,7 +463,7 @@ internal object DynamicsCollector {
         .put("connectionId", epoch.id).put("sensorType", epoch.family).put("bodySide", epoch.side).put("provenance", epoch.provenance)
     private fun alias(glove: Glove): String {
         val prefs = activity.getSharedPreferences("dynamics_device_aliases", Context.MODE_PRIVATE)
-        val key = glove.dto.id.value.toString()
+        val key = Sdk0256Compat.deviceUuid(glove.dto).toString()
         return prefs.getString(key, null) ?: ("sensor_" + UUID.randomUUID().toString()).also { prefs.edit().putString(key, it).apply() }
     }
     private fun familyOf(glove: Glove): String = when (glove.data?.sensorType) { TrainingSessionSensorType.ALPHA -> "Alpha"; TrainingSessionSensorType.DELTA -> "Delta"; else -> "Unknown" }
@@ -480,7 +481,7 @@ internal object DynamicsCollector {
         val devicesJson = JSONArray()
         gloves.forEach { glove -> val device = alias(glove); devicesJson.put(JSONObject().put("id", device)
             .put("name", glove.dto.name).put("side", sideOf(glove.dto.side)).put("family", familyOf(glove))
-            .put("online", foreground && glove.bleGloveState is BleGloveState.Online).put("connectionId", epochs[device]?.id ?: "")
+            .put("online", foreground && Sdk0256Compat.online(glove.bleGloveState)).put("connectionId", epochs[device]?.id ?: "")
             .put("isMock", glove.dto.isMock).put("firmwareVersion", glove.dto.firmwareVersion)) }
         val nearbyJson = JSONArray()
         nearby.forEach { (id, glove) -> nearbyJson.put(JSONObject().put("id", id).put("name", glove.advertisingName ?: "Dynamics-Gerät").put("family", "Unknown")) }
@@ -488,7 +489,7 @@ internal object DynamicsCollector {
             .put("emittedAndroidMonotonicSeconds", monotonicSeconds())
             .put("statusSequence", ++statusSequence).put("controlRequestId", controlRequestId)
             .put("initialized", initialized && observing).put("permissionsGranted", missingPermissions().isEmpty())
-            .put("sdkVersion", "0.25.6").put("profileReference", if (profileReady) profileReference else "")
+            .put("sdkVersion", "0.25.6").put("sdkBuildMode", BuildConfig.SDK_BUILD_MODE).put("profileReference", if (profileReady) profileReference else "")
             .put("profileStudyId", participant).put("sessionFamily", sessionFamily)
             .put("devices", devicesJson).put("nearby", nearbyJson).put("profileReady", profileReady).put("sessionState", sessionState).toString())
     }

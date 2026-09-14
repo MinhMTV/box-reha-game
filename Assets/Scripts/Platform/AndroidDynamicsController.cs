@@ -7,7 +7,9 @@ public class AndroidDynamicsController : MonoBehaviour
     public static AndroidDynamicsController Instance { get; private set; }
     public AndroidNativeStatus Status { get; private set; }
     public string Notice { get; private set; } = "Android SDK not initialized.";
-    public bool Pending => pendingStart || pendingResume;
+    public bool Pending => pendingStart || pendingResume || pendingCalibration;
+    private bool pendingCalibration, calibrationActive;
+    public bool CalibrationRunning => calibrationActive && Running;
     public static bool Supported
     {
         get {
@@ -37,16 +39,22 @@ public class AndroidDynamicsController : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         DynamicsSdkBridge.EnsureInstance();
+        DynamicsSdkBridge.CalibrationRunning = () => CalibrationRunning;
         DynamicsSdkBridge.NativeStatusReceived += ReceiveStatus;
         if (Supported) Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
     void OnDestroy()
     {
         DynamicsSdkBridge.NativeStatusReceived -= ReceiveStatus;
-        if (Instance == this) Instance = null;
+        if (Instance == this) { Instance = null; DynamicsSdkBridge.CalibrationRunning = null; }
     }
     void Update()
     {
+        if (calibrationActive && !Running)
+        {
+            calibrationActive = false;
+            MeasuredCalibration.Current.Cancel("Sensor session interrupted; repeat readiness check");
+        }
         if (SessionInputSelection.Physical && GameManager.Instance != null &&
             GameManager.Instance.CurrentState == GameState.Playing && !Running)
         {
@@ -120,6 +128,18 @@ public class AndroidDynamicsController : MonoBehaviour
         Notice = "Waiting for SDK session start…";
         if (!Call("startSession", SessionInputSelection.Family, pendingRequestId)) pendingStart = false;
     }
+    public void RequestCalibrationSession()
+    {
+        if (!SessionInputSelection.Physical) { Notice = "Select Android sensors in Sensor setup first."; return; }
+        if (Pending) return;
+        if (GameManager.Instance != null && (GameManager.Instance.CurrentState == GameState.Playing || GameManager.Instance.CurrentState == GameState.Paused))
+        { Notice = "Finish gameplay before collecting a reference."; return; }
+        if (!Ready(out string reason)) { Notice = reason; return; }
+        pendingCalibration = true; commandStarted = Time.unscaledTime;
+        pendingRequestId = Guid.NewGuid().ToString("N");
+        sessionTopology = AndroidSessionPolicy.Topology(Status); requestedFamily = SessionInputSelection.Family;
+        if (!Call("startSession", requestedFamily, pendingRequestId)) pendingCalibration = false;
+    }
     public void PauseSession() { pendingResume = false; if (Supported && SessionInputSelection.Physical) Call("pauseSession"); }
     public void RequestResume()
     {
@@ -131,6 +151,8 @@ public class AndroidDynamicsController : MonoBehaviour
     }
     public void FinishSession()
     {
+        pendingCalibration = calibrationActive = false;
+        if (MeasuredCalibration.Current.Collecting) MeasuredCalibration.Current.Cancel("Session finished before reference completed");
         pendingStart = pendingResume = false;
         sessionTopology = requestedFamily = null;
         pendingRequestId = null;
@@ -184,7 +206,9 @@ public class AndroidDynamicsController : MonoBehaviour
                 lastLoggedAcquisition = snapshot;
             }
         }
-        if (Status == null || Status.state == "error" || Status.sessionState == "error") pendingStart = pendingResume = false;
+        if (Status == null || Status.state == "error" || Status.sessionState == "error") pendingStart = pendingResume = pendingCalibration = false;
+        if (pendingCalibration && Running && AndroidSessionPolicy.AcceptsRunningAck(Status, pendingRequestId, participantId, requestedFamily))
+        { pendingCalibration = false; calibrationActive = true; pendingRequestId = null; }
         GameManager manager = GameManager.Instance;
         if (Running && manager != null)
         {
@@ -217,6 +241,7 @@ public class AndroidDynamicsController : MonoBehaviour
     }
     void OnApplicationPause(bool paused)
     {
+        if (paused && (pendingCalibration || calibrationActive)) { FinishSession(); MeasuredCalibration.Current.Cancel("App paused; repeat reference collection"); }
         applicationPaused = paused;
         if (paused && pendingStart) FinishSession();
         if (Supported) Call("setApplicationPaused", paused);

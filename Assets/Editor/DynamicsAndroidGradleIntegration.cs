@@ -11,7 +11,9 @@ public sealed class DynamicsAndroidGradleIntegration : IPostGenerateGradleAndroi
     {
         string repository = Environment.GetEnvironmentVariable("DYNAMICS_MAVEN_PATH");
         if (string.IsNullOrWhiteSpace(repository)) repository = @"C:\dynamics-sdk-main\mavenLocal";
-        DynamicsGradleExportConfig.Configure(path, repository);
+        string mode = Environment.GetEnvironmentVariable("DYNAMICS_SDK_MODE") ?? "VENDOR-UNCHANGED";
+        DynamicsGradleExportConfig.Configure(path, repository, mode);
+        Debug.Log("[Dynamics] SDK build mode: " + mode);
         Debug.Log("[Dynamics] Generated Android build configured for SDK 0.25.6 / Kotlin 2.3.21. This is not a build or hardware verification result.");
     }
 }

@@ -1,3 +1,5 @@
+> Update 2026-09-14: the explicit SDK COMPATIBILITY mode now passes full native compilation/tests and a real Unity 6000.6.0f1 APK build. Hardware remains untested. Current authority: root ANDROID_STATUS.md and SDK_COMPATIBILITY_REPORT.md. Older blocked-build statements below are historical.
+
 # DD-M1 review — 2026-09-14
 
 ## Verified outcomes

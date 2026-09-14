@@ -1,3 +1,17 @@
+# Current compatibility visual verification — 2026-09-14
+
+The current `Compatibility-Final` capture set contains **50 real Unity Play Mode PNGs**: eleven screens at 1920×1080, 1280×720, 2400×1080 and 1024×768, plus six additional preparation steps. The measured-reference page is included. It correctly shows zero repetitions and no initialized Android SDK in this Windows Editor run. Gameplay/art are preserved.
+
+- [Measured reference, tablet aspect](DesignReferences/CurrentBuild/Compatibility-Final/MeasuredCalibration-1024x768.png)
+- [Measured reference, wide phone aspect](DesignReferences/CurrentBuild/Compatibility-Final/MeasuredCalibration-2400x1080.png)
+- [Gameplay](DesignReferences/CurrentBuild/Compatibility-Final/Gameplay-Targets-HUD-1280x720.png)
+
+18 gameplay assertions and pause visibility guards pass. Capture process exits 0 without forced termination. Current prepare/check/build logs do not reproduce the earlier Search exception. These are rendered Editor captures with synthetic QA data, not Android-device screenshots; physical touch, cutouts, font legibility and frame rate still require the target device. Only the Android manifest changed after this visual run; the game/UI sources are unchanged.
+
+The previous visual report below is historical; current Android success is recorded in [ANDROID_STATUS](ANDROID_STATUS.md).
+
+---
+
 # Visual status — 2026-09-14
 
 Actual Unity 6000.6.0f1 Play Mode produced the current-build screenshots. The final set contains 46 PNGs: ten screens at 1920x1080, 1280x720, 2400x1080 and 1024x768, plus six additional preparation steps at 1280x720.

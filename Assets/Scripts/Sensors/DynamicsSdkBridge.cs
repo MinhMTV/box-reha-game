@@ -12,6 +12,8 @@ public class DynamicsSdkBridge : MonoBehaviour
     public int RejectedPayloadCount { get; private set; }
     public static event Action<string> NativeStatusReceived;
     private readonly Dictionary<string, DynamicsDeviceStatePayload> deviceStates = new Dictionary<string, DynamicsDeviceStatePayload>();
+    public static Func<bool> CalibrationRunning;
+    private readonly SensorEventProcessor calibrationIngress = new SensorEventProcessor();
 
     void Awake()
     {
@@ -48,6 +50,8 @@ public class DynamicsSdkBridge : MonoBehaviour
             { Reject("invalid_device_state"); return; }
             if (!DeviceStateIsFresh(payload)) return;
             deviceStates[payload.deviceId] = payload;
+            calibrationIngress.SetConnection(payload.deviceId, payload.connectionId, DynamicsSensorPayload.ParseSensorType(payload.sensorType),
+                DynamicsSensorPayload.ParseBodySide(payload.bodySide), payload.provenance, payload.status == "online", Time.realtimeSinceStartupAsDouble);
             if (ResolveInputProvider()) ApplyDeviceState(payload);
         }
         catch (Exception) { Reject("malformed_device_state_json"); }
@@ -71,7 +75,7 @@ public class DynamicsSdkBridge : MonoBehaviour
 
     private void ReceiveReading(string json, bool computedPunch)
     {
-        if (!ResolveInputProvider() || string.IsNullOrWhiteSpace(json)) return;
+        if (string.IsNullOrWhiteSpace(json)) return;
         try
         {
             DynamicsSensorPayload payload = JsonUtility.FromJson<DynamicsSensorPayload>(json);
@@ -81,6 +85,13 @@ public class DynamicsSdkBridge : MonoBehaviour
             if (measuredTransport && !AndroidNativeClock.TryTransportAge(payload.emittedAndroidMonotonicSeconds, out transportAge))
             { Reject("missing_or_invalid_android_emission_clock"); return; }
             SensorReading reading = payload.ToSensorReading(Time.realtimeSinceStartupAsDouble, computedPunch, transportAge, measuredTransport);
+            double now = Time.realtimeSinceStartupAsDouble;
+            calibrationIngress.ExpireConnections(now);
+            if (calibrationIngress.Enqueue(reading, now))
+                foreach (SensorReading accepted in calibrationIngress.ConsumeActions(now))
+                    if (CalibrationRunning != null && CalibrationRunning())
+                        MeasuredCalibration.Current.Add(accepted, now);
+            if (!ResolveInputProvider()) return;
             if (!sensorInputProvider.PushSensorReading(reading)) Reject("reading_rejected");
             else if (logIncomingPayloads) Debug.Log("[DynamicsSdkBridge] Validated " + reading.Provenance + " " + reading.Quantity);
         }

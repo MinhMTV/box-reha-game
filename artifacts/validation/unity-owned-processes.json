@@ -1,0 +1,32 @@
+[
+  {
+    "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-android-prepare.log",
+    "sdkMode": "COMPATIBILITY",
+    "timedOut": false,
+    "pid": 18180,
+    "freshCompletionEvidence": true,
+    "startedUtc": "2026-09-14T07:37:42.1300482Z",
+    "forcedTermination": false,
+    "exitCode": 0
+  },
+  {
+    "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-editor.log",
+    "sdkMode": "COMPATIBILITY",
+    "timedOut": false,
+    "pid": 18324,
+    "freshCompletionEvidence": true,
+    "startedUtc": "2026-09-14T07:37:52.8078025Z",
+    "forcedTermination": false,
+    "exitCode": 0
+  },
+  {
+    "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-player-build.log",
+    "sdkMode": "COMPATIBILITY",
+    "timedOut": false,
+    "pid": 49532,
+    "freshCompletionEvidence": true,
+    "startedUtc": "2026-09-14T07:38:04.7037722Z",
+    "forcedTermination": false,
+    "exitCode": 0
+  }
+]

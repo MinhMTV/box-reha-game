@@ -14,6 +14,7 @@
     <Compile Include="LoggerHostCheck.cs" />
     <Compile Include="HistoryHostCheck.cs" />
     <Compile Include="AndroidPolicyHostChecks.cs" />
+    <Compile Include="CalibrationHostChecks.cs" />
     <Compile Include="../../Assets/Scripts/Platform/AndroidSessionPolicy.cs" Link="Production/AndroidSessionPolicy.cs" />
     <Compile Include="../../Assets/Scripts/Platform/AndroidNativeClock.cs" Link="Production/AndroidNativeClock.cs" />
     <Compile Include="../../Assets/Scripts/Data/Enums.cs" Link="Production/Enums.cs" />

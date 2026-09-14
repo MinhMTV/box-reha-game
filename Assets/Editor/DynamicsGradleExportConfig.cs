@@ -11,8 +11,9 @@ public static class DynamicsGradleExportConfig
     private const string End = "// END BOXREHA DYNAMICS GENERATED CONFIG";
     private static readonly UTF8Encoding Utf8 = new UTF8Encoding(false);
 
-    public static void Configure(string unityLibraryDirectory, string mavenRepository)
+    public static void Configure(string unityLibraryDirectory, string mavenRepository, string sdkMode = "VENDOR-UNCHANGED")
     {
+        if (sdkMode != "VENDOR-UNCHANGED" && sdkMode != "COMPATIBILITY") throw new InvalidOperationException("Unknown Dynamics SDK mode.");
         string library = Path.GetFullPath(unityLibraryDirectory);
         if (!string.Equals(Path.GetFileName(library.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)), "unityLibrary", StringComparison.Ordinal))
             throw new InvalidOperationException("Dynamics integration expects Unity's generated unityLibrary directory.");
@@ -37,6 +38,8 @@ public static class DynamicsGradleExportConfig
         string repositoryLine = "maven { url = uri('" + repositoryUri + "'); content { includeGroupByRegex 'com\\\\.riseworld.*'; includeGroupByRegex 'com\\\\.launchpad.*' } }";
         string kotlin = Start + "\nbuildscript {\n    repositories { google(); mavenCentral() }\n    dependencies { classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:" + KotlinVersion + "' }\n}\n" + End + "\n";
         build = kotlin + build;
+        if (sdkMode == "COMPATIBILITY")
+            build += "\n" + Start + "\nallprojects { configurations.configureEach { resolutionStrategy.eachDependency { d -> if (d.requested.group == 'com.riseworld.launchpad.resource' && d.requested.name in ['resource', 'resource-android'] && d.requested.version == '2.11.1') { d.useVersion('2.12.0'); d.because('Local SDK 0.25.6 compatibility overlay') } } } }\n" + End + "\n";
         // Settings repositories cover modern Unity exports. Existing project repositories are extended
         // below for exports using PREFER_PROJECT, so no repository-mode override is needed.
         settings += "\n" + Start + "\ndependencyResolutionManagement {\n    repositories { " + repositoryLine + " }\n}\n" + End + "\n";
@@ -58,6 +61,7 @@ public static class DynamicsGradleExportConfig
 
         string propertiesFile = Path.Combine(root, "gradle.properties");
         string properties = File.Exists(propertiesFile) ? File.ReadAllText(propertiesFile) : "";
+        properties = SetProperty(properties, "dynamicsSdkMode", sdkMode);
         // Official AGP 9 migration opt-out while the external Kotlin 2.3.21 plugin is used.
         if (agp.Major == 9)
         {

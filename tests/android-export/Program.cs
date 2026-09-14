@@ -41,3 +41,12 @@ Reject(() => DynamicsGradleExportConfig.Configure(library, Path.Combine(root, "m
 Reject(() => DynamicsGradleExportConfig.Configure(root, repo), "Non-export target is refused");
 Check(DynamicsGradleExportConfig.ReadAgpVersion("plugins { id(\"com.android.application\") version \"9.0.0\" apply false }") == new Version(9, 0, 0), "Plugin DSL form identifies actual AGP");
 Console.WriteLine($"{passed} host Gradle-export checks passed; SYNTHETIC FILE FIXTURES ONLY, NOT UNITY/ANDROID BUILD.");
+DynamicsGradleExportConfig.Configure(library,repo,"COMPATIBILITY");
+Check(File.ReadAllText(Path.Combine(root,"build.gradle")).Contains("d.useVersion('2.12.0')"),"Compatibility rule reaches all generated modules");
+Check(File.ReadAllText(Path.Combine(root,"gradle.properties")).Contains("dynamicsSdkMode=COMPATIBILITY"),"Compatibility mode explicit");
+string compatBuild = File.ReadAllText(Path.Combine(root,"build.gradle"));
+Check(compatBuild.IndexOf("allprojects { configurations") > compatBuild.IndexOf("classpath 'com.android.tools.build:gradle:"),"Dependency resolution follows plugin declarations");
+DynamicsGradleExportConfig.Configure(library,repo,"VENDOR-UNCHANGED");
+Check(!File.ReadAllText(Path.Combine(root,"build.gradle")).Contains("d.useVersion('2.12.0')"),"Original mode removes previous owned compatibility rule");
+Reject(()=>DynamicsGradleExportConfig.Configure(library,repo,"silent-fallback"),"Unknown mode rejected");
+Console.WriteLine($"TOTAL {passed} checks passed.");

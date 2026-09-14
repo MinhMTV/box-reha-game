@@ -1,0 +1,386 @@
+  private static final com.riseworld.dynamics.models.PeripheralDto a(com.riseworld.dynamics.models.PeripheralDto, com.riseworld.dynamics.db.Database, com.riseworld.dynamics.models.Side, java.lang.String);
+    Code:
+       0: aload_0
+       1: invokevirtual #1717               // Method com/riseworld/dynamics/models/PeripheralDto.getBondState:()Lcom/riseworld/dynamics/models/ble/BondState;
+       4: getstatic     #1720               // Field com/riseworld/dynamics/models/ble/BondState.BONDED:Lcom/riseworld/dynamics/models/ble/BondState;
+       7: if_acmpne     589
+      10: aload_1
+      11: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+      14: invokeinterface #224,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getPeripheralQueries:()Lcom/riseworld/dynamics/db/r1;
+      19: dup
+      20: astore        4
+      22: aload_0
+      23: invokevirtual #1723               // Method com/riseworld/dynamics/models/PeripheralDto.getSerialNumber:()Ljava/lang/String;
+      26: dup
+      27: aload         4
+      29: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      32: pop
+      33: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      36: pop
+      37: getstatic     #1728               // Field com/riseworld/dynamics/db/p1.a:Lcom/riseworld/dynamics/db/p1;
+      40: invokevirtual #1731               // Method com/riseworld/dynamics/db/r1.b:(Ljava/lang/String;Lkotlin/jvm/functions/Function10;)Lcom/riseworld/dynamics/db/m1;
+      43: invokevirtual #1097               // Method app/cash/sqldelight/Query.executeAsOneOrNull:()Ljava/lang/Object;
+      46: checkcast     #1733               // class com/riseworld/dynamics/db/v0
+      49: dup
+      50: astore        4
+      52: ifnull        224
+      55: aload_1
+      56: dup
+      57: aload_0
+      58: invokevirtual #1736               // Method com/riseworld/dynamics/models/PeripheralDto."getId-WPD2SKI":()Lkotlin/uuid/Uuid;
+      61: astore_1
+      62: aload_0
+      63: invokevirtual #1739               // Method com/riseworld/dynamics/models/PeripheralDto.getAddress:()Ljava/lang/String;
+      66: astore_2
+      67: aload_0
+      68: invokevirtual #1742               // Method com/riseworld/dynamics/models/PeripheralDto.getModelNumber:()Ljava/lang/String;
+      71: astore_3
+      72: aload_0
+      73: invokevirtual #1723               // Method com/riseworld/dynamics/models/PeripheralDto.getSerialNumber:()Ljava/lang/String;
+      76: astore        5
+      78: aload_0
+      79: invokevirtual #1745               // Method com/riseworld/dynamics/models/PeripheralDto.getFirmwareVersion:()Ljava/lang/String;
+      82: astore        6
+      84: aload_0
+      85: invokevirtual #1748               // Method com/riseworld/dynamics/models/PeripheralDto.getHardwareVersion:()Ljava/lang/String;
+      88: astore        7
+      90: aload_0
+      91: invokevirtual #1751               // Method com/riseworld/dynamics/models/PeripheralDto.getManufacturerName:()Ljava/lang/String;
+      94: astore        8
+      96: aload_0
+      97: invokevirtual #1754               // Method com/riseworld/dynamics/models/PeripheralDto.getName:()Ljava/lang/String;
+     100: astore        9
+     102: aload_0
+     103: invokevirtual #1717               // Method com/riseworld/dynamics/models/PeripheralDto.getBondState:()Lcom/riseworld/dynamics/models/ble/BondState;
+     106: dup
+     107: astore_0
+     108: aload         9
+     110: aload         8
+     112: aload         7
+     114: aload         6
+     116: aload         5
+     118: aload_3
+     119: aload_2
+     120: aload_1
+     121: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     124: pop
+     125: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     128: pop
+     129: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     132: pop
+     133: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     136: pop
+     137: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     140: pop
+     141: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     144: pop
+     145: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     148: pop
+     149: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     152: pop
+     153: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     156: pop
+     157: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+     160: invokeinterface #224,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getPeripheralQueries:()Lcom/riseworld/dynamics/db/r1;
+     165: aload_0
+     166: aload_2
+     167: aload         4
+     169: getfield      #1755               // Field com/riseworld/dynamics/db/v0.a:Lkotlin/uuid/Uuid;
+     172: astore_0
+     173: aload         6
+     175: aload         7
+     177: aload_3
+     178: aload         5
+     180: aload         8
+     182: aload         9
+     184: aload_0
+     185: invokevirtual #1758               // Method com/riseworld/dynamics/db/r1.a:(Lcom/riseworld/dynamics/models/ble/BondState;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/uuid/Uuid;)V
+     188: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+     191: invokeinterface #224,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getPeripheralQueries:()Lcom/riseworld/dynamics/db/r1;
+     196: dup
+     197: aload         4
+     199: getfield      #1755               // Field com/riseworld/dynamics/db/v0.a:Lkotlin/uuid/Uuid;
+     202: astore_0
+     203: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     206: pop
+     207: aload_0
+     208: getstatic     #1763               // Field com/riseworld/dynamics/db/o1.a:Lcom/riseworld/dynamics/db/o1;
+     211: invokevirtual #1766               // Method com/riseworld/dynamics/db/r1.a:(Lkotlin/uuid/Uuid;Lkotlin/jvm/functions/Function10;)Lcom/riseworld/dynamics/db/l1;
+     214: invokevirtual #1693               // Method app/cash/sqldelight/Query.executeAsOne:()Ljava/lang/Object;
+     217: checkcast     #1768               // class com/riseworld/dynamics/db/t0
+     220: invokestatic  #1771               // Method com/riseworld/dynamics/db/j1.a:(Lcom/riseworld/dynamics/db/t0;)Lcom/riseworld/dynamics/models/PeripheralDto;
+     223: areturn
+     224: aload_1
+     225: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+     228: invokeinterface #224,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getPeripheralQueries:()Lcom/riseworld/dynamics/db/r1;
+     233: dup
+     234: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     237: pop
+     238: getstatic     #603                // Field com/riseworld/dynamics/db/q1.a:Lcom/riseworld/dynamics/db/q1;
+     241: invokevirtual #608                // Method com/riseworld/dynamics/db/r1.a:(Lkotlin/jvm/functions/Function10;)Lapp/cash/sqldelight/Query;
+     244: invokevirtual #736                // Method app/cash/sqldelight/Query.executeAsList:()Ljava/util/List;
+     247: dup
+     248: astore        4
+     250: invokeinterface #839,  1          // InterfaceMethod java/util/List.size:()I
+     255: iconst_2
+     256: if_icmpge     579
+     259: aload         4
+     261: aload_1
+     262: new           #1773               // class com/riseworld/dynamics/db/i1
+     265: dup
+     266: astore        5
+     268: aload_0
+     269: invokevirtual #1736               // Method com/riseworld/dynamics/models/PeripheralDto."getId-WPD2SKI":()Lkotlin/uuid/Uuid;
+     272: astore        6
+     274: aload_0
+     275: invokevirtual #1739               // Method com/riseworld/dynamics/models/PeripheralDto.getAddress:()Ljava/lang/String;
+     278: aload_0
+     279: invokevirtual #1742               // Method com/riseworld/dynamics/models/PeripheralDto.getModelNumber:()Ljava/lang/String;
+     282: astore        7
+     284: aload_0
+     285: invokevirtual #1723               // Method com/riseworld/dynamics/models/PeripheralDto.getSerialNumber:()Ljava/lang/String;
+     288: astore        8
+     290: aload_0
+     291: invokevirtual #1745               // Method com/riseworld/dynamics/models/PeripheralDto.getFirmwareVersion:()Ljava/lang/String;
+     294: astore        9
+     296: aload_0
+     297: invokevirtual #1748               // Method com/riseworld/dynamics/models/PeripheralDto.getHardwareVersion:()Ljava/lang/String;
+     300: astore        10
+     302: aload_0
+     303: invokevirtual #1751               // Method com/riseworld/dynamics/models/PeripheralDto.getManufacturerName:()Ljava/lang/String;
+     306: astore        11
+     308: aload_0
+     309: invokevirtual #1754               // Method com/riseworld/dynamics/models/PeripheralDto.getName:()Ljava/lang/String;
+     312: astore        12
+     314: aload_0
+     315: invokevirtual #1717               // Method com/riseworld/dynamics/models/PeripheralDto.getBondState:()Lcom/riseworld/dynamics/models/ble/BondState;
+     318: swap
+     319: aload         7
+     321: aload         8
+     323: aload         9
+     325: aload         10
+     327: aload         11
+     329: aload         12
+     331: aload         6
+     333: invokespecial #1775               // Method com/riseworld/dynamics/db/i1."<init>":(Lcom/riseworld/dynamics/models/ble/BondState;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/uuid/Uuid;)V
+     336: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+     339: invokeinterface #224,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getPeripheralQueries:()Lcom/riseworld/dynamics/db/r1;
+     344: aload         5
+     346: invokevirtual #1778               // Method com/riseworld/dynamics/db/r1.a:(Lcom/riseworld/dynamics/db/i1;)V
+     349: invokeinterface #835,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     354: ifeq          443
+     357: aload_2
+     358: aconst_null
+     359: astore        4
+     361: aconst_null
+     362: astore        5
+     364: ifnonnull     371
+     367: getstatic     #1780               // Field d:Lcom/riseworld/dynamics/models/Side;
+     370: astore_2
+     371: aload_2
+     372: getstatic     #1783               // Field com/riseworld/dynamics/models/Side.LEFT:Lcom/riseworld/dynamics/models/Side;
+     375: if_acmpne     387
+     378: aload_0
+     379: invokevirtual #1736               // Method com/riseworld/dynamics/models/PeripheralDto."getId-WPD2SKI":()Lkotlin/uuid/Uuid;
+     382: astore        4
+     384: goto          393
+     387: aload_0
+     388: invokevirtual #1736               // Method com/riseworld/dynamics/models/PeripheralDto."getId-WPD2SKI":()Lkotlin/uuid/Uuid;
+     391: astore        5
+     393: aload_3
+     394: new           #1297               // class com/riseworld/dynamics/db/g1
+     397: astore_2
+     398: getstatic     #1624               // Field kotlin/uuid/Uuid.Companion:Lkotlin/uuid/Uuid$Companion;
+     401: invokevirtual #1629               // Method kotlin/uuid/Uuid$Companion.random:()Lkotlin/uuid/Uuid;
+     404: invokestatic  #1784               // Method com/riseworld/dynamics/models/domain/glove/GlovePairId."constructor-impl":(Lkotlin/uuid/Uuid;)Lkotlin/uuid/Uuid;
+     407: astore        6
+     409: ifnonnull     416
+     412: ldc_w         #1785               // String
+     415: astore_3
+     416: aload_1
+     417: aload_2
+     418: aload         6
+     420: aload_3
+     421: aload         4
+     423: aload         5
+     425: invokespecial #1788               // Method com/riseworld/dynamics/db/g1."<init>":(Lkotlin/uuid/Uuid;Ljava/lang/String;Lkotlin/uuid/Uuid;Lkotlin/uuid/Uuid;)V
+     428: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+     431: invokeinterface #556,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getGlovePairQueries:()Lcom/riseworld/dynamics/db/e1;
+     436: aload_2
+     437: invokevirtual #1791               // Method com/riseworld/dynamics/db/e1.a:(Lcom/riseworld/dynamics/db/g1;)V
+     440: goto          538
+     443: aload_1
+     444: aload         4
+     446: invokestatic  #844                // Method kotlin/collections/CollectionsKt.first:(Ljava/util/List;)Ljava/lang/Object;
+     449: checkcast     #1793               //
+  private static final com.riseworld.dynamics.models.PeripheralDto a(com.riseworld.dynamics.db.s0);
+    Code:
+       0: aload_0
+       1: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       4: pop
+       5: new           #1713               // class com/riseworld/dynamics/models/PeripheralDto
+       8: dup
+       9: aload_0
+      10: dup
+      11: dup2
+      12: dup2
+      13: dup2
+      14: dup2
+      15: getfield      #1872               // Field com/riseworld/dynamics/db/s0.a:Lkotlin/uuid/Uuid;
+      18: astore_0
+      19: getfield      #1874               // Field com/riseworld/dynamics/db/s0.b:Ljava/lang/String;
+      22: astore_1
+      23: getfield      #1875               // Field com/riseworld/dynamics/db/s0.c:Ljava/lang/String;
+      26: astore_2
+      27: getfield      #1876               // Field com/riseworld/dynamics/db/s0.g:Ljava/lang/String;
+      30: astore_3
+      31: getfield      #1877               // Field com/riseworld/dynamics/db/s0.d:Ljava/lang/String;
+      34: astore        4
+      36: getfield      #1878               // Field com/riseworld/dynamics/db/s0.e:Ljava/lang/String;
+      39: astore        5
+      41: getfield      #1879               // Field com/riseworld/dynamics/db/s0.f:Ljava/lang/String;
+      44: astore        6
+      46: getfield      #1880               // Field com/riseworld/dynamics/db/s0.h:Ljava/lang/String;
+      49: astore        7
+      51: getfield      #1882               // Field com/riseworld/dynamics/db/s0.j:Ljava/lang/String;
+      54: invokestatic  #1885               // Method com/riseworld/dynamics/db/j1.a:(Ljava/lang/String;)Lcom/riseworld/dynamics/models/Side;
+      57: astore        8
+      59: getfield      #1887               // Field com/riseworld/dynamics/db/s0.i:Lcom/riseworld/dynamics/models/ble/BondState;
+      62: astore        9
+      64: aload_0
+      65: aload_1
+      66: aload_2
+      67: aload_3
+      68: aload         4
+      70: aload         5
+      72: aload         6
+      74: aload         7
+      76: aload         8
+      78: aload         9
+      80: aconst_null
+      81: invokespecial #1890               // Method com/riseworld/dynamics/models/PeripheralDto."<init>":(Lkotlin/uuid/Uuid;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/riseworld/dynamics/models/Side;Lcom/riseworld/dynamics/models/ble/BondState;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+      84: areturn
+
+  private static final com.riseworld.dynamics.models.PeripheralDto a(com.riseworld.dynamics.db.t0);
+    Code:
+       0: aload_0
+       1: dup
+       2: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       5: pop
+       6: invokestatic  #1771               // Method com/riseworld/dynamics/db/j1.a:(Lcom/riseworld/dynamics/db/t0;)Lcom/riseworld/dynamics/models/PeripheralDto;
+       9: areturn
+
+  private static final kotlin.Unit a(com.riseworld.dynamics.db.Database, kotlin.uuid.Uuid, com.riseworld.dynamics.models.domain.profile.body.BodyProfile, com.riseworld.dynamics.models.domain.session.TrainingSessionSensorType);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #1376               // Method e:(Lkotlin/uuid/Uuid;)Lcom/riseworld/dynamics/models/domain/session/TrainingSession;
+       5: dup
+       6: astore_1
+       7: invokevirtual #2204               // Method com/riseworld/dynamics/models/domain/session/TrainingSession.getState:()Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;
+      10: invokestatic  #857                // Method com/riseworld/dynamics/models/domain/session/TrainingSessionStateKt.isInitializing:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;)Z
+      13: ifeq          115
+      16: aload_2
+      17: ifnull        105
+      20: aload_1
+      21: dup
+      22: aload_0
+      23: aload_3
+      24: aload_1
+      25: aload_0
+      26: getfield      #216                // Field c:Lcom/riseworld/dynamics/db/dao/impl/BodyProfileDaoImpl;
+      29: aload_1
+      30: invokevirtual #983                // Method com/riseworld/dynamics/models/domain/session/TrainingSession."getId-CnpZ-Ss":()Lkotlin/uuid/Uuid;
+      33: aload_2
+      34: invokeinterface #2208,  3         // InterfaceMethod com/riseworld/dynamics/db/dao/BodyProfileDao."insertBodyProfileForTrainingSession-qQ3GH1w":(Lkotlin/uuid/Uuid;Lcom/riseworld/dynamics/models/domain/profile/body/BodyProfile;)V
+      39: invokevirtual #983                // Method com/riseworld/dynamics/models/domain/session/TrainingSession."getId-CnpZ-Ss":()Lkotlin/uuid/Uuid;
+      42: invokespecial #2211               // Method a:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionSensorType;Lkotlin/uuid/Uuid;)V
+      45: new           #818                // class com/riseworld/dynamics/models/domain/session/TrainingSessionInput
+      48: astore_1
+      49: invokevirtual #983                // Method com/riseworld/dynamics/models/domain/session/TrainingSession."getId-CnpZ-Ss":()Lkotlin/uuid/Uuid;
+      52: astore_2
+      53: getstatic     #1363               // Field kotlin/time/Clock$System.INSTANCE:Lkotlin/time/Clock$System;
+      56: invokevirtual #1367               // Method kotlin/time/Clock$System.now:()Lkotlin/time/Instant;
+      59: astore_3
+      60: getstatic     #1419               // Field com/riseworld/dynamics/models/domain/session/TrainingSessionState.READY:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;
+      63: astore        4
+      65: invokevirtual #2214               // Method com/riseworld/dynamics/models/domain/session/TrainingSession.isAutoResume:()Z
+      68: ifeq          79
+      71: getstatic     #1411               // Field com/riseworld/dynamics/models/domain/session/TrainingSessionStateActor.AUTO:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionStateActor;
+      74: astore        5
+      76: goto          84
+      79: getstatic     #2217               // Field com/riseworld/dynamics/models/domain/session/TrainingSessionStateActor.MANUAL:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionStateActor;
+      82: astore        5
+      84: aload_0
+      85: aload_1
+      86: dup
+      87: aload_2
+      88: aload_3
+      89: aload         4
+      91: aload         5
+      93: aconst_null
+      94: invokespecial #2220               // Method com/riseworld/dynamics/models/domain/session/TrainingSessionInput."<init>":(Lkotlin/uuid/Uuid;Lkotlin/time/Instant;Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;Lcom/riseworld/dynamics/models/domain/session/TrainingSessionStateActor;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+      97: iconst_0
+      98: invokespecial #2095               // Method a:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionInput;Z)V
+     101: getstatic     #1573               // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+     104: areturn
+     105: ldc_w         #2222               // String BodyProfile is not set for training session!
+     108: aconst_null
+     109: iconst_2
+     110: aconst_null
+     111: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     114: athrow
+     115: getstatic     #1419               // Field com/riseworld/dynamics/models/domain/session/TrainingSessionState.READY:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;
+     118: aload_1
+     119: invokevirtual #2204               // Method com/riseworld/dynamics/models/domain/session/TrainingSession.getState:()Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;
+     122: invokedynamic #2227,  0           // InvokeDynamic #67:makeConcatWithConstants:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;)Ljava/lang/String;
+     127: aconst_null
+     128: iconst_2
+     129: aconst_null
+     130: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     133: athrow
+
+  private final void a(com.riseworld.dynamics.models.domain.session.TrainingSessionSensorType, kotlin.uuid.Uuid);
+    Code:
+       0: aload_0
+       1: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+       4: invokeinterface #631,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getTrainingSessionQueries:()Lcom/riseworld/dynamics/db/l5;
+       9: dup
+      10: astore_3
+      11: aload_2
+      12: dup
+      13: aload_3
+      14: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      17: pop
+      18: invokevirtual #507                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      21: pop
+      22: getstatic     #2488               // Field com/riseworld/dynamics/db/f5.a:Lcom/riseworld/dynamics/db/f5;
+      25: invokevirtual #2491               // Method com/riseworld/dynamics/db/l5.a:(Lkotlin/uuid/Uuid;Lkotlin/jvm/functions/Function1;)Lcom/riseworld/dynamics/db/y4;
+      28: invokevirtual #1097               // Method app/cash/sqldelight/Query.executeAsOneOrNull:()Ljava/lang/Object;
+      31: checkcast     #2493               // class com/riseworld/dynamics/db/w0
+      34: dup
+      35: astore_3
+      36: ifnull        46
+      39: aload_3
+      40: getfield      #2495               // Field com/riseworld/dynamics/db/w0.a:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionSensorType;
+      43: goto          47
+      46: aconst_null
+      47: ifnonnull     65
+      50: aload_0
+      51: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+      54: invokeinterface #631,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getTrainingSessionQueries:()Lcom/riseworld/dynamics/db/l5;
+      59: aload_1
+      60: aload_2
+      61: invokevirtual #2496               // Method com/riseworld/dynamics/db/l5.a:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionSensorType;Lkotlin/uuid/Uuid;)V
+      64: return
+      65: aload_3
+      66: getfield      #2495               // Field com/riseworld/dynamics/db/w0.a:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionSensorType;
+      69: aload_2
+      70: invokestatic  #691                // Method com/riseworld/dynamics/models/domain/session/TrainingSessionId."toString-impl":(Lkotlin/uuid/Uuid;)Ljava/lang/String;
+      73: invokedynamic #2501,  0           // InvokeDynamic #74:makeConcatWithConstants:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionSensorType;Ljava/lang/String;)Ljava/lang/String;
+      78: aconst_null
+      79: iconst_2
+      80: aconst_null
+      81: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+      84: athrow
+}

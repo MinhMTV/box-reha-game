@@ -1,0 +1,7 @@
+{
+  "utc": "2026-09-14T07:29:40.878988+00:00",
+  "command": "adb devices -l",
+  "exitCode": 0,
+  "stdout": "List of devices attached\n\n",
+  "stderr": "* daemon not running; starting now at tcp:5037\n* daemon started successfully\n"
+}

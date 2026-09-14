@@ -1,0 +1,868 @@
+C:\dynamics-sdk-main\docs\dynamics-multiplatform\index.html
+dynamics-multiplatform
+RISE Dynamics SDK
+Toggle table of contents
+0.25.6
+common
+ios
+Target filter
+common
+ios
+Switch theme
+Search in
+API
+Skip to content
+RISE Dynamics SDK
+dynamics-multiplatform
+common ios
+The primary module for interacting with the SDK.
+Initialization
+You must initialize the SDK using the function com.riseworld.dynamics.multiplatform.di.initSdk() .
+After initialization, all repositories (which are singletons) defined in com.riseworld.dynamics.multiplatform.di can be utilized.
+Code sample:
+com.riseworld.dynamics.multiplatform.di.initSdk(
+dynamicsSettings =
+com.riseworld.dynamics.multiplatform.settings.DynamicsSettings(
+// see https://developer.android.com/topic/libraries/architecture/datastore
+// how to init a DataStore instance
+DataStoreSettings(DataStore()).toBlockingObservableSettings(),
+),
+)
+Content copied to clipboard
+Pairing
+To use an SG (=Smartglove), the PairingRepository must be employed to scan the environment for potential SGs.
+Ensure that the SG device is in advertising mode (and not connected to any other device).
+Subscribe to the flow PairingRepository.scannerState and handle any anticipated errors that may arise.
+The ScannerState will notify the consumer of any missing requirements, such as missing Bluetooth permissions or if Bluetooth is disabled.
+Once all errors are resolved, the consumer can start subscribing to PairingRepository.nearbyGloves , which will actively scan the environment and report any detected SGs.
+To pair with a glove, pass a specific instance of NearbyGlove returned by PairingRepository.nearbyGloves to the function PairingRepository.pair .
+If the operation succeeds, the glove will be persisted, and the SDK will attempt to connect to it whenever the SDK is initialized.
+It is recommended that the consumer unsubscribes from the previously mentioned flows.
+Code sample:
+// 1. check the scannerState first and handle expected errors
+when(val scannerState = pairingRepository.scannerState.first()) {
+ScannerState.Active -> {
+// proceed with scanning
+}
+is ScannerState.Inactive -> {
+// proceed with scanning
+}
+is ScannerState.Error -> {
+when(val error = scannerState.scannerError) {
+is ScannerError.GenericError -> {
+// handle unexpected errors from the BLE APIs
+}
+is ScannerError.MissingScanningRequirements -> {
+// flag that indicates if all requirements are fulfilled
+error.bleRequirementsState.areRequirementsFulFilled
+// if a boolean property is null, then the requirement
+// is not relevant for the current android or iOS OS version.
+// e.g. location permissions for ble scanning on android
+// are only required for versions until android 11
+if(!error.bleRequirementsState.isBluetoothEnabled) {
+// ensure bluetooth is enabled
+}
+if(error.bleRequirementsState.areBluetoothPermissionsGranted == false) {
+// ensure bluetooth runtime permissions are enabled
+}
+if(error.bleRequirementsState.areLocationServicesEnabled == false) {
+// ensure location services are enabled
+}
+if(error.bleRequirementsState.areLocationPermissionsGranted == false) {
+// ensure location runtime permissions are enabled
+}
+}
+}
+return@collectLatest
+}
+}
+// 2. subscribe to the nearbyGloves flow that will activate ble scanning
+val glove = pairingRepository
+.nearbyGloves
+// await first emission with non-empty nearby gloves
+.first(
+predicate = { nearbyGloves ->
+nearbyGloves.isNotEmpty()
+},
+)
+// take the first nearby glove from the list
+.first()
+// 3. use the desired glove and initiate pairing. This will trigger the pairing dialog while the function is suspended.
+when(val result = pairingRepository.pair(
+// pass the nearby glove object
+nearbyGlove = glove,
+// pass an optional name for the glove pair
+glovePairName = "Name of glove pair",
+)) {
+is Resource.Failure<*> -> {
+// handle errors
+result.exception
+}
+is Resource.Success<PeripheralId> -> {
+// the glove was successfully paired and added to the sdk's
+// database.
+}
+}
+Content copied to clipboard
+Monitoring Glove Status
+The GloveRepository is responsible for actively monitoring the state of the glove.
+Subscribe to GloveRepository.observeGloves() or GloveRepository.observeGlovePairs() to receive data transfer objects and all relevant information.
+Use other functions in the GloveRepository to modify minor metadata properties of the gloves.
+If the glove is no longer required, it can be removed from the SDK by calling the appropriate delete functions.
+Code sample:
+gloveRepository.observeGloves().collectLatest { pairs ->
+// there is only just a max. of 1 pair
+val pair = pairs.first()
+// the data object of the peripheral from the database
+// contains info about the peripheral that is also available in case the
+// glove is not connected
+val peripheralDto = pair.dto
+// the ble connection state
+when(val bleState = pair.bleGloveState) {
+is BleGloveState.Online -> {
+// glove is online
+// gloveData represents the state of the glove
+val gloveData = bleState.onlineData
+}
+is BleGloveState.Connecting -> {
+// ble is currently connecting
+}
+is BleGloveState.Offline.Error -> {
+// error state
+when(val error = bleState.gloveConnectionError) {
+is GloveConnectionError.BondLost -> {
+// bond is lost, new pairing is necessary
+}
+is GloveConnectionError.MissingRequirements -> {
+// requirements are not fulfilled
+// e.g. user has turned off bluetooth
+// check the ble requirements state
+error.bleRequirementsState
+}
+}
+}
+is BleGloveState.Offline.OutOfRange -> {
+// the glove is not connected, probably out of range
+// the sdk will always try to connect to gloves in this state
+// if the consumer app is actively in the foreground
+}
+}
+}
+Content copied to clipboard
+Workout/Session
+The TrainingSessionRepository is responsible for starting a new session (workout) which will trigger certain measurement modes on the firmware that will start to monitor punches.
+The concept of a training session
+A training session is simply an entity to which incoming punches are associated, so a training session may hold 0 to multiple punches.
+A training session always holds a glove pair (i.e. two gloves, one for each side).
+A training session has different states (started, resumed, paused, finished); the most important detail here is that there can be only one active session at a time.
+A training session is considered active if it's not finished.
+Any training sessions that are finished and have at least one punch will be kept in the database and can be retrieved/deleted later on.
+Control of active training sessions
+As there can be only one active session at a time, it's crucial to check the flow TrainingSessionRepository.activeTrainingSessionTime to see if there is already an active session.
+If not, then a new session needs to be explicitly started with the function TrainingSessionRepository.startTrainingSession .
+If yes, then the consumer needs to ensure that the session is resumed; otherwise, incoming punches will be ignored if the session is paused or just started.
+The state of an active session can be toggled with the function TrainingSessionRepository.toggleActiveTrainingSessionState .
+An active session can be finished with the function TrainingSessionRepository.finishActiveTrainingSession .
+Data flow
+Subscribe to TrainingSessionRepository.activeTrainingSessionStats to receive the latest punch data; the object always returns the latest 15 punches.
+The emitted object holds "stats" which indicate average/best values for a punch category but also the Punch objects.
+The TrainingSessionRepository is not intended to be used for pulling the samples for each punch category, but if that is desired, the consumer may use the PunchRepository for that purpose.
+Finished training sessions
+As soon as a training session is finished, the FinishedTrainingSessionRepository.finishedTrainingSessions can be used to pull all finished training sessions.
+The FinishedTrainingSessionRepository.getFinishedTrainingSession function can be used to pull all punches and average/best stats for a training session.
+However, PunchRepository may also be used to pull specific punches.
+Code sample for starting, managing and export training session punch data:
+// some options of the DynamicsSettings may be useful for scientific purposes
+// before starting a session
+// set the debugging mode to true
+// if you set it back to false, then all debug options are reset to its default values
+dynamicsSettings.setDebuggingMode(isEnabled = true)
+// enabling it will keep all punch details for every punch of a session.
+// this option is disabled by default
+dynamicsSettings.setKeepAllPunchDetails(isEnabled = true)
+// constraints that will reject punch data if certain thresholds are not reached
+// this might not be useful to enable
+// this option is disabled by default
+// dynamicsSettings.setAcceptAllPunches(acceptAllPunches = true)
+// 1. init a training session
+when (val result = trainingSessionRepository.initializeActiveTrainingSession(
+// a flag that ensures that any previously active training sessions that were
+// never stopped are now finished
+finishCurrentActiveSession = true,
+// defines the type of the session, currently only sessions of type Free are
+// supported
+settings = Free(true),
+)) {
+is Resource.Failure<*> -> {
+// an error is only expected here if there is already an active training
+// session but the flag finishCurrentActiveSession was set to false
+}
+is Resource.Success<TrainingSessionWithTime> -> {
+// the successfully created training session object
+val trainingSession = result.result
+}
+}
+// 2. ensure that there is a valid body profile
+val currentBodyProfile = profileRepository.getBodyProfile().getOrNull()
+if (currentBodyProfile == null) {
+when(val result = profileRepository.insertOrUpdateBodyProfile(bodyProfile =
+BodyProfile(
+// the id doesn't matter as there can be just one body profile
+id = BodyProfileId(uuid4()),
+// inspect BodyProfileValidation.nameNumberOfCharactersRange for the allowed range
+name = "Max Mustermann",
+// inspect BodyProfileValidation.weightRange for the allowed range
+weight = Kilogram(80.0),
+// inspect BodyProfileValidation.heightRange for the allowed range
+height = Centimeter(195.0),
+gender = Gender.MALE
+)
+)) {
+is Resource.Failure<*> -> {
+// use the helper function to cast to the expected validation exception
+val validationException = result.exception.bodyProfileValidationException() ?: return@launch
+// every BodyProfile property is represented with a validation property
+validationException.bodyProfileValidation.name
+validationException.bodyProfileValidation.gender
+validationException.bodyProfileValidation.height
+validationException.bodyProfileValidation.weight
+when(validationException.bodyProfileValidation.weight) {
+BasicValidation.AboveMax -> {
+// the property is above the allowed maximum
+}
+BasicValidation.BelowMin -> {
+// the property is below the allowed minimum
+}
+is BasicValidation.InvalidFormat -> {
+// invalid format for the property, in case formatting matters
+// e.g. for string properties
+}
+BasicValidation.Missing -> {
+// the property is missing or empty
+}
+BasicValidation.Ok -> {
+// the validation is ok
+}
+}
+}
+is Resource.Success<*> -> {
+// bodyProfile was successfully added or updated
+}
+}
+}
+// 3. move the state of the active training session to "ready"
+when(trainingSessionRepository.readyActiveTrainingSession(
+// pass sensor type ALPHA if your gloves have the barometric sensor
+// if the session is of type ALPHA, it will expect barometric punch data from the
+// gloves, otherwise the punch data is rejected.
+type = TrainingSessionSensorType.ALPHA,
+)) {
+is Resource.Failure<*> -> {
+// a failure is expected here if e.g. the body profile is not set
+// or if the gloves are all offline
+return@launch
+}
+is Resource.Success<Unit> -> {
+// proceed
+}
+}
+// 4. toggle the state manually, this will resume or pause the session.
+when(trainingSessionRepository.toggleActiveTrainingSessionState()) {
+is Resource.Failure<*> -> {
+// expected errors are only if there is no active training session
+}
+is Resource.Success<*> -> {
+}
+}
+// 5. subscribe to the stat flow and receive the most recent punch data
+trainingSessionRepository.activeTrainingSessionStats.collectLatest { stats ->
+// the global stats
+stats.stats.totalPunchCount
+// average values
+stats.stats.avgStats
+// best punch values
+stats.stats.bestStats
+// receive the last punches for the session
+stats.punches
+// the last left punch
+stats.lastLeftPunch
+// the last right punch
+stats.lastRightPunch
+// the last punch (may be left or right)
+stats.lastPunch
+}
+// 5. subscribe to the session time flow
+trainingSessionRepository.activeTrainingSessionTime.mapNotNull { it }.collectLatest { time ->
+// the state of the session
+when(time.state) {
+TrainingSessionExtendedState.Initializing -> TODO()
+is TrainingSessionExtendedState.Paused -> TODO()
+is TrainingSessionExtendedState.Ready -> TODO()
+is TrainingSessionExtendedState.Resumed -> TODO()
+is TrainingSessionExtendedState.Finished -> {
+// a finished state won't be returned by this flow
+}
+}
+}
+// 6. when you're done, finish the active session
+trainingSessionRepository.finishActiveTrainingSession()
+// in case you want to discard the session, delete it
+trainingSessionRepository.deleteActiveTrainingSession()
+// 7. get the data for finished training sessions
+val finishedSessions = finishedTrainingSessionRepository.finishedTrainingSessions.first()
+finishedSessions.firstOrNull()?.let { session ->
+when(session) {
+is FinishedTrainingSession.Free -> {
+val sessionWithStats = finishedTrainingSessionRepository.getFinishedTrainingSessionById(id = session.id)
+// inspect punches for finished training sessions
+val punchId = sessionWithStats.getOrNull()?.punches?.firstOrNull()?.id ?: return@launch
+// get samples for punchId
+punchRepository.getPunchWithSamples(punchId = punchId)
+}
+}
+}
+// 8. export training sessions by id
+// the path will contain folders for each punch and a CSV with the raw punch data.
+// ask Dominik Hoelbling for the documentation of the export
+val absoluteFilePath = exportRepository.exportTrainingSession(trainingSessionId = TODO()).getOrNull()
+Content copied to clipboard
+Raw Sensor Data Flow
+⚠️ Available since firmware version v0.7.0
+The SensorDataRepository can be used to request a continuous data stream of the SG.
+A code sample for the SensorStreamRecordingHelper that will merge the incoming sensor raw data into the same CSV output format as defined by the ExportRepository .
+/**
+* Init the stream recorder.
+*
+* - [SensorStreamRecordingHelper.toggleRecording] to toggle recording.
+* - [SensorStreamRecordingHelper.splitCurrentRecording] calling this will start a new
+* recording sequence.
+*
+* [SensorStreamRecordingHelper.recordedSequences] contains the meta data where data was written
+* into:
+* - [RecordedSensorStreamSequence.sessionAbsolutePath] the file path of the whole sensor
+* streaming session.
+* - [RecordedSensorStreamSequence.absolutePath] the file path of the whole sensor
+* streaming session.
+*/
+fun initSensorStreamRecordingHelper(
+isLeft: Boolean,
+sessionStartTime: Instant,
+glove: Glove?,
+coroutineScope: CoroutineScope,
+): SensorStreamRecordingHelper? {
+glove ?: return null
+// init the helper class
+val helper =
+SensorStreamRecordingHelper(
+// a session folder prefix
+"${(if (isLeft) Side.LEFT else Side.RIGHT).name}_",
+// the session starting time
+sessionStartTime,
+// the id of peripheral
+glove.dto.id,
+// the sensor stream flow for the desired peripheral
+sensorDataRepository.observeSensorData(glove.dto.id),
+)
+coroutineScope.launch {
+helper.recordingState
+.map { it is SensorDataStreamState.Recording }
+.distinctUntilChanged()
+.collectLatest {
+// subscribe to flow only if the helper class is in Recording state
+if (it) {
+// subscribing to the sensor stream flow is essential
+// as long as there is subscription to this flow, the glove will
+// transition to the sensor stream state and start sending data
+helper.sensorStream.collectLatest {
+// track the data of the last sensor packet
+}
+}
+}
+}
+coroutineScope.launch {
+helper.recordingState.collectLatest {
+// track the recording state
+}
+}
+coroutineScope.launch {
+helper.recordedSequences.collectLatest {
+// track the recorded sequences
+}
+}
+return helper
+}
+Content copied to clipboard
+The primary module for interacting with the SDK.
+Initialization
+You must initialize the SDK using the function com.riseworld.dynamics.multiplatform.di.initSdk() .
+After initialization, all repositories (which are singletons) defined in com.riseworld.dynamics.multiplatform.di can be utilized.
+Code sample:
+com.riseworld.dynamics.multiplatform.di.initSdk(
+dynamicsSettings =
+com.riseworld.dynamics.multiplatform.settings.DynamicsSettings(
+// see https://developer.android.com/topic/libraries/architecture/datastore
+// how to init a DataStore instance
+DataStoreSettings(DataStore()).toBlockingObservableSettings(),
+),
+)
+Content copied to clipboard
+Pairing
+To use an SG (=Smartglove), the PairingRepository must be employed to scan the environment for potential SGs.
+Ensure that the SG device is in advertising mode (and not connected to any other device).
+Subscribe to the flow PairingRepository.scannerState and handle any anticipated errors that may arise.
+The ScannerState will notify the consumer of any missing requirements, such as missing Bluetooth permissions or if Bluetooth is disabled.
+Once all errors are resolved, the consumer can start subscribing to PairingRepository.nearbyGloves , which will actively scan the environment and report any detected SGs.
+To pair with a glove, pass a specific instance of NearbyGlove returned by PairingRepository.nearbyGloves to the function PairingRepository.pair .
+If the operation succeeds, the glove will be persisted, and the SDK will attempt to connect to it whenever the SDK is initialized.
+It is recommended that the consumer unsubscribes from the previously mentioned flows.
+Code sample:
+// 1. check the scannerState first and handle expected errors
+when(val scannerState = pairingRepository.scannerState.first()) {
+ScannerState.Active -> {
+// proceed with scanning
+}
+is ScannerState.Inactive -> {
+// proceed with scanning
+}
+is ScannerState.Error -> {
+when(val error = scannerState.scannerError) {
+is ScannerError.GenericError -> {
+// handle unexpected errors from the BLE APIs
+}
+is ScannerError.MissingScanningRequirements -> {
+// flag that indicates if all requirements are fulfilled
+error.bleRequirementsState.areRequirementsFulFilled
+// if a boolean property is null, then the requirement
+// is not relevant for the current android or iOS OS version.
+// e.g. location permissions for ble scanning on android
+// are only required for versions until android 11
+if(!error.bleRequirementsState.isBluetoothEnabled) {
+// ensure bluetooth is enabled
+}
+if(error.bleRequirementsState.areBluetoothPermissionsGranted == false) {
+// ensure bluetooth runtime permissions are enabled
+}
+if(error.bleRequirementsState.areLocationServicesEnabled == false) {
+// ensure location services are enabled
+}
+if(error.bleRequirementsState.areLocationPermissionsGranted == false) {
+// ensure location runtime permissions are enabled
+}
+}
+}
+return@collectLatest
+}
+}
+// 2. subscribe to the nearbyGloves flow that will activate ble scanning
+val glove = pairingRepository
+.nearbyGloves
+// await first emission with non-empty nearby gloves
+.first(
+predicate = { nearbyGloves ->
+nearbyGloves.isNotEmpty()
+},
+)
+// take the first nearby glove from the list
+.first()
+// 3. use the desired glove and initiate pairing. This will trigger the pairing dialog while the function is suspended.
+when(val result = pairingRepository.pair(
+// pass the nearby glove object
+nearbyGlove = glove,
+// pass an optional name for the glove pair
+glovePairName = "Name of glove pair",
+)) {
+is Resource.Failure<*> -> {
+// handle errors
+result.exception
+}
+is Resource.Success<PeripheralId> -> {
+// the glove was successfully paired and added to the sdk's
+// database.
+}
+}
+Content copied to clipboard
+Monitoring Glove Status
+The GloveRepository is responsible for actively monitoring the state of the glove.
+Subscribe to GloveRepository.observeGloves() or GloveRepository.observeGlovePairs() to receive data transfer objects and all relevant information.
+Use other functions in the GloveRepository to modify minor metadata properties of the gloves.
+If the glove is no longer required, it can be removed from the SDK by calling the appropriate delete functions.
+Code sample:
+gloveRepository.observeGloves().collectLatest { pairs ->
+// there is only just a max. of 1 pair
+val pair = pairs.first()
+// the data object of the peripheral from the database
+// contains info about the peripheral that is also available in case the
+// glove is not connected
+val peripheralDto = pair.dto
+// the ble connection state
+when(val bleState = pair.bleGloveState) {
+is BleGloveState.Online -> {
+// glove is online
+// gloveData represents the state of the glove
+val gloveData = bleState.onlineData
+}
+is BleGloveState.Connecting -> {
+// ble is currently connecting
+}
+is BleGloveState.Offline.Error -> {
+// error state
+when(val error = bleState.gloveConnectionError) {
+is GloveConnectionError.BondLost -> {
+// bond is lost, new pairing is necessary
+}
+is GloveConnectionError.MissingRequirements -> {
+// requirements are not fulfilled
+// e.g. user has turned off bluetooth
+// check the ble requirements state
+error.bleRequirementsState
+}
+}
+}
+is BleGloveState.Offline.OutOfRange -> {
+// the glove is not connected, probably out of range
+// the sdk will always try to connect to gloves in this state
+// if the consumer app is actively in the foreground
+}
+}
+}
+Content copied to clipboard
+Workout/Session
+The TrainingSessionRepository is responsible for starting a new session (workout) which will trigger certain measurement modes on the firmware that will start to monitor punches.
+The concept of a training session
+A training session is simply an entity to which incoming punches are associated, so a training session may hold 0 to multiple punches.
+A training session always holds a glove pair (i.e. two gloves, one for each side).
+A training session has different states (started, resumed, paused, finished); the most important detail here is that there can be only one active session at a time.
+A training session is considered active if it's not finished.
+Any training sessions that are finished and have at least one punch will be kept in the database and can be retrieved/deleted later on.
+Control of active training sessions
+As there can be only one active session at a time, it's crucial to check the flow TrainingSessionRepository.activeTrainingSessionTime to see if there is already an active session.
+If not, then a new session needs to be explicitly started with the function TrainingSessionRepository.startTrainingSession .
+If yes, then the consumer needs to ensure that the session is resumed; otherwise, incoming punches will be ignored if the session is paused or just started.
+The state of an active session can be toggled with the function TrainingSessionRepository.toggleActiveTrainingSessionState .
+An active session can be finished with the function TrainingSessionRepository.finishActiveTrainingSession .
+Data flow
+Subscribe to TrainingSessionRepository.activeTrainingSessionStats to receive the latest punch data; the object always returns the latest 15 punches.
+The emitted object holds "stats" which indicate average/best values for a punch category but also the Punch objects.
+The TrainingSessionRepository is not intended to be used for pulling the samples for each punch category, but if that is desired, the consumer may use the PunchRepository for that purpose.
+Finished training sessions
+As soon as a training session is finished, the FinishedTrainingSessionRepository.finishedTrainingSessions can be used to pull all finished training sessions.
+The FinishedTrainingSessionRepository.getFinishedTrainingSession function can be used to pull all punches and average/best stats for a training session.
+However, PunchRepository may also be used to pull specific punches.
+Code sample for starting, managing and export training session punch data:
+// some options of the DynamicsSettings may be useful for scientific purposes
+// before starting a session
+// set the debugging mode to true
+// if you set it back to false, then all debug options are reset to its default values
+dynamicsSettings.setDebuggingMode(isEnabled = true)
+// enabling it will keep all punch details for every punch of a session.
+// this option is disabled by default
+dynamicsSettings.setKeepAllPunchDetails(isEnabled = true)
+// constraints that will reject punch data if certain thresholds are not reached
+// this might not be useful to enable
+// this option is disabled by default
+// dynamicsSettings.setAcceptAllPunches(acceptAllPunches = true)
+// 1. init a training session
+when (val result = trainingSessionRepository.initializeActiveTrainingSession(
+// a flag that ensures that any previously active training sessions that were
+// never stopped are now finished
+finishCurrentActiveSession = true,
+// defines the type of the session, currently only sessions of type Free are
+// supported
+settings = Free(true),
+)) {
+is Resource.Failure<*> -> {
+// an error is only expected here if there is already an active training
+// session but the flag finishCurrentActiveSession was set to false
+}
+is Resource.Success<TrainingSessionWithTime> -> {
+// the successfully created training session object
+val trainingSession = result.result
+}
+}
+// 2. ensure that there is a valid body profile
+val currentBodyProfile = profileRepository.getBodyProfile().getOrNull()
+if (currentBodyProfile == null) {
+when(val result = profileRepository.insertOrUpdateBodyProfile(bodyProfile =
+BodyProfile(
+// the id doesn't matter as there can be just one body profile
+id = BodyProfileId(uuid4()),
+// inspect BodyProfileValidation.nameNumberOfCharactersRange for the allowed range
+name = "Max Mustermann",
+// inspect BodyProfileValidation.weightRange for the allowed range
+weight = Kilogram(80.0),
+// inspect BodyProfileValidation.heightRange for the allowed range
+height = Centimeter(195.0),
+gender = Gender.MALE
+)
+)) {
+is Resource.Failure<*> -> {
+// use the helper function to cast to the expected validation exception
+val validationException = result.exception.bodyProfileValidationException() ?: return@launch
+// every BodyProfile property is represented with a validation property
+validationException.bodyProfileValidation.name
+validationException.bodyProfileValidation.gender
+validationException.bodyProfileValidation.height
+validationException.bodyProfileValidation.weight
+when(validationException.bodyProfileValidation.weight) {
+BasicValidation.AboveMax -> {
+// the property is above the allowed maximum
+}
+BasicValidation.BelowMin -> {
+// the property is below the allowed minimum
+}
+is BasicValidation.InvalidFormat -> {
+// invalid format for the property, in case formatting matters
+// e.g. for string properties
+}
+BasicValidation.Missing -> {
+// the property is missing or empty
+}
+BasicValidation.Ok -> {
+// the validation is ok
+}
+}
+}
+is Resource.Success<*> -> {
+// bodyProfile was successfully added or updated
+}
+}
+}
+// 3. move the state of the active training session to "ready"
+when(trainingSessionRepository.readyActiveTrainingSession(
+// pass sensor type ALPHA if your gloves have the barometric sensor
+// if the session is of type ALPHA, it will expect barometric punch data from the
+// gloves, otherwise the punch data is rejected.
+type = TrainingSessionSensorType.ALPHA,
+)) {
+is Resource.Failure<*> -> {
+// a failure is expected here if e.g. the body profile is not set
+// or if the gloves are all offline
+return@launch
+}
+is Resource.Success<Unit> -> {
+// proceed
+}
+}
+// 4. toggle the state manually, this will resume or pause the session.
+when(trainingSessionRepository.toggleActiveTrainingSessionState()) {
+is Resource.Failure<*> -> {
+// expected errors are only if there is no active training session
+}
+is Resource.Success<*> -> {
+}
+}
+// 5. subscribe to the stat flow and receive the most recent punch data
+trainingSessionRepository.activeTrainingSessionStats.collectLatest { stats ->
+// the global stats
+stats.stats.totalPunchCount
+// average values
+stats.stats.avgStats
+// best punch values
+stats.stats.bestStats
+// receive the last punches for the session
+stats.punches
+// the last left punch
+stats.lastLeftPunch
+// the last right punch
+stats.lastRightPunch
+// the last punch (may be left or right)
+stats.lastPunch
+}
+// 5. subscribe to the session time flow
+trainingSessionRepository.activeTrainingSessionTime.mapNotNull { it }.collectLatest { time ->
+// the state of the session
+when(time.state) {
+TrainingSessionExtendedState.Initializing -> TODO()
+is TrainingSessionExtendedState.Paused -> TODO()
+is TrainingSessionExtendedState.Ready -> TODO()
+is TrainingSessionExtendedState.Resumed -> TODO()
+is TrainingSessionExtendedState.Finished -> {
+// a finished state won't be returned by this flow
+}
+}
+}
+// 6. when you're done, finish the active session
+trainingSessionRepository.finishActiveTrainingSession()
+// in case you want to discard the session, delete it
+trainingSessionRepository.deleteActiveTrainingSession()
+// 7. get the data for finished training sessions
+val finishedSessions = finishedTrainingSessionRepository.finishedTrainingSessions.first()
+finishedSessions.firstOrNull()?.let { session ->
+when(session) {
+is FinishedTrainingSession.Free -> {
+val sessionWithStats = finishedTrainingSessionRepository.getFinishedTrainingSessionById(id = session.id)
+// inspect punches for finished training sessions
+val punchId = sessionWithStats.getOrNull()?.punches?.firstOrNull()?.id ?: return@launch
+// get samples for punchId
+punchRepository.getPunchWithSamples(punchId = punchId)
+}
+}
+}
+// 8. export training sessions by id
+// the path will contain folders for each punch and a CSV with the raw punch data.
+// ask Dominik Hoelbling for the documentation of the export
+val absoluteFilePath = exportRepository.exportTrainingSession(trainingSessionId = TODO()).getOrNull()
+Content copied to clipboard
+Raw Sensor Data Flow
+⚠️ Available since firmware version v0.7.0
+The SensorDataRepository can be used to request a continuous data stream of the SG.
+A code sample for the SensorStreamRecordingHelper that will merge the incoming sensor raw data into the same CSV output format as defined by the ExportRepository .
+/**
+* Init the stream recorder.
+*
+* - [SensorStreamRecordingHelper.toggleRecording] to toggle recording.
+* - [SensorStreamRecordingHelper.splitCurrentRecording] calling this will start a new
+* recording sequence.
+*
+* [SensorStreamRecordingHelper.recordedSequences] contains the meta data where data was written
+* into:
+* - [RecordedSensorStreamSequence.sessionAbsolutePath] the file path of the whole sensor
+* streaming session.
+* - [RecordedSensorStreamSequence.absolutePath] the file path of the whole sensor
+* streaming session.
+*/
+fun initSensorStreamRecordingHelper(
+isLeft: Boolean,
+sessionStartTime: Instant,
+glove: Glove?,
+coroutineScope: CoroutineScope,
+): SensorStreamRecordingHelper? {
+glove ?: return null
+// init the helper class
+val helper =
+SensorStreamRecordingHelper(
+// a session folder prefix
+"${(if (isLeft) Side.LEFT else Side.RIGHT).name}_",
+// the session starting time
+sessionStartTime,
+// the id of peripheral
+glove.dto.id,
+// the sensor stream flow for the desired peripheral
+sensorDataRepository.observeSensorData(glove.dto.id),
+)
+coroutineScope.launch {
+helper.recordingState
+.map { it is SensorDataStreamState.Recording }
+.distinctUntilChanged()
+.collectLatest {
+// subscribe to flow only if the helper class is in Recording state
+if (it) {
+// subscribing to the sensor stream flow is essential
+// as long as there is subscription to this flow, the glove will
+// transition to the sensor stream state and start sending data
+helper.sensorStream.collectLatest {
+// track the data of the last sensor packet
+}
+}
+}
+}
+coroutineScope.launch {
+helper.recordingState.collectLatest {
+// track the recording state
+}
+}
+coroutineScope.launch {
+helper.recordedSequences.collectLatest {
+// track the recorded sequences
+}
+}
+return helper
+}
+Content copied to clipboard
+Packages
+com.riseworld.dynamics.multiplatform.di
+Link copied to clipboard
+common
+com.riseworld.dynamics.multiplatform.extensions
+Link copied to clipboard
+common
+com.riseworld.dynamics.multiplatform.repository
+Link copied to clipboard
+common
+ios
+com.riseworld.dynamics.multiplatform.settings
+Link copied to clipboard
+common
+com.riseworld.dynamics.multiplatform.util
+Link copied to clipboard
+common
+com.riseworld.dynamics.multiplatform.util.context
+Link copied to clipboard
+common
+Generated by
+Dokka
+© 2026 Copyright
+
+C:\dynamics-sdk-main\docs\dynamics-multiplatform\com.riseworld.dynamics.multiplatform.repository\-sensor-data-repository\observe-sensor-data.html
+observeSensorData
+RISE Dynamics SDK
+Toggle table of contents
+0.25.6
+common
+Target filter
+common
+Switch theme
+Search in
+API
+Skip to content
+RISE Dynamics SDK
+dynamics-multiplatform / com.riseworld.dynamics.multiplatform.repository / SensorDataRepository / observeSensorData
+observe Sensor Data
+@ HiddenFromObjC
+fun observeSensorData ( peripheralId : PeripheralId ) : Flow < List < SensorDataPacket > >
+Observes sensor data of a glove peripheral.
+See SensorDataPacket doc for more information about the units.
+Return
+a flow of SensorDataPacket , where each packet belongs to the peripheral of peripheralId .
+Throws
+Exception
+if the peripheralId cannot be initially found in the db , use Flow.catch before collecting this flow.
+Generated by
+Dokka
+© 2026 Copyright
+
+C:\dynamics-sdk-main\docs\dynamics-multiplatform\com.riseworld.dynamics.multiplatform.repository\-sensor-data-repository\observe-sensor-data-from-all-gloves.html
+observeSensorDataFromAllGloves
+RISE Dynamics SDK
+Toggle table of contents
+0.25.6
+common
+Target filter
+common
+Switch theme
+Search in
+API
+Skip to content
+RISE Dynamics SDK
+dynamics-multiplatform / com.riseworld.dynamics.multiplatform.repository / SensorDataRepository / observeSensorDataFromAllGloves
+observe Sensor Data From All Gloves
+@ NativeCoroutines
+fun observeSensorDataFromAllGloves ( ) : Flow < List < GloveWithSensorData > >
+A convenience function for observeSensorData to observe sensor data from all gloves.
+Generated by
+Dokka
+© 2026 Copyright
+
+C:\dynamics-sdk-main\docs\dynamics-multiplatform\com.riseworld.dynamics.multiplatform.repository\-training-session-repository\ready-active-training-session.html
+readyActiveTrainingSession
+RISE Dynamics SDK
+Toggle table of contents
+0.25.6
+common
+Target filter
+common
+Switch theme
+Search in
+API
+Skip to content
+RISE Dynamics SDK
+dynamics-multiplatform / com.riseworld.dynamics.multiplatform.repository / TrainingSessionRepository / readyActiveTrainingSession
+ready Active Training Session
+@ HiddenFromObjC
+suspend fun readyActiveTrainingSession ( type : TrainingSessionSensorType ) : Resource < Unit >
+Prepares the current initializing active training session and moves it to the TrainingSessionState.READY .
+A body profile via ProfileRepository.bodyProfile needs to be set.
+Returns an error if the pre-conditions to start a training session are not fulfilled.
+Generated by
+Dokka
+© 2026 Copyright

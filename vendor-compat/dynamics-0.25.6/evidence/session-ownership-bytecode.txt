@@ -1,0 +1,517 @@
+Compiled from "r8-map-id-07daa5afff8b4a899fe7396a4c21f4034add25c5a5110399a2c8222ca22df43b"
+public final class com.riseworld.dynamics.multiplatform.repository.TrainingSessionRepository {
+  private final com.riseworld.dynamics.db.Database a;
+
+  private final kotlinx.coroutines.flow.MutableStateFlow b;
+
+  private final kotlinx.coroutines.flow.Flow c;
+
+  private final kotlinx.coroutines.flow.Flow d;
+
+  public com.riseworld.dynamics.multiplatform.repository.TrainingSessionRepository(com.riseworld.dynamics.db.Database, com.riseworld.dynamics.ble.GloveManager);
+    Code:
+       0: aload_0
+       1: dup
+       2: aload_1
+       3: aload_0
+       4: aload_2
+       5: aload_1
+       6: invokevirtual #63                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       9: pop
+      10: invokevirtual #63                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      13: pop
+      14: invokespecial #65                 // Method java/lang/Object."<init>":()V
+      17: putfield      #67                 // Field a:Lcom/riseworld/dynamics/db/Database;
+      20: invokestatic  #73                 // Method kotlinx/coroutines/Dispatchers.getDefault:()Lkotlinx/coroutines/CoroutineDispatcher;
+      23: invokestatic  #79                 // Method kotlinx/coroutines/CoroutineScopeKt.CoroutineScope:(Lkotlin/coroutines/CoroutineContext;)Lkotlinx/coroutines/CoroutineScope;
+      26: astore_2
+      27: aconst_null
+      28: invokestatic  #85                 // Method kotlinx/coroutines/flow/StateFlowKt.MutableStateFlow:(Ljava/lang/Object;)Lkotlinx/coroutines/flow/MutableStateFlow;
+      31: dup
+      32: astore_3
+      33: aload_0
+      34: aload_1
+      35: aload_2
+      36: aload_0
+      37: aload_3
+      38: putfield      #87                 // Field b:Lkotlinx/coroutines/flow/MutableStateFlow;
+      41: new           #89                 // class com/riseworld/dynamics/multiplatform/e5
+      44: dup
+      45: astore_1
+      46: aload_0
+      47: aconst_null
+      48: invokespecial #92                 // Method com/riseworld/dynamics/multiplatform/e5."<init>":(Lcom/riseworld/dynamics/multiplatform/repository/TrainingSessionRepository;Lkotlin/coroutines/Continuation;)V
+      51: aconst_null
+      52: aconst_null
+      53: aload_1
+      54: iconst_3
+      55: aconst_null
+      56: invokestatic  #98                 // Method kotlinx/coroutines/BuildersKt.launch$default:(Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/CoroutineContext;Lkotlinx/coroutines/CoroutineStart;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lkotlinx/coroutines/Job;
+      59: pop
+      60: invokevirtual #103                // Method com/riseworld/dynamics/db/Database.observeActiveTrainingSession:()Lkotlinx/coroutines/flow/Flow;
+      63: putfield      #105                // Field c:Lkotlinx/coroutines/flow/Flow;
+      66: new           #107                // class com/riseworld/dynamics/multiplatform/g5
+      69: dup
+      70: aload_0
+      71: aconst_null
+      72: invokespecial #108                // Method com/riseworld/dynamics/multiplatform/g5."<init>":(Lcom/riseworld/dynamics/multiplatform/repository/TrainingSessionRepository;Lkotlin/coroutines/Continuation;)V
+      75: invokestatic  #114                // Method kotlinx/coroutines/flow/FlowKt.transformLatest:(Lkotlinx/coroutines/flow/Flow;Lkotlin/jvm/functions/Function3;)Lkotlinx/coroutines/flow/Flow;
+      78: putfield      #116                // Field d:Lkotlinx/coroutines/flow/Flow;
+      81: return
+
+  public static void getActiveTrainingSessionTime$annotations();
+    Code:
+       0: return
+
+  public static void getActiveTrainingSessionStats$annotations();
+    Code:
+       0: return
+
+  private static final java.lang.String a();
+    Code:
+       0: ldc           #119                // String Awaiting pressure sensor has failed
+       2: areturn
+
+  public static final com.riseworld.dynamics.db.Database access$getDb$p(com.riseworld.dynamics.multiplatform.repository.TrainingSessionRepository);
+    Code:
+       0: aload_0
+       1: getfield      #67                 // Field a:Lcom/riseworld/dynamics/db/Database;
+       4: areturn
+
+  public static final kotlinx.coroutines.flow.MutableStateFlow access$getActiveTrainingSessionId$p(com.riseworld.dynamics.multiplatform.repository.TrainingSessionRepository);
+    Code:
+       0: aload_0
+       1: getfield      #87                 // Field b:Lkotlinx/coroutines/flow/MutableStateFlow;
+       4: areturn
+
+  public final kotlinx.coroutines.flow.Flow getActiveTrainingSessionTime();
+    Code:
+       0: aload_0
+       1: getfield      #105                // Field c:Lkotlinx/coroutines/flow/Flow;
+       4: areturn
+
+  public final kotlinx.coroutines.flow.Flow getActiveTrainingSessionStats();
+    Code:
+       0: aload_0
+       1: getfield      #116                // Field d:Lkotlinx/coroutines/flow/Flow;
+       4: areturn
+
+  public final java.lang.Object initializeActiveTrainingSession(boolean, com.riseworld.dynamics.models.domain.session.TrainingSessionSettings, kotlin.coroutines.Continuation);
+    Code:
+       0: aload_3
+       1: instanceof    #125                // class com/riseworld/dynamics/multiplatform/h5
+       4: ifeq          39
+       7: aload_3
+       8: checkcast     #125                // class com/riseworld/dynamics/multiplatform/h5
+      11: dup
+      12: astore        4
+      14: getfield      #129                // Field com/riseworld/dynamics/multiplatform/h5.e:I
+      17: dup
+      18: istore        5
+      20: ldc           #130                // int -2147483648
+      22: iand
+      23: ifeq          39
+      26: aload         4
+      28: iload         5
+      30: ldc           #130                // int -2147483648
+      32: isub
+      33: putfield      #129                // Field com/riseworld/dynamics/multiplatform/h5.e:I
+      36: goto          50
+      39: new           #125                // class com/riseworld/dynamics/multiplatform/h5
+      42: dup
+      43: astore        4
+      45: aload_0
+      46: aload_3
+      47: invokespecial #131                // Method com/riseworld/dynamics/multiplatform/h5."<init>":(Lcom/riseworld/dynamics/multiplatform/repository/TrainingSessionRepository;Lkotlin/coroutines/Continuation;)V
+      50: aload         4
+      52: dup
+      53: getfield      #136                // Field com/riseworld/dynamics/multiplatform/h5.c:Ljava/lang/Object;
+      56: astore_3
+      57: invokestatic  #142                // Method kotlin/coroutines/intrinsics/IntrinsicsKt.getCOROUTINE_SUSPENDED:()Ljava/lang/Object;
+      60: astore        5
+      62: getfield      #129                // Field com/riseworld/dynamics/multiplatform/h5.e:I
+      65: dup
+      66: istore        6
+      68: ifeq          129
+      71: iload         6
+      73: iconst_1
+      74: if_icmpeq     108
+      77: iload         6
+      79: iconst_2
+      80: if_icmpne     98
+      83: aload_3
+      84: dup
+      85: aload         4
+      87: getfield      #144                // Field com/riseworld/dynamics/multiplatform/h5.b:Ljava/lang/Object;
+      90: checkcast     #133                // class com/riseworld/dynamics/models/domain/session/TrainingSessionSettings
+      93: pop
+      94: invokestatic  #150                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+      97: areturn
+      98: new           #152                // class java/lang/IllegalStateException
+     101: dup
+     102: ldc           #154                // String call to \'resume\' before \'invoke\' with coroutine
+     104: invokespecial #157                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     107: athrow
+     108: aload_3
+     109: aload         4
+     111: dup
+     112: getfield      #160                // Field com/riseworld/dynamics/multiplatform/h5.a:Z
+     115: istore_1
+     116: getfield      #144                // Field com/riseworld/dynamics/multiplatform/h5.b:Ljava/lang/Object;
+     119: checkcast     #133                // class com/riseworld/dynamics/models/domain/session/TrainingSessionSettings
+     122: astore_2
+     123: invokestatic  #150                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     126: goto          179
+     129: iload_1
+     130: aload_3
+     131: invokestatic  #150                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     134: ifeq          179
+     137: aload_0
+     138: getfield      #67                 // Field a:Lcom/riseworld/dynamics/db/Database;
+     141: aload         4
+     143: dup
+     144: iload_1
+     145: aload         4
+     147: aload_2
+     148: getstatic     #166                // Field kotlin/time/Clock$System.INSTANCE:Lkotlin/time/Clock$System;
+     151: invokevirtual #170                // Method kotlin/time/Clock$System.now:()Lkotlin/time/Instant;
+     154: astore_3
+     155: putfield      #144                // Field com/riseworld/dynamics/multiplatform/h5.b:Ljava/lang/Object;
+     158: putfield      #160                // Field com/riseworld/dynamics/multiplatform/h5.a:Z
+     161: iconst_1
+     162: putfield      #129                // Field com/riseworld/dynamics/multiplatform/h5.e:I
+     165: aload_3
+     166: aload         4
+     168: invokevirtual #173                // Method com/riseworld/dynamics/db/Database.finishActiveTrainingSession:(Lkotlin/time/Instant;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     171: aload         5
+     173: if_acmpne     179
+     176: goto          279
+     179: aload_2
+     180: aload_0
+     181: getfield      #67                 // Field a:Lcom/riseworld/dynamics/db/Database;
+     184: astore_0
+     185: new           #175                // class com/riseworld/dynamics/models/domain/session/TrainingSessionInput
+     188: astore_3
+     189: getstatic     #181                // Field kotlin/uuid/Uuid.Companion:Lkotlin/uuid/Uuid$Companion;
+     192: invokevirtual #187                // Method kotlin/uuid/Uuid$Companion.random:()Lkotlin/uuid/Uuid;
+     195: invokestatic  #193                // Method com/riseworld/dynamics/models/domain/session/TrainingSessionId."constructor-impl":(Lkotlin/uuid/Uuid;)Lkotlin/uuid/Uuid;
+     198: astore        6
+     200: getstatic     #166                // Field kotlin/time/Clock$System.INSTANCE:Lkotlin/time/Clock$System;
+     203: invokevirtual #170                // Method kotlin/time/Clock$System.now:()Lkotlin/time/Instant;
+     206: astore        7
+     208: getstatic     #199                // Field com/riseworld/dynamics/models/domain/session/TrainingSessionState.INIT:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;
+     211: astore        8
+     213: invokevirtual #203                // Method com/riseworld/dynamics/models/domain/session/TrainingSessionSettings.isAutoResume:()Z
+     216: ifeq          227
+     219: getstatic     #209                // Field com/riseworld/dynamics/models/domain/session/TrainingSessionStateActor.AUTO:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionStateActor;
+     222: astore        9
+     224: goto          232
+     227: getstatic     #214                // Field com/riseworld/dynamics/models/domain/session/TrainingSessionStateActor.MANUAL:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionStateActor;
+     230: astore        9
+     232: aload_0
+     233: aload_3
+     234: aload         4
+     236: dup
+     237: iload_1
+     238: aload         4
+     240: aload_2
+     241: aload_3
+     242: aload         6
+     244: aload         7
+     246: aload         8
+     248: aload         9
+     250: aconst_null
+     251: invokespecial #217                // Method com/riseworld/dynamics/models/domain/session/TrainingSessionInput."<init>":(Lkotlin/uuid/Uuid;Lkotlin/time/Instant;Lcom/riseworld/dynamics/models/domain/session/TrainingSessionState;Lcom/riseworld/dynamics/models/domain/session/TrainingSessionStateActor;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+     254: invokestatic  #223                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     257: putfield      #144                // Field com/riseworld/dynamics/multiplatform/h5.b:Ljava/lang/Object;
+     260: putfield      #160                // Field com/riseworld/dynamics/multiplatform/h5.a:Z
+     263: iconst_2
+     264: putfield      #129                // Field com/riseworld/dynamics/multiplatform/h5.e:I
+     267: aload         4
+     269: invokevirtual #227                // Method com/riseworld/dynamics/db/Database.initializeTrainingSession:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionInput;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     272: dup
+     273: astore_0
+     274: aload         5
+     276: if_acmpne     282
+     279: aload         5
+     281: areturn
+     282: aload_0
+     283: areturn
+
+  public final java.lang.Object readyActiveTrainingSession(com.riseworld.dynamics.models.domain.session.TrainingSessionSensorType, kotlin.coroutines.Continuation);
+    Code:
+       0: aload_2
+       1: instanceof    #229                // class com/riseworld/dynamics/multiplatform/i5
+       4: ifeq          37
+       7: aload_2
+       8: checkcast     #229                // class com/riseworld/dynamics/multiplatform/i5
+      11: dup
+      12: astore_3
+      13: getfield      #230                // Field com/riseworld/dynamics/multiplatform/i5.e:I
+      16: dup
+      17: istore        4
+      19: ldc           #130                // int -2147483648
+      21: iand
+      22: ifeq          37
+      25: aload_3
+      26: iload         4
+      28: ldc           #130                // int -2147483648
+      30: isub
+      31: putfield      #230                // Field com/riseworld/dynamics/multiplatform/i5.e:I
+      34: goto          47
+      37: new           #229                // class com/riseworld/dynamics/multiplatform/i5
+      40: dup
+      41: astore_3
+      42: aload_0
+      43: aload_2
+      44: invokespecial #231                // Method com/riseworld/dynamics/multiplatform/i5."<init>":(Lcom/riseworld/dynamics/multiplatform/repository/TrainingSessionRepository;Lkotlin/coroutines/Continuation;)V
+      47: aload_3
+      48: dup
+      49: getfield      #234                // Field com/riseworld/dynamics/multiplatform/i5.c:Ljava/lang/Object;
+      52: astore_2
+      53: invokestatic  #142                // Method kotlin/coroutines/intrinsics/IntrinsicsKt.getCOROUTINE_SUSPENDED:()Ljava/lang/Object;
+      56: astore        4
+      58: getfield      #230                // Field com/riseworld/dynamics/multiplatform/i5.e:I
+      61: dup
+      62: istore        5
+      64: ifeq          130
+      67: iload         5
+      69: iconst_1
+      70: if_icmpeq     103
+      73: iload         5
+      75: iconst_2
+      76: if_icmpne     93
+      79: aload_2
+      80: dup
+      81: aload_3
+      82: getfield      #236                // Field com/riseworld/dynamics/multiplatform/i5.a:Ljava/lang/Object;
+      85: checkcast     #233                // class com/riseworld/dynamics/models/domain/session/TrainingSessionSensorType
+      88: pop
+      89: invokestatic  #150                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+      92: areturn
+      93: new           #152                // class java/lang/IllegalStateException
+      96: dup
+      97: ldc           #154                // String call to \'resume\' before \'invoke\' with coroutine
+      99: invokespecial #157                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     102: athrow
+     103: aload_2
+     104: aload_3
+     105: dup
+     106: getfield      #237                // Field com/riseworld/dynamics/multiplatform/i5.b:Ljava/lang/Object;
+     109: checkcast     #239                // class com/riseworld/dynamics/multiplatform/util/sensors/PressureSensorObserver
+     112: pop
+     113: getfield      #236                // Field com/riseworld/dynamics/multiplatform/i5.a:Ljava/lang/Object;
+     116: checkcast     #233                // class com/riseworld/dynamics/models/domain/session/TrainingSessionSensorType
+     119: astore_1
+     120: invokestatic  #150                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     123: goto          237
+     126: astore_2
+     127: goto          216
+     130: aload_2
+     131: invokestatic  #150                // Method kotlin/ResultKt.throwOnFailure:(Ljava/lang/Object;)V
+     134: invokestatic  #246                // Method com/riseworld/dynamics/utils/extensions/PlatformExtensions_androidKt.isIos:()Z
+     137: ifeq          237
+     140: invokestatic  #252                // Method com/riseworld/dynamics/multiplatform/util/sensors/PressureSensorObserver_androidKt.getPressureSensorObserver:()Lcom/riseworld/dynamics/multiplatform/util/sensors/PressureSensorObserver;
+     143: dup
+     144: astore_2
+     145: invokeinterface #256,  1          // InterfaceMethod com/riseworld/dynamics/multiplatform/util/sensors/PressureSensorObserver.isPermissionAuthorized:()Lkotlinx/coroutines/flow/StateFlow;
+     150: invokeinterface #261,  1          // InterfaceMethod kotlinx/coroutines/flow/StateFlow.getValue:()Ljava/lang/Object;
+     155: checkcast     #263                // class java/lang/Boolean
+     158: invokevirtual #266                // Method java/lang/Boolean.booleanValue:()Z
+     161: ifne          237
+     164: getstatic     #271                // Field kotlin/time/Duration.Companion:Lkotlin/time/Duration$Companion;
+     167: pop
+     168: bipush        30
+     170: getstatic     #277                // Field kotlin/time/DurationUnit.SECONDS:Lkotlin/time/DurationUnit;
+     173: invokestatic  #283                // Method kotlin/time/DurationKt.toDuration:(ILkotlin/time/DurationUnit;)J
+     176: aload_3
+     177: dup
+     178: aload_2
+     179: aload_3
+     180: aload_1
+     181: new           #285                // class com/riseworld/dynamics/multiplatform/k5
+     184: dup
+     185: astore_2
+     186: aconst_null
+     187: invokespecial #288                // Method com/riseworld/dynamics/multiplatform/k5."<init>":(Lkotlin/coroutines/Continuation;)V
+     190: putfield      #236                // Field com/riseworld/dynamics/multiplatform/i5.a:Ljava/lang/Object;
+     193: invokestatic  #223                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     196: putfield      #237                // Field com/riseworld/dynamics/multiplatform/i5.b:Ljava/lang/Object;
+     199: iconst_1
+     200: putfield      #230                // Field com/riseworld/dynamics/multiplatform/i5.e:I
+     203: aload_2
+     204: aload_3
+     205: invokestatic  #294                // Method kotlinx/coroutines/TimeoutKt."withTimeout-KLykuaI":(JLkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     208: aload         4
+     210: if_acmpne     237
+     213: goto          271
+     216: aload_2
+     217: invokestatic  #300                // Method com/riseworld/launchpad/resource/exception/ExceptionExtensionsKt.throwOnCancellation:(Ljava/lang/Exception;)Ljava/lang/Exception;
+     220: pop
+     221: getstatic     #305                // Field io/github/aakira/napier/Napier.INSTANCE:Lio/github/aakira/napier/Napier;
+     224: aload_2
+     225: invokedynamic #321,  0            // InvokeDynamic #0:invoke:()Lkotlin/jvm/functions/Function0;
+     230: aconst_null
+     231: swap
+     232: iconst_2
+     233: aconst_null
+     234: invokestatic  #325                // Method io/github/aakira/napier/Napier.e$default:(Lio/github/aakira/napier/Napier;Ljava/lang/Throwable;Ljava/lang/String;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+     237: aload_0
+     238: getfield      #67                 // Field a:Lcom/riseworld/dynamics/db/Database;
+     241: aload_1
+     242: aload_3
+     243: dup
+     244: dup
+     245: aload_1
+     246: invokestatic  #223                // Method kotlin/coroutines/jvm/internal/SpillingKt.nullOutSpilledVariable:(Ljava/lang/Object;)Ljava/lang/Object;
+     249: putfield      #236                // Field com/riseworld/dynamics/multiplatform/i5.a:Ljava/lang/Object;
+     252: aconst_null
+     253: putfield      #237                // Field com/riseworld/dynamics/multiplatform/i5.b:Ljava/lang/Object;
+     256: iconst_2
+     257: putfield      #230                // Field com/riseworld/dynamics/multiplatform/i5.e:I
+     260: aload_3
+     261: invokevirtual #328                // Method com/riseworld/dynamics/db/Database.readyTrainingSessionState:(Lcom/riseworld/dynamics/models/domain/session/TrainingSessionSensorType;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     264: dup
+     265: astore_0
+     266: aload         4
+     268: if_acmpne     274
+     271: aload         4
+     273: areturn
+     274: aload_0
+     275: areturn
+    Exception table:
+       from    to  target type
+         120   126   126   Class java/lang/Exception
+         140   143   126   Class java/lang/Exception
+         145   161   126   Class java/lang/Exception
+         164   167   126   Class java/lang/Exception
+         170   184   126   Class java/lang/Exception
+         186   208   126   Class java/lang/Exception
+
+  public final java.lang.Object toggleActiveTrainingSessionState(kotlin.coroutines.Continuation);
+    Code:
+       0: aload_0
+       1: getfield      #67                 // Field a:Lcom/riseworld/dynamics/db/Database;
+       4: new           #330                // class com/riseworld/dynamics/models/domain/session/ActiveTrainingSessionInputSecondary
+       7: dup
+       8: getstatic     #166                // Field kotlin/time/Clock$System.INSTANCE:Lkotlin/time/Clock$System;
+      11: invokevirtual #170                // Method kotlin/time/Clock$System.now:()Lkotlin/time/Instant;
+      14: getstatic     #214                // Field com/riseworld/dynamics/models/domain/session/TrainingSessionStateActor.MANUAL:Lcom/riseworld/dynamics/models/domain/session/TrainingSessionStateActor;
+      17: astore_0
+      18: aconst_null
+      19: swap
+      20: aload_0
+      21: aconst_null
+      22: invokespecial #333                // Method com/riseworld/dynamics/models/domain/session/ActiveTrainingSessionInputSecondary."<init>":(Lkotlin/uuid/Uuid;Lkotlin/time/Instant;Lcom/riseworld/dynamics/models/domain/session/TrainingSessionStateActor;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+      25: aload_1
+      26: invokevirtual #337                // Method com/riseworld/dynamics/db/Database.toggleTrainingSessionState:(Lcom/riseworld/dynamics/models/domain/session/ActiveTrainingSessionInputSecondary;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+      29: areturn
+
+  public final java.lang.Object finishActiveTrainingSession(kotlin.coroutines.Continuation);
+    Code:
+       0: aload_0
+       1: getfield      #67                 // Field a:Lcom/riseworld/dynamics/db/Database;
+       4: aconst_null
+       5: aload_1
+       6: iconst_1
+       7: aconst_null
+       8: invokestatic  #341                // Method com/riseworld/dynamics/db/Database.finishActiveTrainingSession$default:(Lcom/riseworld/dynamics/db/Database;Lkotlin/time/Instant;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+      11: areturn
+
+  public final java.lang.Object deleteActiveTrainingSession(kotlin.coroutines.Continuation);
+    Code:
+       0: aload_0
+       1: getfield      #67                 // Field a:Lcom/riseworld/dynamics/db/Database;
+       4: aload_1
+       5: invokevirtual #343                // Method com/riseworld/dynamics/db/Database.deleteActiveTrainingSession:(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+       8: areturn
+}
+Compiled from "r8-map-id-07daa5afff8b4a899fe7396a4c21f4034add25c5a5110399a2c8222ca22df43b"
+public final class com.riseworld.dynamics.multiplatform.v4 extends kotlin.jvm.internal.FunctionReferenceImpl implements kotlin.jvm.functions.Function1 {
+  public com.riseworld.dynamics.multiplatform.v4(java.lang.Object);
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: aload_1
+       3: ldc           #13                 // class com/riseworld/dynamics/ble/GloveManager
+       5: ldc           #15                 // String observeContinuousDataPackets
+       7: ldc           #17                 // String observeContinuousDataPackets(Lcom/riseworld/dynamics/models/PeripheralDto;)Lkotlinx/coroutines/flow/Flow;
+       9: iconst_0
+      10: invokespecial #20                 // Method kotlin/jvm/internal/FunctionReferenceImpl."<init>":(ILjava/lang/Object;Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;I)V
+      13: return
+
+  public final java.lang.Object invoke(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #24                 // class com/riseworld/dynamics/models/PeripheralDto
+       5: dup
+       6: astore_0
+       7: invokevirtual #30                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      10: pop
+      11: getfield      #34                 // Field kotlin/jvm/internal/FunctionReferenceImpl.receiver:Ljava/lang/Object;
+      14: checkcast     #13                 // class com/riseworld/dynamics/ble/GloveManager
+      17: aload_0
+      18: invokevirtual #37                 // Method com/riseworld/dynamics/ble/GloveManager.observeContinuousDataPackets:(Lcom/riseworld/dynamics/models/PeripheralDto;)Lkotlinx/coroutines/flow/Flow;
+      21: areturn
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.GloveModeDto$Double extends com.riseworld.dynamics.models.GloveModeDto {
+  private final com.riseworld.dynamics.models.PeripheralDto a;
+
+  private final com.riseworld.dynamics.models.PeripheralDto b;
+
+  public com.riseworld.dynamics.models.GloveModeDto$Double(com.riseworld.dynamics.models.PeripheralDto, com.riseworld.dynamics.models.PeripheralDto);
+    Code:
+       0: aload_0
+       1: dup
+       2: dup
+       3: aload_2
+       4: aload_1
+       5: invokevirtual #18                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       8: pop
+       9: invokevirtual #18                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      12: pop
+      13: aconst_null
+      14: invokespecial #21                 // Method com/riseworld/dynamics/models/GloveModeDto."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+      17: aload_1
+      18: putfield      #23                 // Field a:Lcom/riseworld/dynamics/models/PeripheralDto;
+      21: aload_2
+      22: putfield      #25                 // Field b:Lcom/riseworld/dynamics/models/PeripheralDto;
+      25: return
+
+  public final com.riseworld.dynamics.models.PeripheralDto getLeft();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field a:Lcom/riseworld/dynamics/models/PeripheralDto;
+       4: areturn
+
+  public final com.riseworld.dynamics.models.PeripheralDto getRight();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field b:Lcom/riseworld/dynamics/models/PeripheralDto;
+       4: areturn
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.GloveModeDto$Single extends com.riseworld.dynamics.models.GloveModeDto {
+  private final com.riseworld.dynamics.models.PeripheralDto a;
+
+  public com.riseworld.dynamics.models.GloveModeDto$Single(com.riseworld.dynamics.models.PeripheralDto);
+    Code:
+       0: aload_0
+       1: dup
+       2: aload_1
+       3: invokevirtual #17                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       6: pop
+       7: aconst_null
+       8: invokespecial #20                 // Method com/riseworld/dynamics/models/GloveModeDto."<init>":(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+      11: aload_1
+      12: putfield      #22                 // Field a:Lcom/riseworld/dynamics/models/PeripheralDto;
+      15: return
+
+  public final com.riseworld.dynamics.models.PeripheralDto getPeripheral();
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field a:Lcom/riseworld/dynamics/models/PeripheralDto;
+       4: areturn
+}

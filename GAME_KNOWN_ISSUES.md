@@ -1,3 +1,19 @@
+# Current integration boundaries — 2026-09-14
+
+This section supersedes the historical issue tables below.
+
+| Priority | Current issue | Evidence / next action |
+|---|---|---|
+| P1 hardware | Android install/startup/JNI/BLE/permissions/lifecycle | APK and native build pass; ADB lists no devices. Attach an authorized device and execute the physical test sequence. |
+| P1 SDK | Official package remains defective | Original graph/API failures preserved. Explicit local compatibility candidate builds; Resource behavior and Android runtime remain unqualified. |
+| P1 research | Mixed ALPHA + DELTA | Database rejects multiple pairs/active sessions; raw API compiles but firmware/concurrent operation untested. See MULTI_SENSOR_REPORT. |
+| P1 research | Measured reference validity | Collection/storage implemented and logic tested. No actual measurements or hardware qualification; records stay UNQUALIFIED and gameplay normalization stays off. |
+| P1 scope | Heart rate and empirical effectiveness | HR inactive; no participant results or clinical efficacy claims. |
+| P2 mobile | Touch, cutouts, fonts and performance | 50 Editor camera captures; no Android profiling or touch verification. |
+| P2 tools | Earlier Search exception / shutdown issue | Not reproduced in current runs; bounded owned-process wrapper implemented, all final processes exit cleanly. Earlier engine root cause remains unidentified. |
+
+---
+
 # Current review — Digital Dojo, 2026-09-14
 
 The current status is [GAME_STATUS](GAME_STATUS.md), [VISUAL_STATUS](VISUAL_STATUS.md) and [ANDROID_STATUS](ANDROID_STATUS.md). The older audit below is preserved as history; its statements that Unity is uninstalled or screenshots are unavailable are superseded.

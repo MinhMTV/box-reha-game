@@ -1,10 +1,4 @@
 {
-  "generatedUtc": "2026-09-14T00:29:40.4086152Z",
-  "dirty": true,
-  "revision": "4eb274a7f0e66351d6ba7334aa71b744eb922daa",
-  "sourceSha256": "60538b4a9b9bc39142995381b0abdeeb1da16f79ae907a3aab036e5b4aa6d0d4",
-  "method": "Existing Get-SourceSnapshot function; direct build after completed preparation shutdown hang",
-  "unityPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
   "files": [
     {
       "path": "Assets/Art.meta",
@@ -508,7 +502,7 @@
     },
     {
       "path": "Assets/Editor/DigitalDojoCapture.cs",
-      "sha256": "1f4aab8c8d955873881070ad203f2c2dbf88b6a7729da2b0c179336c9f5c0971"
+      "sha256": "a3792b67ebcda7a713b501f1e49701d7473f7654f23fc18793e17cd75edd1e41"
     },
     {
       "path": "Assets/Editor/DigitalDojoCapture.cs.meta",
@@ -524,7 +518,7 @@
     },
     {
       "path": "Assets/Editor/DynamicsAndroidGradleIntegration.cs",
-      "sha256": "64856659493b84d83c2a968cd7589a0a4c4635cd7518e751356c6c65ba2e96fc"
+      "sha256": "6fa45b1a758ff6e5a519a29d3c36e375696b40bf3905dfbc27a8b50d756ad611"
     },
     {
       "path": "Assets/Editor/DynamicsAndroidGradleIntegration.cs.meta",
@@ -532,7 +526,7 @@
     },
     {
       "path": "Assets/Editor/DynamicsGradleExportConfig.cs",
-      "sha256": "2ec641703f4981bb275499a51d5854a66ec6d006d9b1595e699f89936efb0f85"
+      "sha256": "4d2cb94262812a7567b330041c1b20215551f637124877d0388c0edc77abbd79"
     },
     {
       "path": "Assets/Editor/DynamicsGradleExportConfig.cs.meta",
@@ -540,7 +534,7 @@
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs",
-      "sha256": "7219826273761832cc4f6ec061873dcde564cec476c8a483230a8c9af69d7076"
+      "sha256": "2dce5b1707aaac930a9fedd910442291d4d4c2af992a32193a365bb81e8e7d8d"
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs.meta",
@@ -788,15 +782,15 @@
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/build.gradle",
-      "sha256": "4ab705ac522b958df406437bef42851c2f8e4b5ab516d69d9e5e073bfe6657e5"
+      "sha256": "5d1e348aa1c551438c5bb422b2a17c8cd71d5ac332f5221fe1ec726a553905ce"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/consumer-rules.pro",
-      "sha256": "db31f9f7e608fbee709ef0b08180c5751452a0544d5a69621a0a347453e8f957"
+      "sha256": "3f90e055db3652af205cfa0537c97930adff61cbb42c217b7d138c1bf69546a4"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/AndroidManifest.xml",
-      "sha256": "95395ad91367fdde65a87c0ba7d6c99abc98fe1ad55c8b9d93c6440d5d2f158d"
+      "sha256": "449886919c0c37c4eb0f1ff1d6e291a29325936396513592d800407e0c8bd17f"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/CollectorPolicy.kt",
@@ -804,7 +798,7 @@
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt",
-      "sha256": "304580d21d92b90681a628e82506aebd3577e5a6ea9b22741047cad9ad3f8e31"
+      "sha256": "76e048bd4b4f1886c64b7780c9731a9e6a328e03be41516aa19955bcfe6572d1"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsPermissionFragment.kt",
@@ -815,8 +809,28 @@
       "sha256": "67b417713e767f2810fd4409baeb2e8f3fa8fd250540a95b344474cc9fc646b6"
     },
     {
+      "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsUnityBridge.java.meta",
+      "sha256": "01e2a5631282dc8756baf45612c3a07fc792776a1b81f816b271a0ef87f11baf"
+    },
+    {
+      "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/Sdk0256Compat.java",
+      "sha256": "bdf98204194a3d0cd1ad8d6229a0434ef52570700da781be24d75b036c839837"
+    },
+    {
+      "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/Sdk0256Compat.java.meta",
+      "sha256": "0342e9f6d6ebbfdedafe9e5b288bfe4314e9d796a632482642999d001127fb8e"
+    },
+    {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/test/java/com/boxreha/dynamics/CollectorPolicyTest.kt",
       "sha256": "79186793ce88746a424399ccd11be1494fb79e62df964fab2685b75b6d37d39d"
+    },
+    {
+      "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/test/java/com/boxreha/dynamics/Sdk0256CompatTest.java",
+      "sha256": "99ffcb1b7d8fedfde1c6428df9e1346bc68b8a84d0e836301e2ea7a1fd93e692"
+    },
+    {
+      "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/test/java/com/boxreha/dynamics/Sdk0256CompatTest.java.meta",
+      "sha256": "64228f1fdad3d6fb95cbc217278c5a230fc33cb196ed49d2805ee396d48a60c5"
     },
     {
       "path": "Assets/Plugins/iOS.meta",
@@ -873,22 +887,6 @@
     {
       "path": "Assets/Resources/Generated/TargetPrefab.prefab.meta",
       "sha256": "99243321dda2a78f71937647ab765ef932df367c7169bcd76b15b8c9d263aafd"
-    },
-    {
-      "path": "Assets/Resources/PerformanceTestRunInfo.json",
-      "sha256": "1241499c94442a3d3e4803bc94f018ffb0e0235d4698f10bf6c1c0005c2ac5a9"
-    },
-    {
-      "path": "Assets/Resources/PerformanceTestRunInfo.json.meta",
-      "sha256": "89f05fa561108062ba218cc5bdd36109863cb4ce66888bd8ddaa205607da347d"
-    },
-    {
-      "path": "Assets/Resources/PerformanceTestRunSettings.json",
-      "sha256": "600c5c3dab7e18e51c28aad096457da91fcf60a3eedd908b6bf30194dae2b55b"
-    },
-    {
-      "path": "Assets/Resources/PerformanceTestRunSettings.json.meta",
-      "sha256": "b8c33c750baa66ba22dcbc8ef577830145f60b2cf9821b6f36e1a46c6ee1729a"
     },
     {
       "path": "Assets/Scenes.meta",
@@ -1416,7 +1414,7 @@
     },
     {
       "path": "Assets/Scripts/Platform/AndroidDynamicsController.cs",
-      "sha256": "7860698b84af40e587379e18494cb6486dc3c27e9c79ef605a2e79376d499e76"
+      "sha256": "00636a3be68837acb6248fe3ecf319b4f8aa71f8a41a2bab060331b37405f4c7"
     },
     {
       "path": "Assets/Scripts/Platform/AndroidDynamicsController.cs.meta",
@@ -1432,7 +1430,7 @@
     },
     {
       "path": "Assets/Scripts/Platform/AndroidSessionPolicy.cs",
-      "sha256": "cba0039d4fd61dfec635ee8b1f6c4249f5ff405262630dfc954de3fc9d45989a"
+      "sha256": "8e4bc22109e0b2f942f8bcdfcdfbce47f8cdeb12356b875cb15418e07b9f028c"
     },
     {
       "path": "Assets/Scripts/Platform/AndroidSessionPolicy.cs.meta",
@@ -1472,7 +1470,7 @@
     },
     {
       "path": "Assets/Scripts/Sensors/DynamicsSdkBridge.cs",
-      "sha256": "f7c983cc8529492836d0db61b339a044e97d4f4571e61af2aa818f15e546243e"
+      "sha256": "1634c4800293776a0613a4e9382d5dc16f1341b7649618353855cbee96b713a1"
     },
     {
       "path": "Assets/Scripts/Sensors/DynamicsSdkBridge.cs.meta",
@@ -1501,6 +1499,14 @@
     {
       "path": "Assets/Scripts/Sensors/ISensorDataProvider.cs.meta",
       "sha256": "50f5f81b1c85a94fb9c9a81a2ffc2f352f59bff40b6e8fa5af2752da524a2cf6"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/MeasuredCalibration.cs",
+      "sha256": "5980bdeb9f1794ccfbb66398c29f3eb0eef0ec0212589604ca1a6b73904c5f78"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/MeasuredCalibration.cs.meta",
+      "sha256": "121bfa26067deda19db58579751283264ae9bfe4222baf0d413796fd9effa075"
     },
     {
       "path": "Assets/Scripts/Sensors/SensorDataBuffer.cs",
@@ -1568,7 +1574,7 @@
     },
     {
       "path": "Assets/Scripts/UI/DigitalDojoMenuController.cs",
-      "sha256": "3132bab0b543f239dd3ff65107786de36abb97462824f7438fad946924a32745"
+      "sha256": "b2e8debe4a656a73add96d04b208a8295f0ff83cba4e1dccdac2fc027cc700ef"
     },
     {
       "path": "Assets/Scripts/UI/DigitalDojoMenuController.cs.meta",
@@ -1778,5 +1784,10 @@
       "path": "ProjectSettings/VFXManager.asset",
       "sha256": "834f8ed55d876b98becb29b6183a8268021aadd2f2ef0392ee6358ec8c4f01a2"
     }
-  ]
+  ],
+  "sourceSha256": "d60dd92fe4a7627d2fabf232a2e09880ec981be790572265c0ee85fe8b145fbc",
+  "dirty": true,
+  "revision": "064b9b42080f82babdea8f14f8845db078aafd40",
+  "unityPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
+  "generatedUtc": "2026-09-14T07:37:52.7936107Z"
 }

@@ -1,0 +1,6 @@
+plugins { id 'com.android.library' version '8.13.2'; id 'org.jetbrains.kotlin.android' version '2.3.21' }
+android { namespace 'com.boxreha.probe'; compileSdk 36; defaultConfig { minSdk 26 }; compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }; kotlinOptions { jvmTarget='17' }
+sourceSets { main { java.srcDirs = [providers.gradleProperty('probe').getOrElse('original')] } } }
+buildDir = file('../../../.agent-tooling/minimal-probe-build')
+dependencies { implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2'; implementation 'com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6' }
+configurations.configureEach { resolutionStrategy.eachDependency { d -> if (d.requested.group == 'com.riseworld.launchpad.resource' && d.requested.version == '2.11.1') d.useVersion('2.12.0') } }

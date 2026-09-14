@@ -1,0 +1,46 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+
+> Configure project :bridge
+Dynamics SDK mode: VENDOR-UNCHANGED
+
+> Task :bridge:verifyDynamicsAbiInputs FAILED
+
+[Incubating] Problems report is available at: file:///E:/Programming%20Projekte/worktrees/wt-agent-root-digital-dojo/tools/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\Assets\Plugins\Android\DynamicsSdkUnityBridge.androidlib\build.gradle' line: 61
+
+* What went wrong:
+Execution failed for task ':bridge:verifyDynamicsAbiInputs'.
+> Could not resolve all artifacts for configuration ':bridge:debugRuntimeClasspath'.
+   > Could not resolve com.riseworld.launchpad.resource:resource:2.11.1.
+     Required by:
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6 > com.riseworld.launchpad.ble:ble-multiplex-models:0.24.0 > com.riseworld.launchpad.ble:ble-multiplex-models-android:0.24.0
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-api:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-api-android:0.25.6
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-db:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-db-android:0.25.6
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-utils:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-utils-android:0.25.6
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-ble:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-ble-android:0.25.6
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-ble-utils:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-ble-utils-android:0.25.6
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-io:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-io-android:0.25.6
+         project :bridge > com.riseworld.dynamics.multiplatform:dynamics-multiplatform:0.25.6 > com.riseworld.dynamics.multiplatform:dynamics-multiplatform-android:0.25.6 > com.riseworld.launchpad.ble:ble-multiplex:0.24.0 > com.riseworld.launchpad.ble:ble-multiplex-android:0.24.0
+      > No cached version of com.riseworld.launchpad.resource:resource:2.11.1 available for offline mode.
+      > No cached version of com.riseworld.launchpad.resource:resource:2.11.1 available for offline mode.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 9s
+1 actionable task: 1 executed

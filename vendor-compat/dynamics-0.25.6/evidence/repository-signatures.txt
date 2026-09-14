@@ -1,0 +1,46 @@
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.PeripheralId {
+  private final kotlin.uuid.Uuid a;
+  public static java.lang.String toString-impl(kotlin.uuid.Uuid);
+  public static int hashCode-impl(kotlin.uuid.Uuid);
+  public static boolean equals-impl(kotlin.uuid.Uuid, java.lang.Object);
+  private com.riseworld.dynamics.models.PeripheralId(kotlin.uuid.Uuid);
+  public static kotlin.uuid.Uuid constructor-impl(kotlin.uuid.Uuid);
+  public static final com.riseworld.dynamics.models.PeripheralId box-impl(kotlin.uuid.Uuid);
+  public static final boolean equals-impl0(kotlin.uuid.Uuid, kotlin.uuid.Uuid);
+  public final kotlin.uuid.Uuid getValue();
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+  public final kotlin.uuid.Uuid unbox-impl();
+}
+Compiled from "r8-map-id-07daa5afff8b4a899fe7396a4c21f4034add25c5a5110399a2c8222ca22df43b"
+public final class com.riseworld.dynamics.multiplatform.repository.TrainingSessionRepository {
+  private final com.riseworld.dynamics.db.Database a;
+  private final kotlinx.coroutines.flow.MutableStateFlow b;
+  private final kotlinx.coroutines.flow.Flow c;
+  private final kotlinx.coroutines.flow.Flow d;
+  public com.riseworld.dynamics.multiplatform.repository.TrainingSessionRepository(com.riseworld.dynamics.db.Database, com.riseworld.dynamics.ble.GloveManager);
+  public static void getActiveTrainingSessionTime$annotations();
+  public static void getActiveTrainingSessionStats$annotations();
+  private static final java.lang.String a();
+  public static final com.riseworld.dynamics.db.Database access$getDb$p(com.riseworld.dynamics.multiplatform.repository.TrainingSessionRepository);
+  public static final kotlinx.coroutines.flow.MutableStateFlow access$getActiveTrainingSessionId$p(com.riseworld.dynamics.multiplatform.repository.TrainingSessionRepository);
+  public final kotlinx.coroutines.flow.Flow getActiveTrainingSessionTime();
+  public final kotlinx.coroutines.flow.Flow getActiveTrainingSessionStats();
+  public final java.lang.Object initializeActiveTrainingSession(boolean, com.riseworld.dynamics.models.domain.session.TrainingSessionSettings, kotlin.coroutines.Continuation);
+  public final java.lang.Object readyActiveTrainingSession(com.riseworld.dynamics.models.domain.session.TrainingSessionSensorType, kotlin.coroutines.Continuation);
+  public final java.lang.Object toggleActiveTrainingSessionState(kotlin.coroutines.Continuation);
+  public final java.lang.Object finishActiveTrainingSession(kotlin.coroutines.Continuation);
+  public final java.lang.Object deleteActiveTrainingSession(kotlin.coroutines.Continuation);
+}
+Compiled from "r8-map-id-07daa5afff8b4a899fe7396a4c21f4034add25c5a5110399a2c8222ca22df43b"
+public final class com.riseworld.dynamics.multiplatform.repository.ProfileRepository {
+  private final com.riseworld.dynamics.db.Database a;
+  private final kotlinx.coroutines.flow.Flow b;
+  public com.riseworld.dynamics.multiplatform.repository.ProfileRepository(com.riseworld.dynamics.db.Database);
+  public static void getBodyProfile$annotations();
+  public final kotlinx.coroutines.flow.Flow getBodyProfile();
+  public final java.lang.Object insertOrUpdateBodyProfile(com.riseworld.dynamics.models.domain.profile.body.BodyProfile, kotlin.coroutines.Continuation);
+  public final java.lang.Object getBodyProfile(kotlin.coroutines.Continuation);
+}

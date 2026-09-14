@@ -1,0 +1,14 @@
+com.riseworld.dynamics.db.Database$observeActiveTrainingSession$$inlined$map$1$2$1
+com.riseworld.dynamics.db.Database$observeActiveTrainingSession$$inlined$map$1$2
+com.riseworld.dynamics.db.Database$observeActiveTrainingSession$$inlined$map$1
+com.riseworld.dynamics.models.GloveModeDto$Double
+com.riseworld.dynamics.models.GloveModeDto$Single
+com.riseworld.dynamics.models.GloveModeDto
+com.riseworld.dynamics.models.domain.session.ActiveTrainingSessionInputSecondary$Companion
+com.riseworld.dynamics.models.domain.session.ActiveTrainingSessionInputSecondary
+com.riseworld.dynamics.multiplatform.repository.SensorDataRepository$observeSmartphoneBarometer$$inlined$mapNotNull$1$2$1
+com.riseworld.dynamics.multiplatform.repository.SensorDataRepository$observeSmartphoneBarometer$$inlined$mapNotNull$1$2
+com.riseworld.dynamics.multiplatform.repository.SensorDataRepository$observeSmartphoneBarometer$$inlined$mapNotNull$1
+com.riseworld.dynamics.multiplatform.repository.SensorDataRepository$observeSmartphoneBarometerNative$$inlined$map$1$2$1
+com.riseworld.dynamics.multiplatform.repository.SensorDataRepository$observeSmartphoneBarometerNative$$inlined$map$1$2
+com.riseworld.dynamics.multiplatform.repository.SensorDataRepository$observeSmartphoneBarometerNative$$inlined$map$1

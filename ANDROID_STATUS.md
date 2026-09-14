@@ -1,36 +1,40 @@
 # Android status — 2026-09-14
 
-Target: develop on Windows, install the Unity game on Android, and connect sensors from that game through the native SDK. A separate manufacturer Android app is not the intended bridge. **No working APK or physical sensor session is claimed.**
+**LEVEL 5 reached: a real, signed Unity Android APK is available in explicit COMPATIBILITY mode.** Installation, launch, JNI/BLE and physical sensor behavior remain untested: `adb devices -l` completed successfully with no devices listed.
 
-## Toolchain and implementation
+Develop on Windows; the Unity game and Dynamics SDK run together on Android. A separate manufacturer's phone app is not used as a Windows relay.
 
-Unity 6000.6.0f1 is installed with Android Build Support, SDK, NDK and OpenJDK. The actual generated project uses AGP 9.0.0 and Unity's Gradle 9.1.0, with Kotlin 2.3.21 configuration supplied by the existing export hook. The bundled Java runtime reports 17.0.18. Candidate settings were written through Unity Editor API: application id `com.boxreha.digitaldojo`, minimum API 26, target API 36, ARM64/IL2CPP and landscape.
+## Candidate
 
-The Android-native collector remains source-implemented against Dynamics 0.25.6. JNI command/status transport, fresh readiness acknowledgements, participant/side/family binding, pause/background gates and sensor provenance are preserved. This pass adds permanent-denial status and app/Bluetooth settings entrypoints. Those native paths still require full Kotlin compilation and hardware qualification.
+- Output: `Builds/AndroidCandidate/DigitalDojo.apk`
+- SHA-256: `4bb20600a7e17d41fbc3ef4dbdb9be32d348b82d1556f6b421ebfea3d5bff8d5`
+- Actual APK size: 34,182,352 bytes. BuildReport totalBytes includes other build output and is not APK size.
+- Package `com.boxreha.digitaldojo`, version 1.0 / code 1, ARM64 IL2CPP, landscape, min API 26, target/compile API 36.
+- Unity 6000.6.0f1; Unity Gradle 9.1.0 / AGP 9.0.0 / OpenJDK 17.0.18; Kotlin 2.3.21.
+- Final BuildPipeline result: Succeeded, 0 errors, 0 warnings, 21.64 seconds. APK v2 signature and zipalign 16-KB check pass.
 
-## Build evidence
+Authoritative evidence: [APK metadata](artifacts/validation/apk-artifact.json), [build report](artifacts/validation/unity-android-candidate-build.json), [manifest](artifacts/validation/apk-badging.txt), [signature](artifacts/validation/apk-signature.txt), [DEX inventory](artifacts/validation/apk-contents.json).
 
-- `scripts/verify-android-collector.ps1`: actual native Gradle execution still fails to resolve `com.riseworld.launchpad.resource:resource:2.11.1`; the supplied local SDK contains 2.12.0. The production graph was not replaced. See `artifacts/validation/android-collector-build.json` and `.log`.
-- Android-target Unity Editor checks: 9 passed, 0 failed. Candidate preparation exited successfully. The checks Editor wrote its complete report but remained alive during shutdown; the owned process was terminated. Therefore the wrapper is not a clean success.
-- A separate real `GameRegressionChecks.BuildAndroidCandidate` invocation proceeds through BuildPipeline, IL2CPP/graphics generation and the generated Gradle export. Its final result is recorded below after execution, with `artifacts/validation/unity-player-build.log` and `unity-android-candidate-build.json` as authority.
-- Prior explicitly diagnostic resource substitution exposed stripped Kotlin metadata/InnerClasses in Android SDK artifacts. That is not a supported dependency fix. [Exact vendor package findings](SDK_PACKAGE_BLOCKERS_2026-09-14.md).
+## SDK and build modes
 
-## Devices and session scope
+The original SDK still fails its unchanged dependency graph on missing Resource 2.11.1. A local explicit 2.12.0 dependency rule plus Java/narrow-reflection adapter now compiles the full collector. No SDK binary, metadata or bytecode is patched. All 4,085 files in `C:/dynamics-sdk-main` remain unchanged. Four critical Android AAR hashes are enforced by the build.
 
-OnePlus 15 and Galaxy Tab S3 were proposed by the user; neither is qualified. Bundled `adb devices -l` timed out after 15 seconds, so it did not establish an authorized USB device. Windows PnP Bluetooth entries are not proof of an Android debugging connection. No APK was installed or BLE session executed.
+Native library + 16 JVM tests pass; the dependency graph resolves. Unity packages the real collector, adapter, SDK and Unity classes. Original Kotlin `Power.Alpha` failure and successful Java consumer remain separately reproducible. Details: [compatibility report](SDK_COMPATIBILITY_REPORT.md), [reproduction commands](vendor-compat/dynamics-0.25.6/README.md).
 
-Current collector supports one sensor or explicit left/right pair **of the same family**. ALPHA actions map to punches; DELTA actions use the documented power-index channel for experimental kick mapping. Simultaneous two ALPHA gloves plus DELTA requires a confirmed vendor session route and tests; it is neither silently emulated nor declared impossible. Heart rate is a separate inactive channel.
+Default builds remain VENDOR-UNCHANGED. Build this candidate with `scripts/verify-unity.ps1 -BuildCandidate -SdkMode COMPATIBILITY`. The mode appears in native status and research build identity. No mock fallback is enabled.
 
-## Exact next qualification
+## Devices and acquisition scope
 
-1. Obtain the corrected, mutually compatible vendor Maven publication (including resource dependency and usable Kotlin metadata).
-2. Run `scripts/verify-android-collector.ps1` with the documented Java/Gradle/SDK paths, then `scripts/verify-unity.ps1 -Target Android -BuildCandidate` using Unity 6000.6.0f1.
-3. Connect the chosen Android device by USB, enable USB debugging and authorize this PC. Confirm an authorized `adb devices -l` entry before installing the new candidate.
-4. Test initial denial/permanent denial, Bluetooth off, each physical side, disconnect while playing, pause/background/resume acknowledgement and finishing the session. Verify raw quantity, timestamps, source/device identity and research exports; do not count technical faults as misses.
-5. Separately qualify combined-device topology, measured calibration and optional HR before making those claims.
+One device or a left/right pair of one family is implemented and compiles: ALPHA for punches; DELTA power-index events for experimental kick mapping. Neither pair has been tested physically. Mixed ALPHA + DELTA gameplay remains blocked. Actual DB bytecode rejects multiple pairs and parallel active sessions; separate raw API entry points exist and compile, but concurrent physical operation is unproven. [T1–T7 investigation](MULTI_SENSOR_REPORT.md).
 
-## Final result
+Permission denial/settings recovery, reconnect epochs, source identity, duplicate/stale events, pause/background and session acknowledgements have implementation and logic tests. They are not yet Android hardware evidence. Unused legacy storage/phone permissions implied by vendor manifests were removed and verified absent from the APK.
 
-Final BuildPipeline attempt: **Failed**, 2026-09-14T00:30:34Z, 48.46 seconds, 3 reported errors and 15 warnings. Both native Kotlin compilation and launcher resource processing fail because resource 2.11.1 is unavailable. No successful APK exists. The first uncached attempt also failed on that dependency after 249.68 seconds. Additional SDK read-only metadata and deprecated Gradle-option warnings are retained in the logs; they are not substituted for the actual dependency failure.
+Calibration now supports explicit collection and local persistence of five valid repetitions per device/side/quantity. Records remain UNQUALIFIED; no baseline was fabricated or collected here. Gameplay normalization and heart-rate adaptation remain disabled.
 
-Final game implementation: commit 68914a5. The exact source manifest stamped before the build remained byte-for-byte unchanged through the build. See digital-dojo-final-qualification.json for the build stamp and delivery digest; the latter excludes generated performance-test metadata. Environment-variable dumps have been removed from shareable Unity logs, with redaction recorded separately.
+## Next physical test
+
+Connect the selected OnePlus or Galaxy tablet by USB, enable USB debugging and accept this PC's RSA prompt. Neither proposed device is qualified yet. Confirm one entry marked `device`, then install this APK and launch `com.boxreha.digitaldojo/com.unity3d.player.UnityPlayerActivity`.
+
+Verify application startup first, then Bluetooth permission dialogs, scan, one ALPHA and one DELTA separately, side mapping, actual events in Unity, each same-family pair, disconnect/pause/resume and exports. No vendor correction is needed to attempt this compatibility candidate; an official corrected publication remains preferable for qualification.
+
+The previous failed-build status is historical; its immutable findings are retained in `SDK_PACKAGE_BLOCKERS_2026-09-14.md` and the separate original-build evidence.

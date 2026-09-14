@@ -15,7 +15,7 @@ public class AndroidNativeStatus
     public long statusSequence;
     public double emittedAndroidMonotonicSeconds;
     public string state, code, message, sessionState;
-    public string sdkVersion, profileReference, profileStudyId, sessionFamily;
+    public string sdkVersion, sdkBuildMode, profileReference, profileStudyId, sessionFamily;
     public string controlRequestId;
     public bool profileReady, initialized, permissionsGranted;
     public AndroidNativeDevice[] devices;

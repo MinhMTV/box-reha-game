@@ -3,16 +3,25 @@ param(
     [string]$JavaHome = 'C:\Program Files\Android\Android Studio\jbr',
     [string]$AndroidSdkPath = "$env:LOCALAPPDATA\Android\Sdk",
     [string]$DynamicsMavenPath = 'C:\dynamics-sdk-main\mavenLocal',
+    [ValidateSet("VENDOR-UNCHANGED", "COMPATIBILITY")][string]$SdkMode = "VENDOR-UNCHANGED",
+    [switch]$Offline,
     [string]$UnityClassesJar
 )
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $harness = Join-Path $projectRoot 'tools\android'
-$output = Join-Path $projectRoot 'artifacts\validation'
+$flatOutput = Join-Path $projectRoot 'artifacts\validation'
+$output = Join-Path $flatOutput $SdkMode
+# Refuse concurrent use of the shared standalone build directory before writing reports.
+$runLock = [IO.File]::Open((Join-Path $harness '.qualification.lock'), [IO.FileMode]::OpenOrCreate, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+[string[]]$networkArgs = @()
+if ($Offline) { $networkArgs = @('--offline') }
 New-Item -ItemType Directory -Force -Path $output | Out-Null
 $reportPath = Join-Path $output 'android-collector-build.json'
 $started = [DateTime]::UtcNow
 $summary = [ordered]@{ status = 'INCOMPLETE'; generatedUtc = $started.ToString('O'); scope = 'Native Android library compilation and local JVM policy tests; no Unity APK, JNI runtime or Bluetooth hardware verification'; gradle = '8.13'; agp = '8.13.2'; kotlin = '2.3.21'; dynamics = '0.25.6'; unityBoundary = ''; tests = 0; sourceFiles = @() }
+$summary.sdkMode = $SdkMode
+$summary.offline = [bool]$Offline
 $oldJava = $env:JAVA_HOME
 $oldAndroid = $env:ANDROID_HOME
 $oldDynamics = $env:DYNAMICS_MAVEN_PATH
@@ -41,7 +50,7 @@ try {
     $summary.sourceFiles = @(Get-ChildItem -LiteralPath $plugin -Recurse -File |
         Where-Object { $_.FullName -notmatch '[\\/](\.gradle|\.kotlin|build)[\\/]' } |
         Sort-Object FullName | ForEach-Object { @{ path = $_.FullName.Substring($projectRoot.Length + 1); sha256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant() } })
-    & $GradlePath --no-daemon --console=plain -p $harness "-PunityClassesJar=$UnityClassesJar" :bridge:assembleDebug :bridge:testDebugUnitTest 2>&1 | Tee-Object -FilePath (Join-Path $output 'android-collector-build.log')
+    & $GradlePath @networkArgs --no-daemon --console=plain -p $harness "-PunityClassesJar=$UnityClassesJar" "-PdynamicsSdkMode=$SdkMode" :bridge:assembleDebug :bridge:testDebugUnitTest 2>&1 | Tee-Object -FilePath (Join-Path $output 'android-collector-build.log')
     if ($LASTEXITCODE -ne 0) { throw 'Native Gradle build failed; inspect android-collector-build.log.' }
     foreach ($source in $summary.sourceFiles) {
         if ((Get-FileHash -LiteralPath (Join-Path $projectRoot $source.path) -Algorithm SHA256).Hash.ToLowerInvariant() -ne $source.sha256) { throw 'Native source changed during build; rerun against the frozen source.' }
@@ -56,7 +65,7 @@ try {
         $summary.tests += [int]$result.testsuite.tests
     }
     if ($summary.tests -lt 1) { throw 'No native policy tests executed.' }
-    & $GradlePath --no-daemon --console=plain -p $harness "-PunityClassesJar=$UnityClassesJar" :bridge:dependencies --configuration debugRuntimeClasspath 2>&1 | Tee-Object -FilePath (Join-Path $output 'android-runtime-dependencies.txt')
+    & $GradlePath @networkArgs --no-daemon --console=plain -p $harness "-PunityClassesJar=$UnityClassesJar" "-PdynamicsSdkMode=$SdkMode" :bridge:dependencies --configuration debugRuntimeClasspath 2>&1 | Tee-Object -FilePath (Join-Path $output 'android-runtime-dependencies.txt')
     if ($LASTEXITCODE -ne 0 -or (Select-String -LiteralPath (Join-Path $output 'android-runtime-dependencies.txt') -Pattern '\bFAILED\b' -Quiet)) { throw 'Dependency report contains unresolved dependencies.' }
     $summary.status = 'PASSED'
     $summary.aar = $aar
@@ -68,6 +77,15 @@ try {
 } finally {
     $summary.generatedUtc = [DateTime]::UtcNow.ToString('O')
     $summary | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $reportPath -Encoding utf8
+    # Backwards-compatible current compatibility result; original-mode failures cannot overwrite it.
+    if ($SdkMode -eq 'COMPATIBILITY') {
+        Copy-Item -LiteralPath $reportPath -Destination $flatOutput
+        foreach ($name in @('android-collector-build.log', 'android-runtime-dependencies.txt', 'android-toolchain.txt')) {
+            $evidence = Join-Path $output $name
+            if ((Test-Path $evidence) -and (Get-Item $evidence).LastWriteTimeUtc -ge $started) { Copy-Item -LiteralPath $evidence -Destination $flatOutput }
+        }
+    }
+    $runLock.Dispose()
     $env:JAVA_HOME = $oldJava
     $env:ANDROID_HOME = $oldAndroid
     $env:DYNAMICS_MAVEN_PATH = $oldDynamics

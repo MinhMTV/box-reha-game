@@ -16,6 +16,7 @@ internal static class Program
             LoggerHostCheck.Run();
             HistoryHostCheck.Run();
             AndroidPolicyHostChecks.Run();
+            CalibrationHostChecks.Run();
             return 0;
         }
         catch (Exception ex)
