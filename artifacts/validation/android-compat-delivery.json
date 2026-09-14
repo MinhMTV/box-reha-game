@@ -1,0 +1,19 @@
+{
+  "utc": "2026-09-14T07:55:43.011554+00:00",
+  "implementationCommit": "bb678de",
+  "target": "E:\\Programming Projekte\\box-reha-game",
+  "highestLevel": 5,
+  "apk": "E:\\Programming Projekte\\box-reha-game\\Builds\\AndroidCandidate\\DigitalDojo.apk",
+  "apkSha256": "4bb20600a7e17d41fbc3ef4dbdb9be32d348b82d1556f6b421ebfea3d5bff8d5",
+  "sourceSha256": "d60dd92fe4a7627d2fabf232a2e09880ec981be790572265c0ee85fe8b145fbc",
+  "allSourceFilesMatchBuild": true,
+  "exactBytesRestoredAfterGitLineEndingConversion": 258,
+  "preservedUserCacheFiles": {
+    "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/.gradle/9.2.0/fileHashes/fileHashes.bin": "140630e5399a80b524b0f79e1c51531ad7b2c7cdcd0cb7f322ea981622542af9",
+    "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/.gradle/9.2.0/fileHashes/fileHashes.lock": "12f7063a26e6dcff6c5468101bc6994cd0e96b55cfd9f85729e8186d76fd6a06",
+    "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/.gradle/buildOutputCleanup/buildOutputCleanup.lock": "e5194cc2e7d05bd24bd9b74e6445fc2e0250be8a2654e3c243367b3ee4b5fc6b",
+    "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/.gradle/buildOutputCleanup/cache.properties": "0f01a800446fe07f6622f9676f072e4c613c0574e05d5e2229270fad9816c313"
+  },
+  "physicalDevicesTested": [],
+  "remotePublished": false
+}

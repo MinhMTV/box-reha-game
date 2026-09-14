@@ -9,3 +9,7 @@ Validation: 9 Editor groups, 18 synthetic Play Mode gameplay assertions, 50 actu
 ADB now returns successfully with no devices; installation/launch, real JNI/BLE/events and every physical topology remain untested. Measured reference collection and local persistence exist, with UNQUALIFIED records and no baseline created here. Mixed-family gameplay and heart-rate adaptation remain unavailable. Current prepare/check/build/capture processes exit cleanly; prior Search exception is not reproduced.
 
 Current authority: root ANDROID_STATUS.md, GAME_STATUS.md, VISUAL_STATUS.md, SDK_COMPATIBILITY_REPORT.md and MULTI_SENSOR_REPORT.md. Final delivery hashes/checks are in artifacts/validation/android-compat-delivery.json. The four pre-existing user Gradle cache changes must remain untouched.
+
+## Verified primary delivery
+
+Implementation commit `bb678de` was fast-forwarded to the primary checkout. The signed APK was copied to `E:/Programming Projekte/box-reha-game/Builds/AndroidCandidate/DigitalDojo.apk`. After Git line-ending conversion, exact source bytes were restored from the validated worktree and every manifest entry matched its build hash. All four pre-existing user Gradle cache files retained their hashes. See `artifacts/validation/android-compat-delivery.json` for the receipt. No additional source or cache changes were discarded.
