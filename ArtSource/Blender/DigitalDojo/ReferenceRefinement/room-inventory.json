@@ -1,0 +1,12 @@
+{
+  "approxTriangles": 145280,
+  "objects": 1623,
+  "dimensions": [
+    8,
+    10,
+    3
+  ],
+  "stage": "authoring-review",
+  "textures": "procedural; unbaked; not Unity-ready",
+  "cjkFontAvailable": true
+}

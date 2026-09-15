@@ -1,8 +1,8 @@
 {
     "scope": "UNITY EDITOR CHECKS / NOT PHYSICAL HARDWARE VERIFICATION",
-    "utc": "2026-09-15T00:45:07.3648197Z",
+    "utc": "2026-09-15T16:42:55.0144220Z",
     "unityVersion": "6000.6.0f1",
-    "passed": 9,
+    "passed": 11,
     "failed": 0,
     "checks": [
         "PASS timing boundaries and signs",
@@ -10,6 +10,8 @@
         "PASS heavy damage and bounded combo scoring",
         "PASS levels and endless lane policy",
         "PASS session metrics distinguish timing and completion",
+        "PASS mounted assets have meshes, materials and no implicit physics",
+        "PASS reference room bake and fracture geometry are imported",
         "PASS scene references: Assets/Scenes/Boot.unity",
         "PASS scene references: Assets/Scenes/MainMenu.unity",
         "PASS scene references: Assets/Scenes/Game.unity",

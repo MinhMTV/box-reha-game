@@ -1,0 +1,201 @@
+{
+  "schema": "game-room.prop-manifest.v1",
+  "roomId": "digital-dojo-reference",
+  "generation": {
+    "provider": "local Blender 5.2.1 procedural meshes",
+    "hardCreditCeiling": 0,
+    "chargedAttempts": 0,
+    "source": "../generate_reference_room.py (builder is one directory above this package)"
+  },
+  "assets": [
+    {
+      "id": "wall-bay",
+      "function": "Backed padded/slatted wall module",
+      "dimensionsMeters": [
+        1.25,
+        0.2,
+        3
+      ],
+      "attachmentFace": "+Y",
+      "semanticFront": "-Y",
+      "reuseClass": "reuse",
+      "polygonTarget": 3000,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    },
+    {
+      "id": "banner",
+      "function": "Dojo and training typography",
+      "dimensionsMeters": [
+        1.85,
+        0.05,
+        2.35
+      ],
+      "attachmentFace": "+Y",
+      "semanticFront": "-Y",
+      "reuseClass": "reuse",
+      "polygonTarget": 3000,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    },
+    {
+      "id": "planter",
+      "function": "Bonsai and stone bed",
+      "dimensionsMeters": [
+        0.66,
+        0.64,
+        1.1
+      ],
+      "attachmentFace": "-Z",
+      "semanticFront": "-Y",
+      "reuseClass": "reuse",
+      "polygonTarget": 6000,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    },
+    {
+      "id": "bench",
+      "function": "Side storage/seating",
+      "dimensionsMeters": [
+        0.68,
+        1.7,
+        0.47
+      ],
+      "attachmentFace": "-Z",
+      "semanticFront": "-X",
+      "reuseClass": "reuse",
+      "polygonTarget": 1200,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    },
+    {
+      "id": "ceiling-coffer",
+      "function": "Framed recessed light ceiling",
+      "dimensionsMeters": [
+        6.8,
+        8.6,
+        0.2
+      ],
+      "attachmentFace": "+Z",
+      "semanticFront": "-Z",
+      "reuseClass": "hero",
+      "polygonTarget": 4000,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    },
+    {
+      "id": "punch",
+      "function": "Round mechanical punch target",
+      "dimensionsMeters": [
+        1.6,
+        0.9,
+        1.6
+      ],
+      "attachmentFace": "+Y",
+      "semanticFront": "-Y",
+      "reuseClass": "reuse",
+      "polygonTarget": 10000,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    },
+    {
+      "id": "kick",
+      "function": "Foot impact pad",
+      "dimensionsMeters": [
+        1.1,
+        0.9,
+        1.58
+      ],
+      "attachmentFace": "+Y",
+      "semanticFront": "-Y",
+      "reuseClass": "reuse",
+      "polygonTarget": 5500,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    },
+    {
+      "id": "heavy-punch",
+      "function": "Armoured supported target",
+      "dimensionsMeters": [
+        2.6,
+        0.9,
+        2.5
+      ],
+      "attachmentFace": "-Z",
+      "semanticFront": "-Y",
+      "reuseClass": "hero",
+      "polygonTarget": 11000,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    },
+    {
+      "id": "heavy-kick",
+      "function": "Supported foot target",
+      "dimensionsMeters": [
+        2.6,
+        0.9,
+        2.5
+      ],
+      "attachmentFace": "-Z",
+      "semanticFront": "-Y",
+      "reuseClass": "hero",
+      "polygonTarget": 8000,
+      "source": "Original procedural Blender geometry based on user-provided reference sheets",
+      "rejectionCriteria": [
+        "unsupported placement",
+        "incorrect front",
+        "clipped silhouette",
+        "lost material separation"
+      ],
+      "approval": "pending visual review"
+    }
+  ]
+}

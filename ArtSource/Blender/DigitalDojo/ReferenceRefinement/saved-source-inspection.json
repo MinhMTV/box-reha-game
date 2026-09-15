@@ -1,0 +1,44 @@
+[
+  {
+    "file": "MountedTargetKit.blend",
+    "sha256": "da1b2676daa49979391dd6e35f483cd1a0c1d2d96b4438840675bbafa9351c4b",
+    "meshObjects": 64,
+    "trianglesAllObjectsIncludingHidden": 32920,
+    "invalidMeshes": [],
+    "markers": {},
+    "stage": "saved source inspection; not Android performance proof"
+  },
+  {
+    "file": "ReferenceDojo.blend",
+    "sha256": "88cfd7fedeeb6a9f985b0f186cceceb5dbf1f91943997d76198a6e92f6587a45",
+    "meshObjects": 1595,
+    "trianglesAllObjectsIncludingHidden": 116236,
+    "invalidMeshes": [],
+    "markers": {},
+    "stage": "saved source inspection; not Android performance proof"
+  },
+  {
+    "file": "DojoAssemblyReview.blend",
+    "sha256": "68711647c36e93e4bd5b561fd8863c83f0a4398cd3be7c04ef038268db089e9a",
+    "meshObjects": 1674,
+    "trianglesAllObjectsIncludingHidden": 158968,
+    "invalidMeshes": [],
+    "markers": {},
+    "stage": "saved source inspection; not Android performance proof"
+  },
+  {
+    "file": "TargetAnimationReview.blend",
+    "sha256": "a68dccd8f2414b3bc94d2762aaae123652321cee224d9c06802f855a9812cfb6",
+    "meshObjects": 64,
+    "trianglesAllObjectsIncludingHidden": 32920,
+    "invalidMeshes": [],
+    "markers": {
+      "IDLE": 1,
+      "DEPLOY": 12,
+      "TRAVEL": 40,
+      "IMPACT": 65,
+      "BREAK": 95
+    },
+    "stage": "saved source inspection; not Android performance proof"
+  }
+]

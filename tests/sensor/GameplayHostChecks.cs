@@ -5,7 +5,7 @@ internal static class GameplayHostChecks
     public static void Run()
     {
         Action[] checks = { MappingRejectsWrongActions, TimingBoundariesAreSigned, HeavyAcceptsRepeatedSides,
-            ScoreMultiplierIsBounded, StatisticsKeepDenominatorsDistinct };
+            ScoreMultiplierIsBounded, StatisticsKeepDenominatorsDistinct, HeavyKickRules };
         foreach (Action check in checks) check();
         Console.WriteLine("GAMEPLAY_HOST_PASS " + checks.Length + " production rule/statistics checks; not Unity runtime tests.");
     }
@@ -74,5 +74,16 @@ internal static class GameplayHostChecks
         stats.Reset();
         Require(stats.Actions == 0 && stats.TotalTargets == 0 && stats.AverageReactionTime == 0
             && stats.Accuracy == 0 && stats.CompletionRate == 0, "reset clears statistics");
+    }
+    private static void HeavyKickRules()
+    {
+        foreach(var side in new[]{BodySide.Left,BodySide.Right})
+        {
+            Require(GameplayRules.Matches(ActionType.Kick,side,LaneType.Left,VerticalPosition.Low,TargetType.ToughKick,LaneType.Center,true),"either foot heavy kick");
+            Require(!GameplayRules.Matches(ActionType.Punch,side,LaneType.Left,VerticalPosition.High,TargetType.ToughKick,LaneType.Center,true),"punch cannot damage heavy kick");
+        }
+        var stats=new GameSessionStats();stats.TrackTargetType(TargetType.ToughKick,true);stats.TrackTargetType(TargetType.ToughKick,false);
+        Require(stats.LegTargets==2 && stats.LegHits==1 && stats.ArmTargets==0 && stats.HeavyKickCompleted==1 && stats.HeavyKickTargets==2,"heavy kick lower-body totals");
+        stats.Reset();Require(stats.HeavyKickTargets==0 && stats.HeavyKickCompleted==0,"heavy kick reset");
     }
 }

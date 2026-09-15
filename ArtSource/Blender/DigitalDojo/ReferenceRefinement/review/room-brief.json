@@ -1,0 +1,79 @@
+{
+  "schema": "game-room.room-brief.v1",
+  "roomId": "digital-dojo-reference",
+  "family": "gameplay-room",
+  "purpose": "Reference-faithful modular training dojo; fixed-camera targets and uncluttered centre.",
+  "runtimeSurface": "Unity 6000.6 Android; authoring review is currently Blender only.",
+  "boundsMeters": [
+    8,
+    10,
+    3
+  ],
+  "hero": {
+    "id": "MountedHeavyTarget",
+    "role": "Central heavy target with a raised rear banner",
+    "reservedBoundsMeters": [
+      2.2,
+      3,
+      2.4
+    ]
+  },
+  "symmetry": {
+    "mode": "bilateral",
+    "order": 2,
+    "appliesTo": [
+      "architecture",
+      "side props",
+      "ceiling",
+      "target positions"
+    ],
+    "exceptions": [
+      "left/right banner wording",
+      "organic plant and pebble geometry"
+    ]
+  },
+  "circulation": {
+    "description": "No player locomotion. Central area clear; benches and storage at side boundaries. Scale/layout adaptation to existing Unity travel distance remains required.",
+    "minimumClearanceMeters": 5.5
+  },
+  "productionCamera": {
+    "viewport": [
+      1440,
+      1000
+    ],
+    "location": [
+      0,
+      -4.65,
+      1.5
+    ],
+    "target": [
+      0,
+      3,
+      1.5
+    ],
+    "verticalFovDegrees": 61
+  },
+  "performanceBudget": {
+    "maxSceneTriangles": 220000,
+    "maxVLowBytes": 16000000,
+    "maxHighTextureBytes": 32000000
+  },
+  "creditBudget": {
+    "maximumCredits": 0,
+    "approvalRequired": true
+  },
+  "environment": {
+    "type": "none",
+    "identity": "",
+    "source": "",
+    "assignmentKey": ""
+  },
+  "artifacts": {
+    "floorPlan": "../plan-lower.png",
+    "reflectedCeilingPlan": "",
+    "planMetadata": "plan-metadata.json",
+    "wallElevations": [],
+    "visualTarget": "../room-assembly-review.png",
+    "openingContactSheet": ""
+  }
+}

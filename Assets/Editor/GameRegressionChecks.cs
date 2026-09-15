@@ -38,8 +38,8 @@ public static class GameRegressionChecks
             throw new InvalidOperationException("Install Android Build Support for this project's exact Editor, including SDK/NDK and OpenJDK.");
         PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.boxreha.digitaldojo");
         PlayerSettings.productName = "Digital Dojo";
-        PlayerSettings.bundleVersion = "1.1";
-        PlayerSettings.Android.bundleVersionCode = 2;
+        PlayerSettings.bundleVersion = "1.2";
+        PlayerSettings.Android.bundleVersionCode = 3;
         PlayerSettings.Android.minSdkVersion = RequiredAndroidMinimum();
         PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)36;
         PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
@@ -160,6 +160,32 @@ public static class GameRegressionChecks
             Require(stats.AverageReactionTime == 2f);
             stats.Reset(); Require(stats.TotalTargets == 0 && stats.AverageReactionTime == 0f);
         });
+        Check("mounted assets have meshes, materials and no implicit physics", () =>
+        {
+            foreach(string name in new[]{"MountedPunchTarget","MountedKickTarget","MountedHeavyTarget","MountedHeavyKickTarget","MountArm","MountPlate"})
+            {
+                var prefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Art/DigitalDojo/Prefabs/"+name+".prefab");Require(prefab!=null);
+                Require(prefab.GetComponentsInChildren<Collider>(true).Length==0);
+                foreach(var mesh in prefab.GetComponentsInChildren<MeshFilter>(true))Require(mesh.sharedMesh!=null);
+                foreach(var renderer in prefab.GetComponentsInChildren<Renderer>(true))foreach(var material in renderer.sharedMaterials)Require(material!=null);
+                foreach(var t in prefab.GetComponentsInChildren<Transform>(true))Require(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject)==0);
+            }
+        });
+        Check("reference room bake and fracture geometry are imported", () =>
+        {
+            var room=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/DigitalDojo/DojoRoom.prefab");
+            var renderers=room.GetComponentsInChildren<Renderer>();
+            Require(renderers.Length==1,"Baked room must use one renderer");
+            Require(renderers[0].sharedMaterial.mainTexture!=null,"Room light/colour atlas missing");
+            foreach(string name in new[]{"MountedPunchTarget","MountedKickTarget","MountedHeavyTarget","MountedHeavyKickTarget"})
+            {
+                var prefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Art/DigitalDojo/Prefabs/"+name+".prefab");
+                int fragments=0;
+                foreach(var mesh in prefab.GetComponentsInChildren<MeshFilter>())
+                    if(mesh.name.StartsWith("FracturePiece_")){fragments++;Require(mesh.sharedMesh.uv.Length>0,"Fragment UVs missing");}
+                Require(fragments>=6,"Authored fracture pieces missing: "+name);
+            }
+        });
         foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
         {
             if (!scene.enabled) continue;
@@ -191,5 +217,5 @@ public static class GameRegressionChecks
         try { action(); report.passed++; report.checks.Add("PASS " + name); }
         catch (Exception ex) { report.failed++; report.checks.Add("FAIL " + name + ": " + ex.Message); }
     }
-    private static void Require(bool condition) { if (!condition) throw new Exception("Assertion failed"); }
+    private static void Require(bool condition, string message="Assertion failed") { if (!condition) throw new Exception(message); }
 }

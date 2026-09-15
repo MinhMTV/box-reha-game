@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 /// <summary>Validated native sensor input; keyboard development input uses the common action pipeline.</summary>
-public class BleSensorInputProvider : MonoBehaviour, IPlayerActionInputProvider
+public class BleSensorInputProvider : MonoBehaviour, IPlayerActionInputProvider, ISensorReadingSink
 {
     public event Action<PlayerActionEvent> OnActionDetected;
     [SerializeField] private GameConfig gameConfig;
@@ -74,30 +74,5 @@ public class BleSensorInputProvider : MonoBehaviour, IPlayerActionInputProvider
         if (!Input.GetKeyDown(key)) return;
         OnActionDetected?.Invoke(KeyboardActionFactory.Create(type, side));
     }
-    public static PlayerActionEvent CreateSensorAction(SensorReading reading)
-    {
-        ActionType type = reading.SensorType == SensorDeviceType.Delta ? ActionType.Kick : ActionType.Punch;
-        PlayerActionEvent action = PlayerActionEvent.Create(type,
-            reading.BodySide == BodySide.Left ? LaneType.Left : LaneType.Right, 1f,
-            Vector2.zero, Vector2.zero, 0f, InputSourceType.Sensor,
-            type == ActionType.Kick ? VerticalPosition.Low : VerticalPosition.High,
-            0f, reading.SensorType, reading.BodySide);
-        action.DeviceId = reading.DeviceId;
-        action.ConnectionId = reading.ConnectionId;
-        action.Provenance = reading.Provenance;
-        action.SourceEventId = reading.EventId;
-        action.SourceTimestamp = reading.Timestamp;
-        action.SourceClock = reading.SourceClock;
-        action.ReceivedTimestamp = reading.ReceivedTimestamp;
-        action.IsValid = reading.IsValid;
-        action.ValidityReason = reading.ValidityReason;
-        action.RawValue = reading.RawValue;
-        action.Quantity = reading.Quantity;
-        action.Unit = reading.Unit;
-        // No calibrated metric baseline exists yet. Neutral damage is not a force estimate.
-        action.NormalizationValid = false;
-        action.Detector = reading.Detector;
-        action.SensorEvidence = reading;
-        return action;
-    }
+    public static PlayerActionEvent CreateSensorAction(SensorReading reading) => UnifiedGameplayActionMapper.Map(reading);
 }

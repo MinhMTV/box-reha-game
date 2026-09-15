@@ -15,7 +15,7 @@ public class TargetMover : MonoBehaviour
 
     void Update()
     {
-        if (targetObject != null && (targetObject.IsResolved || targetObject.IsLockedInHitZone))
+        if (targetObject != null && (targetObject.IsDeploying || targetObject.IsResolved || targetObject.IsLockedInHitZone))
         {
             return;
         }

@@ -5,19 +5,29 @@ using UnityEngine;
 public sealed class DigitalDojoTargetVisual : MonoBehaviour
 {
     Renderer[] accents;
+    Transform[] fragments;
+    Vector3[] fragmentRest;
+    Quaternion[] fragmentRotations;
+    float breakAt = -1;
+    Vector3 initialScale;
     Renderer[] segments;
     MaterialPropertyBlock block;
     float born, pulse;
     Color color;
     void Awake()
     {
+        initialScale = transform.localScale;
+        var pieces = new List<Transform>();
         var lights = new List<Renderer>();
         var damage = new List<Renderer>();
         foreach (Renderer renderer in GetComponentsInChildren<Renderer>())
         {
+            if (renderer.name.StartsWith("FracturePiece_")) pieces.Add(renderer.transform);
             if (renderer.name.StartsWith("DamageSegment_")) damage.Add(renderer);
             if (renderer.sharedMaterial != null && renderer.sharedMaterial.name.Contains("Emissive")) lights.Add(renderer);
         }
+        fragments = pieces.ToArray(); fragmentRest = new Vector3[fragments.Length]; fragmentRotations=new Quaternion[fragments.Length];
+        for(int i=0;i<fragments.Length;i++) { fragmentRest[i]=fragments[i].localPosition; fragmentRotations[i]=fragments[i].localRotation; }
         accents = lights.ToArray(); segments = damage.ToArray(); block = new MaterialPropertyBlock();
         born = Time.time;
         color = name.Contains("Kick") ? GameVisualPalette.KickColor : GameVisualPalette.PunchColor;
@@ -26,7 +36,19 @@ public sealed class DigitalDojoTargetVisual : MonoBehaviour
     {
         pulse = Mathf.MoveTowards(pulse, 0, Time.deltaTime * 5);
         float appearance = SettingsManager.ReducedMotion ? 1 : Mathf.Lerp(0.94f, 1, Mathf.Clamp01((Time.time - born) / 0.18f));
-        transform.localScale = Vector3.one * appearance;
+        transform.localScale = initialScale * appearance;
+        if(breakAt >= 0 && !SettingsManager.ReducedMotion)
+        {
+            float t = Mathf.Clamp01((Time.unscaledTime-breakAt)/.24f);
+            for(int i=0;i<fragments.Length;i++)
+            {
+                // Authored pieces use deterministic motion, never runtime rigidbodies or colliders.
+                float angle=i*2.399963f;
+                Vector3 direction=new Vector3(Mathf.Cos(angle),Mathf.Sin(angle),-.45f);
+                fragments[i].localPosition=fragmentRest[i]+direction*t*.45f;
+                fragments[i].localRotation=fragmentRotations[i]*Quaternion.Euler(25*t,35*t,(i%2==0?1:-1)*40*t);
+            }
+        }
         foreach (var renderer in accents)
         {
             if (renderer.name.StartsWith("DamageSegment_")) continue;
@@ -34,6 +56,12 @@ public sealed class DigitalDojoTargetVisual : MonoBehaviour
             block.SetColor("_EmissionColor", color * (0.4f + pulse));
             renderer.SetPropertyBlock(block);
         }
+    }
+    public void BeginBreak()
+    {
+        if(breakAt >= 0) return;
+        breakAt=Time.unscaledTime;
+        Hit();
     }
     public void Hit(float progress = -1)
     {

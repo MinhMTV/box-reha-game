@@ -1,0 +1,70 @@
+{
+  "schema": "game-room.room-final-report.v1",
+  "roomId": "digital-dojo-reference",
+  "gates": {
+    "function": false,
+    "form": false,
+    "runtime": false
+  },
+  "formChecks": {
+    "floorPlanParity": false,
+    "primaryArrival": false,
+    "symmetry": false,
+    "shell": false,
+    "manifold": false,
+    "booleans": false,
+    "collisions": false,
+    "support": false,
+    "attachmentOrientation": false,
+    "ceilingAttachmentOrientation": false,
+    "seatingOrientation": false,
+    "focalDistribution": false,
+    "heroClearance": false,
+    "colonnades": false,
+    "screenClearance": false,
+    "scale": false,
+    "camera": false,
+    "ceilingCoverage": false,
+    "environmentCoverage": false,
+    "provenance": false
+  },
+  "reviewRenders": {
+    "corners": [
+      "../corner-sw.png",
+      "../corner-se.png",
+      "../corner-nw.png",
+      "../corner-ne.png"
+    ],
+    "ceiling": [
+      "../ceiling-up.png",
+      "../ceiling-a.png",
+      "../ceiling-b.png"
+    ],
+    "environment": {}
+  },
+  "runtimeChecks": {
+    "vlow": false,
+    "textureTiers": false,
+    "lightmap": false,
+    "lightingManifest": false,
+    "performance": false,
+    "browserCapture": "",
+    "errors": []
+  },
+  "postmortem": {
+    "observations": [
+      "Local game-dev executable and callable game-dev tools unavailable. Plugin contract and Blender fallback used.",
+      "Unity compile and Play Mode passed for runtime mechanical motion using existing imported meshes.",
+      "New detailed assets and Blender keyframes saved but not exported into Unity."
+    ],
+    "corrections": [],
+    "remainingRisks": [
+      "Visual match remains an approximation; no photographic-fidelity claim.",
+      "PBR baking, new mesh import, Android draw-call/texture budgets and runtime camera fit pending.",
+      "Current authoring room 8x10x3 differs from the existing long gameplay scene.",
+      "Fracture preview is authored separated panels; not a physically simulated fracture solver.",
+      "Visual human review pending; no Form or Runtime approval recorded."
+    ]
+  },
+  "proposedLessons": []
+}

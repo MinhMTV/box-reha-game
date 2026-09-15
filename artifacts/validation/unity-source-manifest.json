@@ -1,4 +1,7 @@
 {
+  "unityPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
+  "generatedUtc": "2026-09-15T16:42:49.8232362Z",
+  "sourceSha256": "f2562482d3da1378043ec193a5f372b6e37164a777bd298256a4253642163884",
   "files": [
     {
       "path": "Assets/Art.meta",
@@ -46,7 +49,7 @@
     },
     {
       "path": "Assets/Art/DigitalDojo/Materials/M_DD_MatteBlack.mat",
-      "sha256": "63f518e76441c1234e1439661e3119b7306ae478b977f35d458623da4f47499b"
+      "sha256": "abe12306275df028b7f9788e8ed70e2fabb501e21b40aa206d308e399d047c9b"
     },
     {
       "path": "Assets/Art/DigitalDojo/Materials/M_DD_MatteBlack.mat.meta",
@@ -54,7 +57,7 @@
     },
     {
       "path": "Assets/Art/DigitalDojo/Materials/M_DD_MetalDark.mat",
-      "sha256": "c02d76803b910268331b51531e576f0c74cf7458e52f23c2bf696be64a2cec75"
+      "sha256": "bc7f61fe6fca4b3e918bc151ff2ccc035606185f7f053c016cf8c69f78786d42"
     },
     {
       "path": "Assets/Art/DigitalDojo/Materials/M_DD_MetalDark.mat.meta",
@@ -62,7 +65,7 @@
     },
     {
       "path": "Assets/Art/DigitalDojo/Materials/M_DD_Padding.mat",
-      "sha256": "de5bf69c4bbadad99f8ed5ac66c38fbd92bb6b9313a3a6feb9a0109b57e5f603"
+      "sha256": "6b02b1b8afe71b508460033ef02355084d1667eb5cb6685e41cdbcef4126daeb"
     },
     {
       "path": "Assets/Art/DigitalDojo/Materials/M_DD_Padding.mat.meta",
@@ -77,8 +80,16 @@
       "sha256": "10216db105cef9606bc52c05cd8d610a9504da7a9e11a81a6a9800f79d28ba20"
     },
     {
+      "path": "Assets/Art/DigitalDojo/Materials/M_DD_RoomBaked.mat",
+      "sha256": "10d0f755a0819d9979aab138529e1609b47324e7765226ddb3194a24f2be7218"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Materials/M_DD_RoomBaked.mat.meta",
+      "sha256": "d0124d4458e87e13868346381b7a9312c3ce811b40a314e2cc517c00d04e2493"
+    },
+    {
       "path": "Assets/Art/DigitalDojo/Materials/M_DD_WarmLight.mat",
-      "sha256": "444244672854265117ab95f8b376fe7ac029b388dfd7ae7e8b548654e6c83c61"
+      "sha256": "3fd6bb976474625af1a179cca29ee4db1da7548a712b6846f84bc81b42a0a3e3"
     },
     {
       "path": "Assets/Art/DigitalDojo/Materials/M_DD_WarmLight.mat.meta",
@@ -137,12 +148,68 @@
       "sha256": "9f1f5cdc4bb79a0a5446b29c1c62be5cc0a83565e87ed3890c61314ca04d256a"
     },
     {
+      "path": "Assets/Art/DigitalDojo/Models/MountArm.fbx",
+      "sha256": "ef747a69a6e658405302926135151bf1417517117c4ded42c3ee2024f33235b1"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountArm.fbx.meta",
+      "sha256": "f00fa3db819080b64acf43482fe139fb5893a57ca9dae5a2e44260aa9ed3724d"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountedHeavyKickTarget.fbx",
+      "sha256": "9e3f5972b0f8e5f0e44de0b1d2e9932983a32bfbff7b750c23be01867d9d695e"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountedHeavyKickTarget.fbx.meta",
+      "sha256": "42b2bdd81ae45c815377e738e8cb8155b34e7341fc3012ece947f33b5f11a495"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountedHeavyTarget.fbx",
+      "sha256": "aca474752ca152aeae500ac39cf67fcb6bc3e5c198f40974b112c76e19a2d4f7"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountedHeavyTarget.fbx.meta",
+      "sha256": "c41d88b14734ca947e99abb4686bb1cf5116dc3ffb09285c088d8d938a53aa13"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountedKickTarget.fbx",
+      "sha256": "985c4c827c16acf9629407b4360e41bd7aa584fe0610fca97dff92be1f7d0726"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountedKickTarget.fbx.meta",
+      "sha256": "a76d72fde8697546fc740c6813b297a6ac35695cda67e57964ee0d89afeee640"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountedPunchTarget.fbx",
+      "sha256": "eb36ba80f9692fa491be258aba65edabafcfe72794cd9c07eb18c21814ae45b8"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountedPunchTarget.fbx.meta",
+      "sha256": "e199f7e2d36dd966d36b72946a0a6542e6b11c740729a6f4384290c550c4265f"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountPlate.fbx",
+      "sha256": "dc016052504dc4a9f51ac94de176a5c51d5aee69652b244692c903061af4ee4a"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountPlate.fbx.meta",
+      "sha256": "2d019f994e83ad179f6107881021319c62979d724f0a092f671c6165504ddd3d"
+    },
+    {
       "path": "Assets/Art/DigitalDojo/Models/PunchTarget.fbx",
       "sha256": "76f8899b27495742f6c1d570da8b888cf996b889331bd98499165ea03f30cb9e"
     },
     {
       "path": "Assets/Art/DigitalDojo/Models/PunchTarget.fbx.meta",
       "sha256": "25eff3faa35d432416e025ba4df8527c6b867ba54c38efee0747841f1107d4fd"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/ReferenceRoom.fbx",
+      "sha256": "c2b258a3ae4a7b09d3fd1239794835bcb249ed4ad137da3bb38d4a92a66baf4a"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/ReferenceRoom.fbx.meta",
+      "sha256": "7fa0f25c2993b67ae5e368524f2183d8d96d10f314b2c6d4a4e71dce9f4d5e51"
     },
     {
       "path": "Assets/Art/DigitalDojo/Models/TrainingFrame.fbx",
@@ -213,6 +280,54 @@
       "sha256": "13860020fbd8b052acce949a936ca0c3fa07ed80753a6ef3093eafc8011e50a5"
     },
     {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountArm.prefab",
+      "sha256": "48a64c4e2872cab5cdc94f7e60e89d34c3efaba28d2447d1ae5213f6eb9e38b9"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountArm.prefab.meta",
+      "sha256": "1678ad462c3e22f149639e3dbed009369f83d77e9af57c4e920b359229217597"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountedHeavyKickTarget.prefab",
+      "sha256": "9fc17bde81bcb91b697597e18ec877651ae10256921ac85abc690a032b898fcd"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountedHeavyKickTarget.prefab.meta",
+      "sha256": "cba405634dc0f1b1260effaf3076ff470ebb7521abfa548ea6ed5231946e28ec"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountedHeavyTarget.prefab",
+      "sha256": "c22dc6492ea7620fbdde8e026fc5391f22186c120020bac650669b16d9051bc4"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountedHeavyTarget.prefab.meta",
+      "sha256": "50a363d539e456d28a67484d3fa45d1040a093bdf9c6c1f7fdcb76c356d61d1a"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountedKickTarget.prefab",
+      "sha256": "d2c76e35dc514916098420d7bc5b846ab383057d6c99830d05b3bc3e244df6ea"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountedKickTarget.prefab.meta",
+      "sha256": "ce7048b3eb21fdf33d3d9f2b8681d3caf761f5aa697f42d9472fc1e72659c1a0"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountedPunchTarget.prefab",
+      "sha256": "c5a384ca7a38bd88786d29ecd487b2d07b431bdd527131ff639edd243a83d15b"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountedPunchTarget.prefab.meta",
+      "sha256": "aaeedd20089ba35d3b3e9e90280b6ee93f2126a521326056d380994b1eb18c2c"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountPlate.prefab",
+      "sha256": "d1734b91ce4adf04d168a14b335b365510f1110b5762dd2bba8507c47f11f9f0"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountPlate.prefab.meta",
+      "sha256": "c0ae5b41619c9f786a13c9a3a463e8e2a7aff285769fcf2781e7d36aa1c50811"
+    },
+    {
       "path": "Assets/Art/DigitalDojo/Prefabs/PunchTarget.prefab",
       "sha256": "45665b769e7e7725c358d0ba3739360e1ad930dd9d0996ecbde8e8fae924af1c"
     },
@@ -251,6 +366,42 @@
     {
       "path": "Assets/Art/DigitalDojo/Prefabs/WoodSlatPanel.prefab.meta",
       "sha256": "bc59ba681cf1ffbf3adda7b475be22233ac8ab79c4855caf4173f92565111293"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures.meta",
+      "sha256": "9ee34937fdfc221574349ea3ac7c9708183427abc828dc6ceaeac35e5a7547b9"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures/DojoRoomBaked.png",
+      "sha256": "e4d02e97d71a690a2e30a0f65b92493872612a5110ff4b487875ca84c1a825ea"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures/DojoRoomBaked.png.meta",
+      "sha256": "6018d4741d05ad00c30008d65e72f8caa08137827258f27d4e35c6cba3f7fd2b"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures/M_DD_MatteBlack_Normal.png",
+      "sha256": "5e0cc761d24ea8e0daeac57388479f69607f8ecb7d161da1c12246f4a1502c99"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures/M_DD_MatteBlack_Normal.png.meta",
+      "sha256": "c0c861a654e5234cd0da27087cfe333c5e8938f0cf86d9d79b4857d7afa2b480"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures/M_DD_MetalDark_Normal.png",
+      "sha256": "342e3f0505cb550f90a18c54c41f5fe5f622efea559647eaa082f9118e411ebc"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures/M_DD_MetalDark_Normal.png.meta",
+      "sha256": "191db51403fa21ab543b4ec860cea45648b051f229ff07142508f5099c2a47fc"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures/M_DD_Padding_Normal.png",
+      "sha256": "5e0cc761d24ea8e0daeac57388479f69607f8ecb7d161da1c12246f4a1502c99"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Textures/M_DD_Padding_Normal.png.meta",
+      "sha256": "a864bf7f5487dd67823e107b94cff65124675bcb8a062f8c0508dcf9133398e0"
     },
     {
       "path": "Assets/Art/Generated.meta",
@@ -494,7 +645,7 @@
     },
     {
       "path": "Assets/Editor/DigitalDojoAssetIntegration.cs",
-      "sha256": "8c4a766e5c7665fbbf8f9b689418288350b9a6215eba6e774a8af48ae1b924a6"
+      "sha256": "cc9cdaf5b3ca77d14bc263fe556f6664c58d7cc2e6941f038c92b59747f0452d"
     },
     {
       "path": "Assets/Editor/DigitalDojoAssetIntegration.cs.meta",
@@ -502,11 +653,19 @@
     },
     {
       "path": "Assets/Editor/DigitalDojoCapture.cs",
-      "sha256": "5106d9235b4793d50e85fa7ce86860ac871c94230b3bd752a7a6aef9478618ee"
+      "sha256": "a207724d95f272cfdc581361936d90901c765305d262c3a2181451243a8fccc3"
     },
     {
       "path": "Assets/Editor/DigitalDojoCapture.cs.meta",
       "sha256": "1c9ae71b399e0aa36da71906d9f166a39c315e4879d3c1bb95ca36c07e941470"
+    },
+    {
+      "path": "Assets/Editor/DigitalDojoReferenceImport.cs",
+      "sha256": "79cd0367ea2de6072becb36f5b23ea26978d8c1a502183dee0933205b742d32b"
+    },
+    {
+      "path": "Assets/Editor/DigitalDojoReferenceImport.cs.meta",
+      "sha256": "e23308890fda050f414f72d7d33400454d5ddfb0b4ded6657463ab214e29f837"
     },
     {
       "path": "Assets/Editor/DigitalDojoSceneGenerator.cs",
@@ -534,7 +693,7 @@
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs",
-      "sha256": "a71982fa4fae7d28a9a3499299ead05740aca199ecec454ad6a0f378fd8a1fcb"
+      "sha256": "6216b695ca1548a6ef3095f047888ce199f41c7c6a3241578d2bd7dc44abbb45"
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs.meta",
@@ -854,7 +1013,7 @@
     },
     {
       "path": "Assets/Resources/DigitalDojo/DojoRoom.prefab",
-      "sha256": "c213f244927a161a041ee8c260103957012facb944f82c12e33b23efb55a9573"
+      "sha256": "eabb2197072eaa961844c750fbc08b5fa51c12e04beb79764d82e7a773685e26"
     },
     {
       "path": "Assets/Resources/DigitalDojo/DojoRoom.prefab.meta",
@@ -867,6 +1026,22 @@
     {
       "path": "Assets/Resources/DigitalDojo/DojoUI.ttf.meta",
       "sha256": "b5c2d7f0d5fbbd59878cafefdf7b8f3e1b2c03a8839493f18a90f7f9260fa07c"
+    },
+    {
+      "path": "Assets/Resources/DigitalDojo/MountArm.prefab",
+      "sha256": "48a64c4e2872cab5cdc94f7e60e89d34c3efaba28d2447d1ae5213f6eb9e38b9"
+    },
+    {
+      "path": "Assets/Resources/DigitalDojo/MountArm.prefab.meta",
+      "sha256": "329b8f03b80e5b544801018800226a8274cb07a89499d740fa5db74cd6ff4c86"
+    },
+    {
+      "path": "Assets/Resources/DigitalDojo/MountPlate.prefab",
+      "sha256": "d1734b91ce4adf04d168a14b335b365510f1110b5762dd2bba8507c47f11f9f0"
+    },
+    {
+      "path": "Assets/Resources/DigitalDojo/MountPlate.prefab.meta",
+      "sha256": "7cc2a77811308c34cfb3a91d891bb95b2d316f1c302f54e9924e7aec4ecb9deb"
     },
     {
       "path": "Assets/Resources/GameConfig.asset",
@@ -902,7 +1077,7 @@
     },
     {
       "path": "Assets/Scenes/Game.unity",
-      "sha256": "347530cf9f33f0be12473aedbab0f317ae6ffe486ea887d0261626fbd691edbf"
+      "sha256": "2af5ea1418be1dcd575206762a3bcdd0dfcd1d206081615d6ae09ff11c1a682c"
     },
     {
       "path": "Assets/Scenes/Game.unity.meta",
@@ -910,7 +1085,7 @@
     },
     {
       "path": "Assets/Scenes/MainMenu.unity",
-      "sha256": "70931114d1d9d59e1ca7a38d78cd7bc03b71336eda2571214fa3ea24e98f4dc5"
+      "sha256": "d106fad79bf876d6a0e5b234a985357b94066bfffdba3611d73df221bf3e6514"
     },
     {
       "path": "Assets/Scenes/MainMenu.unity.meta",
@@ -1186,7 +1361,7 @@
     },
     {
       "path": "Assets/Scripts/Data/Enums.cs",
-      "sha256": "f18a39469ada8517f92211d4f6031578ef25632708671e83d40fa0fb5b37348a"
+      "sha256": "062ef2ca662f09ed953d2d18c02092a2c3bfd33adb14b5ae4fb98345432bafb9"
     },
     {
       "path": "Assets/Scripts/Data/Enums.cs.meta",
@@ -1194,7 +1369,7 @@
     },
     {
       "path": "Assets/Scripts/Data/GameSessionStats.cs",
-      "sha256": "021a6580d1e963a9e6caab14f6f2e32d80a398192e096a285a624444bcf061d5"
+      "sha256": "4a2d9629bd681b53fed08d0e37dee75b73128b8bf4b68b7592ddcf9095401638"
     },
     {
       "path": "Assets/Scripts/Data/GameSessionStats.cs.meta",
@@ -1286,7 +1461,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/GameplayRules.cs",
-      "sha256": "49794d74e33483faff9b56145f81c76164e3c5ee210082480b7747f620735150"
+      "sha256": "dd36294a644be8a13865b68150cb651aab2093c49f9a132bcb7073c36b6789fc"
     },
     {
       "path": "Assets/Scripts/Gameplay/GameplayRules.cs.meta",
@@ -1294,7 +1469,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/GameVisualPalette.cs",
-      "sha256": "c942936f87cfd940a506b68ec30e11c4060f555d388692dd7adfbd17db23461a"
+      "sha256": "e4b1ac24b0ec9b69417e23deb5557e758fbe02cc2c2054d3952097286995998b"
     },
     {
       "path": "Assets/Scripts/Gameplay/GameVisualPalette.cs.meta",
@@ -1310,7 +1485,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/HitZoneEvaluator.cs",
-      "sha256": "e1cf25358fdd47003a895945cb7fe534b12ea8f1a81882339348602eeb47dd46"
+      "sha256": "034befb51aeca4d684494ca1268ed5cbd977f3b7fcc873f7f43774fa67ca58e0"
     },
     {
       "path": "Assets/Scripts/Gameplay/HitZoneEvaluator.cs.meta",
@@ -1342,15 +1517,23 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/StarRating.cs",
-      "sha256": "38a333090675168b770b9fecf21b8468429ac4ed48b3befd4ed130ea73ecf798"
+      "sha256": "0561002c6d89eb3e6fd27dafe08e1755e1434b38a0115e86fed9f7324a7fc8bb"
     },
     {
       "path": "Assets/Scripts/Gameplay/StarRating.cs.meta",
       "sha256": "717b0e19f77631d8eb1d77e995c882669bb57f0e0040a7635dfb4af2e1f31383"
     },
     {
+      "path": "Assets/Scripts/Gameplay/TargetMountMotion.cs",
+      "sha256": "462778ef45a9dbc3f032ca08776311b508b567c46757150bfbcbf451617056d3"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/TargetMountMotion.cs.meta",
+      "sha256": "f752abf2340a72ff339437446cb301d1647f30194fc275cc38bd7eb86a4d5a73"
+    },
+    {
       "path": "Assets/Scripts/Gameplay/TargetMover.cs",
-      "sha256": "f068793900cd72d4bcfca178b9549d988a6be7e988fffa6af6e32cb2349f8704"
+      "sha256": "5e200d0a33f723a03242033061b102a76790b35ddb5ed825feaff34ccf8a1739"
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMover.cs.meta",
@@ -1358,7 +1541,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetObject.cs",
-      "sha256": "458d8901fe935afed4227c13370dc132f3628d8344149a59ebb834e007ab82a2"
+      "sha256": "281f8d993c4c877d7eee476bf6b2184dec0ae05ed523cfda26f1513d77326011"
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetObject.cs.meta",
@@ -1366,7 +1549,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/ToughTargetHealthBar.cs",
-      "sha256": "c0ac11b05193a6a99aca428bec3cf8d4c45a456657b207e14cf38518f872d0bb"
+      "sha256": "ad45176c84d52398446c858fd5ce5ecd6888ce9778f97082a8cab9f9295708be"
     },
     {
       "path": "Assets/Scripts/Gameplay/ToughTargetHealthBar.cs.meta",
@@ -1470,7 +1653,7 @@
     },
     {
       "path": "Assets/Scripts/Sensors/BleSensorInputProvider.cs",
-      "sha256": "0bc9c63d3fd8ee2b7cb70cb8e9e3b066cb5bc479a205fa1844445a707eb6b2c6"
+      "sha256": "dbbfe552a237710a86f1c20668793403665f8247f3146ea6673ddc38903722d6"
     },
     {
       "path": "Assets/Scripts/Sensors/BleSensorInputProvider.cs.meta",
@@ -1517,6 +1700,14 @@
       "sha256": "50f5f81b1c85a94fb9c9a81a2ffc2f352f59bff40b6e8fa5af2752da524a2cf6"
     },
     {
+      "path": "Assets/Scripts/Sensors/ISensorReadingSink.cs",
+      "sha256": "66d030167c2ca02b4df85e783eb4468b8db9166a1b8135ab90f0eabfce21f8b8"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/ISensorReadingSink.cs.meta",
+      "sha256": "651ba4df2f38b15804b737ee7c082bf9f770aa856bdb0c07805e16bff63bd5f0"
+    },
+    {
       "path": "Assets/Scripts/Sensors/MeasuredCalibration.cs",
       "sha256": "e4da2264f3dff6435af0423e341f5a8c4440b94ee4f54be7b704b3decfc22d06"
     },
@@ -1541,12 +1732,20 @@
       "sha256": "3b12eb90ec99370bc40b54ef4068dcc1dcc5d1d990c246c929df8f6236305adc"
     },
     {
+      "path": "Assets/Scripts/Sensors/UnifiedGameplayActionMapper.cs",
+      "sha256": "2983078777c390f520fce6a1b60cb46e32eccf528f358c8c569087f0bac4f6cf"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/UnifiedGameplayActionMapper.cs.meta",
+      "sha256": "422458bef11b7a6bc8c28e4826a7fa21497b40bc25d8a00edd985a90d3018640"
+    },
+    {
       "path": "Assets/Scripts/Spawning.meta",
       "sha256": "52129a7516a229882115a7e4db5c9327919d695383ca8723096fbb3b0ed6b5d7"
     },
     {
       "path": "Assets/Scripts/Spawning/LevelDefinition.cs",
-      "sha256": "01122f0bdc9bcdfd2ea7f2ec411ff1658c4f448e5fe543de9cf8f8a3c28f5d7a"
+      "sha256": "72a5ae467f8dfb7dccb881eb361b317416e09d1aba4abe2ce0a5439d0fc4cd5e"
     },
     {
       "path": "Assets/Scripts/Spawning/LevelDefinition.cs.meta",
@@ -1562,7 +1761,7 @@
     },
     {
       "path": "Assets/Scripts/Spawning/TargetSpawner.cs",
-      "sha256": "424b6fec445ee89e86f22f73fc4dd773d8e3d5c7b90dd7b861e44c8bf5243b35"
+      "sha256": "bf0aa36389b861f0369f0bbea3cd63014592bab84ad078ad3b7a788d925f0391"
     },
     {
       "path": "Assets/Scripts/Spawning/TargetSpawner.cs.meta",
@@ -1646,7 +1845,7 @@
     },
     {
       "path": "Assets/Scripts/UI/ResultsController.cs",
-      "sha256": "af935d5f9177a286324797642ebbe57197f0f1a9f8c7db8d517878e68bcb2e09"
+      "sha256": "8618f123c704e15909e79fce3d0e01059ebcde44c3c46cacd4a8380e9552d235"
     },
     {
       "path": "Assets/Scripts/UI/ResultsController.cs.meta",
@@ -1682,7 +1881,7 @@
     },
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoTargetVisual.cs",
-      "sha256": "8e14ff97a120826c1d90b1a407ca6bcaa45e5bed9e0e63c0f98eb4cbf7e62167"
+      "sha256": "f78105754cf58b68297cf5f79f59ce17a040be19945c2e74adf1babc32b0506c"
     },
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoTargetVisual.cs.meta",
@@ -1770,7 +1969,7 @@
     },
     {
       "path": "ProjectSettings/ProjectSettings.asset",
-      "sha256": "7814c75867ac793634fd73a145b620c3d5041e7a57af559bea71dafd0934eea7"
+      "sha256": "33bd299832c210308839dd65dd360f255e94b2081cff8b9b877aa0c32efd96d1"
     },
     {
       "path": "ProjectSettings/ProjectVersion.txt",
@@ -1809,9 +2008,6 @@
       "sha256": "834f8ed55d876b98becb29b6183a8268021aadd2f2ef0392ee6358ec8c4f01a2"
     }
   ],
-  "unityPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
-  "dirty": true,
-  "sourceSha256": "d1f67d948f63d90765c44453d1afec886a5ac90fc6d7a70b5f4d17426f72ba61",
-  "generatedUtc": "2026-09-15T00:45:02.1785934Z",
-  "revision": "d1165f8e115308a305b440986e3c1b4867041cb8"
+  "revision": "2a62fe6e6f133cf30932cc7d507e66ce713b9c43",
+  "dirty": true
 }

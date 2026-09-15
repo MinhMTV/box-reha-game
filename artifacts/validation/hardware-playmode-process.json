@@ -1,9 +1,9 @@
 {
-  "passed": true,
-  "startedUtc": "2026-09-15T00:43:24.8375614Z",
+  "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\hardware-playmode-final.log",
+  "finishedUtc": "2026-09-15T16:39:44.4430469Z",
   "forced": false,
+  "startedUtc": "2026-09-15T16:38:44.2267600Z",
   "exitCode": 0,
-  "processId": 74676,
-  "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\hardware-playmode-final.log",
-  "finishedUtc": "2026-09-15T00:44:25.0301884Z"
+  "processId": 72160,
+  "passed": true
 }

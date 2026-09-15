@@ -1,0 +1,52 @@
+ .../Art/DigitalDojo/Materials/M_DD_MatteBlack.mat  |     7 +-
+ .../Art/DigitalDojo/Materials/M_DD_MetalDark.mat   |     7 +-
+ Assets/Art/DigitalDojo/Materials/M_DD_Padding.mat  |     7 +-
+ .../Art/DigitalDojo/Materials/M_DD_WarmLight.mat   |     3 +-
+ Assets/Editor/DigitalDojoAssetIntegration.cs       |    22 +-
+ Assets/Editor/DigitalDojoCapture.cs                |    71 +-
+ Assets/Editor/GameRegressionChecks.cs              |    32 +-
+ .../.gradle/9.2.0/fileHashes/fileHashes.bin        |   Bin 18547 -> 18597 bytes
+ .../.gradle/9.2.0/fileHashes/fileHashes.lock       |   Bin 17 -> 17 bytes
+ .../buildOutputCleanup/buildOutputCleanup.lock     |   Bin 17 -> 17 bytes
+ .../.gradle/buildOutputCleanup/cache.properties    |     4 +-
+ Assets/Resources/DigitalDojo/DojoRoom.prefab       | 14747 +------------------
+ Assets/Scenes/Game.unity                           |    11 +-
+ Assets/Scenes/MainMenu.unity                       |   116 +-
+ Assets/Scripts/Data/Enums.cs                       |     2 +-
+ Assets/Scripts/Data/GameSessionStats.cs            |     5 +-
+ Assets/Scripts/Gameplay/GameVisualPalette.cs       |     4 +
+ Assets/Scripts/Gameplay/GameplayRules.cs           |     4 +-
+ Assets/Scripts/Gameplay/HitZoneEvaluator.cs        |     8 +-
+ Assets/Scripts/Gameplay/TargetMover.cs             |     2 +-
+ Assets/Scripts/Gameplay/TargetObject.cs            |    21 +-
+ Assets/Scripts/Gameplay/ToughTargetHealthBar.cs    |     3 +
+ Assets/Scripts/Sensors/BleSensorInputProvider.cs   |    29 +-
+ Assets/Scripts/Spawning/LevelDefinition.cs         |     4 +-
+ Assets/Scripts/Spawning/TargetSpawner.cs           |    19 +-
+ Assets/Scripts/UI/ResultsController.cs             |     2 +-
+ Assets/Scripts/Visuals/DigitalDojoTargetVisual.cs  |    30 +-
+ ProjectSettings/ProjectSettings.asset              |     4 +-
+ .../COMPATIBILITY/android-collector-build.json     |    56 +-
+ .../COMPATIBILITY/android-collector-build.log      |    70 +-
+ .../COMPATIBILITY/android-runtime-dependencies.txt |     6 +-
+ .../validation/COMPATIBILITY/android-toolchain.txt |     1 +
+ artifacts/validation/android-collector-build.json  |    56 +-
+ artifacts/validation/android-collector-build.log   |    70 +-
+ .../validation/android-runtime-dependencies.txt    |     6 +-
+ artifacts/validation/csharp-syntax.json            |     4 +-
+ artifacts/validation/dd-runtime-checks.txt         |    11 +-
+ artifacts/validation/hardware-playmode-final.log   |   934 +-
+ .../validation/hardware-playmode-process.json      |    10 +-
+ artifacts/validation/static-scene-checks.json      |     2 +-
+ .../synthetic/production-logger.synthetic.jsonl    |    16 +-
+ .../validation/unity-android-candidate-build.json  |     8 +-
+ artifacts/validation/unity-android-prepare.log     |   438 +-
+ artifacts/validation/unity-editor-checks.json      |     6 +-
+ artifacts/validation/unity-editor.log              |   456 +-
+ artifacts/validation/unity-environment.json        |    10 +-
+ artifacts/validation/unity-owned-processes.json    |    36 +-
+ artifacts/validation/unity-player-build.log        |  2087 ++-
+ artifacts/validation/unity-source-manifest.json    |   256 +-
+ tests/sensor/AndroidPolicyHostChecks.cs            |     2 +-
+ tests/sensor/GameplayHostChecks.cs                 |    13 +-
+ 51 files changed, 3070 insertions(+), 16648 deletions(-)

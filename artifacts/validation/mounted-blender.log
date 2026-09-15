@@ -1,0 +1,34 @@
+E:\Programming Projekte\box-reha-game\ArtSource\Blender\DigitalDojo\generate_mounted_targets.py:25: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat=bpy.data.materials.new('M_DD_'+key); mat.diffuse_color=color; mat.use_nodes=True
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+
+FBX export starting... 'E:\\Programming Projekte\\box-reha-game\\Assets\\Art\\DigitalDojo\\Models\\MountedPunchTarget.fbx'
+export finished in 0.0084 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\box-reha-game\\Assets\\Art\\DigitalDojo\\Models\\MountedKickTarget.fbx'
+export finished in 0.0089 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\box-reha-game\\Assets\\Art\\DigitalDojo\\Models\\MountedHeavyTarget.fbx'
+export finished in 0.0097 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\box-reha-game\\Assets\\Art\\DigitalDojo\\Models\\MountedHeavyKickTarget.fbx'
+export finished in 0.0100 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\box-reha-game\\Assets\\Art\\DigitalDojo\\Models\\MountArm.fbx'
+export finished in 0.0030 sec.
+
+FBX export starting... 'E:\\Programming Projekte\\box-reha-game\\Assets\\Art\\DigitalDojo\\Models\\MountPlate.fbx'
+export finished in 0.0059 sec.
+Info: Saved as "MountedTargetKit.blend"
+MOUNTED_KIT_COMPLETE [{"name": "MountedPunchTarget", "triangles": 4684, "meshes": 4, "front": "-Y Blender", "pivot": "target center; mount unit center"}, {"name": "MountedKickTarget", "triangles": 2256, "meshes": 5, "front": "-Y Blender", "pivot": "target center; mount unit center"}, {"name": "MountedHeavyTarget", "triangles": 4144, "meshes": 12, "front": "-Y Blender", "pivot": "target center; mount unit center"}, {"name": "MountedHeavyKickTarget", "triangles": 3632, "meshes": 13, "front": "-Y Blender", "pivot": "target center; mount unit center"}, {"name": "MountArm", "triangles": 108, "meshes": 1, "front": "-Y Blender", "pivot": "target center; mount unit center"}, {"name": "MountPlate", "triangles": 988, "meshes": 5, "front": "-Y Blender", "pivot": "target center; mount unit center"}]
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

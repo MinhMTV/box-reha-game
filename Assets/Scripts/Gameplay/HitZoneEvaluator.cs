@@ -48,6 +48,7 @@ public class HitZoneEvaluator : MonoBehaviour
         {
             TargetObject target = activeTargets[i];
             if (target == null || target.IsResolved) { activeTargets.RemoveAt(i); continue; }
+            if (target.IsDeploying) continue;
             float offset = TimingOffset(target);
             if (target.IsTough && target.transform.position.z <= HitZoneZ)
             {
@@ -67,7 +68,7 @@ public class HitZoneEvaluator : MonoBehaviour
     }
     public static bool Matches(PlayerActionEvent action, TargetObject target)
     {
-        if (target == null || target.IsBreaking || target.IsResolved) return false;
+        if (target == null || target.IsBreaking || target.IsResolved || target.IsDeploying) return false;
         return GameplayRules.Matches(action.ActionType, action.BodySide, action.Lane, action.VerticalPos,
             target.Type, target.Lane, target.IsTough);
     }
@@ -80,6 +81,7 @@ public class HitZoneEvaluator : MonoBehaviour
         foreach (TargetObject target in activeTargets)
         {
             if (!Matches(action, target)) continue;
+            if (target.IsDeploying) continue;
             float offset = TimingOffset(target);
             if (!target.IsLockedInHitZone && Mathf.Abs(offset) > HalfWindow(target)) continue;
             float distance = Mathf.Abs(offset);
@@ -95,9 +97,11 @@ public class HitZoneEvaluator : MonoBehaviour
         {
             if(GameManager.Instance?.SessionStats != null)GameManager.Instance.SessionStats.BelowStrengthHits++;
             ResearchSessionLog.BelowStrength(best,action,threshold);
+            best.GetComponent<TargetMountMotion>()?.Impact(true);
             TextPopup.Create(best.transform.position,"TOO LIGHT",new Color(1f,.72f,.3f));best.Flash(Color.white,.08f);
             return;
         }
+        best.GetComponent<TargetMountMotion>()?.Impact();
         if (best.IsTough)
         {
             // Uncalibrated sensor events receive neutral gameplay damage, never an invented physical baseline.
@@ -109,7 +113,7 @@ public class HitZoneEvaluator : MonoBehaviour
             {
                 ScoreSystem.AddToughPartialHit(10, best.TargetId, action.EventId);
                 OnToughTargetHit?.Invoke(best.MaxHits - best.CurrentHits, best.MaxHits, best.Lane, best.transform.position);
-                HitParticleEffect.Spawn(best.transform.position, GameVisualPalette.PunchColor, 12);
+                HitParticleEffect.Spawn(best.transform.position, HitParticleEffect.GetColorForTargetType(best.Type), 12);
                 AudioManager.Instance?.PlayToughHitSound();
                 best.Flash(Color.white, 0.08f);
                 return;

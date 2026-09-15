@@ -68,7 +68,7 @@ internal static class AndroidPolicyHostChecks
         Check(!AndroidSessionPolicy.ValidBodyProfile(70, 170, null));
         LevelDefinition delta = LevelDefinition.CreateLevel3(); delta.RestrictToSensorFamily("Delta");
         Check(delta.AllowedTargetTypes.Length == 1 && delta.AllowedTargetTypes[0] == TargetType.Kick);
-        Check(delta.ToughTargetChance == 0 && delta.MaxToughTargetChance == 0 && delta.RapidFireChance == 0 && delta.MaxRapidFireChance == 0);
+        Check(delta.HeavyKickShare == 1 && delta.ToughTargetChance > 0 && delta.RapidFireChance == 0 && delta.MaxRapidFireChance == 0);
         LevelDefinition alpha = LevelDefinition.CreateLevel1(); alpha.RestrictToSensorFamily("Alpha");
         Check(alpha.AllowedTargetTypes.Length == 1 && alpha.AllowedTargetTypes[0] == TargetType.Punch);
         Console.WriteLine("ANDROID_POLICY_HOST_PASS " + checks + " assertions; state fixtures only, no JNI or hardware execution.");

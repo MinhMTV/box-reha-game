@@ -14,6 +14,7 @@ public static class GameVisualPalette
     {
         switch (type)
         {
+            case TargetType.ToughKick:
             case TargetType.Kick:
                 return KickColor;
             case TargetType.Block:
@@ -31,6 +32,7 @@ public static class GameVisualPalette
     {
         switch (type)
         {
+            case TargetType.ToughKick:
             case TargetType.Kick:
                 return new Color(0.78f, 1f, 0.90f, 1f);
             case TargetType.Block:
@@ -63,6 +65,7 @@ public static class GameVisualPalette
     {
         switch (type)
         {
+            case TargetType.ToughKick:
             case TargetType.Kick:
                 return 24;
             case TargetType.Block:
@@ -82,6 +85,7 @@ public static class GameVisualPalette
         {
             case TargetType.ToughPunch:
                 return 0.42f;
+            case TargetType.ToughKick:
             case TargetType.Kick:
                 return 0.26f;
             case TargetType.Block:

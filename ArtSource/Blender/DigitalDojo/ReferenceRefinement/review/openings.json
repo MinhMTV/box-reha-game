@@ -1,0 +1,9 @@
+{
+  "schema": "game-room.opening-schedule.v1",
+  "roomId": "digital-dojo-reference",
+  "primaryArrival": {
+    "openingId": "",
+    "exception": "Fixed-camera indoor training scene, no traversable entrance; intentionally sealed shell."
+  },
+  "openings": []
+}

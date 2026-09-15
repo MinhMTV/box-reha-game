@@ -1,0 +1,44 @@
+[
+  {
+    "name": "MountedPunchTarget",
+    "triangles": 9764,
+    "meshes": 11,
+    "front": "-Y Blender",
+    "pivot": "target center; mount unit center"
+  },
+  {
+    "name": "MountedKickTarget",
+    "triangles": 4920,
+    "meshes": 10,
+    "front": "-Y Blender",
+    "pivot": "target center; mount unit center"
+  },
+  {
+    "name": "MountedHeavyTarget",
+    "triangles": 9116,
+    "meshes": 19,
+    "front": "-Y Blender",
+    "pivot": "target center; mount unit center"
+  },
+  {
+    "name": "MountedHeavyKickTarget",
+    "triangles": 6296,
+    "meshes": 18,
+    "front": "-Y Blender",
+    "pivot": "target center; mount unit center"
+  },
+  {
+    "name": "MountArm",
+    "triangles": 108,
+    "meshes": 1,
+    "front": "-Y Blender",
+    "pivot": "target center; mount unit center"
+  },
+  {
+    "name": "MountPlate",
+    "triangles": 988,
+    "meshes": 5,
+    "front": "-Y Blender",
+    "pivot": "target center; mount unit center"
+  }
+]

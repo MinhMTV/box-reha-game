@@ -2045,9 +2045,10 @@ MonoBehaviour:
   spawnPointRight: {fileID: 982693855}
   missZoneZ: 0
   gameConfig: {fileID: 11400000, guid: a44fd588752a53a4ca9fd9eccdeb57d7, type: 2}
-  punchVisualPrefab: {fileID: 8255667189827241081, guid: bdf83e5b1037ca5438a933ef19ff822a, type: 3}
-  kickVisualPrefab: {fileID: 5288744804893859886, guid: d1c4f2acaab64344fbb381e89ae829a6, type: 3}
-  toughVisualPrefab: {fileID: 6340845421119272025, guid: 1bb4a87b3ffdef342912dcea984eb351, type: 3}
+  punchVisualPrefab: {fileID: 6910046340447498682, guid: 3c99a9b41fd1fd648a5635167e645aa0, type: 3}
+  kickVisualPrefab: {fileID: 8039786154304314161, guid: 0aa51ce6001a125499f47582ee257ed5, type: 3}
+  toughVisualPrefab: {fileID: 2323464203625860661, guid: ac3a3e9df6ae04f47914d757fae1f40e, type: 3}
+  heavyKickVisualPrefab: {fileID: 6485546520358453410, guid: d52fd5f678842104da705be7e588a36d, type: 3}
   hitZoneEvaluator: {fileID: 1760546616}
 --- !u!4 &954661151
 Transform:
@@ -2186,7 +2187,7 @@ Transform:
   m_GameObject: {fileID: 982693854}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 2.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3784,7 +3785,7 @@ Transform:
   m_GameObject: {fileID: 1673947660}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: -2.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

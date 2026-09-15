@@ -1,0 +1,177 @@
+[
+  {
+    "file": "animation-break.png",
+    "bytes": 997949,
+    "sha256": "c4671ac4eff5da624f2b28d7057fcb051fea9cdbc241c7ff01fbdf11a3d6967c"
+  },
+  {
+    "file": "animation-deploy.png",
+    "bytes": 1007490,
+    "sha256": "e725dcb8a5599c6869d15d43bf7a5234f4ce5f81a121ff26dd25a2bed1000f92"
+  },
+  {
+    "file": "animation-idle.png",
+    "bytes": 982723,
+    "sha256": "f9fe404a5eb431a94b614c4462bbc2b32a2b058d5056e93ca9f56348fa049331"
+  },
+  {
+    "file": "animation-impact.png",
+    "bytes": 1003219,
+    "sha256": "27a38ae75b9807b7be65bd35cd50c76ac5ea20180d646262c9d79a67f84496a1"
+  },
+  {
+    "file": "animation-phases.json",
+    "bytes": 292,
+    "sha256": "3842e1486b5aa2ba00152a18397646365df6a7b89242f0f2fed6c7130533958a"
+  },
+  {
+    "file": "animation-travel.png",
+    "bytes": 1002281,
+    "sha256": "baf227628190d9c08f7e97ff72cf2093ac2aa4c85351bde45b7d8081fd29de01"
+  },
+  {
+    "file": "ceiling-a.png",
+    "bytes": 810771,
+    "sha256": "07b87275dede47d321e6c5be32d4ca171ef2b1e68abf4da1c3ba2b43e436ac3b"
+  },
+  {
+    "file": "ceiling-b.png",
+    "bytes": 150881,
+    "sha256": "4e37f2c3319223ff1399210039d235e7f9fca468c8a18b08e5d580d2a6d5872d"
+  },
+  {
+    "file": "ceiling-up.png",
+    "bytes": 694835,
+    "sha256": "698e1240107024eb0805ca07a7c4fdbd40c14b04368d616ebdd9143952b378cd"
+  },
+  {
+    "file": "corner-ne.png",
+    "bytes": 810801,
+    "sha256": "8e6e5874406f8cac766c03551e86aa3eeaaa27ad250f589cd7a0f1c872603d2e"
+  },
+  {
+    "file": "corner-nw.png",
+    "bytes": 802346,
+    "sha256": "65f3328cb1aab46df5140f5dd10f5aa3236bc6ba15a4b91c70eddb66df4bad9b"
+  },
+  {
+    "file": "corner-se.png",
+    "bytes": 797195,
+    "sha256": "5585c3c138b7bf40473fb1de3f48b29421f055f10f538946fd97e9c85c643632"
+  },
+  {
+    "file": "corner-sw.png",
+    "bytes": 796188,
+    "sha256": "d9d38a6d5a22c4f7a4525d47c33a0c5e858d8606b18557366ded529ce713c339"
+  },
+  {
+    "file": "DojoAssemblyReview.blend",
+    "bytes": 1236182,
+    "sha256": "68711647c36e93e4bd5b561fd8863c83f0a4398cd3be7c04ef038268db089e9a"
+  },
+  {
+    "file": "DojoAssemblyReview.blend1",
+    "bytes": 1235537,
+    "sha256": "a4174074a0421680aa0c58c2c0a0d39f7631344c34c3db1c975bfe9d1a3240ae"
+  },
+  {
+    "file": "fixtures.json",
+    "bytes": 2565,
+    "sha256": "25e7e494ca316d6ef5916599b8294753374c97476bef2f3d5deb4def4dabbe75"
+  },
+  {
+    "file": "mounted-asset-review.png",
+    "bytes": 1149012,
+    "sha256": "c3a9008e0d5512a81ab55b0de058aec3fa7507c89970e8d765f7ab6ab50c8a35"
+  },
+  {
+    "file": "mounted-inventory.json",
+    "bytes": 980,
+    "sha256": "cbf3a43f683ec444161f7b34ae5832a80c7a6b8ec78475413cb939fadc851f0c"
+  },
+  {
+    "file": "MountedTargetKit.blend",
+    "bytes": 351322,
+    "sha256": "da1b2676daa49979391dd6e35f483cd1a0c1d2d96b4438840675bbafa9351c4b"
+  },
+  {
+    "file": "MountedTargetKit.blend1",
+    "bytes": 342411,
+    "sha256": "4dfce8bbb483a59fce751977d4f98e7466cbcb9b0c35c0e074a0ebb3abb8b60d"
+  },
+  {
+    "file": "plan-lower.png",
+    "bytes": 650257,
+    "sha256": "d874a6cd3bd086a62ee129162709ef18e4e8f0367a06ee7cba1bf0151a82aad7"
+  },
+  {
+    "file": "ReferenceDojo.blend",
+    "bytes": 967158,
+    "sha256": "88cfd7fedeeb6a9f985b0f186cceceb5dbf1f91943997d76198a6e92f6587a45"
+  },
+  {
+    "file": "ReferenceDojo.blend1",
+    "bytes": 932519,
+    "sha256": "38dad71e28ae5da9564a29c44036ba840067b3c10fb249fa52e16f0798da7a18"
+  },
+  {
+    "file": "review/final-report.json",
+    "bytes": 2167,
+    "sha256": "f4453d7902140b42f4e2969d26b5a5d4b4e729addbd1479ac8ab30e7070f9d3f"
+  },
+  {
+    "file": "review/milestone-reviews.json",
+    "bytes": 1052,
+    "sha256": "85258b656138599c09164a3b92bdb8f17108f9e29d17c91656d8dec989b3d64a"
+  },
+  {
+    "file": "review/openings.json",
+    "bytes": 267,
+    "sha256": "f545b5da219fb1dc61fdfe18244cd600140d27f7fccd817e18f0a3dc9940ea95"
+  },
+  {
+    "file": "review/plan-metadata.json",
+    "bytes": 338,
+    "sha256": "dc1471f3cb80f98964cc1c09dc9c79f846b2884b0b17f4dca2810301f29a9662"
+  },
+  {
+    "file": "review/props.json",
+    "bytes": 5718,
+    "sha256": "9b47d4f5cc77523e991e1913b851f2689f37756cdd6910f6494ea74f1a09914e"
+  },
+  {
+    "file": "review/room-brief.json",
+    "bytes": 1883,
+    "sha256": "bd70f0f16c4b384de89c2fa05f7766dafa2a5ef1d6dbd83a69d6801c38711d20"
+  },
+  {
+    "file": "review/room-layout.json",
+    "bytes": 236,
+    "sha256": "fcc9944a59b23c2103c0e516e16d46c667a9de726098523635ae4adaf3f9edf2"
+  },
+  {
+    "file": "room-assembly-review.png",
+    "bytes": 1840372,
+    "sha256": "167e8c53101a7c0d0e713fbf476f6431d879d2d38be12f0da986d6b389bd7597"
+  },
+  {
+    "file": "room-inventory.json",
+    "bytes": 218,
+    "sha256": "07463530c60f4943c7fdb923f7e8486131a83b4015647219e2b762f74cb18623"
+  },
+  {
+    "file": "room-review.png",
+    "bytes": 1717875,
+    "sha256": "c64d6f990b1be76ef2f4ae950391b7f721c4b4a99027f48a41fb072ea7840e0e"
+  },
+  {
+    "file": "saved-source-inspection.json",
+    "bytes": 1415,
+    "sha256": "e79e2e206e233d9c79401bd4a4973acc680da95a4fad7cce8094746695061b5f"
+  },
+  {
+    "file": "TargetAnimationReview.blend",
+    "bytes": 365859,
+    "sha256": "a68dccd8f2414b3bc94d2762aaae123652321cee224d9c06802f855a9812cfb6"
+  }
+]

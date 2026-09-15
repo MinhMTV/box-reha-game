@@ -1,5 +1,5 @@
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build
+Daemon will be stopped at the end of the build 
 
 > Configure project :bridge
 Dynamics SDK mode: COMPATIBILITY
@@ -475,7 +475,7 @@ debugRuntimeClasspath - Runtime classpath of '/debug'.
 
 A web-based, searchable dependency report is available by adding the --scan option.
 
-[Incubating] Problems report is available at: file:///E:/Programming%20Projekte/worktrees/wt-agent-root-digital-dojo/tools/android/build/reports/problems/problems-report.html
+[Incubating] Problems report is available at: file:///E:/Programming%20Projekte/box-reha-game/tools/android/build/reports/problems/problems-report.html
 
 Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
 
@@ -483,5 +483,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 7s
+BUILD SUCCESSFUL in 9s
 1 actionable task: 1 executed

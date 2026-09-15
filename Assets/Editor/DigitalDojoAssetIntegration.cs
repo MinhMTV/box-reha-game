@@ -19,7 +19,9 @@ public static class DigitalDojoAssetIntegration
         {"WarmLight",new Color(.9f,.63f,.34f)} };
 
     [MenuItem("BoxReha/Digital Dojo/Integrate Blender Kit")]
-    public static void Run()
+    public static void Run() => Integrate(false);
+    public static void RunMounted() => Integrate(true);
+    static void Integrate(bool mountedOnly)
     {
         Directory.CreateDirectory(Art+"Materials"); Directory.CreateDirectory(Art+"Prefabs");
         Directory.CreateDirectory(ResourcesPath); AssetDatabase.Refresh();
@@ -37,6 +39,7 @@ public static class DigitalDojoAssetIntegration
         }
         foreach(string path in Directory.GetFiles(Art+"Models","*.fbx"))
         {
+            if(mountedOnly && !Path.GetFileName(path).StartsWith("Mount"))continue;
             var importer=(ModelImporter)AssetImporter.GetAtPath(path);
             importer.importCameras=false; importer.importLights=false; importer.importAnimation=false;
             importer.materialImportMode=ModelImporterMaterialImportMode.ImportStandard;
@@ -63,17 +66,26 @@ public static class DigitalDojoAssetIntegration
             PrefabUtility.SaveAsPrefabAsset(instance,Art+"Prefabs/"+instance.name+".prefab");
             UnityEngine.Object.DestroyImmediate(instance);
         }
-        BuildRoom();
+        foreach(string mount in new[]{"MountArm","MountPlate"})
+        {
+            string destination=ResourcesPath+mount+".prefab";
+            var copy=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(Art+"Prefabs/"+mount+".prefab"));
+            PrefabUtility.SaveAsPrefabAsset(copy,destination);UnityEngine.Object.DestroyImmediate(copy);
+        }
+        if(!mountedOnly)BuildRoom();
         var scene=EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
         foreach(var spawner in UnityEngine.Object.FindObjectsByType<TargetSpawner>(FindObjectsSortMode.None))
         {
             var so=new SerializedObject(spawner);
-            string[] fields={"punchVisualPrefab","kickVisualPrefab","toughVisualPrefab"};
-            string[] names={"PunchTarget","KickTarget","HeavyTarget"};
-            for(int i=0;i<3;i++)so.FindProperty(fields[i]).objectReferenceValue=AssetDatabase.LoadAssetAtPath<GameObject>(Art+"Prefabs/"+names[i]+".prefab");
+            string[] fields={"punchVisualPrefab","kickVisualPrefab","toughVisualPrefab","heavyKickVisualPrefab"};
+            string[] names={"MountedPunchTarget","MountedKickTarget","MountedHeavyTarget","MountedHeavyKickTarget"};
+            for(int i=0;i<4;i++)so.FindProperty(fields[i]).objectReferenceValue=AssetDatabase.LoadAssetAtPath<GameObject>(Art+"Prefabs/"+names[i]+".prefab");
+            foreach(string field in new[]{"spawnPointLeft","spawnPointRight"})
+            {var point=(Transform)so.FindProperty(field).objectReferenceValue;var pos=point.position;pos.x=field=="spawnPointLeft"?-2.4f:2.4f;point.position=pos;}
             so.ApplyModifiedPropertiesWithoutUndo();
         }
         EditorSceneManager.SaveScene(scene);
+        if(mountedOnly){AssetDatabase.SaveAssets();Debug.Log("DIGITAL_DOJO_INTEGRATION_COMPLETE");return;}
         scene=EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity");
         foreach(var root in scene.GetRootGameObjects())
         {

@@ -3,6 +3,7 @@ public class GameSessionStats
 {
     public string SessionId, StudyId, StartedUtc, Mode, StopReason, LogPath;
     public int BelowStrengthHits;
+    public int HeavyKickTargets, HeavyKickCompleted;
     public int AlphaLeftSamples, AlphaRightSamples, DeltaLeftSamples, DeltaRightSamples;
     public double AlphaLeftRelativeSum, AlphaRightRelativeSum, DeltaLeftRelativeSum, DeltaRightRelativeSum;
     public float DurationSeconds;
@@ -44,7 +45,8 @@ public class GameSessionStats
 
     public void TrackTargetType(TargetType targetType, bool wasHit)
     {
-        bool isLegTarget = targetType == TargetType.Kick;
+        if(targetType == TargetType.ToughKick) { HeavyKickTargets++; if(wasHit) HeavyKickCompleted++; }
+        bool isLegTarget = targetType == TargetType.Kick || targetType == TargetType.ToughKick;
 
         if (isLegTarget)
         {
@@ -62,6 +64,7 @@ public class GameSessionStats
     public void Reset()
     {
         SessionId = StudyId = StartedUtc = Mode = StopReason = LogPath = null;
+        HeavyKickTargets=HeavyKickCompleted=0;
         BelowStrengthHits=AlphaLeftSamples=AlphaRightSamples=DeltaLeftSamples=DeltaRightSamples=0;
         AlphaLeftRelativeSum=AlphaRightRelativeSum=DeltaLeftRelativeSum=DeltaRightRelativeSum=0;
         DurationSeconds = 0f;

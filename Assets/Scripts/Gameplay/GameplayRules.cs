@@ -17,7 +17,9 @@ public static class GameplayRules
         TargetType targetType, LaneType targetLane, bool heavy)
     {
         if (side != BodySide.Left && side != BodySide.Right) return false;
-        if (heavy) return action == ActionType.Punch && position != VerticalPosition.Low;
+        if (heavy) return targetType == TargetType.ToughKick
+            ? action == ActionType.Kick && position == VerticalPosition.Low
+            : action == ActionType.Punch && position != VerticalPosition.Low;
         if (targetLane == LaneType.Center || targetLane != actionLane) return false;
         if ((targetLane == LaneType.Left) != (side == BodySide.Left)) return false;
         if (targetType == TargetType.Punch) return action == ActionType.Punch && position != VerticalPosition.Low;

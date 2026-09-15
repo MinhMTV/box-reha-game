@@ -22,6 +22,7 @@ public class TargetSpawner : MonoBehaviour
     [SerializeField] private GameObject punchVisualPrefab;
     [SerializeField] private GameObject kickVisualPrefab;
     [SerializeField] private GameObject toughVisualPrefab;
+    [SerializeField] private GameObject heavyKickVisualPrefab;
 
     // v3: Reference to evaluator for rapid fire chains
     [SerializeField] private HitZoneEvaluator hitZoneEvaluator;
@@ -113,12 +114,13 @@ public class TargetSpawner : MonoBehaviour
 
             float toughChance = Mathf.Clamp01(currentLevel.ToughTargetChance + toughChanceBonus);
             bool shouldSpawnTough = Random.value < toughChance;
+            bool heavyKick = Random.value < currentLevel.HeavyKickShare;
             SpawnPatternData pattern = SpawnPatternGenerator.GetNextPattern(currentLevel);
             pattern.Speed = currentLevel.TargetSpeed * speedMultiplier;
 
             if (shouldSpawnTough)
             {
-                ShowSpawnWarning(LaneType.Center, VerticalPosition.High, TargetType.ToughPunch);
+                ShowSpawnWarning(LaneType.Center, heavyKick ? VerticalPosition.Low : VerticalPosition.High, heavyKick ? TargetType.ToughKick : TargetType.ToughPunch);
             }
             else
             {
@@ -131,7 +133,7 @@ public class TargetSpawner : MonoBehaviour
             // v3: Check for tough target
             if (shouldSpawnTough)
             {
-                SpawnToughTarget();
+                SpawnToughTarget(heavyKick);
             }
             else
             {
@@ -143,10 +145,10 @@ public class TargetSpawner : MonoBehaviour
     /// <summary>
     /// v3: Spawn a tough target with multi-hit requirement.
     /// </summary>
-    private void SpawnToughTarget()
+    private void SpawnToughTarget(bool kick)
     {
         LaneType toughLane = LaneType.Center;
-        VerticalPosition toughVertical = VerticalPosition.High;
+        VerticalPosition toughVertical = kick ? VerticalPosition.Low : VerticalPosition.High;
         Transform spawnPoint = GetSpawnPoint(toughLane);
         if (spawnPoint == null) return;
 
@@ -159,7 +161,7 @@ public class TargetSpawner : MonoBehaviour
         // Tough targets are 20% slower
         float toughSpeed = currentLevel.TargetSpeed * speedMultiplier * 0.8f;
 
-        GameObject targetObj = CreateTargetObject(spawnPos, TargetType.ToughPunch);
+        GameObject targetObj = CreateTargetObject(spawnPos, kick ? TargetType.ToughKick : TargetType.ToughPunch);
         if (targetObj == null) return;
 
         TargetObject target = targetObj.GetComponent<TargetObject>();
@@ -168,7 +170,7 @@ public class TargetSpawner : MonoBehaviour
         if (target != null)
         {
             target.Lane = toughLane;
-            target.Type = TargetType.ToughPunch;
+            target.Type = kick ? TargetType.ToughKick : TargetType.ToughPunch;
             target.MoveSpeed = toughSpeed;
             target.HitWindow = currentLevel.HitWindowSeconds;
             target.MinPower = currentLevel.MinPower;
@@ -357,6 +359,10 @@ public class TargetSpawner : MonoBehaviour
                 }
                 collider.size = new Vector3(1.9f, 1.25f, 0.9f);
                 break;
+            case TargetType.ToughKick:
+                if (!TryAttachVisualPrefab(heavyKickVisualPrefab, target.transform)) BuildKickTarget(target.transform);
+                collider.size = new Vector3(1.8f, 1.6f, 0.65f);
+                break;
             case TargetType.Block:
                 BuildBlockTarget(target.transform);
                 collider.size = new Vector3(1.9f, 2.1f, 0.9f);
@@ -383,6 +389,7 @@ public class TargetSpawner : MonoBehaviour
 
         target.AddComponent<TargetObject>();
         target.AddComponent<TargetMover>();
+        target.AddComponent<TargetMountMotion>();
         Rigidbody rb = target.GetComponent<Rigidbody>();
         if (rb == null)
         {

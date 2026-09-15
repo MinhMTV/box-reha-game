@@ -1,11 +1,11 @@
 {
     "scope": "DEVELOPMENT BUILD CANDIDATE ONLY / NOT STUDY-READY OR HARDWARE QUALIFIED",
-    "utc": "2026-09-15T00:47:39.6472852Z",
+    "utc": "2026-09-15T16:45:48.1940655Z",
     "unityVersion": "6000.6.0f1",
     "result": "Succeeded",
-    "outputPath": "E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo/Builds/AndroidCandidate/DigitalDojo.apk",
-    "totalBytes": "396741843",
+    "outputPath": "E:/Programming Projekte/box-reha-game/Builds/AndroidCandidate/DigitalDojo.apk",
+    "totalBytes": "421690832",
     "errors": 0,
     "warnings": 17,
-    "durationSeconds": 141.85602799999998
+    "durationSeconds": 162.22832739999998
 }

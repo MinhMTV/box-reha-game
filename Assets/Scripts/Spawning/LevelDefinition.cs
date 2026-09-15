@@ -20,6 +20,7 @@ public class LevelDefinition : ScriptableObject
     [Header("Tough Targets")]
     [Range(0f, 1f)]
     public float ToughTargetChance = 0.15f;
+    [Range(0f, 1f)] public float HeavyKickShare = 0.5f;
     public int MinToughHits = 8;
     public int MaxToughHits = 12;
 
@@ -45,12 +46,13 @@ public class LevelDefinition : ScriptableObject
     {
         if (family != "Alpha" && family != "Delta") throw new System.ArgumentException("Unsupported sensor family", nameof(family));
         bool alpha = family == "Alpha";
+        HeavyKickShare = alpha ? 0f : 1f;
         AllowedTargetTypes = new[] { alpha ? TargetType.Punch : TargetType.Kick };
         AllowedVerticalPositions = new[] { alpha ? VerticalPosition.High : VerticalPosition.Low };
         DisplayName += alpha ? " / Alpha punches" : " / Delta kick mapping (experimental)";
         if (!alpha)
         {
-            ToughTargetChance = MaxToughTargetChance = 0f;
+            HeavyKickShare = 1f;
             RapidFireChance = MaxRapidFireChance = 0f;
         }
     }

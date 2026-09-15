@@ -27,6 +27,9 @@ public class TargetObject : MonoBehaviour
     public int MaxHits { get; set; } = 1;
     public int CurrentHits { get; set; } = 0;
     public bool IsTough => MaxHits > 1;
+    public bool IsKick => Type == TargetType.Kick || Type == TargetType.ToughKick;
+    public bool IsDeploying => mount != null && mount.enabled && !mount.Ready;
+    private TargetMountMotion mount;
     public bool IsBreaking { get; private set; }
     public bool IsLockedInHitZone { get; private set; }
     public BodySide RequiredSide { get; private set; } = BodySide.Left;
@@ -71,10 +74,11 @@ public class TargetObject : MonoBehaviour
     {
         if (trackedSpawn) return;
         trackedSpawn = true;
+        mount = GetComponent<TargetMountMotion>();
         SpawnTime = Time.time;
         HitZoneEvaluator evaluator = FindObjectOfType<HitZoneEvaluator>();
         float zoneZ = evaluator != null ? evaluator.HitZoneZ : HitZoneZ;
-        ExpectedHitTime = SpawnTime + Mathf.Max(0f, transform.position.z - zoneZ) / Mathf.Max(0.01f, MoveSpeed);
+        ExpectedHitTime = SpawnTime + (mount != null ? TargetMountMotion.DeploySeconds : 0f) + Mathf.Max(0f, transform.position.z - zoneZ) / Mathf.Max(0.01f, MoveSpeed);
         if (evaluator != null) evaluator.RegisterTarget(this);
         if (GameManager.Instance?.SessionStats != null) GameManager.Instance.SessionStats.SpawnedTargets++;
         ResearchSessionLog.TargetSpawn(this);
@@ -150,8 +154,8 @@ public class TargetObject : MonoBehaviour
         {
             originalColor = GameVisualPalette.GetTargetColor(Type);
             transform.rotation = Quaternion.identity;
-            if (IsTough) { transform.localScale = Vector3.one * 1.8f; CreateHealthBar(); }
-            EnsureLabel(IsTough ? "HEAVY" : Type == TargetType.Kick ? "KICK" : "PUNCH", originalColor);
+            if (IsTough) { transform.localScale = Vector3.one * (IsKick ? 1.15f : 1.8f); CreateHealthBar(); }
+            EnsureLabel(IsTough ? (IsKick ? "HEAVY KICK" : "HEAVY") : IsKick ? "KICK" : "PUNCH", originalColor);
             return;
         }
 
@@ -294,7 +298,7 @@ public class TargetObject : MonoBehaviour
 
     public string GetRequiredSideLabel()
     {
-        return "PUNCH";
+        return IsKick ? "KICK" : "PUNCH";
     }
 
     /// <brief>
@@ -378,7 +382,7 @@ public class TargetObject : MonoBehaviour
         }
 
         string verticalLabel = VertPosition.ToString().ToUpperInvariant();
-        labelMesh.text = IsTough ? "HEAVY" : actionLabel;
+        labelMesh.text = IsTough ? (IsKick ? "HEAVY KICK" : "HEAVY") : actionLabel;
         labelMesh.color = Color.Lerp(Color.white, accentColor, 0.2f);
         float labelDepth = -0.42f;
         if (cachedRenderer != null)
@@ -386,7 +390,7 @@ public class TargetObject : MonoBehaviour
             labelDepth = -Mathf.Max(0.42f, cachedRenderer.bounds.extents.z * 1.1f);
         }
 
-        labelMesh.transform.localPosition = new Vector3(0f, authoredVisual != null ? (IsTough ? -1.13f : -1.0f) : 0f, labelDepth);
+        labelMesh.transform.localPosition = new Vector3(0f, authoredVisual != null ? (Type == TargetType.ToughKick ? -.76f : IsTough ? -1.13f : -1.0f) : 0f, labelDepth);
         labelMesh.transform.localRotation = Quaternion.identity;
         labelMesh.transform.localScale = Vector3.one;
     }
@@ -395,7 +399,7 @@ public class TargetObject : MonoBehaviour
     {
         if (labelMesh != null && IsTough)
         {
-            labelMesh.text = "HEAVY";
+            labelMesh.text = IsKick ? "HEAVY KICK" : "HEAVY";
         }
     }
 
@@ -440,6 +444,9 @@ public class TargetObject : MonoBehaviour
             return;
         }
 
+        // Optional fracture presentation cannot prevent the scheduled target cleanup.
+        try { if (authoredVisual != null) authoredVisual.BeginBreak(); }
+        catch(Exception error) { Debug.LogException(error); }
         StartCoroutine(DestroyAnimationCoroutine(onComplete));
     }
 

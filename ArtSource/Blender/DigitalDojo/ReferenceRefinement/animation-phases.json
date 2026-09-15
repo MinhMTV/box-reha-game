@@ -1,0 +1,13 @@
+{
+  "fps": 30,
+  "frames": 120,
+  "markers": {
+    "idle": 1,
+    "deploy": 12,
+    "travel": 40,
+    "impact": 65,
+    "break": 95
+  },
+  "runtime": "TargetMountMotion + DigitalDojoTargetVisual",
+  "review": "authoring motion; runtime camera and baked asset validation pending"
+}

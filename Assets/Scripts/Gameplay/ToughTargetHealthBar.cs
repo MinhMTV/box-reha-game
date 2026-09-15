@@ -27,6 +27,9 @@ public class ToughTargetHealthBar : MonoBehaviour
         GameObject barObj = new GameObject("ToughTargetHealthBar");
         ToughTargetHealthBar bar = barObj.AddComponent<ToughTargetHealthBar>();
         bar.targetTransform = target;
+        bool kick=target.GetComponent<TargetObject>()?.IsKick == true;
+        bar.offset=new Vector3(0,kick?1f:1.95f,0);
+        if(kick)bar.fullColor=GameVisualPalette.KickColor;
         barObj.transform.SetParent(target, true);
         bar.Initialize(maxHits);
         return bar;

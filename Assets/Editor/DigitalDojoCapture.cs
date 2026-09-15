@@ -52,18 +52,36 @@ public static class DigitalDojoCapture
                 foreach (var target in UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None)) UnityEngine.Object.Destroy(target.gameObject);
                 foreach (var warning in UnityEngine.Object.FindObjectsByType<SpawnWarningEffect>(FindObjectsSortMode.None)) UnityEngine.Object.Destroy(warning.gameObject);
                 var create = typeof(TargetSpawner).GetMethod("CreateTargetObject", BindingFlags.Instance | BindingFlags.NonPublic);
-                var types = new[] { TargetType.Punch, TargetType.Kick, TargetType.ToughPunch };
-                var positions = new[] { new Vector3(-3, 2.1f, 7), new Vector3(3, 0.45f, 7), new Vector3(0, 2.1f, 11) };
+                var types = new[] { TargetType.Punch, TargetType.Kick, TargetType.ToughPunch, TargetType.ToughKick };
+                var positions = new[] { new Vector3(-2.4f, 2.1f, 7), new Vector3(2.4f, 0.45f, 7), new Vector3(0, 2.1f, 11), new Vector3(0,.45f,15) };
                 for (int i = 0; i < types.Length; i++)
                 {
                     var go = (GameObject)create.Invoke(spawner, new object[] { positions[i], types[i] });
                     var t = go.GetComponent<TargetObject>(); t.Type = types[i]; t.Lane = i == 0 ? LaneType.Left : i == 1 ? LaneType.Right : LaneType.Center;
-                    t.VertPosition = i == 1 ? VerticalPosition.Low : VerticalPosition.High; t.MaxHits = i == 2 ? 8 : 1;
+                    t.VertPosition = (i == 1 || i == 3) ? VerticalPosition.Low : VerticalPosition.High; t.MaxHits = i >= 2 ? 8 : 1;
                     go.GetComponent<TargetMover>().enabled = false;
+                    if(i==3){t.MoveSpeed=2;t.HitWindow=1;go.GetComponent<TargetMover>().Initialize(2,0);go.GetComponent<TargetMover>().enabled=true;}
                 }
             }
             else if (step == Pages.Length * 2 + 2)
             {
+                foreach(var m in UnityEngine.Object.FindObjectsByType<TargetMountMotion>(FindObjectsSortMode.None))
+                    {
+                    if(m.Ready || m.Phase != "Idle")throw new Exception("Deployment must pause with gameplay time");
+                    var owned=m.transform.Find("TargetOwnedMount");
+                    if(owned==null || owned.childCount!=4)throw new Exception("Expected three telescope sleeves and one owned mounting plate");
+                    if(owned.GetComponentsInChildren<Collider>().Length!=0)throw new Exception("Decorative telescope has an implicit collider");
+                    m.Impact(true);
+                    if(m.Ready)throw new Exception("Below-threshold recoil must not unlock deployment");
+                }
+                if(Mathf.Abs(Array.Find(UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None),t=>t.Type==TargetType.ToughKick).transform.position.z-15)>0.001f)throw new Exception("Target moved during paused deployment");
+                Capture("Mounts-Deploy");Time.timeScale=1;
+            }
+            else if (step == Pages.Length * 2 + 3)
+            {
+                foreach(var m in UnityEngine.Object.FindObjectsByType<TargetMountMotion>(FindObjectsSortMode.None))
+                    if(!m.Ready || m.transform.Find("TargetOwnedMount")==null)throw new Exception("Mount did not deploy into owned travel state");
+                if(Array.Find(UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None),t=>t.Type==TargetType.ToughKick).transform.position.z>=14.9f)throw new Exception("Deployed target did not travel toward hit plane");
                 Capture("Gameplay-Targets-HUD");
                 var targets=UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None);
                 var oldPositions=Array.ConvertAll(targets,t=>t.transform.position);
@@ -74,15 +92,16 @@ public static class DigitalDojoCapture
                     Capture("Gameplay-StrikePlane-"+selected.Type);
                 }
                 for(int i=0;i<targets.Length;i++){targets[i].gameObject.SetActive(true);targets[i].transform.position=oldPositions[i];}
+                UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().Pause();
             }
-            else if (step == Pages.Length * 2 + 3) UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().Pause();
             else if (step == Pages.Length * 2 + 4) Capture("Pause");
             else if (step == Pages.Length * 2 + 5) { UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().Resume(); VerifyGameplay(); }
             else if (step == Pages.Length * 2 + 6)
             {
                 if(UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None).Length != 0)throw new Exception("Resolved target orphan after destruction grace");
+                if(UnityEngine.Object.FindObjectsByType<TargetMountMotion>(FindObjectsInactive.Include, FindObjectsSortMode.None).Length != 0)throw new Exception("Orphaned target mount");
                 if(UnityEngine.Object.FindObjectsByType<ToughTargetHealthBar>(FindObjectsInactive.Include, FindObjectsSortMode.None).Length != 0)throw new Exception("Orphaned heavy target health bar");
-                File.AppendAllText("artifacts/validation/dd-runtime-checks.txt","\nPASS no heavy health bar orphans\nPASS normal/kick/weak-then-strong/miss/heavy completion/heavy timeout have no target orphans after next frames");
+                File.AppendAllText("artifacts/validation/dd-runtime-checks.txt","\nPASS mount deploy pauses and then physically travels with owned geometry\nPASS three telescope sleeves, mounted plate and no implicit collider\nPASS weak recoil does not unlock deployment\nPASS no mount orphans\nPASS no heavy health bar orphans\nPASS normal/kick/weak-then-strong/miss/heavy completion/heavy timeout have no target orphans after next frames");
                 UnityEngine.Object.FindFirstObjectByType<GameRoundController>().FinishRound("synthetic_qa_complete");
             }
             else if (step == Pages.Length * 2 + 7) Capture("Results-Synthetic-QA");
@@ -120,7 +139,7 @@ public static class DigitalDojoCapture
             var go=(GameObject)create.Invoke(spawner,new object[]{new Vector3(side==BodySide.Left?-3:3,kind==ActionType.Punch?2.1f:.45f,evaluator.HitZoneZ),type});
             var target=go.GetComponent<TargetObject>();target.Type=type;target.Lane=side==BodySide.Left?LaneType.Left:LaneType.Right;
             target.VertPosition=kind==ActionType.Punch?VerticalPosition.High:VerticalPosition.Low;target.MoveSpeed=4;target.HitWindow=1;
-            target.EnsureTrackedSpawn();
+            target.GetComponent<TargetMountMotion>().enabled=false;target.EnsureTrackedSpawn();
             act(kind,side==BodySide.Left?BodySide.Right:BodySide.Left);
             require(!target.IsResolved,kind+" "+side+" wrong side rejected");
             act(kind==ActionType.Punch?ActionType.Kick:ActionType.Punch,side);
@@ -128,16 +147,16 @@ public static class DigitalDojoCapture
             act(kind,side);require(target.IsResolved,kind+" "+side+" resolves through game action handler");
         }
         var weakObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(-3,2.1f,evaluator.HitZoneZ),TargetType.Punch});
-        var weak=weakObject.GetComponent<TargetObject>();weak.Type=TargetType.Punch;weak.Lane=LaneType.Left;weak.MoveSpeed=4;weak.HitWindow=1;weak.EnsureTrackedSpawn();
+        var weak=weakObject.GetComponent<TargetObject>();weak.Type=TargetType.Punch;weak.Lane=LaneType.Left;weak.MoveSpeed=4;weak.HitWindow=1;weak.GetComponent<TargetMountMotion>().enabled=false;weak.EnsureTrackedSpawn();
         KeyboardActionFactory.DevelopmentPower=.2f;int below=manager.SessionStats.BelowStrengthHits;
         act(ActionType.Punch,BodySide.Left);require(!weak.IsResolved&&manager.SessionStats.BelowStrengthHits==below+1,"weak action gives separate outcome and target persists");
         Capture("Weak-hit-SYNTHETIC");KeyboardActionFactory.DevelopmentPower=1;act(ActionType.Punch,BodySide.Left);require(weak.IsResolved,"weak target accepts later normal hit");
         var missedObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(3,.45f,evaluator.HitZoneZ-4),TargetType.Kick});
-        var missed=missedObject.GetComponent<TargetObject>();missed.Type=TargetType.Kick;missed.MoveSpeed=4;missed.HitWindow=1;missed.EnsureTrackedSpawn();
+        var missed=missedObject.GetComponent<TargetObject>();missed.Type=TargetType.Kick;missed.MoveSpeed=4;missed.HitWindow=1;missed.GetComponent<TargetMountMotion>().enabled=false;missed.EnsureTrackedSpawn();
         typeof(HitZoneEvaluator).GetMethod("Update",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(evaluator,null);require(missed.IsResolved,"miss beyond window resolves");
         var heavyObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(0,2,evaluator.HitZoneZ),TargetType.ToughPunch});
         var heavy=heavyObject.GetComponent<TargetObject>();heavy.Type=TargetType.ToughPunch;heavy.Lane=LaneType.Center;
-        heavy.VertPosition=VerticalPosition.High;heavy.MaxHits=5;heavy.MoveSpeed=4;heavy.HitWindow=1;heavy.EnsureTrackedSpawn();heavy.LockInHitZone(evaluator.HitZoneZ);
+        heavy.VertPosition=VerticalPosition.High;heavy.MaxHits=5;heavy.MoveSpeed=4;heavy.HitWindow=1;heavy.GetComponent<TargetMountMotion>().enabled=false;heavy.EnsureTrackedSpawn();heavy.LockInHitZone(evaluator.HitZoneZ);
         for(int i=0;i<5;i++)
         {
             act(ActionType.Punch,BodySide.Left);
@@ -149,14 +168,28 @@ public static class DigitalDojoCapture
             }
         }
         require(heavy.IsResolved && heavy.CurrentHits==5,"heavy accepts five same-side punches");
+        var fractureVisual=heavy.GetComponentInChildren<DigitalDojoTargetVisual>();
+        var fragment=Array.Find(fractureVisual.GetComponentsInChildren<Transform>(),t=>t.name.StartsWith("FracturePiece_"));
+        require(fragment!=null,"imported heavy target contains fracture geometry");
+        var fragmentBefore=fragment.localPosition;
+        typeof(DigitalDojoTargetVisual).GetField("breakAt",BindingFlags.NonPublic|BindingFlags.Instance).SetValue(fractureVisual,Time.unscaledTime-.12f);
+        typeof(DigitalDojoTargetVisual).GetMethod("Update",BindingFlags.NonPublic|BindingFlags.Instance).Invoke(fractureVisual,null);
+        require(SettingsManager.ReducedMotion ? fragment.localPosition==fragmentBefore : fragment.localPosition!=fragmentBefore,"fracture animation respects reduced motion");
+        var kickHeavyObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(0,.45f,evaluator.HitZoneZ),TargetType.ToughKick});
+        var kickHeavy=kickHeavyObject.GetComponent<TargetObject>();kickHeavy.Type=TargetType.ToughKick;kickHeavy.Lane=LaneType.Center;kickHeavy.VertPosition=VerticalPosition.Low;kickHeavy.MaxHits=4;kickHeavy.MoveSpeed=4;kickHeavy.HitWindow=1;
+        kickHeavy.GetComponent<TargetMountMotion>().enabled=false;kickHeavy.EnsureTrackedSpawn();kickHeavy.LockInHitZone(evaluator.HitZoneZ);
+        act(ActionType.Punch,BodySide.Left);require(kickHeavy.CurrentHits==0,"heavy kick rejects punch");
+        KeyboardActionFactory.DevelopmentPower=.2f;act(ActionType.Kick,BodySide.Left);require(kickHeavy.CurrentHits==0&&!kickHeavy.IsResolved,"heavy kick TOO LIGHT persists");KeyboardActionFactory.DevelopmentPower=1;
+        act(ActionType.Kick,BodySide.Left);act(ActionType.Kick,BodySide.Left);act(ActionType.Kick,BodySide.Right);act(ActionType.Kick,BodySide.Right);
+        require(kickHeavy.IsResolved&&kickHeavy.CurrentHits==4,"heavy kick accepts same or alternating feet");
         var timeoutObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(0,2,evaluator.HitZoneZ),TargetType.ToughPunch});
-        var timeout=timeoutObject.GetComponent<TargetObject>();timeout.Type=TargetType.ToughPunch;timeout.MaxHits=5;timeout.MoveSpeed=4;timeout.HitWindow=1;timeout.HeavyTimeoutSeconds=0;timeout.EnsureTrackedSpawn();
+        var timeout=timeoutObject.GetComponent<TargetObject>();timeout.Type=TargetType.ToughPunch;timeout.MaxHits=5;timeout.MoveSpeed=4;timeout.HitWindow=1;timeout.HeavyTimeoutSeconds=0;timeout.GetComponent<TargetMountMotion>().enabled=false;timeout.EnsureTrackedSpawn();
         typeof(HitZoneEvaluator).GetMethod("Update",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(evaluator,null);require(timeout.IsResolved,"heavy timeout resolves");
         foreach(var primitive in new[]{PrimitiveType.Cylinder,PrimitiveType.Cube,PrimitiveType.Sphere}){var visual=VisualPrimitive.Create(primitive);require(visual.GetComponent<Collider>()==null,"visual "+primitive+" has no physics dependency");UnityEngine.Object.Destroy(visual);}
         require(GameObject.Find("DojoLeftArmLane")==null&&GameObject.Find("DojoRightArmLane")==null,"no visible lane rails");
         require(evaluator.HitZoneZ==HitZoneEvaluator.PlayerHitPlaneZ,"closer hit plane used by evaluator");
         var abortedObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(-3,2,20),TargetType.Punch});
-        var aborted=abortedObject.GetComponent<TargetObject>();aborted.MoveSpeed=4;aborted.HitWindow=1;aborted.EnsureTrackedSpawn();
+        var aborted=abortedObject.GetComponent<TargetObject>();aborted.MoveSpeed=4;aborted.HitWindow=1;aborted.GetComponent<TargetMountMotion>().enabled=false;aborted.EnsureTrackedSpawn();
         int previousAborted=manager.SessionStats.AbortedTargets;evaluator.AbortRemaining();
         require(aborted.IsResolved&&manager.SessionStats.AbortedTargets==previousAborted+1,"finish cleanup aborts pending target exactly once");
         require(manager.SessionStats.Score>0 && manager.SessionStats.MaxCombo>0,"score and combo recorded");
@@ -212,6 +245,22 @@ public static class DigitalDojoCapture
         try
         {
             camera.targetTexture = target; camera.aspect = (float)width / height;
+            if(label.StartsWith("Gameplay-StrikePlane"))
+            {
+                foreach(var targetObject in UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None))
+                {
+                    var body=targetObject.GetComponentInChildren<DigitalDojoTargetVisual>();
+                    foreach(var renderer in body.GetComponentsInChildren<Renderer>())
+                    {
+                        var bounds=renderer.bounds;
+                        foreach(float x in new[]{bounds.min.x,bounds.max.x})foreach(float y in new[]{bounds.min.y,bounds.max.y})
+                        {
+                            var point=camera.WorldToViewportPoint(new Vector3(x,y,bounds.min.z));
+                            if(point.x<0||point.x>1||point.y<0||point.y>.90f)throw new Exception("Strike-plane body clipped or touches HUD: "+label+" / "+width+"x"+height);
+                        }
+                    }
+                }
+            }
             for (int i = 0; i < canvases.Length; i++)
             {
                 var canvas = canvases[i]; oldModes[i] = canvas.renderMode; oldCameras[i] = canvas.worldCamera; oldDistances[i] = canvas.planeDistance;

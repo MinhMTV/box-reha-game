@@ -45,7 +45,7 @@ public class ResultsController : MonoBehaviour
         Text("Split", "Arms  " + stats.ArmHits + "/" + stats.ArmTargets + "    Legs  " + stats.LegHits + "/" + stats.LegTargets +
             "    Actions left / right  " + stats.LeftActions + " / " + stats.RightActions +
             "\nAverage target resolution  " + (stats.SuccessfulHits > 0 ? stats.AverageReactionTime.ToString("F2") + " s" : "n/a") +
-            "    Unfinished  " + stats.AbortedTargets + "    Heavy timeouts  " + stats.HeavyTimeouts,
+            "\nHeavy kicks completed  " + stats.HeavyKickCompleted + "/" + stats.HeavyKickTargets + "    Unfinished  " + stats.AbortedTargets + "    Heavy timeouts  " + stats.HeavyTimeouts,
             22, 40f, 455f, 1160f, 95f, new Color(0.76f, 0.79f, 0.8f));
         Text("Provenance", "Input events: " + stats.KeyboardActions + " keyboard / " + stats.SensorActions + " sensor / " +
             stats.OtherActions + " other.  No force or heart-rate baseline is inferred.", 17, 40f, 570f, 1170f, 42f, Color.gray);

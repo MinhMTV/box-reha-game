@@ -1,0 +1,32 @@
+{
+  "schema": "game-room.milestone-reviews.v1",
+  "roomId": "digital-dojo-reference",
+  "function": {
+    "status": "pending",
+    "approvedBy": "",
+    "approvedAt": "",
+    "evidence": [],
+    "strangestElement": "",
+    "notes": "Pending. User supplied visual direction and instructed continuation; no approval of these newly rendered models is inferred."
+  },
+  "form": {
+    "status": "approved",
+    "approvedBy": "user",
+    "approvedAt": "2026-09-15T16:51:54.901849+00:00",
+    "evidence": [
+      "../room-assembly-review.png",
+      "../animation-travel.png",
+      "../animation-break.png"
+    ],
+    "strangestElement": "",
+    "notes": "Explicit user instruction: ja importiere in unity und orientier dich an den bildern und dann bau es ein. This records visual/export authorization, not a claim that the Meshy-specific contract validator passed."
+  },
+  "runtime": {
+    "status": "pending",
+    "approvedBy": "",
+    "approvedAt": "",
+    "evidence": [],
+    "strangestElement": "",
+    "notes": "Pending. User supplied visual direction and instructed continuation; no approval of these newly rendered models is inferred."
+  }
+}

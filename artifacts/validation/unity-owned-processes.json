@@ -1,32 +1,32 @@
 [
   {
-    "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-android-prepare.log",
-    "freshCompletionEvidence": true,
-    "pid": 56164,
+    "pid": 50972,
+    "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\unity-android-prepare.log",
+    "startedUtc": "2026-09-15T16:42:38.6729435Z",
     "forcedTermination": false,
-    "startedUtc": "2026-09-15T00:44:48.7923095Z",
     "exitCode": 0,
-    "sdkMode": "COMPATIBILITY",
-    "timedOut": false
+    "timedOut": false,
+    "freshCompletionEvidence": true,
+    "sdkMode": "COMPATIBILITY"
   },
   {
-    "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-editor.log",
-    "freshCompletionEvidence": true,
-    "pid": 65844,
+    "pid": 16792,
+    "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\unity-editor.log",
+    "startedUtc": "2026-09-15T16:42:49.8492111Z",
     "forcedTermination": false,
-    "startedUtc": "2026-09-15T00:45:02.2047275Z",
     "exitCode": 0,
-    "sdkMode": "COMPATIBILITY",
-    "timedOut": false
+    "timedOut": false,
+    "freshCompletionEvidence": true,
+    "sdkMode": "COMPATIBILITY"
   },
   {
-    "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-player-build.log",
-    "freshCompletionEvidence": true,
-    "pid": 47336,
+    "pid": 51840,
+    "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\unity-player-build.log",
+    "startedUtc": "2026-09-15T16:43:00.2097496Z",
     "forcedTermination": false,
-    "startedUtc": "2026-09-15T00:45:12.4498304Z",
     "exitCode": 0,
-    "sdkMode": "COMPATIBILITY",
-    "timedOut": false
+    "timedOut": false,
+    "freshCompletionEvidence": true,
+    "sdkMode": "COMPATIBILITY"
   }
 ]
