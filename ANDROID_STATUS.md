@@ -4,7 +4,7 @@ New hardware-feedback APK built successfully in explicit COMPATIBILITY mode. Ver
 
 ## Candidate
 
-- Path: `Builds/AndroidCandidate/DigitalDojo.apk` in `E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo`.
+- Path: `Builds/AndroidCandidate/DigitalDojo.apk` in the main checkout `E:/Programming Projekte/box-reha-game` (original build retained in the detached worktree).
 - SHA-256: `aa82afe63a2a0afc76b999f563c3214094217d63c941ceaec4efa207d4fcf472`
 - Actual APK size: 34,189,756 bytes.
 - Package `com.boxreha.digitaldojo`, version 1.1 / code 2, ARM64 IL2CPP, landscape, min API 26, target/compile API 36.
@@ -27,4 +27,4 @@ Separate strength/rapid references and per-profile normalization are now impleme
 
 Enable USB debugging and accept the computer RSA prompt. Once `adb devices -l` shows an authorized device, install this exact APK with `adb install -r` without uninstalling profile data. Check removal/re-pair/swap, names and each single-family side first, then real actions, measured references, profile switching/restart and weak-hit retry. DELTA pairs and mixed acquisition must not be inferred from ALPHA discovery. No candidate device is yet qualified by this pass.
 
-Previous candidate 1.0/code1 and previous status are historical; see docs/history/pre-hardware-feedback/ANDROID_STATUS.md. The primary checkout has not been merged or overwritten.
+Previous candidate 1.0/code1 and previous status are historical; see docs/history/pre-hardware-feedback/ANDROID_STATUS.md. Update: all source changes have since been merged into local main and this exact APK copied to the main checkout; see artifacts/validation/main-checkout-delivery.json.

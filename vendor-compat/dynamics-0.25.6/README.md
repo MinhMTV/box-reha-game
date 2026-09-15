@@ -1,6 +1,6 @@
 # Dynamics 0.25.6 local compatibility workspace
 
-This is an application-side compatibility layer, not an official SDK release. `C:\dynamics-sdk-main` remains authoritative and read-only. No AAR, JAR, Kotlin metadata or class bytecode is rewritten. Development uses Windows; physical acquisition runs in the Android player.
+This is an application-side compatibility layer, not an official SDK release. The user now authorizes edits to `C:\dynamics-sdk-main`, which has its own local Git repository. Its current library binaries remain at the preserved vendor baseline; see `C:\dynamics-sdk-main\LOCAL_DEVELOPMENT.md` for the missing core-source blocker. No AAR, JAR, Kotlin metadata or class bytecode is rewritten. Development uses Windows; physical acquisition runs in the Android player.
 
 ## Modes
 

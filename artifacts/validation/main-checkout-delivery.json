@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-15",
+  "mergedCommit": "027773f",
+  "branch": "main",
+  "localMergedBranchesDeleted": [
+    "codex/android-hardware-feedback",
+    "codex/agent-root-dd-validation",
+    "codex/agent-root-digital-dojo-2026-09-14",
+    "codex/dynamics-compat-2026-09-14",
+    "codex/research-hardening-2026-09-13"
+  ],
+  "remoteChanges": "none; no push or remote branch deletion",
+  "oldWorktree": "detached at 027773f; retained local files",
+  "apk": "E:\\Programming Projekte\\box-reha-game\\Builds\\AndroidCandidate\\DigitalDojo.apk",
+  "apkSha256": "aa82afe63a2a0afc76b999f563c3214094217d63c941ceaec4efa207d4fcf472",
+  "apkBytes": 34189756,
+  "sdkRepository": "C:/dynamics-sdk-main",
+  "sdkBaseline": "20554e6",
+  "sdkFollowup": "48aa7be",
+  "multiDeviceImplementation": "BLOCKED: supplied core source project missing; unchanged binary guards retained",
+  "postMergeTests": "207 host checks passed; no new runtime code and no new APK build in this merge pass"
+}

@@ -61,3 +61,7 @@ Resource 2.12.0 is ABI-compatible with the observed call sites, but full runtime
 Request from vendor: republish Android artifacts with consumer-facing Kotlin metadata/InnerClasses/signatures retained; provide the declared Resource 2.11.1 or confirm 2.12.0; document simultaneous ALPHA/DELTA ownership and supported device count; provide a supported mixed acquisition example and unit/calibration guarantees. See `MULTI_SENSOR_REPORT.md` for the exact topology findings.
 
 The 15 September feedback pass retains both build modes and pinned vendor inputs. All 4,085 vendor files were rehashed unchanged (artifacts/validation/hardware-vendor-integrity.json). Added remove/swap operations compile against real SDK APIs; on-device behavior awaits retest.
+
+## SDK edit authorization and source availability (15 September follow-up)
+
+The user now authorizes SDK changes. A local Git repository preserves the unmodified distribution at 20554e6; 48aa7be adds an exact source inventory and implementation contract. No core Kotlin/Gradle project was present in either supplied SDK copy. Multi-device acquisition has therefore not been implemented or enabled. Earlier read-only constraints describe the previous pass and no longer restrict authorized future SDK work. Existing binary hash gates remain correct because no library binary changed.
