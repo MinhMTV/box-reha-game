@@ -88,6 +88,7 @@ public class AndroidDynamicsController : MonoBehaviour
     public void StartScan() { Call("startScan"); }
     public void StopScan() { Call("stopScan"); }
     public void Pair(string id, string side) { Call("pair", id, side); }
+    public void ChangeSide(string id) { Call("changeSide", id); }
     public void Remove(string id) { Call("unpair", id); }
     public void SetBodyProfile(double weight, double height, string gender)
     {
@@ -194,6 +195,9 @@ public class AndroidDynamicsController : MonoBehaviour
             lastStatusSequence = incoming.statusSequence;
             lastStatusReceivedAt = Time.realtimeSinceStartupAsDouble - transportAge;
             Status = incoming;
+            var profile=GameManager.Instance?.PlayerProfile;
+            if(profile != null && incoming.profileReady && incoming.profileStudyId==profile.StudyId && incoming.profileReference!=profile.SdkProfileReference)
+            { profile.SdkProfileReference=incoming.profileReference;PlayerProfileStore.Save(profile); }
             Notice = incoming.code + ": " + incoming.message;
         }
         catch (Exception) { Status = null; Notice = "Malformed or delayed SDK status; physical session blocked."; }

@@ -47,9 +47,17 @@ public sealed class SensorEventProcessor
         get { int count = 0; foreach (DeviceState state in devices.Values) count += state.Pending.DroppedCount; return count; }
     }
 
+    private readonly HashSet<string> forgottenEpochs = new HashSet<string>();
+    public void ForgetDevice(string deviceId, string connectionId)
+    {
+        if(!devices.TryGetValue(deviceId,out DeviceState state) || state.ConnectionId != connectionId)return;
+        if(!string.IsNullOrEmpty(connectionId))forgottenEpochs.Add(connectionId);
+        state.Pending.Clear();devices.Remove(deviceId);
+    }
     public bool SetConnection(string deviceId, string connectionId, SensorDeviceType type, BodySide side,
         string provenance, bool connected, double now = 0)
     {
+        if(connected && (forgottenEpochs.Contains(connectionId) || forgottenEpochs.Count>=1024))return Reject("forgotten_or_retirement_limit");
         if (string.IsNullOrWhiteSpace(deviceId) || string.IsNullOrWhiteSpace(connectionId)
             || (type != SensorDeviceType.Alpha && type != SensorDeviceType.Delta)
             || (side != BodySide.Left && side != BodySide.Right) || !IsSensorProvenance(provenance) || !Finite(now))

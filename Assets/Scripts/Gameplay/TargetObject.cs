@@ -49,7 +49,7 @@ public class TargetObject : MonoBehaviour
     private bool trackedSpawn;
 
     // HitZone Z position for glow calculation
-    private const float HitZoneZ = 5f;
+    private const float HitZoneZ = HitZoneEvaluator.PlayerHitPlaneZ;
     private const float GlowActivateDistance = 10f;
     private const float GlowSpeed = 4f;
 
@@ -73,7 +73,7 @@ public class TargetObject : MonoBehaviour
         trackedSpawn = true;
         SpawnTime = Time.time;
         HitZoneEvaluator evaluator = FindObjectOfType<HitZoneEvaluator>();
-        float zoneZ = evaluator != null ? evaluator.HitZoneZ : 5f;
+        float zoneZ = evaluator != null ? evaluator.HitZoneZ : HitZoneZ;
         ExpectedHitTime = SpawnTime + Mathf.Max(0f, transform.position.z - zoneZ) / Mathf.Max(0.01f, MoveSpeed);
         if (evaluator != null) evaluator.RegisterTarget(this);
         if (GameManager.Instance?.SessionStats != null) GameManager.Instance.SessionStats.SpawnedTargets++;
@@ -91,8 +91,10 @@ public class TargetObject : MonoBehaviour
         }
     }
 
+    private float destroyAt;
     void Update()
     {
+        if(IsResolved && Time.unscaledTime >= destroyAt) { Destroy(gameObject); return; }
         UpdateGlowEffect();
     }
 
@@ -245,6 +247,8 @@ public class TargetObject : MonoBehaviour
         CurrentHits = Mathf.Min(MaxHits, CurrentHits + damage);
         int hitsLeft = MaxHits - CurrentHits;
 
+        try
+        {
         // Update health bar
         if (healthBar != null)
         {
@@ -277,12 +281,16 @@ public class TargetObject : MonoBehaviour
             {
                 healthBar.FadeOut();
             }
-            return true;
+
         }
 
         RefreshToughLabel();
-        return false;
+        }
+        catch(Exception error) { Debug.LogException(error); }
+        // Presentation errors do not change the already accepted damage or terminal result.
+        return hitsLeft <= 0;
     }
+
 
     public string GetRequiredSideLabel()
     {
@@ -400,6 +408,7 @@ public class TargetObject : MonoBehaviour
     {
         if (IsResolved) return false;
         IsResolved = true;
+        destroyAt = Time.unscaledTime + .35f;
         return true;
     }
 
@@ -426,6 +435,7 @@ public class TargetObject : MonoBehaviour
 
         if (SettingsManager.ReducedMotion)
         {
+            Destroy(gameObject);
             onComplete?.Invoke();
             return;
         }
@@ -441,7 +451,7 @@ public class TargetObject : MonoBehaviour
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
             float scale = Mathf.Lerp(1f, 0.88f, t);
             transform.localScale = startScale * scale;
@@ -461,6 +471,7 @@ public class TargetObject : MonoBehaviour
             yield return null;
         }
 
+        Destroy(gameObject);
         onComplete?.Invoke();
     }
 }

@@ -27,6 +27,7 @@ public class ToughTargetHealthBar : MonoBehaviour
         GameObject barObj = new GameObject("ToughTargetHealthBar");
         ToughTargetHealthBar bar = barObj.AddComponent<ToughTargetHealthBar>();
         bar.targetTransform = target;
+        barObj.transform.SetParent(target, true);
         bar.Initialize(maxHits);
         return bar;
     }
@@ -38,7 +39,7 @@ public class ToughTargetHealthBar : MonoBehaviour
         float barDepth = 0.05f;
 
         // Background (dark gray)
-        backgroundObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        backgroundObj = VisualPrimitive.Create(PrimitiveType.Cube);
         backgroundObj.transform.SetParent(transform);
         backgroundObj.transform.localPosition = Vector3.zero;
         backgroundObj.transform.localScale = new Vector3(barWidth + 0.05f, barHeight + 0.05f, barDepth);
@@ -46,7 +47,7 @@ public class ToughTargetHealthBar : MonoBehaviour
         Destroy(backgroundObj.GetComponent<Collider>());
 
         // Fill (colored bar)
-        fillObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        fillObj = VisualPrimitive.Create(PrimitiveType.Cube);
         fillObj.transform.SetParent(transform);
         fillObj.transform.localPosition = Vector3.zero;
         fillObj.transform.localScale = new Vector3(barWidth, barHeight, barDepth + 0.01f);
@@ -54,7 +55,7 @@ public class ToughTargetHealthBar : MonoBehaviour
         Destroy(fillObj.GetComponent<Collider>());
 
         // Border (white outline effect via slightly larger cube behind background)
-        borderObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        borderObj = VisualPrimitive.Create(PrimitiveType.Cube);
         borderObj.transform.SetParent(transform);
         borderObj.transform.localPosition = Vector3.zero;
         borderObj.transform.localScale = new Vector3(barWidth + 0.1f, barHeight + 0.1f, barDepth - 0.01f);
@@ -132,7 +133,7 @@ public class ToughTargetHealthBar : MonoBehaviour
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float t = elapsed / duration;
 
             // Shrink and fade

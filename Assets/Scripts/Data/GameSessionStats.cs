@@ -2,6 +2,9 @@
 public class GameSessionStats
 {
     public string SessionId, StudyId, StartedUtc, Mode, StopReason, LogPath;
+    public int BelowStrengthHits;
+    public int AlphaLeftSamples, AlphaRightSamples, DeltaLeftSamples, DeltaRightSamples;
+    public double AlphaLeftRelativeSum, AlphaRightRelativeSum, DeltaLeftRelativeSum, DeltaRightRelativeSum;
     public float DurationSeconds;
     public int SpawnedTargets, AbortedTargets, HeavyTimeouts;
     public int Actions, LeftActions, RightActions, PunchActions, KickActions;
@@ -59,6 +62,8 @@ public class GameSessionStats
     public void Reset()
     {
         SessionId = StudyId = StartedUtc = Mode = StopReason = LogPath = null;
+        BelowStrengthHits=AlphaLeftSamples=AlphaRightSamples=DeltaLeftSamples=DeltaRightSamples=0;
+        AlphaLeftRelativeSum=AlphaRightRelativeSum=DeltaLeftRelativeSum=DeltaRightRelativeSum=0;
         DurationSeconds = 0f;
         SpawnedTargets = AbortedTargets = HeavyTimeouts = 0;
         Actions = LeftActions = RightActions = PunchActions = KickActions = 0;
@@ -86,6 +91,13 @@ public class GameSessionStats
 
     public void TrackAction(PlayerActionEvent action)
     {
+        if(action.SourceType==InputSourceType.Sensor && action.NormalizationValid)
+        {
+            if(action.SensorDevice==SensorDeviceType.Alpha && action.BodySide==BodySide.Left){AlphaLeftSamples++;AlphaLeftRelativeSum+=action.Power;}
+            if(action.SensorDevice==SensorDeviceType.Alpha && action.BodySide==BodySide.Right){AlphaRightSamples++;AlphaRightRelativeSum+=action.Power;}
+            if(action.SensorDevice==SensorDeviceType.Delta && action.BodySide==BodySide.Left){DeltaLeftSamples++;DeltaLeftRelativeSum+=action.Power;}
+            if(action.SensorDevice==SensorDeviceType.Delta && action.BodySide==BodySide.Right){DeltaRightSamples++;DeltaRightRelativeSum+=action.Power;}
+        }
         Actions++;
         if (action.BodySide == BodySide.Left) LeftActions++;
         if (action.BodySide == BodySide.Right) RightActions++;

@@ -7,7 +7,7 @@ public class AndroidNativeDevice
     public bool online, isMock;
 }
 [Serializable]
-public class AndroidNearbyDevice { public string id, name; }
+public class AndroidNearbyDevice { public string id, name, family; }
 [Serializable]
 public class AndroidNativeStatus
 {
@@ -56,7 +56,9 @@ public static class AndroidSessionPolicy
         {
             if (device == null) { reason = "Invalid device status."; return false; }
             if (device.isMock) { reason = "SDK mock devices cannot start a physical session."; return false; }
-            if (device.family != family) { reason = "Mixed or unknown sensor families are unsupported. Remove the other devices."; return false; }
+            if (device.family != family) { reason = string.IsNullOrEmpty(device.family) || device.family == "Unknown"
+                ? (device.name ?? "Device") + " / " + device.side + ": family not resolved. Reconnect or remove this device, then scan again."
+                : (device.name ?? "Device") + " / " + device.side + ": reports " + device.family + "; selected " + family + ". Select the matching mode. ALPHA + DELTA combined mode is not qualified."; return false; }
             if (!device.online || string.IsNullOrWhiteSpace(device.id) || string.IsNullOrWhiteSpace(device.connectionId))
             { reason = "Every selected device must report an active connection."; return false; }
             if (device.id == firstId) { reason = "Duplicate device identity."; return false; }

@@ -4,6 +4,11 @@ public class PlayerProfile
 {
     public string Name = "Player";
     public string StudyId = Guid.NewGuid().ToString("N");
+    public string CreatedUtc, UpdatedUtc, SdkGender, SdkProfileReference;
+    public double HeightCm, WeightKg;
+    public bool Archived;
+    public int PreferredLevel = 1;
+    public string[] CalibrationReferences = Array.Empty<string>();
     public ForceBand GetForceBand(float value)
     {
         if (value < 0.85f) return ForceBand.Low;

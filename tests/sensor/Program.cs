@@ -17,6 +17,7 @@ internal static class Program
             HistoryHostCheck.Run();
             AndroidPolicyHostChecks.Run();
             CalibrationHostChecks.Run();
+        HardwareFeedbackChecks.Run();
             return 0;
         }
         catch (Exception ex)

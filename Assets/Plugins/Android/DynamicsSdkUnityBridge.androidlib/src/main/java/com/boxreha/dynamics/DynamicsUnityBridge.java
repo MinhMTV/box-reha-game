@@ -24,6 +24,7 @@ public final class DynamicsUnityBridge {
     public static void startScan() { DynamicsCollector.startScan(); }
     public static void stopScan() { DynamicsCollector.stopScan(); }
     public static void pair(String nearbyId, String side) { DynamicsCollector.pair(nearbyId, side); }
+    public static void changeSide(String deviceId) { DynamicsCollector.changeSide(deviceId); }
     public static void unpair(String deviceId) { DynamicsCollector.unpair(deviceId); }
     public static void setBodyProfile(String studyId, double weightKg, double heightCm, String gender) {
         DynamicsCollector.setBodyProfile(studyId, weightKg, heightCm, gender);

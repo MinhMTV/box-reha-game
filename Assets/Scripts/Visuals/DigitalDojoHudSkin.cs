@@ -65,14 +65,11 @@ public class DigitalDojoHudSkin : MonoBehaviour
         }
         GameObject oldInput = GameObject.Find("InputStateText");
         if (oldInput != null) oldInput.SetActive(false);
-        inputStatus = Label(canvas, "LiveInputStatus", "Keyboard practice", 16);
-        Anchor(inputStatus.rectTransform, 0.5f, 0.045f, 1450f, 32f);
-        Text controls = Label(canvas, "ControlGuide", SessionInputSelection.Physical
-            ? SessionInputSelection.Family + " physical sensors / use PAUSE to stop or finish"
-            : "LEFT / RIGHT ARROW  punch     A / D  kick     ESC  pause", 19);
-        Anchor(controls.rectTransform, 0.45f, 0.085f, 1140f, 32f);
+        inputStatus = Label(canvas, "OptionalDebugOverlay", "", 16);
+        Anchor(inputStatus.rectTransform, .79f, .81f, 550f, 100f);
+        inputStatus.gameObject.SetActive(false);
         RectTransform pause = Panel(canvas, "TouchPauseButton");
-        Anchor(pause, 0.89f, 0.1f, 230f, 72f);
+        Anchor(pause, 0.5f, 0.06f, 230f, 72f);
         pause.GetComponent<UnityEngine.UI.Image>().raycastTarget = true;
         UnityEngine.UI.Button pauseButton = pause.gameObject.AddComponent<UnityEngine.UI.Button>();
         pauseButton.targetGraphic = pause.GetComponent<UnityEngine.UI.Image>();
@@ -84,6 +81,12 @@ public class DigitalDojoHudSkin : MonoBehaviour
     }
     void Update()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if(Input.GetKeyDown(KeyCode.F2))KeyboardActionFactory.DevelopmentPower=.2f;
+        if(Input.GetKeyDown(KeyCode.F3))KeyboardActionFactory.DevelopmentPower=1f;
+        if(Input.GetKeyDown(KeyCode.F4))KeyboardActionFactory.DevelopmentPower=2f;
+        if(inputStatus != null && Input.GetKeyDown(KeyCode.F1)) inputStatus.gameObject.SetActive(!inputStatus.gameObject.activeSelf);
+#endif
         refreshTimer += Time.unscaledDeltaTime;
         if (refreshTimer < 0.5f || inputStatus == null) return;
         refreshTimer = 0f;

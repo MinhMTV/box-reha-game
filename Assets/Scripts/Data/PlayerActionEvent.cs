@@ -31,6 +31,7 @@ public struct PlayerActionEvent
     public string Unit;
     public bool NormalizationValid;
     public string Detector;
+    public string CalibrationId;
     public SensorReading SensorEvidence;
 
     public static PlayerActionEvent Create(ActionType action, LaneType lane, float power,

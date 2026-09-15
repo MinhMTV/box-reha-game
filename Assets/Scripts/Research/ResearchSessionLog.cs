@@ -14,7 +14,8 @@ public static class ResearchSessionLog
         public double monotonicSeconds;
         public float gameplaySeconds;
         public string mode, buildVersion, buildRevision, unityVersion, configJson, gameConfigJson, stopReason, statsJson, inputStatus;
-        public string acquisitionJson;
+        public string acquisitionJson, calibrationId;
+        public float strengthThreshold;
         public string actionType, side, lane, inputSource, deviceType, deviceId, provenance;
         public string sourceEventId, sourceClock, quantity, unit, validityReason;
         public string connectionId, detector, sensorEvidenceJson;
@@ -74,7 +75,7 @@ public static class ResearchSessionLog
 
     public static void Action(PlayerActionEvent action)
     {
-        Write(new Record { kind = "action", eventId = action.EventId,
+        Write(new Record { calibrationId=action.CalibrationId, kind = "action", eventId = action.EventId,
             actionType = action.ActionType.ToString(), side = action.BodySide.ToString(), lane = action.Lane.ToString(),
             inputSource = action.SourceType.ToString(), deviceType = action.SensorDevice.ToString(),
             deviceId = action.DeviceId, provenance = action.Provenance, sourceEventId = action.SourceEventId,
@@ -100,6 +101,10 @@ public static class ResearchSessionLog
         record.timingOffsetSeconds = timingOffset;
         record.resolutionSeconds = Mathf.Max(0f, Time.time - target.SpawnTime);
         Write(record);
+    }
+    public static void BelowStrength(TargetObject target, PlayerActionEvent action, float threshold)
+    {
+        Record r=TargetRecord("below_strength_threshold",target);r.matchedEventId=action.EventId;r.power=action.Power;r.strengthThreshold=threshold;r.calibrationId=action.CalibrationId;r.normalizationValid=action.NormalizationValid;Write(r);
     }
     public static void HeavyImpact(TargetObject target, PlayerActionEvent action, int damage)
     {

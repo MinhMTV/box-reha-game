@@ -17,6 +17,7 @@ import com.riseworld.dynamics.multiplatform.settings.DynamicsSettings
 import com.riseworld.dynamics.composite.ble.Glove
 import com.riseworld.dynamics.composite.ble.BleGloveState
 import com.riseworld.dynamics.models.ble.nearby.NearbyGlove
+import com.riseworld.dynamics.models.PeripheralDto
 import com.riseworld.dynamics.models.Side
 import com.riseworld.dynamics.models.domain.profile.body.*
 import com.riseworld.dynamics.models.domain.punch.Power
@@ -65,6 +66,7 @@ internal object DynamicsCollector {
     private var gloves: List<Glove> = emptyList()
     private val nearby = linkedMapOf<String, NearbyGlove>()
     private val epochs = hashMapOf<String, Epoch>()
+    private val retiredDeviceEpochs = hashMapOf<String, Epoch>()
     private val sequences = hashMapOf<String, Long>()
     private data class Epoch(val id: String, val family: String, val side: String, val provenance: String)
     private val activity: Activity get() = UnityPlayer.currentActivity
@@ -184,18 +186,48 @@ internal object DynamicsCollector {
         if (saved.size >= 2) fail("device_limit_two", "Dieser SDK-Collector unterstützt maximal ein Paar. Ein dritter Sensor ist nicht freigegeben.")
         if (saved.any { it.side == selectedSide }) fail("side_already_assigned", "Diese Körperseite ist bereits belegt. Gerät zuerst entfernen.")
         val glove = nearby[nearbyId] ?: fail("scan_selection_expired", "Gerät erneut suchen und auswählen.")
-        if (pairingRepository.pair(glove, "BoxReha", selectedSide).getOrNull() == null)
+        status("pairing", "pairing", "Gerät wird gekoppelt; SDK-Bestätigung abwarten.")
+        if (pairingRepository.pair(glove, glove.advertisingName ?: "Dynamics", selectedSide).getOrNull() == null)
             fail("pair_failed", "SDK-Pairing fehlgeschlagen. Bluetooth, Entfernung und andere Verbindungen prüfen.")
         stopScanning()
         status("ready", "paired", "Gerät gespeichert. Identität und Sensorfamilie werden nach Verbindungsaufbau geprüft.")
     }
 
     @JvmStatic fun unpair(deviceId: String) = command("unpair") {
-        if (trainingSessionRepository.activeTrainingSessionTime.first() != null) fail("finish_before_unpair", "SDK-Sitzung vor dem Entfernen beenden.")
-        val glove = gloves.firstOrNull { alias(it) == deviceId } ?: fail("device_not_found", "Gerät nicht gefunden.")
-        retire(glove)
-        if (gloveRepository.deleteGloveById(Sdk0256Compat.peripheralId(glove.dto)).getOrNull() == null) fail("unpair_failed", "Gerät konnte nicht entfernt werden.")
-        status("ready", "unpaired", "Gerät entfernt und SDK-Bluetooth-Verbindung beendet.")
+        requireForeground()
+        if (trainingSessionRepository.activeTrainingSessionTime.first() != null) fail("finish_before_unpair", "Zuerst End SDK session wählen, dann Gerät entfernen. Sitzung bleibt erhalten.")
+        val saved = gloveRepository.savedPeripherals.first()
+        val dto = saved.firstOrNull { alias(it) == deviceId } ?: fail("device_not_found", "Gespeichertes Gerät nicht gefunden. Neu initialisieren und aktualisieren.")
+        val removedEpoch = epochs[deviceId] ?: retiredDeviceEpochs[deviceId]
+        status("removing", "removing", "Gespeicherte Kopplung wird entfernt; SDK-Bestätigung abwarten.")
+        gloveRepository.deleteGloveById(Sdk0256Compat.peripheralId(dto)).getOrThrow()
+        // SDK deletion owns persistent DB removal and BLE deinitialization. Await both published views.
+        withTimeout(5000) { gloveRepository.savedPeripherals.first { list -> list.none { Sdk0256Compat.deviceUuid(it) == Sdk0256Compat.deviceUuid(dto) } } }
+        val current = withTimeout(5000) { gloveRepository.observeGloves().first { list -> list.none { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(dto) } } }
+        gloves.filter { alias(it) == deviceId }.forEach(::retire)
+        gloves = current
+        epochs.remove(deviceId)?.let { DynamicsUnityBridge.sendDeviceState(identity(deviceId, it).put("status", "offline").toString()) }
+        removedEpoch?.let { DynamicsUnityBridge.sendDeviceState(identity(deviceId, it).put("status", "removed").toString()) }
+        retiredDeviceEpochs.remove(deviceId)
+        sequences.remove(deviceId)
+        knownFamilies.remove(deviceId)
+        stopScanning()
+        reconcileConnections()
+        status("ready", "unpaired", "Gerät dauerhaft entfernt. Seite ist frei; erneut suchen und zuordnen.")
+    }
+
+    @JvmStatic fun changeSide(deviceId: String) = command("change_side") {
+        requireForeground()
+        if (trainingSessionRepository.activeTrainingSessionTime.first() != null) fail("finish_before_side_change", "SDK-Sitzung vor Seitenwechsel beenden.")
+        val dto = gloveRepository.savedPeripherals.first().firstOrNull { alias(it) == deviceId }
+            ?: fail("device_not_found", "Gespeichertes Gerät nicht gefunden.")
+        val expected = if (dto.side == Side.LEFT) Side.RIGHT else Side.LEFT
+        status("changing_side", "changing_side", "Seitenwechsel wird gespeichert.")
+        gloveRepository.swapGloveSideForId(Sdk0256Compat.peripheralId(dto)).getOrThrow()
+        gloves.forEach(::retire)
+        gloves = withTimeout(5000) { gloveRepository.observeGloves().first { list -> list.any { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(dto) && it.dto.side == expected } } }
+        reconcileConnections()
+        status("ready", "side_changed", "Seite geändert; bei zwei Handschuhen wurden Links und Rechts getauscht. Zuordnung prüfen.")
     }
 
     @JvmStatic fun setBodyProfile(studyId: String, weightKg: Double, heightCm: Double, gender: String) = command("body_profile") {
@@ -456,17 +488,28 @@ internal object DynamicsCollector {
     }
     private fun retire(glove: Glove) {
         val device = alias(glove)
-        epochs.remove(device)?.let { DynamicsUnityBridge.sendDeviceState(identity(device, it).put("status", "offline").toString()) }
+        epochs.remove(device)?.let { retiredDeviceEpochs[device] = it; DynamicsUnityBridge.sendDeviceState(identity(device, it).put("status", "offline").toString()) }
     }
     private fun identity(device: String, epoch: Epoch) = JSONObject().put("schemaVersion", 2).put("deviceId", device)
         .put("emittedAndroidMonotonicSeconds", monotonicSeconds())
         .put("connectionId", epoch.id).put("sensorType", epoch.family).put("bodySide", epoch.side).put("provenance", epoch.provenance)
-    private fun alias(glove: Glove): String {
+    private fun alias(glove: Glove): String = alias(glove.dto)
+    private fun alias(dto: PeripheralDto): String {
         val prefs = activity.getSharedPreferences("dynamics_device_aliases", Context.MODE_PRIVATE)
-        val key = Sdk0256Compat.deviceUuid(glove.dto).toString()
+        val key = Sdk0256Compat.deviceUuid(dto).toString()
         return prefs.getString(key, null) ?: ("sensor_" + UUID.randomUUID().toString()).also { prefs.edit().putString(key, it).apply() }
     }
-    private fun familyOf(glove: Glove): String = when (glove.data?.sensorType) { TrainingSessionSensorType.ALPHA -> "Alpha"; TrainingSessionSensorType.DELTA -> "Delta"; else -> "Unknown" }
+    private val knownFamilies = hashMapOf<String, String>()
+    private fun familyOf(glove: Glove): String {
+        val reported = when (glove.data?.sensorType) { TrainingSessionSensorType.ALPHA -> "Alpha"; TrainingSessionSensorType.DELTA -> "Delta"; else -> null }
+        val id = alias(glove)
+        if (reported != null) knownFamilies[id] = reported
+        // Only a previously SDK-reported type for this exact identity; never infer from selected mode/name.
+        return reported ?: knownFamilies[id] ?: "Unknown"
+    }
+    private fun displayName(glove: Glove): String = glove.data?.deviceName?.takeIf { it.isNotBlank() }
+        ?: glove.dto.name.takeIf { it.isNotBlank() } ?: "Dynamics device"
+
     private fun sideOf(side: Side) = when (side) { Side.LEFT -> "Left"; Side.RIGHT -> "Right" }
     private fun parseSide(side: String) = when (side) { "Left" -> Side.LEFT; "Right" -> Side.RIGHT; else -> fail("invalid_side", "Linke oder rechte Körperseite ausdrücklich auswählen.") }
     private fun parseFamily(family: String) = when (family) { "Alpha" -> TrainingSessionSensorType.ALPHA; "Delta" -> TrainingSessionSensorType.DELTA; else -> fail("invalid_family", "Alpha oder Delta ausdrücklich auswählen.") }
@@ -480,7 +523,7 @@ internal object DynamicsCollector {
         lastStatusMessage = message
         val devicesJson = JSONArray()
         gloves.forEach { glove -> val device = alias(glove); devicesJson.put(JSONObject().put("id", device)
-            .put("name", glove.dto.name).put("side", sideOf(glove.dto.side)).put("family", familyOf(glove))
+            .put("name", displayName(glove)).put("side", sideOf(glove.dto.side)).put("family", familyOf(glove))
             .put("online", foreground && Sdk0256Compat.online(glove.bleGloveState)).put("connectionId", epochs[device]?.id ?: "")
             .put("isMock", glove.dto.isMock).put("firmwareVersion", glove.dto.firmwareVersion)) }
         val nearbyJson = JSONArray()

@@ -37,6 +37,7 @@ public class BleSensorInputProvider : MonoBehaviour, IPlayerActionInputProvider
         processor.ClearPending();
         if (DynamicsSdkBridge.Instance != null) DynamicsSdkBridge.Instance.SetInputProvider(null);
     }
+    public void ForgetDevice(string id,string epoch) { processor.ForgetDevice(id,epoch); }
     public bool SetDeviceConnection(string deviceId, string connectionId, SensorDeviceType type,
         BodySide side, string provenance, bool connected)
     {

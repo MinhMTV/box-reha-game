@@ -124,19 +124,7 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
         }
     }
 
-    private void BuildLaneLighting()
-    {
-        CreateCube("DojoHitLine", new Vector3(0f, -0.36f, 5f), new Vector3(11.5f, 0.035f, 0.07f), redLightMaterial);
-        CreateCube("DojoLeftArmLane", new Vector3(-3f, -0.39f, 14.6f), new Vector3(0.075f, 0.035f, 20f), redLightMaterial);
-        CreateCube("DojoRightArmLane", new Vector3(3f, -0.39f, 14.6f), new Vector3(0.075f, 0.035f, 20f), blueLightMaterial);
-        CreateCube("DojoCenterHeavyLane", new Vector3(0f, -0.385f, 14.6f), new Vector3(0.05f, 0.035f, 20f), warmLightMaterial);
-
-        for (int i = 0; i < 6; i++)
-        {
-            float z = 5.8f + i * 3f;
-            CreateCube("DojoFloorChevron_" + i, new Vector3(0f, -0.33f, z), new Vector3(0.75f, 0.035f, 0.08f), warmLightMaterial);
-        }
-    }
+    private void BuildLaneLighting() { /* Logical lanes remain; the dojo floor supplies depth without rails. */ }
 
     private void BuildCameraPolish()
     {
@@ -170,7 +158,7 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
 
     private GameObject CreateCube(string name, Vector3 position, Vector3 scale, Material material)
     {
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject cube = VisualPrimitive.Create(PrimitiveType.Cube);
         cube.name = name;
         cube.transform.SetParent(transform, false);
         cube.transform.position = position;
@@ -193,7 +181,7 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
 
     private GameObject CreateCylinder(string name, Vector3 position, Vector3 scale, Material material)
     {
-        GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject cylinder = VisualPrimitive.Create(PrimitiveType.Cylinder);
         cylinder.name = name;
         cylinder.transform.SetParent(transform, false);
         cylinder.transform.position = position;

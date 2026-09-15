@@ -442,7 +442,7 @@ public class TargetSpawner : MonoBehaviour
         float baseRadius = heavyTarget ? 0.95f : 0.82f;
         float depth = heavyTarget ? 0.26f : 0.22f;
 
-        GameObject backPlate = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject backPlate = VisualPrimitive.Create(PrimitiveType.Cylinder);
         backPlate.name = "BackPlate";
         backPlate.transform.SetParent(parent, false);
         backPlate.transform.localPosition = Vector3.zero;
@@ -450,7 +450,7 @@ public class TargetSpawner : MonoBehaviour
         backPlate.transform.localScale = new Vector3(baseRadius, depth, baseRadius);
         ApplyMaterial(backPlate, new Color(0.09f, 0.13f, 0.18f, 1f), 0.3f);
 
-        GameObject outerRing = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject outerRing = VisualPrimitive.Create(PrimitiveType.Cylinder);
         outerRing.name = "OuterRing";
         outerRing.transform.SetParent(parent, false);
         outerRing.transform.localPosition = new Vector3(0f, 0f, -0.03f);
@@ -458,7 +458,7 @@ public class TargetSpawner : MonoBehaviour
         outerRing.transform.localScale = new Vector3(baseRadius * 0.92f, depth * 0.65f, baseRadius * 0.92f);
         ApplyMaterial(outerRing, targetColor, heavyTarget ? 2.4f : 1.9f);
 
-        GameObject midRing = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject midRing = VisualPrimitive.Create(PrimitiveType.Cylinder);
         midRing.name = "MidRing";
         midRing.transform.SetParent(parent, false);
         midRing.transform.localPosition = new Vector3(0f, 0f, -0.06f);
@@ -466,7 +466,7 @@ public class TargetSpawner : MonoBehaviour
         midRing.transform.localScale = new Vector3(baseRadius * 0.62f, depth * 0.55f, baseRadius * 0.62f);
         ApplyMaterial(midRing, new Color(1f, 0.93f, 0.82f, 1f), 0.8f);
 
-        GameObject bullseye = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject bullseye = VisualPrimitive.Create(PrimitiveType.Cylinder);
         bullseye.name = "Bullseye";
         bullseye.transform.SetParent(parent, false);
         bullseye.transform.localPosition = new Vector3(0f, 0f, -0.09f);
@@ -474,7 +474,7 @@ public class TargetSpawner : MonoBehaviour
         bullseye.transform.localScale = new Vector3(baseRadius * 0.28f, depth * 0.42f, baseRadius * 0.28f);
         ApplyMaterial(bullseye, heavyTarget ? new Color(1f, 0.72f, 0.12f, 1f) : new Color(1f, 0.96f, 0.35f, 1f), heavyTarget ? 2.8f : 2.2f);
 
-        GameObject innerGlow = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject innerGlow = VisualPrimitive.Create(PrimitiveType.Cylinder);
         innerGlow.name = heavyTarget ? "HeavyCoreGlow" : "PunchCoreGlow";
         innerGlow.transform.SetParent(parent, false);
         innerGlow.transform.localPosition = new Vector3(0f, 0f, -0.13f);
@@ -482,7 +482,7 @@ public class TargetSpawner : MonoBehaviour
         innerGlow.transform.localScale = new Vector3(baseRadius * 0.16f, depth * 0.25f, baseRadius * 0.16f);
         ApplyMaterial(innerGlow, Color.white, heavyTarget ? 2.6f : 1.8f);
 
-        GameObject mount = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject mount = VisualPrimitive.Create(PrimitiveType.Cube);
         mount.name = "Mount";
         mount.transform.SetParent(parent, false);
         mount.transform.localPosition = new Vector3(0f, 0f, 0.18f);
@@ -494,7 +494,7 @@ public class TargetSpawner : MonoBehaviour
         {
             float angle = i * (360f / markerCount);
             Vector3 markerPosition = Quaternion.Euler(0f, 0f, angle) * new Vector3(0f, baseRadius * 0.92f, -0.15f);
-            GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameObject marker = VisualPrimitive.Create(PrimitiveType.Cube);
             marker.name = heavyTarget ? "HeavyWarningTick" : "PunchAimTick";
             marker.transform.SetParent(parent, false);
             marker.transform.localPosition = markerPosition;
@@ -505,14 +505,14 @@ public class TargetSpawner : MonoBehaviour
 
         if (heavyTarget)
         {
-            GameObject shieldFrame = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameObject shieldFrame = VisualPrimitive.Create(PrimitiveType.Cube);
             shieldFrame.name = "HeavyBlockerFrame";
             shieldFrame.transform.SetParent(parent, false);
             shieldFrame.transform.localPosition = new Vector3(0f, 0f, 0.04f);
             shieldFrame.transform.localScale = new Vector3(baseRadius * 2.1f, 0.16f, 0.18f);
             ApplyMaterial(shieldFrame, new Color(1f, 0.34f, 0.08f, 1f), 2.4f);
 
-            GameObject warningSlash = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameObject warningSlash = VisualPrimitive.Create(PrimitiveType.Cube);
             warningSlash.name = "HeavyDiagonalWarning";
             warningSlash.transform.SetParent(parent, false);
             warningSlash.transform.localPosition = new Vector3(0f, 0f, -0.18f);
@@ -526,7 +526,7 @@ public class TargetSpawner : MonoBehaviour
     {
         Color kickColor = GameVisualPalette.GetTargetColor(TargetType.Kick);
 
-        GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject pad = VisualPrimitive.Create(PrimitiveType.Cylinder);
         pad.name = "KickPad";
         pad.transform.SetParent(parent, false);
         pad.transform.localPosition = Vector3.zero;
@@ -534,21 +534,21 @@ public class TargetSpawner : MonoBehaviour
         pad.transform.localScale = new Vector3(0.98f, 0.22f, 0.62f);
         ApplyMaterial(pad, kickColor, 2.0f);
 
-        GameObject core = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject core = VisualPrimitive.Create(PrimitiveType.Cube);
         core.name = "KickCore";
         core.transform.SetParent(parent, false);
         core.transform.localPosition = new Vector3(0f, 0f, -0.09f);
         core.transform.localScale = new Vector3(1.15f, 0.42f, 0.16f);
         ApplyMaterial(core, GameVisualPalette.GetTargetHighlight(TargetType.Kick), 1.4f);
 
-        GameObject soleLine = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject soleLine = VisualPrimitive.Create(PrimitiveType.Cube);
         soleLine.name = "KickSoleLine";
         soleLine.transform.SetParent(parent, false);
         soleLine.transform.localPosition = new Vector3(0f, -0.34f, -0.18f);
         soleLine.transform.localScale = new Vector3(1.42f, 0.09f, 0.08f);
         ApplyMaterial(soleLine, new Color(0.88f, 1f, 0.86f, 1f), 1.7f);
 
-        GameObject leftStripe = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject leftStripe = VisualPrimitive.Create(PrimitiveType.Cube);
         leftStripe.name = "KickStripeLeft";
         leftStripe.transform.SetParent(parent, false);
         leftStripe.transform.localPosition = new Vector3(-0.32f, -0.08f, -0.16f);
@@ -556,7 +556,7 @@ public class TargetSpawner : MonoBehaviour
         leftStripe.transform.localScale = new Vector3(0.12f, 0.78f, 0.10f);
         ApplyMaterial(leftStripe, new Color(0.04f, 0.16f, 0.18f, 1f), 0.35f);
 
-        GameObject rightStripe = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject rightStripe = VisualPrimitive.Create(PrimitiveType.Cube);
         rightStripe.name = "KickStripeRight";
         rightStripe.transform.SetParent(parent, false);
         rightStripe.transform.localPosition = new Vector3(0.32f, -0.08f, -0.16f);
@@ -564,7 +564,7 @@ public class TargetSpawner : MonoBehaviour
         rightStripe.transform.localScale = new Vector3(0.12f, 0.78f, 0.10f);
         ApplyMaterial(rightStripe, new Color(0.04f, 0.16f, 0.18f, 1f), 0.35f);
 
-        GameObject toeCap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        GameObject toeCap = VisualPrimitive.Create(PrimitiveType.Sphere);
         toeCap.name = "KickToeCap";
         toeCap.transform.SetParent(parent, false);
         toeCap.transform.localPosition = new Vector3(0f, 0.25f, -0.12f);
@@ -574,14 +574,14 @@ public class TargetSpawner : MonoBehaviour
 
     private void BuildBlockTarget(Transform parent)
     {
-        GameObject shield = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject shield = VisualPrimitive.Create(PrimitiveType.Cube);
         shield.name = "Shield";
         shield.transform.SetParent(parent, false);
         shield.transform.localPosition = Vector3.zero;
         shield.transform.localScale = new Vector3(1.65f, 1.95f, 0.42f);
         ApplyMaterial(shield, GameVisualPalette.GetTargetColor(TargetType.Block), 1.7f);
 
-        GameObject core = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject core = VisualPrimitive.Create(PrimitiveType.Cube);
         core.name = "ShieldCore";
         core.transform.SetParent(parent, false);
         core.transform.localPosition = new Vector3(0f, 0f, -0.08f);
@@ -591,7 +591,7 @@ public class TargetSpawner : MonoBehaviour
 
     private void BuildDodgeTarget(Transform parent)
     {
-        GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject bar = VisualPrimitive.Create(PrimitiveType.Cylinder);
         bar.name = "DodgeBar";
         bar.transform.SetParent(parent, false);
         bar.transform.localPosition = Vector3.zero;
@@ -599,14 +599,14 @@ public class TargetSpawner : MonoBehaviour
         bar.transform.localScale = new Vector3(0.42f, 1.45f, 0.42f);
         ApplyMaterial(bar, GameVisualPalette.GetTargetColor(TargetType.Dodge), 1.5f);
 
-        GameObject leftCap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        GameObject leftCap = VisualPrimitive.Create(PrimitiveType.Sphere);
         leftCap.name = "DodgeCapLeft";
         leftCap.transform.SetParent(parent, false);
         leftCap.transform.localPosition = new Vector3(-1.4f, 0f, 0f);
         leftCap.transform.localScale = Vector3.one * 0.45f;
         ApplyMaterial(leftCap, GameVisualPalette.GetTargetHighlight(TargetType.Dodge), 1.0f);
 
-        GameObject rightCap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        GameObject rightCap = VisualPrimitive.Create(PrimitiveType.Sphere);
         rightCap.name = "DodgeCapRight";
         rightCap.transform.SetParent(parent, false);
         rightCap.transform.localPosition = new Vector3(1.4f, 0f, 0f);

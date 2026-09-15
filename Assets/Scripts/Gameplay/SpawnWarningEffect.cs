@@ -22,7 +22,7 @@ public class SpawnWarningEffect : MonoBehaviour
     {
         duration = Mathf.Max(0.05f, effectDuration);
 
-        GameObject ring = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        GameObject ring = VisualPrimitive.Create(PrimitiveType.Cylinder);
         ring.name = "Ring";
         ring.transform.SetParent(transform, false);
         ring.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
@@ -32,7 +32,7 @@ public class SpawnWarningEffect : MonoBehaviour
         ringRenderer.sharedMaterial = ringMaterial;
         Destroy(ring.GetComponent<Collider>());
 
-        GameObject glow = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        GameObject glow = VisualPrimitive.Create(PrimitiveType.Sphere);
         glow.name = "Glow";
         glow.transform.SetParent(transform, false);
         glow.transform.localScale = Vector3.one * 0.25f;

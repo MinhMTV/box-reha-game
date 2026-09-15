@@ -26,7 +26,9 @@ public class HitZoneEvaluator : MonoBehaviour
     private readonly Dictionary<string, Chain> chains = new Dictionary<string, Chain>();
     public float HitZoneZ => hitZoneCenter != null ? hitZoneCenter.position.z : transform.position.z;
 
-    void Start() { if (createRuntimeHitGuide) EnsureHitGuide(); }
+    public const float PlayerHitPlaneZ = 2f;
+    void Awake() { if(hitZoneCenter != null) { var p=hitZoneCenter.position; p.z=PlayerHitPlaneZ; hitZoneCenter.position=p; } else {var p=transform.position;p.z=PlayerHitPlaneZ;transform.position=p;} }
+    void Start() { /* Approach and target silhouette communicate timing without bright guide bars. */ }
     void OnDestroy() { foreach (var material in guideMaterials) if (material != null) Destroy(material); }
     public string StartRapidFireChain(LaneType lane, int totalTargets)
     {
@@ -88,15 +90,18 @@ public class HitZoneEvaluator : MonoBehaviour
         float timing = TimingOffset(best);
         HitQuality quality = best.IsLockedInHitZone ? HitQuality.Good : DetermineHitQuality(timing, HalfWindow(best));
         if (quality == HitQuality.Miss) return;
+        float threshold = PersonalGameplayBalance.RequiredStrength(GameManager.Instance != null ? GameManager.Instance.SelectedLevel : 1);
+        if(action.NormalizationValid && action.Power < threshold)
+        {
+            if(GameManager.Instance?.SessionStats != null)GameManager.Instance.SessionStats.BelowStrengthHits++;
+            ResearchSessionLog.BelowStrength(best,action,threshold);
+            TextPopup.Create(best.transform.position,"TOO LIGHT",new Color(1f,.72f,.3f));best.Flash(Color.white,.08f);
+            return;
+        }
         if (best.IsTough)
         {
             // Uncalibrated sensor events receive neutral gameplay damage, never an invented physical baseline.
             float power = action.NormalizationValid ? action.Power : 1f;
-            if (power < Mathf.Max(heavyMinimumPower, best.MinPower))
-            {
-                TextPopup.Create(best.transform.position, "BELOW GAMEPLAY THRESHOLD", Color.white);
-                return;
-            }
             int before = best.CurrentHits;
             bool broken = best.TakeHit(power);
             ResearchSessionLog.HeavyImpact(best, action, best.CurrentHits - before);
@@ -109,15 +114,11 @@ public class HitZoneEvaluator : MonoBehaviour
                 best.Flash(Color.white, 0.08f);
                 return;
             }
-            OnToughTargetDestroyed?.Invoke(quality, best.Lane, best.transform.position);
-            AudioManager.Instance?.PlayToughBreakSound();
-        }
-        else
-        {
-            if (best.Type == TargetType.Kick) AudioManager.Instance?.PlayKickSound();
-            else AudioManager.Instance?.PlayHitSound();
+
         }
         if (!best.Resolve()) return;
+        activeTargets.Remove(best);
+        best.PlayDestroyAnimation();
         int baseScore = quality == HitQuality.Perfect ? 100 : quality == HitQuality.Good ? 50 : 25;
         if (best.IsTough) baseScore = 100;
         if (action.SourceType == InputSourceType.Sensor && action.NormalizationValid)
@@ -128,6 +129,7 @@ public class HitZoneEvaluator : MonoBehaviour
             OnSensorForceEvaluated?.Invoke(band, action.Power);
         }
         if (best.IsTough) baseScore += 350;
+
         TrackResolution(best, true);
         GameManager.Instance?.SessionStats?.TrackReactionTime(Mathf.Max(0f, Time.time - best.SpawnTime));
         ResearchSessionLog.TargetResolved(best, "hit", action.EventId, quality, timing);
@@ -135,15 +137,19 @@ public class HitZoneEvaluator : MonoBehaviour
         TrackChain(best, true, action.EventId);
         OnHitEvaluated?.Invoke(quality, awarded, best.Lane);
         OnHitVisualFeedback?.Invoke(quality, best.Lane, best.transform.position);
+        if(best.IsTough){OnToughTargetDestroyed?.Invoke(quality,best.Lane,best.transform.position);AudioManager.Instance?.PlayToughBreakSound();}
+        else if(best.Type==TargetType.Kick)AudioManager.Instance?.PlayKickSound();else AudioManager.Instance?.PlayHitSound();
         HitParticleEffect.Spawn(best.transform.position, HitParticleEffect.GetColorForTargetType(best.Type),
             HitParticleEffect.GetParticleCountForTargetType(best.Type));
         TextPopup.CreateForHitQuality(quality, best.transform.position);
         activeTargets.Remove(best);
-        best.PlayDestroyAnimation(() => Destroy(best.gameObject));
+
     }
     public void Miss(TargetObject target, string outcome)
     {
         if (target == null || !target.Resolve()) return;
+        Destroy(target.gameObject);
+        activeTargets.Remove(target);
         TrackResolution(target, false);
         TrackChain(target, false, null);
         if (outcome == "heavy_timeout" && GameManager.Instance?.SessionStats != null)
@@ -167,6 +173,7 @@ public class HitZoneEvaluator : MonoBehaviour
                 if (GameManager.Instance?.SessionStats != null) GameManager.Instance.SessionStats.AbortedTargets++;
                 ResearchSessionLog.TargetResolved(target, "aborted");
             }
+            Destroy(target.gameObject);
         }
         activeTargets.Clear();
         chains.Clear();
@@ -217,7 +224,7 @@ public class HitZoneEvaluator : MonoBehaviour
     }
     private static void CreateGuide(Transform parent, Vector3 position, Material material)
     {
-        GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject bar = VisualPrimitive.Create(PrimitiveType.Cube);
         bar.name = "ActionHitLine";
         bar.transform.SetParent(parent, false);
         bar.transform.localPosition = position;

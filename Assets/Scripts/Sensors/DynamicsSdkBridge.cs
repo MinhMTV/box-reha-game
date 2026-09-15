@@ -46,10 +46,18 @@ public class DynamicsSdkBridge : MonoBehaviour
         {
             DynamicsDeviceStatePayload payload = JsonUtility.FromJson<DynamicsDeviceStatePayload>(json);
             if (payload == null || payload.schemaVersion != 2 || string.IsNullOrWhiteSpace(payload.deviceId)
-                || (payload.status != "online" && payload.status != "offline" && payload.status != "error"))
+                || (payload.status != "online" && payload.status != "offline" && payload.status != "error" && payload.status != "removed"))
             { Reject("invalid_device_state"); return; }
             if (!DeviceStateIsFresh(payload)) return;
-            deviceStates[payload.deviceId] = payload;
+            if(payload.status == "removed")
+            {
+                if(deviceStates.TryGetValue(payload.deviceId,out var cached) && cached.connectionId != payload.connectionId)return;
+                deviceStates.Remove(payload.deviceId);calibrationIngress.ForgetDevice(payload.deviceId,payload.connectionId);
+                if(ResolveInputProvider())sensorInputProvider.ForgetDevice(payload.deviceId,payload.connectionId);
+                return;
+            }
+            if (payload.status == "online") deviceStates[payload.deviceId] = payload;
+            else deviceStates.Remove(payload.deviceId);
             calibrationIngress.SetConnection(payload.deviceId, payload.connectionId, DynamicsSensorPayload.ParseSensorType(payload.sensorType),
                 DynamicsSensorPayload.ParseBodySide(payload.bodySide), payload.provenance, payload.status == "online", Time.realtimeSinceStartupAsDouble);
             if (ResolveInputProvider()) ApplyDeviceState(payload);

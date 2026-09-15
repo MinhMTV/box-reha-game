@@ -14,7 +14,7 @@ public static class DigitalDojoCapture
     const string Key = "DigitalDojoCapture.Active";
     static double next;
     static int step;
-    static readonly string[] Pages = { "ShowHome", "StartLevelMode", "ShowCalibration", "ShowMeasuredCalibration", "ShowStatistics", "ShowPlayerProfile", "ShowSettings", "ShowSensorSetup" };
+    static readonly string[] Pages = { "ShowHome", "StartLevelMode", "ShowCalibration", "ShowMeasuredCalibration", "ShowStatistics", "ShowPlayerProfile", "ShowProfiles", "ShowRelativePerformance", "ShowPerformanceReferences", "ShowSettings", "ShowSensorSetup" };
     static DigitalDojoCapture()
     {
         if (SessionState.GetBool(Key, false)) EditorApplication.update += Tick;
@@ -62,11 +62,30 @@ public static class DigitalDojoCapture
                     go.GetComponent<TargetMover>().enabled = false;
                 }
             }
-            else if (step == Pages.Length * 2 + 2) Capture("Gameplay-Targets-HUD");
+            else if (step == Pages.Length * 2 + 2)
+            {
+                Capture("Gameplay-Targets-HUD");
+                var targets=UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None);
+                var oldPositions=Array.ConvertAll(targets,t=>t.transform.position);
+                foreach(var selected in targets)
+                {
+                    foreach(var t in targets)t.gameObject.SetActive(t==selected);
+                    var p=selected.transform.position;p.z=HitZoneEvaluator.PlayerHitPlaneZ;selected.transform.position=p;
+                    Capture("Gameplay-StrikePlane-"+selected.Type);
+                }
+                for(int i=0;i<targets.Length;i++){targets[i].gameObject.SetActive(true);targets[i].transform.position=oldPositions[i];}
+            }
             else if (step == Pages.Length * 2 + 3) UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().Pause();
             else if (step == Pages.Length * 2 + 4) Capture("Pause");
-            else if (step == Pages.Length * 2 + 5) { UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().Resume(); VerifyGameplay(); UnityEngine.Object.FindFirstObjectByType<GameRoundController>().FinishRound("synthetic_qa_complete"); }
-            else if (step == Pages.Length * 2 + 6) Capture("Results-Synthetic-QA");
+            else if (step == Pages.Length * 2 + 5) { UnityEngine.Object.FindFirstObjectByType<PauseMenuController>().Resume(); VerifyGameplay(); }
+            else if (step == Pages.Length * 2 + 6)
+            {
+                if(UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None).Length != 0)throw new Exception("Resolved target orphan after destruction grace");
+                if(UnityEngine.Object.FindObjectsByType<ToughTargetHealthBar>(FindObjectsInactive.Include, FindObjectsSortMode.None).Length != 0)throw new Exception("Orphaned heavy target health bar");
+                File.AppendAllText("artifacts/validation/dd-runtime-checks.txt","\nPASS no heavy health bar orphans\nPASS normal/kick/weak-then-strong/miss/heavy completion/heavy timeout have no target orphans after next frames");
+                UnityEngine.Object.FindFirstObjectByType<GameRoundController>().FinishRound("synthetic_qa_complete");
+            }
+            else if (step == Pages.Length * 2 + 7) Capture("Results-Synthetic-QA");
             else
             {
                 SessionState.SetBool(Key, false);
@@ -108,6 +127,14 @@ public static class DigitalDojoCapture
             require(!target.IsResolved,kind+" "+side+" wrong action rejected");
             act(kind,side);require(target.IsResolved,kind+" "+side+" resolves through game action handler");
         }
+        var weakObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(-3,2.1f,evaluator.HitZoneZ),TargetType.Punch});
+        var weak=weakObject.GetComponent<TargetObject>();weak.Type=TargetType.Punch;weak.Lane=LaneType.Left;weak.MoveSpeed=4;weak.HitWindow=1;weak.EnsureTrackedSpawn();
+        KeyboardActionFactory.DevelopmentPower=.2f;int below=manager.SessionStats.BelowStrengthHits;
+        act(ActionType.Punch,BodySide.Left);require(!weak.IsResolved&&manager.SessionStats.BelowStrengthHits==below+1,"weak action gives separate outcome and target persists");
+        Capture("Weak-hit-SYNTHETIC");KeyboardActionFactory.DevelopmentPower=1;act(ActionType.Punch,BodySide.Left);require(weak.IsResolved,"weak target accepts later normal hit");
+        var missedObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(3,.45f,evaluator.HitZoneZ-4),TargetType.Kick});
+        var missed=missedObject.GetComponent<TargetObject>();missed.Type=TargetType.Kick;missed.MoveSpeed=4;missed.HitWindow=1;missed.EnsureTrackedSpawn();
+        typeof(HitZoneEvaluator).GetMethod("Update",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(evaluator,null);require(missed.IsResolved,"miss beyond window resolves");
         var heavyObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(0,2,evaluator.HitZoneZ),TargetType.ToughPunch});
         var heavy=heavyObject.GetComponent<TargetObject>();heavy.Type=TargetType.ToughPunch;heavy.Lane=LaneType.Center;
         heavy.VertPosition=VerticalPosition.High;heavy.MaxHits=5;heavy.MoveSpeed=4;heavy.HitWindow=1;heavy.EnsureTrackedSpawn();heavy.LockInHitZone(evaluator.HitZoneZ);
@@ -122,6 +149,16 @@ public static class DigitalDojoCapture
             }
         }
         require(heavy.IsResolved && heavy.CurrentHits==5,"heavy accepts five same-side punches");
+        var timeoutObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(0,2,evaluator.HitZoneZ),TargetType.ToughPunch});
+        var timeout=timeoutObject.GetComponent<TargetObject>();timeout.Type=TargetType.ToughPunch;timeout.MaxHits=5;timeout.MoveSpeed=4;timeout.HitWindow=1;timeout.HeavyTimeoutSeconds=0;timeout.EnsureTrackedSpawn();
+        typeof(HitZoneEvaluator).GetMethod("Update",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(evaluator,null);require(timeout.IsResolved,"heavy timeout resolves");
+        foreach(var primitive in new[]{PrimitiveType.Cylinder,PrimitiveType.Cube,PrimitiveType.Sphere}){var visual=VisualPrimitive.Create(primitive);require(visual.GetComponent<Collider>()==null,"visual "+primitive+" has no physics dependency");UnityEngine.Object.Destroy(visual);}
+        require(GameObject.Find("DojoLeftArmLane")==null&&GameObject.Find("DojoRightArmLane")==null,"no visible lane rails");
+        require(evaluator.HitZoneZ==HitZoneEvaluator.PlayerHitPlaneZ,"closer hit plane used by evaluator");
+        var abortedObject=(GameObject)create.Invoke(spawner,new object[]{new Vector3(-3,2,20),TargetType.Punch});
+        var aborted=abortedObject.GetComponent<TargetObject>();aborted.MoveSpeed=4;aborted.HitWindow=1;aborted.EnsureTrackedSpawn();
+        int previousAborted=manager.SessionStats.AbortedTargets;evaluator.AbortRemaining();
+        require(aborted.IsResolved&&manager.SessionStats.AbortedTargets==previousAborted+1,"finish cleanup aborts pending target exactly once");
         require(manager.SessionStats.Score>0 && manager.SessionStats.MaxCombo>0,"score and combo recorded");
         require(manager.SessionStats.SensorActions==0 && manager.SessionStats.KeyboardActions>0,"synthetic keyboard provenance retained");
         manager.PauseGame();require(manager.CurrentState==GameState.Paused && Time.timeScale==0,"pause stops scaled time");
@@ -144,15 +181,12 @@ public static class DigitalDojoCapture
         }
         foreach (var size in new[] { new Vector2Int(1920,1080), new Vector2Int(1280,720), new Vector2Int(2400,1080), new Vector2Int(1024,768) })
             Render(label, directory, size.x, size.y);
-        if(label=="Calibration")
+        if(label=="SensorSetup")
         {
-            for(int step=1;step<7;step++)
-            {
-                var nextButton=Array.Find(UnityEngine.Object.FindObjectsByType<UnityEngine.UI.Button>(FindObjectsSortMode.None), b=>b.gameObject.activeInHierarchy && b.GetComponentInChildren<UnityEngine.UI.Text>()?.text=="Next step");
-                if(nextButton==null)throw new Exception("Calibration next control missing");
-                nextButton.onClick.Invoke();
-                Render("Calibration-Step-"+(step+1),directory,1280,720);
-            }
+            var native=AndroidDynamicsController.EnsureInstance();
+            DynamicsSdkBridge.EnsureInstance().ReceiveNativeStatusJson(JsonUtility.ToJson(new AndroidNativeStatus {schemaVersion=1,statusSequence=100,initialized=true,permissionsGranted=true,state="ready",sessionState="idle",code="synthetic_ui_fixture",message="SYNTHETIC UI FIXTURE — NOT A HARDWARE CAPTURE",devices=new[]{new AndroidNativeDevice{id="synthetic-alpha",name="SG-2300003 (fixture)",family="Alpha",side="Left",online=true,connectionId="fixture-epoch"}}}));
+            var menu=UnityEngine.Object.FindFirstObjectByType<DigitalDojoMenuController>();menu.ShowSensorSetup();
+            foreach(var size in new[]{new Vector2Int(1280,720),new Vector2Int(2400,1080),new Vector2Int(1024,768)})Render("NamedAlpha-SYNTHETIC-UI",directory,size.x,size.y);
         }
         if(label.StartsWith("Gameplay"))
         {

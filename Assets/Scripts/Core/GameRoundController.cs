@@ -181,6 +181,9 @@ public class GameRoundController : MonoBehaviour
     {
         if (roundEnded || sessionStats == null || GameManager.Instance == null ||
             GameManager.Instance.CurrentState != GameState.Playing) return;
+        if(action.SourceType == InputSourceType.Sensor)
+            action=CalibrationLibrary.Apply(action,GameManager.Instance.PlayerProfile.StudyId,
+                System.IO.Path.Combine(Application.persistentDataPath,"calibration"),AndroidDynamicsController.Instance?.Status?.sdkBuildMode);
         ResearchSessionLog.Action(action);
         sessionStats.TrackAction(action);
         if (hitZoneEvaluator != null)

@@ -27,6 +27,10 @@ internal static class CalibrationHostChecks
         File.Delete(saved); Directory.Delete(folder);
         Start(); c.Cancel("interrupted"); Check(!c.Add(Reading(1),11) && c.Result==null,"cancel fails closed");
         Start(); Check(!c.Add(Reading(1),131) && !c.Collecting,"timeout fails closed");
-        Console.WriteLine("CALIBRATION_HOST_PASS 17 assertions; synthetic fixtures only, no measured baseline produced.");
+        c.Begin("fixture-study","fixture-device","fixture-epoch","Alpha","Left","COMPATIBILITY",10,"strength",3);
+        for(int i=1;i<=3;i++)Check(c.Add(Reading(i),10+i)&&c.SampleCount==0,"practice is not a strong sample");
+        for(int i=4;i<=8;i++)Check(c.Add(Reading(i),10+i),"strong sample after practice");
+        Check(c.Result.baseline==60&&c.Result.eventIds.Length==5,"practice excluded from median");
+        Console.WriteLine("CALIBRATION_HOST_PASS 26 assertions; synthetic fixtures only, no measured baseline produced.");
     }
 }
