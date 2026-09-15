@@ -68,3 +68,13 @@ Calibration, HR sample and adaptation decision record producers are not implemen
 `acquisitionJson` is an optional embedded JSON object with `platform`, `source`, `requestedFamily`, `effectiveFamily`, `sdkVersion`, `sdkSessionState`, `profileReference`, `profileStudyId`, `initialized`, `permissionsGranted`, `profileReady`, and `devices`. Each device has `deviceId`, `connectionId`, `family`, `side`, `firmwareVersion`, `online` and `isMock`. Unknown SDK fields remain unknown; an online snapshot does not establish continuous connection coverage or physical detection accuracy. Existing recordings without this optional field remain valid.
 
 The SDK additionally stores body profiles and finished sessions in its own local database. The game JSONL deliberately omits weight, height and gender; `profileReference` links only to a separately protected SDK configuration record. Participant transitions require fresh SDK profile confirmation and a correlated start acknowledgement. Export, retention, backup and deletion of both stores must be qualified before participant use. No demographic force normalization is added to gameplay.
+
+## Hardware feedback extension — 15 September 2026
+
+Action records additionally include calibrationId when a matching personal game reference is used. Raw quantity/unit/source evidence remain unchanged; power is the dimensionless bounded relative value only when normalizationValid=true.
+
+`below_strength_threshold`: target metadata, matchedEventId, calibrationId, power, strengthThreshold and normalizationValid. This records a timed matching action below the current game threshold, not a terminal resolution. The target may later resolve, miss or abort; do not add this record to TotalTargets.
+
+`persistentDataPath/calibration/calibration-<random>.jsonl` is a separate per-attempt physical reference audit. Kinds: calibration_start, calibration_familiarization, calibration_sample, calibration_rejected, calibration_complete. Each contains active study/device/connection/family/side/quantity, source event ID/timestamp/raw value when applicable, UTC and reason. Rejection counts cover the measured-reference stage after validated ingress; they are not all BLE packet rejections or sensor accuracy. Mock/keyboard cannot advance it.
+
+Saved reference JSON schema 2 adds calibrationId, referenceKind, raw sample arrays/event IDs/source timestamps, rejectedSamples, median interval/rate, app/build and SDK metadata. Strong protocol excludes three practice actions from its five-sample median; rapid protocol uses five controlled actions. qualification stays UNQUALIFIED. Recalibration writes a new record. Legacy schema-1 references remain readable; no physical unit is inferred.

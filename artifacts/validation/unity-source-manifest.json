@@ -502,7 +502,7 @@
     },
     {
       "path": "Assets/Editor/DigitalDojoCapture.cs",
-      "sha256": "a3792b67ebcda7a713b501f1e49701d7473f7654f23fc18793e17cd75edd1e41"
+      "sha256": "5106d9235b4793d50e85fa7ce86860ac871c94230b3bd752a7a6aef9478618ee"
     },
     {
       "path": "Assets/Editor/DigitalDojoCapture.cs.meta",
@@ -534,7 +534,7 @@
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs",
-      "sha256": "2dce5b1707aaac930a9fedd910442291d4d4c2af992a32193a365bb81e8e7d8d"
+      "sha256": "a71982fa4fae7d28a9a3499299ead05740aca199ecec454ad6a0f378fd8a1fcb"
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs.meta",
@@ -798,7 +798,7 @@
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt",
-      "sha256": "76e048bd4b4f1886c64b7780c9731a9e6a328e03be41516aa19955bcfe6572d1"
+      "sha256": "fd9f51650acf7b69be83deac7e5ed26df75d5525d7fe63a0552b079f592bc569"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsPermissionFragment.kt",
@@ -806,7 +806,7 @@
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsUnityBridge.java",
-      "sha256": "67b417713e767f2810fd4409baeb2e8f3fa8fd250540a95b344474cc9fc646b6"
+      "sha256": "30d320e0c2d19789b4d466c69249886be12d9468c539e92ba6640f489473ed27"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsUnityBridge.java.meta",
@@ -1158,7 +1158,7 @@
     },
     {
       "path": "Assets/Scripts/Core/GameRoundController.cs",
-      "sha256": "52c47d4fcbf18b183782be3c92e29bce3d0d011c6d8270fe3c740d37219896f8"
+      "sha256": "38753b7264d81cce565925de9674334257cfe8b0ef0634128cdac4e1183fc0d3"
     },
     {
       "path": "Assets/Scripts/Core/GameRoundController.cs.meta",
@@ -1194,7 +1194,7 @@
     },
     {
       "path": "Assets/Scripts/Data/GameSessionStats.cs",
-      "sha256": "42f5bb016426c2604ee6f0ae59e4dcae678d09c5b7586a27a966729fdc4a8ebe"
+      "sha256": "021a6580d1e963a9e6caab14f6f2e32d80a398192e096a285a624444bcf061d5"
     },
     {
       "path": "Assets/Scripts/Data/GameSessionStats.cs.meta",
@@ -1210,7 +1210,7 @@
     },
     {
       "path": "Assets/Scripts/Data/PlayerActionEvent.cs",
-      "sha256": "e46b6f724092cea8d83f79cbeebca08eab53966c2e3a912e534e2732357bd22a"
+      "sha256": "1dfb2cb0146def8b817763a07b6ddf4d9a35b5b3d3340eb2e1102e1d14dd1b03"
     },
     {
       "path": "Assets/Scripts/Data/PlayerActionEvent.cs.meta",
@@ -1218,7 +1218,7 @@
     },
     {
       "path": "Assets/Scripts/Data/PlayerProfile.cs",
-      "sha256": "7a3d9e2419f655d4cd8f8fcff74bc33711a60068a2d30900411d3a61e4b883f6"
+      "sha256": "60e8b31efd398b205c2e7c8a7e4c8b4a94a01ae57d241e86e5d5154ad78623d1"
     },
     {
       "path": "Assets/Scripts/Data/PlayerProfile.cs.meta",
@@ -1226,11 +1226,19 @@
     },
     {
       "path": "Assets/Scripts/Data/PlayerProfileStore.cs",
-      "sha256": "13c2fadef6970682295f24d873f140bdd0ecaff317cc245f4f132f0005e34d6c"
+      "sha256": "915a642a6c65ecdc466eb103235b74f08a6038f6a06fd8e71c04727cc9cabb46"
     },
     {
       "path": "Assets/Scripts/Data/PlayerProfileStore.cs.meta",
       "sha256": "b8d8352c0ad1fa4f0624dff225b2e467aab9ac4053c1c9429628cf5b61701e64"
+    },
+    {
+      "path": "Assets/Scripts/Data/ProfileRepository.cs",
+      "sha256": "9e872bd61af8801fff86b0dd8165bf08b7280eca3a903e7176ddc1d04a435e5f"
+    },
+    {
+      "path": "Assets/Scripts/Data/ProfileRepository.cs.meta",
+      "sha256": "d783255e5ea1694c6d21517080a372a9017e8787f10e1994f245205cbd4f54c8"
     },
     {
       "path": "Assets/Scripts/Data/SessionHistoryStore.cs",
@@ -1302,7 +1310,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/HitZoneEvaluator.cs",
-      "sha256": "fb9a7c49bea9b7b6643a5caa6f000d2f28b3e009a855a2bd8c21c4037a0213ed"
+      "sha256": "e1cf25358fdd47003a895945cb7fe534b12ea8f1a81882339348602eeb47dd46"
     },
     {
       "path": "Assets/Scripts/Gameplay/HitZoneEvaluator.cs.meta",
@@ -1326,7 +1334,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/SpawnWarningEffect.cs",
-      "sha256": "fc80bc874f622e3a848ea0c88ca69d6f243bf7ef04bffdee73f63278af8d3a10"
+      "sha256": "a5358b29e33e8b3aed8a85993fd6eb5b3f4d892d3d64fc9551e8c82a9e9bfc9b"
     },
     {
       "path": "Assets/Scripts/Gameplay/SpawnWarningEffect.cs.meta",
@@ -1334,7 +1342,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/StarRating.cs",
-      "sha256": "0561002c6d89eb3e6fd27dafe08e1755e1434b38a0115e86fed9f7324a7fc8bb"
+      "sha256": "38a333090675168b770b9fecf21b8468429ac4ed48b3befd4ed130ea73ecf798"
     },
     {
       "path": "Assets/Scripts/Gameplay/StarRating.cs.meta",
@@ -1350,7 +1358,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetObject.cs",
-      "sha256": "bfca6ab865402c184c7bfe7da00bf0884dc012558064325bb91c9e5e6b8da132"
+      "sha256": "458d8901fe935afed4227c13370dc132f3628d8344149a59ebb834e007ab82a2"
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetObject.cs.meta",
@@ -1358,7 +1366,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/ToughTargetHealthBar.cs",
-      "sha256": "f1c9a36fd40d4ceb17b878a84c7a85675b43dcd43affa905592cd925a9d47c1e"
+      "sha256": "c0ac11b05193a6a99aca428bec3cf8d4c45a456657b207e14cf38518f872d0bb"
     },
     {
       "path": "Assets/Scripts/Gameplay/ToughTargetHealthBar.cs.meta",
@@ -1394,7 +1402,7 @@
     },
     {
       "path": "Assets/Scripts/Input/KeyboardActionFactory.cs",
-      "sha256": "3e53e888ffd28ee0cb52ac3cd2f0415ba048060e861bd6795090828f0fe6cad3"
+      "sha256": "648a999e04935af563ed441975285ffa2810616c3792df53fbce7ef98163d02b"
     },
     {
       "path": "Assets/Scripts/Input/KeyboardActionFactory.cs.meta",
@@ -1414,7 +1422,7 @@
     },
     {
       "path": "Assets/Scripts/Platform/AndroidDynamicsController.cs",
-      "sha256": "00636a3be68837acb6248fe3ecf319b4f8aa71f8a41a2bab060331b37405f4c7"
+      "sha256": "f383cefe283ff31b241ae65af4d80d8e6a7c143fe79777d6c5de65cd2879decf"
     },
     {
       "path": "Assets/Scripts/Platform/AndroidDynamicsController.cs.meta",
@@ -1430,7 +1438,7 @@
     },
     {
       "path": "Assets/Scripts/Platform/AndroidSessionPolicy.cs",
-      "sha256": "8e4bc22109e0b2f942f8bcdfcdfbce47f8cdeb12356b875cb15418e07b9f028c"
+      "sha256": "03c6fdaea883cd941b858552724fd5381b61afb4413232a31f51a0236234f646"
     },
     {
       "path": "Assets/Scripts/Platform/AndroidSessionPolicy.cs.meta",
@@ -1450,7 +1458,7 @@
     },
     {
       "path": "Assets/Scripts/Research/ResearchSessionLog.cs",
-      "sha256": "2aea01bc3ee6ffd527a215bf879d5708815a2a86ffaf38e1d0fc9a7f48d5a4a1"
+      "sha256": "a4b886bb8db1aebcc6f0b1920db5f7c5230ce64b87932b7a7e7927df039ae663"
     },
     {
       "path": "Assets/Scripts/Research/ResearchSessionLog.cs.meta",
@@ -1462,15 +1470,23 @@
     },
     {
       "path": "Assets/Scripts/Sensors/BleSensorInputProvider.cs",
-      "sha256": "26fd537656be062fbba7d27561ef439ef1fc6f45c1a5cc81b906285c49790265"
+      "sha256": "0bc9c63d3fd8ee2b7cb70cb8e9e3b066cb5bc479a205fa1844445a707eb6b2c6"
     },
     {
       "path": "Assets/Scripts/Sensors/BleSensorInputProvider.cs.meta",
       "sha256": "189011c7a74c62a8751a9360d30baddfc8a3630a3ccecc32286464e8dcd9a834"
     },
     {
+      "path": "Assets/Scripts/Sensors/CalibrationLibrary.cs",
+      "sha256": "1a6465e5fb90c4dd3d711b0eddeee52f04478180f350f3ec6f440d41095979e2"
+    },
+    {
+      "path": "Assets/Scripts/Sensors/CalibrationLibrary.cs.meta",
+      "sha256": "eb2f7cea767c8910d2b2aaf1911fcb13e58f0d4a6070274e14921d2118f221fa"
+    },
+    {
       "path": "Assets/Scripts/Sensors/DynamicsSdkBridge.cs",
-      "sha256": "1634c4800293776a0613a4e9382d5dc16f1341b7649618353855cbee96b713a1"
+      "sha256": "547648740ff193d347e24e2abab2fd57765f4446011dc055824f5fec0729c76e"
     },
     {
       "path": "Assets/Scripts/Sensors/DynamicsSdkBridge.cs.meta",
@@ -1502,7 +1518,7 @@
     },
     {
       "path": "Assets/Scripts/Sensors/MeasuredCalibration.cs",
-      "sha256": "5980bdeb9f1794ccfbb66398c29f3eb0eef0ec0212589604ca1a6b73904c5f78"
+      "sha256": "e4da2264f3dff6435af0423e341f5a8c4440b94ee4f54be7b704b3decfc22d06"
     },
     {
       "path": "Assets/Scripts/Sensors/MeasuredCalibration.cs.meta",
@@ -1518,7 +1534,7 @@
     },
     {
       "path": "Assets/Scripts/Sensors/SensorEventProcessor.cs",
-      "sha256": "40592f6337df6d5e86aa77c5cb75f1eae8120b254b973b7a7cd258ec37701235"
+      "sha256": "cb6b80b7de64946569e50a158c3a58a58e25f12c7d438002416fba0a5b543ab1"
     },
     {
       "path": "Assets/Scripts/Sensors/SensorEventProcessor.cs.meta",
@@ -1546,7 +1562,7 @@
     },
     {
       "path": "Assets/Scripts/Spawning/TargetSpawner.cs",
-      "sha256": "09663357ff4eb06dab38ac3412b717e0831902266945c7539e34c6c1a9036ab5"
+      "sha256": "424b6fec445ee89e86f22f73fc4dd773d8e3d5c7b90dd7b861e44c8bf5243b35"
     },
     {
       "path": "Assets/Scripts/Spawning/TargetSpawner.cs.meta",
@@ -1574,7 +1590,7 @@
     },
     {
       "path": "Assets/Scripts/UI/DigitalDojoMenuController.cs",
-      "sha256": "b2e8debe4a656a73add96d04b208a8295f0ff83cba4e1dccdac2fc027cc700ef"
+      "sha256": "7a173c0fdaba047b40a382342787a112205b5a1118cff4023375b3aefaeb8488"
     },
     {
       "path": "Assets/Scripts/UI/DigitalDojoMenuController.cs.meta",
@@ -1650,7 +1666,7 @@
     },
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoHudSkin.cs",
-      "sha256": "1e74fc3c3c3baf4586eb9daa36b7cd1dc90da6826e4d10c84c633fa0ab7b7e6c"
+      "sha256": "5c58f408d0ec1b85905d8843ded74d269a12f5747bad0ebbcefe8e2103300488"
     },
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoHudSkin.cs.meta",
@@ -1658,7 +1674,7 @@
     },
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoRuntimeDressing.cs",
-      "sha256": "7580726b57a6b985c205c9a34515e75628dab9b23c062bab1c7210000746b17d"
+      "sha256": "0e036b9ee2e81274dbcae5557c3e8683a1321873a6e0997d5209ae8b45569432"
     },
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoRuntimeDressing.cs.meta",
@@ -1671,6 +1687,14 @@
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoTargetVisual.cs.meta",
       "sha256": "6c71bad150561ef5200cdab5ac596a715c5fbc419f1db923087c54d39a0a8f5f"
+    },
+    {
+      "path": "Assets/Scripts/Visuals/VisualPrimitive.cs",
+      "sha256": "6fa14e61c2e925803225f62ab5707500994a5027c7cdb424bbb2f0579137fc57"
+    },
+    {
+      "path": "Assets/Scripts/Visuals/VisualPrimitive.cs.meta",
+      "sha256": "ecf3461f7370b4669ba6345c49bb787aba5d507bd7b13e05fb56879bf8521f6a"
     },
     {
       "path": "Packages/manifest.json",
@@ -1746,7 +1770,7 @@
     },
     {
       "path": "ProjectSettings/ProjectSettings.asset",
-      "sha256": "465a8762202c1594d180b6a031fed8837d189566f69249447bf33ecc1f28e8c5"
+      "sha256": "7814c75867ac793634fd73a145b620c3d5041e7a57af559bea71dafd0934eea7"
     },
     {
       "path": "ProjectSettings/ProjectVersion.txt",
@@ -1785,9 +1809,9 @@
       "sha256": "834f8ed55d876b98becb29b6183a8268021aadd2f2ef0392ee6358ec8c4f01a2"
     }
   ],
-  "sourceSha256": "d60dd92fe4a7627d2fabf232a2e09880ec981be790572265c0ee85fe8b145fbc",
-  "dirty": true,
-  "revision": "064b9b42080f82babdea8f14f8845db078aafd40",
   "unityPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
-  "generatedUtc": "2026-09-14T07:37:52.7936107Z"
+  "dirty": true,
+  "sourceSha256": "d1f67d948f63d90765c44453d1afec886a5ac90fc6d7a70b5f4d17426f72ba61",
+  "generatedUtc": "2026-09-15T00:45:02.1785934Z",
+  "revision": "d1165f8e115308a305b440986e3c1b4867041cb8"
 }

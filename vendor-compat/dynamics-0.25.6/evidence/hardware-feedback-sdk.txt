@@ -1,0 +1,118 @@
+glove-repository-bytecode.txt:162
+       1: getfield      #111                // Field c:Lkotlinx/coroutines/flow/Flow;
+       4: areturn
+
+  public final java.lang.Object swapGloveSideForId-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+    Code:
+       0: aload_0
+       1: getfield      #84                 // Field a:Lcom/riseworld/dynamics/db/Database;
+       4: aload_1
+       5: aload_2
+       6: invokevirtual #221                // Method com/riseworld/dynamics/db/Database."swapSide-gP7SR54":(Lkotlin/uuid/Uuid;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+       9: areturn
+
+  public final java.lang.Object updateGlovePairNameByPeripheralId-R2WvUlk(kotlin.uuid.Uuid, java.lang.String, kotlin.coroutines.Continuation);
+    Code:
+       0: aload_0
+
+glove-repository-bytecode.txt:191
+       7: invokevirtual #227                // Method com/riseworld/dynamics/db/Database."updateName-WPIley4":(Lkotlin/uuid/Uuid;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+      10: areturn
+
+  public final java.lang.Object deleteGloveById-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+    Code:
+       0: aload_2
+       1: instanceof    #229                // class com/riseworld/dynamics/multiplatform/b4
+       4: ifeq          37
+       7: aload_2
+       8: checkcast     #229                // class com/riseworld/dynamics/multiplatform/b4
+      11: dup
+      12: astore_3
+      13: getfield      #233                // Field com/riseworld/dynamics/multiplatform/b4.d:I
+      16: dup
+      17: istore        4
+
+database-feedback.txt:1414
+     484: aconst_null
+     485: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     488: athrow
+     489: ldc_w         #876                // String Insert of session failed, multiple glove pairs available!
+     492: aconst_null
+     493: iconst_2
+     494: aconst_null
+     495: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     498: athrow
+     499: ldc_w         #878                // String Insert of session failed, because no glove pair is available!
+     502: aconst_null
+     503: iconst_2
+     504: aconst_null
+     505: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     508: athrow
+
+database-feedback.txt:3865
+     469: getfield      #1799               // Field com/riseworld/dynamics/db/g1.d:Lkotlin/uuid/Uuid;
+     472: ifnonnull     478
+     475: goto          488
+     478: ldc_w         #1801               // String Glove Pair is already occupied on both sides!
+     481: aconst_null
+     482: iconst_2
+     483: aconst_null
+     484: invokestatic  #872                // Method com/riseworld/dynamics/db/exception/utils/ExceptionUtilsKt.constraintViolation$default:(Ljava/lang/String;Ljava/lang/Throwable;ILjava/lang/Object;)Lcom/riseworld/dynamics/models/exception/DynamicsDatabaseException;
+     487: athrow
+     488: aload_3
+     489: ifnonnull     513
+     492: aload_1
+     493: getfield      #218                // Field a:Lcom/riseworld/dynamics/db/DynamicsDatabaseScheme;
+     496: invokeinterface #556,  1          // InterfaceMethod com/riseworld/dynamics/db/DynamicsDatabaseScheme.getGlovePairQueries:()Lcom/riseworld/dynamics/db/e1;
+     501: aload         6
+
+glove-peripheral-feedback.txt:1292
+     119: invokeinterface #280,  1          // InterfaceMethod kotlinx/coroutines/flow/MutableStateFlow.getValue:()Ljava/lang/Object;
+     124: checkcast     #576                // class com/riseworld/launchpad/ble/multiplex/uuid/Version
+     127: getstatic     #581                // Field com/riseworld/dynamics/constants/DynamicsConstants.INSTANCE:Lcom/riseworld/dynamics/constants/DynamicsConstants;
+     130: invokevirtual #585                // Method com/riseworld/dynamics/constants/DynamicsConstants.getSMART_GLOVE_ATTACHABLE_BARO_FIRMWARE_VERSION:()Lcom/riseworld/launchpad/ble/multiplex/uuid/Version;
+     133: invokevirtual #589                // Method com/riseworld/launchpad/ble/multiplex/uuid/Version.compareTo:(Lcom/riseworld/launchpad/ble/multiplex/uuid/Version;)I
+     136: ifge          149
+     139: getstatic     #509                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+     142: aconst_null
+     143: iconst_1
+     144: aconst_null
+     145: invokestatic  #513                // Method com/riseworld/launchpad/resource/ResourceKt.asSuccess$default:(Ljava/lang/Object;Ljava/lang/Exception;ILjava/lang/Object;)Lcom/riseworld/launchpad/resource/Resource;
+     148: areturn
+     149: aload_0
+     150: aload_2
+     151: new           #591                // class com/riseworld/dynamics/ble/f4
+
+glove-peripheral-feedback.txt:2653
+     103: invokeinterface #280,  1          // InterfaceMethod kotlinx/coroutines/flow/MutableStateFlow.getValue:()Ljava/lang/Object;
+     108: checkcast     #576                // class com/riseworld/launchpad/ble/multiplex/uuid/Version
+     111: getstatic     #581                // Field com/riseworld/dynamics/constants/DynamicsConstants.INSTANCE:Lcom/riseworld/dynamics/constants/DynamicsConstants;
+     114: invokevirtual #585                // Method com/riseworld/dynamics/constants/DynamicsConstants.getSMART_GLOVE_ATTACHABLE_BARO_FIRMWARE_VERSION:()Lcom/riseworld/launchpad/ble/multiplex/uuid/Version;
+     117: invokevirtual #589                // Method com/riseworld/launchpad/ble/multiplex/uuid/Version.compareTo:(Lcom/riseworld/launchpad/ble/multiplex/uuid/Version;)I
+     120: ifge          135
+     123: new           #1148               // class com/riseworld/dynamics/ble/y4
+     126: dup
+     127: aconst_null
+     128: invokespecial #1149               // Method com/riseworld/dynamics/ble/y4."<init>":(Lkotlin/coroutines/Continuation;)V
+     131: invokestatic  #1153               // Method kotlinx/coroutines/flow/FlowKt.flow:(Lkotlin/jvm/functions/Function2;)Lkotlinx/coroutines/flow/Flow;
+     134: areturn
+     135: aload_0
+     136: getfield      #604                // Field c:Lcom/riseworld/dynamics/ble/peripherals/impl/GlovePeripheralServices;
+     139: invokevirtual #1159               // Method com/riseworld/dynamics/ble/peripherals/impl/GlovePeripheralServices.getOperationConnectionService:()Lcom/riseworld/dynamics/ble/services/operation/OperationConnectionService;
+
+glove-peripheral-feedback.txt:2669
+     143: dup
+     144: iconst_1
+     145: putfield      #1144               // Field com/riseworld/dynamics/ble/x4.c:I
+     148: invokeinterface #1164,  2         // InterfaceMethod com/riseworld/dynamics/ble/services/operation/OperationConnectionService.observeStatusAttachable:(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+     153: dup
+     154: astore_1
+     155: aload_3
+     156: if_acmpne     161
+     159: aload_3
+     160: areturn
+     161: aload_1
+     162: checkcast     #192                // class kotlinx/coroutines/flow/Flow
+     165: astore_0
+     166: new           #1166               // class com/riseworld/dynamics/ble/peripherals/impl/GlovePeripheralImpl$observeTrainingSessionSensorType$$inlined$map$1
+     169: dup

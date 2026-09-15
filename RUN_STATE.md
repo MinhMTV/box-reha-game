@@ -1,3 +1,5 @@
-# Run state
+# Run state — 15 September 2026
 
-The maintained execution record is [docs/projects/digital-dojo/RUN_STATE.md](docs/projects/digital-dojo/RUN_STATE.md). Current evidence is in [GAME_STATUS](GAME_STATUS.md), [VISUAL_STATUS](VISUAL_STATUS.md) and [ANDROID_STATUS](ANDROID_STATUS.md).
+Work continues in `E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo`, branch `codex/android-hardware-feedback`. The primary checkout and its four pre-existing Gradle cache changes remain untouched.
+
+Implementation and synthetic runtime validation are saved. See HARDWARE_FEEDBACK_REPORT.md and ANDROID_STATUS.md for final build identity and hardware limitations. The next physical step is USB debugging authorization, followed by installation of the new APK without uninstalling existing application data. No device was available during this pass.

@@ -11,9 +11,21 @@ PASS Kick Left resolves through game action handler
 PASS Kick Right wrong side rejected
 PASS Kick Right wrong action rejected
 PASS Kick Right resolves through game action handler
+PASS weak action gives separate outcome and target persists
+PASS weak target accepts later normal hit
+PASS miss beyond window resolves
 PASS heavy damage segment persists after hit flash
 PASS heavy accepts five same-side punches
+PASS heavy timeout resolves
+PASS visual Cylinder has no physics dependency
+PASS visual Cube has no physics dependency
+PASS visual Sphere has no physics dependency
+PASS no visible lane rails
+PASS closer hit plane used by evaluator
+PASS finish cleanup aborts pending target exactly once
 PASS score and combo recorded
 PASS synthetic keyboard provenance retained
 PASS pause stops scaled time
 PASS development resume restores gameplay
+PASS no heavy health bar orphans
+PASS normal/kick/weak-then-strong/miss/heavy completion/heavy timeout have no target orphans after next frames

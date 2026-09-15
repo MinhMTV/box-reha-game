@@ -1,5 +1,6 @@
 {
-  "scope": "APK DEX descriptor and native library inventory; not class loading or JNI execution",
+  "scope": "APK DEX descriptor and native inventory, not JNI execution",
+  "apkSha256": "aa82afe63a2a0afc76b999f563c3214094217d63c941ceaec4efa207d4fcf472",
   "descriptors": {
     "Lcom/boxreha/dynamics/DynamicsCollector;": true,
     "Lcom/boxreha/dynamics/Sdk0256Compat;": true,

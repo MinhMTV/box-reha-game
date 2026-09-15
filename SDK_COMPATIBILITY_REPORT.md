@@ -1,6 +1,6 @@
 # Dynamics SDK 0.25.6 — compatibility engineering report
 
-Date: 2026-09-14. Highest demonstrated stage: **LEVEL 5, real Unity Android APK**. No authorized ADB device was present. No sensor connection, empirical measurement, installation or Android launch is claimed.
+Date: 2026-09-14. Highest demonstrated stage: **LEVEL 5, real Unity Android APK**. No authorized ADB device was present. This dated build report is superseded on hardware evidence: the user subsequently installed/launched the APK, discovered ALPHA SG devices and observed paired/connected UI. Real punch/calibration/DELTA/mixed behavior remains unverified.
 
 ## Original package and independent reproduction
 
@@ -59,3 +59,5 @@ The prior `UnityEditor.Search.SearchDatabase` exception was not reproduced in th
 Resource 2.12.0 is ABI-compatible with the observed call sites, but full runtime semantic compatibility remains unproven. Android startup/linking and physical BLE behavior require real devices. The default build mode intentionally remains VENDOR-UNCHANGED so compatibility use is explicit.
 
 Request from vendor: republish Android artifacts with consumer-facing Kotlin metadata/InnerClasses/signatures retained; provide the declared Resource 2.11.1 or confirm 2.12.0; document simultaneous ALPHA/DELTA ownership and supported device count; provide a supported mixed acquisition example and unit/calibration guarantees. See `MULTI_SENSOR_REPORT.md` for the exact topology findings.
+
+The 15 September feedback pass retains both build modes and pinned vendor inputs. All 4,085 vendor files were rehashed unchanged (artifacts/validation/hardware-vendor-integrity.json). Added remove/swap operations compile against real SDK APIs; on-device behavior awaits retest.

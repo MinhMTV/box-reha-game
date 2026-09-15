@@ -1,6 +1,6 @@
 {
-  "scope": "ELF PT_LOAD alignment only; no Android 16KB runtime test",
-  "libraries": [
+  "apkSha256": "aa82afe63a2a0afc76b999f563c3214094217d63c941ceaec4efa207d4fcf472",
+  "checks": [
     {
       "library": "lib/arm64-v8a/libc++_shared.so",
       "loadAlignments": [
@@ -9,7 +9,7 @@
         16384,
         16384
       ],
-      "atLeast16KB": true
+      "passed": true
     },
     {
       "library": "lib/arm64-v8a/libil2cpp.so",
@@ -19,7 +19,7 @@
         16384,
         16384
       ],
-      "atLeast16KB": true
+      "passed": true
     },
     {
       "library": "lib/arm64-v8a/libmain.so",
@@ -29,7 +29,7 @@
         16384,
         16384
       ],
-      "atLeast16KB": true
+      "passed": true
     },
     {
       "library": "lib/arm64-v8a/libswappywrapper.so",
@@ -38,7 +38,7 @@
         16384,
         16384
       ],
-      "atLeast16KB": true
+      "passed": true
     },
     {
       "library": "lib/arm64-v8a/libunity.so",
@@ -48,8 +48,7 @@
         16384,
         16384
       ],
-      "atLeast16KB": true
+      "passed": true
     }
-  ],
-  "passed": true
+  ]
 }

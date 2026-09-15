@@ -1,32 +1,32 @@
 [
   {
     "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-android-prepare.log",
-    "sdkMode": "COMPATIBILITY",
-    "timedOut": false,
-    "pid": 18180,
     "freshCompletionEvidence": true,
-    "startedUtc": "2026-09-14T07:37:42.1300482Z",
+    "pid": 56164,
     "forcedTermination": false,
-    "exitCode": 0
+    "startedUtc": "2026-09-15T00:44:48.7923095Z",
+    "exitCode": 0,
+    "sdkMode": "COMPATIBILITY",
+    "timedOut": false
   },
   {
     "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-editor.log",
-    "sdkMode": "COMPATIBILITY",
-    "timedOut": false,
-    "pid": 18324,
     "freshCompletionEvidence": true,
-    "startedUtc": "2026-09-14T07:37:52.8078025Z",
+    "pid": 65844,
     "forcedTermination": false,
-    "exitCode": 0
+    "startedUtc": "2026-09-15T00:45:02.2047275Z",
+    "exitCode": 0,
+    "sdkMode": "COMPATIBILITY",
+    "timedOut": false
   },
   {
     "log": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\artifacts\\validation\\unity-player-build.log",
-    "sdkMode": "COMPATIBILITY",
-    "timedOut": false,
-    "pid": 49532,
     "freshCompletionEvidence": true,
-    "startedUtc": "2026-09-14T07:38:04.7037722Z",
+    "pid": 47336,
     "forcedTermination": false,
-    "exitCode": 0
+    "startedUtc": "2026-09-15T00:45:12.4498304Z",
+    "exitCode": 0,
+    "sdkMode": "COMPATIBILITY",
+    "timedOut": false
   }
 ]

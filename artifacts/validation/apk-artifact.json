@@ -1,10 +1,12 @@
 {
-  "path": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Builds\\AndroidCandidate\\DigitalDojo.apk",
-  "hardware": "NOT TESTED - adb reports no devices",
-  "sha256": "4bb20600a7e17d41fbc3ef4dbdb9be32d348b82d1556f6b421ebfea3d5bff8d5",
-  "sdkMode": "COMPATIBILITY",
-  "bytes": 34182352,
+  "bytes": 34189756,
+  "sha256": "aa82afe63a2a0afc76b999f563c3214094217d63c941ceaec4efa207d4fcf472",
   "signatureExit": 0,
+  "path": "E:\\Programming Projekte\\worktrees\\wt-agent-root-digital-dojo\\Builds\\AndroidCandidate\\DigitalDojo.apk",
   "alignmentExit": 0,
-  "unity": "6000.6.0f1"
+  "unity": "6000.6.0f1",
+  "sdkMode": "COMPATIBILITY",
+  "verifiedUtc": "2026-09-15T00:48:38.6842502Z",
+  "badgingExit": 0,
+  "hardware": "NOT RUN for new APK - adb reports no devices; previous APK ALPHA discovery/pairing reported by user"
 }
