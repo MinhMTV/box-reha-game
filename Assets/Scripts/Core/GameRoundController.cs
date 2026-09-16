@@ -64,36 +64,7 @@ public class GameRoundController : MonoBehaviour
             return;
         }
 
-        float elapsed = Time.time - roundStartTime;
-        float difficultyProgress = GetDifficultyProgress(elapsed);
-        float speedMultiplier = Mathf.Lerp(currentLevel.StartSpeedMultiplier, currentLevel.MaxSpeedMultiplier, difficultyProgress);
-        float intervalMultiplier = Mathf.Lerp(currentLevel.StartIntervalMultiplier, currentLevel.MinIntervalMultiplier, difficultyProgress);
-        float toughChanceExtra = Mathf.Lerp(0f, Mathf.Max(0f, currentLevel.MaxToughTargetChance - currentLevel.ToughTargetChance), difficultyProgress);
-        float rapidFireChanceExtra = Mathf.Lerp(0f, Mathf.Max(0f, currentLevel.MaxRapidFireChance - currentLevel.RapidFireChance), difficultyProgress);
-
-        targetSpawner.SetDifficultyModifiers(speedMultiplier, intervalMultiplier, toughChanceExtra, rapidFireChanceExtra);
-    }
-
-    public float GetCurrentSpeedMultiplier()
-    {
-        if (currentLevel == null)
-        {
-            return 1f;
-        }
-
-        float elapsed = Time.time - roundStartTime;
-        return Mathf.Lerp(currentLevel.StartSpeedMultiplier, currentLevel.MaxSpeedMultiplier, GetDifficultyProgress(elapsed));
-    }
-
-    public float GetCurrentIntervalMultiplier()
-    {
-        if (currentLevel == null)
-        {
-            return 1f;
-        }
-
-        float elapsed = Time.time - roundStartTime;
-        return Mathf.Lerp(currentLevel.StartIntervalMultiplier, currentLevel.MinIntervalMultiplier, GetDifficultyProgress(elapsed));
+        // TargetSpawner owns the bounded, travel-time pacing profile. Do not stack the legacy ramp.
     }
 
     private void InitializeRound()
@@ -284,16 +255,6 @@ public class GameRoundController : MonoBehaviour
             ResearchSessionLog.End(sessionStats, "application_quit");
             SessionHistoryStore.Save(sessionStats);
         }
-    }
-
-    private float GetDifficultyProgress(float elapsed)
-    {
-        if (currentLevel == null)
-        {
-            return 0f;
-        }
-
-        return Mathf.Clamp01(elapsed / Mathf.Max(1f, currentLevel.RampDurationSeconds));
     }
 
     private void EnsureGameplayCameraView()

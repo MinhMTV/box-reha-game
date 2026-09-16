@@ -51,8 +51,7 @@ public class ComboSystem : MonoBehaviour
         {
             OnComboMilestone?.Invoke(CurrentCombo);
             // Play combo sound
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlayComboSound();
+            DojoGameFeel.Cue(DojoAudioCue.ComboTier);
         }
     }
 

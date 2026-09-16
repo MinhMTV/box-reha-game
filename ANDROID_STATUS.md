@@ -1,5 +1,11 @@
 # Android status — 15 September 2026
 
+## Current candidate — 16 September fitness pass
+
+The current main-checkout APK is **1.3 / code 4**, `Builds/AndroidCandidate/DigitalDojo.apk`, 39,552,513 bytes, SHA-256 `974da657a3984ea07269f4ab21642bb4db85fe59f7dccb9700ab21c7063cec67`. Unity 6000.6.0f1, ARM64 IL2CPP, min API 26, target/compile 36, SDK COMPATIBILITY. Final incremental build: succeeded in 20.04 s, zero errors/warnings; the preceding full compilation reported 21 warnings, including deprecated object lookup and unused fields. APK signature and 16-KB zip alignment passed. Evidence: `artifacts/validation/fitness-apk.json` and `FITNESS_PACING_VALIDATION.md`. ADB has no device; installation/physical runtime are not re-verified.
+
+The older candidate details below are historical and do not identify the current APK.
+
 New hardware-feedback APK built successfully in explicit COMPATIBILITY mode. Version 1.1 / code 2. New APK install and physical runtime are NOT RUN because ADB lists no devices. The user's previous APK launch/discovery/ALPHA pairing are accepted real observations and are not erased by this limitation.
 
 ## Candidate

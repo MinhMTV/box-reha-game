@@ -1,5 +1,9 @@
 # Known issues — 15 September 2026
 
+- Fitness pacing checks use synthetic input. Global alternating spacing can reach .18 s, with the existing .35 s per-device refractory preserved and kick intervals at least .55 s. Bluetooth/event/display latency and achievable cadence must still be measured on hardware.
+- Exact concept-art parity is not achieved: room proportions are stretched to the gameplay volume; plants and panel fracture remain simplified. See ROOM_VALIDATION_REVIEW.md. Historical all-false plugin gates were not relabelled as passed.
+- Experimental rapid-reference pacing is disabled by default and never reads measured references automatically. Device performance, thermals and sustained high-speed readability remain open until hardware testing.
+
 - No ADB device is available. New APK installation, permission recovery, BLE removal/re-pair/swap, reconnect, actual punch/kick delivery and measured references require hardware. User-observed launch/discovery/ALPHA pairing concerns the earlier APK.
 - Mixed ALPHA + DELTA / third sensor is blocked: SDK pairing/session ownership does not establish supported independent concurrent acquisition. Raw API Java compilation is not proof of concurrent hardware operation. See MULTI_SENSOR_REPORT.md.
 - Unknown SDK family remains visible but blocks preparation until identified; no family guess from SG advertising names. Firmware attachable detection and single ALPHA start require device verification.

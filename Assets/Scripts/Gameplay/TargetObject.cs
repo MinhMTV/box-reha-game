@@ -17,6 +17,8 @@ public class TargetObject : MonoBehaviour
     public bool HasSpawnedInHitZone { get; set; }
     public string TargetId { get; private set; } = Guid.NewGuid().ToString("N");
     public string ChainId { get; set; }
+    public int SequenceIndex { get; set; }
+    public int SequenceLength { get; set; } = 1;
     public bool IsResolved { get; private set; }
     public float LockedTime { get; private set; }
     public float HeavyTimeoutSeconds { get; set; } = 12f;
@@ -78,7 +80,8 @@ public class TargetObject : MonoBehaviour
         SpawnTime = Time.time;
         HitZoneEvaluator evaluator = FindObjectOfType<HitZoneEvaluator>();
         float zoneZ = evaluator != null ? evaluator.HitZoneZ : HitZoneZ;
-        ExpectedHitTime = SpawnTime + (mount != null ? TargetMountMotion.DeploySeconds : 0f) + Mathf.Max(0f, transform.position.z - zoneZ) / Mathf.Max(0.01f, MoveSpeed);
+        if(mount!=null && IsTough && mount.Duration<.5f) mount.Duration=.65f;
+        ExpectedHitTime = SpawnTime + (mount != null && mount.enabled ? mount.Duration : 0f) + Mathf.Max(0f, transform.position.z - zoneZ) / Mathf.Max(0.01f, MoveSpeed);
         if (evaluator != null) evaluator.RegisterTarget(this);
         if (GameManager.Instance?.SessionStats != null) GameManager.Instance.SessionStats.SpawnedTargets++;
         ResearchSessionLog.TargetSpawn(this);
@@ -271,7 +274,7 @@ public class TargetObject : MonoBehaviour
         }
 
         // Scale wiggle on each hit
-        if (!SettingsManager.ReducedMotion)
+        if (!SettingsManager.ReducedMotion && authoredVisual == null)
         {
             if (wiggle != null) StopCoroutine(wiggle);
             transform.localScale = restingScale;
@@ -382,7 +385,7 @@ public class TargetObject : MonoBehaviour
         }
 
         string verticalLabel = VertPosition.ToString().ToUpperInvariant();
-        labelMesh.text = IsTough ? (IsKick ? "HEAVY KICK" : "HEAVY") : actionLabel;
+        labelMesh.text = IsTough ? (IsKick ? "HEAVY KICK" : "HEAVY") : SequenceLength>1?(SequenceIndex+1)+"  "+actionLabel:actionLabel;
         labelMesh.color = Color.Lerp(Color.white, accentColor, 0.2f);
         float labelDepth = -0.42f;
         if (cachedRenderer != null)
@@ -416,7 +419,7 @@ public class TargetObject : MonoBehaviour
         return true;
     }
 
-    public void PlayDestroyAnimation(Action onComplete = null)
+    public void PlayDestroyAnimation(Action onComplete = null, bool breakApart = true)
     {
         if (IsBreaking)
         {
@@ -445,12 +448,12 @@ public class TargetObject : MonoBehaviour
         }
 
         // Optional fracture presentation cannot prevent the scheduled target cleanup.
-        try { if (authoredVisual != null) authoredVisual.BeginBreak(); }
+        try { if (authoredVisual != null && breakApart) authoredVisual.BeginBreak(); }
         catch(Exception error) { Debug.LogException(error); }
-        StartCoroutine(DestroyAnimationCoroutine(onComplete));
+        StartCoroutine(DestroyAnimationCoroutine(onComplete,breakApart));
     }
 
-    private IEnumerator DestroyAnimationCoroutine(Action onComplete)
+    private IEnumerator DestroyAnimationCoroutine(Action onComplete,bool breakApart)
     {
         Vector3 startScale = transform.localScale;
         float duration = 0.24f;
@@ -460,9 +463,10 @@ public class TargetObject : MonoBehaviour
         {
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            float scale = Mathf.Lerp(1f, 0.88f, t);
+            float scale = Mathf.Lerp(1f, breakApart ? 0.88f : .96f, t);
             transform.localScale = startScale * scale;
-            transform.Rotate(Vector3.forward, 18f * Time.deltaTime, Space.Self);
+            if(breakApart) transform.Rotate(Vector3.forward, 18f * Time.deltaTime, Space.Self);
+            else if(mount!=null) mount.RetractProgress=t;
 
             if (cachedRenderers != null && authoredVisual == null)
             {

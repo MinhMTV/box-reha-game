@@ -6,13 +6,22 @@ using UnityEngine;
 /// </summary>
 public class HitParticleEffect : MonoBehaviour
 {
+    static Material sharedParticleMaterial;
+    static readonly System.Collections.Generic.List<HitParticleEffect> active=new System.Collections.Generic.List<HitParticleEffect>();
+    void OnDestroy()
+    {
+        active.Remove(this);
+        if(active.Count==0&&sharedParticleMaterial!=null){Destroy(sharedParticleMaterial);sharedParticleMaterial=null;}
+    }
     public static void Spawn(Vector3 position, Color color, int particleCount = 15)
     {
+        while(active.Count>=4){var old=active[0];active.RemoveAt(0);if(old!=null){old.gameObject.SetActive(false);Destroy(old.gameObject);}}
         GameObject obj = new GameObject("HitParticleEffect");
         obj.transform.position = position;
 
         ParticleSystem ps = obj.AddComponent<ParticleSystem>();
         HitParticleEffect effect = obj.AddComponent<HitParticleEffect>();
+        active.Add(effect);
         effect.Initialize(ps, color, particleCount);
     }
 
@@ -30,9 +39,10 @@ public class HitParticleEffect : MonoBehaviour
     {
         var main = ps.main;
         bool intenseBurst = particleCount >= 28;
-        main.startLifetime = intenseBurst ? 0.9f : 0.65f;
-        main.startSpeed = intenseBurst ? 5.8f : 4.5f;
-        main.startSize = intenseBurst ? 0.22f : 0.18f;
+        particleCount=SettingsManager.ReducedMotion?3:Mathf.Clamp(particleCount,4,24);
+        main.startLifetime = SettingsManager.ReducedMotion?.2f:intenseBurst ? .5f : .35f;
+        main.startSpeed = SettingsManager.ReducedMotion?.25f:intenseBurst ? 2.5f : 1.8f;
+        main.startSize = intenseBurst ? 0.06f : 0.04f;
         main.startColor = color;
         main.maxParticles = particleCount;
         main.simulationSpace = ParticleSystemSimulationSpace.World;
@@ -81,11 +91,11 @@ public class HitParticleEffect : MonoBehaviour
         sizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1f, curve);
 
         var renderer = ps.GetComponent<ParticleSystemRenderer>();
-        renderer.material = new Material(Shader.Find("Particles/Standard Unlit"));
-        renderer.material.color = color;
+        if(sharedParticleMaterial==null)sharedParticleMaterial=new Material(Shader.Find("Particles/Standard Unlit"));
+        renderer.sharedMaterial=sharedParticleMaterial;
         renderer.renderMode = ParticleSystemRenderMode.Billboard;
 
         ps.Play();
-        Destroy(gameObject, 1.2f);
+        Destroy(gameObject, .8f);
     }
 }

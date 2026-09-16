@@ -13,6 +13,7 @@ internal static class Program
             RouterDoesNotSilentlyFallback();
             Console.WriteLine("HOST_ADDITIONAL_PASS 3 checks (provider key transitions, concurrent buffer, explicit routing).");
             GameplayHostChecks.Run();
+            PacingHostChecks.Run();
             LoggerHostCheck.Run();
             HistoryHostCheck.Run();
             AndroidPolicyHostChecks.Run();

@@ -10,7 +10,9 @@ public class TextPopup : MonoBehaviour
     private const string BuiltInFontName = "LegacyRuntime.ttf";
 
     [SerializeField] private float floatSpeed = 50f;
-    [SerializeField] private float lifetime = 0.8f;
+    [SerializeField] private float lifetime = 0.5f;
+    static readonly System.Collections.Generic.List<TextPopup> active=new System.Collections.Generic.List<TextPopup>();
+    void OnDestroy(){active.Remove(this);}
 
     private Text textComponent;
     private float timer;
@@ -36,7 +38,7 @@ public class TextPopup : MonoBehaviour
         }
 
         // Float upward
-        transform.localPosition += Vector3.up * floatSpeed * Time.deltaTime;
+        if(!SettingsManager.ReducedMotion)transform.localPosition += Vector3.up * floatSpeed * Time.deltaTime;
 
         // Fade out
         if (textComponent != null)
@@ -62,7 +64,8 @@ public class TextPopup : MonoBehaviour
         uiText.text = text;
         uiText.color = color;
         uiText.font = Resources.GetBuiltinResource<Font>(BuiltInFontName);
-        uiText.fontSize = 36;
+        uiText.fontSize = 28;
+        uiText.raycastTarget = false;
         uiText.fontStyle = FontStyle.Bold;
         uiText.alignment = TextAnchor.MiddleCenter;
 
@@ -88,6 +91,8 @@ public class TextPopup : MonoBehaviour
         TextPopup popup = popupObj.AddComponent<TextPopup>();
         popup.textComponent = uiText;
         popup.startColor = color;
+        while(active.Count>=3){var old=active[0];active.RemoveAt(0);if(old!=null){old.gameObject.SetActive(false);Destroy(old.gameObject);}}
+        active.Add(popup);
     }
 
     /// <summary>

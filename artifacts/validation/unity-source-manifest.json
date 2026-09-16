@@ -1,7 +1,5 @@
 {
-  "unityPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
-  "generatedUtc": "2026-09-15T16:42:49.8232362Z",
-  "sourceSha256": "f2562482d3da1378043ec193a5f372b6e37164a777bd298256a4253642163884",
+  "sourceSha256": "919fe68d4e9ecf25f255aa25580659dbe1fa9c06e6b8d427fd6292185b49e304",
   "files": [
     {
       "path": "Assets/Art.meta",
@@ -653,7 +651,7 @@
     },
     {
       "path": "Assets/Editor/DigitalDojoCapture.cs",
-      "sha256": "a207724d95f272cfdc581361936d90901c765305d262c3a2181451243a8fccc3"
+      "sha256": "ec51affcb47ab596d09bcafe41abbf8da2fb603ec4111893de0c7bd81917a8ec"
     },
     {
       "path": "Assets/Editor/DigitalDojoCapture.cs.meta",
@@ -693,11 +691,19 @@
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs",
-      "sha256": "6216b695ca1548a6ef3095f047888ce199f41c7c6a3241578d2bd7dc44abbb45"
+      "sha256": "6f4cd442c9cd93037c54441c32007f300cca2276cd81bd0b16338dbcd5c771a3"
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs.meta",
       "sha256": "9e1b7af8cdda15bbbda37f06ffb3c6a16fbaeacfdcfef7bb27540ea0adc8805d"
+    },
+    {
+      "path": "Assets/Editor/HitGatePlayModeChecks.cs",
+      "sha256": "af9eab46a12f052536744ad9269452d6ed7a43b3bcdae1cac08a460a12b0e8d7"
+    },
+    {
+      "path": "Assets/Editor/HitGatePlayModeChecks.cs.meta",
+      "sha256": "b18f145b729806bbe86a1744e92fb3b3dffdccbc65bcc597bc10d3237a77542b"
     },
     {
       "path": "Assets/Editor/NeonCombatAssetGenerator.cs",
@@ -706,6 +712,14 @@
     {
       "path": "Assets/Editor/NeonCombatAssetGenerator.cs.meta",
       "sha256": "c8f57057becf0664f10cada1b49e21a50cb59207e9c1e4beb9a8ec6b18c9e94b"
+    },
+    {
+      "path": "Assets/Editor/PacingRuntimeProbe.cs",
+      "sha256": "73c5937a10b8d2fee3d945db079da428a921d6e5c264dc0d6dc0ff2ec7fb367e"
+    },
+    {
+      "path": "Assets/Editor/PacingRuntimeProbe.cs.meta",
+      "sha256": "ff693d7a49625735b32df645954aa9b39684ffb577999345201e9681b7470b1b"
     },
     {
       "path": "Assets/Editor/SceneAutoSetup.cs",
@@ -1309,7 +1323,7 @@
     },
     {
       "path": "Assets/Scripts/Core/AudioManager.cs",
-      "sha256": "85ea19aa3dffe6359e897749ed7bc889c13a02a105764502bbfde15e77cb6594"
+      "sha256": "44a836b1fe4a043a9d4e18a039a527a35ea0fe4310f8f0dd8e222bcfb675c17f"
     },
     {
       "path": "Assets/Scripts/Core/AudioManager.cs.meta",
@@ -1333,7 +1347,7 @@
     },
     {
       "path": "Assets/Scripts/Core/GameRoundController.cs",
-      "sha256": "38753b7264d81cce565925de9674334257cfe8b0ef0634128cdac4e1183fc0d3"
+      "sha256": "127fd570fc2bc8e1aa2b3323d69d0c58d7cf2f55a1d46c7aca7064dcca1e3500"
     },
     {
       "path": "Assets/Scripts/Core/GameRoundController.cs.meta",
@@ -1453,7 +1467,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/ComboSystem.cs",
-      "sha256": "f5247c2f907e7165d44754f020cfa5b1cc40677ae48485ee17cd15da01236518"
+      "sha256": "a2062994d274763d12e29e0f588a10a3cf24175fe6d63bbb622ba5179f972539"
     },
     {
       "path": "Assets/Scripts/Gameplay/ComboSystem.cs.meta",
@@ -1477,7 +1491,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/HitParticleEffect.cs",
-      "sha256": "a4d74609eafa6958b77be326d56a6d6fef306c9cdaede46d7e9d1bedd8c089f5"
+      "sha256": "ea094138ee3e452f2923fa1e8c8640f8dca2c9fda82b3c49ecce1804f874f4ed"
     },
     {
       "path": "Assets/Scripts/Gameplay/HitParticleEffect.cs.meta",
@@ -1485,11 +1499,19 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/HitZoneEvaluator.cs",
-      "sha256": "034befb51aeca4d684494ca1268ed5cbd977f3b7fcc873f7f43774fa67ca58e0"
+      "sha256": "6cc0c95f65a2d5bf0325b510f027502baeabce38e47d792030c48c49d179402f"
     },
     {
       "path": "Assets/Scripts/Gameplay/HitZoneEvaluator.cs.meta",
       "sha256": "914ee96af2ed3d6f57c6afab367942d036f5dabc1ce9981df1393e752896d5f7"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/HitZoneVisualizer.cs",
+      "sha256": "b1ccdf822c9f8ff548af99c4d0fc04347557f77c7f54ac90ad1b59e0209f57b9"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/HitZoneVisualizer.cs.meta",
+      "sha256": "7a479fa0c47f6c3043deb6eba240cda457957dd6b44dc715a326042c2b568e28"
     },
     {
       "path": "Assets/Scripts/Gameplay/ScoreSystem.cs",
@@ -1525,7 +1547,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMountMotion.cs",
-      "sha256": "462778ef45a9dbc3f032ca08776311b508b567c46757150bfbcbf451617056d3"
+      "sha256": "9279ddfa53b7db00e13867ee5aa062607e55ab3c519cbbb9647aef9d1ae12247"
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMountMotion.cs.meta",
@@ -1533,7 +1555,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMover.cs",
-      "sha256": "5e200d0a33f723a03242033061b102a76790b35ddb5ed825feaff34ccf8a1739"
+      "sha256": "3b8b0575c389aac7abfaf6da6e8b5ca64a08f78b5d75a0373957a38112b94dea"
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMover.cs.meta",
@@ -1541,7 +1563,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetObject.cs",
-      "sha256": "281f8d993c4c877d7eee476bf6b2184dec0ae05ed523cfda26f1513d77326011"
+      "sha256": "c2ab0e6e11a5ea57e006b06723d5a54ee4359bd3571eb38847b05e18621ab371"
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetObject.cs.meta",
@@ -1641,7 +1663,7 @@
     },
     {
       "path": "Assets/Scripts/Research/ResearchSessionLog.cs",
-      "sha256": "a4b886bb8db1aebcc6f0b1920db5f7c5230ce64b87932b7a7e7927df039ae663"
+      "sha256": "54f327edb0f1816fcff0a04a946f2c12a4354b3c390ad067dce0909fdbaae8c2"
     },
     {
       "path": "Assets/Scripts/Research/ResearchSessionLog.cs.meta",
@@ -1744,6 +1766,14 @@
       "sha256": "52129a7516a229882115a7e4db5c9327919d695383ca8723096fbb3b0ed6b5d7"
     },
     {
+      "path": "Assets/Scripts/Spawning/GameplayPacingProfile.cs",
+      "sha256": "baa19b30db6002a6be474f8414ae362ff42bd0338f52371203f84726adb9d3a3"
+    },
+    {
+      "path": "Assets/Scripts/Spawning/GameplayPacingProfile.cs.meta",
+      "sha256": "3d7a457bacd54f29a6c8e9a9836282e732c10099212520116ea0995b4633ddfc"
+    },
+    {
       "path": "Assets/Scripts/Spawning/LevelDefinition.cs",
       "sha256": "72a5ae467f8dfb7dccb881eb361b317416e09d1aba4abe2ce0a5439d0fc4cd5e"
     },
@@ -1761,7 +1791,7 @@
     },
     {
       "path": "Assets/Scripts/Spawning/TargetSpawner.cs",
-      "sha256": "bf0aa36389b861f0369f0bbea3cd63014592bab84ad078ad3b7a788d925f0391"
+      "sha256": "6e5f5f35cc0178f8752878e9151c7df861f9dc4c591aa94450bbf95ce3d7f80b"
     },
     {
       "path": "Assets/Scripts/Spawning/TargetSpawner.cs.meta",
@@ -1773,7 +1803,7 @@
     },
     {
       "path": "Assets/Scripts/UI/ComboMilestonePopup.cs",
-      "sha256": "35a8d235023ed18c637a86881cb9c913fafff5411496c9e9ec1cc9daea29dc38"
+      "sha256": "993e1eb90fc0866445832492635934b1429ca29363add2374198d8a135be76cc"
     },
     {
       "path": "Assets/Scripts/UI/ComboMilestonePopup.cs.meta",
@@ -1781,7 +1811,7 @@
     },
     {
       "path": "Assets/Scripts/UI/DebugUI.cs",
-      "sha256": "c05c84f982f51dd15bcdb8d69af25e2ac09584cfa0bda3148700b33c7d219529"
+      "sha256": "8ca619afb01478d1898ae2451017b01fec9ba4e4a3931669601617fdd6cca4f8"
     },
     {
       "path": "Assets/Scripts/UI/DebugUI.cs.meta",
@@ -1853,7 +1883,7 @@
     },
     {
       "path": "Assets/Scripts/UI/TextPopup.cs",
-      "sha256": "41df19f2ce383146f09d99a2cd55db8e1a52d56d86efc5501da6ba212876e95d"
+      "sha256": "ea3200cdc036170364d078df6189a685eb7218dddf0a2f8a95ba5221ce256b23"
     },
     {
       "path": "Assets/Scripts/UI/TextPopup.cs.meta",
@@ -1881,11 +1911,27 @@
     },
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoTargetVisual.cs",
-      "sha256": "f78105754cf58b68297cf5f79f59ce17a040be19945c2e74adf1babc32b0506c"
+      "sha256": "528d6f02240ee02a3db3e58ec4ca6f0fab6495213514813637f95f5c1a3c3547"
     },
     {
       "path": "Assets/Scripts/Visuals/DigitalDojoTargetVisual.cs.meta",
       "sha256": "6c71bad150561ef5200cdab5ac596a715c5fbc419f1db923087c54d39a0a8f5f"
+    },
+    {
+      "path": "Assets/Scripts/Visuals/DojoDebrisPool.cs",
+      "sha256": "3e84048f6e0b9a4c72078d79922d1e0eadc1df8e90e310e113bd8064395d2c62"
+    },
+    {
+      "path": "Assets/Scripts/Visuals/DojoDebrisPool.cs.meta",
+      "sha256": "f1b3fe07aeb2bf42963d5ccc1c1a9397bd10c5bb5bce121c7b5c2608411f2464"
+    },
+    {
+      "path": "Assets/Scripts/Visuals/DojoGameFeel.cs",
+      "sha256": "4d3489386ec2cb4e1e96a01538009b777103bbc23a943e8b208d4fcffae4b247"
+    },
+    {
+      "path": "Assets/Scripts/Visuals/DojoGameFeel.cs.meta",
+      "sha256": "a236e7655ed20bcae8f40dc56a23d5d67c929e6b6bbf086b138c3c02ca2d141b"
     },
     {
       "path": "Assets/Scripts/Visuals/VisualPrimitive.cs",
@@ -1969,7 +2015,7 @@
     },
     {
       "path": "ProjectSettings/ProjectSettings.asset",
-      "sha256": "33bd299832c210308839dd65dd360f255e94b2081cff8b9b877aa0c32efd96d1"
+      "sha256": "75b4fc3c292060bfd297b898895a3031873c328c98bee88bacd21daf19d45993"
     },
     {
       "path": "ProjectSettings/ProjectVersion.txt",
@@ -2008,6 +2054,8 @@
       "sha256": "834f8ed55d876b98becb29b6183a8268021aadd2f2ef0392ee6358ec8c4f01a2"
     }
   ],
-  "revision": "2a62fe6e6f133cf30932cc7d507e66ce713b9c43",
-  "dirty": true
+  "generatedUtc": "2026-09-16T20:16:21.9119030Z",
+  "dirty": true,
+  "revision": "a9aee3543f08e07f15701a5cd4223403096d3cdd",
+  "unityPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe"
 }

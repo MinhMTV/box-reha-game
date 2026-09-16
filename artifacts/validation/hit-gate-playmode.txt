@@ -1,0 +1,68 @@
+PASS gate installed by runtime evaluator
+PASS dormant with no target
+PASS exact logical visual plane
+PASS gate follows changed evaluator plane
+PASS separate upper punch and lower kick heights
+PASS gate has no collider
+PASS old longitudinal rails remain absent
+PASS Punch preview Miss agrees with evaluator
+PASS label matches Miss
+PASS actual acceptance Punch -0,6
+PASS Punch preview Early agrees with evaluator
+PASS label matches Early
+PASS actual acceptance Punch -0,35
+PASS Punch preview Good agrees with evaluator
+PASS label matches Good
+PASS actual acceptance Punch -0,2
+PASS Punch preview Perfect agrees with evaluator
+PASS label matches Perfect
+PASS actual acceptance Punch 0
+PASS Punch preview Late agrees with evaluator
+PASS label matches Late
+PASS actual acceptance Punch 0,35
+PASS Punch preview Miss agrees with evaluator
+PASS label matches Miss
+PASS actual acceptance Punch 0,6
+PASS Kick preview Miss agrees with evaluator
+PASS label matches Miss
+PASS actual acceptance Kick -0,6
+PASS Kick preview Early agrees with evaluator
+PASS label matches Early
+PASS actual acceptance Kick -0,35
+PASS Kick preview Good agrees with evaluator
+PASS label matches Good
+PASS actual acceptance Kick -0,2
+PASS Kick preview Perfect agrees with evaluator
+PASS label matches Perfect
+PASS actual acceptance Kick 0
+PASS Kick preview Late agrees with evaluator
+PASS label matches Late
+PASS actual acceptance Kick 0,35
+PASS Kick preview Miss agrees with evaluator
+PASS label matches Miss
+PASS actual acceptance Kick 0,6
+PASS TOO LIGHT preserves target and gate retry
+PASS retry resolves weak target
+PASS heavy stays actionable
+PASS heavy intact stage
+PASS heavy 70 percent stage
+PASS heavy 40 percent stage
+PASS heavy zero health breaks
+PASS bounded authored fracture pool
+PASS debris has no implicit collider
+PASS heavy stays actionable
+PASS heavy intact stage
+PASS heavy 70 percent stage
+PASS heavy 40 percent stage
+PASS heavy zero health breaks
+PASS bounded authored fracture pool
+PASS debris has no implicit collider
+PASS deployment cannot be hit
+PASS normal mechanical deploy phase
+PASS alignment phase
+PASS normal deploy ends at profile duration
+PASS reduced motion keeps hit evaluation
+PASS high speed burst within concurrent bound
+PASS effects never apply global hit stop
+
+PASS pooled debris inactive after lifetime; no target mounts left

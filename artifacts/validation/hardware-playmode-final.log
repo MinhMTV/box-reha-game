@@ -1,23 +1,23 @@
-VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 59084)
-VBCSCompiler prewarm took 4.32 ms
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 51732)
+VBCSCompiler prewarm took 5.30 ms
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.6/respin/6000.6.0f1-fa21a270ab12' branch; Version is '6000.6.0f1 (f7f8ed4d1e24) revision 16251117'; Using compiler version '194234433'; Build Type 'Release'
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi" at "2026-09-15T16:38:44.3657607Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi" at "2026-09-16T20:10:36.7229207Z"
 OS: 'Windows 11  (10.0.26200) Professional' Language: 'de' Physical Memory: 65349 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
 Process architecture: x64
-Date: 2026-09-15T16:38:44Z
+Date: 2026-09-16T20:10:36Z
 [Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 34812, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
 [Licensing::Module] LicensingClient has failed validation; ignoring
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.3+d7ffd15
-  Session Id:              eaf5e09e5e7949a9ac6975036561a4f4
+  Session Id:              85067d9ac42b441bac63e955da18c681
   Correlation Id:          dee16adbb9b0733c6d3ec67649ba7d63
-  External correlation Id: 8204691964344582634
+  External correlation Id: 4920300352482991188
   Machine Id:              RQAmcHbobxLfdLl5bNXrLWQKMso=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-manmi" (connect: 0.00s, validation: 0.00s, handshake: 0.04s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi-notifications" at "2026-09-15T16:38:44.4035594Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi-notifications" at "2026-09-16T20:10:36.7683026Z"
 [Licensing::Module] Error: Access token is unavailable; failed to update
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
@@ -27,7 +27,7 @@ Date: 2026-09-15T16:38:44Z
   Expiration: Unlimited
 [Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
 [Licensing::Client] Successfully resolved entitlement details
-[Licensing::Module] Licensing Background thread has ended after 0.04s
+[Licensing::Module] Licensing Background thread has ended after 0.05s
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe
@@ -80,26 +80,26 @@ E:/Programming Projekte/box-reha-game
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
 Logging is directed to a specific file, skipping project log.
-Player connection [27532]  Target information:
+Player connection [67192]  Target information:
 
-Player connection [27532]  * "[IP] 169.254.123.79 [Port] 55504 [Flags] 2 [Guid] 2009824519 [EditorId] 2009824519 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [67192]  * "[IP] 169.254.123.79 [Port] 55504 [Flags] 2 [Guid] 47469098 [EditorId] 47469098 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [27532]  * "[IP] 192.168.253.1 [Port] 55504 [Flags] 2 [Guid] 2009824519 [EditorId] 2009824519 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [67192]  * "[IP] 192.168.253.1 [Port] 55504 [Flags] 2 [Guid] 47469098 [EditorId] 47469098 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [27532]  * "[IP] 192.168.150.1 [Port] 55504 [Flags] 2 [Guid] 2009824519 [EditorId] 2009824519 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [67192]  * "[IP] 192.168.150.1 [Port] 55504 [Flags] 2 [Guid] 47469098 [EditorId] 47469098 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [27532]  * "[IP] 172.18.96.1 [Port] 55504 [Flags] 2 [Guid] 2009824519 [EditorId] 2009824519 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [67192]  * "[IP] 172.18.96.1 [Port] 55504 [Flags] 2 [Guid] 47469098 [EditorId] 47469098 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [27532]  * "[IP] 169.254.83.107 [Port] 55504 [Flags] 2 [Guid] 2009824519 [EditorId] 2009824519 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [67192]  * "[IP] 169.254.83.107 [Port] 55504 [Flags] 2 [Guid] 47469098 [EditorId] 47469098 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [27532]  * "[IP] 192.168.0.90 [Port] 55504 [Flags] 2 [Guid] 2009824519 [EditorId] 2009824519 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [67192]  * "[IP] 192.168.0.90 [Port] 55504 [Flags] 2 [Guid] 47469098 [EditorId] 47469098 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [27532] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [27532] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [67192] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [67192] Host joined alternative multi-casting on [225.0.0.222:34997]...
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
-[Package Manager] Connected to IPC stream "Upm-72160" after 0.2 seconds.
+[Package Manager] Connected to IPC stream "Upm-72760" after 0.2 seconds.
 [Licensing::Client] Successfully resolved entitlement details
 Library Redirect Path: Library/
 Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/Unity.DataStore.exe 
@@ -128,7 +128,7 @@ Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Managed
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56160
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56760
 CodeReloadManager initialized
 ImportWorker Server TCP listen port: 0
 AcceleratorClientConnectionCallback - disconnected - :0
@@ -137,31 +137,31 @@ Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Registered in 0.002138 seconds.
+Registered in 0.002149 seconds.
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.535 seconds
-Domain Reload Profiling: 989ms
-	BeginReloadAssembly (111ms)
-		CreateAndSetChildDomain (15ms)
+- Finished resetting the current domain, in  0.515 seconds
+Domain Reload Profiling: 920ms
+	BeginReloadAssembly (100ms)
+		CreateAndSetChildDomain (12ms)
 	RebuildCommonClasses (4ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (56ms)
-	LoadAllAssembliesAndSetupDomain (269ms)
-		LoadAssemblies (93ms)
-		TypeCache.Refresh (190ms)
-			TypeCache.ScanAssembly (178ms)
-		AnalyzeDomain (1ms)
-	FinalizeReload (536ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (48ms)
+	LoadAllAssembliesAndSetupDomain (240ms)
+		LoadAssemblies (86ms)
+		TypeCache.Refresh (164ms)
+			TypeCache.ScanAssembly (154ms)
+		AnalyzeDomain (0ms)
+	FinalizeReload (516ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (7ms)
-			BeforeProcessingInitializeOnLoad (75ms)
-			ProcessInitializeOnLoadAttributes (98ms)
-			ProcessInitializeOnLoadMethodAttributes (177ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (71ms)
+			ProcessInitializeOnLoadAttributes (105ms)
+			ProcessInitializeOnLoadMethodAttributes (161ms)
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully resolved entitlement details
 Application.AssetDatabase Initial Refresh Start
@@ -231,25 +231,41 @@ Application.AssetDatabase Initial Refresh Start
   Git packages:
     com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#b92c05a25820cfc9f59ce4094eb46aaec8632ea2 (location: E:\Programming Projekte\box-reha-game\Library\PackageCache\com.coplaydev.unity-mcp@13fb3ee12774)
 [Subsystems] No new subsystems found in resolved package list.
-[Package Manager] Done registering packages in 0.02 seconds
+[Package Manager] Done registering packages in 0.01 seconds
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 [ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
 WorkingDir: E:/Programming Projekte/box-reha-game
 DisplayProgressbar: Compiling Scripts
-ExitCode: 0 Duration: 0s816ms
+ExitCode: 0 Duration: 0s787ms
 [649/831    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
 [827/831    0s] Csc Library/Bee/artifacts/1300b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\Editor\PacingRuntimeProbe.cs(36,36): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\PacingRuntimeProbe.cs(36,92): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\PacingRuntimeProbe.cs(37,9): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\HitGatePlayModeChecks.cs(22,66): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\HitGatePlayModeChecks.cs(22,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\HitGatePlayModeChecks.cs(23,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\HitGatePlayModeChecks.cs(23,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\HitGatePlayModeChecks.cs(24,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
 Assets\Editor\GameRegressionChecks.cs(39,9): warning CS0618: 'PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)' is obsolete: 'Use SetApplicationIdentifier(NamedBuildTarget buildTarget, string identifier) instead'
 
 Assets\Editor\GameRegressionChecks.cs(45,9): warning CS0618: 'PlayerSettings.SetScriptingBackend(BuildTargetGroup, ScriptingImplementation)' is obsolete: 'Use SetScriptingBackend(NamedBuildTarget buildTarget, ScriptingImplementation backend) instead'
 
+Assets\Editor\DigitalDojoSceneGenerator.cs(161,23): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
 Assets\Editor\GameRegressionChecks.cs(63,13): warning CS0618: 'PlayerSettings.GetApplicationIdentifier(BuildTargetGroup)' is obsolete: 'Use GetApplicationIdentifier(NamedBuildTarget buildTarget) instead'
 
 Assets\Editor\GameRegressionChecks.cs(66,16): warning CS0618: 'PlayerSettings.GetScriptingBackend(BuildTargetGroup)' is obsolete: 'Use GetScriptingBackend(NamedBuildTarget buildTarget) instead'
-
-Assets\Editor\DigitalDojoSceneGenerator.cs(161,23): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
 
 Assets\Editor\DigitalDojoAssetIntegration.cs(77,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
@@ -259,55 +275,87 @@ Assets\Editor\DigitalDojoAssetIntegration.cs(102,74): warning CS0618: 'FindObjec
 
 Assets\Editor\DigitalDojoAssetIntegration.cs(102,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(40,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\HitGatePlayModeChecks.cs(47,34): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(50,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\HitGatePlayModeChecks.cs(47,140): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(52,91): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\HitGatePlayModeChecks.cs(90,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(52,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(70,59): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(53,98): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(70,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(53,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(71,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(68,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(71,21): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(68,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(72,68): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(77,92): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(72,21): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(77,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(74,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(82,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(111,86): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(82,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(111,47): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(84,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(112,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(84,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(42,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(86,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(52,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(86,29): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(54,91): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(95,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(54,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(98,54): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(55,98): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(101,71): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(55,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(101,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(70,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(102,105): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(70,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(102,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(79,92): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(103,108): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(79,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(103,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(84,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(105,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(84,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(86,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(86,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(88,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(88,29): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(97,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(100,54): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(103,71): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(103,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(104,105): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(104,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(105,108): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(105,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(113,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\DigitalDojoCapture.cs(115,104): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\DigitalDojoCapture.cs(115,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\DigitalDojoCapture.cs(124,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
 Assets\Editor\DigitalDojoSceneGenerator.cs(340,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
 
@@ -317,35 +365,35 @@ Assets\Editor\GameRegressionChecks.cs(213,17): warning CS0618: 'Object.FindObjec
 
 Assets\Editor\SceneAutoSetup.cs(534,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
 
-Assets\Editor\DigitalDojoCapture.cs(126,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(145,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(127,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(146,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(128,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(147,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(131,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(150,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(131,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(150,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(208,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(227,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(211,110): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(230,110): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(211,36): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(230,36): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(221,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(240,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 
-Assets\Editor\DigitalDojoCapture.cs(227,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(246,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(227,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(246,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(237,69): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(256,69): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(237,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(256,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 
-Assets\Editor\DigitalDojoCapture.cs(250,96): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(269,96): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 
-Assets\Editor\DigitalDojoCapture.cs(250,45): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(269,45): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 [828/831    0s] ILPostProcess Library/Bee/artifacts/1300b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
 Processing assembly Library/Bee/artifacts/1300b0aE.dag/Assembly-CSharp-Editor.dll, with 154 defines and 355 references
 
@@ -354,63 +402,87 @@ processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.Burst
 1 processor(s) skipped this assembly
 
 running Unity.Jobs.CodeGen.JobsILPostProcessor
-[829/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
-[830/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
-*** Tundra build success (0.79 seconds), 5 items updated, 831 evaluated
+[829/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[830/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (0.75 seconds), 5 items updated, 831 evaluated
+Assets\Editor\PacingRuntimeProbe.cs(36,36): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\PacingRuntimeProbe.cs(36,92): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\PacingRuntimeProbe.cs(37,9): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\HitGatePlayModeChecks.cs(22,66): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\HitGatePlayModeChecks.cs(22,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\HitGatePlayModeChecks.cs(23,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\HitGatePlayModeChecks.cs(23,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\HitGatePlayModeChecks.cs(24,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 Assets\Editor\GameRegressionChecks.cs(39,9): warning CS0618: 'PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)' is obsolete: 'Use SetApplicationIdentifier(NamedBuildTarget buildTarget, string identifier) instead'
 Assets\Editor\GameRegressionChecks.cs(45,9): warning CS0618: 'PlayerSettings.SetScriptingBackend(BuildTargetGroup, ScriptingImplementation)' is obsolete: 'Use SetScriptingBackend(NamedBuildTarget buildTarget, ScriptingImplementation backend) instead'
+Assets\Editor\DigitalDojoSceneGenerator.cs(161,23): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
 Assets\Editor\GameRegressionChecks.cs(63,13): warning CS0618: 'PlayerSettings.GetApplicationIdentifier(BuildTargetGroup)' is obsolete: 'Use GetApplicationIdentifier(NamedBuildTarget buildTarget) instead'
 Assets\Editor\GameRegressionChecks.cs(66,16): warning CS0618: 'PlayerSettings.GetScriptingBackend(BuildTargetGroup)' is obsolete: 'Use GetScriptingBackend(NamedBuildTarget buildTarget) instead'
-Assets\Editor\DigitalDojoSceneGenerator.cs(161,23): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
 Assets\Editor\DigitalDojoAssetIntegration.cs(77,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 Assets\Editor\DigitalDojoAssetIntegration.cs(77,32): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
 Assets\Editor\DigitalDojoAssetIntegration.cs(102,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
 Assets\Editor\DigitalDojoAssetIntegration.cs(102,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(40,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(50,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(52,91): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(52,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(53,98): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(53,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(68,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(68,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(77,92): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(77,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(82,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(82,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(84,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(84,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(86,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(86,29): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(95,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(98,54): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(101,71): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(101,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(102,105): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(102,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(103,108): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(103,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(105,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\HitGatePlayModeChecks.cs(47,34): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\HitGatePlayModeChecks.cs(47,140): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\HitGatePlayModeChecks.cs(90,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\PacingRuntimeProbe.cs(70,59): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(70,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(71,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(71,21): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(72,68): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(72,21): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(74,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\PacingRuntimeProbe.cs(111,86): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\PacingRuntimeProbe.cs(111,47): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\PacingRuntimeProbe.cs(112,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(42,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(52,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(54,91): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(54,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(55,98): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(55,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(70,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(70,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(79,92): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(79,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(84,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(84,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(86,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(86,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(88,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(88,29): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(97,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(100,54): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(103,71): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(103,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(104,105): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(104,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(105,108): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(105,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(113,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(115,104): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(115,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(124,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
 Assets\Editor\DigitalDojoSceneGenerator.cs(340,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
 Assets\Editor\GameRegressionChecks.cs(208,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
 Assets\Editor\GameRegressionChecks.cs(213,17): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
 Assets\Editor\SceneAutoSetup.cs(534,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Editor\DigitalDojoCapture.cs(126,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(127,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(128,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(131,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(131,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(208,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(211,110): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(211,36): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(221,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(227,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(227,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(237,69): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(237,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(250,96): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(250,45): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-AssetDatabase: script compilation time: 1.203636s
+Assets\Editor\DigitalDojoCapture.cs(145,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(146,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(147,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(150,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(150,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(227,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(230,110): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(230,36): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(240,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\DigitalDojoCapture.cs(246,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(246,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(256,69): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(256,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\DigitalDojoCapture.cs(269,96): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\DigitalDojoCapture.cs(269,45): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+AssetDatabase: script compilation time: 1.132836s
 Begin MonoManager ReloadAssembly
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
@@ -425,152 +497,152 @@ Native extension for WebGL target not found
 [MODES] Loading mode Default (0) for mode-current-id-Digital Dojo
 ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  1.085 seconds
-Domain Reload Profiling: 1804ms
-	BeginReloadAssembly (303ms)
-		DisableScriptedObjects (23ms)
-		CreateAndSetChildDomain (151ms)
-	RebuildCommonClasses (7ms)
+- Finished resetting the current domain, in  1.098 seconds
+Domain Reload Profiling: 1800ms
+	BeginReloadAssembly (279ms)
+		DisableScriptedObjects (22ms)
+		CreateAndSetChildDomain (137ms)
+	RebuildCommonClasses (6ms)
 	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (36ms)
-	LoadAllAssembliesAndSetupDomain (361ms)
-		LoadAssemblies (219ms)
-		TypeCache.Refresh (86ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (363ms)
+		LoadAssemblies (206ms)
+		TypeCache.Refresh (87ms)
 			TypeCache.ScanAssembly (77ms)
-		AnalyzeDomain (39ms)
-			BuildScriptInfoCaches (35ms)
+		AnalyzeDomain (38ms)
+			BuildScriptInfoCaches (34ms)
 			ResolveRequiredComponents (3ms)
-	FinalizeReload (1086ms)
+	FinalizeReload (1099ms)
 		SetupLoadedEditorAssemblies (0ms)
 			LogAssemblyErrors (3ms)
-			InitializePlatformSupportModulesInManaged (6ms)
-			BeforeProcessingInitializeOnLoad (83ms)
-			ProcessInitializeOnLoadAttributes (645ms)
-			ProcessInitializeOnLoadMethodAttributes (143ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (77ms)
+			ProcessInitializeOnLoadAttributes (648ms)
+			ProcessInitializeOnLoadMethodAttributes (149ms)
 			AfterProcessingInitializeOnLoad (6ms)
-		AwakeInstancesAfterBackupRestoration (28ms)
+		AwakeInstancesAfterBackupRestoration (27ms)
 Starting new worker id: 0 with log in E:/Programming Projekte/box-reha-game/Logs/AssetImportWorkerHW0.log
 
-Asset Pipeline Refresh (id=643347c8beeadb6448785f7bf51cc2f1): Total: 3.453 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+Asset Pipeline Refresh (id=d70595bc2c0838d428300a0fd997e9b2): Total: 3.351 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
 	(Values over 0.05ms)
 	Summary:
 		Imports: total=0 (actual=0, local cache=0, cache server=0)
-		Asset DB Process Time: managed=0 ms, native=1364 ms
-		Asset DB Callback time: managed=70 ms, native=21 ms
-		Scripting: domain reloads=1, domain reload time=757 ms, compile time=1205 ms, other=34 ms
+		Asset DB Process Time: managed=0 ms, native=1356 ms
+		Asset DB Callback time: managed=69 ms, native=17 ms
+		Scripting: domain reloads=1, domain reload time=739 ms, compile time=1135 ms, other=33 ms
 		Project Asset Count: scripts=1025, non-scripts=2121
-		Asset File Changes: new=0, changed=2, moved=0, deleted=0
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
 		Scan Filter Count: 0
-	InvokePackagesCallback: 19.867ms
-	ApplyChangesToAssetFolders: 0.403ms
-	Scan: 102.278ms
-	Collect global state as custom dependencies: 5.913ms
-	OnSourceAssetsModified: 0.530ms
-	CategorizeScriptCompilationAssets: 13.791ms
-	ProcessAssetsWithTransientArtifactChanges: 40.908ms
-	CategorizeAssets: 21.110ms
-	CompileScripts: 1205.455ms
-	ImportOutOfDateAssets: 1095.858ms (1088.209ms without children)
-		UnloadImportedAssets: 0.069ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.325ms
-		ImportSchedulerStart: 7.252ms
-	PostProcessAllAssets: 71.819ms
-		VCAutoAddAssetPostprocess 0.847ms
-		XRBuildSystem.XRAssetImported 0.079ms
-		MonoPostProcessAllAssets: 70.562ms
-			AssetPostprocessor.OnPostprocessAllAssets 38.641ms
-			StyleCatalogPostProcessor.OnPostprocessAllAssets 7.556ms
-			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.057ms
-			AssetChangedListener.OnPostprocessAllAssets 1.451ms
-			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.390ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.246ms
-			VFXGraphPreprocessor.OnPostprocessAllAssets 1.014ms
-			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.921ms
-			SyncVS.PostprocessSyncProject 0.794ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.676ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.544ms
-			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.454ms
-			MaterialPostprocessor.OnPostprocessAllAssets 0.433ms
-			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.429ms
-			CinemachineSettings.OnPostprocessAllAssets 0.250ms
-			TextAssetPostProcessor.OnPostprocessAllAssets 0.242ms
-			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.205ms
-			AudioMixerPostprocessor.OnPostprocessAllAssets 0.198ms
-			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.198ms
-			AssetEvents.OnPostprocessAllAssets 0.183ms
-			PostProcessor.OnPostprocessAllAssets 0.152ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.134ms
+	InvokePackagesCallback: 16.749ms
+	ApplyChangesToAssetFolders: 0.490ms
+	Scan: 53.159ms
+	Collect global state as custom dependencies: 5.730ms
+	OnSourceAssetsModified: 0.445ms
+	CategorizeScriptCompilationAssets: 13.527ms
+	ProcessAssetsWithTransientArtifactChanges: 44.596ms
+	CategorizeAssets: 22.779ms
+	CompileScripts: 1134.685ms
+	ImportOutOfDateAssets: 1107.847ms (1101.163ms without children)
+		UnloadImportedAssets: 0.065ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.336ms
+		ImportSchedulerStart: 6.279ms
+	PostProcessAllAssets: 70.421ms
+		VCAutoAddAssetPostprocess 0.854ms
+		XRBuildSystem.XRAssetImported 0.078ms
+		MonoPostProcessAllAssets: 69.181ms
+			AssetPostprocessor.OnPostprocessAllAssets 36.563ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 7.726ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.068ms
+			AssetChangedListener.OnPostprocessAllAssets 1.494ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.467ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.250ms
+			VFXGraphPreprocessor.OnPostprocessAllAssets 1.053ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.898ms
+			SyncVS.PostprocessSyncProject 0.851ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.682ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.597ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.411ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.404ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.370ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.258ms
+			CinemachineSettings.OnPostprocessAllAssets 0.242ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.207ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.199ms
+			AssetEvents.OnPostprocessAllAssets 0.196ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.195ms
+			PostProcessor.OnPostprocessAllAssets 0.156ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.145ms
 			DomainReloadProcessor.OnPostprocessAllAssets 0.132ms
-			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.125ms
-			SpeedTreePostProcessor.OnPostprocessAllAssets 0.113ms
-			SamplePostprocessor.OnPostprocessAllAssets 0.098ms
-			ConfigAssetsTracker.OnPostprocessAllAssets 0.095ms
-			ThemePostprocessor.OnPostprocessAllAssets 0.087ms
-			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.081ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.072ms
-	PostAssetChangesProfiler: 0.929ms
-	UnloadStreamsBegin: 1.125ms
-	PersistCurrentRevisions: 0.080ms
-	GenerateScriptTypeHashes: 1.203ms
-	GenerateScriptTypeSerializationHashes: 2.203ms
-	Untracked: 864.245ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.123ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.120ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.112ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.097ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.091ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.078ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.059ms
+	PostAssetChangesProfiler: 0.919ms
+	UnloadStreamsBegin: 1.123ms
+	PersistCurrentRevisions: 0.081ms
+	GenerateScriptTypeHashes: 1.893ms
+	GenerateScriptTypeSerializationHashes: 3.442ms
+	Untracked: 871.573ms
 
 Application.AssetDatabase Initial Refresh End
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Scanning for USB devices : 6.071ms
+Scanning for USB devices : 6.569ms
 Initializing Unity extensions:
 Unloading 63 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 4433 unused Assets / (9.9 MB). Loaded Objects now: 5165.
-Memory consumption went from 339.0 MB to 329.1 MB.
-Total: 8.648800 ms (FindLiveObjects: 0.378300 ms CreateObjectMapping: 0.129300 ms MarkObjects: 4.607200 ms  DeleteObjects: 3.344800 ms)
+Unloading 4439 unused Assets / (9.8 MB). Loaded Objects now: 5172.
+Memory consumption went from 337.4 MB to 327.6 MB.
+Total: 9.878200 ms (FindLiveObjects: 0.380500 ms CreateObjectMapping: 0.128600 ms MarkObjects: 5.031600 ms  DeleteObjects: 4.159700 ms)
 
 Opening scene 'Assets/Scenes/Boot.unity'
 Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Boot.unity'
-	Deserialize:            0.692 ms
-	Integration:            7.527 ms
+	Deserialize:            0.669 ms
+	Integration:            6.547 ms
 	Integration of assets:  0.001 ms
-	Thread Wait Time:       0.007 ms
-	Total Operation Time:   8.227 ms
-Unloading 376 unused Assets / (26.0 MB). Loaded Objects now: 5178.
-Memory consumption went from 352.5 MB to 326.5 MB.
-Total: 8.905300 ms (FindLiveObjects: 0.365600 ms CreateObjectMapping: 0.942700 ms MarkObjects: 6.309100 ms  DeleteObjects: 1.097400 ms)
+	Thread Wait Time:       0.009 ms
+	Total Operation Time:   7.226 ms
+Unloading 376 unused Assets / (26.0 MB). Loaded Objects now: 5185.
+Memory consumption went from 350.9 MB to 324.9 MB.
+Total: 6.111600 ms (FindLiveObjects: 0.283100 ms CreateObjectMapping: 0.092300 ms MarkObjects: 5.041700 ms  DeleteObjects: 0.504400 ms)
 
 Opening scene 'Assets/Scenes/MainMenu.unity'
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/MainMenu.unity'
-	Deserialize:            18.249 ms
-	Integration:            23.105 ms
+	Deserialize:            20.252 ms
+	Integration:            23.339 ms
 	Integration of assets:  0.004 ms
-	Thread Wait Time:       0.094 ms
-	Total Operation Time:   41.452 ms
-Unloading 3 unused Assets / (5.0 KB). Loaded Objects now: 6647.
-Memory consumption went from 342.3 MB to 342.3 MB.
-Total: 5.035100 ms (FindLiveObjects: 0.299400 ms CreateObjectMapping: 0.083300 ms MarkObjects: 4.443200 ms  DeleteObjects: 0.027800 ms)
+	Thread Wait Time:       0.136 ms
+	Total Operation Time:   43.731 ms
+Unloading 3 unused Assets / (5.0 KB). Loaded Objects now: 6654.
+Memory consumption went from 340.7 MB to 340.7 MB.
+Total: 5.079100 ms (FindLiveObjects: 0.303400 ms CreateObjectMapping: 0.084800 ms MarkObjects: 4.475600 ms  DeleteObjects: 0.025800 ms)
 
 Opening scene 'Assets/Scenes/Game.unity'
 Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Game.unity'
-	Deserialize:            4.310 ms
-	Integration:            7.730 ms
-	Integration of assets:  2.328 ms
-	Thread Wait Time:       0.068 ms
-	Total Operation Time:   14.435 ms
-Unloading 13 unused Assets / (12.9 MB). Loaded Objects now: 5670.
-Memory consumption went from 346.0 MB to 333.1 MB.
-Total: 5.110600 ms (FindLiveObjects: 0.264700 ms CreateObjectMapping: 0.074400 ms MarkObjects: 4.535800 ms  DeleteObjects: 0.057500 ms)
+	Deserialize:            4.980 ms
+	Integration:            7.566 ms
+	Integration of assets:  1.961 ms
+	Thread Wait Time:       0.017 ms
+	Total Operation Time:   14.524 ms
+Unloading 13 unused Assets / (12.8 MB). Loaded Objects now: 5677.
+Memory consumption went from 344.4 MB to 331.5 MB.
+Total: 5.044000 ms (FindLiveObjects: 0.261300 ms CreateObjectMapping: 0.078000 ms MarkObjects: 4.467800 ms  DeleteObjects: 0.069000 ms)
 
 Opening scene 'Assets/Scenes/Results.unity'
 Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Results.unity'
-	Deserialize:            1.628 ms
-	Integration:            5.417 ms
-	Integration of assets:  0.002 ms
-	Thread Wait Time:       0.013 ms
-	Total Operation Time:   7.060 ms
-Unloading 312 unused Assets / (3.0 MB). Loaded Objects now: 5289.
-Memory consumption went from 332.7 MB to 329.7 MB.
-Total: 6.363100 ms (FindLiveObjects: 0.286000 ms CreateObjectMapping: 0.092200 ms MarkObjects: 5.362000 ms  DeleteObjects: 0.393600 ms)
+	Deserialize:            1.565 ms
+	Integration:            5.506 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       0.007 ms
+	Total Operation Time:   7.080 ms
+Unloading 312 unused Assets / (1.6 MB). Loaded Objects now: 5296.
+Memory consumption went from 331.2 MB to 329.7 MB.
+Total: 5.493300 ms (FindLiveObjects: 0.311600 ms CreateObjectMapping: 0.091000 ms MarkObjects: 4.606600 ms  DeleteObjects: 0.293300 ms)
 
 Game regression report: E:\Programming Projekte\box-reha-game\artifacts\validation\unity-editor-checks.json / passed=11 failed=0
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
@@ -580,34 +652,34 @@ UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,st
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
 GameRegressionChecks:RunBatch () (at Assets/Editor/GameRegressionChecks.cs:197)
-DigitalDojoCapture:Run () (at Assets/Editor/DigitalDojoCapture.cs:24)
+DigitalDojoCapture:Run () (at Assets/Editor/DigitalDojoCapture.cs:26)
 
 (Filename: Assets/Editor/GameRegressionChecks.cs Line: 197)
 
 Opening scene 'Assets/Scenes/MainMenu.unity'
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/MainMenu.unity'
-	Deserialize:            16.372 ms
-	Integration:            12.762 ms
+	Deserialize:            13.558 ms
+	Integration:            19.650 ms
 	Integration of assets:  0.004 ms
-	Thread Wait Time:       0.104 ms
-	Total Operation Time:   29.243 ms
-Unloading 2 unused Assets / (4.8 KB). Loaded Objects now: 6648.
-Memory consumption went from 343.5 MB to 343.5 MB.
-Total: 5.321700 ms (FindLiveObjects: 0.344200 ms CreateObjectMapping: 0.112900 ms MarkObjects: 4.649400 ms  DeleteObjects: 0.026000 ms)
+	Thread Wait Time:       0.020 ms
+	Total Operation Time:   33.233 ms
+Unloading 2 unused Assets / (4.6 KB). Loaded Objects now: 6655.
+Memory consumption went from 342.0 MB to 342.0 MB.
+Total: 4.469700 ms (FindLiveObjects: 0.290400 ms CreateObjectMapping: 0.063700 ms MarkObjects: 3.916600 ms  DeleteObjects: 0.017500 ms)
 
-[Project] Loading completed in 6.121 seconds
-	Project init time: 				5.323 seconds
+[Project] Loading completed in 5.980 seconds
+	Project init time: 				5.129 seconds
 		Template init time: 		0.000 seconds
-		Package Manager init time: 		0.192 seconds
-		Asset Database init time: 		0.195 seconds
+		Package Manager init time: 		0.203 seconds
+		Asset Database init time: 		0.189 seconds
 		Global illumination init time: 	0.002 seconds
-		Assemblies load time: 			1.027 seconds
+		Assemblies load time: 			0.957 seconds
 		Unity extensions init time: 	0.009 seconds
-		Asset Database refresh time: 	3.453 seconds
-	Scene opening time: 			0.323 seconds
-##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1789490330477,"processId":72160,"projectLoad":6.1209471,"projectInit":5.3232666,"templateInit":0.0,"packageManagerInit":0.1915823,"assetDatabaseInit":0.1945406,"globalIlluminationInit":0.0022072,"assembliesLoad":1.0273787,"unityExtensionsInit":0.0093222,"assetDatabaseRefresh":3.4533641,"sceneOpening":0.3232754}
-##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1789490330477,"processId":72160,"editorVersion":"6000.6.0f1 (f7f8ed4d1e24)","branch":"6000.6/respin/6000.6.0f1-fa21a270ab12","buildType":"Release","platform":"Windows"}
+		Asset Database refresh time: 	3.351 seconds
+	Scene opening time: 			0.337 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1789589442691,"processId":72760,"projectLoad":5.980095899999999,"projectInit":5.129286,"templateInit":0.0,"packageManagerInit":0.2033139,"assetDatabaseInit":0.1889384,"globalIlluminationInit":0.0020298,"assembliesLoad":0.9569654,"unityExtensionsInit":0.009483,"assetDatabaseRefresh":3.3510261,"sceneOpening":0.3369107}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1789589442691,"processId":72760,"editorVersion":"6000.6.0f1 (f7f8ed4d1e24)","branch":"6000.6/respin/6000.6.0f1-fa21a270ab12","buildType":"Release","platform":"Windows"}
 Reloading assemblies for play mode.
 Reloading assemblies after forced synchronous recompile.
 Begin MonoManager ReloadAssembly
@@ -624,134 +696,309 @@ Worker ready: AssetImportWorkerHW0 0
 [MODES] ModeService[none].LoadModes
 ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  1.235 seconds
-Domain Reload Profiling: 1625ms
-	BeginReloadAssembly (188ms)
-		DisableScriptedObjects (34ms)
-		CreateAndSetChildDomain (46ms)
+- Finished resetting the current domain, in  1.135 seconds
+Domain Reload Profiling: 1533ms
+	BeginReloadAssembly (182ms)
+		DisableScriptedObjects (23ms)
+		CreateAndSetChildDomain (49ms)
 	RebuildCommonClasses (7ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (38ms)
-	LoadAllAssembliesAndSetupDomain (145ms)
-		LoadAssemblies (90ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (43ms)
+	LoadAllAssembliesAndSetupDomain (152ms)
+		LoadAssemblies (93ms)
 		TypeCache.Refresh (5ms)
-		AnalyzeDomain (5ms)
-			ResolveRequiredComponents (3ms)
-	FinalizeReload (1236ms)
+		AnalyzeDomain (6ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (1136ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (6ms)
-			BeforeProcessingInitializeOnLoad (165ms)
-			ProcessInitializeOnLoadAttributes (612ms)
-			ProcessInitializeOnLoadMethodAttributes (136ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (127ms)
+			ProcessInitializeOnLoadAttributes (580ms)
+			ProcessInitializeOnLoadMethodAttributes (135ms)
 			AfterProcessingInitializeOnLoad (6ms)
-		AwakeInstancesAfterBackupRestoration (48ms)
+		AwakeInstancesAfterBackupRestoration (49ms)
 No restricted APIs configured; Validation skipped.
 Checking 7 assemblies for restricted APIs found 0 usage(s) in 3 ms
 
-Asset Pipeline Refresh (id=922665fdb141960458c23d044787fac6): Total: 2.102 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+Asset Pipeline Refresh (id=fd5cc04ec03058948a04f0e99ae52357): Total: 2.001 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
 	(Values over 0.05ms)
 	Summary:
 		Imports: total=0 (actual=0, local cache=0, cache server=0)
-		Asset DB Process Time: managed=0 ms, native=1389 ms
-		Asset DB Callback time: managed=183 ms, native=102 ms
-		Scripting: domain reloads=1, domain reload time=424 ms, compile time=2 ms, other=0 ms
+		Asset DB Process Time: managed=0 ms, native=1281 ms
+		Asset DB Callback time: managed=169 ms, native=117 ms
+		Scripting: domain reloads=1, domain reload time=430 ms, compile time=2 ms, other=0 ms
 		Project Asset Count: scripts=1025, non-scripts=2121
 		Asset File Changes: new=0, changed=0, moved=0, deleted=0
 		Scan Filter Count: 0
-	InvokePackagesCallback: 0.967ms
-	ApplyChangesToAssetFolders: 0.167ms
-	Collect global state as custom dependencies: 1.077ms
-	ProcessAssetsWithTransientArtifactChanges: 89.751ms
-	CategorizeAssets: 19.463ms
-	CompileScripts: 1.938ms
-	ImportOutOfDateAssets: 1238.719ms (1237.977ms without children)
-		UnloadImportedAssets: 0.220ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.360ms
-		ImportSchedulerStart: 0.143ms
-	PostProcessAllAssets: 284.060ms
-		PostProcessCallbackCreateDeferredMaterials 8.108ms
-		AssemblyValidation.PostprocessAllAssets 5.191ms
-		ShaderAssetModifiedCallback 4.205ms
-		RaytracingShaderImportPostprocess 3.585ms
-		ComputeShaderImportPostprocess 3.377ms
-		SpeedTreeImporter.PostprocessAllAssets 2.781ms
-		LocalizationDatabase.AssetDatabasePostprocessCallback 1.366ms
-		BlockShaderImporter.PostprocessAllAssets 1.324ms
-		XRBuildSystem.XRAssetImported 0.107ms
-		MonoPostProcessAllAssets: 183.218ms
-			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 74.438ms
-			AssetPostprocessor.OnPostprocessAllAssets 24.220ms
-			MaterialPostprocessor.OnPostprocessAllAssets 19.368ms
-			PostProcessor.OnPostprocessAllAssets 18.557ms
-			StyleCatalogPostProcessor.OnPostprocessAllAssets 10.735ms
-			TextAssetPostProcessor.OnPostprocessAllAssets 8.083ms
-			AssetChangedListener.OnPostprocessAllAssets 7.158ms
-			BuilderAssetPostprocessor.OnPostprocessAllAssets 3.977ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.904ms
-			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.151ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.128ms
-			VFXGraphPreprocessor.OnPostprocessAllAssets 1.112ms
-			SyncVS.PostprocessSyncProject 0.796ms
-			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.393ms
-			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.375ms
-			CinemachineSettings.OnPostprocessAllAssets 0.234ms
-			ThemePostprocessor.OnPostprocessAllAssets 0.217ms
-			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.206ms
-			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.202ms
-			AudioMixerPostprocessor.OnPostprocessAllAssets 0.197ms
-			AssetEvents.OnPostprocessAllAssets 0.188ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.186ms
-			SpeedTreePostProcessor.OnPostprocessAllAssets 0.175ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.141ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.126ms
-			DomainReloadProcessor.OnPostprocessAllAssets 0.122ms
-			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.103ms
-			ConfigAssetsTracker.OnPostprocessAllAssets 0.095ms
-			SamplePostprocessor.OnPostprocessAllAssets 0.089ms
-			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.077ms
-			AudioContainerPostProcessor.OnPostprocessAllAssets 0.057ms
-	PostAssetChangesProfiler: 2.074ms
-	GatherAllCurrentPrimaryImportResultRevisions: 0.117ms
+	InvokePackagesCallback: 0.957ms
+	ApplyChangesToAssetFolders: 0.171ms
+	Collect global state as custom dependencies: 0.897ms
+	ProcessAssetsWithTransientArtifactChanges: 82.178ms
+	CategorizeAssets: 19.067ms
+	CompileScripts: 1.593ms
+	ImportOutOfDateAssets: 1138.594ms (1137.977ms without children)
+		UnloadImportedAssets: 0.148ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.311ms
+		ImportSchedulerStart: 0.141ms
+	PostProcessAllAssets: 284.740ms
+		PostProcessCallbackCreateDeferredMaterials 7.462ms
+		AssemblyValidation.PostprocessAllAssets 5.567ms
+		ShaderAssetModifiedCallback 3.917ms
+		RaytracingShaderImportPostprocess 3.520ms
+		ComputeShaderImportPostprocess 3.403ms
+		SpeedTreeImporter.PostprocessAllAssets 2.788ms
+		LocalizationDatabase.AssetDatabasePostprocessCallback 1.393ms
+		BlockShaderImporter.PostprocessAllAssets 1.339ms
+		XRBuildSystem.XRAssetImported 0.087ms
+		MonoPostProcessAllAssets: 169.285ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 70.798ms
+			AssetPostprocessor.OnPostprocessAllAssets 22.547ms
+			PostProcessor.OnPostprocessAllAssets 18.139ms
+			MaterialPostprocessor.OnPostprocessAllAssets 13.101ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 10.323ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 7.736ms
+			AssetChangedListener.OnPostprocessAllAssets 6.083ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.223ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.912ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.122ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.119ms
+			VFXGraphPreprocessor.OnPostprocessAllAssets 1.079ms
+			SyncVS.PostprocessSyncProject 0.785ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.388ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.366ms
+			CinemachineSettings.OnPostprocessAllAssets 0.228ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.211ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.204ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.201ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.201ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.194ms
+			AssetEvents.OnPostprocessAllAssets 0.180ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.163ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.132ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.127ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.105ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.102ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.090ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.086ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.084ms
+	PostAssetChangesProfiler: 1.937ms
+	GatherAllCurrentPrimaryImportResultRevisions: 0.103ms
 	PersistCurrentRevisions: 0.080ms
-	GenerateScriptTypeHashes: 1.293ms
-	GenerateScriptTypeSerializationHashes: 2.341ms
-	Untracked: 447.736ms
+	GenerateScriptTypeHashes: 1.292ms
+	GenerateScriptTypeSerializationHashes: 2.349ms
+	Untracked: 452.808ms
 
 Loaded scene 'Temp/__Backupscenes/0.backup'
-	Deserialize:            11.705 ms
-	Integration:            65.386 ms
-	Integration of assets:  24.483 ms
-	Thread Wait Time:       0.005 ms
-	Total Operation Time:   101.579 ms
+	Deserialize:            8.427 ms
+	Integration:            71.121 ms
+	Integration of assets:  23.799 ms
+	Thread Wait Time:       10.952 ms
+	Total Operation Time:   114.298 ms
 Start Indexing on Editor startup
 [Indexing] Starting Initial Indexing for Assets
-Created GICache directory at C:/Users/manmi/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.022s, timestamps: [8.429 - 8.451]
+Created GICache directory at C:/Users/manmi/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.021s, timestamps: [8.169 - 8.190]
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully resolved entitlement details
 TrimDiskCacheJob: Current cache size 0mb
 Unloading 56 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.260900 ms
+UnloadTime: 2.102500 ms
 Loaded scene 'Assets/Scenes/Game.unity'
-	Deserialize:            7.699 ms
-	Integration:            17.726 ms
-	Integration of assets:  7.959 ms
-	Thread Wait Time:       1.715 ms
-	Total Operation Time:   35.098 ms
-Unloading 3893 unused Assets / (1.9 MB). Loaded Objects now: 5901.
-Memory consumption went from 378.1 MB to 376.2 MB.
-Total: 7.131400 ms (FindLiveObjects: 0.471400 ms CreateObjectMapping: 0.148900 ms MarkObjects: 5.633500 ms  DeleteObjects: 0.701200 ms)
+	Deserialize:            7.706 ms
+	Integration:            15.404 ms
+	Integration of assets:  7.793 ms
+	Thread Wait Time:       1.581 ms
+	Total Operation Time:   32.485 ms
+Unloading 3899 unused Assets / (2.0 MB). Loaded Objects now: 5915.
+Memory consumption went from 375.4 MB to 373.4 MB.
+Total: 6.735200 ms (FindLiveObjects: 0.665200 ms CreateObjectMapping: 0.158700 ms MarkObjects: 5.077100 ms  DeleteObjects: 0.662800 ms)
+
+PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Burst pattern=P-burst-1-21 pending=6 lookahead=7 active=7 reserved=0 nextSpawn=64,50 nextPattern=63,68 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Burst pattern=P-burst-1-21 pending=4 lookahead=7 active=7 reserved=0 nextSpawn=64,91 nextPattern=63,68 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Burst pattern=P-burst-1-21 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=65,53 nextPattern=63,68 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Recovery pattern=P-micro-recovery-2-2 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=64,31 nextPattern=68,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Recovery pattern=P-micro-recovery-2-2 pending=2 lookahead=7 active=7 reserved=0 nextSpawn=65,86 nextPattern=70,45 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Build pattern=P-conditioning-0-38 pending=38 lookahead=7 active=7 reserved=0 nextSpawn=69,49 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Build pattern=P-conditioning-0-38 pending=38 lookahead=7 active=6 reserved=0 nextSpawn=69,49 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Build pattern=P-conditioning-0-38 pending=38 lookahead=7 active=5 reserved=0 nextSpawn=69,49 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Build pattern=P-conditioning-0-38 pending=38 lookahead=7 active=4 reserved=0 nextSpawn=69,49 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Build pattern=P-conditioning-0-38 pending=37 lookahead=7 active=4 reserved=0 nextSpawn=69,67 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Build pattern=P-conditioning-0-38 pending=34 lookahead=7 active=6 reserved=0 nextSpawn=70,21 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=28,49 phase=Build pattern=P-conditioning-0-38 pending=32 lookahead=7 active=7 reserved=0 nextSpawn=70,57 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=27,99 phase=Build pattern=P-conditioning-0-38 pending=31 lookahead=7 active=7 reserved=0 nextSpawn=70,75 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=27,49 phase=Build pattern=P-conditioning-0-38 pending=30 lookahead=7 active=7 reserved=0 nextSpawn=70,93 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=26,99 phase=Build pattern=P-conditioning-0-38 pending=27 lookahead=7 active=7 reserved=0 nextSpawn=71,47 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+
+PACING_WINDOW_DIAGNOSTIC remaining=26,49 phase=Build pattern=P-conditioning-0-38 pending=24 lookahead=7 active=7 reserved=0 nextSpawn=72,01 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
 
 Unloading 9 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.736300 ms
+UnloadTime: 2.075500 ms
 Loaded scene 'Assets/Scenes/Results.unity'
-	Deserialize:            1.663 ms
-	Integration:            9.358 ms
+	Deserialize:            1.586 ms
+	Integration:            8.128 ms
 	Integration of assets:  0.001 ms
-	Thread Wait Time:       0.204 ms
-	Total Operation Time:   11.226 ms
-Unloading 425 unused Assets / (26.5 MB). Loaded Objects now: 5494.
-Memory consumption went from 374.9 MB to 348.4 MB.
-Total: 6.352500 ms (FindLiveObjects: 0.306300 ms CreateObjectMapping: 0.093900 ms MarkObjects: 5.385400 ms  DeleteObjects: 0.387300 ms)
+	Thread Wait Time:       0.188 ms
+	Total Operation Time:   9.903 ms
+Unloading 88 unused Assets / (23.0 MB). Loaded Objects now: 5831.
+Memory consumption went from 373.6 MB to 350.6 MB.
+Total: 5.834700 ms (FindLiveObjects: 0.297400 ms CreateObjectMapping: 0.082600 ms MarkObjects: 5.131700 ms  DeleteObjects: 0.145900 ms)
 
 DIGITAL_DOJO_CAPTURE_COMPLETE
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
@@ -760,14 +1007,13 @@ UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOpt
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:112)
+DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:131)
 UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
 
-(Filename: Assets/Editor/DigitalDojoCapture.cs Line: 112)
+(Filename: Assets/Editor/DigitalDojoCapture.cs Line: 131)
 
-MonoPathRemapper: Attempts to remap: 23924; Successful remaps: 13270
+MonoPathRemapper: Attempts to remap: 23956; Successful remaps: 13270
 Serialized file version minimum: 23, current 23
-Curl error 42: Callback aborted
 <b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: No process found listening on port 8080
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
@@ -780,12 +1026,13 @@ MCPForUnity.Editor.Services.ServerManagementService:StopLocalHttpServerInternal 
 MCPForUnity.Editor.Services.ServerManagementService:StopLocalHttpServer () (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/ServerManagementService.cs:349)
 MCPForUnity.Editor.Services.McpEditorShutdownCleanup:OnEditorQuitting () (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/McpEditorShutdownCleanup.cs:60)
 UnityEditor.EditorApplication:Internal_EditorApplicationQuit ()
-DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:113)
+DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:132)
 UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
 
 (Filename: ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Helpers/McpLog.cs Line: 40)
 
-Killing ADB server in 2,0541712 seconds.
+Curl error 42: Callback aborted
+Killing ADB server in 2,0550906 seconds.
 [Physics::Module] Cleanup current backend.
 [Physics::Module] Id: 0xf2b8ea05
 Input System module state changed to: ShutdownInProgress.
@@ -802,4 +1049,4 @@ CodeReloadManager destroyed
 Checking for leaked weakptr:
   Found no leaked weakptrs.
 [Package Manager] Server process was shutdown
-##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1789490382891,"processId":72160,"allocatedMemory":15146839,"memoryLabels":[{"Default":204982},{"Permanent":15516},{"NewDelete":72239},{"Thread":4198024},{"Manager":35813},{"VertexData":776},{"Geometry":816},{"Texture":24},{"Shader":849207},{"Material":24},{"GfxDevice":56472},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":35392},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"ScriptingNativeRuntime":1307568},{"BaseObject":50448},{"Resource":1208},{"Renderer":2376},{"Transform":4685},{"File":16284},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":378220},{"StaticString":3808},{"Utility":2675350},{"Curl":2478},{"PoolAlloc":2264},{"AI":80},{"TypeTree":20997},{"ScriptManager":18960},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7296},{"WebRequest":632},{"VR":49650},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":768},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"Gui":128},{"EditorUtility":115778},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4491233},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40465},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":260},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3600},{"Windowing":456},{"Licensing":12757},{"AssetReference":32},{"IPCStream":32}]}
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1789589681870,"processId":72760,"allocatedMemory":15193551,"memoryLabels":[{"Default":205984},{"Permanent":15516},{"NewDelete":72239},{"Thread":4197984},{"Manager":35813},{"VertexData":968},{"Geometry":816},{"Texture":24},{"Shader":849207},{"Material":24},{"GfxDevice":56616},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":35392},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"ScriptingNativeRuntime":1307568},{"BaseObject":50448},{"Resource":1208},{"Renderer":2376},{"Transform":4685},{"File":16284},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":423674},{"StaticString":3808},{"Utility":2675350},{"Curl":2478},{"PoolAlloc":2264},{"AI":80},{"TypeTree":20997},{"ScriptManager":18960},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7296},{"WebRequest":592},{"VR":49650},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":768},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"Gui":128},{"EditorUtility":115778},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4491233},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40465},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":260},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3600},{"Windowing":456},{"Licensing":12757},{"AssetReference":32},{"IPCStream":32}]}

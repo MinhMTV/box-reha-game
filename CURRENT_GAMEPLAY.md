@@ -1,5 +1,9 @@
 # Current gameplay — hardware feedback pass, 15 September 2026
 
+16 September fitness update: rolling long combos replace full-pattern reservations and empty recovery waits. Hard ranges reach 30–50 conditioning punches; Endless grows logical length separately from capped speed. See GAMEPLAY_PACING.md and FITNESS_PACING_VALIDATION.md for current values and measured synthetic results.
+
+Current hit-gate/pacing pass: the Game scene now has evaluator-driven red/blue transverse hit gates with timing labels, bounded travel-time difficulty, authored burst/recovery waves, mechanical deployment, heavy damage stages and pooled panel debris. See HIT_GATE_SYSTEM.md, GAMEPLAY_PACING.md and TARGET_ANIMATION_SYSTEM.md. This supersedes the historical statement below that all hit guides are absent; longitudinal lane rails remain removed.
+
 Unity 6000.6.0f1; existing Boot > MainMenu > Game > Results, Built-in renderer, Digital Dojo assets. Windows development, Android ARM64/IL2CPP target. Explicit SDK COMPATIBILITY and VENDOR-UNCHANGED modes remain. See ANDROID_STATUS.md for the actual candidate build evidence.
 
 Sensor setup supports named discovered/paired devices, explicit sides, confirmed persistent removal and SDK side swap. Unknown families remain visible with an actionable message. Same-family one/two devices are supported by policy; only connected sides receive targets. Mixed ALPHA/DELTA stays blocked for the reasons in MULTI_SENSOR_REPORT.md.

@@ -1,346 +1,237 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Phase 3: Supports vertical position offset on spawned targets.
-/// Phase 4: Uses ActionVisualFeedback for lane flashes.
-/// v3: Tough target and rapid fire chain spawning support.
-/// </summary>
+/// <summary>Single production scheduler: reaction targets and fully preannounced authored combinations.</summary>
 public class TargetSpawner : MonoBehaviour
 {
     public GameConfig Configuration => gameConfig;
-    private const string PunchVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_PunchTarget_NeonRed.prefab";
-    private const string KickVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_KickPad_NeonBlue.prefab";
-    private const string ToughVisualAssetPath = "Assets/Art/Generated/NeonCombat/Prefabs/PF_HeavyCore_GoldBlocker.prefab";
-
     [SerializeField] private GameObject targetPrefab;
-    [SerializeField] private Transform spawnPointLeft;
-    [SerializeField] private Transform spawnPointCenter;
-    [SerializeField] private Transform spawnPointRight;
-    [SerializeField] private float missZoneZ = 0f;
+    [SerializeField] private Transform spawnPointLeft,spawnPointCenter,spawnPointRight;
+    [SerializeField] private float missZoneZ;
     [SerializeField] private GameConfig gameConfig;
-    [SerializeField] private GameObject punchVisualPrefab;
-    [SerializeField] private GameObject kickVisualPrefab;
-    [SerializeField] private GameObject toughVisualPrefab;
-    [SerializeField] private GameObject heavyKickVisualPrefab;
-
-    // v3: Reference to evaluator for rapid fire chains
+    [SerializeField] private GameObject punchVisualPrefab,kickVisualPrefab,toughVisualPrefab,heavyKickVisualPrefab;
     [SerializeField] private HitZoneEvaluator hitZoneEvaluator;
+    [SerializeField] private GameplayPacingProfile pacing=new GameplayPacingProfile();
+    public GameplayPacingProfile Pacing=>pacing;
+    public string CurrentWave { get; private set; }="Warmup";
+    public string CurrentPatternId { get; private set; }="";
+    public int CurrentPacingTier { get; private set; }
+    public int PatternActionIndex { get; private set; }
+    public float CurrentTravelSeconds { get; private set; }
+    public float NextExpectedActionTime { get; private set; }
+    public int SessionSeed { get; private set; }
+    public int ActiveTargetCount=>hitZoneEvaluator==null?0:ActiveCount();
+    public string Availability=>currentLevel==null?"none":string.Join(",",currentLevel.AllowedTargetTypes)+" / "+string.Join(",",currentLevel.AllowedLanes);
+    LevelDefinition currentLevel;
+    GameplayPatternPlanner planner;
+    bool isSpawning;
+    float previousArrival=float.NegativeInfinity,missWindowStart,pacingStarted;
+    int misses;
+    public bool RecoveryRequested { get; private set; }
 
-    private LevelDefinition currentLevel;
-    private bool isSpawning;
-    private float speedMultiplier = 1f;
-    private float intervalMultiplier = 1f;
-    private float toughChanceBonus;
-    private float rapidFireChanceBonus;
-
-    void Awake()
+    void Awake(){EnsureGeneratedVisualPrefabs();}
+    void OnEnable(){HitZoneEvaluator.OnTargetMissed+=OnMiss;}
+    void OnDisable(){HitZoneEvaluator.OnTargetMissed-=OnMiss;StopSpawning();}
+    void OnMiss(int lane)
     {
-        EnsureGeneratedVisualPrefabs();
+        if(!isSpawning||Time.time<missRecoveryAfter)return;
+        if(Time.time-missWindowStart>pacing.MissObservationSeconds){misses=0;missWindowStart=Time.time;}
+        if(++misses>=pacing.MissesBeforeRecovery)RecoveryRequested=true;
     }
-
     public void StartSpawning(LevelDefinition level)
     {
-        StopAllCoroutines();
-        EnsureGeneratedVisualPrefabs();
-        currentLevel = level;
-        isSpawning = true;
-        speedMultiplier = 1f;
-        intervalMultiplier = 1f;
-        toughChanceBonus = 0f;
-        rapidFireChanceBonus = 0f;
-        SpawnPatternGenerator.Reset();
+        StopAllCoroutines();EnsureGeneratedVisualPrefabs();currentLevel=level;
+        if(hitZoneEvaluator==null)hitZoneEvaluator=FindFirstObjectByType<HitZoneEvaluator>();
+        if(hitZoneEvaluator==null)return;
+        SessionSeed=pacing.Seed==0?(System.Environment.TickCount&int.MaxValue):pacing.Seed;
+        planner=new GameplayPatternPlanner(SessionSeed);previousArrival=float.NegativeInfinity;
+        misses=0;RecoveryRequested=false;missWindowStart=Time.time;pacingStarted=Time.time;isSpawning=true;
+        ResearchSessionLog.PacingConfiguration(JsonUtility.ToJson(pacing),SessionSeed);
         StartCoroutine(SpawnRoutine());
     }
-
-    public void StopSpawning()
-    {
-        isSpawning = false;
-        StopAllCoroutines();
-    }
-
-    /// <summary>
-    /// Set difficulty modifiers from GameRoundController.
-    /// </summary>
-    public void SetDifficultyModifiers(float speedMult, float intervalMult, float toughChanceExtra = 0f, float rapidFireChanceExtra = 0f)
-    {
-        speedMultiplier = speedMult;
-        intervalMultiplier = intervalMult;
-        toughChanceBonus = toughChanceExtra;
-        rapidFireChanceBonus = rapidFireChanceExtra;
-    }
-
-    private void EnsureGeneratedVisualPrefabs()
+    public void StopSpawning(){isSpawning=false;PendingActions=0;WaitingReason="stopped";StopAllCoroutines();}
+    void EnsureGeneratedVisualPrefabs()
     {
 #if UNITY_EDITOR
-        if (punchVisualPrefab == null)
-        {
-            punchVisualPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(PunchVisualAssetPath);
-        }
-
-        if (kickVisualPrefab == null)
-        {
-            kickVisualPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(KickVisualAssetPath);
-        }
-
-        if (toughVisualPrefab == null)
-        {
-            toughVisualPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(ToughVisualAssetPath);
-        }
+        if(punchVisualPrefab==null)punchVisualPrefab=UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Art/DigitalDojo/Prefabs/MountedPunchTarget.prefab");
+        if(kickVisualPrefab==null)kickVisualPrefab=UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Art/Generated/NeonCombat/Prefabs/PF_KickPad_NeonBlue.prefab");
+        if(toughVisualPrefab==null)toughVisualPrefab=UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Art/DigitalDojo/Prefabs/MountedHeavyTarget.prefab");
+        if(heavyKickVisualPrefab==null)heavyKickVisualPrefab=UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Art/DigitalDojo/Prefabs/MountedHeavyKickTarget.prefab");
 #endif
     }
-
-    private IEnumerator SpawnRoutine()
+    public int PendingActions { get; private set; }
+    public int Lookahead { get; private set; }
+    public int ReservedCapacity=>0;
+    public float NextSpawnTime { get; private set; }
+    public float NextPatternTime { get; private set; }
+    public float RecoveryUntil { get; private set; }
+    public string WaitingReason { get; private set; }="stopped";
+    public float ActiveWorkTime { get; private set; }
+    public float LowIntensityTime { get; private set; }
+    public float EmptyIdleTime { get; private set; }
+    public float MaxEmptyIdle { get; private set; }
+    public int PeakActive { get; private set; }
+    public float ComboLengthTier { get; private set; }
+    public int MaxLogicalLength { get; private set; }
+    public string Diagnostic => $"remaining={Remaining:F2} phase={CurrentWave} pattern={CurrentPatternId} pending={PendingActions} lookahead={Lookahead} active={ActiveTargetCount} reserved=0 nextSpawn={NextSpawnTime:F2} nextPattern={NextPatternTime:F2} recoveryUntil={RecoveryUntil:F2} heavy={HasActiveToughTarget()} missRecovery={RecoveryRequested} wait={WaitingReason}";
+    float idleFor,nextDiagnostic,missRecoveryAfter;
+    bool expedite;
+    PacingActionTimeline timeline;
+    float Remaining=>currentLevel==null?0:currentLevel.IsEndless?float.PositiveInfinity:currentLevel.DurationSeconds-(Time.time-pacingStarted);
+    void Update()
     {
-        while (isSpawning)
+        if(!isSpawning||Time.deltaTime<=0)return;
+        int active=ActiveCount();PeakActive=Mathf.Max(PeakActive,active);
+        if(active>0)
         {
-            if (HasActiveToughTarget())
+            idleFor=0;
+            if(CurrentWave=="Recovery")LowIntensityTime+=Time.deltaTime;else ActiveWorkTime+=Time.deltaTime;
+        }
+        else
+        {
+            idleFor+=Time.deltaTime;EmptyIdleTime+=Time.deltaTime;MaxEmptyIdle=Mathf.Max(MaxEmptyIdle,idleFor);
+            float threshold=currentLevel.LevelNumber<=1?1.3f:currentLevel.LevelNumber==2?1:.7f;
+            if(idleFor>threshold&&Time.time>=RecoveryUntil&&Remaining>.3f&&CurrentPatternId!="unavailable")
             {
-                yield return new WaitForSeconds(0.1f);
-                continue;
-            }
-
-            float interval = currentLevel.SpawnInterval * intervalMultiplier;
-            yield return new WaitForSeconds(interval);
-            if (!isSpawning) yield break;
-
-            // v3: Check for rapid fire chain
-            float rapidFireChance = Mathf.Clamp01(currentLevel.RapidFireChance + rapidFireChanceBonus);
-            if (Random.value < rapidFireChance)
-            {
-                yield return StartCoroutine(SpawnRapidFireChain());
-                continue;
-            }
-
-            float toughChance = Mathf.Clamp01(currentLevel.ToughTargetChance + toughChanceBonus);
-            bool shouldSpawnTough = Random.value < toughChance;
-            bool heavyKick = Random.value < currentLevel.HeavyKickShare;
-            SpawnPatternData pattern = SpawnPatternGenerator.GetNextPattern(currentLevel);
-            pattern.Speed = currentLevel.TargetSpeed * speedMultiplier;
-
-            if (shouldSpawnTough)
-            {
-                ShowSpawnWarning(LaneType.Center, heavyKick ? VerticalPosition.Low : VerticalPosition.High, heavyKick ? TargetType.ToughKick : TargetType.ToughPunch);
-            }
-            else
-            {
-                ShowSpawnWarning(pattern.Lane, pattern.VerticalPos, pattern.Type);
-            }
-
-            yield return new WaitForSeconds(0.16f);
-            if (!isSpawning) yield break;
-
-            // v3: Check for tough target
-            if (shouldSpawnTough)
-            {
-                SpawnToughTarget(heavyKick);
-            }
-            else
-            {
-                SpawnTarget(pattern);
+                Debug.LogWarning("PACING_IDLE_DIAGNOSTIC "+Diagnostic);
+                expedite=true;RecoveryUntil=Time.time;NextPatternTime=Time.time;idleFor=0;
             }
         }
+        if(Remaining<=34&&Remaining>=26&&Time.time>=nextDiagnostic)
+        {nextDiagnostic=Time.time+.5f;Debug.Log("PACING_WINDOW_DIAGNOSTIC "+Diagnostic);}
     }
-
-    /// <summary>
-    /// v3: Spawn a tough target with multi-hit requirement.
-    /// </summary>
-    private void SpawnToughTarget(bool kick)
+    IEnumerator SpawnRoutine()
     {
-        LaneType toughLane = LaneType.Center;
-        VerticalPosition toughVertical = kick ? VerticalPosition.Low : VerticalPosition.High;
-        Transform spawnPoint = GetSpawnPoint(toughLane);
-        if (spawnPoint == null) return;
-
-        Vector3 spawnPos = spawnPoint.position;
-        if (gameConfig != null)
+        int heavyCycle=-1;
+        timeline=new PacingActionTimeline();
+        ActiveWorkTime=LowIntensityTime=EmptyIdleTime=MaxEmptyIdle=idleFor=0;PeakActive=MaxLogicalLength=0;
+        while(isSpawning&&Remaining>0)
         {
-            spawnPos.y = gameConfig.GetVerticalOffset(toughVertical);
+            var sample=pacing.Sample(currentLevel.LevelNumber,currentLevel.IsEndless,Time.time-pacingStarted,currentLevel.DurationSeconds);
+            CurrentWave=sample.Wave;CurrentPacingTier=sample.PacingTier;ComboLengthTier=sample.ComboLengthTier;
+            Lookahead=Mathf.Clamp(sample.MaxConcurrent,2,8);
+            if(RecoveryRequested)
+            {
+                sample.Recovery=true;sample.Phase=PacingPhase.Recovery;CurrentWave="Recovery";
+                RecoveryRequested=false;misses=0;missWindowStart=Time.time;
+                missRecoveryAfter=Time.time+pacing.MissRecoveryCooldownSeconds;
+            }
+            var plan=planner.Select(sample,pacing,currentLevel.AllowedTargetTypes,currentLevel.AllowedLanes,
+                SessionInputSelection.Physical,gameConfig!=null?gameConfig.SensorActionCooldown:.35f);
+            if(plan==null){CurrentPatternId="unavailable";WaitingReason="no supported input";yield return new WaitForSeconds(.25f);continue;}
+            bool heavy=sample.Heavy&&heavyCycle!=sample.Cycle&&currentLevel.ToughTargetChance>0&&Remaining>4;
+            if(heavy)
+            {
+                PendingActions=1;WaitingReason="draining logical targets for heavy";
+                while(isSpawning&&ActiveCount()>0)yield return null;
+                if(!isSpawning||Remaining<=0)yield break;
+                var type=plan.Type==TargetType.Kick?TargetType.ToughKick:TargetType.ToughPunch;
+                var point=GetSpawnPoint(LaneType.Center);
+                if(point==null){heavyCycle=sample.Cycle;yield return null;continue;}
+                float delay=pacing.MountTelegraphSeconds+Mathf.Clamp(pacing.HeavyDeploySeconds,.5f,.8f);
+                float speed=Mathf.Max(.01f,point.position.z-hitZoneEvaluator.HitZoneZ)/sample.TravelSeconds;
+                CurrentPatternId=type.ToString();CurrentTravelSeconds=sample.TravelSeconds;
+                var target=SpawnPaced(type,LaneType.Center,point.position.z,speed,delay,true,null,0,1);
+                PendingActions=0;heavyCycle=sample.Cycle;WaitingReason="heavy work";
+                if(target!=null)NextExpectedActionTime=target.ExpectedHitTime;
+                while(isSpawning&&HasActiveToughTarget()&&Remaining>0)yield return null;
+                // No sleep: the following low-intensity target is already visibly deploying.
+                RecoveryRequested=true;continue;
+            }
+            CurrentPatternId=plan.PatternId;PatternActionIndex=0;
+            CurrentTravelSeconds=plan.TravelSeconds;
+            float deploy=pacing.MountTelegraphSeconds+Mathf.Clamp(pacing.NormalDeploySeconds,.2f,.4f);
+            float sameSide=SessionInputSelection.Physical?(gameConfig!=null?gameConfig.SensorActionCooldown:.35f):0;
+            // Ordinary transitions are scheduled between actions, not added after visual cleanup and travel.
+            float first=Mathf.Max(Time.time+deploy+CurrentTravelSeconds,timeline.LastAction+plan.TransitionSeconds);
+            float globalMinimum=plan.Type==TargetType.Kick?Mathf.Max(.55f,pacing.MinimumSpacing):pacing.MinimumSpacing;
+            int count=plan.Length;
+            if(!currentLevel.IsEndless)
+            {
+                float deadline=pacingStarted+currentLevel.DurationSeconds-.02f;
+                var probe=new PacingActionTimeline();
+                float requested=first;
+                int fitting=0;
+                for(int i=0;i<count;i++)
+                {
+                    var side=plan.SideAt(i);
+                    float due=probe.Next(side,requested,globalMinimum,sameSide);
+                    due=timeline.Next(side,due,globalMinimum,sameSide);
+                    if(due>deadline)break;
+                    fitting++;probe.Commit(side,due);requested=due+plan.Interval;
+                }
+                count=fitting;
+            }
+            if(count==0){WaitingReason="round boundary";yield return null;continue;}
+            MaxLogicalLength=Mathf.Max(MaxLogicalLength,count);
+            string chain=count>1?hitZoneEvaluator.StartActionPattern(plan.PatternId,plan.SideAt(0),count):null;
+            float maxDistance=float.MaxValue;
+            for(int i=0;i<Mathf.Min(count,Lookahead);i++)
+            {var point=GetSpawnPoint(plan.SideAt(i));if(point!=null)maxDistance=Mathf.Min(maxDistance,point.position.z-hitZoneEvaluator.HitZoneZ);}
+            if(maxDistance==float.MaxValue||maxDistance<=0){WaitingReason="missing spawn point";yield return null;continue;}
+            float speedShared=maxDistance/(CurrentTravelSeconds+plan.Interval*(Lookahead-1));
+            float requestedArrival=first;
+            NextPatternTime=first;
+            for(int i=0;i<count&&isSpawning&&Remaining>0;i++)
+            {
+                PendingActions=count-i;PatternActionIndex=i;
+                var side=plan.SideAt(i);
+                float due=timeline.Next(side,requestedArrival,globalMinimum,sameSide);
+                NextExpectedActionTime=due;
+                // Rolling preview consumes only live logical slots. No full-pattern reservation.
+                NextSpawnTime=due-deploy-CurrentTravelSeconds-plan.Interval*(Lookahead-1);
+                WaitingReason="rolling lookahead";
+                while(isSpawning&&Remaining>0&&(ActiveCount()>=Lookahead||(!expedite&&Time.time<NextSpawnTime)))yield return null;
+                if(!isSpawning||Remaining<=0)yield break;
+                expedite=false;
+                // Slow frames/capacity pressure preserve a small honest lead, never teleport through the hit plane.
+                due=timeline.Next(side,Mathf.Max(due,Time.time+deploy+.12f),globalMinimum,sameSide);
+                float travel=Mathf.Max(.12f,due-Time.time-deploy);
+                float z=hitZoneEvaluator.HitZoneZ+speedShared*travel;
+                var target=SpawnPaced(plan.Type,side,z,speedShared,deploy,false,chain,i,count);
+                if(target!=null)
+                {
+                    timeline.Commit(side,target.ExpectedHitTime);
+                    ResearchSessionLog.PacingTarget(target.TargetId,CurrentWave,sample.PacingTier,CurrentPatternId,i,
+                        i==0?0:target.ExpectedHitTime-previousArrival,travel);
+                    previousArrival=target.ExpectedHitTime;
+                }
+                requestedArrival=due+plan.Interval;
+            }
+            PendingActions=0;
+            // Rolling tail stays visible while selecting the next sequence. No last-hit-window or VFX wait.
+            NextPatternTime=timeline.LastAction+plan.TransitionSeconds;
+            RecoveryUntil=0;
         }
-
-        // Tough targets are 20% slower
-        float toughSpeed = currentLevel.TargetSpeed * speedMultiplier * 0.8f;
-
-        GameObject targetObj = CreateTargetObject(spawnPos, kick ? TargetType.ToughKick : TargetType.ToughPunch);
-        if (targetObj == null) return;
-
-        TargetObject target = targetObj.GetComponent<TargetObject>();
-        TargetMover mover = targetObj.GetComponent<TargetMover>();
-
-        if (target != null)
-        {
-            target.Lane = toughLane;
-            target.Type = kick ? TargetType.ToughKick : TargetType.ToughPunch;
-            target.MoveSpeed = toughSpeed;
-            target.HitWindow = currentLevel.HitWindowSeconds;
-            target.MinPower = currentLevel.MinPower;
-            target.VertPosition = toughVertical;
-            target.MaxHits = Random.Range(currentLevel.MinToughHits, currentLevel.MaxToughHits + 1);
-        }
-
-        if (mover != null)
-        {
-            mover.Initialize(toughSpeed, missZoneZ);
-        }
+        WaitingReason="round ended";PendingActions=0;
     }
-
-    /// <summary>
-    /// v3: Spawn a rapid fire chain of targets in the same lane.
-    /// </summary>
-    private IEnumerator SpawnRapidFireChain()
+    int ActiveCount()
     {
-        LaneType chainLane = GetRandomNormalLane();
-        int chainLength = Random.Range(currentLevel.MinChainLength, currentLevel.MaxChainLength + 1);
-
-        // Notify evaluator of chain start
-        string chainId = hitZoneEvaluator != null ? hitZoneEvaluator.StartRapidFireChain(chainLane, chainLength) : null;
-
-        float chainSpeed = currentLevel.TargetSpeed * speedMultiplier;
-
-        for (int i = 0; i < chainLength; i++)
-        {
-            if (!isSpawning) yield break;
-
-            Transform spawnPoint = GetSpawnPoint(chainLane);
-            if (spawnPoint == null) yield break;
-
-            Vector3 spawnPos = spawnPoint.position;
-            if (gameConfig != null)
-            {
-                spawnPos.y = gameConfig.GetVerticalOffset(VerticalPosition.High);
-            }
-
-            ShowSpawnWarning(chainLane, VerticalPosition.High, TargetType.Punch);
-            yield return new WaitForSeconds(0.12f);
-            if (!isSpawning) yield break;
-
-            GameObject targetObj = CreateTargetObject(spawnPos, TargetType.Punch);
-            if (targetObj == null) yield break;
-
-            TargetObject target = targetObj.GetComponent<TargetObject>();
-            TargetMover mover = targetObj.GetComponent<TargetMover>();
-
-            if (target != null)
-            {
-                target.Lane = chainLane;
-                target.ChainId = chainId;
-                target.Type = TargetType.Punch;
-                target.MoveSpeed = chainSpeed;
-                target.HitWindow = currentLevel.HitWindowSeconds;
-                target.MinPower = currentLevel.MinPower;
-                target.VertPosition = VerticalPosition.High;
-            }
-
-            if (mover != null)
-            {
-                mover.Initialize(chainSpeed, missZoneZ);
-            }
-
-            // Short delay between chain targets
-            float chainSpacing = Random.Range(0.3f, 0.5f);
-            yield return new WaitForSeconds(chainSpacing);
-        }
+        int count=0;var targets=hitZoneEvaluator.ActiveTargets;
+        for(int i=0;i<targets.Count;i++)if(targets[i]!=null&&!targets[i].IsResolved)count++;
+        return count;
     }
-
-    private void SpawnTarget(SpawnPatternData pattern)
+    bool HasActiveToughTarget()
     {
-        Transform spawnPoint = GetSpawnPoint(pattern.Lane);
-        if (spawnPoint == null) return;
-
-        Vector3 spawnPos = spawnPoint.position;
-        if (gameConfig != null)
-        {
-            spawnPos.y = gameConfig.GetVerticalOffset(pattern.VerticalPos);
-        }
-
-        GameObject targetObj = CreateTargetObject(spawnPos, pattern.Type);
-        if (targetObj == null) return;
-
-        TargetObject target = targetObj.GetComponent<TargetObject>();
-        TargetMover mover = targetObj.GetComponent<TargetMover>();
-
-        if (target != null)
-        {
-            target.Lane = pattern.Lane;
-            target.Type = pattern.Type;
-            target.MoveSpeed = pattern.Speed;
-            target.HitWindow = currentLevel.HitWindowSeconds;
-            target.MinPower = currentLevel.MinPower;
-            target.VertPosition = pattern.VerticalPos;
-        }
-
-        if (mover != null)
-        {
-            mover.Initialize(pattern.Speed, missZoneZ);
-        }
-    }
-
-    private Transform GetSpawnPoint(LaneType lane)
-    {
-        switch (lane)
-        {
-            case LaneType.Left: return spawnPointLeft;
-            case LaneType.Center: return spawnPointCenter;
-            case LaneType.Right: return spawnPointRight;
-            default: return spawnPointCenter;
-        }
-    }
-
-    private LaneType GetRandomNormalLane()
-    {
-        LaneType[] lanes = currentLevel != null ? currentLevel.AllowedLanes : null;
-        if (lanes == null || lanes.Length == 0)
-        {
-            return Random.value < 0.5f ? LaneType.Left : LaneType.Right;
-        }
-
-        int validCount = 0;
-        for (int i = 0; i < lanes.Length; i++)
-        {
-            if (lanes[i] != LaneType.Center)
-            {
-                validCount++;
-            }
-        }
-
-        if (validCount == 0)
-        {
-            return Random.value < 0.5f ? LaneType.Left : LaneType.Right;
-        }
-
-        int selected = Random.Range(0, validCount);
-        for (int i = 0; i < lanes.Length; i++)
-        {
-            if (lanes[i] == LaneType.Center)
-            {
-                continue;
-            }
-
-            if (selected == 0)
-            {
-                return lanes[i];
-            }
-
-            selected--;
-        }
-
-        return LaneType.Left;
-    }
-
-    private bool HasActiveToughTarget()
-    {
-        TargetObject[] activeObjects = FindObjectsOfType<TargetObject>();
-        for (int i = 0; i < activeObjects.Length; i++)
-        {
-            TargetObject target = activeObjects[i];
-            if (target != null && target.IsTough && !target.IsBreaking)
-            {
-                return true;
-            }
-        }
-
+        var targets=hitZoneEvaluator.ActiveTargets;
+        for(int i=0;i<targets.Count;i++)if(targets[i]!=null&&!targets[i].IsResolved&&targets[i].IsTough)return true;
         return false;
     }
+    TargetObject SpawnPaced(TargetType type,LaneType lane,float z,float speed,float deploy,bool heavy,string chain,int index,int count)
+    {
+        var point=GetSpawnPoint(lane);if(point==null)return null;
+        var position=point.position;position.z=z;
+        var height=type==TargetType.Kick||type==TargetType.ToughKick?VerticalPosition.Low:VerticalPosition.High;
+        position.y=gameConfig!=null?gameConfig.GetVerticalOffset(height):height==VerticalPosition.Low?.45f:2.1f;
+        var obj=CreateTargetObject(position,type);var target=obj.GetComponent<TargetObject>();
+        target.Lane=lane;target.Type=type;target.VertPosition=height;target.MoveSpeed=speed;
+        target.HitWindow=currentLevel.HitWindowSeconds;target.MinPower=currentLevel.MinPower;
+        target.MaxHits=heavy?Mathf.Max(2,currentLevel.MinToughHits):1;target.ChainId=chain;
+        target.SequenceIndex=index;target.SequenceLength=count;
+        var mount=obj.GetComponent<TargetMountMotion>();mount.Duration=deploy;mount.TelegraphSeconds=pacing.MountTelegraphSeconds;
+        obj.GetComponent<TargetMover>().Initialize(speed,missZoneZ);target.EnsureTrackedSpawn();return target;
+    }
+    Transform GetSpawnPoint(LaneType lane)=>lane==LaneType.Left?spawnPointLeft:lane==LaneType.Right?spawnPointRight:spawnPointCenter;
 
     private GameObject CreateTargetObject(Vector3 position, TargetType type)
     {
@@ -424,24 +315,6 @@ public class TargetSpawner : MonoBehaviour
         {
             Destroy(colliders[i]);
         }
-    }
-
-    private void ShowSpawnWarning(LaneType lane, VerticalPosition verticalPosition, TargetType type)
-    {
-        Transform spawnPoint = GetSpawnPoint(lane);
-        if (spawnPoint == null)
-        {
-            return;
-        }
-
-        Vector3 effectPosition = new Vector3(spawnPoint.position.x, spawnPoint.position.y, 5f);
-        if (gameConfig != null)
-        {
-            effectPosition.y = gameConfig.GetVerticalOffset(verticalPosition);
-        }
-
-        Color warningColor = GameVisualPalette.GetTargetColor(type);
-        SpawnWarningEffect.Create(effectPosition, warningColor, GameVisualPalette.GetSpawnWarningDuration(type));
     }
 
     private void BuildTargetDisc(Transform parent, Color targetColor, bool heavyTarget)

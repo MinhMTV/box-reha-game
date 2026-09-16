@@ -14,6 +14,8 @@ public sealed class DigitalDojoTargetVisual : MonoBehaviour
     MaterialPropertyBlock block;
     float born, pulse;
     Color color;
+    TargetObject target;
+    public int DamageStage { get; private set; }
     void Awake()
     {
         initialScale = transform.localScale;
@@ -34,6 +36,7 @@ public sealed class DigitalDojoTargetVisual : MonoBehaviour
     }
     void Update()
     {
+        if(target==null)target=GetComponentInParent<TargetObject>();
         pulse = Mathf.MoveTowards(pulse, 0, Time.deltaTime * 5);
         float appearance = SettingsManager.ReducedMotion ? 1 : Mathf.Lerp(0.94f, 1, Mathf.Clamp01((Time.time - born) / 0.18f));
         transform.localScale = initialScale * appearance;
@@ -53,7 +56,8 @@ public sealed class DigitalDojoTargetVisual : MonoBehaviour
         {
             if (renderer.name.StartsWith("DamageSegment_")) continue;
             renderer.GetPropertyBlock(block);
-            block.SetColor("_EmissionColor", color * (0.4f + pulse));
+            float anticipation=target!=null && target.IsDeploying ? .25f : 0;
+            block.SetColor("_EmissionColor", color * (0.4f + pulse + anticipation));
             renderer.SetPropertyBlock(block);
         }
     }
@@ -61,6 +65,10 @@ public sealed class DigitalDojoTargetVisual : MonoBehaviour
     {
         if(breakAt >= 0) return;
         breakAt=Time.unscaledTime;
+        if(target==null)target=GetComponentInParent<TargetObject>();
+        DojoDebrisPool.Emit(fragments,target!=null&&target.IsTough);
+        if(!SettingsManager.ReducedMotion)
+            foreach(var fragment in fragments) { var renderer=fragment.GetComponent<Renderer>();if(renderer!=null)renderer.enabled=false; }
         Hit();
     }
     public void Hit(float progress = -1)
@@ -68,6 +76,14 @@ public sealed class DigitalDojoTargetVisual : MonoBehaviour
         pulse = SettingsManager.ReducedMotion ? 0.3f : 1.2f;
         // A follow-up flash must preserve segments consumed by TakeHit.
         if (progress < 0) return;
+        float remaining=1-Mathf.Clamp01(progress);
+        DamageStage=remaining<=0?3:remaining<=.4f?2:remaining<=.7f?1:0;
+        if(!SettingsManager.ReducedMotion && DamageStage<3)
+            for(int i=0;i<fragments.Length;i++)
+            {
+                float angle=i*2.399963f;
+                fragments[i].localPosition=fragmentRest[i]+new Vector3(Mathf.Cos(angle),Mathf.Sin(angle),0)*(.007f*DamageStage);
+            }
         for (int i=0; i<segments.Length; i++)
         {
             bool spent = (i + 1f) / segments.Length <= progress;

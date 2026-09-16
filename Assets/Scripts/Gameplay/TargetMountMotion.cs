@@ -4,11 +4,13 @@ using UnityEngine;
 public sealed class TargetMountMotion : MonoBehaviour
 {
     public const float IdleSeconds = .08f;
-    public const float DeploySeconds = .70f;
-    public bool Ready => started && Time.time - born >= DeploySeconds;
+    public float Duration { get; set; } = .30f;
+    public float TelegraphSeconds { get; set; } = IdleSeconds;
+    public float RetractProgress { get; set; }
+    public bool Ready => started && Time.time - born >= Duration;
     public string Phase => target != null && target.IsResolved ? "Retract" :
         Time.time - impactAt < .22f ? "Impact" : Ready ? "Travel" :
-        Time.time - born < IdleSeconds ? "Idle" : "Deploy";
+        Time.time - born < TelegraphSeconds ? "Idle" : Time.time-born > Duration-.06f ? "Align" : "Deploy";
     bool started;
     TargetObject target;
     Transform visual, mount, plate;
@@ -16,12 +18,16 @@ public sealed class TargetMountMotion : MonoBehaviour
     float born, impactAt = float.NegativeInfinity, impactStrength;
     Vector3 restPosition;
     Quaternion restRotation;
+    Renderer indicator;
+    MaterialPropertyBlock indicatorBlock;
 
     void Start()
     {
         if (started) return;
         started = true; born = Time.time;
         target = GetComponent<TargetObject>();
+        if(target.IsTough && Duration < .5f) Duration=.65f;
+        DojoGameFeel.Cue(DojoAudioCue.TargetDeploy);
         var authored = GetComponentInChildren<DigitalDojoTargetVisual>();
         if (authored != null)
         {
@@ -32,6 +38,16 @@ public sealed class TargetMountMotion : MonoBehaviour
         mount.SetParent(transform, false);
         for (int i = 0; i < arms.Length; i++) arms[i] = CreatePart("MountArm");
         plate = CreatePart("MountPlate");
+        if(plate!=null && authored!=null)
+        {
+            foreach(var renderer in authored.GetComponentsInChildren<Renderer>())
+            {
+                if(renderer.sharedMaterial==null || !renderer.sharedMaterial.name.Contains("Emissive"))continue;
+                var led=VisualPrimitive.Create(PrimitiveType.Cube);led.name="MountStatusLight";led.transform.SetParent(plate,false);
+                led.transform.localPosition=new Vector3(0,.28f,-.07f);led.transform.localScale=new Vector3(.34f,.035f,.018f);
+                indicator=led.GetComponent<Renderer>();indicator.sharedMaterial=renderer.sharedMaterial;indicatorBlock=new MaterialPropertyBlock();break;
+            }
+        }
         PositionParts();
     }
 
@@ -45,7 +61,7 @@ public sealed class TargetMountMotion : MonoBehaviour
     public void Impact(bool belowThreshold = false)
     {
         impactAt = Time.time;
-        impactStrength = belowThreshold ? .025f : .12f;
+        impactStrength = belowThreshold ? .015f : .05f;
     }
 
     void LateUpdate() { PositionParts(); }
@@ -53,10 +69,18 @@ public sealed class TargetMountMotion : MonoBehaviour
     {
         if (target == null || mount == null) return;
         float age = Time.time - born;
-        float progress = Mathf.Clamp01((age - IdleSeconds) / (DeploySeconds - IdleSeconds));
+        float progress = Mathf.Clamp01((age - TelegraphSeconds) / Mathf.Max(.01f,Duration - TelegraphSeconds));
         float extension = progress * progress * (3f - 2f * progress);
         bool reduced = SettingsManager.ReducedMotion;
         if (reduced) extension = 1;
+        else extension *= 1-Mathf.Clamp01(RetractProgress);
+        if(indicator!=null)
+        {
+            Color color=target.IsKick?GameVisualPalette.KickColor:GameVisualPalette.PunchColor;
+            float strength=target.IsResolved?.1f:Ready?.35f:Mathf.Lerp(.2f,1,progress);
+            indicatorBlock.SetColor("_Color",color);indicatorBlock.SetColor("_EmissionColor",color*strength);
+            indicator.SetPropertyBlock(indicatorBlock);
+        }
         bool center = target.Lane == LaneType.Center;
         float side = target.Lane == LaneType.Left ? -1 : 1;
         Vector3 anchor = transform.position;
@@ -71,7 +95,7 @@ public sealed class TargetMountMotion : MonoBehaviour
             Vector3 docked = center ? new Vector3(restWorld.x, anchor.y + .65f, restWorld.z)
                 : new Vector3(anchor.x - side * .40f, restWorld.y, restWorld.z);
             visual.position = Vector3.Lerp(docked, restWorld, extension) + Vector3.forward * recoil;
-            visual.localRotation = restRotation * Quaternion.Euler(0, center ? 0 : side * 72f * (1-extension), 0);
+            visual.localRotation = restRotation * Quaternion.Euler(recoil*30, center ? 0 : side * 72f * (1-extension), recoil*15);
             if (target.IsResolved && !reduced)
                 visual.localPosition += Vector3.forward * .15f;
         }

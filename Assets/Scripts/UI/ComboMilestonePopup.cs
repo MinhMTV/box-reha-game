@@ -12,8 +12,9 @@ public class ComboMilestonePopup : MonoBehaviour
     private static readonly int[] Milestones = { 5, 10, 15, 20, 30, 50 };
     private const string BuiltInFontName = "LegacyRuntime.ttf";
 
-    [SerializeField] private float popupDuration = 1.2f;
-    [SerializeField] private float scalePunch = 1.5f;
+    [SerializeField] private float popupDuration = .7f;
+    [SerializeField] private float scalePunch = 1.08f;
+    static ComboMilestonePopup current;
     [SerializeField] private float shakeIntensity = 0.1f;
     [SerializeField] private float shakeDuration = 0.15f;
 
@@ -35,6 +36,7 @@ public class ComboMilestonePopup : MonoBehaviour
     {
         Canvas canvas = FindObjectOfType<Canvas>();
         if (canvas == null) return;
+        if(current!=null){current.gameObject.SetActive(false);Destroy(current.gameObject);}
 
         GameObject obj = new GameObject("ComboMilestonePopup");
         obj.transform.SetParent(canvas.transform, false);
@@ -42,7 +44,8 @@ public class ComboMilestonePopup : MonoBehaviour
         Text text = obj.AddComponent<Text>();
         text.text = $"COMBO {combo}!";
         text.font = Resources.GetBuiltinResource<Font>(BuiltInFontName);
-        text.fontSize = 64;
+        text.fontSize = 28;
+        text.raycastTarget = false;
         text.fontStyle = FontStyle.Bold;
         text.alignment = TextAnchor.MiddleCenter;
         text.color = new Color(1f, 0.92f, 0.22f, 1f);
@@ -56,16 +59,18 @@ public class ComboMilestonePopup : MonoBehaviour
         shadow.effectDistance = new Vector2(0f, -5f);
 
         RectTransform rect = obj.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(560, 120);
-        rect.anchoredPosition = new Vector2(0f, -40f);
+        rect.sizeDelta = new Vector2(280, 50);
+        rect.anchorMin=rect.anchorMax=new Vector2(.5f,.82f);
+        rect.anchoredPosition = Vector2.zero;
 
         ComboMilestonePopup popup = obj.AddComponent<ComboMilestonePopup>();
+        current=popup;
         popup.popupText = text;
         popup.startColor = text.color;
         popup.originalScale = Vector3.one * popup.scalePunch;
 
         // Camera shake
-        CameraShake.ShakeAll(popup.shakeIntensity, popup.shakeDuration);
+        // Shared DojoGameFeel supplies the small bounded camera impulse.
     }
 
     void Start()
@@ -87,11 +92,11 @@ public class ComboMilestonePopup : MonoBehaviour
 
         // Scale punch: start big, settle to normal
         float scaleT = Mathf.Clamp01(t * 3f);
-        float scale = Mathf.Lerp(scalePunch, 1f, scaleT);
+        float scale = SettingsManager.ReducedMotion?1:Mathf.Lerp(scalePunch, 1f, scaleT);
         transform.localScale = Vector3.one * scale;
 
         // Float upward
-        transform.localPosition += Vector3.up * 30f * Time.deltaTime;
+        if(!SettingsManager.ReducedMotion)transform.localPosition += Vector3.up * 10f * Time.deltaTime;
 
         // Fade out in last half
         if (t > 0.5f)

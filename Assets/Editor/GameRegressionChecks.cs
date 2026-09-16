@@ -38,8 +38,8 @@ public static class GameRegressionChecks
             throw new InvalidOperationException("Install Android Build Support for this project's exact Editor, including SDK/NDK and OpenJDK.");
         PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.boxreha.digitaldojo");
         PlayerSettings.productName = "Digital Dojo";
-        PlayerSettings.bundleVersion = "1.2";
-        PlayerSettings.Android.bundleVersionCode = 3;
+        PlayerSettings.bundleVersion = "1.3";
+        PlayerSettings.Android.bundleVersionCode = 4;
         PlayerSettings.Android.minSdkVersion = RequiredAndroidMinimum();
         PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)36;
         PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);

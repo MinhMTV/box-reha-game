@@ -1,6 +1,6 @@
 # Game status — 15 September 2026
 
-Source changes are saved in the separate checkout on `codex/android-hardware-feedback`. See HARDWARE_FEEDBACK_REPORT.md for current build and evidence.
+Current work is saved in the main checkout on `main`, based on `a9aee35`, uncommitted. The 16 September fitness pass adds rolling 30–50-action Hard flurries, uncapped logical Endless progression with bounded speed, active micro-recovery and scheduler diagnostics. All eight actual Play Mode scheduler cases pass, including 50 and 125 actions. Android 1.3/code 4 built successfully; final APK and source identities are in `artifacts/validation/fitness-apk.json`. See FITNESS_PACING_VALIDATION.md. No ADB device was available; physical runtime is not re-verified. The earlier separate-checkout statement is superseded.
 
 Implemented: acknowledged persistent sensor removal, SDK side swap, real device names, visible unknown-family devices with preparation blocked, one-family single/pair readiness, profile repository and selector, legacy migration, separate measured strength/rapid references, bounded per-profile strength normalization, nonterminal TOO LIGHT, target and health-bar cleanup, mesh-only visual primitives, closer hit plane and reduced HUD clutter.
 

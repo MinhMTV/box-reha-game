@@ -1,5 +1,7 @@
 # Digital Dojo art direction
 
+Current imported reference kit uses the baked 4096px room atlas (Android ASTC 6x6), target normal maps and authored panel fragments. The older texture-free counts below describe the initial kit, not the current reference import. New game-feel accents are thin transverse red/blue hit gates, small mount indicators and six reactive wall insets. Debris and short particles stay bounded; reduced motion retains clear timing. The concept-art fidelity limitations and historical validator gates are classified in ROOM_VALIDATION_REVIEW.md.
+
 Modern training room: dark wood, charcoal concrete, matte padding, restrained dark metal, off-white text, warm indirect-looking accents. Red signals punch; blue signals kick. Heavy uses a large segmented octagonal silhouette and concentric rings. Normal targets are vertical. No floor pads, NPCs, cyberpunk clutter or excessive neon.
 
 ## Source and integration

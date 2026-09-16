@@ -9,6 +9,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="PacingHostChecks.cs" />
+    <Compile Include="../../Assets/Scripts/Spawning/GameplayPacingProfile.cs" />
     <Compile Include="HardwareFeedbackChecks.cs" />
     <Compile Include="../../Assets/Scripts/Data/ProfileRepository.cs" />
     <Compile Include="UnityHostStubs.cs" />

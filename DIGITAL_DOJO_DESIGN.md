@@ -1,5 +1,7 @@
 # Digital Dojo interface — hardware feedback pass
 
+Hit-gate/pacing update: communicate **when** to hit using upper red Punch and lower blue Kick gates at the actual scoring plane. READY → APPROACH → EARLY / GOOD / NOW-PERFECT → LATE uses evaluator timing. TOO LIGHT preserves the target while its real window remains open. Heavy targets latch and request another hit. Short combinations, recovery and capped Endless progression replace purely random isolated pacing. See HIT_GATE_SYSTEM.md and GAMEPLAY_PACING.md.
+
 Preserve dark wood, charcoal, off-white, red punch and blue kick accents, warm lighting and the Blender target kit. This is a functionality/readability pass, not a new art direction.
 
 Sensor setup lists names, sides, families including Unknown, connection states and short IDs. Remove is confirmed by the SDK's persisted state; Change / swap sides uses its pair-aware operation. SDK/permission/pair/body-profile steps use actual state colors. Active sessions lock pairing changes.

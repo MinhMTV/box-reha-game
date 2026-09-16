@@ -14,6 +14,8 @@ public static class DigitalDojoCapture
     const string Key = "DigitalDojoCapture.Active";
     static double next;
     static int step;
+    static float debrisCleanupAt;
+    static PacingRuntimeProbe pacingProbe;
     static readonly string[] Pages = { "ShowHome", "StartLevelMode", "ShowCalibration", "ShowMeasuredCalibration", "ShowStatistics", "ShowPlayerProfile", "ShowProfiles", "ShowRelativePerformance", "ShowPerformanceReferences", "ShowSettings", "ShowSensorSetup" };
     static DigitalDojoCapture()
     {
@@ -102,9 +104,26 @@ public static class DigitalDojoCapture
                 if(UnityEngine.Object.FindObjectsByType<TargetMountMotion>(FindObjectsInactive.Include, FindObjectsSortMode.None).Length != 0)throw new Exception("Orphaned target mount");
                 if(UnityEngine.Object.FindObjectsByType<ToughTargetHealthBar>(FindObjectsInactive.Include, FindObjectsSortMode.None).Length != 0)throw new Exception("Orphaned heavy target health bar");
                 File.AppendAllText("artifacts/validation/dd-runtime-checks.txt","\nPASS mount deploy pauses and then physically travels with owned geometry\nPASS three telescope sleeves, mounted plate and no implicit collider\nPASS weak recoil does not unlock deployment\nPASS no mount orphans\nPASS no heavy health bar orphans\nPASS normal/kick/weak-then-strong/miss/heavy completion/heavy timeout have no target orphans after next frames");
+                HitGatePlayModeChecks.Run(Capture);
+                debrisCleanupAt=Time.time+DojoDebrisPool.Lifetime+.2f;
+            }
+            else if (step == Pages.Length * 2 + 7)
+            {
+                if(Time.time<debrisCleanupAt)return;
+                var pool=UnityEngine.Object.FindFirstObjectByType<DojoDebrisPool>();
+                if(pool!=null && pool.ActiveCount!=0)throw new Exception("Debris still active beyond bounded lifetime");
+                if(UnityEngine.Object.FindObjectsByType<TargetMountMotion>(FindObjectsInactive.Include,FindObjectsSortMode.None).Length!=0)throw new Exception("Hit gate QA left mounts");
+                File.AppendAllText("artifacts/validation/hit-gate-playmode.txt","\nPASS pooled debris inactive after lifetime; no target mounts left");
+                pacingProbe=new PacingRuntimeProbe();pacingProbe.Start(Capture);
+            }
+            else if (step == Pages.Length * 2 + 8)
+            {
+                var probe=pacingProbe;
+                if(probe.Failure!=null)throw new Exception(probe.Failure);
+                if(!probe.Complete)return;
                 UnityEngine.Object.FindFirstObjectByType<GameRoundController>().FinishRound("synthetic_qa_complete");
             }
-            else if (step == Pages.Length * 2 + 7) Capture("Results-Synthetic-QA");
+            else if (step == Pages.Length * 2 + 9) Capture("Results-Synthetic-QA");
             else
             {
                 SessionState.SetBool(Key, false);

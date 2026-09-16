@@ -14,6 +14,8 @@ public class HitZoneEvaluator : MonoBehaviour
     public static event Action<HitQuality, LaneType, Vector3> OnHitVisualFeedback;
     public static event Action<LaneType, Vector3> OnMissVisualFeedback;
     public static event Action<ForceBand, float> OnSensorForceEvaluated;
+    public static event Action<TargetObject, HitQuality, bool> OnTargetFeedback;
+    public static event Action<string,int> OnPatternComplete;
     public const int RapidFireChainBonus = 500;
     [SerializeField] private Transform hitZoneCenter;
     [SerializeField] private float minimumSensorPowerMultiplier = 0.75f;
@@ -22,19 +24,29 @@ public class HitZoneEvaluator : MonoBehaviour
     [SerializeField] private bool createRuntimeHitGuide = true;
     private readonly List<TargetObject> activeTargets = new List<TargetObject>();
     private readonly List<Material> guideMaterials = new List<Material>();
-    private class Chain { public int Total, Completed; public bool Failed; public LaneType Lane; }
+    private class Chain { public int Total, Completed; public bool Failed; public LaneType Lane; public string PatternId; }
     private readonly Dictionary<string, Chain> chains = new Dictionary<string, Chain>();
     public float HitZoneZ => hitZoneCenter != null ? hitZoneCenter.position.z : transform.position.z;
+    public IReadOnlyList<TargetObject> ActiveTargets => activeTargets;
 
     public const float PlayerHitPlaneZ = 2f;
     void Awake() { if(hitZoneCenter != null) { var p=hitZoneCenter.position; p.z=PlayerHitPlaneZ; hitZoneCenter.position=p; } else {var p=transform.position;p.z=PlayerHitPlaneZ;transform.position=p;} }
-    void Start() { /* Approach and target silhouette communicate timing without bright guide bars. */ }
+    void Start()
+    {
+        if (createRuntimeHitGuide && GetComponent<HitZoneVisualizer>() == null)
+            gameObject.AddComponent<HitZoneVisualizer>();
+        if (GetComponent<DojoGameFeel>() == null) gameObject.AddComponent<DojoGameFeel>();
+    }
     void OnDestroy() { foreach (var material in guideMaterials) if (material != null) Destroy(material); }
     public string StartRapidFireChain(LaneType lane, int totalTargets)
     {
         string id = Guid.NewGuid().ToString("N");
         chains[id] = new Chain { Lane = lane, Total = totalTargets };
         return id;
+    }
+    public string StartActionPattern(string patternId,LaneType lane,int total)
+    {
+        string id=StartRapidFireChain(lane,total);chains[id].PatternId=patternId;return id;
     }
     public void RegisterTarget(TargetObject target)
     {
@@ -60,8 +72,13 @@ public class HitZoneEvaluator : MonoBehaviour
         }
     }
     public static float HalfWindow(TargetObject target) { return target.HitWindow * 0.5f; }
-    private float TimingOffset(TargetObject target)
+    public float TimingOffset(TargetObject target)
     { return (HitZoneZ - target.transform.position.z) / Mathf.Max(0.01f, target.MoveSpeed); }
+    public HitQuality PreviewTiming(TargetObject target)
+    {
+        if (target == null || target.IsResolved || target.IsDeploying) return HitQuality.Miss;
+        return target.IsLockedInHitZone ? HitQuality.Good : DetermineHitQuality(TimingOffset(target), HalfWindow(target));
+    }
     public static HitQuality DetermineHitQuality(float offset, float halfWindow)
     {
         return GameplayRules.Timing(offset, halfWindow);
@@ -98,6 +115,7 @@ public class HitZoneEvaluator : MonoBehaviour
             if(GameManager.Instance?.SessionStats != null)GameManager.Instance.SessionStats.BelowStrengthHits++;
             ResearchSessionLog.BelowStrength(best,action,threshold);
             best.GetComponent<TargetMountMotion>()?.Impact(true);
+            OnTargetFeedback?.Invoke(best, quality, true);
             TextPopup.Create(best.transform.position,"TOO LIGHT",new Color(1f,.72f,.3f));best.Flash(Color.white,.08f);
             return;
         }
@@ -114,15 +132,17 @@ public class HitZoneEvaluator : MonoBehaviour
                 ScoreSystem.AddToughPartialHit(10, best.TargetId, action.EventId);
                 OnToughTargetHit?.Invoke(best.MaxHits - best.CurrentHits, best.MaxHits, best.Lane, best.transform.position);
                 HitParticleEffect.Spawn(best.transform.position, HitParticleEffect.GetColorForTargetType(best.Type), 12);
-                AudioManager.Instance?.PlayToughHitSound();
+                DojoGameFeel.Cue(DojoAudioCue.HeavyDamage,best.IsKick);
                 best.Flash(Color.white, 0.08f);
+                OnTargetFeedback?.Invoke(best, quality, false);
                 return;
             }
 
         }
         if (!best.Resolve()) return;
         activeTargets.Remove(best);
-        best.PlayDestroyAnimation();
+        best.PlayDestroyAnimation(null, best.IsTough || quality == HitQuality.Perfect);
+        OnTargetFeedback?.Invoke(best, quality, false);
         int baseScore = quality == HitQuality.Perfect ? 100 : quality == HitQuality.Good ? 50 : 25;
         if (best.IsTough) baseScore = 100;
         if (action.SourceType == InputSourceType.Sensor && action.NormalizationValid)
@@ -141,8 +161,8 @@ public class HitZoneEvaluator : MonoBehaviour
         TrackChain(best, true, action.EventId);
         OnHitEvaluated?.Invoke(quality, awarded, best.Lane);
         OnHitVisualFeedback?.Invoke(quality, best.Lane, best.transform.position);
-        if(best.IsTough){OnToughTargetDestroyed?.Invoke(quality,best.Lane,best.transform.position);AudioManager.Instance?.PlayToughBreakSound();}
-        else if(best.Type==TargetType.Kick)AudioManager.Instance?.PlayKickSound();else AudioManager.Instance?.PlayHitSound();
+        if(best.IsTough){OnToughTargetDestroyed?.Invoke(quality,best.Lane,best.transform.position);DojoGameFeel.Cue(DojoAudioCue.HeavyBreak,best.IsKick);}
+        else DojoGameFeel.Cue(best.IsKick?DojoAudioCue.KickImpact:DojoAudioCue.PunchImpact);
         HitParticleEffect.Spawn(best.transform.position, HitParticleEffect.GetColorForTargetType(best.Type),
             HitParticleEffect.GetParticleCountForTargetType(best.Type));
         TextPopup.CreateForHitQuality(quality, best.transform.position);
@@ -154,6 +174,7 @@ public class HitZoneEvaluator : MonoBehaviour
         if (target == null || !target.Resolve()) return;
         Destroy(target.gameObject);
         activeTargets.Remove(target);
+        OnTargetFeedback?.Invoke(target, HitQuality.Miss, false);
         TrackResolution(target, false);
         TrackChain(target, false, null);
         if (outcome == "heavy_timeout" && GameManager.Instance?.SessionStats != null)
@@ -193,12 +214,20 @@ public class HitZoneEvaluator : MonoBehaviour
         if (string.IsNullOrEmpty(target.ChainId) || !chains.TryGetValue(target.ChainId, out Chain chain)) return;
         if (!hit) chain.Failed = true;
         chain.Completed++;
-        OnRapidFireChainProgress?.Invoke(chain.Completed, chain.Total, chain.Lane);
+        if(chain.PatternId==null)OnRapidFireChainProgress?.Invoke(chain.Completed, chain.Total, chain.Lane);
         if (chain.Completed < chain.Total) return;
         if (!chain.Failed)
         {
-            ScoreSystem.AddRapidFireChainBonus(RapidFireChainBonus, target.TargetId, actionId);
-            OnRapidFireChainComplete?.Invoke(RapidFireChainBonus, chain.Lane);
+            if(chain.PatternId!=null)
+            {
+                OnPatternComplete?.Invoke(chain.PatternId,chain.Total);
+                TextPopup.Create(target.transform.position,chain.Total+" HIT",GameVisualPalette.GetTargetColor(target.Type));
+            }
+            else
+            {
+                ScoreSystem.AddRapidFireChainBonus(RapidFireChainBonus, target.TargetId, actionId);
+                OnRapidFireChainComplete?.Invoke(RapidFireChainBonus, chain.Lane);
+            }
         }
         chains.Remove(target.ChainId);
     }

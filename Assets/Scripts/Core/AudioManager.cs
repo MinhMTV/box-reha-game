@@ -112,6 +112,13 @@ public class AudioManager : MonoBehaviour
     private void BuildClips()
     {
         clips = new Dictionary<string, AudioClip>();
+        clips["Deploy"] = CreateSweepClip("Deploy",140f,280f,.23f,.07f,.04f);
+        clips["TooLight"] = CreateImpactClip("TooLight",90f,65f,.09f,.025f,.02f);
+        clips["HeavyKickDamage"] = CreateImpactClip("HeavyKickDamage",56f,72f,.22f,.12f,.25f);
+        clips["HeavyKickBreak"] = CreateImpactClip("HeavyKickBreak",70f,35f,.35f,.18f,.3f);
+        clips["Perfect"] = CreateArpeggioClip("Perfect",new[]{660f,880f},.12f,.025f);
+        clips["SessionStart"] = CreateArpeggioClip("SessionStart",new[]{220f,330f,440f},.4f,.03f);
+        clips["SessionEnd"] = CreateArpeggioClip("SessionEnd",new[]{440f,330f,220f},.5f,.03f);
         clips["Hit"] = CreateImpactClip("Hit", 110f, 190f, 0.12f, 0.14f, 0.28f);
         clips["Kick"] = CreateImpactClip("Kick", 76f, 145f, 0.15f, 0.18f, 0.34f);
         clips["Miss"] = CreateSweepClip("Miss", 280f, 140f, 0.14f, 0.07f, 0.12f);
@@ -122,6 +129,23 @@ public class AudioManager : MonoBehaviour
         clips["Countdown"] = CreateImpactClip("Countdown", 760f, 620f, 0.09f, 0.01f, 0.02f);
         clips["ToughHit"] = CreateImpactClip("ToughHit", 86f, 122f, 0.18f, 0.20f, 0.35f);
         clips["ToughBreak"] = CreateArpeggioClip("ToughBreak", new float[] { 120f, 180f, 280f, 420f }, 0.34f, 0.09f);
+    }
+
+    public void PlayCue(DojoAudioCue cue,bool kick=false)
+    {
+        switch(cue)
+        {
+            case DojoAudioCue.TargetDeploy:Play("Deploy",.35f);break;
+            case DojoAudioCue.PunchImpact:PlayHitSound();break;
+            case DojoAudioCue.KickImpact:PlayKickSound();break;
+            case DojoAudioCue.TooLight:Play("TooLight",.6f);break;
+            case DojoAudioCue.Perfect:Play("Perfect",.35f);break;
+            case DojoAudioCue.HeavyDamage:if(kick)Play("HeavyKickDamage",1);else PlayToughHitSound();break;
+            case DojoAudioCue.HeavyBreak:if(kick)Play("HeavyKickBreak",1);else PlayToughBreakSound();break;
+            case DojoAudioCue.ComboTier:PlayComboSound();break;
+            case DojoAudioCue.SessionStart:Play("SessionStart",.45f);break;
+            case DojoAudioCue.SessionEnd:Play("SessionEnd",.45f);break;
+        }
     }
 
     private AudioClip CreateImpactClip(string clipName, float startFrequency, float endFrequency, float duration, float noiseAmount, float overtoneAmount)

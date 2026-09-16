@@ -28,6 +28,10 @@ public static class ResearchSessionLog
         public int maxHealth, remainingHealth;
         public int baseScore, combo, awardedScore, totalScore, healthDamage;
         public float multiplier;
+        // Optional game configuration metadata; not sensor or physiological measurements.
+        public string pacingPhase, patternId;
+        public int pacingTier, patternIndex, pacingSeed;
+        public float scheduledIntervalSeconds, configuredTravelTimeSeconds;
     }
 
     private static StreamWriter writer;
@@ -72,6 +76,10 @@ public static class ResearchSessionLog
     {
         Write(new Record { kind = "acquisition_state", acquisitionJson = snapshotJson });
     }
+    public static void PacingConfiguration(string json,int seed)
+    { Write(new Record {kind="pacing_configuration",configJson=json,pacingSeed=seed}); }
+    public static void PacingTarget(string id,string phase,int tier,string pattern,int index,float interval,float travel)
+    { Write(new Record {kind="pacing_schedule",targetId=id,pacingPhase=phase,pacingTier=tier,patternId=pattern,patternIndex=index,scheduledIntervalSeconds=interval,configuredTravelTimeSeconds=travel}); }
 
     public static void Action(PlayerActionEvent action)
     {
