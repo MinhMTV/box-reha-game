@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](../../../GAME_STATUS.md), [CURRENT_GAMEPLAY.md](../../../CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](../../../ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](../../../TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Current gameplay source status
 
 This Unity 2022.3.62f3 project is an existing 2.5D combat-fitness prototype. Source changes are not a claim that Unity compilation, runtime behavior or physical hardware has been verified. See GAME_STATUS.md for the current evidence gate and GAMEPLAY_UI_AUDIT.md for findings.

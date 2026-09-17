@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](../../../GAME_STATUS.md), [CURRENT_GAMEPLAY.md](../../../CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](../../../ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](../../../TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Digital Dojo — Android prototype
 
 Authoritative request: attached 89-section task, 14 September 2026. Existing game is the deliverable. Develop on Windows, run Unity and Dynamics together on Android. Approved expose v3 and current research scope remain unchanged.

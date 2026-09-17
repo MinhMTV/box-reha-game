@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](../../../GAME_STATUS.md), [CURRENT_GAMEPLAY.md](../../../CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](../../../ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](../../../TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Engineering decisions, updated 14 September 2026
 
 These are implementation decisions within the user's authorized scope. They are not supervisor approval or empirical findings. Source hierarchy and baseline revisions are in `RESEARCH_WORKPLAN.md`; external decisions are in `OPEN_DECISIONS.md`.

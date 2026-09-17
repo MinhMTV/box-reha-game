@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](GAME_STATUS.md), [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Hardware feedback implementation — historical record, updated 17 September 2026
 
 This document records the earlier hardware-feedback implementation. The current source is the main checkout and has since received pacing, visual, cleanup and Android build updates. Use ANDROID_STATUS.md and SENSOR_PAIRING_FLOW.md for the current implementation boundary.

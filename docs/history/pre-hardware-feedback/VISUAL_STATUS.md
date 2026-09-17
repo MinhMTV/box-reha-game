@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](../../../GAME_STATUS.md), [CURRENT_GAMEPLAY.md](../../../CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](../../../ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](../../../TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Current compatibility visual verification — 2026-09-14
 
 The current `Compatibility-Final` capture set contains **50 real Unity Play Mode PNGs**: eleven screens at 1920×1080, 1280×720, 2400×1080 and 1024×768, plus six additional preparation steps. The measured-reference page is included. It correctly shows zero repetitions and no initialized Android SDK in this Windows Editor run. Gameplay/art are preserved.

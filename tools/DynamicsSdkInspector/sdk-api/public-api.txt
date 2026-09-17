@@ -1,0 +1,148 @@
+Compiled from "r8-map-id-07daa5afff8b4a899fe7396a4c21f4034add25c5a5110399a2c8222ca22df43b"
+public final class com.riseworld.dynamics.multiplatform.repository.GloveRepository {
+  public static final com.riseworld.dynamics.multiplatform.repository.GloveRepository$Companion Companion;
+  public com.riseworld.dynamics.multiplatform.repository.GloveRepository(com.riseworld.dynamics.db.Database, com.riseworld.dynamics.ble.GloveManager);
+  public static void getSavedPeripherals$annotations();
+  public final kotlinx.coroutines.flow.Flow getSavedPeripherals();
+  public final java.lang.Object swapGloveSideForId-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+  public final java.lang.Object updateGlovePairNameByPeripheralId-R2WvUlk(kotlin.uuid.Uuid, java.lang.String, kotlin.coroutines.Continuation);
+  public final java.lang.Object updateGlovePairName-WPIley4(kotlin.uuid.Uuid, java.lang.String, kotlin.coroutines.Continuation);
+  public final java.lang.Object deleteGloveById-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+  public final java.lang.Object deleteAllGloves(kotlin.coroutines.Continuation);
+  public final kotlinx.coroutines.flow.Flow observeGloveById-16HgSWs(kotlin.uuid.Uuid);
+  public final kotlinx.coroutines.flow.Flow observeGloves();
+  public final kotlinx.coroutines.flow.Flow observeGlovesAccelerationStream();
+  public final kotlinx.coroutines.flow.Flow observeGlovePairs();
+  public final java.lang.Object getGlovePairByPeripheralId-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+  public final java.lang.Object getGlovePair-nYsn5iQ(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+  public final java.lang.Object getCommonDeviceForGlove-gP7SR54(kotlin.uuid.Uuid, kotlin.coroutines.Continuation);
+}
+Compiled from "r8-map-id-07daa5afff8b4a899fe7396a4c21f4034add25c5a5110399a2c8222ca22df43b"
+public final class com.riseworld.dynamics.multiplatform.repository.SensorDataRepository {
+  public com.riseworld.dynamics.multiplatform.repository.SensorDataRepository(com.riseworld.dynamics.db.Database, com.riseworld.dynamics.ble.GloveManager);
+  public static final com.riseworld.dynamics.db.Database access$getDb$p(com.riseworld.dynamics.multiplatform.repository.SensorDataRepository);
+  public static final com.riseworld.dynamics.ble.GloveManager access$getGloveManager$p(com.riseworld.dynamics.multiplatform.repository.SensorDataRepository);
+  public final kotlinx.coroutines.flow.Flow observeSensorData-16HgSWs(kotlin.uuid.Uuid);
+  public final kotlinx.coroutines.flow.Flow observeSmartphoneBarometer();
+  public final kotlinx.coroutines.flow.Flow observeSmartphoneBarometerNative();
+  public final kotlinx.coroutines.flow.Flow observeSensorDataFromAllGloves();
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.ble.data.SensorDataPacket {
+  public static com.riseworld.dynamics.models.ble.data.SensorDataPacket copy-ABIMYHs$default(com.riseworld.dynamics.models.ble.data.SensorDataPacket, long, int, com.riseworld.dynamics.models.ble.data.SensorSamplingRate, java.util.List, java.util.List, java.util.List, java.util.List, int, java.lang.Object);
+  public com.riseworld.dynamics.models.ble.data.SensorDataPacket(long, int, com.riseworld.dynamics.models.ble.data.SensorSamplingRate, java.util.List, java.util.List, java.util.List, java.util.List, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final long getRelativeTimeCounter-UwyO8pc();
+  public final int getBleCounter();
+  public final com.riseworld.dynamics.models.ble.data.SensorSamplingRate getSamplingRate();
+  public final java.util.List getBaroData();
+  public final java.util.List getAccData();
+  public final java.util.List getGyroData();
+  public final java.util.List getMagnetoData();
+  public final long component1-UwyO8pc();
+  public final int component2();
+  public final com.riseworld.dynamics.models.ble.data.SensorSamplingRate component3();
+  public final java.util.List component4();
+  public final java.util.List component5();
+  public final java.util.List component6();
+  public final java.util.List component7();
+  public final com.riseworld.dynamics.models.ble.data.SensorDataPacket copy-ABIMYHs(long, int, com.riseworld.dynamics.models.ble.data.SensorSamplingRate, java.util.List, java.util.List, java.util.List, java.util.List);
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.ble.data.GloveWithSensorData {
+  public static com.riseworld.dynamics.models.ble.data.GloveWithSensorData copy-gP7SR54$default(com.riseworld.dynamics.models.ble.data.GloveWithSensorData, kotlin.uuid.Uuid, java.util.List, int, java.lang.Object);
+  public com.riseworld.dynamics.models.ble.data.GloveWithSensorData(kotlin.uuid.Uuid, java.util.List, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final kotlin.uuid.Uuid getPeripheralId-WPD2SKI();
+  public final java.util.List getSensorDataPackets();
+  public final kotlin.uuid.Uuid component1-WPD2SKI();
+  public final java.util.List component2();
+  public final com.riseworld.dynamics.models.ble.data.GloveWithSensorData copy-gP7SR54(kotlin.uuid.Uuid, java.util.List);
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.punch.Punch {
+  public static com.riseworld.dynamics.models.domain.punch.Punch copy-pFRLFk8$default(com.riseworld.dynamics.models.domain.punch.Punch, kotlin.uuid.Uuid, kotlin.uuid.Uuid, com.riseworld.dynamics.models.Side, kotlin.time.Instant, boolean, com.riseworld.dynamics.models.domain.punch.Speed, com.riseworld.dynamics.models.domain.punch.Power, int, java.lang.Object);
+  public com.riseworld.dynamics.models.domain.punch.Punch(kotlin.uuid.Uuid, kotlin.uuid.Uuid, com.riseworld.dynamics.models.Side, kotlin.time.Instant, boolean, com.riseworld.dynamics.models.domain.punch.Speed, com.riseworld.dynamics.models.domain.punch.Power, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final kotlin.uuid.Uuid getId-x1nF_Dg();
+  public final kotlin.uuid.Uuid getPeripheralId-WPD2SKI();
+  public final com.riseworld.dynamics.models.Side getSide();
+  public final kotlin.time.Instant getTimestamp();
+  public final boolean getAreComputedValuesValid();
+  public final com.riseworld.dynamics.models.domain.punch.Speed getSpeed();
+  public final com.riseworld.dynamics.models.domain.punch.Power getPower();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public final kotlin.uuid.Uuid component1-x1nF_Dg();
+  public final kotlin.uuid.Uuid component2-WPD2SKI();
+  public final com.riseworld.dynamics.models.Side component3();
+  public final kotlin.time.Instant component4();
+  public final boolean component5();
+  public final com.riseworld.dynamics.models.domain.punch.Speed component6();
+  public final com.riseworld.dynamics.models.domain.punch.Power component7();
+  public final com.riseworld.dynamics.models.domain.punch.Punch copy-pFRLFk8(kotlin.uuid.Uuid, kotlin.uuid.Uuid, com.riseworld.dynamics.models.Side, kotlin.time.Instant, boolean, com.riseworld.dynamics.models.domain.punch.Speed, com.riseworld.dynamics.models.domain.punch.Power);
+  public java.lang.String toString();
+}
+Compiled from "r8-map-id-10063180823d6f4983520e0849fb9f8879f3ae2db25dc4f218c89109255ca7cf"
+public final class com.riseworld.dynamics.models.domain.punch.Speed {
+  public static com.riseworld.dynamics.models.domain.punch.Speed copy-ePrTys8$default(com.riseworld.dynamics.models.domain.punch.Speed, long, long, double, double, double, int, java.lang.Object);
+  public com.riseworld.dynamics.models.domain.punch.Speed(long, long, double, double, double, kotlin.jvm.internal.DefaultConstructorMarker);
+  public final long getPunchDuration-UwyO8pc();
+  public final long getContactDuration-UwyO8pc();
+  public final double getPeakAcceleration();
+  public final double getPeakVelocity();
+  public final double getDisplacement();
+  public final long component1-UwyO8pc();
+  public final long component2-UwyO8pc();
+  public final double component3();
+  public final double component4();
+  public final double component5();
+  public final com.riseworld.dynamics.models.domain.punch.Speed copy-ePrTys8(long, long, double, double, double);
+  public java.lang.String toString();
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "r8-map-id-07daa5afff8b4a899fe7396a4c21f4034add25c5a5110399a2c8222ca22df43b"
+public final class com.riseworld.dynamics.multiplatform.settings.DynamicsSettings {
+  public static final com.riseworld.dynamics.multiplatform.settings.DynamicsSettings$Companion Companion;
+  public com.riseworld.dynamics.multiplatform.settings.DynamicsSettings(com.russhwolf.settings.ObservableSettings);
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueSetting access$getDEBUGGING_MODE$cp();
+  public static final java.lang.String access$getINSTALLATION_ID_KEY$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueSetting access$getDEBUG_ACCEPT_ALL_PUNCHES$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueSetting access$getSHOW_ONBOARDING$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueSetting access$getDEBUG_KEEP_ALL_PUNCH_DETAILS$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueSetting access$getDEBUG_IS_DUMMY_IMPACT_DATA_ENABLED$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueSetting access$getDEBUG_IS_BATTERY_MOCK_ENABLED$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueStringSetting access$getDEBUG_ADVERTISING_PREFIX$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueStringSetting access$getDEBUG_FIRMWARE_UPDATE_BASE_URL$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueSetting access$getDEBUG_USE_DEBUG_FIRMWARE_UPDATE_IMAGE$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueIntSetting access$getBACKGROUND_DISCONNECT_TIMEOUT$cp();
+  public static final com.riseworld.dynamics.multiplatform.settings.KeyValueSetting access$getALLOW_UNSET_SERIAL_NUMBER$cp();
+  public static final void access$resetSettings(com.riseworld.dynamics.multiplatform.settings.DynamicsSettings);
+  public final void setDebuggingMode(boolean);
+  public final kotlinx.coroutines.flow.Flow getDebuggingMode();
+  public final java.lang.String getInstallationId();
+  public final kotlinx.coroutines.flow.Flow getInstallationIdAsFlow();
+  public final void setKeepAllPunchDetails(boolean);
+  public final kotlinx.coroutines.flow.Flow getKeepAllPunchDetails();
+  public final void setDummyImpactDataEnabled(boolean);
+  public final kotlinx.coroutines.flow.Flow isDummyImpactDataEnabled();
+  public final void setAcceptAllPunches(boolean);
+  public final kotlinx.coroutines.flow.Flow acceptAllPunches();
+  public final kotlinx.coroutines.flow.Flow isBatteryMockEnabled();
+  public final kotlinx.coroutines.flow.Flow advertisingPrefix();
+  public final kotlinx.coroutines.flow.Flow firmwareUpdateBaseUrl();
+  public final kotlinx.coroutines.flow.Flow backgroundDisconnectTimeout();
+  public final void setBackgroundDisconnectTimeout-LRDsOJo(long);
+  public final void setBackgroundDisconnectTimeoutInSeconds(int);
+  public final void setFirmwareUpdateBaseUrl(java.lang.String);
+  public final kotlinx.coroutines.flow.Flow useDebugImageForFirmwareUpdate();
+  public final void setUseDebugImageForFirmwareUpdate(boolean);
+  public final void setShowOnboarding(boolean);
+  public final kotlinx.coroutines.flow.Flow getShowOnboarding();
+  public final kotlinx.coroutines.flow.Flow allowUnsetSerialNumberForPeripherals();
+  public final java.lang.String getDynamicsSettings$dynamics_multiplatform();
+}

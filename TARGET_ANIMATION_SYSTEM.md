@@ -16,3 +16,5 @@ One `DojoGameFeel` controller adjusts six narrow wall insets through property bl
 Audio hooks: TargetDeploy, optional TargetTravel (silent), PunchImpact, KickImpact, TooLight, Perfect, HeavyDamage, HeavyBreak, ComboTier, SessionStart/End. Clips are procedural. No third-party copyrighted audio was added.
 
 Mobile discipline: at most four particle emitters × 24 particles, shared particle material with explicit lifetime; at most three short hit popups and one restrained combo popup. No per-frame material instantiation in the new gate/room/debris controllers. This configuration does not establish device FPS, thermal or GPU performance.
+
+Current documentation review: 17 September 2026, main `3f99b17`. Existing test/capture statements retain their dated scope; no tests were run for this update. Latest pacing/order runtime remains unverified. Overall state: [GAME_STATUS.md](GAME_STATUS.md); remaining work: [TODO.md](TODO.md).

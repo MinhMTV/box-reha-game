@@ -1,17 +1,31 @@
-# Project structure — current hardware feedback pass
+# Project structure — 17 September 2026
 
-Existing Unity 6000.6.0f1 project. Active engineering worktree: E:/Programming Projekte/worktrees/wt-agent-root-digital-dojo. Primary user checkout: E:/Programming Projekte/box-reha-game. Four scenes and existing assets retained.
+Main checkout: `E:/Programming Projekte/box-reha-game`, source baseline `3f99b17`. Unity 6000.6.0f1. Enabled scenes: Boot, MainMenu, Game, Results. Do not use the historical detached worktree as current authority.
 
-- Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib: real Android SDK collector/JNI facade, compatibility build and ABI hash gates.
-- Assets/Scripts/Platform: acknowledged SDK lifecycle, current-participant readiness and topology policy.
-- Assets/Scripts/Sensors: native contract, identity/epoch/freshness processing, measured references and CalibrationLibrary.
-- Assets/Scripts/Data: FileProfileRepository, legacy profile facade, existing session summaries/history and action schema.
-- Assets/Scripts/Gameplay and Spawning: common action matching, TOO LIGHT, bounded heavy damage and terminal cleanup.
-- Assets/Scripts/Visuals: retained dojo/art, collider-free VisualPrimitive and uncluttered HUD.
-- Assets/Scripts/UI: named sensor setup, profiles, real reference workflow and scoped statistics/results.
-- Assets/Scripts/Research: append-only game JSONL; calibration audit is separately recorded under persistentDataPath/calibration.
-- Assets/Editor/DigitalDojoCapture.cs: opt-in synthetic Play Mode regression and layout captures.
-- tests/sensor: production host logic/persistence tests; tests/android-export and tests/syntax remain separate checks.
-- scripts/verify-unity.ps1 and verify-android-collector.ps1: existing build paths. verify-hardware-feedback-playmode.ps1 owns only its batch Editor.
+| Location | Responsibility |
+|---|---|
+| Assets/Scripts/Config | Game/level configuration and factories |
+| Assets/Scripts/Core | Round/session orchestration and shared services |
+| Assets/Scripts/Spawning/GameplayPacingProfile.cs | GameplayPacingProfile, GameplayPatternPlanner, ComboPlan, PacingActionTimeline |
+| Assets/Scripts/Spawning/TargetSpawner.cs | Rolling work, Heavy insertion, capacity and path spacing |
+| Assets/Scripts/Gameplay | Target lifecycle/movement, evaluator, timing/scoring/combo |
+| Assets/Scripts/Input | Abstract input routing and development keyboard source |
+| Assets/Scripts/Platform | Android session controller, acknowledgement/readiness/topology policy |
+| Assets/Scripts/Sensors | SDK bridge/contract, per-device processing, measured references, calibration library and inactive HR scaffold |
+| Assets/Scripts/Data | Profile repository/migration, action model, statistics/history |
+| Assets/Scripts/Research | Append-only session JSONL and provenance |
+| Assets/Scripts/UI | Runtime menu, pairing/profiles/references, HUD/results/statistics |
+| Assets/Scripts/Visuals | Room dressing, gate, mounts, visual feedback, mesh-only primitives and bounded effects |
+| Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib | Kotlin collector/JNI facade and explicit SDK compatibility adapter |
+| Assets/Editor | Build/integration tools and opt-in synthetic regression/capture helpers |
+| Assets/Art, Assets/Resources | Imported meshes/materials/prefabs and runtime resources |
+| ArtSource/Blender/DigitalDojo | Blender authoring/generation and reference kit sources |
+| tests, scripts, tools/android | Host/native/Editor validation entry points; different evidence boundaries |
+| vendor-compat/dynamics-0.25.6 | Compatibility evidence and pinned vendor-artifact inspection |
+| Builds/AndroidCandidate | Latest APK; identity in ANDROID_STATUS.md |
+| artifacts/validation, DesignReferences/CurrentBuild | Dated test/build evidence and synthetic Editor captures |
+| docs/history, docs/projects/digital-dojo | Historical snapshots, issues and milestone records |
 
-Current behavior: CURRENT_GAMEPLAY.md. Artifact and runtime boundaries: ANDROID_STATUS.md and HARDWARE_FEEDBACK_REPORT.md. Historical pre-hardware descriptions are under docs/history/pre-hardware-feedback.
+The authoritative external SDK distribution is `C:/dynamics-sdk-main`; the repository's SDK copy is not authoritative. No full buildable SDK core source is supplied. No SDK files changed in this documentation pass.
+
+Documentation map: [GAME_STATUS.md](GAME_STATUS.md) overview; [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md) player behavior; [GAMEPLAY_PACING.md](GAMEPLAY_PACING.md) values; [SPAWNING_ARCHITECTURE.md](SPAWNING_ARCHITECTURE.md) ownership; [SENSOR_INTEGRATION_AUDIT.md](SENSOR_INTEGRATION_AUDIT.md) sensor contract; [TODO.md](TODO.md) remaining work; [OPEN_DECISIONS.md](OPEN_DECISIONS.md) unresolved choices.

@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](../../../GAME_STATUS.md), [CURRENT_GAMEPLAY.md](../../../CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](../../../ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](../../../TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Android status — 2026-09-14
 
 **LEVEL 5 reached: a real, signed Unity Android APK is available in explicit COMPATIBILITY mode.** Installation, launch, JNI/BLE and physical sensor behavior remain untested: `adb devices -l` completed successfully with no devices listed.

@@ -14,9 +14,9 @@ Modern training room: dark wood, charcoal concrete, matte padding, restrained da
 
 Off-white text on charcoal; one red primary action; visible selected, pressed and disabled states. Display 42, title 34, section 25, body 22, caption 18, metric 32, button 22 logical pixels. Touch controls at least 64 logical pixels high. Use negative space and the room; avoid enclosing every item in a card. Layout must be reviewed at 16:9, wide phone and 4:3 tablet ratios. Do not mistake logical pixels for measured Android dp.
 
-## Rendering budget
+## Historical initial-kit rendering budget
 
-Punch 4,588 triangles; kick 1,504; heavy 6,224. Shared materials, no textures required, no real-time point-light arrays, no post-processing dependency. Static modules can batch; target meshes retain separation for feedback. These are geometry/configuration budgets, not device FPS measurements.
+Initial-kit counts (not a current imported-mesh audit): Punch 4,588 triangles; kick 1,504; heavy 6,224. The current reference kit uses textures and shared materials; no real-time point-light arrays, no post-processing dependency. Static modules can batch; target meshes retain separation for feedback. These are geometry/configuration budgets, not device FPS measurements.
 
 ## Evidence
 

@@ -1,7 +1,12 @@
-# Remaining evidence and decisions — 15 September 2026
+# Open decisions — 17 September 2026
 
-Android is the selected deployment platform; Unity 6000.6.0f1 and COMPATIBILITY APK builds are available. The user's old APK install/launch and ALPHA discovery/pairing observation are accepted evidence.
+Implementation tasks belong to [TODO.md](TODO.md). Windows development + Android runtime, Unity 6000.6.0f1, current compatibility candidate and same-family acquisition restrictions are already decided.
 
-Remaining: physical remove/re-pair/swap; first fresh real punch in Unity; two-ALPHA simultaneous events; DELTA interpretation; measured reference and weak/strong gameplay; reconnection/background; device touch/performance; supported independent raw DELTA binding for mixed acquisition. ADB currently reports no device. No radio-wide two-device limit is inferred from SDK session constraints.
+- Which minimum feature set will the study evaluate: single-family sessions, or is simultaneous ALPHA/DELTA essential enough to justify vendor/lower-level work?
+- Are technique recognition, dedicated training modes and HR design-only/future work, or required empirical conditions? They are not currently working features.
+- Which actual Android device/OS/ABI and sensor firmware will define the qualified study configuration?
+- Which calibration protocol, comfortable-effort instructions, repeat criteria and acceptable detection/latency bounds will the technical pilot use?
+- What expert/participant recruitment, sample rationale, consent/activity-stop procedures and analysis choices are agreed with the supervisor/institution?
+- What retention/access/export/deletion policy applies across game profiles, calibration, research logs and SDK body/session data? How are declined SDK-required fields handled?
 
-Study approval/recruitment/consent, actual empirical data, device firmware/OS qualification and retention/access policy remain external. HR remains inactive. Official corrected SDK publication remains desirable; local explicit compatibility is reproducible and not vendor certification.
+Current body references are game parameters, not medical calibration. Vendor unit/clock guarantees remain an evidence question. See [RESEARCH_WORKPLAN.md](RESEARCH_WORKPLAN.md).

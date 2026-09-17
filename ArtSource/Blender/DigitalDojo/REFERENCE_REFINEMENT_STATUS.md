@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](../../../GAME_STATUS.md), [CURRENT_GAMEPLAY.md](../../../CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](../../../ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](../../../TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Runtime integration update — 2026-09-15
 
 The user approved importing this design. The room and all four target FBXs are now imported and wired into the Unity project. `DigitalDojoReferenceImport.Run` reproducibly assigns the room atlas and target normal maps and replaces the resource room/MainMenu room. Runtime target variants omit the duplicate fixed authoring stands; `TargetMountMotion` owns the live telescopic support. All target fracture pieces retain UVs.

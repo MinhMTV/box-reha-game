@@ -1,7 +1,8 @@
 {
-  "generatedUtc": "2026-09-17T04:46:22.5926830Z",
-  "revision": "e1e6341cd5b1c2463516daed4b1f1491795dfd4d",
-  "unityPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
+  "generatedUtc": "2026-09-17T22:25:58.502050+00:00",
+  "revision": "3f99b17c160a3cb01cf16e033f6e510966343937",
+  "sourceSha256": "17823a15059f2e22a8a0eee735e88e78eb65a124f9d76c1f9c5c429c296f31c3",
+  "dirty": true,
   "files": [
     {
       "path": "Assets/Art.meta",
@@ -156,6 +157,14 @@
       "sha256": "f00fa3db819080b64acf43482fe139fb5893a57ca9dae5a2e44260aa9ed3724d"
     },
     {
+      "path": "Assets/Art/DigitalDojo/Models/MountPlate.fbx",
+      "sha256": "dc016052504dc4a9f51ac94de176a5c51d5aee69652b244692c903061af4ee4a"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/MountPlate.fbx.meta",
+      "sha256": "2d019f994e83ad179f6107881021319c62979d724f0a092f671c6165504ddd3d"
+    },
+    {
       "path": "Assets/Art/DigitalDojo/Models/MountedHeavyKickTarget.fbx",
       "sha256": "9e3f5972b0f8e5f0e44de0b1d2e9932983a32bfbff7b750c23be01867d9d695e"
     },
@@ -186,14 +195,6 @@
     {
       "path": "Assets/Art/DigitalDojo/Models/MountedPunchTarget.fbx.meta",
       "sha256": "e199f7e2d36dd966d36b72946a0a6542e6b11c740729a6f4384290c550c4265f"
-    },
-    {
-      "path": "Assets/Art/DigitalDojo/Models/MountPlate.fbx",
-      "sha256": "dc016052504dc4a9f51ac94de176a5c51d5aee69652b244692c903061af4ee4a"
-    },
-    {
-      "path": "Assets/Art/DigitalDojo/Models/MountPlate.fbx.meta",
-      "sha256": "2d019f994e83ad179f6107881021319c62979d724f0a092f671c6165504ddd3d"
     },
     {
       "path": "Assets/Art/DigitalDojo/Models/PunchTarget.fbx",
@@ -228,20 +229,20 @@
       "sha256": "c0b00c73ac78fa272df5687301579ef8ff6f11f01786cf8e40ba0657a09cb2f4"
     },
     {
-      "path": "Assets/Art/DigitalDojo/Models/WoodenBeam.fbx",
-      "sha256": "cdb9f19ce9c56691466192c9835a98e1f80586992999dc374af561b77acae05a"
-    },
-    {
-      "path": "Assets/Art/DigitalDojo/Models/WoodenBeam.fbx.meta",
-      "sha256": "d7cd990d688cfd3793da9acf3564018d47dfbedb96fd6fafc68f1fce82310340"
-    },
-    {
       "path": "Assets/Art/DigitalDojo/Models/WoodSlatPanel.fbx",
       "sha256": "063d6e3e3f011455c7cd19da21693b943d927276af9cfa92c133d030f5fae3ae"
     },
     {
       "path": "Assets/Art/DigitalDojo/Models/WoodSlatPanel.fbx.meta",
       "sha256": "d9aaff1db0a4b00144c3b9c49b1618f0b7363c7d4cd71bf5512b03213a53ae71"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/WoodenBeam.fbx",
+      "sha256": "cdb9f19ce9c56691466192c9835a98e1f80586992999dc374af561b77acae05a"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Models/WoodenBeam.fbx.meta",
+      "sha256": "d7cd990d688cfd3793da9acf3564018d47dfbedb96fd6fafc68f1fce82310340"
     },
     {
       "path": "Assets/Art/DigitalDojo/Prefabs.meta",
@@ -288,6 +289,14 @@
       "sha256": "1678ad462c3e22f149639e3dbed009369f83d77e9af57c4e920b359229217597"
     },
     {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountPlate.prefab",
+      "sha256": "d1734b91ce4adf04d168a14b335b365510f1110b5762dd2bba8507c47f11f9f0"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/MountPlate.prefab.meta",
+      "sha256": "c0ae5b41619c9f786a13c9a3a463e8e2a7aff285769fcf2781e7d36aa1c50811"
+    },
+    {
       "path": "Assets/Art/DigitalDojo/Prefabs/MountedHeavyKickTarget.prefab",
       "sha256": "9fc17bde81bcb91b697597e18ec877651ae10256921ac85abc690a032b898fcd"
     },
@@ -320,14 +329,6 @@
       "sha256": "aaeedd20089ba35d3b3e9e90280b6ee93f2126a521326056d380994b1eb18c2c"
     },
     {
-      "path": "Assets/Art/DigitalDojo/Prefabs/MountPlate.prefab",
-      "sha256": "d1734b91ce4adf04d168a14b335b365510f1110b5762dd2bba8507c47f11f9f0"
-    },
-    {
-      "path": "Assets/Art/DigitalDojo/Prefabs/MountPlate.prefab.meta",
-      "sha256": "c0ae5b41619c9f786a13c9a3a463e8e2a7aff285769fcf2781e7d36aa1c50811"
-    },
-    {
       "path": "Assets/Art/DigitalDojo/Prefabs/PunchTarget.prefab",
       "sha256": "45665b769e7e7725c358d0ba3739360e1ad930dd9d0996ecbde8e8fae924af1c"
     },
@@ -352,20 +353,20 @@
       "sha256": "14aca7e01112fa20dada4b8a8a28569c086c90297f64e505a7ab20eccafc7770"
     },
     {
-      "path": "Assets/Art/DigitalDojo/Prefabs/WoodenBeam.prefab",
-      "sha256": "74710ed51f683513b4f146973e9116dba2337efb3fc72e503de8704249d307d9"
-    },
-    {
-      "path": "Assets/Art/DigitalDojo/Prefabs/WoodenBeam.prefab.meta",
-      "sha256": "ab077c4820ff8a4a4f17867aec52f4cfc716fe1ed04891e5a2e4032e21513fb2"
-    },
-    {
       "path": "Assets/Art/DigitalDojo/Prefabs/WoodSlatPanel.prefab",
       "sha256": "5bbdb225bc3cf41f1c825c7b716c3d03484a7a76c81f7f50275a58464c58d77b"
     },
     {
       "path": "Assets/Art/DigitalDojo/Prefabs/WoodSlatPanel.prefab.meta",
       "sha256": "bc59ba681cf1ffbf3adda7b475be22233ac8ab79c4855caf4173f92565111293"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/WoodenBeam.prefab",
+      "sha256": "74710ed51f683513b4f146973e9116dba2337efb3fc72e503de8704249d307d9"
+    },
+    {
+      "path": "Assets/Art/DigitalDojo/Prefabs/WoodenBeam.prefab.meta",
+      "sha256": "ab077c4820ff8a4a4f17867aec52f4cfc716fe1ed04891e5a2e4032e21513fb2"
     },
     {
       "path": "Assets/Art/DigitalDojo/Textures.meta",
@@ -584,6 +585,14 @@
       "sha256": "41b8e32a309017edb5add7df0dd11244d02dd5ad2753423dd05c878f225d0aac"
     },
     {
+      "path": "Assets/Art/Generated/NeonCombat/Prefabs/PF_HUDPanel_Hologlass.prefab",
+      "sha256": "bb800181490dba2fe4866753578e6b27947b3ed497623c40a60f4f538737b278"
+    },
+    {
+      "path": "Assets/Art/Generated/NeonCombat/Prefabs/PF_HUDPanel_Hologlass.prefab.meta",
+      "sha256": "7fe12fb5ca09774bce6df3ba5e68a31f3ba9a79918099bda3f526b39f2eceb1f"
+    },
+    {
       "path": "Assets/Art/Generated/NeonCombat/Prefabs/PF_HeavyCore_GoldBlocker.prefab",
       "sha256": "023feb2572d98856c403f1b91793afc40962d197d2669e2c29962ee1ff6ba865"
     },
@@ -598,14 +607,6 @@
     {
       "path": "Assets/Art/Generated/NeonCombat/Prefabs/PF_HitLine_MagentaBeam.prefab.meta",
       "sha256": "c554fff7acddfc6f67f9f7f4de43ac8d7b9fba11de9d56ed3f31d647959af87d"
-    },
-    {
-      "path": "Assets/Art/Generated/NeonCombat/Prefabs/PF_HUDPanel_Hologlass.prefab",
-      "sha256": "bb800181490dba2fe4866753578e6b27947b3ed497623c40a60f4f538737b278"
-    },
-    {
-      "path": "Assets/Art/Generated/NeonCombat/Prefabs/PF_HUDPanel_Hologlass.prefab.meta",
-      "sha256": "7fe12fb5ca09774bce6df3ba5e68a31f3ba9a79918099bda3f526b39f2eceb1f"
     },
     {
       "path": "Assets/Art/Generated/NeonCombat/Prefabs/PF_KickPad_NeonBlue.prefab",
@@ -693,7 +694,7 @@
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs",
-      "sha256": "dcd0f11343a1917ea6b02a7be630c8547d31301e1144fa55c63f80ecade53eea"
+      "sha256": "fd039ca5aeddafca0d10fdd489d6fe88e6309de9be838f9ac1df79c110f26a9d"
     },
     {
       "path": "Assets/Editor/GameRegressionChecks.cs.meta",
@@ -717,7 +718,7 @@
     },
     {
       "path": "Assets/Editor/PacingRuntimeProbe.cs",
-      "sha256": "023430da9b147fb0dc529d5d4d60a370bd60021ccdbbba8e9687e9075c2ca1e4"
+      "sha256": "faa6d66ceec62c0e11551099b83888f0cdf2bd0558430da50a0f0200d1eca822"
     },
     {
       "path": "Assets/Editor/PacingRuntimeProbe.cs.meta",
@@ -936,14 +937,6 @@
       "sha256": "f53c23561a94979f23465c25ffa4d231e74fcd44c824b0bd569d616255b11f2d"
     },
     {
-      "path": "Assets/link.xml",
-      "sha256": "4b52a2c1315cb8f1246982281f1ff75901e9d836df57df36aabd4d88af37e1a6"
-    },
-    {
-      "path": "Assets/link.xml.meta",
-      "sha256": "0d02f2cb23321cbf6d62c8bdf66e1a155dfaaf61af97079745c21b6d34933b24"
-    },
-    {
       "path": "Assets/Plugins.meta",
       "sha256": "0eb359cc903ab08664310863d2d317a5d04778c841bac4d4ea36d00c04925011"
     },
@@ -973,7 +966,7 @@
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsCollector.kt",
-      "sha256": "fd9f51650acf7b69be83deac7e5ed26df75d5525d7fe63a0552b079f592bc569"
+      "sha256": "1a6b51d559c1a60fd56f83ad5f628fc8d350520b1f512ef63c4e52e9f03b7e51"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/DynamicsPermissionFragment.kt",
@@ -989,11 +982,15 @@
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/Sdk0256Compat.java",
-      "sha256": "bdf98204194a3d0cd1ad8d6229a0434ef52570700da781be24d75b036c839837"
+      "sha256": "400fa6a618ef21bbf0a2837cce25ccf461565c8ffb008f5f4152e48679e33e13"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/Sdk0256Compat.java.meta",
       "sha256": "0342e9f6d6ebbfdedafe9e5b288bfe4314e9d796a632482642999d001127fb8e"
+    },
+    {
+      "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/main/java/com/boxreha/dynamics/SdkDeviceOperations.kt",
+      "sha256": "2e0c0c51bf05fc997e374834f6865c04ebd107fa6e8fdd5a71b07f136deaba4d"
     },
     {
       "path": "Assets/Plugins/Android/DynamicsSdkUnityBridge.androidlib/src/test/java/com/boxreha/dynamics/CollectorPolicyTest.kt",
@@ -1208,20 +1205,20 @@
       "sha256": "c06c8d9768f73048bd1589c5af4f44463fe0ca4e66406cc2b8f36b94d6fd4dd3"
     },
     {
-      "path": "Assets/Screenshots/digital_dojo_menu_check_2.png",
-      "sha256": "046f6590ed6b14b3d44d3037aa418cb6060c56002def6e3bf233d00dedece796"
-    },
-    {
-      "path": "Assets/Screenshots/digital_dojo_menu_check_2.png.meta",
-      "sha256": "70c1d529f9c9bac19bbdb8768b4e168809d418ae2439d378c48d747434197ccb"
-    },
-    {
       "path": "Assets/Screenshots/digital_dojo_menu_check.png",
       "sha256": "046f6590ed6b14b3d44d3037aa418cb6060c56002def6e3bf233d00dedece796"
     },
     {
       "path": "Assets/Screenshots/digital_dojo_menu_check.png.meta",
       "sha256": "6f6207114b026cbd8327c5168ee7202a5f4717bf36ac3ff00ad1a9185e7192b6"
+    },
+    {
+      "path": "Assets/Screenshots/digital_dojo_menu_check_2.png",
+      "sha256": "046f6590ed6b14b3d44d3037aa418cb6060c56002def6e3bf233d00dedece796"
+    },
+    {
+      "path": "Assets/Screenshots/digital_dojo_menu_check_2.png.meta",
+      "sha256": "70c1d529f9c9bac19bbdb8768b4e168809d418ae2439d378c48d747434197ccb"
     },
     {
       "path": "Assets/Screenshots/digital_dojo_overlay_final.png",
@@ -1240,6 +1237,14 @@
       "sha256": "d53cf808746d78aaf834d4ef5fa2081d828eb30a24ad228a4fb0337cb750473f"
     },
     {
+      "path": "Assets/Screenshots/digital_dojo_playmode_ui.png",
+      "sha256": "8e2efea8535beccfda2175452b16495e27409e29f1d6737783ef7f3e5be954cb"
+    },
+    {
+      "path": "Assets/Screenshots/digital_dojo_playmode_ui.png.meta",
+      "sha256": "d6fa0fcef6d6569b2a17f5320ba8a6db6ceb0683e3e5cfc9ed329511e1753066"
+    },
+    {
       "path": "Assets/Screenshots/digital_dojo_playmode_ui_final2.png",
       "sha256": "7e772fcb3e6075244c9ce002f5ac2329db0d73285cfd042016cdb8dba729c594"
     },
@@ -1254,14 +1259,6 @@
     {
       "path": "Assets/Screenshots/digital_dojo_playmode_ui_final3.png.meta",
       "sha256": "890bc4002de66a342226df93330bef1a0b2b82dd060cee2c570f4be9d4e4fd69"
-    },
-    {
-      "path": "Assets/Screenshots/digital_dojo_playmode_ui.png",
-      "sha256": "8e2efea8535beccfda2175452b16495e27409e29f1d6737783ef7f3e5be954cb"
-    },
-    {
-      "path": "Assets/Screenshots/digital_dojo_playmode_ui.png.meta",
-      "sha256": "d6fa0fcef6d6569b2a17f5320ba8a6db6ceb0683e3e5cfc9ed329511e1753066"
     },
     {
       "path": "Assets/Screenshots/digital_dojo_scene_view_target.png",
@@ -1468,20 +1465,20 @@
       "sha256": "1256ab3daf23c10a68d98b26ae7e8ec5cea454c7cc1f077aea90dcf32d1eb3fb"
     },
     {
-      "path": "Assets/Scripts/Gameplay/GameplayRules.cs",
-      "sha256": "dd36294a644be8a13865b68150cb651aab2093c49f9a132bcb7073c36b6789fc"
-    },
-    {
-      "path": "Assets/Scripts/Gameplay/GameplayRules.cs.meta",
-      "sha256": "4b2ff3c320c20a3436e09ed6c2dc9940275920196408d502fdf18ec5afc34370"
-    },
-    {
       "path": "Assets/Scripts/Gameplay/GameVisualPalette.cs",
       "sha256": "faf6a6320fc4fae7340aae79bc3731ca699e1534bd561283325a294b1e954da8"
     },
     {
       "path": "Assets/Scripts/Gameplay/GameVisualPalette.cs.meta",
       "sha256": "d210acf7303ba350d352e5596345ce45c3ae28bcd9ced3f68979775aec849fd8"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/GameplayRules.cs",
+      "sha256": "dd36294a644be8a13865b68150cb651aab2093c49f9a132bcb7073c36b6789fc"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/GameplayRules.cs.meta",
+      "sha256": "4b2ff3c320c20a3436e09ed6c2dc9940275920196408d502fdf18ec5afc34370"
     },
     {
       "path": "Assets/Scripts/Gameplay/HitParticleEffect.cs",
@@ -1533,7 +1530,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMountMotion.cs",
-      "sha256": "cae667022fd4f17cf98e1853adb81a14b16bfc0858ef0e46efb926b7c9c799ca"
+      "sha256": "cd63af32c80feff6436c8b98c4cd90c08fe59ccd2697b3d65407ea00051072aa"
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMountMotion.cs.meta",
@@ -1541,7 +1538,7 @@
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMover.cs",
-      "sha256": "3f727d7eee6e59c4ef96ca644df7f77dd06c8d9d7c5f0ae65fc99634d42954ec"
+      "sha256": "16dd611571409e58b9658942962b266c8f6cac751a705b12ef3816fd1e0112e8"
     },
     {
       "path": "Assets/Scripts/Gameplay/TargetMover.cs.meta",
@@ -1568,6 +1565,14 @@
       "sha256": "c12969e7f540bc65175eeb9457ceaf0934b79e9d0271753074356b19e9cb7f40"
     },
     {
+      "path": "Assets/Scripts/Input/IPlayerActionInputProvider.cs",
+      "sha256": "24769f468e87e65de630fb6b9b76ca5e120dd61025a8e68bc753b76f47fbdb71"
+    },
+    {
+      "path": "Assets/Scripts/Input/IPlayerActionInputProvider.cs.meta",
+      "sha256": "e2fb0bad1edff0ad0f3697a7288ab3d33f3bff43559030e63a044086f4f665a5"
+    },
+    {
       "path": "Assets/Scripts/Input/InputInterpreter.cs",
       "sha256": "a765ffb012d8a8c735b79cc9de78c63353ca72cda758fe71335eaf0389ae8ea1"
     },
@@ -1582,14 +1587,6 @@
     {
       "path": "Assets/Scripts/Input/InputProviderRouter.cs.meta",
       "sha256": "85621987986142be9d8ddaeb7ad8e964fbdd4cc5172287f66b062c6b7eb41cfc"
-    },
-    {
-      "path": "Assets/Scripts/Input/IPlayerActionInputProvider.cs",
-      "sha256": "24769f468e87e65de630fb6b9b76ca5e120dd61025a8e68bc753b76f47fbdb71"
-    },
-    {
-      "path": "Assets/Scripts/Input/IPlayerActionInputProvider.cs.meta",
-      "sha256": "e2fb0bad1edff0ad0f3697a7288ab3d33f3bff43559030e63a044086f4f665a5"
     },
     {
       "path": "Assets/Scripts/Input/KeyboardActionFactory.cs",
@@ -1629,7 +1626,7 @@
     },
     {
       "path": "Assets/Scripts/Platform/AndroidSessionPolicy.cs",
-      "sha256": "03c6fdaea883cd941b858552724fd5381b61afb4413232a31f51a0236234f646"
+      "sha256": "44b2473a9c769e4c955ff9ab0c03968beb87fd883d02786dea1525076e27f245"
     },
     {
       "path": "Assets/Scripts/Platform/AndroidSessionPolicy.cs.meta",
@@ -1654,14 +1651,6 @@
     {
       "path": "Assets/Scripts/Research/ResearchSessionLog.cs.meta",
       "sha256": "d5402616d74f4616fc22b03230e4dae23eb6c44e5e167e79aa715d2ac0abb863"
-    },
-    {
-      "path": "Assets/Scripts/Scripts.rar",
-      "sha256": "fbee140391da5432305f0723d267e36e7286303ec0b6060420188a344ecb4bc3"
-    },
-    {
-      "path": "Assets/Scripts/Scripts.rar.meta",
-      "sha256": "bb7eb5573fddba39b8e089b5dd332bd58b00b36c0e221afa40891b3235cb9b16"
     },
     {
       "path": "Assets/Scripts/Sensors.meta",
@@ -1693,7 +1682,7 @@
     },
     {
       "path": "Assets/Scripts/Sensors/DynamicsSdkBridgeNotes.md",
-      "sha256": "954e727582e72414539506a72c142c6ba3938377fa101bd8bb5834f6e637ee03"
+      "sha256": "23fbbc754c7f14d862770cc501f6a0c098bd0faa3447e8de7b9426b55863182b"
     },
     {
       "path": "Assets/Scripts/Sensors/DynamicsSdkBridgeNotes.md.meta",
@@ -1761,7 +1750,7 @@
     },
     {
       "path": "Assets/Scripts/Spawning/GameplayPacingProfile.cs",
-      "sha256": "17b5a42f3fcd4b0aa4a394cf8e11fcfbcbf5e2533db6bf925dfcdec2a3b3c87b"
+      "sha256": "80a8c192f9958480fbbe835b5beeb0abe6788c58390c8cc43cdda8af21522b8f"
     },
     {
       "path": "Assets/Scripts/Spawning/GameplayPacingProfile.cs.meta",
@@ -1777,7 +1766,7 @@
     },
     {
       "path": "Assets/Scripts/Spawning/TargetSpawner.cs",
-      "sha256": "48ac1496ae5bcd10b39404be56b7aaf240795ee4612a758b73b7f49cae93975f"
+      "sha256": "f6c94c5bb6283b7aa274abdf4bf65f7c52b0f98e92e99c5bb04ab8eb4fe0bb0b"
     },
     {
       "path": "Assets/Scripts/Spawning/TargetSpawner.cs.meta",
@@ -1813,7 +1802,7 @@
     },
     {
       "path": "Assets/Scripts/UI/DigitalDojoMenuController.cs",
-      "sha256": "e65bc355c8a83d6073099e73a8e65caa3435217d97c07c604eb3ecf6b0be9b1b"
+      "sha256": "f253d55c14f0c935faf55d66ccd5edf352fe5e6ade399d964bd915f2b592a887"
     },
     {
       "path": "Assets/Scripts/UI/DigitalDojoMenuController.cs.meta",
@@ -1936,6 +1925,14 @@
       "sha256": "ecf3461f7370b4669ba6345c49bb787aba5d507bd7b13e05fb56879bf8521f6a"
     },
     {
+      "path": "Assets/link.xml",
+      "sha256": "4b52a2c1315cb8f1246982281f1ff75901e9d836df57df36aabd4d88af37e1a6"
+    },
+    {
+      "path": "Assets/link.xml.meta",
+      "sha256": "0d02f2cb23321cbf6d62c8bdf66e1a155dfaaf61af97079745c21b6d34933b24"
+    },
+    {
       "path": "Packages/manifest.json",
       "sha256": "2de6e008ddc40f07906d4076b8caa91df4042a53c1705a11488de6a8fbae8a2a"
     },
@@ -2009,7 +2006,7 @@
     },
     {
       "path": "ProjectSettings/ProjectSettings.asset",
-      "sha256": "ff0626f6b178e42cb85a09b229b5584fb4e9382a397c095772e0ce4e8c9e5af7"
+      "sha256": "e4b2098cd526a7699ee3abb233943ed245b7cd27a0d1092a6b93ebcac3303761"
     },
     {
       "path": "ProjectSettings/ProjectVersion.txt",
@@ -2040,14 +2037,12 @@
       "sha256": "210f1b07fa9d1209b4433e01699046f790dc5755a6101ef909263c642b4a4247"
     },
     {
-      "path": "ProjectSettings/VersionControlSettings.asset",
-      "sha256": "b693342eb84fb0378d21cd2a4557d900777709ad00c2ff5041c2d8451b6da246"
-    },
-    {
       "path": "ProjectSettings/VFXManager.asset",
       "sha256": "834f8ed55d876b98becb29b6183a8268021aadd2f2ef0392ee6358ec8c4f01a2"
+    },
+    {
+      "path": "ProjectSettings/VersionControlSettings.asset",
+      "sha256": "b693342eb84fb0378d21cd2a4557d900777709ad00c2ff5041c2d8451b6da246"
     }
-  ],
-  "dirty": true,
-  "sourceSha256": "d77b91f35658bfa8f5a313c9fd12bc75074afc309eab7574e1ce95c8e3b71123"
+  ]
 }

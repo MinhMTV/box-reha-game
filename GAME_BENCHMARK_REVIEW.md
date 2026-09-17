@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](GAME_STATUS.md), [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Game benchmark and art-direction review
 
 Role J / UI review, 2026-09-13. Documentary comparison, not a hands-on comparative user study. Product pages identify published features; the adaptations below are this project's design judgments. No assets, music, character designs or proprietary scoring rules were copied. Current Digital Dojo source was inspected; its new runtime presentation still needs fresh Unity captures.

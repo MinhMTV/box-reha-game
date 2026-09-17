@@ -13,3 +13,7 @@ Profile selection closes the prior SDK session and immediately invalidates C# pr
 Profile database contains local body information required by the SDK. Research JSONL excludes display names, height, weight, SDK gender and human-readable device names. Body dimensions never estimate Newton or gameplay strength. Local storage is not encrypted; study retention/access decisions remain separate.
 
 Tests: host file create/reload/migrate/rename/archive, duplicate display names, corrupt preservation; existing history profile isolation; calibration reference separation. These are synthetic file/policy tests, not Android upgrade proof.
+
+## Current calibration boundary — 17 September 2026
+Strong uses three familiarization actions plus five samples (median raw quantity). Rapid uses five events (reciprocal median of four intervals), stored separately as referenceKind speed. Reference schema 2 retains event/timestamp/provenance/SDK metadata; schema 1 remains readable. CalibrationLibrary applies only matching strength references, capped at 2.5; Rapid does not drive pacing. Both protocols remain scientifically UNQUALIFIED.
+Technique Calibration (Straight/Hook/Uppercut and possible Kick techniques) and its UI/persistence are not implemented. Permanent deletion and corrupt-profile recovery UI are also absent. Work and dependencies: [TODO.md](TODO.md).

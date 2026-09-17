@@ -1,3 +1,5 @@
+> Current scope reviewed 17 September 2026: same-family single/pair is implemented application policy, not qualified physical acquisition. Mixed ALPHA+DELTA and clean 2+2 are blocked/not implemented. Current artifact: [ANDROID_STATUS.md](ANDROID_STATUS.md); remaining work: [TODO.md](TODO.md). Dated build/probe results below retain their original evidence scope.
+
 # Dynamics SDK 0.25.6 — compatibility engineering report
 
 Date: 2026-09-14. Highest demonstrated stage: **LEVEL 5, real Unity Android APK**. No authorized ADB device was present. This dated build report is superseded on hardware evidence: the user subsequently installed/launched the APK, discovered ALPHA SG devices and observed paired/connected UI. Real punch/calibration/DELTA/mixed behavior remains unverified.
@@ -32,7 +34,7 @@ The original AARs and rich Maven metadata remain untouched. The overlay is an ex
 - Full native Android library + **16 JVM tests passed** (11 collector-policy tests, 5 actual-vendor ABI tests).
 - Minimal Java consumer compiles nested power and raw/computed repository flow access. Original Kotlin minimal consumer still fails, as expected.
 - Unity **6000.6.0f1**, actual Android toolchain **Gradle 9.1.0 / AGP 9.0.0 / OpenJDK 17**, ARM64 IL2CPP, min API 26, target/compile API 36.
-- Unity's APK build succeeded. Exact final output path, byte size and SHA-256 are in `artifacts/validation/apk-artifact.json`; signature and manifest evidence are separate files beside it.
+- Unity's APK build succeeded. This is historical build evidence. Current APK identity is in ANDROID_STATUS.md; apk-artifact/signature/manifest files refer only to their recorded hashes and must not be assumed to identify the latest APK.
 - No JNI stub is packaged in the APK: the standalone harness uses a compile-only stub, while Unity exports its real player classes.
 - An initial Unity compatibility attempt exposed a Gradle ordering mistake in our export rule. It was fixed by placing `allprojects` after `plugins`; failure evidence is retained separately. No toolchain version was silently replaced.
 
@@ -46,7 +48,7 @@ Actual permission dialogs, BLE discovery, JNI callbacks, Android background/resu
 
 The existing preparation wizard now links to a measured-reference page. It starts an acknowledged SDK reference session independently of gameplay. Collection requires a ready physical device and an explicit side; five valid, fresh computed events of the same device, epoch, family, side, quantity and provenance create a median reference. Mock, mismatched, stale, duplicate and nonfinite events are rejected. Identity history is checked before collection. Leaving the page, pausing or losing readiness interrupts collection.
 
-Saved JSON contains study/device/connection/family/side/quantity/unit/provenance, SDK mode/version, sample count, event IDs, source timestamps, values and median. Status remains `UNQUALIFIED`. No baseline is pre-populated, no measured reference was generated on this machine, and gameplay normalization remains disabled. ALPHA impact, DELTA power index and physical force are not equated. Heart rate remains inactive.
+Saved JSON contains study/device/connection/family/side/quantity/unit/provenance, SDK mode/version, sample count, event IDs, source timestamps, values and median. Status remains `UNQUALIFIED`. No baseline is pre-populated, no measured reference was generated on this machine, and subsequent hardware-feedback work enabled gameplay normalization from matching Strong references (cap 2.5; see PROFILE_DATA_MODEL.md). The original collection-stage result was not physical qualification. ALPHA impact, DELTA power index and physical force are not equated. Heart rate remains inactive.
 
 ## Unity execution reliability
 
@@ -65,3 +67,8 @@ The 15 September feedback pass retains both build modes and pinned vendor inputs
 ## SDK edit authorization and source availability (15 September follow-up)
 
 The user now authorizes SDK changes. A local Git repository preserves the unmodified distribution at 20554e6; 48aa7be adds an exact source inventory and implementation contract. No core Kotlin/Gradle project was present in either supplied SDK copy. Multi-device acquisition has therefore not been implemented or enabled. Earlier read-only constraints describe the previous pass and no longer restrict authorized future SDK work. Existing binary hash gates remain correct because no library binary changed.
+
+
+### 2026-09-18 sensor ABI correction
+
+Static caller-versus-vendor bytecode inspection identified missing unmangled `deleteGloveById(PeripheralId, Continuation)` / swap and raw descriptors emitted from the stripped Kotlin metadata. Both Unity and Inspector now use identical public-ABI adapters: `deleteGloveById-gP7SR54(Uuid, Continuation)`, `swapGloveSideForId-gP7SR54(Uuid, Continuation)`, `observeSensorData-16HgSWs(Uuid)`. Suspend continuations and SDK errors propagate; no vendor binary was patched. Public pair returns PeripheralId, subsequently confirmed against savedPeripherals. Build evidence is separate from pending physical pairing/removal/side-swap validation.

@@ -1,3 +1,5 @@
+> Current scope reviewed 17 September 2026: same-family single/pair is implemented application policy, not qualified physical acquisition. Mixed ALPHA+DELTA and clean 2+2 are blocked/not implemented. Current artifact: [ANDROID_STATUS.md](ANDROID_STATUS.md); remaining work: [TODO.md](TODO.md). Dated build/probe results below retain their original evidence scope.
+
 # ALPHA / DELTA topology investigation
 
 Updated 2026-09-15: user physically launched the previous Android APK, discovered ALPHA SG devices and observed pairing/connected UI. No computed-event topology is yet demonstrated. The APK includes a compiled collector for one device or one left/right pair of one family. A source-level guard is not a statement about the maximum capacity of the Bluetooth radio.

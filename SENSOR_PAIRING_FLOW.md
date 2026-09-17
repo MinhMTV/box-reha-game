@@ -17,3 +17,5 @@ One Alpha Left, Alpha Right, Alpha pair, Delta Left, Delta Right or Delta pair i
 Cases A/B/C: remove left, remove right while preserving left, remove both, re-add opposite side. Case D: end active session first. Host tests prove retirement/capacity/old-epoch rejection and readiness; native compilation proves actual SDK method reachability. They do not execute the Android SDK database or radio.
 
 No Test Device event-identification UI is claimed. Manual one-at-a-time discovery is the available identification procedure. Human-readable names are runtime UI data only; research uses pseudonymous device identity.
+
+Current documentation review: 17 September 2026, main `3f99b17`. Existing test/capture statements retain their dated scope; no tests were run for this update. Latest pacing/order runtime remains unverified. Overall state: [GAME_STATUS.md](GAME_STATUS.md); remaining work: [TODO.md](TODO.md).

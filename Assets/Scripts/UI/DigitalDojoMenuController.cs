@@ -16,7 +16,7 @@ public class DigitalDojoMenuController : MonoBehaviour
     private Text sensorNotice, sensorDevices, nearbyLabel;
     private Button initializeButton, permissionsButton, scanButton, profileButton, leftPairButton, rightPairButton, leftRemoveButton, rightRemoveButton, swapButton;
     private UnityEngine.UI.Button sensorStartButton;
-    private int nearbyIndex;
+    private string selectedNearbyId;
     private string sdkGender;
     private int preparationStep;
     private Text calibrationProgress;
@@ -334,7 +334,7 @@ public class DigitalDojoMenuController : MonoBehaviour
         scanButton = Button(content, "Scan", new Vector2(520f, -265f), 220f, controller.StartScan);
         Button(content, "Stop scan", new Vector2(760f, -265f), 220f, controller.StopScan);
         nearbyLabel = Label(content, "Nearby", "No discovery results", 20, new Vector2(40f, -340f), new Vector2(960f, 65f), Color.white);
-        Button(content, "Next discovered device", new Vector2(40f, -410f), 435f, () => { nearbyIndex++; RefreshSensorStatus(); });
+        Button(content, "Select / next discovered device", new Vector2(40f, -410f), 435f, () => { var list = controller.Status?.nearby; if(list != null && list.Length > 0) { int index = Array.FindIndex(list, d => d != null && d.id == selectedNearbyId); selectedNearbyId = list[(index + 1) % list.Length]?.id; } RefreshSensorStatus(); });
         leftPairButton = Button(content, "Assign LEFT", new Vector2(505f, -410f), 220f, () => PairSelected("Left"));
         rightPairButton = Button(content, "Assign RIGHT", new Vector2(755f, -410f), 225f, () => PairSelected("Right"));
         sensorDevices = Label(content, "Connected", "", 20, new Vector2(40f, -485f), new Vector2(960f, 82f), muted);
@@ -350,7 +350,7 @@ public class DigitalDojoMenuController : MonoBehaviour
         AndroidDynamicsController controller = AndroidDynamicsController.EnsureInstance();
         AndroidNearbyDevice[] nearby = controller.Status?.nearby;
         if (nearby == null || nearby.Length == 0) return;
-        AndroidNearbyDevice selected = nearby[nearbyIndex % nearby.Length];
+        AndroidNearbyDevice selected = Array.Find(nearby, d => d != null && d.id == selectedNearbyId);
         if (selected != null) controller.Pair(selected.id, side);
     }
     private void RemoveSide(string side)
@@ -430,15 +430,17 @@ public class DigitalDojoMenuController : MonoBehaviour
         bool initialized = status != null && status.initialized;
         bool permissions = status != null && status.permissionsGranted;
         bool discovered = status?.nearby != null && status.nearby.Length > 0;
-        bool locked = controller.Pending || status?.state == "pairing" || status?.state == "removing" || status?.state == "changing_side" || (status != null && status.sessionState != "idle" && status.sessionState != "finished");
+        bool selectedDiscovery = discovered && Array.Exists(status.nearby, d => d != null && !string.IsNullOrEmpty(d.id) && d.id == selectedNearbyId);
+        bool locked = controller.Pending || (status != null && (status.deviceMutation || status.hasActiveSession));
+        if(sensorNotice != null && status != null && status.hasActiveSession && sensorStartButton == null) sensorNotice.text += "\nEnd SDK session before changing sensor assignments.";
         var devices = status?.devices ?? Array.Empty<AndroidNativeDevice>();
         bool left = Array.Exists(devices,d=>d != null && d.side == "Left"), right = Array.Exists(devices,d=>d != null && d.side == "Right");
         StepState(initializeButton, initialized, true);
         StepState(permissionsButton, permissions, true);
         StepState(scanButton, discovered, initialized && permissions && !locked);
         StepState(profileButton, status != null && status.profileReady, initialized);
-        StepState(leftPairButton, left, discovered && !left && !locked && devices.Length < 2);
-        StepState(rightPairButton, right, discovered && !right && !locked && devices.Length < 2);
+        StepState(leftPairButton, left, initialized && permissions && selectedDiscovery && !left && !locked && devices.Length < 2);
+        StepState(rightPairButton, right, initialized && permissions && selectedDiscovery && !right && !locked && devices.Length < 2);
         StepState(leftRemoveButton, false, left && !locked);
         StepState(rightRemoveButton, false, right && !locked);
         StepState(swapButton, false, devices.Length > 0 && !locked);
@@ -448,9 +450,8 @@ public class DigitalDojoMenuController : MonoBehaviour
             if (nearby == null || nearby.Length == 0) nearbyLabel.text = "No discovery results. Initialize, grant permissions, then scan.";
             else
             {
-                nearbyIndex %= nearby.Length;
-                AndroidNearbyDevice selected = nearby[nearbyIndex];
-                nearbyLabel.text = (nearbyIndex + 1) + "/" + nearby.Length + "  " + selected?.name + "  " + ShortId(selected?.id) + "\nFamily is identified after connection. Select the actual physical side below.";
+                AndroidNearbyDevice selected = Array.Find(nearby, d => d != null && d.id == selectedNearbyId);
+                nearbyLabel.text = selected == null ? nearby.Length + " discovered. Tap Select / next discovered device." : "SELECTED: " + selected.name + "  [" + ShortId(selected.id) + "]\nFamily is reported after pairing. Assign the physical LEFT or RIGHT side.";
             }
         }
     }

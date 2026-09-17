@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](../../../GAME_STATUS.md), [CURRENT_GAMEPLAY.md](../../../CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](../../../ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](../../../TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Current run state — 15 September 2026
 
 All previous development branches were fast-forward consolidated into local main in E:/Programming Projekte/box-reha-game through 027773f. Five fully incorporated local branches were deleted. Remote branches were not changed or pushed. The old worktree remains detached to preserve its local build/cache files.

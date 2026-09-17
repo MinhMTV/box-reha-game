@@ -1,0 +1,4 @@
+Compiled from "r8-map-id-fe5a2ceeedd0ef2b4c4d00697351eb28e4e619141b47aa07daf4e4039393dfed"
+public final class com.juul.kable.models.AndroidDeviceKt {
+  public static final android.bluetooth.BluetoothDevice getBluetoothDevice(com.juul.kable.models.CommonDevice);
+}

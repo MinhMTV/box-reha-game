@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](GAME_STATUS.md), [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Room validation classification — 15 September 2026
 
 The historical plugin report `ArtSource/Blender/DigitalDojo/ReferenceRefinement/review/final-report.json` is a **failed/unapproved contract snapshot**, not a fresh engine defect report. Its all-false checklist is retained; it has not been rewritten to claim approval.

@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](GAME_STATUS.md), [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Hardware feedback audit — 15 September 2026
 
 This pass follows a real user Android test. The former pre-installation audit is preserved in docs/history/pre-hardware-feedback/GAMEPLAY_UI_AUDIT.md; it is not current status.

@@ -42,6 +42,7 @@ internal object DynamicsCollector {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val commands = Mutex()
     private val policy = CollectorPolicy()
+    private var operationDevice = "none"
     private var initialized = false
     private var observing = false
     private var foreground = true
@@ -52,6 +53,8 @@ internal object DynamicsCollector {
     private var emissionEnabled = false
     private var sessionFamily = ""
     private var sessionState = "idle"
+    private var hasActiveSession = false
+    private var deviceMutation = false
     private var controlRequestId = ""
     private var statusSequence = 0L
     private var state = "uninitialized"
@@ -75,6 +78,8 @@ internal object DynamicsCollector {
         scope.launch {
             commands.withLock {
                 try {
+                    operationDevice = "none"
+                    deviceMutation = code in listOf("pair", "unpair", "change_side")
                     if (requireInit && !initialized) fail("not_initialized", "SDK zuerst initialisieren.")
                     withTimeout(if (code == "pair") 90_000L else 20_000L) { block() }
                 } catch (e: TimeoutCancellationException) {
@@ -91,8 +96,10 @@ internal object DynamicsCollector {
                     if (e !is Exception && e !is LinkageError) throw e
                     emissionEnabled = false
                     policy.disarm()
-                    status("error", code + "_failed", "SDK-Aufruf fehlgeschlagen: " + e.javaClass.simpleName)
-                }
+                    android.util.Log.e("DynamicsCollector", "SDK action=$code device=$operationDevice", e)
+                    val root = generateSequence(e) { it.cause }.last()
+                    status("error", code + "_failed", "$code [$operationDevice]: ${root.javaClass.simpleName}: ${root.message}")
+                } finally { deviceMutation = false; status(state, lastStatusCode, lastStatusMessage) }
             }
         }
     }
@@ -198,9 +205,10 @@ internal object DynamicsCollector {
         if (trainingSessionRepository.activeTrainingSessionTime.first() != null) fail("finish_before_unpair", "Zuerst End SDK session wählen, dann Gerät entfernen. Sitzung bleibt erhalten.")
         val saved = gloveRepository.savedPeripherals.first()
         val dto = saved.firstOrNull { alias(it) == deviceId } ?: fail("device_not_found", "Gespeichertes Gerät nicht gefunden. Neu initialisieren und aktualisieren.")
+        operationDevice = "${Sdk0256Compat.deviceUuid(dto)} / ${dto.side} / deleteGloveById-gP7SR54"
         val removedEpoch = epochs[deviceId] ?: retiredDeviceEpochs[deviceId]
         status("removing", "removing", "Gespeicherte Kopplung wird entfernt; SDK-Bestätigung abwarten.")
-        gloveRepository.deleteGloveById(Sdk0256Compat.peripheralId(dto)).getOrThrow()
+        SdkDeviceOperations.remove(gloveRepository, dto).getOrThrow()
         // SDK deletion owns persistent DB removal and BLE deinitialization. Await both published views.
         withTimeout(5000) { gloveRepository.savedPeripherals.first { list -> list.none { Sdk0256Compat.deviceUuid(it) == Sdk0256Compat.deviceUuid(dto) } } }
         val current = withTimeout(5000) { gloveRepository.observeGloves().first { list -> list.none { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(dto) } } }
@@ -221,9 +229,11 @@ internal object DynamicsCollector {
         if (trainingSessionRepository.activeTrainingSessionTime.first() != null) fail("finish_before_side_change", "SDK-Sitzung vor Seitenwechsel beenden.")
         val dto = gloveRepository.savedPeripherals.first().firstOrNull { alias(it) == deviceId }
             ?: fail("device_not_found", "Gespeichertes Gerät nicht gefunden.")
+        operationDevice = "${Sdk0256Compat.deviceUuid(dto)} / ${dto.side} / swapGloveSideForId-gP7SR54"
         val expected = if (dto.side == Side.LEFT) Side.RIGHT else Side.LEFT
         status("changing_side", "changing_side", "Seitenwechsel wird gespeichert.")
-        gloveRepository.swapGloveSideForId(Sdk0256Compat.peripheralId(dto)).getOrThrow()
+        SdkDeviceOperations.swap(gloveRepository, dto).getOrThrow()
+        withTimeout(5000) { gloveRepository.savedPeripherals.first { list -> list.any { Sdk0256Compat.deviceUuid(it) == Sdk0256Compat.deviceUuid(dto) && it.side == expected } } }
         gloves.forEach(::retire)
         gloves = withTimeout(5000) { gloveRepository.observeGloves().first { list -> list.any { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(dto) && it.dto.side == expected } } }
         reconcileConnections()
@@ -361,6 +371,7 @@ internal object DynamicsCollector {
         }
         observers += watch("session_state") {
             trainingSessionRepository.activeTrainingSessionTime.collect { active ->
+                hasActiveSession = active != null
                 // Command handlers await their own authoritative SDK state before acknowledging running.
                 if (commands.isLocked) return@collect
                 when (Sdk0256Compat.sessionState(active?.state)) {
@@ -533,6 +544,7 @@ internal object DynamicsCollector {
             .put("statusSequence", ++statusSequence).put("controlRequestId", controlRequestId)
             .put("initialized", initialized && observing).put("permissionsGranted", missingPermissions().isEmpty())
             .put("sdkVersion", "0.25.6").put("sdkBuildMode", BuildConfig.SDK_BUILD_MODE).put("profileReference", if (profileReady) profileReference else "")
+            .put("hasActiveSession", hasActiveSession).put("deviceMutation", deviceMutation)
             .put("profileStudyId", participant).put("sessionFamily", sessionFamily)
             .put("devices", devicesJson).put("nearby", nearbyJson).put("profileReady", profileReady).put("sessionState", sessionState).toString())
     }

@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](../../../GAME_STATUS.md), [CURRENT_GAMEPLAY.md](../../../CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](../../../ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](../../../TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Decisions
 
 - 2026-09-14: Correct outdated installation premise. Unity 6000.6.0f1 exists at C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Unity.exe; Blender 5.2.1 LTS at D:/Program Files/Blender Foundation/Blender 5.2/blender.exe. Android module absent at initial inspection; installation started.

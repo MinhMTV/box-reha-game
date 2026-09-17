@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](GAME_STATUS.md), [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Dynamics SDK Android package blockers — 2026-09-14
 
 The Android collector is implemented in source against the supplied SDK's documented Kotlin API. **Native compilation is blocked; no working collector AAR, Unity APK, Bluetooth connection or hardware measurement has been established.** Two independent packaging problems were reproduced with the authoritative `C:\dynamics-sdk-main` bundle, SDK **0.25.6**. The bundle and production dependency versions remain unchanged.

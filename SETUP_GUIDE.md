@@ -1,66 +1,33 @@
-# Setup and qualification
+# Setup and qualification — 17 September 2026
 
-Use the existing repository at `E:\Programming Projekte\box-reha-game` with **Unity 6000.6.0f1**, matching ProjectSettings/ProjectVersion.txt. Do not create a new Unity project, import scripts separately or regenerate scenes as a setup step.
+Open the existing `E:/Programming Projekte/box-reha-game` with Unity **6000.6.0f1** and matching Android Build Support/SDK/NDK/OpenJDK. Do not regenerate scenes or create a replacement project. Windows is the development host; the complete Unity game and SDK run on Android without a relay.
 
-The deployment target is the complete Unity game plus Dynamics SDK on Android. Windows is only the development host; no gateway PC is required at runtime. Unity 6000.6.0f1 has been installed and imported, with Android modules and actual Editor/Play Mode checks. The complete Android build reaches Gradle but is blocked by the supplied native SDK publication; see ANDROID_STATUS.md. OnePlus 15 and Galaxy Tab S3 are the intended device checks.
+## Development
+Open `Assets/Scenes/Boot.unity`. Runtime MainMenu replaces historical serialized concept UI. Development keys: Left/Right arrows = punches; A/D = kicks; ESC or touch PAUSE; Finish & Results ends a round. Profiles, references and history use actual local state. See [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md).
 
-**Android build status:** the Unity 6000.6.0f1 ARM64/IL2CPP candidate builds successfully in the explicit SDK COMPATIBILITY mode. The vendor-unchanged dependency graph still documents the missing `resource:2.11.1`; this does not block the labelled compatibility candidate. Physical BLE/JNI qualification remains open. See ANDROID_STATUS.md and SDK_COMPATIBILITY_REPORT.md.
-
-## Open the project
-
-1. Use the installed Unity 6000.6.0f1 through Unity Hub. Android Build Support, SDK/NDK and OpenJDK are installed for that Editor. On another machine, install these exact modules before building.
-2. In Hub, add the existing repository directory. Allow package resolution and inspect compiler/import errors.
-3. Open Assets/Scenes/Boot.unity and enter Play Mode for the normal scene flow.
-4. Windows Editor play uses development input: Left/Right Arrow = punches; A/D = kicks; each KeyDown emits one abstract action. Use the visible PAUSE button or ESC; Enter ends endless, or choose Pause -> Finish & Results.
-
-The live hub replaces old serialized concept UI in Awake. Inspect it in Play Mode: Editor-only previews of MainMenu.unity can still display dormant historical mock values. The hub shows actual local profile/history and clearly unavailable calibration. No hardware connection, calibration baseline or HR value is implied by opening it.
-
-## Reproducible checks
-
-From the repository root:
+## Build/check entry points
+These are instructions for future execution; this documentation pass ran none of them.
 
 ```powershell
 dotnet run --project tests/sensor/SensorHostChecks.csproj --configuration Release
 dotnet run --project tests/syntax/SyntaxChecks.csproj -- .
 python tests/check_scene_assets.py
+.\scripts\verify-unity.ps1 -UnityPath "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe" -SdkMode COMPATIBILITY -BuildCandidate
 ```
 
-The host harness uses .NET 10 and minimal Unity stubs. Its fixtures are **SYNTHETIC / NOT EMPIRICAL DATA**. Syntax parsing and serialized-reference checks do not establish Unity API compilation, rendering or sensor behavior.
+Use the actual installed Editor path. Host fixtures are synthetic and use narrow Unity stubs. The Unity wrapper prepares settings, records source identity and performs checks/build; it does not qualify BLE or human performance. Default SDK mode is VENDOR-UNCHANGED and still hits the missing resource 2.11.1 dependency; choose COMPATIBILITY explicitly for the existing successful path. It uses resource 2.12.0 plus the pinned Java/reflection adapter. [SDK_COMPATIBILITY_REPORT.md](SDK_COMPATIBILITY_REPORT.md).
 
-With a licensed Editor installed, run:
+Current output: `Builds/AndroidCandidate/DigitalDojo.apk`, ARM64/IL2CPP, min API 26, target/compile API 36. Exact latest identity and dated build evidence: [ANDROID_STATUS.md](ANDROID_STATUS.md). Historical source/signature reports must not be reused for a different APK hash.
 
-```powershell
-.\scripts\verify-unity.ps1 -UnityPath "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe" -BuildCandidate
-```
+## Physical setup
+1. Confirm device ABI/OS, enable USB debugging and authorize the host; install the identified APK without unnecessarily removing existing profile data.
+2. Initialize SDK, grant permissions, scan, inspect actual device names and assign actual Left/Right sides. Unknown family remains visible but blocks readiness. Use confirmed Remove/re-pair or pair-aware side swap for corrections.
+3. Select/create a local participant and explicitly supply SDK-required body profile fields. SDK ranges: weight 20–250 kg, height 50–250 cm, gender MALE/FEMALE. These are SDK prerequisites, not force calibration; collect only under the agreed study procedure.
+4. Choose ALPHA Punch or experimental DELTA Kick. One same-family device or Left/Right pair is allowed; only connected sides are used. DELTA includes Heavy Kick but excludes Punch rapid-chain behavior. Mixed/third/fourth devices remain blocked.
+5. Start only after matching profile/family/session acknowledgement. Strong/Rapid collection requires fresh valid physical events; no button creates a baseline. Test references, profile switching, TOO LIGHT and persistence.
+6. Check pause/resume, connection loss, background/reconnect, end-session recovery and prolonged use. Record actual device/firmware, source/config/APK identity and input provenance.
 
-Replace the executable path with the exact installed and imported Editor. The Android verification path prepares PlayerSettings before stamping the source revision/hash, runs GameRegressionChecks.RunBatch and optionally builds an ARM64 IL2CPP Development APK. Omit -BuildCandidate for Editor checks only. Output goes to artifacts/validation/; Android candidate output is Builds/AndroidCandidate/DigitalDojo.apk with unity-android-candidate-build.json. The separate BuildStudyCandidate entrypoint remains a Windows development build, not the sensor deployment target.
+There is no qualified physical sensor result yet. Follow [TODO.md](TODO.md) for the full hardware sequence. Raw technique recording/classification and active HR are not current functions.
 
-GameRegressionChecks.PrepareAndroidCandidate configures com.boxreha.digitaldojo, landscape, target API 36 and ARM64/IL2CPP. SDK 0.25.6 AAR metadata requires compile API 36, which must be installed in the chosen Android toolchain. The current 2022 Editor candidate uses minimum API 23; the planned actual 6000.6.x import uses minimum API 26. BuildAndroidCandidate verifies those settings before building and does not change them after the source stamp. Native Gradle/export compatibility is a separate required gate; see the sensor integration notes and consolidated status.
-
-A successful development build is not a study-readiness decision. The script does not launch the player or validate hardware. Without an installed Editor, the Unity gate remains **NOT RUN**; do not substitute host-test results.
-
-## Player QA after a successful build
-
-Exercise Boot/menu/all panels, all three timed levels, endless, all four action keys, wrong-side/action rejection, early/late timing, score/combo, rapid-chain success/failure and heavy damage/completion. Repeat heavy punches on the same side and allow one heavy to expire after 12 active seconds. Check ESC/resume and Finish & Results, including unfinished targets.
-
-Verify profile/name persistence, explicit new-participant IDs, history isolation, reduced motion, audio settings and error display. Reconcile JSONL action/target/score records against displayed results, including pauses and interrupted sessions. Capture real runtime screenshots of the hub, punch, kick, heavy, calibration preparation, results, statistics and profile. Record console errors and actual build/source identity.
-
-## Sensor and study boundaries
-
-On the Android candidate:
-
-1. Choose Sensor setup; initialize SDK, grant requested Android permissions, and scan.
-2. Cycle discovered devices and pair each to its **actual physical** Left or Right side. Family is identified after connection. Inspect online/offline/error status; Remove corrects a wrong assignment.
-3. Enter this participant's SDK body profile: weight 20–250 kg, height 50–250 cm, explicit MALE or FEMALE. Fields start empty; no category is preselected. These are SDK prerequisites with local SDK persistence, not game-force calibration. Missing/invalid/rejected entries keep readiness closed.
-4. Choose Alpha punches or experimental Delta kick mapping. Use one device or one left/right pair of one family; targets only use connected sides. Mixed Alpha+Delta and three-device setups are unsupported. Delta mode excludes heavy targets and punch chains.
-5. Start the selected level. The scene opens only after the matching running acknowledgement for this request, study/profile and family. UI status must remain honest on denied permissions, failures and missing devices. End SDK session is available for failed-start recovery.
-6. Exercise touch PAUSE/Resume/Finish, disconnect/reconnect, background/foreground and new-participant changes. Resume requires a fresh acknowledgement. A changed device selection requires a new round. Finish must retain game results even when the SDK reports a finish failure.
-7. Delay Unity callback handling deliberately and verify that Android emission time prevents queued punches/status from becoming fresh again. Source age must include native first-packet age, measured JNI transport age and Unity queue age. Do not interpret the SDK timestamp as movement onset.
-
-The authoritative external SDK checkout is `C:\dynamics-sdk-main`. Source integration and native compilation do not prove actual discovery, SDK initialization, connection, subscription or physical detection. Follow SENSOR_INTEGRATION_AUDIT.md and the bridge notes, then qualify Alpha and Delta separately. Preserve device, side, quantity, unit, clock, validity and provenance. Keyboard/SDK mocks are not physical observations.
-
-Calibration capture/persistence and active HR adaptation are not provided by the current hub. Explicitly exclude unqualified channels from a study configuration. Physical status remains **NOT VERIFIED WITH PHYSICAL HARDWARE** until evidence exists.
-
-Actual runtime data uses Application.persistentDataPath: research/<sessionId>.jsonl plus session-history-v1.json. On Android, obtain these app-specific files through an explicitly controlled device/export workflow; do not assume the Windows data path. Display names and SDK body values are not exported in game JSONL. Generated study IDs link records; acquisitionJson snapshots contain SDK/profile/device/connection/firmware and family state. A different participant requires New participant ID and a newly acknowledged SDK body profile. Earlier history remains intact. RESEARCH_LOG_SCHEMA.md defines metrics and incomplete-session handling; acquisition snapshots are not a complete raw-packet/rejection log.
-
-GAME_STATUS.md and GAME_KNOWN_ISSUES.md are the handoff checklist. Scene generators rewrite scenes/assets and are maintenance tools; do not run them merely to inspect or qualify this project.
+## Data and study boundary
+`Application.persistentDataPath` contains profiles, calibration references/audits, session history and research JSONL. SDK body/session storage is separate. Game research logs exclude names/body values; configure controlled export/access/retention across all stores. See [PROFILE_DATA_MODEL.md](PROFILE_DATA_MODEL.md) and [RESEARCH_LOG_SCHEMA.md](RESEARCH_LOG_SCHEMA.md). A build pass is not study readiness.

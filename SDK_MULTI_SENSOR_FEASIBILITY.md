@@ -1,3 +1,5 @@
+> Current scope reviewed 17 September 2026: same-family single/pair is implemented application policy, not qualified physical acquisition. Mixed ALPHA+DELTA and clean 2+2 are blocked/not implemented. Current artifact: [ANDROID_STATUS.md](ANDROID_STATUS.md); remaining work: [TODO.md](TODO.md). Dated build/probe results below retain their original evidence scope.
+
 # Multi-sensor feasibility — 15 September 2026
 
 Decision: Case C for this deliverable. No mixed acquisition is enabled. This is a constraint of the supplied distribution and verified public ownership path, not a claim that all Bluetooth radios are limited to two devices.

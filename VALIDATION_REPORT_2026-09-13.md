@@ -1,3 +1,5 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](GAME_STATUS.md), [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Coordinated validation report, 13 September 2026
 
 **Study readiness: RED.** Recorded software checks passed within their stated scope. Unity compilation, rendered interaction and physical sensor qualification were not performed. This report describes an actual development cycle, not participant results or a certified study build.

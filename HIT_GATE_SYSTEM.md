@@ -6,3 +6,5 @@ Only evaluated outcomes display short feedback: PERFECT/GOOD/EARLY/LATE, MISS or
 Evaluator timing remains authoritative: Perfect within100ms, Good within250ms, accepted remaining half-window Early/Late. Heavy locks and remains actionable; deployment is not actionable. Visualizer does not score.
 Legacy EnsureHitGuide/CreateGuide/material ownership code is removed. Regression includes changed XYZ, empty pre-action labels, real outcomes, retries, Heavy fallback and repeated-resolution rejection.
 Current evidence: artifacts/validation/hit-gate-playmode.txt and DesignReferences/CurrentBuild/Gameplay-Consolidation/. Hardware BLE/display latency remains unverified.
+
+Current documentation review: 17 September 2026, main `3f99b17`. Existing test/capture statements retain their dated scope; no tests were run for this update. Latest pacing/order runtime remains unverified. Overall state: [GAME_STATUS.md](GAME_STATUS.md); remaining work: [TODO.md](TODO.md).

@@ -1,0 +1,262 @@
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.AndroidBluetoothStateObserverKt {
+  public static final com.juul.kable.BluetoothStateObserver bluetoothStateObserver(kotlinx.coroutines.CoroutineScope);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.AndroidLocationServicesObserverKt {
+  public static final com.juul.kable.LocationStateObserver locationStateObserver(kotlinx.coroutines.CoroutineScope);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.AndroidPermissionStateObserverKt {
+  public static final java.util.List filterRevokedPermissions(java.util.List, android.content.Context);
+  public static final boolean checkSelfPermissions(android.content.Context, java.util.List);
+  public static final com.juul.kable.PermissionStateObserver permissionStateObserver(kotlinx.coroutines.CoroutineScope);
+  public static final boolean hasAllRequiredPermissionsForScanning(com.juul.kable.PermissionState);
+  public static final boolean hasAllRequiredPermissionsForConnection(com.juul.kable.PermissionState);
+  public static final com.juul.kable.PermissionState mockPermissionState(boolean, boolean);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.BluetoothDeviceKt {
+  public static final void close(com.juul.kable.Threading);
+  public static final com.juul.kable.Threading threading(android.bluetooth.BluetoothDevice);
+  public static final com.juul.kable.Connection connect(android.bluetooth.BluetoothDevice, kotlin.coroutines.CoroutineContext, android.content.Context, boolean, com.juul.kable.Transport, com.juul.kable.Phy, kotlinx.coroutines.flow.MutableStateFlow, kotlinx.coroutines.flow.MutableStateFlow, kotlinx.coroutines.flow.MutableSharedFlow, com.juul.kable.logs.Logging, com.juul.kable.Threading);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.BluetoothKt {
+  public static final kotlinx.coroutines.flow.Flow getBluetoothAvailability();
+  public static final boolean access$isLocationEnabled();
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.BluetoothStateKt {
+  public static final kotlinx.coroutines.flow.SharedFlow getBluetoothDeviceIntent();
+  public static void getBluetoothDeviceIntent$annotations();
+  public static final kotlinx.coroutines.flow.Flow getAndroidBluetoothState();
+  public static void getAndroidBluetoothState$annotations();
+  public static final kotlinx.coroutines.flow.Flow getAndroidBondState();
+  public static void getAndroidBondState$annotations();
+  public static final java.lang.Object getParcelableExtraCompat(android.content.Intent, java.lang.String);
+  public static final android.content.IntentFilter access$getIntentFilter$p();
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.BondStateObserverKt {
+  public static final com.juul.kable.BondState toBondState(int);
+  public static final com.juul.kable.BondState getBondStateById(android.bluetooth.BluetoothAdapter, java.lang.String);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.BondingExtensionsKt {
+  public static final boolean hasLostBonding(kotlin.Pair);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.BroadcastReceiverFlowKt {
+  public static final kotlinx.coroutines.flow.Flow broadcastReceiverFlow(android.content.IntentFilter);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.ByteArrayKt {
+  public static final java.lang.String toHexString(byte[], java.lang.String, java.lang.String, boolean);
+  public static java.lang.String toHexString$default(byte[], java.lang.String, java.lang.String, boolean, int, java.lang.Object);
+  public static final int toShort(byte[]);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.ConnectionKt {
+  public static final int access$getGattSuccess$p();
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.DescriptorKt {
+  public static final com.juul.kable.Descriptor first(java.util.List, kotlin.uuid.Uuid);
+  public static final com.juul.kable.Descriptor firstOrNull(java.util.List, kotlin.uuid.Uuid);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.FilterKt {
+  public static final boolean matches(com.juul.kable.Filter$Service, java.util.List);
+  public static final boolean matches(com.juul.kable.Filter$Name, java.lang.String);
+  public static final boolean matches(com.juul.kable.Filter$NamePrefix, java.lang.String);
+  public static final boolean matches(com.juul.kable.Filter$ManufacturerData, byte[]);
+  public static final void access$requireDataAndMaskHaveSameLength(byte[], byte[]);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.FlowKt {
+  public static final kotlinx.coroutines.Job launchIn(kotlinx.coroutines.flow.Flow, kotlinx.coroutines.CoroutineScope, kotlinx.coroutines.CoroutineStart);
+  public static kotlinx.coroutines.Job launchIn$default(kotlinx.coroutines.flow.Flow, kotlinx.coroutines.CoroutineScope, kotlinx.coroutines.CoroutineStart, int, java.lang.Object);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.JobKt {
+  public static final boolean isNotCancelled(kotlinx.coroutines.Job);
+  public static final java.lang.Object cancelAndJoinChildren(kotlinx.coroutines.Job, kotlin.coroutines.Continuation);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.KableInitializerKt {
+  public static final android.content.Context getApplicationContext();
+  public static final android.bluetooth.BluetoothAdapter getBluetoothAdapter();
+  public static final void access$setApplicationContext$p(android.content.Context);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.LocationServicesStateKt {
+  public static final kotlinx.coroutines.flow.SharedFlow getLocationServicesIntent();
+  public static void getLocationServicesIntent$annotations();
+  public static final boolean isLocationEnabled(android.content.Context);
+  public static final android.content.IntentFilter access$getIntentFilter$p();
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.ObservationEventKt {
+  public static final boolean isAssociatedWith(com.juul.kable.ObservationEvent, com.juul.kable.Characteristic);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.ObservationsKt {
+  public static final com.juul.kable.Observation$Handler observationHandler(com.juul.kable.Peripheral);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public interface com.juul.kable.Peripheral {
+  public static java.lang.Object write$default(com.juul.kable.Peripheral, com.juul.kable.Characteristic, byte[], com.juul.kable.WriteType, kotlin.coroutines.Continuation, int, java.lang.Object);
+  public static kotlinx.coroutines.flow.Flow observe$default(com.juul.kable.Peripheral, com.juul.kable.Characteristic, kotlin.jvm.functions.Function1, int, java.lang.Object);
+  public abstract kotlinx.coroutines.flow.StateFlow getState();
+  public abstract kotlinx.coroutines.flow.StateFlow getBondState();
+  public abstract java.lang.String getName();
+  public abstract java.lang.Object connect(kotlin.coroutines.Continuation);
+  public abstract java.lang.Object disconnect(kotlin.coroutines.Continuation);
+  public abstract java.util.List getServices();
+  public abstract java.lang.Object rssi(kotlin.coroutines.Continuation);
+  public abstract java.lang.Object read(com.juul.kable.Characteristic, kotlin.coroutines.Continuation);
+  public abstract java.lang.Object write(com.juul.kable.Characteristic, byte[], com.juul.kable.WriteType, kotlin.coroutines.Continuation);
+  public abstract java.lang.Object read(com.juul.kable.Descriptor, kotlin.coroutines.Continuation);
+  public abstract java.lang.Object write(com.juul.kable.Descriptor, byte[], kotlin.coroutines.Continuation);
+  public abstract kotlinx.coroutines.flow.Flow observe(com.juul.kable.Characteristic, kotlin.jvm.functions.Function1);
+  public abstract com.juul.kable.models.CommonDevice getCommonDevice();
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.PeripheralAndroidKt {
+  public static final com.juul.kable.Peripheral peripheral(kotlinx.coroutines.CoroutineScope, com.juul.kable.Advertisement, kotlin.jvm.functions.Function1);
+  public static com.juul.kable.Peripheral peripheral$default(kotlinx.coroutines.CoroutineScope, com.juul.kable.Advertisement, kotlin.jvm.functions.Function1, int, java.lang.Object);
+  public static final com.juul.kable.Peripheral peripheral(kotlinx.coroutines.CoroutineScope, android.bluetooth.BluetoothDevice, kotlin.jvm.functions.Function1);
+  public static com.juul.kable.Peripheral peripheral$default(kotlinx.coroutines.CoroutineScope, android.bluetooth.BluetoothDevice, kotlin.jvm.functions.Function1, int, java.lang.Object);
+  public static final com.juul.kable.Peripheral peripheral(kotlinx.coroutines.CoroutineScope, java.lang.String, kotlin.jvm.functions.Function1);
+  public static com.juul.kable.Peripheral peripheral$default(kotlinx.coroutines.CoroutineScope, java.lang.String, kotlin.jvm.functions.Function1, int, java.lang.Object);
+  public static final java.lang.String getIdentifier(com.juul.kable.Peripheral);
+  public static final java.lang.String asString(java.lang.String);
+  public static final java.lang.String toIdentifier(java.lang.String);
+  public static final void access$checkBluetoothAdapterState(int);
+  public static final int access$getIntValue(com.juul.kable.Priority);
+  public static final int access$getIntValue(com.juul.kable.WriteType);
+  public static final android.bluetooth.BluetoothGattDescriptor access$getConfigDescriptor(android.bluetooth.BluetoothGattCharacteristic);
+  public static final boolean access$getSupportsNotify(android.bluetooth.BluetoothGattCharacteristic);
+  public static final boolean access$getSupportsIndicate(android.bluetooth.BluetoothGattCharacteristic);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.PeripheralBuilderKt {
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.PeripheralKt {
+  public static final java.lang.Object suspendUntil(com.juul.kable.Peripheral, kotlin.coroutines.Continuation);
+  public static final java.lang.Object suspendUntilAtLeast(com.juul.kable.Peripheral, kotlin.coroutines.Continuation);
+  public static final java.lang.Object suspendUntilOrThrow(com.juul.kable.Peripheral, kotlin.coroutines.Continuation);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.ProfileAndroidKt {
+  public static final com.juul.kable.LazyCharacteristic toLazyCharacteristic(android.bluetooth.BluetoothGattCharacteristic);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.ProfileKt {
+  public static final int getBroadcast();
+  public static final int getRead();
+  public static final int getWriteWithoutResponse();
+  public static final int getWrite();
+  public static final int getNotify();
+  public static final int getIndicate();
+  public static final int getSignedWrite();
+  public static final int getExtendedProperties();
+  public static final boolean getBroadcast-G25LNqA(int);
+  public static final boolean getRead-G25LNqA(int);
+  public static final boolean getWriteWithoutResponse-G25LNqA(int);
+  public static final boolean getWrite-G25LNqA(int);
+  public static final boolean getNotify-G25LNqA(int);
+  public static final boolean getIndicate-G25LNqA(int);
+  public static final boolean getSignedWrite-G25LNqA(int);
+  public static final boolean getExtendedProperties-G25LNqA(int);
+  public static final int getProperties(com.juul.kable.WriteType);
+  public static final com.juul.kable.Characteristic characteristicOf(java.lang.String, java.lang.String);
+  public static final com.juul.kable.Descriptor descriptorOf(java.lang.String, java.lang.String, java.lang.String);
+  public static final android.bluetooth.BluetoothGattCharacteristic obtain-vK39g5o(java.util.List, com.juul.kable.Characteristic, com.juul.kable.Characteristic$Properties);
+  public static final android.bluetooth.BluetoothGattDescriptor obtain(java.util.List, com.juul.kable.Descriptor);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.ScannerKt {
+  public static final com.juul.kable.Scanner Scanner(kotlin.jvm.functions.Function1);
+  public static com.juul.kable.Scanner Scanner$default(kotlin.jvm.functions.Function1, int, java.lang.Object);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.StateUtilsKt {
+  public static final boolean isAtLeast(com.juul.kable.State);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.external.ConstantsKt {
+  public static final int GATT_CONN_L2C_FAILURE;
+  public static final int GATT_CONN_TIMEOUT;
+  public static final int GATT_CONN_TERMINATE_PEER_USER;
+  public static final int GATT_CONN_TERMINATE_LOCAL_HOST;
+  public static final int GATT_CONN_FAIL_ESTABLISH;
+  public static final int GATT_CONN_LMP_TIMEOUT;
+  public static final int GATT_CONN_CANCEL;
+  public static final int GATT_INVALID_HANDLE;
+  public static final int GATT_INVALID_PDU;
+  public static final int GATT_INSUF_AUTHORIZATION;
+  public static final int GATT_PREPARE_Q_FULL;
+  public static final int GATT_NOT_FOUND;
+  public static final int GATT_NOT_LONG;
+  public static final int GATT_INSUF_KEY_SIZE;
+  public static final int GATT_ERR_UNLIKELY;
+  public static final int GATT_UNSUPPORT_GRP_TYPE;
+  public static final int GATT_INSUF_RESOURCE;
+  public static final int GATT_ILLEGAL_PARAMETER;
+  public static final int GATT_NO_RESOURCES;
+  public static final int GATT_INTERNAL_ERROR;
+  public static final int GATT_WRONG_STATE;
+  public static final int GATT_DB_FULL;
+  public static final int GATT_BUSY;
+  public static final int GATT_ERROR;
+  public static final int GATT_CMD_STARTED;
+  public static final int GATT_PENDING;
+  public static final int GATT_AUTH_FAIL;
+  public static final int GATT_MORE;
+  public static final int GATT_INVALID_CFG;
+  public static final int GATT_SERVICE_STARTED;
+  public static final int GATT_ENCRYPED_NO_MITM;
+  public static final int GATT_NOT_ENCRYPTED;
+  public static final int GATT_CCC_CFG_ERR;
+  public static final int GATT_PRC_IN_PROGRESS;
+  public static final int GATT_OUT_OF_RANGE;
+  public static final java.lang.String CLIENT_CHARACTERISTIC_CONFIG_UUID;
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.gatt.CallbackKt {
+  public static final com.juul.kable.State$Disconnected$Status getDisconnectedConnectionStatus(int);
+  public static final java.lang.String access$getDisconnectedConnectionStatusString(int);
+  public static final java.lang.String access$getConnectionStateString(int);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.logs.HexKt {
+  public static final com.juul.kable.logs.Logging$DataProcessor getHex();
+  public static final com.juul.kable.logs.Logging$DataProcessor Hex(kotlin.jvm.functions.Function1);
+  public static com.juul.kable.logs.Logging$DataProcessor Hex$default(kotlin.jvm.functions.Function1, int, java.lang.Object);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.logs.LogMessageAndroidKt {
+  public static final java.lang.String getLOG_INDENT();
+  public static final void detail-IUBaOrw(com.juul.kable.logs.LogMessage, int);
+  public static final void detail(com.juul.kable.logs.LogMessage, android.bluetooth.BluetoothGattService);
+  public static final void detail(com.juul.kable.logs.LogMessage, android.bluetooth.BluetoothGattCharacteristic);
+  public static final void detail(com.juul.kable.logs.LogMessage, android.bluetooth.BluetoothGattDescriptor);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.logs.LogMessageKt {
+  public static final void detail(com.juul.kable.logs.LogMessage, byte[]);
+  public static final void detail(com.juul.kable.logs.LogMessage, com.juul.kable.Service);
+  public static final void detail(com.juul.kable.logs.LogMessage, com.juul.kable.Characteristic);
+  public static final void detail(com.juul.kable.logs.LogMessage, com.juul.kable.Descriptor);
+  public static final void detail(com.juul.kable.logs.LogMessage, com.juul.kable.WriteType);
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.logs.LoggingKt {
+}
+Compiled from "r8-map-id-f8e96e4256463010b2bc8bf92955602d213a14ae1c1fe53c851de169f82d1dc2"
+public final class com.juul.kable.logs.SystemLogEngineKt {
+  public static final com.juul.kable.logs.LogEngine systemLogEngine();
+}

@@ -1,7 +1,11 @@
-# Current run state — 15 September 2026
+# Run state — 17 September 2026
 
-All previous development branches were fast-forward consolidated into local main in E:/Programming Projekte/box-reha-game through 027773f. Five fully incorporated local branches were deleted. Remote branches were not changed or pushed. The old worktree remains detached to preserve its local build/cache files.
+Current gameplay baseline is main `3f99b17` in `E:/Programming Projekte/box-reha-game`. This pass updates Markdown only. Prior branch/worktree/merge receipts describe their dated states, not current HEAD.
 
-The verified version 1.1/code2 APK is now also at Builds/AndroidCandidate/DigitalDojo.apk in the main checkout, SHA-256 aa82afe63a2a0afc76b999f563c3214094217d63c941ceaec4efa207d4fcf472. Merge receipt: artifacts/validation/main-checkout-delivery.json. Host tests after merge: 207 pass; this was an integration/copy, not a new binary build. The four pre-existing tracked Gradle cache changes are preserved outside the commits.
+Completed documentation work: current gameplay/pacing/order, Android artifact identity, sensor/calibration boundaries, project layout, historical report notices and central [TODO.md](TODO.md). No gameplay/sensor/scene/prefab/SDK edits, tests, builds or captures were performed.
 
-User now authorizes SDK modifications. C:/dynamics-sdk-main is a local Git repository: 20554e6 captures the original distribution, 48aa7be records the multi-device requirements and actual source inventory. The requested Alpha pair plus Delta foot sensors is not implemented: both supplied SDK copies lack the core Kotlin/Gradle sources, and the sources JARs contain only UUID helpers. A source path was requested. See C:/dynamics-sdk-main/LOCAL_DEVELOPMENT.md. Existing two-device/mixed-family guards remain active; no binary bypass was presented as functional support.
+Existing Android candidate is 1.5/code 6; build succeeded with 0 errors/20 warnings. [ANDROID_STATUS.md](ANDROID_STATUS.md) records hash and limitations. Latest speed/order code has not received a new Play Mode validation; prior synthetic passes remain dated evidence.
+
+SDK changes are authorized, but supplied core Kotlin/Gradle source is absent. Physical mixed/2+2 acquisition is not implemented; application guards remain active. SDK source audit documents in its separate checkout are not automatically committed by this documentation pass.
+
+Resume with ALPHA/DELTA hardware qualification and latest gameplay manual/runtime checks. Future raw recording/classification requires supported acquisition and labelled data. Study scope decisions remain in [OPEN_DECISIONS.md](OPEN_DECISIONS.md).

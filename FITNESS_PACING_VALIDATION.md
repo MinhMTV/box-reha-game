@@ -1,6 +1,8 @@
+> Historical snapshot — current behavior and build identity are documented in [GAME_STATUS.md](GAME_STATUS.md), [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md) and [ANDROID_STATUS.md](ANDROID_STATUS.md). Older numbers, completion claims, paths and blockers below apply only to their recorded source/artifact. Remaining work: [TODO.md](TODO.md). Reviewed 17 September 2026; no tests rerun.
+
 # Fitness pacing validation — 17 September 2026
 
-Implemented in the main checkout, with uncommitted cleanup changes based on the current pacing architecture. This report is a historical synthetic pacing record; see GAMEPLAY_PACING.md and SPAWNING_ARCHITECTURE.md for the live design.
+At the time of this snapshot, implemented in the main checkout with uncommitted cleanup changes based on the current pacing architecture. This report is a historical synthetic pacing record; see GAMEPLAY_PACING.md and SPAWNING_ARCHITECTURE.md for the live design.
 
 ## Stall and behavior
 
@@ -41,7 +43,7 @@ The measured flow is sustained combinations rather than waiting for individual t
 
 ## Build and hardware
 
-The current Android build identity is recorded in `artifacts/validation/unity-android-candidate-build.json`: `Builds/AndroidCandidate/DigitalDojo.apk`, version 1.4/code 5, Unity 6000.6.0f1, ARM64 IL2CPP, explicit SDK COMPATIBILITY mode.
+The historical 1.4/code 5 build was recorded in `artifacts/validation/unity-android-candidate-build.json` (that mutable receipt now describes a newer build; use ANDROID_STATUS.md for current identity): `Builds/AndroidCandidate/DigitalDojo.apk`, version 1.4/code 5, Unity 6000.6.0f1, ARM64 IL2CPP, explicit SDK COMPATIBILITY mode.
 
 Final build succeeded in 56.68 seconds with zero errors and 20 warnings. APK: 41,272,553 bytes; SHA-256 `1874D999390AC432B45193B1744D85B48FCE0198E92A2CFC1658C91F496D27D2`. Hardware installation and runtime remain unverified.
 

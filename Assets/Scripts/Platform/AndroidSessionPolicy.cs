@@ -17,7 +17,7 @@ public class AndroidNativeStatus
     public string state, code, message, sessionState;
     public string sdkVersion, sdkBuildMode, profileReference, profileStudyId, sessionFamily;
     public string controlRequestId;
-    public bool profileReady, initialized, permissionsGranted;
+    public bool profileReady, initialized, permissionsGranted, hasActiveSession, deviceMutation;
     public AndroidNativeDevice[] devices;
     public AndroidNearbyDevice[] nearby;
 }

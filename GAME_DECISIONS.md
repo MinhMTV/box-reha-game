@@ -12,3 +12,5 @@ Historical decisions retained in docs/history/pre-hardware-feedback/GAME_DECISIO
 - Move the actual scoring plane from Z=5 to Z=2, including expected time and heavy lock. Remove visible rails and default control clutter; retain logical lanes and touch pause.
 - Keep SDK-dependent raw DELTA experimentation out of gameplay until independent device binding/firmware acquisition is supported. No fake powerIndex or invented raw-kick threshold is deployed.
 - Preserve evidence boundaries: user-observed old APK discovery/pairing is real; current synthetic tests, Editor captures, native compilation, APK build and physical measurements are distinct.
+
+Current documentation review: 17 September 2026, main `3f99b17`. Existing test/capture statements retain their dated scope; no tests were run for this update. Latest pacing/order runtime remains unverified. Overall state: [GAME_STATUS.md](GAME_STATUS.md); remaining work: [TODO.md](TODO.md).
