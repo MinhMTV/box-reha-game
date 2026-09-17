@@ -3,50 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameConfig", menuName = "BoxReha/GameConfig")]
 public class GameConfig : ScriptableObject
 {
-    [Header("Timing")]
-    public float PerfectWindow = 0.1f;
-    public float GoodWindow = 0.25f;
-    public float EarlyLateWindow = 0.5f;
 
-    [Header("Scoring")]
-    public int PerfectScore = 100;
-    public int GoodScore = 50;
-    public int EarlyLateScore = 25;
-    public int BlockScore = 75;
-    public int DodgeScore = 75;
-    public int KickScore = 100;
-    public float MaxComboMultiplier = 3f;
-    public float ComboMultiplierStep = 0.1f;
 
-    [Header("Input")]
-    public float PowerHoldThreshold = 0.3f;
-    public float SwipeMinDistance = 200f;
-    public float BlockHoldDuration = 0.5f;
-    public float SwipeMaxDuration = 0.3f;
-    public float BlockMaxMovement = 10f;
     public float SensorPunchAccelerationThreshold = 18f;
     public float SensorKickAccelerationThreshold = 16f;
-    public float SensorBlockAccelerationThreshold = 9f;
-    public float SensorDodgeGyroThreshold = 6f;
     public float SensorActionCooldown = 0.35f;
 
-    [Header("Visual")]
-    public Color PunchColor = Color.red;
-    public Color KickColor = new Color(0.18f, 1f, 0.72f, 1f);
-    public Color BlockColor = Color.blue;
-    public Color DodgeColor = Color.green;
-    public Color HitFlashColor = Color.green;
-    public Color MissFlashColor = Color.red;
 
-    [Header("Spawn")]
-    public float DefaultTargetSpeed = 5f;
-    public float DefaultSpawnInterval = 2f;
-    public float DefaultDuration = 60f;
 
-    [Header("Lanes")]
-    public float LaneSpacing = 3f;
-    public float SpawnDistance = 30f;
-    public float HitZoneDistance = 5f;
 
     [Header("Vertical Position")]
     public float VerticalOffsetHigh = 2.6f;

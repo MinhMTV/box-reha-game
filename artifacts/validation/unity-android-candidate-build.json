@@ -1,11 +1,11 @@
 {
     "scope": "DEVELOPMENT BUILD CANDIDATE ONLY / NOT STUDY-READY OR HARDWARE QUALIFIED",
-    "utc": "2026-09-16T20:16:57.2034792Z",
+    "utc": "2026-09-17T11:33:18.5152242Z",
     "unityVersion": "6000.6.0f1",
     "result": "Succeeded",
     "outputPath": "E:/Programming Projekte/box-reha-game/Builds/AndroidCandidate/DigitalDojo.apk",
-    "totalBytes": "422654242",
+    "totalBytes": "422761274",
     "errors": 0,
-    "warnings": 0,
-    "durationSeconds": 20.0381857
+    "warnings": 20,
+    "durationSeconds": 135.9968195
 }

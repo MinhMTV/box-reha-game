@@ -1,8 +1,8 @@
-# Android status — 15 September 2026
+# Android status — 17 September 2026
 
-## Current candidate — 16 September fitness pass
+## Current candidate — final script cleanup build
 
-The current main-checkout APK is **1.3 / code 4**, `Builds/AndroidCandidate/DigitalDojo.apk`, 39,552,513 bytes, SHA-256 `974da657a3984ea07269f4ab21642bb4db85fe59f7dccb9700ab21c7063cec67`. Unity 6000.6.0f1, ARM64 IL2CPP, min API 26, target/compile 36, SDK COMPATIBILITY. Final incremental build: succeeded in 20.04 s, zero errors/warnings; the preceding full compilation reported 21 warnings, including deprecated object lookup and unused fields. APK signature and 16-KB zip alignment passed. Evidence: `artifacts/validation/fitness-apk.json` and `FITNESS_PACING_VALIDATION.md`. ADB has no device; installation/physical runtime are not re-verified.
+The current main-checkout APK is **1.4 / code 5**, `Builds/AndroidCandidate/DigitalDojo.apk`, 41,272,553 bytes, SHA-256 `1874D999390AC432B45193B1744D85B48FCE0198E92A2CFC1658C91F496D27D2`. Unity 6000.6.0f1, ARM64 IL2CPP, min API 26, target/compile 36, SDK COMPATIBILITY. Build succeeded in 56.68 s with zero errors and 20 warnings. Evidence: `artifacts/validation/unity-android-candidate-build.json` and `artifacts/validation/unity-player-build.log`. ADB has no device; installation/physical runtime are not verified.
 
 The older candidate details below are historical and do not identify the current APK.
 

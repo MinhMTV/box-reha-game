@@ -27,7 +27,7 @@ public sealed class SensorEventProcessor
 
     private readonly Dictionary<string, DeviceState> devices = new Dictionary<string, DeviceState>();
     public double MaximumAgeSeconds { get; set; } = 0.5;
-    public double CooldownSeconds { get; set; } = 0.12;
+    public double CooldownSeconds { get; set; } = 0.35;
     public double ConnectionTimeoutSeconds { get; set; } = 10;
     public bool EnableAccelerationHeuristic { get; set; }
     public float PunchThreshold { get; set; } = 18f;

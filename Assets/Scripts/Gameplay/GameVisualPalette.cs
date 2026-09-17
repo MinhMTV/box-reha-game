@@ -9,6 +9,7 @@ public static class GameVisualPalette
     public static readonly Color DodgeColor = new Color(0.34f, 1f, 0.62f, 1f);
     public static readonly Color PerfectColor = new Color(1f, 0.92f, 0.24f, 1f);
     public static readonly Color MissColor = new Color(1f, 0.24f, 0.34f, 1f);
+    public static Color SuccessColor => PerfectColor;
 
     public static Color GetTargetColor(TargetType type)
     {

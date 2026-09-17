@@ -8,7 +8,13 @@ using System.Collections;
 /// </summary>
 public class ToughTargetHealthBar : MonoBehaviour
 {
+    static Material sharedMaterial;
+    static int owners;
+    void Awake(){block=new MaterialPropertyBlock();owners++;if(sharedMaterial==null)sharedMaterial=new Material(Shader.Find("Unlit/Color"));}
+    void OnDestroy(){if(--owners==0&&sharedMaterial!=null){Destroy(sharedMaterial);sharedMaterial=null;}}
     private Transform targetTransform;
+    private Transform cameraTransform;
+    private MaterialPropertyBlock block;
     private GameObject backgroundObj;
     private GameObject fillObj;
     private GameObject borderObj;
@@ -22,7 +28,7 @@ public class ToughTargetHealthBar : MonoBehaviour
     /// <summary>
     /// Create a health bar attached to the given target transform.
     /// </summary>
-    public static ToughTargetHealthBar Create(Transform target, int maxHits)
+    public static ToughTargetHealthBar Create(Transform target)
     {
         GameObject barObj = new GameObject("ToughTargetHealthBar");
         ToughTargetHealthBar bar = barObj.AddComponent<ToughTargetHealthBar>();
@@ -31,12 +37,13 @@ public class ToughTargetHealthBar : MonoBehaviour
         bar.offset=new Vector3(0,kick?1f:1.95f,0);
         if(kick)bar.fullColor=GameVisualPalette.KickColor;
         barObj.transform.SetParent(target, true);
-        bar.Initialize(maxHits);
+        bar.Initialize();
         return bar;
     }
 
-    private void Initialize(int maxHits)
+    private void Initialize()
     {
+        cameraTransform=Camera.main!=null?Camera.main.transform:null;
         float barWidth = 1.2f;
         float barHeight = 0.12f;
         float barDepth = 0.05f;
@@ -85,10 +92,9 @@ public class ToughTargetHealthBar : MonoBehaviour
         transform.position = targetTransform.position + offset;
 
         // Face camera
-        Camera cam = Camera.main;
-        if (cam != null)
+        if (cameraTransform != null)
         {
-            transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
+            transform.rotation = Quaternion.LookRotation(transform.position - cameraTransform.position);
         }
     }
 
@@ -126,7 +132,7 @@ public class ToughTargetHealthBar : MonoBehaviour
 
     private IEnumerator FadeOutRoutine()
     {
-        float duration = 0.3f;
+        float duration = 0.20f;
         float elapsed = 0f;
 
         // Store original scales
@@ -164,7 +170,8 @@ public class ToughTargetHealthBar : MonoBehaviour
         Renderer rend = obj.GetComponent<Renderer>();
         if (rend != null)
         {
-            rend.material.color = color;
+            rend.sharedMaterial=sharedMaterial;
+            rend.GetPropertyBlock(block);block.SetColor("_Color",color);rend.SetPropertyBlock(block);
         }
     }
 }

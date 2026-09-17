@@ -64,11 +64,7 @@ public class MouseTouchInputProvider : MonoBehaviour, IPlayerActionInputProvider
         isPointerDown = false;
         float duration = Time.unscaledTime - downTime;
         float distance = Vector2.Distance(downPosition, position);
-        ActionType action = InputInterpreter.ClassifyAction(duration, distance, duration,
-            gameConfig != null ? gameConfig.BlockHoldDuration : 0.5f,
-            gameConfig != null ? gameConfig.SwipeMinDistance : 200f,
-            gameConfig != null ? gameConfig.SwipeMaxDuration : 0.3f,
-            gameConfig != null ? gameConfig.BlockMaxMovement : 10f);
+        ActionType action = InputInterpreter.ClassifyAction();
         VerticalPosition vertical = InputInterpreter.GetVerticalPositionFromScreenY(position.y);
         if (vertical == VerticalPosition.Low && action == ActionType.Punch) action = ActionType.Kick;
         BodySide side = position.x < Screen.width * 0.5f ? BodySide.Left : BodySide.Right;

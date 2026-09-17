@@ -3,6 +3,7 @@ using UnityEngine;
 public enum ActionType { None, Punch, Kick, Block, Dodge }
 public enum LaneType { Left, Center, Right }
 public enum InputSourceType { Mouse, Touch, Keyboard, Sensor }
+// Block/Dodge are reserved serialized values, not supported by the production planner or evaluator.
 public enum TargetType { Punch, Kick, Block, Dodge, ToughPunch, ToughKick }
 public enum HitQuality { Perfect, Good, Early, Late, Miss }
 public enum GameState { Menu, Playing, Paused, Results }

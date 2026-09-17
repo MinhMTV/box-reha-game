@@ -7,54 +7,22 @@ public class LevelDefinition : ScriptableObject
     public string DisplayName = "Level";
     public float DurationSeconds = 60f;
     public bool IsEndless;
-    public float SpawnInterval = 1.2f;
-    public float TargetSpeed = 8f;
     public float HitWindowSeconds = 0.85f;
     public TargetType[] AllowedTargetTypes = { TargetType.Punch, TargetType.Kick };
     public LaneType[] AllowedLanes = { LaneType.Left, LaneType.Right };
-    public float MinPower = 0f;
-    // Phase 3: Allowed vertical positions
-    public VerticalPosition[] AllowedVerticalPositions = { VerticalPosition.Mid };
 
-    // v3: Tough target configuration
-    [Header("Tough Targets")]
-    [Range(0f, 1f)]
-    public float ToughTargetChance = 0.15f;
-    [Range(0f, 1f)] public float HeavyKickShare = 0.5f;
+    public bool HeavyTargetsEnabled = true;
     public int MinToughHits = 8;
     public int MaxToughHits = 12;
 
-    // v3: Rapid fire chain configuration
-    [Header("Rapid Fire Chains")]
-    [Range(0f, 1f)]
-    public float RapidFireChance = 0.1f;
-    public int MinChainLength = 3;
-    public int MaxChainLength = 5;
 
-    [Header("Difficulty Ramp")]
-    public float RampDurationSeconds = 60f;
-    public float StartSpeedMultiplier = 0.9f;
-    public float MaxSpeedMultiplier = 1.3f;
-    public float StartIntervalMultiplier = 1f;
-    public float MinIntervalMultiplier = 0.7f;
-    [Range(0f, 1f)]
-    public float MaxToughTargetChance = 0.35f;
-    [Range(0f, 1f)]
-    public float MaxRapidFireChance = 0.25f;
 
     public void RestrictToSensorFamily(string family)
     {
         if (family != "Alpha" && family != "Delta") throw new System.ArgumentException("Unsupported sensor family", nameof(family));
         bool alpha = family == "Alpha";
-        HeavyKickShare = alpha ? 0f : 1f;
         AllowedTargetTypes = new[] { alpha ? TargetType.Punch : TargetType.Kick };
-        AllowedVerticalPositions = new[] { alpha ? VerticalPosition.High : VerticalPosition.Low };
         DisplayName += alpha ? " / Alpha punches" : " / Delta kick mapping (experimental)";
-        if (!alpha)
-        {
-            HeavyKickShare = 1f;
-            RapidFireChance = MaxRapidFireChance = 0f;
-        }
     }
 
     public static LevelDefinition CreateLevel1()
@@ -64,27 +32,12 @@ public class LevelDefinition : ScriptableObject
         level.DisplayName = "Level 1 - Rhythm Basics";
         level.DurationSeconds = 60f;
         level.IsEndless = false;
-        level.SpawnInterval = 1.45f;
-        level.TargetSpeed = 7.2f;
         level.HitWindowSeconds = 0.9f;
         level.AllowedTargetTypes = new TargetType[] { TargetType.Punch, TargetType.Kick };
         level.AllowedLanes = new LaneType[] { LaneType.Left, LaneType.Right };
-        level.MinPower = 0f;
-        level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.High, VerticalPosition.Low };
-        // v3: Easy tough targets
-        level.ToughTargetChance = 0.06f;
+        level.HeavyTargetsEnabled = true;
         level.MinToughHits = 8;
         level.MaxToughHits = 10;
-        level.RapidFireChance = 0.05f;
-        level.MinChainLength = 3;
-        level.MaxChainLength = 4;
-        level.RampDurationSeconds = 60f;
-        level.StartSpeedMultiplier = 0.9f;
-        level.MaxSpeedMultiplier = 1.28f;
-        level.StartIntervalMultiplier = 1f;
-        level.MinIntervalMultiplier = 0.78f;
-        level.MaxToughTargetChance = 0.18f;
-        level.MaxRapidFireChance = 0.10f;
         return level;
     }
 
@@ -95,27 +48,12 @@ public class LevelDefinition : ScriptableObject
         level.DisplayName = "Level 2 - Arms & Legs";
         level.DurationSeconds = 60f;
         level.IsEndless = false;
-        level.SpawnInterval = 1.15f;
-        level.TargetSpeed = 8.4f;
         level.HitWindowSeconds = 0.85f;
         level.AllowedTargetTypes = new TargetType[] { TargetType.Punch, TargetType.Kick };
         level.AllowedLanes = new LaneType[] { LaneType.Left, LaneType.Right };
-        level.MinPower = 0f;
-        level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.High, VerticalPosition.Low };
-        // v3: Medium tough targets
-        level.ToughTargetChance = 0.15f;
+        level.HeavyTargetsEnabled = true;
         level.MinToughHits = 10;
         level.MaxToughHits = 12;
-        level.RapidFireChance = 0.10f;
-        level.MinChainLength = 3;
-        level.MaxChainLength = 5;
-        level.RampDurationSeconds = 60f;
-        level.StartSpeedMultiplier = 0.95f;
-        level.MaxSpeedMultiplier = 1.35f;
-        level.StartIntervalMultiplier = 1f;
-        level.MinIntervalMultiplier = 0.68f;
-        level.MaxToughTargetChance = 0.28f;
-        level.MaxRapidFireChance = 0.18f;
         return level;
     }
 
@@ -126,27 +64,12 @@ public class LevelDefinition : ScriptableObject
         level.DisplayName = "Level 3 - Combat Flow";
         level.DurationSeconds = 60f;
         level.IsEndless = false;
-        level.SpawnInterval = 0.95f;
-        level.TargetSpeed = 9.8f;
         level.HitWindowSeconds = 0.8f;
         level.AllowedTargetTypes = new TargetType[] { TargetType.Punch, TargetType.Kick };
         level.AllowedLanes = new LaneType[] { LaneType.Left, LaneType.Right };
-        level.MinPower = 0f;
-        level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Low, VerticalPosition.Mid, VerticalPosition.High };
-        // v3: Hard tough targets
-        level.ToughTargetChance = 0.20f;
+        level.HeavyTargetsEnabled = true;
         level.MinToughHits = 12;
         level.MaxToughHits = 15;
-        level.RapidFireChance = 0.15f;
-        level.MinChainLength = 4;
-        level.MaxChainLength = 5;
-        level.RampDurationSeconds = 60f;
-        level.StartSpeedMultiplier = 1f;
-        level.MaxSpeedMultiplier = 1.65f;
-        level.StartIntervalMultiplier = 0.95f;
-        level.MinIntervalMultiplier = 0.55f;
-        level.MaxToughTargetChance = 0.38f;
-        level.MaxRapidFireChance = 0.28f;
         return level;
     }
 
@@ -157,26 +80,12 @@ public class LevelDefinition : ScriptableObject
         level.DisplayName = "Endless Mode";
         level.DurationSeconds = 0f;
         level.IsEndless = true;
-        level.SpawnInterval = 1.0f;
-        level.TargetSpeed = 8.8f;
         level.HitWindowSeconds = 0.8f;
         level.AllowedTargetTypes = new TargetType[] { TargetType.Punch, TargetType.Kick };
         level.AllowedLanes = new LaneType[] { LaneType.Left, LaneType.Right };
-        level.MinPower = 0f;
-        level.AllowedVerticalPositions = new VerticalPosition[] { VerticalPosition.Low, VerticalPosition.Mid, VerticalPosition.High };
-        level.ToughTargetChance = 0.16f;
+        level.HeavyTargetsEnabled = true;
         level.MinToughHits = 10;
         level.MaxToughHits = 18;
-        level.RapidFireChance = 0.12f;
-        level.MinChainLength = 3;
-        level.MaxChainLength = 6;
-        level.RampDurationSeconds = 180f;
-        level.StartSpeedMultiplier = 0.95f;
-        level.MaxSpeedMultiplier = 2.2f;
-        level.StartIntervalMultiplier = 1f;
-        level.MinIntervalMultiplier = 0.4f;
-        level.MaxToughTargetChance = 0.50f;
-        level.MaxRapidFireChance = 0.35f;
         return level;
     }
 }

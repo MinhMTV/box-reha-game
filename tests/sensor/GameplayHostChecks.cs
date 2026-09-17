@@ -66,13 +66,13 @@ internal static class GameplayHostChecks
         var stats = new GameSessionStats { TotalTargets = 5, PerfectHits = 1, GoodHits = 1, EarlyHits = 1, LateHits = 1, Misses = 1 };
         Require(Math.Abs(stats.Accuracy - 0.4f) < 0.0001f && Math.Abs(stats.CompletionRate - 0.8f) < 0.0001f,
             "timing accuracy versus completion");
-        stats.TrackReactionTime(2); stats.TrackReactionTime(4); stats.TrackReactionTime(-3); stats.TrackReactionTime(float.NaN);
-        Require(stats.AverageReactionTime == 3, "invalid resolution durations rejected");
+        stats.TrackTargetResolutionTime(2); stats.TrackTargetResolutionTime(4); stats.TrackTargetResolutionTime(-3); stats.TrackTargetResolutionTime(float.NaN);
+        Require(stats.AverageTargetResolutionTime == 3, "invalid resolution durations rejected");
         stats.TrackAction(KeyboardActionFactory.Create(ActionType.Kick, BodySide.Right));
         Require(stats.Actions == 1 && stats.RightActions == 1 && stats.KickActions == 1 && stats.KeyboardActions == 1,
             "action counts preserve keyboard and body side");
         stats.Reset();
-        Require(stats.Actions == 0 && stats.TotalTargets == 0 && stats.AverageReactionTime == 0
+        Require(stats.Actions == 0 && stats.TotalTargets == 0 && stats.AverageTargetResolutionTime == 0
             && stats.Accuracy == 0 && stats.CompletionRate == 0, "reset clears statistics");
     }
     private static void HeavyKickRules()

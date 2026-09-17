@@ -1,23 +1,23 @@
-VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 34456)
-VBCSCompiler prewarm took 4.25 ms
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 34648)
+VBCSCompiler prewarm took 4.68 ms
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.6/respin/6000.6.0f1-fa21a270ab12' branch; Version is '6000.6.0f1 (f7f8ed4d1e24) revision 16251117'; Using compiler version '194234433'; Build Type 'Release'
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi" at "2026-09-16T20:16:32.2595673Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi" at "2026-09-17T04:46:32.99398Z"
 OS: 'Windows 11  (10.0.26200) Professional' Language: 'de' Physical Memory: 65349 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
 Process architecture: x64
-Date: 2026-09-16T20:16:32Z
+Date: 2026-09-17T04:46:32Z
 [Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 34812, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
 [Licensing::Module] LicensingClient has failed validation; ignoring
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.3+d7ffd15
-  Session Id:              e8b0e0c36e30463aa758d94bdcab51be
+  Session Id:              b2a1d95069e542c781b5d4f5a335fe89
   Correlation Id:          dee16adbb9b0733c6d3ec67649ba7d63
-  External correlation Id: 4678185215588387188
+  External correlation Id: 2160760473906624170
   Machine Id:              RQAmcHbobxLfdLl5bNXrLWQKMso=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-manmi" (connect: 0.00s, validation: 0.00s, handshake: 0.03s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi-notifications" at "2026-09-16T20:16:32.2923344Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi-notifications" at "2026-09-17T04:46:33.0262029Z"
 [Licensing::Module] Error: Access token is unavailable; failed to update
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
@@ -82,26 +82,26 @@ E:/Programming Projekte/box-reha-game
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
 Logging is directed to a specific file, skipping project log.
-Player connection [41956]  Target information:
+Player connection [72008]  Target information:
 
-Player connection [41956]  * "[IP] 169.254.123.79 [Port] 55504 [Flags] 2 [Guid] 4008970382 [EditorId] 4008970382 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [72008]  * "[IP] 169.254.123.79 [Port] 55504 [Flags] 2 [Guid] 396599750 [EditorId] 396599750 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [41956]  * "[IP] 192.168.253.1 [Port] 55504 [Flags] 2 [Guid] 4008970382 [EditorId] 4008970382 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [72008]  * "[IP] 192.168.253.1 [Port] 55504 [Flags] 2 [Guid] 396599750 [EditorId] 396599750 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [41956]  * "[IP] 192.168.150.1 [Port] 55504 [Flags] 2 [Guid] 4008970382 [EditorId] 4008970382 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [72008]  * "[IP] 192.168.150.1 [Port] 55504 [Flags] 2 [Guid] 396599750 [EditorId] 396599750 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [41956]  * "[IP] 172.18.96.1 [Port] 55504 [Flags] 2 [Guid] 4008970382 [EditorId] 4008970382 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [72008]  * "[IP] 172.18.96.1 [Port] 55504 [Flags] 2 [Guid] 396599750 [EditorId] 396599750 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [41956]  * "[IP] 169.254.83.107 [Port] 55504 [Flags] 2 [Guid] 4008970382 [EditorId] 4008970382 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [72008]  * "[IP] 169.254.83.107 [Port] 55504 [Flags] 2 [Guid] 396599750 [EditorId] 396599750 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [41956]  * "[IP] 192.168.0.90 [Port] 55504 [Flags] 2 [Guid] 4008970382 [EditorId] 4008970382 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [72008]  * "[IP] 192.168.0.90 [Port] 55504 [Flags] 2 [Guid] 396599750 [EditorId] 396599750 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [41956] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [41956] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [72008] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [72008] Host joined alternative multi-casting on [225.0.0.222:34997]...
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
-[Package Manager] Connected to IPC stream "Upm-72532" after 0.2 seconds.
+[Package Manager] Connected to IPC stream "Upm-6564" after 0.2 seconds.
 [Licensing::Client] Successfully resolved entitlement details
 Library Redirect Path: Library/
 Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/Unity.DataStore.exe 
@@ -130,7 +130,7 @@ Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Managed
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56532
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56564
 CodeReloadManager initialized
 ImportWorker Server TCP listen port: 0
 AcceleratorClientConnectionCallback - disconnected - :0
@@ -139,31 +139,31 @@ Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Registered in 0.001850 seconds.
+Registered in 0.001927 seconds.
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.517 seconds
-Domain Reload Profiling: 924ms
-	BeginReloadAssembly (95ms)
-		CreateAndSetChildDomain (8ms)
-	RebuildCommonClasses (3ms)
+- Finished resetting the current domain, in  0.536 seconds
+Domain Reload Profiling: 942ms
+	BeginReloadAssembly (92ms)
+		CreateAndSetChildDomain (5ms)
+	RebuildCommonClasses (4ms)
 	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (47ms)
-	LoadAllAssembliesAndSetupDomain (248ms)
-		LoadAssemblies (84ms)
-		TypeCache.Refresh (171ms)
-			TypeCache.ScanAssembly (160ms)
+	initialDomainReloadingComplete (50ms)
+	LoadAllAssembliesAndSetupDomain (247ms)
+		LoadAssemblies (86ms)
+		TypeCache.Refresh (168ms)
+			TypeCache.ScanAssembly (158ms)
 		AnalyzeDomain (0ms)
-	FinalizeReload (518ms)
+	FinalizeReload (537ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (6ms)
-			BeforeProcessingInitializeOnLoad (75ms)
-			ProcessInitializeOnLoadAttributes (108ms)
-			ProcessInitializeOnLoadMethodAttributes (155ms)
+			BeforeProcessingInitializeOnLoad (74ms)
+			ProcessInitializeOnLoadAttributes (114ms)
+			ProcessInitializeOnLoadMethodAttributes (166ms)
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully resolved entitlement details
 Application.AssetDatabase Initial Refresh Start
@@ -239,10 +239,10 @@ Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInter
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
 WorkingDir: E:/Programming Projekte/box-reha-game
 DisplayProgressbar: Compiling Scripts
-ExitCode: 0 Duration: 0s204ms
+ExitCode: 0 Duration: 0s198ms
 [650/831    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
-*** Tundra build success (0.18 seconds), 1 items updated, 831 evaluated
-AssetDatabase: script compilation time: 0.528019s
+*** Tundra build success (0.17 seconds), 1 items updated, 831 evaluated
+AssetDatabase: script compilation time: 0.546344s
 Begin MonoManager ReloadAssembly
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
@@ -257,80 +257,80 @@ Native extension for WebGL target not found
 [MODES] Loading mode Default (0) for mode-current-id-Digital Dojo
 ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  1.087 seconds
-Domain Reload Profiling: 1806ms
-	BeginReloadAssembly (293ms)
-		DisableScriptedObjects (22ms)
-		CreateAndSetChildDomain (154ms)
-	RebuildCommonClasses (6ms)
+- Finished resetting the current domain, in  1.101 seconds
+Domain Reload Profiling: 1839ms
+	BeginReloadAssembly (318ms)
+		DisableScriptedObjects (25ms)
+		CreateAndSetChildDomain (171ms)
+	RebuildCommonClasses (7ms)
 	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (37ms)
-	LoadAllAssembliesAndSetupDomain (370ms)
-		LoadAssemblies (206ms)
-		TypeCache.Refresh (91ms)
-			TypeCache.ScanAssembly (81ms)
-		AnalyzeDomain (39ms)
-			BuildScriptInfoCaches (34ms)
+	initialDomainReloadingComplete (38ms)
+	LoadAllAssembliesAndSetupDomain (363ms)
+		LoadAssemblies (208ms)
+		TypeCache.Refresh (86ms)
+			TypeCache.ScanAssembly (77ms)
+		AnalyzeDomain (40ms)
+			BuildScriptInfoCaches (35ms)
 			ResolveRequiredComponents (3ms)
-	FinalizeReload (1087ms)
+	FinalizeReload (1102ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (6ms)
-			BeforeProcessingInitializeOnLoad (77ms)
-			ProcessInitializeOnLoadAttributes (652ms)
-			ProcessInitializeOnLoadMethodAttributes (143ms)
-			AfterProcessingInitializeOnLoad (7ms)
-		AwakeInstancesAfterBackupRestoration (32ms)
+			BeforeProcessingInitializeOnLoad (78ms)
+			ProcessInitializeOnLoadAttributes (671ms)
+			ProcessInitializeOnLoadMethodAttributes (139ms)
+			AfterProcessingInitializeOnLoad (6ms)
+		AwakeInstancesAfterBackupRestoration (27ms)
 Starting new worker id: 0 with log in E:/Programming Projekte/box-reha-game/Logs/AssetImportWorkerHW0.log
 
-Asset Pipeline Refresh (id=c2baca419dfca1c459fecb5e2e668d79): Total: 2.685 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+Asset Pipeline Refresh (id=a7e507f1af0b6c9459a7ddd91f4f7aad): Total: 2.793 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
 	(Values over 0.05ms)
 	Summary:
 		Imports: total=0 (actual=0, local cache=0, cache server=0)
-		Asset DB Process Time: managed=0 ms, native=1341 ms
-		Asset DB Callback time: managed=10 ms, native=14 ms
-		Scripting: domain reloads=1, domain reload time=754 ms, compile time=530 ms, other=34 ms
-		Project Asset Count: scripts=1025, non-scripts=2121
+		Asset DB Process Time: managed=0 ms, native=1410 ms
+		Asset DB Callback time: managed=9 ms, native=15 ms
+		Scripting: domain reloads=1, domain reload time=775 ms, compile time=548 ms, other=34 ms
+		Project Asset Count: scripts=1025, non-scripts=2122
 		Asset File Changes: new=0, changed=0, moved=0, deleted=0
 		Scan Filter Count: 0
-	InvokePackagesCallback: 15.725ms
-	ApplyChangesToAssetFolders: 0.556ms
-	Scan: 74.502ms
-	Collect global state as custom dependencies: 6.280ms
-	CategorizeScriptCompilationAssets: 13.727ms
-	ProcessAssetsWithTransientArtifactChanges: 41.470ms
-	CategorizeAssets: 22.415ms
-	CompileScripts: 530.470ms
-	ImportOutOfDateAssets: 1096.313ms (1089.696ms without children)
-		UnloadImportedAssets: 0.075ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.349ms
-		ImportSchedulerStart: 6.189ms
-	PostProcessAllAssets: 10.493ms
-		MonoPostProcessAllAssets: 10.447ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.175ms
-			SyncVS.PostprocessSyncProject 0.798ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.613ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.524ms
-			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.391ms
-			CinemachineSettings.OnPostprocessAllAssets 0.238ms
-			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.185ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.131ms
-			DomainReloadProcessor.OnPostprocessAllAssets 0.125ms
-			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.106ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.053ms
-	UnloadStreamsBegin: 1.182ms
-	PersistCurrentRevisions: 0.076ms
-	GenerateScriptTypeHashes: 1.581ms
-	GenerateScriptTypeSerializationHashes: 2.856ms
-	Untracked: 863.019ms
+	InvokePackagesCallback: 16.613ms
+	ApplyChangesToAssetFolders: 0.437ms
+	Scan: 124.044ms
+	Collect global state as custom dependencies: 5.957ms
+	CategorizeScriptCompilationAssets: 13.964ms
+	ProcessAssetsWithTransientArtifactChanges: 44.085ms
+	CategorizeAssets: 20.952ms
+	CompileScripts: 548.322ms
+	ImportOutOfDateAssets: 1113.572ms (1103.634ms without children)
+		UnloadImportedAssets: 0.063ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.311ms
+		ImportSchedulerStart: 9.560ms
+	PostProcessAllAssets: 9.525ms
+		MonoPostProcessAllAssets: 9.477ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.120ms
+			SyncVS.PostprocessSyncProject 0.762ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.578ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.510ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.384ms
+			CinemachineSettings.OnPostprocessAllAssets 0.227ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.180ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.130ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.119ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.107ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.051ms
+	UnloadStreamsBegin: 2.238ms
+	PersistCurrentRevisions: 0.075ms
+	GenerateScriptTypeHashes: 1.268ms
+	GenerateScriptTypeSerializationHashes: 2.357ms
+	Untracked: 886.509ms
 
 Application.AssetDatabase Initial Refresh End
 Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
-Scanning for USB devices : 5.979ms
+Scanning for USB devices : 6.710ms
 Initializing Unity extensions:
 Unloading 63 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 4439 unused Assets / (2.4 MB). Loaded Objects now: 5172.
-Memory consumption went from 323.1 MB to 320.7 MB.
-Total: 6.084600 ms (FindLiveObjects: 0.335700 ms CreateObjectMapping: 0.226100 ms MarkObjects: 4.567000 ms  DeleteObjects: 0.775800 ms)
+Unloading 4437 unused Assets / (2.7 MB). Loaded Objects now: 5170.
+Memory consumption went from 324.8 MB to 322.1 MB.
+Total: 6.023500 ms (FindLiveObjects: 0.340000 ms CreateObjectMapping: 0.227200 ms MarkObjects: 4.586600 ms  DeleteObjects: 0.698000 ms)
 
 [TestRunBuilder] Creating new file 'Assets/Resources/PerformanceTestRunInfo.json' (2983 bytes)
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
@@ -376,9 +376,9 @@ Reporting tool paths:
  Android SDK: 'C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK'
  Android NDK: 'C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\NDK'
  Gradle: 'C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\gradle' (Gradle Version: '9.1.0' Android Plugin Version: '9.0.0')
-Android PostProcess task "Checking prerequisites" took 21,4173 ms
+Android PostProcess task "Checking prerequisites" took 21,1858 ms
 DisplayProgressbar: Detect Java Development Kit (JDK)
-Android PostProcess task "Detect Java Development Kit (JDK)" took 1,9371 ms
+Android PostProcess task "Detect Java Development Kit (JDK)" took 1,8591 ms
 DisplayProgressbar: Detecting Android SDK
 Worker ready: AssetImportWorkerHW0 0
 AndroidSDKTools:
@@ -390,99 +390,180 @@ AndroidSDKTools:
 
 	adb           : C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools\adb.exe
 
-Android PostProcess task "Detecting Android SDK" took 4373,6061 ms
+Android PostProcess task "Detecting Android SDK" took 3926,0265 ms
 DisplayProgressbar: Detect Android NDK
-Android PostProcess task "Detect Android NDK" took 0,9802 ms
-Android PostProcess task "Trying to find a suitable Android device" took 0,318 ms
+Android PostProcess task "Detect Android NDK" took 1,0313 ms
+Android PostProcess task "Trying to find a suitable Android device" took 0,3012 ms
 DisplayProgressbar: Check resources
-Android PostProcess task "Check resources" took 0,1576 ms
+Android PostProcess task "Check resources" took 0,1468 ms
 DisplayProgressbar: Check Android Player Settings
-Android PostProcess task "Check Android Player Settings" took 1,7959 ms
+Android PostProcess task "Check Android Player Settings" took 1,7376 ms
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aESkipCompile.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssembliesAndTypeDB
 WorkingDir: E:/Programming Projekte/box-reha-game
 DisplayProgressbar: Compiling Scripts
-ExitCode: 0 Duration: 0s100ms
-*** Tundra build success (0.08 seconds), 0 items updated, 3 evaluated
-Importing 'GUID: 05142b524f4e4704791e37655036ddac - Path: Assets/Resources/PerformanceTestRunSettings.json' with importer (TextScriptImporter)
-Imported 'GUID: 05142b524f4e4704791e37655036ddac' -> (Import Result ID: '1c2c585aa0bbda29145aac7e10196439') in 0.015 seconds [static dependencies only]. Details - ImportResultOutputID=86dee6f40bd4dae704d3018abd9f7c21 DependenciesID=12d032b8ceb0fd9147fbccfccc02b567 StaticDependenciesID=ecaed05a65e6f6a49fe531f47911f2c7 
-Importing 'GUID: bcee6828c7f282544946bde720597f04 - Path: Assets/Resources/PerformanceTestRunInfo.json' with importer (TextScriptImporter)
-Imported 'GUID: bcee6828c7f282544946bde720597f04' -> (Import Result ID: 'c81fbd683fa2fdf7b5ae817e3f8dbf75') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=4468f91b95ee1c28b2ae94860b72eb89 DependenciesID=8a3366798e32c43b20593938da60aa88 StaticDependenciesID=639cbb900a55130c6dff0ffdca597157 
-Asset Pipeline Refresh (id=7bc810cab13cba94499c9edcf9f6cd2d): Total: 0.085 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+ExitCode: 0 Duration: 0s734ms
+[2/3        0s] BuildPlayerDataGenerator Library/BuildPlayerData/Editor/TypeDb-All.json
+*** Tundra build success (0.71 seconds), 1 items updated, 3 evaluated
+Importing 'GUID: 400a5023701207d4c9136bcf40e2138c - Path: Assets/Resources/PerformanceTestRunInfo.json' with importer (TextScriptImporter)
+Imported 'GUID: 400a5023701207d4c9136bcf40e2138c' -> (Import Result ID: '8c220f2817e2f0a58d2fdf50101800e8') in 0.017 seconds [static dependencies only]. Details - ImportResultOutputID=f194a18e4c2c1632d1ade185411c1a72 DependenciesID=57fad4f067735510dd523fcdbe6d885c StaticDependenciesID=a90beba7b34363f5a81e985cede5efbf 
+Importing 'GUID: 898ba924e60bfa04a8c07052cbfe1efa - Path: Assets/Resources/PerformanceTestRunSettings.json' with importer (TextScriptImporter)
+Imported 'GUID: 898ba924e60bfa04a8c07052cbfe1efa' -> (Import Result ID: 'c0e1ba8c64daadce34ea698f6d740688') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=787fbc6981c7ef17b444dd4b19423a92 DependenciesID=ea3060e5992c2215644ab32042d75a7c StaticDependenciesID=a153190eca4d7e1250ea2135e02c3c65 
+Asset Pipeline Refresh (id=6e75fde647bee264eb5ee446b8b687b4): Total: 0.090 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
 [ScriptCompilation] Requested script compilation because: Recompiling scripts for player build.
 BuildPlayer: start building target 13
 Total cache size 198679505
-Total cache size after purge 198679505, took 00:00:00.1903820
+Total cache size after purge 198679505, took 00:00:00.1863206
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aPDev.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssembliesAndTypeDB
 WorkingDir: E:/Programming Projekte/box-reha-game
-ExitCode: 0 Duration: 0s205ms
+ExitCode: 4 Duration: 0s581ms
 [438/644    0s] WriteResponseFile Library/Bee/artifacts/rsp/4747638433968585886.rsp
-[548/644    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
-[580/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Burst.dll
-[581/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.KdTree.dll
-[582/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.PublicJobPrivateGeneric.dll
-[583/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.PathTracing.Runtime.dll
-[584/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.SurfaceCache.Runtime.dll
-[585/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.InternalJobNestedPrivate.dll
-[586/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Poly2Tri.dll
-[587/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Profiling.Core.dll
-[588/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.ObjectDispatcher.Runtime.dll
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1300b0aPDev-inputdata.json
+[547/644    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra requires additional run (0.56 seconds), 3 items updated, 546 evaluated
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\DotNetSdk\dotnet.exe "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/1300b0aPDev.dag.json" "Library/Bee/1300b0aPDev-inputdata.json" "Library\Bee\buildprogram0.traceevents"
+WorkingDir: E:/Programming Projekte/box-reha-game
+ExitCode: 0 Duration: 1s428ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aPDev.dag" --continue-on-failure --dagfilejson="Library\Bee\1300b0aPDev.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssembliesAndTypeDB
+WorkingDir: E:/Programming Projekte/box-reha-game
+ExitCode: 0 Duration: 4s880ms
+Finished compiling graph: 645 nodes, 6911 flattened edges (5833 ToBuild, 78 ToUse), maximum node priority 319
+[546/644    0s] WriteText Library/Bee/artifacts/1300b0aPDev.dag/Assembly-CSharp.rsp
+[547/644    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[578/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.ProtectedJobNested.dll
+[579/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Burst.dll
+[580/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.GPUDriven.Runtime.dll
+[581/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.PrivateJobNested.dll
+[582/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.VisualEffectGraph.Runtime.dll
+[583/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/UnityEngine.UI.dll
+[584/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.TextMeshPro.dll
+[585/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Stl.dll
+[586/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.ObjectDispatcher.Runtime.dll
+[587/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Splines.dll
+[588/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.PathTracing.Runtime.dll
 [589/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Cinemachine.dll
-[590/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.ProtectedJobNested.dll
-[591/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.TextMeshPro.dll
-[592/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.VisualEffectGraph.Runtime.dll
-[593/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.dll
-[594/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Mathematics.dll
-[595/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.004.dll
-[596/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.dll
-[597/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll
-[598/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/MCPForUnity.Runtime.dll
-[599/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.UnifiedRayTracing.Runtime.dll
-[600/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Splines.dll
-[601/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Shared.dll
-[602/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
-[603/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll
-[604/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.dll
-[605/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/UnityEngine.UI.dll
-[606/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.GPUDriven.Runtime.dll
-[607/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Assembly-CSharp.dll
-[608/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Csg.dll
-[609/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Stl.dll
-[610/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Splines.pdb
-[611/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.PrivateJobNested.dll
-[612/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.pdb
-[613/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.pdb
-[614/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.004.pdb
-[615/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.pdb
-[616/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Mathematics.pdb
-[617/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Stl.pdb
-[618/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.GPUDriven.Runtime.pdb
-[619/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.InternalJobNestedPrivate.pdb
-[620/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.KdTree.pdb
-[621/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.VisualEffectGraph.Runtime.pdb
-[622/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.pdb
-[623/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.PathTracing.Runtime.pdb
-[624/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.TextMeshPro.pdb
-[625/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Poly2Tri.pdb
-[626/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Profiling.Core.pdb
-[627/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.PublicJobPrivateGeneric.pdb
-[628/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Burst.pdb
-[629/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.SurfaceCache.Runtime.pdb
-[631/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.pdb
-[632/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Csg.pdb
-[633/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/MCPForUnity.Runtime.pdb
+[590/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.PublicJobPrivateGeneric.dll
+[591/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.dll
+[592/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.InternalJobNestedPrivate.dll
+[593/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+[594/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.dll
+[595/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.SurfaceCache.Runtime.dll
+[596/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.UnifiedRayTracing.Runtime.dll
+[597/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.KdTree.dll
+[598/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Shared.dll
+[599/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/MCPForUnity.Runtime.dll
+[600/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll
+[601/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Poly2Tri.dll
+[602/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Csg.dll
+[603/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.pdb
+[604/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll
+[605/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.dll
+[606/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Profiling.Core.dll
+[607/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.004.dll
+[608/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.KdTree.pdb
+[609/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Mathematics.dll
+[610/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.InternalJobNestedPrivate.pdb
+[611/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Profiling.Core.pdb
+[612/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Splines.pdb
+[613/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.pdb
+[614/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.VisualEffectGraph.Runtime.pdb
+[615/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.PrivateJobNested.pdb
+[616/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.PathTracing.Runtime.pdb
+[617/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.SurfaceCache.Runtime.pdb
+[618/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/UnityEngine.UI.pdb
+[619/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Poly2Tri.pdb
+[620/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Stl.pdb
+[621/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.TextMeshPro.pdb
+[622/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.pdb
+[623/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.ProtectedJobNested.pdb
+[624/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.pdb
+[625/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.ProBuilder.Csg.pdb
+[626/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.PublicJobPrivateGeneric.pdb
+[627/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Burst.pdb
+[628/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Mathematics.pdb
+[629/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/MCPForUnity.Runtime.pdb
+[630/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.004.pdb
+[631/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.GPUDriven.Runtime.pdb
+[632/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.pdb
+[633/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.pdb
 [634/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Cinemachine.pdb
-[635/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Assembly-CSharp.pdb
-[636/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.UnifiedRayTracing.Runtime.pdb
-[637/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.PrivateJobNested.pdb
-[638/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.ObjectDispatcher.Runtime.pdb
-[639/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.pdb
-[640/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.Collections.Tests.CoreCLR.ProtectedJobNested.pdb
-[641/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/UnityEngine.UI.pdb
-[642/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Shared.pdb
-*** Tundra build success (0.19 seconds), 64 items updated, 644 evaluated
+[635/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Shared.pdb
+[636/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.InternalAPIEngineBridge.ObjectDispatcher.Runtime.pdb
+[637/644    0s] CopyFiles Library/Bee/PlayerScriptAssemblies/Unity.UnifiedRayTracing.Runtime.pdb
+[638/644    0s] Csc Library/Bee/artifacts/1300b0aPDev.dag/Assembly-CSharp.dll (+2 others)
+Assets\Scripts\Core\GameManager.cs(133,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Core\GameManager.cs(158,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Gameplay\HitZoneVisualizer.cs(25,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Research\ResearchSessionLog.cs(126,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Sensors\DynamicsSdkBridge.cs(117,64): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\UI\DebugUI.cs(25,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Spawning\TargetSpawner.cs(46,52): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(22,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\UI\ComboMilestonePopup.cs(37,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\UI\TextPopup.cs(57,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\UI\PauseMenuController.cs(97,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(77,47): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\Visuals\DigitalDojoRuntimeDressing.cs(142,30): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+
+Assets\Scripts\Gameplay\HitZoneEvaluator.cs(191,73): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\Gameplay\HitZoneEvaluator.cs(191,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(93,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\Scripts\UI\ComboMilestonePopup.cs(19,36): warning CS0414: The field 'ComboMilestonePopup.shakeDuration' is assigned but its value is never used
+
+Assets\Scripts\UI\ComboMilestonePopup.cs(18,36): warning CS0414: The field 'ComboMilestonePopup.shakeIntensity' is assigned but its value is never used
+
+Assets\Scripts\Spawning\TargetSpawner.cs(97,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+
+Assets\Scripts\Spawning\TargetSpawner.cs(103,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[639/644    0s] ILPostProcess Library/Bee/artifacts/1300b0aPDev.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1300b0aPDev.dag/Assembly-CSharp.dll, with 148 defines and 243 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[640/644    1s] CopyFiles Library/Bee/PlayerScriptAssemblies/Assembly-CSharp.pdb
+[641/644    1s] CopyFiles Library/Bee/PlayerScriptAssemblies/Assembly-CSharp.dll
+[643/644    0s] BuildPlayerDataGenerator Library/BuildPlayerData/Player/RuntimeInitializeOnLoads.json (+1 other)
+*** Tundra build success (4.81 seconds), 67 items updated, 644 evaluated
+Assets\Scripts\Core\GameManager.cs(133,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Core\GameManager.cs(158,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Gameplay\HitZoneVisualizer.cs(25,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Research\ResearchSessionLog.cs(126,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Sensors\DynamicsSdkBridge.cs(117,64): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\UI\DebugUI.cs(25,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Spawning\TargetSpawner.cs(46,52): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(22,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\UI\ComboMilestonePopup.cs(37,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\UI\TextPopup.cs(57,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\UI\PauseMenuController.cs(97,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(77,47): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\Visuals\DigitalDojoRuntimeDressing.cs(142,30): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+Assets\Scripts\Gameplay\HitZoneEvaluator.cs(191,73): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\Gameplay\HitZoneEvaluator.cs(191,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(93,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\Scripts\UI\ComboMilestonePopup.cs(19,36): warning CS0414: The field 'ComboMilestonePopup.shakeDuration' is assigned but its value is never used
+Assets\Scripts\UI\ComboMilestonePopup.cs(18,36): warning CS0414: The field 'ComboMilestonePopup.shakeIntensity' is assigned but its value is never used
+Assets\Scripts\Spawning\TargetSpawner.cs(97,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+Assets\Scripts\Spawning\TargetSpawner.cs(103,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
 Total cache size 198679505
-Total cache size after purge 198679505, took 00:00:00.1708728
+Total cache size after purge 198679505, took 00:00:00.1822912
 Rebuilding Data files because Assets/Resources/PerformanceTestRunSettings.json is dirty (hash)
 
 
@@ -749,65 +830,65 @@ DisplayProgressbar: Fetching assembly references
 Opening scene 'Assets/Scenes/Boot.unity'
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Boot.unity'
-	Deserialize:            0.727 ms
-	Integration:            16.746 ms
+	Deserialize:            0.763 ms
+	Integration:            39.058 ms
 	Integration of assets:  0.002 ms
-	Thread Wait Time:       23.769 ms
-	Total Operation Time:   41.243 ms
-Unloading 37 unused Assets / (1.3 MB). Loaded Objects now: 5212.
-Memory consumption went from 349.2 MB to 347.9 MB.
-Total: 6.185900 ms (FindLiveObjects: 0.234900 ms CreateObjectMapping: 0.058400 ms MarkObjects: 5.393800 ms  DeleteObjects: 0.293400 ms)
+	Thread Wait Time:       14.024 ms
+	Total Operation Time:   53.848 ms
+Unloading 37 unused Assets / (1.3 MB). Loaded Objects now: 5210.
+Memory consumption went from 350.9 MB to 349.6 MB.
+Total: 6.061000 ms (FindLiveObjects: 0.232000 ms CreateObjectMapping: 0.054200 ms MarkObjects: 5.281000 ms  DeleteObjects: 0.301600 ms)
 
 Opening scene 'Assets/Scenes/MainMenu.unity'
 Unloading 40 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/MainMenu.unity'
-	Deserialize:            17.248 ms
-	Integration:            18.350 ms
-	Integration of assets:  0.006 ms
-	Thread Wait Time:       0.005 ms
-	Total Operation Time:   35.608 ms
-Unloading 100 unused Assets / (1.4 MB). Loaded Objects now: 6685.
-Memory consumption went from 373.9 MB to 372.5 MB.
-Total: 5.631100 ms (FindLiveObjects: 0.445900 ms CreateObjectMapping: 0.098500 ms MarkObjects: 4.608000 ms  DeleteObjects: 0.299900 ms)
+	Deserialize:            16.947 ms
+	Integration:            18.256 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       0.012 ms
+	Total Operation Time:   35.217 ms
+Unloading 100 unused Assets / (1.4 MB). Loaded Objects now: 6683.
+Memory consumption went from 375.6 MB to 374.3 MB.
+Total: 5.529400 ms (FindLiveObjects: 0.329400 ms CreateObjectMapping: 0.081600 ms MarkObjects: 4.546500 ms  DeleteObjects: 0.388200 ms)
 
 Opening scene 'Assets/Scenes/Game.unity'
 Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Game.unity'
-	Deserialize:            4.154 ms
-	Integration:            6.704 ms
-	Integration of assets:  2.626 ms
-	Thread Wait Time:       0.011 ms
-	Total Operation Time:   13.496 ms
-Unloading 15 unused Assets / (22.3 MB). Loaded Objects now: 5706.
-Memory consumption went from 381.4 MB to 359.1 MB.
-Total: 5.446400 ms (FindLiveObjects: 0.266500 ms CreateObjectMapping: 0.099100 ms MarkObjects: 4.847300 ms  DeleteObjects: 0.066400 ms)
+	Deserialize:            4.590 ms
+	Integration:            7.009 ms
+	Integration of assets:  3.025 ms
+	Thread Wait Time:       0.018 ms
+	Total Operation Time:   14.643 ms
+Unloading 15 unused Assets / (22.3 MB). Loaded Objects now: 5704.
+Memory consumption went from 383.5 MB to 361.2 MB.
+Total: 4.942700 ms (FindLiveObjects: 0.241400 ms CreateObjectMapping: 0.073900 ms MarkObjects: 4.410200 ms  DeleteObjects: 0.048400 ms)
 
 Opening scene 'Assets/Scenes/Results.unity'
 Unloading 16 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Results.unity'
-	Deserialize:            1.444 ms
-	Integration:            4.663 ms
-	Integration of assets:  0.001 ms
-	Thread Wait Time:       0.005 ms
-	Total Operation Time:   6.113 ms
-Unloading 340 unused Assets / (2.9 MB). Loaded Objects now: 5326.
-Memory consumption went from 360.2 MB to 357.3 MB.
-Total: 5.835100 ms (FindLiveObjects: 0.256800 ms CreateObjectMapping: 0.080600 ms MarkObjects: 4.954400 ms  DeleteObjects: 0.361900 ms)
+	Deserialize:            1.522 ms
+	Integration:            5.844 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.018 ms
+	Total Operation Time:   7.385 ms
+Unloading 340 unused Assets / (2.9 MB). Loaded Objects now: 5324.
+Memory consumption went from 362.3 MB to 359.4 MB.
+Total: 5.222600 ms (FindLiveObjects: 0.241000 ms CreateObjectMapping: 0.074800 ms MarkObjects: 4.378200 ms  DeleteObjects: 0.358100 ms)
 
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1 unused Assets / (3.0 KB). Loaded Objects now: 5210.
-Memory consumption went from 356.6 MB to 356.6 MB.
-Total: 4.961600 ms (FindLiveObjects: 0.211300 ms CreateObjectMapping: 0.048300 ms MarkObjects: 4.522800 ms  DeleteObjects: 0.014000 ms)
+Unloading 1 unused Assets / (2.8 KB). Loaded Objects now: 5208.
+Memory consumption went from 358.8 MB to 358.8 MB.
+Total: 5.521000 ms (FindLiveObjects: 0.237900 ms CreateObjectMapping: 0.058200 ms MarkObjects: 5.032400 ms  DeleteObjects: 0.023700 ms)
 
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 0 unused Assets / (Unknown). Loaded Objects now: 5212.
-Memory consumption went from 357.1 MB to 357.1 MB.
-Total: 5.145800 ms (FindLiveObjects: 0.213800 ms CreateObjectMapping: 0.045900 ms MarkObjects: 4.710600 ms  DeleteObjects: 0.006400 ms)
+Unloading 0 unused Assets / (Unknown). Loaded Objects now: 5210.
+Memory consumption went from 359.3 MB to 359.3 MB.
+Total: 5.039900 ms (FindLiveObjects: 0.255300 ms CreateObjectMapping: 0.058100 ms MarkObjects: 4.553700 ms  DeleteObjects: 0.005800 ms)
 
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 173 unused Assets / (149.0 MB). Loaded Objects now: 5212.
-Memory consumption went from 507.2 MB to 358.2 MB.
-Total: 11.856800 ms (FindLiveObjects: 0.215400 ms CreateObjectMapping: 0.054000 ms MarkObjects: 5.042100 ms  DeleteObjects: 6.376100 ms)
+Unloading 173 unused Assets / (149.0 MB). Loaded Objects now: 5210.
+Memory consumption went from 509.4 MB to 360.4 MB.
+Total: 11.871800 ms (FindLiveObjects: 0.220100 ms CreateObjectMapping: 0.057000 ms MarkObjects: 4.717400 ms  DeleteObjects: 6.708100 ms)
 
 Compiling shader "Standard"
   Pass "FORWARD" (vp)
@@ -901,14 +982,14 @@ Compiling shader "Standard"
     After built-in stripping:   6
     After scriptable stripping: 6
     Processed in 0.00 seconds
-  Pass FORWARD (vp, gles3) finished in 0.02 seconds. Local cache hits 72 (0.10s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass FORWARD (vp, vulkan) finished in 0.02 seconds. Local cache hits 72 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass FORWARD (vp, gles3) finished in 0.03 seconds. Local cache hits 72 (0.13s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass FORWARD (vp, vulkan) finished in 0.02 seconds. Local cache hits 72 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
   Pass FORWARD_DELTA (vp, gles3) finished in 0.02 seconds. Local cache hits 78 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass FORWARD_DELTA (vp, vulkan) finished in 0.01 seconds. Local cache hits 78 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass FORWARD_DELTA (vp, vulkan) finished in 0.02 seconds. Local cache hits 78 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass ShadowCaster (vp, gles3) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass ShadowCaster (vp, vulkan) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass ShadowCaster (vp, gles3) finished in 0.02 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass ShadowCaster (vp, vulkan) finished in 0.02 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
   Pass DEFERRED (vp, gles3) finished in 0.01 seconds. Local cache hits 36 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass DEFERRED (vp, vulkan) finished in 0.01 seconds. Local cache hits 36 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
@@ -1439,11 +1520,11 @@ Compiling shader "Hidden/Internal-DepthNormalsTexture"
   Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
   Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
@@ -1573,7 +1654,7 @@ Compiling shader "Hidden/BlitCopyDepth"
     After built-in stripping:   3
     After scriptable stripping: 3
     Processed in 0.00 seconds
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
 Serialized binary data for shader Hidden/BlitCopyDepth in 0.00s
@@ -1626,7 +1707,7 @@ Compiling shader "Hidden/Internal-DeferredShading"
     After built-in stripping:   3
     After scriptable stripping: 3
     Processed in 0.00 seconds
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 78 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 78 (0.02s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 78 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
   Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
@@ -1958,11 +2039,11 @@ Compiling shader "Hidden/Internal-GUITextureClipText"
     After built-in stripping:   3
     After scriptable stripping: 3
     Processed in 0.00 seconds
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
 Serialized binary data for shader Hidden/Internal-GUITextureClipText in 0.00s
     gles3 (total internal programs: 6, unique: 1)
@@ -2125,8 +2206,8 @@ Compiling shader "Hidden/Internal-UIRDefault"
     After built-in stripping:   120
     After scriptable stripping: 120
     Processed in 0.00 seconds
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 120 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 120 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 120 (0.01s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 120 (0.02s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
 Serialized binary data for shader Hidden/Internal-UIRDefault in 0.00s
     gles3 (total internal programs: 120, unique: 40)
@@ -2320,8 +2401,8 @@ Compiling shader "Hidden/CubeCopy"
     After built-in stripping:   3
     After scriptable stripping: 3
     Processed in 0.00 seconds
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
   Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
@@ -2379,7 +2460,7 @@ Compiling shader "Hidden/VR/BlitTexArraySlice"
     After built-in stripping:   3
     After scriptable stripping: 3
     Processed in 0.00 seconds
-  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
 Serialized binary data for shader Hidden/VR/BlitTexArraySlice in 0.00s
@@ -2516,25 +2597,25 @@ Compiling shader "Hidden/Internal-ODSWorldTexture"
     After built-in stripping:   3
     After scriptable stripping: 3
     Processed in 0.00 seconds
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass  (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass  (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
   Pass  (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
@@ -2723,29 +2804,29 @@ Compiling shader "Hidden/VideoDecode"
     After built-in stripping:   3
     After scriptable stripping: 3
     Processed in 0.00 seconds
-  Pass YCbCr_To_RGB1 (vp, gles3) finished in 0.00 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass YCbCr_To_RGB1 (vp, vulkan) finished in 0.00 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass YCbCr_To_RGB1 (vp, gles3) finished in 0.02 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass YCbCr_To_RGB1 (vp, vulkan) finished in 0.02 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass YCbCrA_To_RGBAFull (vp, gles3) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass YCbCrA_To_RGBAFull (vp, vulkan) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass YCbCrA_To_RGBAFull (vp, gles3) finished in 0.02 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass YCbCrA_To_RGBAFull (vp, vulkan) finished in 0.02 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass YCbCrA_To_RGBA (vp, gles3) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass YCbCrA_To_RGBA (vp, vulkan) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass YCbCrA_To_RGBA (vp, gles3) finished in 0.02 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass YCbCrA_To_RGBA (vp, vulkan) finished in 0.02 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
   Pass Flip_RGBA_To_RGBA (vp, gles3) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
   Pass Flip_RGBA_To_RGBA (vp, vulkan) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
   Pass Flip_RGBASplit_To_RGBA (vp, gles3) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass Flip_RGBASplit_To_RGBA (vp, vulkan) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass Flip_RGBASplit_To_RGBA (vp, vulkan) finished in 0.00 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass Flip_NV12_To_RGB1 (vp, gles3) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass Flip_NV12_To_RGB1 (vp, vulkan) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass Flip_NV12_To_RGB1 (vp, gles3) finished in 0.00 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass Flip_NV12_To_RGB1 (vp, vulkan) finished in 0.00 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass Flip_NV12_To_RGBA (vp, gles3) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass Flip_NV12_To_RGBA (vp, vulkan) finished in 0.01 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass Flip_NV12_To_RGBA (vp, gles3) finished in 0.00 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass Flip_NV12_To_RGBA (vp, vulkan) finished in 0.00 seconds. Local cache hits 6 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
-  Pass Flip_P010_To_RGB1 (vp, gles3) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
-  Pass Flip_P010_To_RGB1 (vp, vulkan) finished in 0.01 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass Flip_P010_To_RGB1 (vp, gles3) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
+  Pass Flip_P010_To_RGB1 (vp, vulkan) finished in 0.00 seconds. Local cache hits 3 (0.00s CPU time), remote cache hits 0 (0.00s CPU time), compiled 0 variants (0.00s CPU time), skipped 0 variants.
     Prepared data for serialisation in 0.00s
 Serialized binary data for shader Hidden/VideoDecode in 0.00s
     gles3 (total internal programs: 45, unique: 15)
@@ -2894,22 +2975,34 @@ Serialized binary data for shader Hidden/Physics2D/SDF_Point in 0.00s
     vulkan (total internal programs: 3, unique: 1)
 SpriteAtlasDatabase::Cleanup
 DisplayProgressbar: Initializing
-Android PostProcess task "Initializing" took 0,6272 ms
+Android PostProcess task "Initializing" took 0,6551 ms
 DisplayProgressbar: Check gradle project collisions
-Android PostProcess task "Check gradle project collisions" took 0,1694 ms
+Android PostProcess task "Check gradle project collisions" took 0,1718 ms
 DisplayProgressbar: Preparing banner
-Android PostProcess task "Preparing banner" took 0,3108 ms
+Android PostProcess task "Preparing banner" took 0,2725 ms
     Call "UnityEditor.Android.AndroidHardwareProfilesManager.Setup" from assembly 'UnityEditor.Android.Extensions'
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --dagfile="Library/Bee/Player14a44296.dag" --profile="Library/Bee/backend1.traceevents" Player
 WorkingDir: E:/Programming Projekte/box-reha-game
-ExitCode: 4 Duration: 0s82ms
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\DotNetSdk\dotnet.exe "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\AndroidPlayerBuildProgram.exe" "C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/Bee;C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/BuildPipeline" "Library/Bee/Player14a44296.dag.json" "Library/Bee/Player14a44296-inputdata.json" "Library\Bee\buildprogram0.traceevents"
 WorkingDir: E:/Programming Projekte/box-reha-game
+ExitCode: 4 Duration: 0s89ms
 DisplayProgressbar: Incremental Player Build
-ExitCode: 0 Duration: 0s422ms
+ExitCode: 0 Duration: 0s449ms
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --dagfile="Library/Bee/Player14a44296.dag" --dagfilejson="Library\Bee\Player14a44296.dag.json" --profile="Library/Bee/backend2.traceevents" Player
 WorkingDir: E:/Programming Projekte/box-reha-game
-ExitCode: 0 Duration: 0s330ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\DotNetSdk\dotnet.exe "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\AndroidPlayerBuildProgram.exe" "C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/Bee;C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/BuildPipeline" "Library/Bee/Player14a44296.dag.json" "Library/Bee/Player14a44296-inputdata.json" "Library\Bee\buildprogram1.traceevents"
+WorkingDir: E:/Programming Projekte/box-reha-game
+ExitCode: 4 Duration: 3s148ms
+ExitCode: 0 Duration: 0s444ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --dagfile="Library/Bee/Player14a44296.dag" --dagfilejson="Library\Bee\Player14a44296.dag.json" --profile="Library/Bee/backend3.traceevents" Player
+WorkingDir: E:/Programming Projekte/box-reha-game
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\DotNetSdk\dotnet.exe "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\AndroidPlayerBuildProgram.exe" "C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/Bee;C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/BuildPipeline" "Library/Bee/Player14a44296.dag.json" "Library/Bee/Player14a44296-inputdata.json" "Library\Bee\buildprogram2.traceevents"
+WorkingDir: E:/Programming Projekte/box-reha-game
+ExitCode: 4 Duration: 20s
+ExitCode: 0 Duration: 0s894ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --dagfile="Library/Bee/Player14a44296.dag" --dagfilejson="Library\Bee\Player14a44296.dag.json" --profile="Library/Bee/backend4.traceevents" Player
+WorkingDir: E:/Programming Projekte/box-reha-game
+ExitCode: 0 Duration: 0s157ms
 DisplayProgressbar: Calling IPostGenerateGradleAndroidProject callbacks
 Calling IPostGenerateGradleAndroidProject callbacks on 'E:\Programming Projekte\box-reha-game\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary':
     Call "DynamicsAndroidGradleIntegration.OnPostGenerateGradleAndroidProject" from assembly 'Assembly-CSharp-Editor'
@@ -2955,27 +3048,27 @@ GameRegressionChecks:BuildAndroidCandidate () (at Assets/Editor/GameRegressionCh
 
 (Filename: Assets/Editor/DynamicsAndroidGradleIntegration.cs Line: 17)
 
-Android PostProcess task "Calling IPostGenerateGradleAndroidProject callbacks" took 10,0257 ms
+Android PostProcess task "Calling IPostGenerateGradleAndroidProject callbacks" took 11,7972 ms
 DisplayProgressbar: Validate Gradle Project
-Android PostProcess task "Validate Gradle Project" took 0,5078 ms
-Android PostProcess task "Unity Services Symbol Upload" took 0,2103 ms
+Android PostProcess task "Validate Gradle Project" took 0,5474 ms
+Android PostProcess task "Unity Services Symbol Upload" took 0,2107 ms
 DisplayProgressbar: Building Gradle project
 Total cache size 198679505
-Total cache size after purge 198679505, took 00:00:00.1710915
+Total cache size after purge 198679505, took 00:00:00.1804886
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\OpenJDK\bin\java.exe -classpath "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\gradle\lib\gradle-launcher-9.1.0.jar" org.gradle.launcher.GradleMain "-Dorg.gradle.jvmargs=-Xmx4096m" "assembleDebug" 
 WorkingDir: E:/Programming Projekte/box-reha-game/Library/Bee/Android/Prj/IL2CPP/Gradle\launcher
 Build log was saved at 'E:\Programming Projekte\box-reha-game\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\build\outputs\logs\unity-assembleDebug-build.log'
-Android PostProcess task "Building Gradle project" took 11031,4953 ms
+Android PostProcess task "Building Gradle project" took 15392,3721 ms
 DisplayProgressbar: Building Gradle Symbols
-Android PostProcess task "Building Gradle Symbols" took 0,1787 ms
+Android PostProcess task "Building Gradle Symbols" took 0,1679 ms
 DisplayProgressbar: Processing Mapping File
-Android PostProcess task "Processing Mapping File" took 0,1849 ms
+Android PostProcess task "Processing Mapping File" took 0,1896 ms
 DisplayProgressbar: Moving output package(s)
 Deleting file 'E:/Programming Projekte/box-reha-game/Builds/AndroidCandidate/DigitalDojo.apk'
 Copy 'E:/Programming Projekte/box-reha-game/Library/Bee/Android/Prj/IL2CPP/Gradle\launcher\build\outputs\apk\debug\launcher-debug.apk' -> 
  'E:/Programming Projekte/box-reha-game/Builds/AndroidCandidate/DigitalDojo.apk'
-Android PostProcess task "Moving output package(s)" took 333,1325 ms
-Android PostProcess task "Checking Symbols size" took 0,8865 ms
+Android PostProcess task "Moving output package(s)" took 348,3696 ms
+Android PostProcess task "Checking Symbols size" took 1,9929 ms
 
 -------------------------------------------------------------------------------
 Build Report
@@ -2986,12 +3079,12 @@ Animations             0.0 kb	 0.0%
 Sounds                 0.0 kb	 0.0% 
 Shaders                296.8 kb	 1.1% 
 Other Assets           1.4 mb	 5.3% 
-Levels                 221.7 kb	 0.8% 
+Levels                 222.4 kb	 0.8% 
 File headers           107.0 kb	 0.4% 
 Total User Assets      26.7 mb	 100.0% 
-Complete build size    403.1 mb
+Complete build size    404.8 mb
 Used Assets and files from the Resources folder, sorted by uncompressed size:
- 9.5 mb	 2.4% Assets/Art/DigitalDojo/Textures/DojoRoomBaked.png
+ 9.5 mb	 2.3% Assets/Art/DigitalDojo/Textures/DojoRoomBaked.png
  9.0 mb	 2.2% Assets/Art/DigitalDojo/Models/ReferenceRoom.fbx
  2.7 mb	 0.7% Built-in Texture2D: Splash Screen Unity Logo
  599.8 kb	 0.1% Assets/Art/DigitalDojo/Models/MountedPunchTarget.fbx
@@ -3013,7 +3106,7 @@ Used Assets and files from the Resources folder, sorted by uncompressed size:
  71.2 kb	 0.0% Packages/com.unity.visualeffectgraph/Shaders/VFXPrefixSum.compute
  61.1 kb	 0.0% Assets/Art/DigitalDojo/Models/MountPlate.fbx
  36.3 kb	 0.0% Packages/com.unity.visualeffectgraph/Shaders/VFXCopyBuffer.compute
- 25.8 kb	 0.0% Assets/Scenes/Game.unity
+ 26.5 kb	 0.0% Assets/Scenes/Game.unity
  16.2 kb	 0.0% Packages/com.unity.visualeffectgraph/Shaders/VFXFillIndirectArgs.compute
  11.6 kb	 0.0% Assets/Scenes/Results.unity
  11.2 kb	 0.0% Packages/com.unity.visualeffectgraph/Shaders/UpdateStrips.compute
@@ -3045,7 +3138,6 @@ Used Assets and files from the Resources folder, sorted by uncompressed size:
  0.4 kb	 0.0% Packages/com.unity.probuilder/Content/Shader/FacePickerURP.shader
  0.4 kb	 0.0% Packages/com.unity.probuilder/Content/Shader/EdgePickerURP.shader
  0.3 kb	 0.0% Packages/com.unity.probuilder/Content/Resources/Materials/ProBuilderDefault.mat
- 0.3 kb	 0.0% Assets/Resources/GameConfig.asset
  0.2 kb	 0.0% Packages/com.unity.render-pipelines.core/Runtime-PrivateShared/InternalBridge/RenderPipelineEditorUtilityBridge.cs
  0.2 kb	 0.0% Packages/com.unity.render-pipelines.core/Runtime-PrivateShared/InternalRenderPipelineGlobalSettingsUtils.cs
  0.2 kb	 0.0% Packages/com.unity.collections/Unity.Collections.Tests/Jobs/CoreCLRTestAssemblies/PublicJobPrivateGeneric/PublicJobPrivateGenericTestJob.cs
@@ -3860,7 +3952,6 @@ Used Assets and files from the Resources folder, sorted by uncompressed size:
  0.1 kb	 0.0% Packages/com.unity.cinemachine/Runtime/Core/BlendManager.cs
  0.1 kb	 0.0% Assets/Scripts/Visuals/DigitalDojoTargetVisual.cs
  0.1 kb	 0.0% Assets/Scripts/UI/LevelSelectController.cs
- 0.1 kb	 0.0% Assets/Scripts/Spawning/SpawnPatternGenerator.cs
  0.1 kb	 0.0% Assets/Scripts/Spawning/GameplayPacingProfile.cs
  0.1 kb	 0.0% Assets/Scripts/Sensors/BleSensorInputProvider.cs
  0.1 kb	 0.0% Assets/Scripts/Input/MouseTouchInputProvider.cs
@@ -3935,6 +4026,7 @@ Used Assets and files from the Resources folder, sorted by uncompressed size:
  0.1 kb	 0.0% Assets/Scripts/UI/PauseMenuController.cs
  0.1 kb	 0.0% Assets/Scripts/UI/MainMenuController.cs
  0.1 kb	 0.0% Assets/Scripts/UI/ComboMilestonePopup.cs
+ 0.1 kb	 0.0% Assets/Scripts/Spawning/TargetVisualFactory.cs
  0.1 kb	 0.0% Assets/Scripts/Sensors/SensorEventProcessor.cs
  0.1 kb	 0.0% Assets/Scripts/Sensors/MeasuredCalibration.cs
  0.1 kb	 0.0% Assets/Scripts/Sensors/ISensorReadingSink.cs
@@ -3947,7 +4039,6 @@ Used Assets and files from the Resources folder, sorted by uncompressed size:
  0.1 kb	 0.0% Assets/Scripts/Input/InputProviderRouter.cs
  0.1 kb	 0.0% Assets/Scripts/Gameplay/ToughTargetHealthBar.cs
  0.1 kb	 0.0% Assets/Scripts/Gameplay/TargetMountMotion.cs
- 0.1 kb	 0.0% Assets/Scripts/Gameplay/SpawnWarningEffect.cs
  0.1 kb	 0.0% Assets/Scripts/Gameplay/HitZoneVisualizer.cs
  0.1 kb	 0.0% Assets/Scripts/Gameplay/HitParticleEffect.cs
  0.1 kb	 0.0% Assets/Scripts/Gameplay/GameVisualPalette.cs
@@ -4000,7 +4091,6 @@ Used Assets and files from the Resources folder, sorted by uncompressed size:
  0.1 kb	 0.0% Assets/Scripts/Input/InputInterpreter.cs
  0.1 kb	 0.0% Assets/Scripts/Gameplay/HitZoneEvaluator.cs
  0.1 kb	 0.0% Assets/Scripts/Gameplay/GameplayRules.cs
- 0.1 kb	 0.0% Assets/Scripts/Data/TargetSpawnData.cs
  0.1 kb	 0.0% Assets/Scripts/Data/PlayerProfile.cs
  0.1 kb	 0.0% Assets/Scripts/Data/GameSessionStats.cs
  0.1 kb	 0.0% Assets/Scripts/Core/SettingsManager.cs
@@ -4025,29 +4115,31 @@ Used Assets and files from the Resources folder, sorted by uncompressed size:
  0.1 kb	 0.0% Assets/Scripts/Core/Bootstrapper.cs
  0.1 kb	 0.0% Assets/Scripts/Core/AudioManager.cs
  0.1 kb	 0.0% Assets/Scripts/Config/GameConfig.cs
+ 0.1 kb	 0.0% Assets/Resources/GameConfig.asset
  0.1 kb	 0.0% Assets/Scripts/UI/DebugUI.cs
  0.1 kb	 0.0% Assets/Resources/PerformanceTestRunSettings.json
 -------------------------------------------------------------------------------
 Unloading 54 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 418 unused Assets / (16.9 MB). Loaded Objects now: 5284.
-Memory consumption went from 387.8 MB to 370.9 MB.
-Total: 6.198500 ms (FindLiveObjects: 0.262100 ms CreateObjectMapping: 0.073900 ms MarkObjects: 5.390300 ms  DeleteObjects: 0.285800 ms)
+Unloading 418 unused Assets / (18.2 MB). Loaded Objects now: 5282.
+Memory consumption went from 390.2 MB to 372.0 MB.
+Total: 7.032800 ms (FindLiveObjects: 0.252700 ms CreateObjectMapping: 0.068500 ms MarkObjects: 6.172300 ms  DeleteObjects: 0.317600 ms)
 
 DisplayProgressNotification: Build Successful
 Build Finished, Result: Success.
 Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Temp/__Backupscenes/0.backup'
-	Deserialize:            0.288 ms
-	Integration:            4.853 ms
+	Deserialize:            0.297 ms
+	Integration:            6.178 ms
 	Integration of assets:  0.001 ms
-	Thread Wait Time:       0.053 ms
-	Total Operation Time:   5.195 ms
-Unloading 0 unused Assets / (0 B). Loaded Objects now: 5276.
-Memory consumption went from 368.6 MB to 368.6 MB.
-Total: 5.459000 ms (FindLiveObjects: 0.217100 ms CreateObjectMapping: 0.049000 ms MarkObjects: 5.024300 ms  DeleteObjects: 0.004900 ms)
+	Thread Wait Time:       0.007 ms
+	Total Operation Time:   6.482 ms
+Unloading 0 unused Assets / (0 B). Loaded Objects now: 5274.
+Memory consumption went from 371.0 MB to 371.0 MB.
+Total: 5.804800 ms (FindLiveObjects: 0.258500 ms CreateObjectMapping: 0.055400 ms MarkObjects: 5.316900 ms  DeleteObjects: 0.006400 ms)
 
-Asset Pipeline Refresh (id=8059a11d0b66a514db827dd635847a12): Total: 0.062 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
-##utp:{"success":true,"type":"PlayerBuildInfo","version":2,"phase":"Immediate","time":1789589817014,"processId":72532,"steps":[{"description":"Call PrepareForBuild callbacks","duration":2},{"description":"Call internal build started callbacks","duration":0},{"description":"Preprocess Player","duration":81},{"description":"Save scenes before build","duration":0},{"description":"Prepare For Build","duration":4411},{"description":"ProducePlayerScriptAssemblies","duration":658},{"description":"Verify Build setup","duration":272},{"description":"Prepare assets for target platform","duration":1},{"description":"Prepare splash screen","duration":1},{"description":"Build scripts DLLs","duration":24},{"description":"Building scenes","duration":360},{"description":"Build GlobalGameManagers file","duration":81},{"description":"Writing asset files","duration":632},{"description":"Building Resources/unity_builtin_extra","duration":168},{"description":"Write data build dirty tracking information","duration":103},{"description":"Postprocess built player","duration":12455},{"description":"Call Post-Process callbacks","duration":104}],"duration":19353}
+[Licensing::Client] Successfully resolved entitlement details
+Asset Pipeline Refresh (id=132afc451afd8054bad476d70093200e): Total: 0.054 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+##utp:{"success":true,"type":"PlayerBuildInfo","version":2,"phase":"Immediate","time":1789620454686,"processId":6564,"steps":[{"description":"Call PrepareForBuild callbacks","duration":2},{"description":"Call internal build started callbacks","duration":0},{"description":"Preprocess Player","duration":67},{"description":"Save scenes before build","duration":0},{"description":"Prepare For Build","duration":3964},{"description":"ProducePlayerScriptAssemblies","duration":7999},{"description":"Verify Build setup","duration":174},{"description":"Prepare assets for target platform","duration":1},{"description":"Prepare splash screen","duration":1},{"description":"Build scripts DLLs","duration":29},{"description":"Building scenes","duration":880},{"description":"Build GlobalGameManagers file","duration":84},{"description":"Writing asset files","duration":676},{"description":"Building Resources/unity_builtin_extra","duration":169},{"description":"Write data build dirty tracking information","duration":99},{"description":"Postprocess built player","duration":41712},{"description":"Call Post-Process callbacks","duration":98}],"duration":55955}
 Development candidate build report: E:\Programming Projekte\box-reha-game\artifacts\validation\unity-android-candidate-build.json
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
@@ -4080,7 +4172,7 @@ UnityEditor.EditorApplication:Internal_EditorApplicationQuit ()
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\OpenJDK\bin\java.exe -classpath "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\PlaybackEngines\AndroidPlayer\Tools\gradle\lib\gradle-launcher-9.1.0.jar" org.gradle.launcher.GradleMain "-Dorg.gradle.jvmargs=-Xmx4096m" "--stop" 
 WorkingDir: 
 Build log was saved at 'E:\Programming Projekte\box-reha-game\build\outputs\logs\unity---stop-build.log'
-Killing ADB server in 2,0564099 seconds.
+Killing ADB server in 2,048824 seconds.
 [Physics::Module] Cleanup current backend.
 [Physics::Module] Id: 0xf2b8ea05
 Input System module state changed to: ShutdownInProgress.

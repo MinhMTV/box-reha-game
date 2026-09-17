@@ -13,8 +13,6 @@ public class TargetObject : MonoBehaviour
     public TargetType Type { get; set; }
     public float MoveSpeed { get; set; }
     public float HitWindow { get; set; }
-    public float MinPower { get; set; }
-    public bool HasSpawnedInHitZone { get; set; }
     public string TargetId { get; private set; } = Guid.NewGuid().ToString("N");
     public string ChainId { get; set; }
     public int SequenceIndex { get; set; }
@@ -34,7 +32,6 @@ public class TargetObject : MonoBehaviour
     private TargetMountMotion mount;
     public bool IsBreaking { get; private set; }
     public bool IsLockedInHitZone { get; private set; }
-    public BodySide RequiredSide { get; private set; } = BodySide.Left;
 
     private Renderer cachedRenderer;
     private Renderer[] cachedRenderers;
@@ -71,13 +68,16 @@ public class TargetObject : MonoBehaviour
         restingScale = transform.localScale;
     }
 
+    public HitZoneEvaluator Evaluator { get; private set; }
+    public void BindEvaluator(HitZoneEvaluator evaluator) { Evaluator=evaluator; }
+
     public void EnsureTrackedSpawn()
     {
         if (trackedSpawn) return;
         trackedSpawn = true;
         mount = GetComponent<TargetMountMotion>();
         SpawnTime = Time.time;
-        HitZoneEvaluator evaluator = FindObjectOfType<HitZoneEvaluator>();
+        var evaluator = Evaluator;
         float zoneZ = evaluator != null ? evaluator.HitZoneZ : HitZoneZ;
         if(mount!=null && IsTough && mount.Duration<.5f) mount.Duration=.65f;
         ExpectedHitTime = SpawnTime + (mount != null && mount.enabled ? mount.Duration : 0f) + Mathf.Max(0f, transform.position.z - zoneZ) / Mathf.Max(0.01f, MoveSpeed);
@@ -160,39 +160,30 @@ public class TargetObject : MonoBehaviour
             return;
         }
 
-        string labelText = "PUNCH";
         Color accentColor = Color.red;
 
         switch (Type)
         {
             case TargetType.Punch:
                 accentColor = new Color(1f, 0.22f, 0.22f, 1f);
-                labelText = "PUNCH";
                 ApplyTargetMaterial(accentColor, 1.9f);
                 transform.rotation = Quaternion.identity;
                 break;
             case TargetType.Kick:
                 accentColor = GameVisualPalette.KickColor;
-                labelText = "KICK";
                 ApplyTargetMaterial(accentColor, 1.9f);
                 transform.rotation = Quaternion.identity;
                 break;
-            case TargetType.Block:
-                accentColor = new Color(0.2f, 0.75f, 1f, 1f);
-                labelText = "BLOCK";
-                ApplyTargetMaterial(accentColor, 1.7f);
-                transform.localScale = new Vector3(1.8f, 1.8f, 0.3f);
-                break;
-            case TargetType.Dodge:
-                accentColor = new Color(0.35f, 1f, 0.55f, 1f);
-                labelText = "DODGE";
-                ApplyTargetMaterial(accentColor, 1.6f);
-                transform.localScale = new Vector3(2.5f, 0.8f, 0.8f);
+            case TargetType.ToughKick:
+                accentColor = GameVisualPalette.KickColor;
+                ApplyTargetMaterial(accentColor, 2.2f);
+                transform.localScale = Vector3.one * 1.15f;
+                transform.rotation = Quaternion.identity;
+                CreateHealthBar();
                 break;
             case TargetType.ToughPunch:
                 // Dark red, slightly larger
                 accentColor = new Color(1f, 0.55f, 0.1f, 1f);
-                labelText = "POWER";
                 ApplyTargetMaterial(new Color(0.75f, 0.08f, 0.08f, 1f), 2.2f);
                 transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
                 transform.rotation = Quaternion.identity;
@@ -201,7 +192,7 @@ public class TargetObject : MonoBehaviour
                 break;
         }
 
-        originalColor = cachedRenderer.material.color;
+        originalColor = accentColor;
     }
 
     /// <summary>
@@ -209,16 +200,12 @@ public class TargetObject : MonoBehaviour
     /// </summary>
     private void CreateHealthBar()
     {
-        healthBar = ToughTargetHealthBar.Create(transform, MaxHits);
+        healthBar = ToughTargetHealthBar.Create(transform);
     }
 
     /// <summary>
     /// v3: Called when a tough target is hit. Returns true if destroyed.
     /// </summary>
-    public bool CanAcceptSide(BodySide side)
-    {
-        return true;
-    }
 
     public void LockInHitZone(float hitZoneZ)
     {
@@ -234,10 +221,6 @@ public class TargetObject : MonoBehaviour
         transform.position = position;
     }
 
-    public bool TakeHit(BodySide side)
-    {
-        return TakeHit(1f);
-    }
 
     public bool TakeHit(float normalizedPower)
     {
@@ -266,7 +249,7 @@ public class TargetObject : MonoBehaviour
         Color damageColor = Color.Lerp(new Color(0.6f, 0.05f, 0.05f), new Color(1f, 0.8f, 0f), t);
         if (cachedRenderer != null && authoredVisual == null)
         {
-            cachedRenderer.material.color = damageColor;
+            SetSurfaceColor(cachedRenderer,damageColor);
             originalColor = damageColor;
         }
 
@@ -294,10 +277,6 @@ public class TargetObject : MonoBehaviour
     }
 
 
-    public string GetRequiredSideLabel()
-    {
-        return IsKick ? "KICK" : "PUNCH";
-    }
 
     /// <brief>
     /// Brief scale wiggle/shake when hit.
@@ -327,14 +306,14 @@ public class TargetObject : MonoBehaviour
     {
         if (authoredVisual != null) { authoredVisual.Hit(); return; }
         if (cachedRenderer == null || IsBreaking) return;
-        cachedRenderer.material.color = flashColor;
+        SetSurfaceColor(cachedRenderer,flashColor);
         Invoke(nameof(RestoreColor), duration);
     }
 
     private void RestoreColor()
     {
         if (cachedRenderer != null)
-            cachedRenderer.material.color = originalColor;
+            SetSurfaceColor(cachedRenderer,originalColor);
     }
 
     private void ApplyTargetMaterial(Color baseColor, float emissionIntensity)
@@ -349,17 +328,18 @@ public class TargetObject : MonoBehaviour
             return;
         }
 
-        Material material = cachedRenderer.material;
-        material.color = baseColor;
-        material.SetFloat("_Metallic", 0.15f);
-        material.SetFloat("_Glossiness", 0.72f);
-        material.EnableKeyword("_EMISSION");
-        material.SetColor("_EmissionColor", baseColor * emissionIntensity);
+        cachedRenderer.GetPropertyBlock(propBlock);
+        propBlock.SetColor("_Color",baseColor);
+        propBlock.SetFloat("_Metallic",.15f);
+        propBlock.SetFloat("_Glossiness",.72f);
+        propBlock.SetColor("_EmissionColor",baseColor*emissionIntensity);
+        cachedRenderer.SetPropertyBlock(propBlock);
     }
 
-    public float GetTimeInZone()
+
+    private void SetSurfaceColor(Renderer renderer,Color color)
     {
-        return Time.time - SpawnTime;
+        renderer.GetPropertyBlock(propBlock);propBlock.SetColor("_Color",color);renderer.SetPropertyBlock(propBlock);
     }
 
     public bool Resolve()
@@ -425,8 +405,7 @@ public class TargetObject : MonoBehaviour
                 {
                     Renderer renderer = cachedRenderers[i];
                     if (renderer == null) continue;
-                    Color current = renderer.material.color;
-                    renderer.material.color = new Color(current.r, current.g, current.b, 1f - t);
+                    SetSurfaceColor(renderer,new Color(originalColor.r,originalColor.g,originalColor.b,1f-t));
                 }
             }
 

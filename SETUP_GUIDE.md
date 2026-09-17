@@ -4,7 +4,7 @@ Use the existing repository at `E:\Programming Projekte\box-reha-game` with **Un
 
 The deployment target is the complete Unity game plus Dynamics SDK on Android. Windows is only the development host; no gateway PC is required at runtime. Unity 6000.6.0f1 has been installed and imported, with Android modules and actual Editor/Play Mode checks. The complete Android build reaches Gradle but is blocked by the supplied native SDK publication; see ANDROID_STATUS.md. OnePlus 15 and Galaxy Tab S3 are the intended device checks.
 
-**Android build prerequisite currently blocked:** the full collector exists as source against the documented SDK API, but the production graph lacks `resource:2.11.1`. A separate diagnostic substitution with 2.12.0 also fails to compile the documented API because the supplied Android AARs have stripped Kotlin metadata/InnerClasses. Obtain corrected SDK artifacts before expecting a native build/APK. Do not treat that substitution as a production dependency fix. See [SDK package blockers](SDK_PACKAGE_BLOCKERS_2026-09-14.md).
+**Android build status:** the Unity 6000.6.0f1 ARM64/IL2CPP candidate builds successfully in the explicit SDK COMPATIBILITY mode. The vendor-unchanged dependency graph still documents the missing `resource:2.11.1`; this does not block the labelled compatibility candidate. Physical BLE/JNI qualification remains open. See ANDROID_STATUS.md and SDK_COMPATIBILITY_REPORT.md.
 
 ## Open the project
 

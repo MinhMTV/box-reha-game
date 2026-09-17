@@ -31,7 +31,7 @@ internal static class LoggerHostCheck
             LeftTargets = 1, LeftHits = 1
         };
         stats.TrackAction(action);
-        stats.TrackReactionTime(2);
+        stats.TrackTargetResolutionTime(2);
         // An unmatched valid SDK mock event tests complete source/quantity/clock serialization.
         var reading = new SensorReading {
             SchemaVersion = 2, EventId = "SYNTHETIC_SDK_PUNCH_1", DeviceId = "SYNTHETIC_DEVICE_RIGHT",

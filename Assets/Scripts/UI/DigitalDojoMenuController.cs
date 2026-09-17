@@ -236,7 +236,7 @@ public class DigitalDojoMenuController : MonoBehaviour
         Body("Timing","Timing accuracy "+(resolved>0?(perfect+good)/(double)resolved:0).ToString("P0")+"    Completion "+(resolved>0?(perfect+good+early+late)/(double)resolved:0).ToString("P0")+"\nPerfect "+perfect+" / Good "+good+" / Early "+early+" / Late "+late+" / Miss "+miss,240,80,21);
         Body("Activity","Punches "+punch+" / Kicks "+kick+"    Left "+left+" / Right "+right+"\nHeavy timeouts "+heavyTimeout+"    TOO LIGHT actions "+below,335,80,21);
         var latest=sessions[0];
-        Body("Latest","LATEST: Average target resolution time "+latest.AverageReactionTime.ToString("F2")+" s\nInput: "+latest.KeyboardActions+" keyboard / "+latest.SensorActions+" sensor. Unfinished targets: "+latest.AbortedTargets,430,80,20);
+        Body("Latest","LATEST: Average target resolution time "+latest.AverageTargetResolutionTime.ToString("F2")+" s\nInput: "+latest.KeyboardActions+" keyboard / "+latest.SensorActions+" sensor. Unfinished targets: "+latest.AbortedTargets,430,80,20);
         string rows="GAME PERFORMANCE BY SESSION — SCORE / TIMING / COMPLETION\n";
         for(int i=0;i<Math.Min(3,sessions.Count);i++){var x=sessions[i];rows+="\n"+x.StartedUtc+"  "+x.Score+" / "+x.Accuracy.ToString("P0")+" / "+x.CompletionRate.ToString("P0");}
         Body("History",rows,535,130,18);

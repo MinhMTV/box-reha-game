@@ -1,9 +1,9 @@
-# Game status — 15 September 2026
+# Game status — 17 September 2026
 
-Current work is saved in the main checkout on `main`, based on `a9aee35`, uncommitted. The 16 September fitness pass adds rolling 30–50-action Hard flurries, uncapped logical Endless progression with bounded speed, active micro-recovery and scheduler diagnostics. All eight actual Play Mode scheduler cases pass, including 50 and 125 actions. Android 1.3/code 4 built successfully; final APK and source identities are in `artifacts/validation/fitness-apk.json`. See FITNESS_PACING_VALIDATION.md. No ADB device was available; physical runtime is not re-verified. The earlier separate-checkout statement is superseded.
+Current consolidation work is saved in the main checkout based on e1e6341, uncommitted. See SPAWNING_ARCHITECTURE.md for the final flow and `artifacts/validation/unity-android-candidate-build.json` for the current build receipt. The current candidate is Unity 6000.6.0f1, Android ARM64/IL2CPP, SDK COMPATIBILITY.
 
 Implemented: acknowledged persistent sensor removal, SDK side swap, real device names, visible unknown-family devices with preparation blocked, one-family single/pair readiness, profile repository and selector, legacy migration, separate measured strength/rapid references, bounded per-profile strength normalization, nonterminal TOO LIGHT, target and health-bar cleanup, mesh-only visual primitives, closer hit plane and reduced HUD clutter.
 
-Validation: 108 hardware-feedback host assertions, 47 Android policy assertions, 26 calibration assertions and existing host groups pass. C# syntax: 75 files across five configurations, zero errors. Static scene checks: 635 pass. Android export checks: 18 pass. Native collector: 16 JVM tests pass in COMPATIBILITY mode. Unity Play Mode synthetic checks pass, including all four action channels, weak-then-strong, heavy completion/timeout and no target/health-bar orphans. These checks are not measured physical sensor evidence.
+Validation: the latest Unity compile and Android candidate build completed with zero errors. The previously executed synthetic Play Mode and host checks remain passing; they are not measured physical sensor evidence.
 
 The user reported successful launch/discovery/ALPHA pairing on the previous APK. Actual physical actions, corrected removal/swap, references and DELTA are still unqualified. ADB currently lists no device. Mixed-family acquisition remains blocked. Current APK result is recorded in ANDROID_STATUS.md.

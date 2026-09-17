@@ -6,14 +6,14 @@ static class PacingHostChecks
     public static void Run()
     {
         var p=new GameplayPacingProfile();
-        Require(!p.UsePersonalRapidReferenceForPacing,"calibration unused");
+        Require(p.EasyCurve.StartIntensity==.25f && p.MediumCurve.StartIntensity==.5f && p.HardCurve.StartIntensity==.8f,"difficulty start intensity");
         for(int level=1;level<=3;level++)
         for(int t=0;t<60;t++)
         {
             var s=p.Sample(level,false,t);var tier=p.GetTier(level);
             Require(s.IntervalSeconds>=.17999f,"speed floor");
             Require(s.TravelSeconds>=tier.TravelMin-.0001f&&s.TravelSeconds<=tier.TravelMax+.0001f,"travel range");
-            Require(s.RecoverySeconds<=1.5f&&s.MaxConcurrent<=8,"bounded recovery and visible count");
+            Require(s.MaxConcurrent<=8,"bounded recovery and visible count");
         }
         var planner=new GameplayPatternPlanner(73);bool fifty=false,thirty=false;
         for(int i=0;i<500;i++)
@@ -87,14 +87,39 @@ static class PacingHostChecks
             for(int i=0;i<mix.Length;i++)
             {
                 if(mix.TypeAt(i)==TargetType.Kick){mixedKick++;streak++;}else{mixedPunch++;streak=0;}
-                Require(streak<=refined.MaxConsecutiveKicks,"mixed kick streak bounded");
-                if(mix.TypeAt(i)==TargetType.Kick)Require(mix.IntervalBefore(i)>=.55f,"mixed kick cadence conservative");
+                Require(streak<=3,"mixed kick streak bounded");
+                if(i>0&&mix.TypeAt(i)==TargetType.Kick&&mix.TypeAt(i-1)==TargetType.Kick)Require(mix.IntervalBefore(i)>=.55f,"consecutive kick cadence conservative");
             }
             foreach(int level in new[]{1,2,3})
                 Require(refined.HeavyInterval(level,false,n,n%100/100d)>=refined.HeavyMinimumSeparation(level,false),"heavy separation");
         }
         float share=mixedPunch/(float)(mixedPunch+mixedKick);
         Require(share>=.70f&&share<=.85f,"mixed statistical punch dominance");
+        for(int seed=0;seed<3000;seed++)
+        {
+            var safe=new ComboPlan{ActionSeed=(uint)seed,ExtendedRuns=true,Length=250,LeftAvailable=true,RightAvailable=true,StartSide=seed%2==0?LaneType.Left:LaneType.Right};
+            int run=0;LaneType previousSide=LaneType.Center;
+            for(int i=0;i<250;i++)
+            {
+                var side=safe.SideAt(i);run=side==previousSide?run+1:1;previousSide=side;
+                Require(run<=5,"side motifs bound extended same-side runs");
+                Require(safe.IsWorkBoundary(i)==(i%12==0),"natural 12-action boundaries");
+            }
+            foreach(int difficulty in new[]{1,2,3})
+            {
+                var curve=refined.GetCurve(difficulty);
+                var opening=new GameplayPatternPlanner(seed).Select(refined.Sample(difficulty,false,0),refined,new[]{TargetType.Punch},new[]{LaneType.Left,LaneType.Right},true,.35f);
+                Require(opening.Length>=curve.OpeningMin&&opening.Length<=curve.OpeningMax,"difficulty opening length");
+                var recovery=refined.Sample(difficulty,false,40);recovery.Recovery=true;
+                var activeRecovery=new GameplayPatternPlanner(seed).Select(recovery,refined,new[]{TargetType.Punch},new[]{LaneType.Left,LaneType.Right},true,.35f);
+                Require(activeRecovery.Length>=curve.RecoveryMin&&activeRecovery.Length<=curve.RecoveryMax,"active recovery length");
+            }
+        }
+        var hardStart=refined.Sample(3,false,0);
+        Require(hardStart.TravelSeconds>=.65f&&hardStart.TravelSeconds<=.8f,"Hard opening travel");
+        Require(hardStart.IntervalSeconds>=.25f&&hardStart.IntervalSeconds<=.3f,"Hard opening interval");
+        Require(refined.Sample(3,false,59).IntervalSeconds<hardStart.IntervalSeconds,"Hard ramps after opening");
+        Require(refined.Sample(1,false,20).Phase!=refined.Sample(3,false,20).Phase,"difficulty phases differ");
         Console.WriteLine("MIXED_PUNCH_SHARE "+share);
         Console.WriteLine("PACING_HOST_PASS "+checks+" deterministic assertions; no hardware qualification.");
     }

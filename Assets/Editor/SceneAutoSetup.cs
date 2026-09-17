@@ -132,16 +132,10 @@ public static class SceneAutoSetup
             return;
         }
 
-        config.PunchColor = GameVisualPalette.PunchColor;
-        config.KickColor = GameVisualPalette.KickColor;
-        config.BlockColor = GameVisualPalette.BlockColor;
-        config.DodgeColor = GameVisualPalette.DodgeColor;
         config.VerticalOffsetHigh = 2.6f;
         config.VerticalOffsetMid = 1.55f;
         config.VerticalOffsetLow = 0.45f;
         config.SensorKickAccelerationThreshold = 16f;
-        config.DefaultTargetSpeed = 8.8f;
-        config.DefaultSpawnInterval = 1.0f;
         EditorUtility.SetDirty(config);
     }
 
@@ -400,7 +394,6 @@ public static class SceneAutoSetup
         SetPrivateField(targetSpawner, "missZoneZ", 0f);
         SetPrivateField(targetSpawner, "gameConfig", config);
         SetPrivateField(targetSpawner, "hitZoneEvaluator", hitZoneEvaluator);
-        SetPrivateField(targetSpawner, "targetPrefab", targetPrefab);
         SetPrivateField(targetSpawner, "punchVisualPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(NeonPunchTargetPrefabPath));
         SetPrivateField(targetSpawner, "kickVisualPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(NeonKickPadPrefabPath));
         SetPrivateField(targetSpawner, "toughVisualPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(NeonHeavyCorePrefabPath));

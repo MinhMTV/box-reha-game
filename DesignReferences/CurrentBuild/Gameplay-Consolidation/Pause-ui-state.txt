@@ -1,0 +1,23 @@
+state=Paused
+Label parent=TouchPauseButton active=True enabled=True alpha=1
+TouchPauseButton parent=SafeArea active=True enabled=True alpha=1
+COMBO parent=SafeArea active=True enabled=True alpha=1
+DebugText parent=HUDCanvas active=False enabled=True alpha=1
+PausePanel parent=HUDCanvas active=True enabled=True alpha=1
+Label parent=QuitButton active=True enabled=True alpha=1
+DojoTopBar parent=SafeArea active=True enabled=True alpha=1
+TIMING ACCURACY parent=SafeArea active=True enabled=True alpha=1
+SCORE parent=SafeArea active=True enabled=True alpha=1
+ScoreText parent=SafeArea active=True enabled=True alpha=1
+TimerText parent=SafeArea active=True enabled=True alpha=1
+InputStateText parent=HUDCanvas active=False enabled=True alpha=1
+Label parent=ResumeButton active=True enabled=True alpha=1
+ComboText parent=SafeArea active=True enabled=True alpha=1
+PausedText parent=PauseContent active=True enabled=True alpha=1
+ResumeButton parent=PauseContent active=True enabled=True alpha=1
+TIME parent=SafeArea active=True enabled=True alpha=1
+AccuracyText parent=SafeArea active=True enabled=True alpha=1
+SensorPauseStatus parent=PauseContent active=True enabled=True alpha=1
+OptionalDebugOverlay parent=SafeArea active=False enabled=True alpha=1
+FeedbackText parent=SafeArea active=True enabled=True alpha=1
+QuitButton parent=PauseContent active=True enabled=True alpha=1

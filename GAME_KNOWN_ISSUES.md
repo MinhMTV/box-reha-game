@@ -1,8 +1,8 @@
-# Known issues — 15 September 2026
+# Known issues — 17 September 2026
 
 - Fitness pacing checks use synthetic input. Global alternating spacing can reach .18 s, with the existing .35 s per-device refractory preserved and kick intervals at least .55 s. Bluetooth/event/display latency and achievable cadence must still be measured on hardware.
 - Exact concept-art parity is not achieved: room proportions are stretched to the gameplay volume; plants and panel fracture remain simplified. See ROOM_VALIDATION_REVIEW.md. Historical all-false plugin gates were not relabelled as passed.
-- Experimental rapid-reference pacing is disabled by default and never reads measured references automatically. Device performance, thermals and sustained high-speed readability remain open until hardware testing.
+- Pacing does not consume measured rapid references; the dead experimental flag has been removed. Device performance, thermals and sustained high-speed readability remain open until hardware testing.
 
 - No ADB device is available. New APK installation, permission recovery, BLE removal/re-pair/swap, reconnect, actual punch/kick delivery and measured references require hardware. User-observed launch/discovery/ALPHA pairing concerns the earlier APK.
 - Mixed ALPHA + DELTA / third sensor is blocked: SDK pairing/session ownership does not establish supported independent concurrent acquisition. Raw API Java compilation is not proof of concurrent hardware operation. See MULTI_SENSOR_REPORT.md.
@@ -14,4 +14,4 @@
 - Measured speed references are stored and displayed separately; adaptive speed/difficulty based on them remains unqualified. No fabricated calibration is bundled.
 - Visual validation is synthetic Editor rendering at four landscape sizes, not on-device frame pacing, thermals or display qualification.
 
-- Final Android build succeeded with 17 C# warnings: 15 deprecated object lookup calls and two unused serialized HitZoneEvaluator fields. These warnings remain; zero build errors.
+- Older 1.3 build warning counts are historical. The current Unity/Android build has zero errors and 20 warnings, recorded in `artifacts/validation/unity-android-candidate-build.json`. Target and healthbar objects still instantiate; mount/effect caches are bounded. Device GC/frame/thermal profiling remains open.

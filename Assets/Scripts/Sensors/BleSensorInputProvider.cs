@@ -65,7 +65,7 @@ public class BleSensorInputProvider : MonoBehaviour, IPlayerActionInputProvider,
         processor.EnableAccelerationHeuristic = enableAccelerationHeuristic;
         processor.PunchThreshold = gameConfig != null ? gameConfig.SensorPunchAccelerationThreshold : 18f;
         processor.KickThreshold = gameConfig != null ? gameConfig.SensorKickAccelerationThreshold : 16f;
-        processor.CooldownSeconds = gameConfig != null ? Math.Max(0, gameConfig.SensorActionCooldown) : 0.12;
+        processor.CooldownSeconds = gameConfig != null ? Math.Max(0, gameConfig.SensorActionCooldown) : 0.35;
         foreach (SensorReading reading in processor.ConsumeActions(Time.realtimeSinceStartupAsDouble))
             OnActionDetected?.Invoke(CreateSensorAction(reading));
     }

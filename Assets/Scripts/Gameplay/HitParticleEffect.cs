@@ -13,16 +13,26 @@ public class HitParticleEffect : MonoBehaviour
         active.Remove(this);
         if(active.Count==0&&sharedParticleMaterial!=null){Destroy(sharedParticleMaterial);sharedParticleMaterial=null;}
     }
+    ParticleSystem particles;
+    float reusableAt;
+    static int cursor;
+    public static int RetainedEffects=>active.Count;
+    void Update(){if(Time.time>=reusableAt)gameObject.SetActive(false);}
     public static void Spawn(Vector3 position, Color color, int particleCount = 15)
     {
-        while(active.Count>=4){var old=active[0];active.RemoveAt(0);if(old!=null){old.gameObject.SetActive(false);Destroy(old.gameObject);}}
-        GameObject obj = new GameObject("HitParticleEffect");
-        obj.transform.position = position;
-
-        ParticleSystem ps = obj.AddComponent<ParticleSystem>();
-        HitParticleEffect effect = obj.AddComponent<HitParticleEffect>();
-        active.Add(effect);
-        effect.Initialize(ps, color, particleCount);
+        active.RemoveAll(item=>item==null);
+        HitParticleEffect effect=null;
+        foreach(var item in active)if(!item.gameObject.activeSelf){effect=item;break;}
+        if(effect==null && active.Count<4)
+        {
+            var obj=new GameObject("HitParticleEffect");
+            effect=obj.AddComponent<HitParticleEffect>();effect.particles=obj.AddComponent<ParticleSystem>();
+            active.Add(effect);
+        }
+        if(effect==null)effect=active[cursor++%active.Count];
+        effect.gameObject.SetActive(true);effect.transform.position=position;
+        effect.particles.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
+        effect.Initialize(effect.particles,color,particleCount);effect.reusableAt=Time.time+.8f;
     }
 
     public static Color GetColorForTargetType(TargetType type)
@@ -96,6 +106,6 @@ public class HitParticleEffect : MonoBehaviour
         renderer.renderMode = ParticleSystemRenderMode.Billboard;
 
         ps.Play();
-        Destroy(gameObject, .8f);
+
     }
 }

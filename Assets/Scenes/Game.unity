@@ -2039,7 +2039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59546157c88c91d4786813ba402bdae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 4646863020725211965, guid: 065671157af4e8e4a86141646f56f32d, type: 3}
   spawnPointLeft: {fileID: 1673947661}
   spawnPointCenter: {fileID: 2007959673}
   spawnPointRight: {fileID: 982693855}
@@ -3918,7 +3917,6 @@ MonoBehaviour:
   hitZoneCenter: {fileID: 0}
   minimumSensorPowerMultiplier: 0.75
   maximumSensorPowerMultiplier: 1.25
-  heavyMinimumPower: 0.5
   createRuntimeHitGuide: 1
 --- !u!65 &1760546617
 BoxCollider:

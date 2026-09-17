@@ -1,46 +1,82 @@
 PASS gate installed by runtime evaluator
 PASS dormant with no target
 PASS exact logical visual plane
-PASS gate follows changed evaluator plane
+PASS gate follows changed evaluator XYZ
 PASS separate upper punch and lower kick heights
 PASS gate has no collider
 PASS old longitudinal rails remain absent
 PASS Punch preview Miss agrees with evaluator
-PASS label matches Miss
+PASS visual state matches window Miss
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Punch -0,6
+PASS resolved target cannot count twice
 PASS Punch preview Early agrees with evaluator
-PASS label matches Early
+PASS visual state matches window Early
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Punch -0,35
+PASS resolved target cannot count twice
 PASS Punch preview Good agrees with evaluator
-PASS label matches Good
+PASS visual state matches window Good
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Punch -0,2
+PASS resolved target cannot count twice
 PASS Punch preview Perfect agrees with evaluator
-PASS label matches Perfect
+PASS visual state matches window Perfect
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Punch 0
+PASS resolved target cannot count twice
 PASS Punch preview Late agrees with evaluator
-PASS label matches Late
+PASS visual state matches window Late
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Punch 0,35
+PASS resolved target cannot count twice
 PASS Punch preview Miss agrees with evaluator
-PASS label matches Miss
+PASS visual state matches window Miss
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Punch 0,6
+PASS resolved target cannot count twice
 PASS Kick preview Miss agrees with evaluator
-PASS label matches Miss
+PASS visual state matches window Miss
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Kick -0,6
+PASS resolved target cannot count twice
 PASS Kick preview Early agrees with evaluator
-PASS label matches Early
+PASS visual state matches window Early
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Kick -0,35
+PASS resolved target cannot count twice
 PASS Kick preview Good agrees with evaluator
-PASS label matches Good
+PASS visual state matches window Good
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Kick -0,2
+PASS resolved target cannot count twice
 PASS Kick preview Perfect agrees with evaluator
-PASS label matches Perfect
+PASS visual state matches window Perfect
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Kick 0
+PASS resolved target cannot count twice
 PASS Kick preview Late agrees with evaluator
-PASS label matches Late
+PASS visual state matches window Late
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Kick 0,35
+PASS resolved target cannot count twice
 PASS Kick preview Miss agrees with evaluator
-PASS label matches Miss
+PASS visual state matches window Miss
+PASS no pre-action or action-identification labels
+PASS no pre-action or action-identification labels
 PASS actual acceptance Kick 0,6
+PASS resolved target cannot count twice
 PASS TOO LIGHT preserves target and gate retry
 PASS retry resolves weak target
 PASS heavy stays actionable
@@ -61,6 +97,12 @@ PASS deployment cannot be hit
 PASS normal mechanical deploy phase
 PASS alignment phase
 PASS normal deploy ends at profile duration
+PASS fallback fixture is unauthored
+PASS fallback Heavy identity and healthbar
+PASS fallback family color
+PASS fallback fixture is unauthored
+PASS fallback Heavy identity and healthbar
+PASS fallback family color
 PASS reduced motion keeps hit evaluation
 PASS high speed burst within concurrent bound
 PASS effects never apply global hit stop

@@ -11,7 +11,24 @@ public sealed class TargetMountMotion : MonoBehaviour
     public string Phase => target != null && target.IsResolved ? "Retract" :
         Time.time - impactAt < .22f ? "Impact" : Ready ? "Travel" :
         Time.time - born < TelegraphSeconds ? "Idle" : Time.time-born > Duration-.06f ? "Align" : "Deploy";
+    static GameObject armPrefab,platePrefab;
+    static readonly System.Collections.Generic.Stack<Transform> pool=new System.Collections.Generic.Stack<Transform>();
+    static Transform poolRoot;
+    public static int RetainedMounts=>pool.Count;
     bool started;
+    void OnDisable()
+    {
+        if(mount==null||target==null||!target.IsResolved)return;
+        if(!gameObject.scene.isLoaded){mount=null;return;}
+        if(poolRoot==null)
+        {
+            pool.Clear();
+            poolRoot=new GameObject("DojoMountPool").transform;
+        }
+        mount.SetParent(poolRoot,false);mount.gameObject.SetActive(false);
+        if(pool.Count<10)pool.Push(mount);else Destroy(mount.gameObject);
+        mount=null;started=false;indicator=null;indicatorBlock=null;
+    }
     TargetObject target;
     Transform visual, mount, plate;
     readonly Transform[] arms = new Transform[3];
@@ -24,21 +41,30 @@ public sealed class TargetMountMotion : MonoBehaviour
     void Start()
     {
         if (started) return;
-        started = true; born = Time.time;
+        started = true;
         target = GetComponent<TargetObject>();
+        target.EnsureTrackedSpawn();
+        born = target.SpawnTime;
         if(target.IsTough && Duration < .5f) Duration=.65f;
         DojoGameFeel.Cue(DojoAudioCue.TargetDeploy);
         var authored = GetComponentInChildren<DigitalDojoTargetVisual>();
-        if (authored != null)
+        if (authored != null && visual == null)
         {
             visual = authored.transform; restPosition = visual.localPosition;
             restRotation = visual.localRotation;
         }
-        mount = new GameObject("TargetOwnedMount").transform;
-        mount.SetParent(transform, false);
-        for (int i = 0; i < arms.Length; i++) arms[i] = CreatePart("MountArm");
-        plate = CreatePart("MountPlate");
-        if(plate!=null && authored!=null)
+        while(pool.Count>0 && mount==null)mount=pool.Pop();
+        bool reused=mount!=null;
+        if(!reused)mount=new GameObject("TargetOwnedMount").transform;
+        mount.SetParent(transform,false);mount.gameObject.SetActive(true);
+        for(int i=0;i<arms.Length;i++)arms[i]=reused?mount.GetChild(i):CreatePart("MountArm");
+        plate=reused?mount.GetChild(3):CreatePart("MountPlate");
+        if(reused)
+        {
+            var led=plate.Find("MountStatusLight");
+            if(led!=null){indicator=led.GetComponent<Renderer>();indicatorBlock=new MaterialPropertyBlock();}
+        }
+        if(!reused && plate!=null && authored!=null)
         {
             foreach(var renderer in authored.GetComponentsInChildren<Renderer>())
             {
@@ -53,7 +79,9 @@ public sealed class TargetMountMotion : MonoBehaviour
 
     Transform CreatePart(string name)
     {
-        var prefab = Resources.Load<GameObject>("DigitalDojo/" + name);
+        if(armPrefab==null)armPrefab=Resources.Load<GameObject>("DigitalDojo/MountArm");
+        if(platePrefab==null)platePrefab=Resources.Load<GameObject>("DigitalDojo/MountPlate");
+        var prefab=name=="MountArm"?armPrefab:platePrefab;
         if (prefab == null) { Debug.LogError("Missing authored mount prefab: " + name); return null; }
         var part = Instantiate(prefab, mount).transform; part.name = name; return part;
     }

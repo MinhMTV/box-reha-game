@@ -1,6 +1,6 @@
-# Fitness pacing validation — 16 September 2026
+# Fitness pacing validation — 17 September 2026
 
-Implemented in the main checkout, `main`, based on `a9aee35`, with uncommitted changes. This report supersedes the earlier conservative boxing-pacing values. See GAMEPLAY_PACING.md for exact configuration and generation formulas.
+Implemented in the main checkout, with uncommitted cleanup changes based on the current pacing architecture. This report is a historical synthetic pacing record; see GAMEPLAY_PACING.md and SPAWNING_ARCHITECTURE.md for the live design.
 
 ## Stall and behavior
 
@@ -41,9 +41,9 @@ The measured flow is sustained combinations rather than waiting for individual t
 
 ## Build and hardware
 
-The final Android build identity and signature/alignment checks are recorded in artifacts/validation/fitness-apk.json and unity-android-candidate-build.json. Intended output: Builds/AndroidCandidate/DigitalDojo.apk, version 1.3/code 4, Unity 6000.6.0f1, ARM64 IL2CPP, explicit SDK COMPATIBILITY mode.
+The current Android build identity is recorded in `artifacts/validation/unity-android-candidate-build.json`: `Builds/AndroidCandidate/DigitalDojo.apk`, version 1.4/code 5, Unity 6000.6.0f1, ARM64 IL2CPP, explicit SDK COMPATIBILITY mode.
 
-Final build succeeded in 20.04 seconds, zero errors/warnings in the incremental BuildReport. The preceding full compilation reported 21 warnings (deprecated Unity object-finding APIs and unused fields among them); the incremental result does not mean those source warnings were fixed. APK: 39,552,513 bytes; SHA-256 `974da657a3984ea07269f4ab21642bb4db85fe59f7dccb9700ab21c7063cec67`. Source digest `919fe68d4e9ecf25f255aa25580659dbe1fa9c06e6b8d427fd6292185b49e304`. Signature verification and 16-KB APK alignment succeeded. Manifest confirms version 1.3/code 4, ARM64, min API 26 and target API 36. The final source stamp includes the corrected QA fixture.
+Final build succeeded in 56.68 seconds with zero errors and 20 warnings. APK: 41,272,553 bytes; SHA-256 `1874D999390AC432B45193B1744D85B48FCE0198E92A2CFC1658C91F496D27D2`. Hardware installation and runtime remain unverified.
 
 ## Saved changes
 

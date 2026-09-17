@@ -1,23 +1,23 @@
-VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 59848)
-VBCSCompiler prewarm took 4.48 ms
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 17748)
+VBCSCompiler prewarm took 4.42 ms
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.6/respin/6000.6.0f1-fa21a270ab12' branch; Version is '6000.6.0f1 (f7f8ed4d1e24) revision 16251117'; Using compiler version '194234433'; Build Type 'Release'
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi" at "2026-09-16T23:38:43.0529642Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi" at "2026-09-17T03:32:37.9574979Z"
 OS: 'Windows 11  (10.0.26200) Professional' Language: 'de' Physical Memory: 65349 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
 Process architecture: x64
-Date: 2026-09-16T23:38:43Z
+Date: 2026-09-17T03:32:37Z
 [Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 34812, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
 [Licensing::Module] LicensingClient has failed validation; ignoring
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.3+d7ffd15
-  Session Id:              9e595d049fb64c9b802dcbf9349a5b4b
+  Session Id:              bc2f69bafd3142988b8bd3fde52a185c
   Correlation Id:          dee16adbb9b0733c6d3ec67649ba7d63
-  External correlation Id: 3439069490204036868
+  External correlation Id: 890934103404722033
   Machine Id:              RQAmcHbobxLfdLl5bNXrLWQKMso=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-manmi" (connect: 0.00s, validation: 0.00s, handshake: 0.03s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi-notifications" at "2026-09-16T23:38:43.0843399Z"
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-manmi" (connect: 0.00s, validation: 0.00s, handshake: 0.04s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-manmi-notifications" at "2026-09-17T03:32:37.9998523Z"
 [Licensing::Module] Error: Access token is unavailable; failed to update
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
@@ -27,7 +27,7 @@ Date: 2026-09-16T23:38:43Z
   Expiration: Unlimited
 [Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
 [Licensing::Client] Successfully resolved entitlement details
-[Licensing::Module] Licensing Background thread has ended after 0.04s
+[Licensing::Module] Licensing Background thread has ended after 0.05s
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe
@@ -80,26 +80,26 @@ E:/Programming Projekte/box-reha-game
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
 Logging is directed to a specific file, skipping project log.
-Player connection [10724]  Target information:
+Player connection [46560]  Target information:
 
-Player connection [10724]  * "[IP] 169.254.123.79 [Port] 55504 [Flags] 2 [Guid] 1170005968 [EditorId] 1170005968 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [46560]  * "[IP] 169.254.123.79 [Port] 55504 [Flags] 2 [Guid] 4273731058 [EditorId] 4273731058 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [10724]  * "[IP] 192.168.253.1 [Port] 55504 [Flags] 2 [Guid] 1170005968 [EditorId] 1170005968 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [46560]  * "[IP] 192.168.253.1 [Port] 55504 [Flags] 2 [Guid] 4273731058 [EditorId] 4273731058 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [10724]  * "[IP] 192.168.150.1 [Port] 55504 [Flags] 2 [Guid] 1170005968 [EditorId] 1170005968 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [46560]  * "[IP] 192.168.150.1 [Port] 55504 [Flags] 2 [Guid] 4273731058 [EditorId] 4273731058 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [10724]  * "[IP] 172.18.96.1 [Port] 55504 [Flags] 2 [Guid] 1170005968 [EditorId] 1170005968 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [46560]  * "[IP] 172.18.96.1 [Port] 55504 [Flags] 2 [Guid] 4273731058 [EditorId] 4273731058 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [10724]  * "[IP] 169.254.83.107 [Port] 55504 [Flags] 2 [Guid] 1170005968 [EditorId] 1170005968 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [46560]  * "[IP] 169.254.83.107 [Port] 55504 [Flags] 2 [Guid] 4273731058 [EditorId] 4273731058 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [10724]  * "[IP] 192.168.0.90 [Port] 55504 [Flags] 2 [Guid] 1170005968 [EditorId] 1170005968 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [46560]  * "[IP] 192.168.0.90 [Port] 55504 [Flags] 2 [Guid] 4273731058 [EditorId] 4273731058 [Version] 1048832 [Id] WindowsEditor(7,Minh-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [10724] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [10724] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [46560] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [46560] Host joined alternative multi-casting on [225.0.0.222:34997]...
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
-[Package Manager] Connected to IPC stream "Upm-68044" after 0.2 seconds.
+[Package Manager] Connected to IPC stream "Upm-40580" after 0.2 seconds.
 [Licensing::Client] Successfully resolved entitlement details
 Library Redirect Path: Library/
 Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Tools/Unity.DataStore.exe 
@@ -128,7 +128,7 @@ Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/Managed
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56044
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56580
 CodeReloadManager initialized
 ImportWorker Server TCP listen port: 0
 AcceleratorClientConnectionCallback - disconnected - :0
@@ -137,31 +137,31 @@ Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Registered in 0.002210 seconds.
+Registered in 0.002154 seconds.
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.521 seconds
-Domain Reload Profiling: 965ms
-	BeginReloadAssembly (116ms)
-		CreateAndSetChildDomain (25ms)
-	RebuildCommonClasses (4ms)
+- Finished resetting the current domain, in  0.540 seconds
+Domain Reload Profiling: 951ms
+	BeginReloadAssembly (96ms)
+		CreateAndSetChildDomain (8ms)
+	RebuildCommonClasses (3ms)
 	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (53ms)
-	LoadAllAssembliesAndSetupDomain (258ms)
-		LoadAssemblies (89ms)
-		TypeCache.Refresh (179ms)
-			TypeCache.ScanAssembly (168ms)
+	initialDomainReloadingComplete (50ms)
+	LoadAllAssembliesAndSetupDomain (248ms)
+		LoadAssemblies (85ms)
+		TypeCache.Refresh (169ms)
+			TypeCache.ScanAssembly (158ms)
 		AnalyzeDomain (0ms)
-	FinalizeReload (522ms)
+	FinalizeReload (541ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
-			BeforeProcessingInitializeOnLoad (70ms)
-			ProcessInitializeOnLoadAttributes (86ms)
-			ProcessInitializeOnLoadMethodAttributes (185ms)
+			BeforeProcessingInitializeOnLoad (77ms)
+			ProcessInitializeOnLoadAttributes (107ms)
+			ProcessInitializeOnLoadMethodAttributes (173ms)
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully resolved entitlement details
 Application.AssetDatabase Initial Refresh Start
@@ -232,343 +232,17 @@ Application.AssetDatabase Initial Refresh Start
     com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#b92c05a25820cfc9f59ce4094eb46aaec8632ea2 (location: E:\Programming Projekte\box-reha-game\Library\PackageCache\com.coplaydev.unity-mcp@13fb3ee12774)
 [Subsystems] No new subsystems found in resolved package list.
 [Package Manager] Done registering packages in 0.02 seconds
+A meta data file (.meta) exists but its asset 'Assets/Scripts/Gameplay.rar' can't be found. When moving or deleting files outside of Unity, please ensure that the corresponding .meta file is moved or deleted along with it.
+A meta data file (.meta) exists but its asset 'Assets/Scripts/Spawning.rar' can't be found. When moving or deleting files outside of Unity, please ensure that the corresponding .meta file is moved or deleted along with it.
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
 WorkingDir: E:/Programming Projekte/box-reha-game
 DisplayProgressbar: Compiling Scripts
-ExitCode: 4 Duration: 0s701ms
-Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1300b0aE-inputdata.json
-[648/831    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
-[649/831    0s] Csc Library/Bee/artifacts/1300b0aE.dag/Assembly-CSharp.dll (+2 others)
-Assets\Scripts\Gameplay\TargetMover.cs(15,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Scripts\Gameplay\HitZoneVisualizer.cs(25,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Scripts\Gameplay\TargetMover.cs(31,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Core\GameManager.cs(133,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Gameplay\TargetObject.cs(80,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Core\GameManager.cs(158,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Research\ResearchSessionLog.cs(126,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Gameplay\HitZoneEvaluator.cs(193,41): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
-
-Assets\Scripts\Sensors\DynamicsSdkBridge.cs(117,64): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Gameplay\TargetObject.cs(163,16): warning CS0219: The variable 'labelText' is assigned but its value is never used
-
-Assets\Scripts\Spawning\TargetSpawner.cs(44,52): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Scripts\UI\DebugUI.cs(25,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Scripts\UI\ComboMilestonePopup.cs(37,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(22,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\UI\TextPopup.cs(57,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\UI\PauseMenuController.cs(97,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(77,47): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(93,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Scripts\Visuals\DigitalDojoRuntimeDressing.cs(142,30): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
-
-Assets\Scripts\UI\ComboMilestonePopup.cs(19,36): warning CS0414: The field 'ComboMilestonePopup.shakeDuration' is assigned but its value is never used
-
-Assets\Scripts\UI\ComboMilestonePopup.cs(18,36): warning CS0414: The field 'ComboMilestonePopup.shakeIntensity' is assigned but its value is never used
-
-Assets\Scripts\Gameplay\HitZoneEvaluator.cs(23,36): warning CS0414: The field 'HitZoneEvaluator.heavyMinimumPower' is assigned but its value is never used
-*** Tundra requires additional run (0.67 seconds), 2 items updated, 647 evaluated
-Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\DotNetSdk\dotnet.exe "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/1300b0aE.dag.json" "Library/Bee/1300b0aE-inputdata.json" "Library\Bee\buildprogram0.traceevents"
-WorkingDir: E:/Programming Projekte/box-reha-game
-ExitCode: 0 Duration: 0s819ms
-Starting: C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1300b0aE.dag" --continue-on-failure --dagfilejson="Library\Bee\1300b0aE.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
-WorkingDir: E:/Programming Projekte/box-reha-game
-ExitCode: 0 Duration: 1s18ms
-Finished compiling graph: 834 nodes, 15340 flattened edges (13042 ToBuild, 122 ToUse), maximum node priority 875
-[649/831    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
-[824/831    0s] ILPostProcess Library/Bee/artifacts/1300b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
-Processing assembly Library/Bee/artifacts/1300b0aE.dag/Assembly-CSharp.dll, with 156 defines and 338 references
-
-processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
-
-1 processor(s) skipped this assembly
-
-running Unity.Jobs.CodeGen.JobsILPostProcessor
-[825/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
-[826/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
-[827/831    0s] Csc Library/Bee/artifacts/1300b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
-Assets\Editor\PacingRuntimeProbe.cs(37,36): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\PacingRuntimeProbe.cs(37,92): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\PacingRuntimeProbe.cs(38,9): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\GameRegressionChecks.cs(39,9): warning CS0618: 'PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)' is obsolete: 'Use SetApplicationIdentifier(NamedBuildTarget buildTarget, string identifier) instead'
-
-Assets\Editor\GameRegressionChecks.cs(45,9): warning CS0618: 'PlayerSettings.SetScriptingBackend(BuildTargetGroup, ScriptingImplementation)' is obsolete: 'Use SetScriptingBackend(NamedBuildTarget buildTarget, ScriptingImplementation backend) instead'
-
-Assets\Editor\GameRegressionChecks.cs(63,13): warning CS0618: 'PlayerSettings.GetApplicationIdentifier(BuildTargetGroup)' is obsolete: 'Use GetApplicationIdentifier(NamedBuildTarget buildTarget) instead'
-
-Assets\Editor\GameRegressionChecks.cs(66,16): warning CS0618: 'PlayerSettings.GetScriptingBackend(BuildTargetGroup)' is obsolete: 'Use GetScriptingBackend(NamedBuildTarget buildTarget) instead'
-
-Assets\Editor\HitGatePlayModeChecks.cs(22,66): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\HitGatePlayModeChecks.cs(22,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\HitGatePlayModeChecks.cs(23,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\HitGatePlayModeChecks.cs(23,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\HitGatePlayModeChecks.cs(24,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoSceneGenerator.cs(161,23): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Editor\DigitalDojoAssetIntegration.cs(77,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoAssetIntegration.cs(77,32): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoAssetIntegration.cs(102,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoAssetIntegration.cs(102,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(42,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(52,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(54,91): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(54,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(55,98): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(55,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(70,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(70,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(79,92): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(79,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(84,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(84,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(86,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(86,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(88,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(88,29): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(97,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(100,54): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(103,71): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(103,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(104,105): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(104,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(105,108): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(105,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(113,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(115,104): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(115,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(124,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoSceneGenerator.cs(340,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Editor\HitGatePlayModeChecks.cs(47,34): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\HitGatePlayModeChecks.cs(47,140): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\HitGatePlayModeChecks.cs(90,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\SceneAutoSetup.cs(534,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Editor\GameRegressionChecks.cs(208,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Editor\GameRegressionChecks.cs(213,17): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\Editor\PacingRuntimeProbe.cs(73,59): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\PacingRuntimeProbe.cs(73,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\PacingRuntimeProbe.cs(74,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\PacingRuntimeProbe.cs(74,21): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\PacingRuntimeProbe.cs(75,68): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\PacingRuntimeProbe.cs(75,21): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\PacingRuntimeProbe.cs(77,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\PacingRuntimeProbe.cs(121,86): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\PacingRuntimeProbe.cs(121,47): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\PacingRuntimeProbe.cs(122,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(145,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(146,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(147,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(150,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(150,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(227,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(230,110): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(230,36): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(240,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\Editor\DigitalDojoCapture.cs(246,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(246,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(256,69): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(256,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-
-Assets\Editor\DigitalDojoCapture.cs(269,96): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-
-Assets\Editor\DigitalDojoCapture.cs(269,45): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-[828/831    0s] ILPostProcess Library/Bee/artifacts/1300b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
-Processing assembly Library/Bee/artifacts/1300b0aE.dag/Assembly-CSharp-Editor.dll, with 154 defines and 355 references
-
-processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
-
-1 processor(s) skipped this assembly
-
-running Unity.Jobs.CodeGen.JobsILPostProcessor
-[829/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
-[830/831    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
-*** Tundra build success (0.98 seconds), 8 items updated, 831 evaluated
-Assets\Scripts\Gameplay\TargetMover.cs(15,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Scripts\Gameplay\HitZoneVisualizer.cs(25,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Scripts\Gameplay\TargetMover.cs(31,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Core\GameManager.cs(133,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Gameplay\TargetObject.cs(80,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Core\GameManager.cs(158,42): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Research\ResearchSessionLog.cs(126,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Gameplay\HitZoneEvaluator.cs(193,41): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
-Assets\Scripts\Sensors\DynamicsSdkBridge.cs(117,64): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Gameplay\TargetObject.cs(163,16): warning CS0219: The variable 'labelText' is assigned but its value is never used
-Assets\Scripts\Spawning\TargetSpawner.cs(44,52): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Scripts\UI\DebugUI.cs(25,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Scripts\UI\ComboMilestonePopup.cs(37,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(22,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\UI\TextPopup.cs(57,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\UI\PauseMenuController.cs(97,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(77,47): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Visuals\DigitalDojoHudSkin.cs(93,38): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Scripts\Visuals\DigitalDojoRuntimeDressing.cs(142,30): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
-Assets\Scripts\UI\ComboMilestonePopup.cs(19,36): warning CS0414: The field 'ComboMilestonePopup.shakeDuration' is assigned but its value is never used
-Assets\Scripts\UI\ComboMilestonePopup.cs(18,36): warning CS0414: The field 'ComboMilestonePopup.shakeIntensity' is assigned but its value is never used
-Assets\Scripts\Gameplay\HitZoneEvaluator.cs(23,36): warning CS0414: The field 'HitZoneEvaluator.heavyMinimumPower' is assigned but its value is never used
-Assets\Editor\PacingRuntimeProbe.cs(37,36): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\PacingRuntimeProbe.cs(37,92): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\PacingRuntimeProbe.cs(38,9): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\GameRegressionChecks.cs(39,9): warning CS0618: 'PlayerSettings.SetApplicationIdentifier(BuildTargetGroup, string)' is obsolete: 'Use SetApplicationIdentifier(NamedBuildTarget buildTarget, string identifier) instead'
-Assets\Editor\GameRegressionChecks.cs(45,9): warning CS0618: 'PlayerSettings.SetScriptingBackend(BuildTargetGroup, ScriptingImplementation)' is obsolete: 'Use SetScriptingBackend(NamedBuildTarget buildTarget, ScriptingImplementation backend) instead'
-Assets\Editor\GameRegressionChecks.cs(63,13): warning CS0618: 'PlayerSettings.GetApplicationIdentifier(BuildTargetGroup)' is obsolete: 'Use GetApplicationIdentifier(NamedBuildTarget buildTarget) instead'
-Assets\Editor\GameRegressionChecks.cs(66,16): warning CS0618: 'PlayerSettings.GetScriptingBackend(BuildTargetGroup)' is obsolete: 'Use GetScriptingBackend(NamedBuildTarget buildTarget) instead'
-Assets\Editor\HitGatePlayModeChecks.cs(22,66): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\HitGatePlayModeChecks.cs(22,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\HitGatePlayModeChecks.cs(23,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\HitGatePlayModeChecks.cs(23,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\HitGatePlayModeChecks.cs(24,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoSceneGenerator.cs(161,23): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Editor\DigitalDojoAssetIntegration.cs(77,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoAssetIntegration.cs(77,32): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoAssetIntegration.cs(102,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoAssetIntegration.cs(102,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(42,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(52,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(54,91): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(54,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(55,98): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(55,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(70,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(70,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(79,92): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(79,41): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(84,90): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(84,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(86,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(86,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(88,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(88,29): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(97,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(100,54): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(103,71): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(103,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(104,105): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(104,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(105,108): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(105,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(113,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(115,104): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(115,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(124,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoSceneGenerator.cs(340,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Editor\HitGatePlayModeChecks.cs(47,34): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\HitGatePlayModeChecks.cs(47,140): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\HitGatePlayModeChecks.cs(90,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\SceneAutoSetup.cs(534,13): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Editor\GameRegressionChecks.cs(208,37): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Editor\GameRegressionChecks.cs(213,17): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-Assets\Editor\PacingRuntimeProbe.cs(73,59): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\PacingRuntimeProbe.cs(73,20): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\PacingRuntimeProbe.cs(74,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\PacingRuntimeProbe.cs(74,21): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\PacingRuntimeProbe.cs(75,68): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\PacingRuntimeProbe.cs(75,21): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\PacingRuntimeProbe.cs(77,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\PacingRuntimeProbe.cs(121,86): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\PacingRuntimeProbe.cs(121,47): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\PacingRuntimeProbe.cs(122,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(145,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(146,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(147,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(150,82): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(150,31): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(227,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(230,110): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(230,36): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(240,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-Assets\Editor\DigitalDojoCapture.cs(246,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(246,30): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(256,69): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(256,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-Assets\Editor\DigitalDojoCapture.cs(269,96): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
-Assets\Editor\DigitalDojoCapture.cs(269,45): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
-AssetDatabase: script compilation time: 2.935375s
+ExitCode: 0 Duration: 0s234ms
+[650/831    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (0.20 seconds), 1 items updated, 831 evaluated
+AssetDatabase: script compilation time: 0.583371s
 Begin MonoManager ReloadAssembly
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
@@ -583,151 +257,153 @@ Native extension for WebGL target not found
 [MODES] Loading mode Default (0) for mode-current-id-Digital Dojo
 ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  1.087 seconds
-Domain Reload Profiling: 1815ms
-	BeginReloadAssembly (279ms)
-		DisableScriptedObjects (23ms)
-		CreateAndSetChildDomain (136ms)
-	RebuildCommonClasses (10ms)
-	RebuildNativeTypeToScriptingClass (15ms)
-	initialDomainReloadingComplete (44ms)
-	LoadAllAssembliesAndSetupDomain (380ms)
-		LoadAssemblies (221ms)
-		TypeCache.Refresh (92ms)
-			TypeCache.ScanAssembly (80ms)
-		AnalyzeDomain (38ms)
-			BuildScriptInfoCaches (33ms)
+- Finished resetting the current domain, in  1.150 seconds
+Domain Reload Profiling: 1907ms
+	BeginReloadAssembly (311ms)
+		DisableScriptedObjects (28ms)
+		CreateAndSetChildDomain (152ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (45ms)
+	LoadAllAssembliesAndSetupDomain (381ms)
+		LoadAssemblies (222ms)
+		TypeCache.Refresh (94ms)
+			TypeCache.ScanAssembly (83ms)
+		AnalyzeDomain (41ms)
+			BuildScriptInfoCaches (36ms)
 			ResolveRequiredComponents (3ms)
-	FinalizeReload (1087ms)
+	FinalizeReload (1150ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (5ms)
-			BeforeProcessingInitializeOnLoad (75ms)
-			ProcessInitializeOnLoadAttributes (645ms)
-			ProcessInitializeOnLoadMethodAttributes (156ms)
+			BeforeProcessingInitializeOnLoad (84ms)
+			ProcessInitializeOnLoadAttributes (695ms)
+			ProcessInitializeOnLoadMethodAttributes (152ms)
 			AfterProcessingInitializeOnLoad (6ms)
-		AwakeInstancesAfterBackupRestoration (37ms)
+		AwakeInstancesAfterBackupRestoration (30ms)
 Starting new worker id: 0 with log in E:/Programming Projekte/box-reha-game/Logs/AssetImportWorkerHW0.log
+Importing 'GUID: c35adb4ff45a3a241bc16f96ccc12265 - Path: Assets/Scripts/Scripts.rar' with importer (DefaultImporter)
+Imported 'GUID: c35adb4ff45a3a241bc16f96ccc12265' -> (Import Result ID: '58742379850e36073f045de519ec1a03') in 0.055 seconds [static dependencies only]. Details - ImportResultOutputID=493d00e1660e5d7d08141ad22ec7e276 DependenciesID=1a1f2b76f21373c416c435f5e15f5842 StaticDependenciesID=e9219816cc44af4262038c56a233940d 
 
-Asset Pipeline Refresh (id=cbe4d45ee2b411d4d9b8fb95b12f0540): Total: 5.251 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+Asset Pipeline Refresh (id=383aeb19a0e800148954ee5dbab91404): Total: 3.032 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
 	(Values over 0.05ms)
 	Summary:
-		Imports: total=0 (actual=0, local cache=0, cache server=0)
-		Asset DB Process Time: managed=0 ms, native=1418 ms
-		Asset DB Callback time: managed=71 ms, native=19 ms
-		Scripting: domain reloads=1, domain reload time=767 ms, compile time=2937 ms, other=38 ms
-		Project Asset Count: scripts=1025, non-scripts=2121
-		Asset File Changes: new=0, changed=5, moved=0, deleted=0
+		Imports: total=1 (actual=1, local cache=0, cache server=0)
+		Asset DB Process Time: managed=1 ms, native=1498 ms
+		Asset DB Callback time: managed=96 ms, native=22 ms
+		Scripting: domain reloads=1, domain reload time=795 ms, compile time=585 ms, other=32 ms
+		Project Asset Count: scripts=1025, non-scripts=2122
+		Asset File Changes: new=1, changed=1, moved=0, deleted=2
 		Scan Filter Count: 0
-	InvokePackagesCallback: 18.006ms
-	ApplyChangesToAssetFolders: 0.461ms
-	Scan: 89.875ms
-	Collect global state as custom dependencies: 6.345ms
-	OnSourceAssetsModified: 0.485ms
-	CategorizeScriptCompilationAssets: 14.376ms
-	ProcessAssetsWithTransientArtifactChanges: 41.551ms
-	CategorizeAssets: 21.476ms
-	CompileScripts: 2937.159ms
-	ImportOutOfDateAssets: 1096.017ms (1089.334ms without children)
-		UnloadImportedAssets: 0.067ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.301ms
-		ImportSchedulerStart: 6.312ms
-	PostProcessAllAssets: 72.167ms
-		VCAutoAddAssetPostprocess 0.807ms
-		XRBuildSystem.XRAssetImported 0.089ms
-		MonoPostProcessAllAssets: 70.866ms
-			AssetPostprocessor.OnPostprocessAllAssets 35.139ms
-			StyleCatalogPostProcessor.OnPostprocessAllAssets 14.177ms
-			BuilderAssetPostprocessor.OnPostprocessAllAssets 3.952ms
-			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.451ms
-			AssetChangedListener.OnPostprocessAllAssets 1.428ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.159ms
-			VFXGraphPreprocessor.OnPostprocessAllAssets 1.010ms
-			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.898ms
-			SyncVS.PostprocessSyncProject 0.792ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.614ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.567ms
-			MaterialPostprocessor.OnPostprocessAllAssets 0.420ms
-			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.400ms
-			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.348ms
-			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.348ms
-			TextAssetPostProcessor.OnPostprocessAllAssets 0.253ms
-			AssetEvents.OnPostprocessAllAssets 0.237ms
-			CinemachineSettings.OnPostprocessAllAssets 0.222ms
-			AudioMixerPostprocessor.OnPostprocessAllAssets 0.199ms
-			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.185ms
-			PostProcessor.OnPostprocessAllAssets 0.170ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.135ms
-			DomainReloadProcessor.OnPostprocessAllAssets 0.122ms
+	InvokePackagesCallback: 22.131ms
+	ApplyChangesToAssetFolders: 0.463ms
+	Scan: 88.301ms
+	Collect global state as custom dependencies: 6.315ms
+	OnSourceAssetsModified: 0.626ms
+	CategorizeScriptCompilationAssets: 14.403ms
+	ProcessAssetsWithTransientArtifactChanges: 42.343ms
+	CategorizeAssets: 24.200ms
+	CompileScripts: 585.307ms
+	ImportOutOfDateAssets: 1218.093ms (1152.750ms without children)
+		ImportManagerImport: 56.919ms (1.029ms without children)
+		UnloadImportedAssets: 0.119ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.298ms
+		ImportSchedulerStart: 7.995ms
+	PostProcessAllAssets: 95.793ms
+		XRBuildSystem.XRAssetImported 0.092ms
+		MonoPostProcessAllAssets: 95.267ms
+			AssetPostprocessor.OnPostprocessAllAssets 56.103ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 11.322ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.777ms
+			AssetChangedListener.OnPostprocessAllAssets 2.270ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 2.132ms
+			VFXGraphPreprocessor.OnPostprocessAllAssets 1.884ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.394ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.203ms
+			SyncVS.PostprocessSyncProject 1.161ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.712ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.663ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.635ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.530ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.417ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.405ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.365ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.335ms
+			AssetEvents.OnPostprocessAllAssets 0.306ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.236ms
+			CinemachineSettings.OnPostprocessAllAssets 0.227ms
+			PostProcessor.OnPostprocessAllAssets 0.225ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.195ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.187ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.164ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.130ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.127ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.125ms
 			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.108ms
-			SpeedTreePostProcessor.OnPostprocessAllAssets 0.106ms
-			ThemePostprocessor.OnPostprocessAllAssets 0.097ms
-			ConfigAssetsTracker.OnPostprocessAllAssets 0.092ms
-			SamplePostprocessor.OnPostprocessAllAssets 0.092ms
-			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.080ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.059ms
-	PostAssetChangesProfiler: 0.848ms
-	UnloadStreamsBegin: 1.402ms
-	PersistCurrentRevisions: 0.075ms
-	GenerateScriptTypeHashes: 1.282ms
-	GenerateScriptTypeSerializationHashes: 2.357ms
-	Untracked: 896.302ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.096ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.078ms
+	PostAssetChangesProfiler: 1.788ms
+	UnloadStreamsBegin: 1.254ms
+	PersistCurrentRevisions: 0.130ms
+	GenerateScriptTypeHashes: 1.397ms
+	GenerateScriptTypeSerializationHashes: 2.487ms
+	Untracked: 918.940ms
 
 Application.AssetDatabase Initial Refresh End
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Scanning for USB devices : 5.840ms
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Scanning for USB devices : 7.137ms
 Initializing Unity extensions:
 Unloading 63 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 4439 unused Assets / (9.9 MB). Loaded Objects now: 5172.
-Memory consumption went from 339.8 MB to 329.9 MB.
-Total: 8.689400 ms (FindLiveObjects: 0.311600 ms CreateObjectMapping: 0.119900 ms MarkObjects: 4.601000 ms  DeleteObjects: 3.479700 ms)
+Unloading 4436 unused Assets / (9.7 MB). Loaded Objects now: 5172.
+Memory consumption went from 339.0 MB to 329.3 MB.
+Total: 10.869700 ms (FindLiveObjects: 0.469300 ms CreateObjectMapping: 0.140300 ms MarkObjects: 5.784200 ms  DeleteObjects: 4.293800 ms)
 
 Opening scene 'Assets/Scenes/Boot.unity'
-Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 23 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Boot.unity'
-	Deserialize:            0.813 ms
-	Integration:            6.161 ms
-	Integration of assets:  0.001 ms
-	Thread Wait Time:       0.008 ms
-	Total Operation Time:   6.983 ms
-Unloading 376 unused Assets / (26.0 MB). Loaded Objects now: 5185.
-Memory consumption went from 353.2 MB to 327.2 MB.
-Total: 5.313300 ms (FindLiveObjects: 0.272800 ms CreateObjectMapping: 0.085300 ms MarkObjects: 4.348300 ms  DeleteObjects: 0.430800 ms)
+	Deserialize:            0.686 ms
+	Integration:            8.523 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       0.029 ms
+	Total Operation Time:   9.241 ms
+Unloading 376 unused Assets / (26.0 MB). Loaded Objects now: 5183.
+Memory consumption went from 352.0 MB to 326.0 MB.
+Total: 6.446300 ms (FindLiveObjects: 0.321000 ms CreateObjectMapping: 0.114200 ms MarkObjects: 5.301200 ms  DeleteObjects: 0.522900 ms)
 
 Opening scene 'Assets/Scenes/MainMenu.unity'
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/MainMenu.unity'
-	Deserialize:            18.227 ms
-	Integration:            20.995 ms
-	Integration of assets:  0.004 ms
-	Thread Wait Time:       0.388 ms
-	Total Operation Time:   39.613 ms
-Unloading 3 unused Assets / (1.3 KB). Loaded Objects now: 6654.
-Memory consumption went from 343.2 MB to 343.2 MB.
-Total: 6.855200 ms (FindLiveObjects: 0.288500 ms CreateObjectMapping: 0.073100 ms MarkObjects: 6.259900 ms  DeleteObjects: 0.033100 ms)
+	Deserialize:            21.051 ms
+	Integration:            30.021 ms
+	Integration of assets:  0.008 ms
+	Thread Wait Time:       0.007 ms
+	Total Operation Time:   51.088 ms
+Unloading 3 unused Assets / (5.0 KB). Loaded Objects now: 6652.
+Memory consumption went from 342.2 MB to 342.2 MB.
+Total: 6.103900 ms (FindLiveObjects: 0.332500 ms CreateObjectMapping: 0.082100 ms MarkObjects: 5.473000 ms  DeleteObjects: 0.025800 ms)
 
 Opening scene 'Assets/Scenes/Game.unity'
 Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Game.unity'
-	Deserialize:            4.380 ms
-	Integration:            7.067 ms
-	Integration of assets:  1.841 ms
-	Thread Wait Time:       0.059 ms
-	Total Operation Time:   13.347 ms
-Unloading 13 unused Assets / (12.8 MB). Loaded Objects now: 5677.
-Memory consumption went from 346.9 MB to 334.0 MB.
-Total: 4.386500 ms (FindLiveObjects: 0.255500 ms CreateObjectMapping: 0.066000 ms MarkObjects: 3.848200 ms  DeleteObjects: 0.049400 ms)
+	Deserialize:            5.170 ms
+	Integration:            8.765 ms
+	Integration of assets:  2.394 ms
+	Thread Wait Time:       0.011 ms
+	Total Operation Time:   16.339 ms
+Unloading 13 unused Assets / (12.8 MB). Loaded Objects now: 5675.
+Memory consumption went from 345.7 MB to 332.9 MB.
+Total: 6.278800 ms (FindLiveObjects: 0.353200 ms CreateObjectMapping: 0.150900 ms MarkObjects: 5.516300 ms  DeleteObjects: 0.061800 ms)
 
 Opening scene 'Assets/Scenes/Results.unity'
 Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/Results.unity'
-	Deserialize:            1.596 ms
-	Integration:            4.477 ms
-	Integration of assets:  0.001 ms
-	Thread Wait Time:       0.008 ms
-	Total Operation Time:   6.081 ms
-Unloading 312 unused Assets / (1.6 MB). Loaded Objects now: 5296.
-Memory consumption went from 334.0 MB to 332.4 MB.
-Total: 4.818500 ms (FindLiveObjects: 0.247500 ms CreateObjectMapping: 0.069300 ms MarkObjects: 4.049400 ms  DeleteObjects: 0.279200 ms)
+	Deserialize:            1.742 ms
+	Integration:            6.011 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.011 ms
+	Total Operation Time:   7.766 ms
+Unloading 312 unused Assets / (3.0 MB). Loaded Objects now: 5294.
+Memory consumption went from 332.5 MB to 329.6 MB.
+Total: 5.459800 ms (FindLiveObjects: 0.295000 ms CreateObjectMapping: 0.090100 ms MarkObjects: 4.583000 ms  DeleteObjects: 0.306700 ms)
 
 Game regression report: E:\Programming Projekte\box-reha-game\artifacts\validation\unity-editor-checks.json / passed=11 failed=0
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
@@ -736,35 +412,35 @@ UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOpt
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-GameRegressionChecks:RunBatch () (at Assets/Editor/GameRegressionChecks.cs:197)
+GameRegressionChecks:RunBatch () (at Assets/Editor/GameRegressionChecks.cs:198)
 DigitalDojoCapture:Run () (at Assets/Editor/DigitalDojoCapture.cs:26)
 
-(Filename: Assets/Editor/GameRegressionChecks.cs Line: 197)
+(Filename: Assets/Editor/GameRegressionChecks.cs Line: 198)
 
 Opening scene 'Assets/Scenes/MainMenu.unity'
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Assets/Scenes/MainMenu.unity'
-	Deserialize:            13.626 ms
-	Integration:            11.499 ms
-	Integration of assets:  0.004 ms
-	Thread Wait Time:       0.028 ms
-	Total Operation Time:   25.157 ms
-Unloading 2 unused Assets / (4.8 KB). Loaded Objects now: 6655.
-Memory consumption went from 344.7 MB to 344.7 MB.
-Total: 4.546300 ms (FindLiveObjects: 0.283500 ms CreateObjectMapping: 0.075100 ms MarkObjects: 3.990700 ms  DeleteObjects: 0.019300 ms)
+	Deserialize:            14.104 ms
+	Integration:            10.947 ms
+	Integration of assets:  0.005 ms
+	Thread Wait Time:       0.016 ms
+	Total Operation Time:   25.073 ms
+Unloading 2 unused Assets / (4.8 KB). Loaded Objects now: 6653.
+Memory consumption went from 343.3 MB to 343.3 MB.
+Total: 6.118800 ms (FindLiveObjects: 0.351500 ms CreateObjectMapping: 0.120600 ms MarkObjects: 5.404500 ms  DeleteObjects: 0.043200 ms)
 
-[Project] Loading completed in 7.910 seconds
-	Project init time: 				7.121 seconds
+[Project] Loading completed in 5.993 seconds
+	Project init time: 				5.028 seconds
 		Template init time: 		0.000 seconds
-		Package Manager init time: 		0.182 seconds
+		Package Manager init time: 		0.221 seconds
 		Asset Database init time: 		0.237 seconds
 		Global illumination init time: 	0.002 seconds
-		Assemblies load time: 			1.001 seconds
-		Unity extensions init time: 	0.008 seconds
-		Asset Database refresh time: 	5.251 seconds
-	Scene opening time: 			0.316 seconds
-##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1789601930953,"processId":68044,"projectLoad":7.9102849,"projectInit":7.1209952,"templateInit":0.0,"packageManagerInit":0.1823185,"assetDatabaseInit":0.2366376,"globalIlluminationInit":0.002008,"assembliesLoad":1.0011911,"unityExtensionsInit":0.0082905,"assetDatabaseRefresh":5.2512134,"sceneOpening":0.3155177}
-##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1789601930953,"processId":68044,"editorVersion":"6000.6.0f1 (f7f8ed4d1e24)","branch":"6000.6/respin/6000.6.0f1-fa21a270ab12","buildType":"Release","platform":"Windows"}
+		Assemblies load time: 			0.986 seconds
+		Unity extensions init time: 	0.010 seconds
+		Asset Database refresh time: 	3.032 seconds
+	Scene opening time: 			0.373 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1789615963941,"processId":40580,"projectLoad":5.9931516,"projectInit":5.0275107,"templateInit":0.0,"packageManagerInit":0.2213615,"assetDatabaseInit":0.2372986,"globalIlluminationInit":0.001979,"assembliesLoad":0.9862025,"unityExtensionsInit":0.0101941,"assetDatabaseRefresh":3.032433,"sceneOpening":0.3728776}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1789615963941,"processId":40580,"editorVersion":"6000.6.0f1 (f7f8ed4d1e24)","branch":"6000.6/respin/6000.6.0f1-fa21a270ab12","buildType":"Release","platform":"Windows"}
 Reloading assemblies for play mode.
 Reloading assemblies after forced synchronous recompile.
 Begin MonoManager ReloadAssembly
@@ -776,1019 +452,1032 @@ Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInter
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Worker ready: AssetImportWorkerHW0 0
 [MODES] ModeService[none].Initialize
 [MODES] ModeService[none].LoadModes
 ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  1.138 seconds
-Domain Reload Profiling: 1543ms
+- Finished resetting the current domain, in  1.258 seconds
+Domain Reload Profiling: 1655ms
 	BeginReloadAssembly (192ms)
-		DisableScriptedObjects (38ms)
-		CreateAndSetChildDomain (44ms)
+		DisableScriptedObjects (24ms)
+		CreateAndSetChildDomain (54ms)
 	RebuildCommonClasses (7ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (41ms)
-	LoadAllAssembliesAndSetupDomain (152ms)
-		LoadAssemblies (92ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (144ms)
+		LoadAssemblies (96ms)
 		TypeCache.Refresh (5ms)
-		AnalyzeDomain (6ms)
-			ResolveRequiredComponents (4ms)
-	FinalizeReload (1138ms)
+		AnalyzeDomain (5ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (1259ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (5ms)
-			BeforeProcessingInitializeOnLoad (126ms)
-			ProcessInitializeOnLoadAttributes (590ms)
-			ProcessInitializeOnLoadMethodAttributes (133ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (142ms)
+			ProcessInitializeOnLoadAttributes (638ms)
+			ProcessInitializeOnLoadMethodAttributes (153ms)
 			AfterProcessingInitializeOnLoad (6ms)
-		AwakeInstancesAfterBackupRestoration (48ms)
+		AwakeInstancesAfterBackupRestoration (54ms)
+Worker ready: AssetImportWorkerHW0 0
 No restricted APIs configured; Validation skipped.
 Checking 7 assemblies for restricted APIs found 0 usage(s) in 3 ms
 
-Asset Pipeline Refresh (id=827c8a9bdaaa8d149b6dd577f4d9b78a): Total: 2.020 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+Asset Pipeline Refresh (id=e6d36504a550dac42b913895f5b55282): Total: 2.162 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
 	(Values over 0.05ms)
 	Summary:
 		Imports: total=0 (actual=0, local cache=0, cache server=0)
-		Asset DB Process Time: managed=0 ms, native=1302 ms
-		Asset DB Callback time: managed=181 ms, native=99 ms
-		Scripting: domain reloads=1, domain reload time=435 ms, compile time=2 ms, other=0 ms
-		Project Asset Count: scripts=1025, non-scripts=2121
+		Asset DB Process Time: managed=0 ms, native=1418 ms
+		Asset DB Callback time: managed=188 ms, native=121 ms
+		Scripting: domain reloads=1, domain reload time=432 ms, compile time=2 ms, other=0 ms
+		Project Asset Count: scripts=1025, non-scripts=2122
 		Asset File Changes: new=0, changed=0, moved=0, deleted=0
 		Scan Filter Count: 0
-	InvokePackagesCallback: 0.928ms
-	ApplyChangesToAssetFolders: 0.164ms
-	Collect global state as custom dependencies: 0.964ms
-	ProcessAssetsWithTransientArtifactChanges: 86.144ms
-	CategorizeAssets: 19.616ms
-	CompileScripts: 1.619ms
-	ImportOutOfDateAssets: 1141.065ms (1140.437ms without children)
-		UnloadImportedAssets: 0.171ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.306ms
-		ImportSchedulerStart: 0.135ms
-	PostProcessAllAssets: 277.640ms
-		PostProcessCallbackCreateDeferredMaterials 7.262ms
-		AssemblyValidation.PostprocessAllAssets 5.938ms
-		ShaderAssetModifiedCallback 3.833ms
-		RaytracingShaderImportPostprocess 3.429ms
-		ComputeShaderImportPostprocess 3.043ms
-		SpeedTreeImporter.PostprocessAllAssets 2.451ms
-		BlockShaderImporter.PostprocessAllAssets 1.392ms
-		LocalizationDatabase.AssetDatabasePostprocessCallback 1.355ms
-		XRBuildSystem.XRAssetImported 0.091ms
-		MonoPostProcessAllAssets: 180.586ms
-			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 75.425ms
-			AssetPostprocessor.OnPostprocessAllAssets 22.848ms
-			PostProcessor.OnPostprocessAllAssets 20.363ms
-			MaterialPostprocessor.OnPostprocessAllAssets 13.712ms
-			StyleCatalogPostProcessor.OnPostprocessAllAssets 10.503ms
-			TextAssetPostProcessor.OnPostprocessAllAssets 9.178ms
-			AssetChangedListener.OnPostprocessAllAssets 6.464ms
-			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.384ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 2.117ms
-			VFXGraphPreprocessor.OnPostprocessAllAssets 1.277ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.193ms
-			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.160ms
-			SyncVS.PostprocessSyncProject 0.891ms
-			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.419ms
-			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.399ms
-			ThemePostprocessor.OnPostprocessAllAssets 0.299ms
-			CinemachineSettings.OnPostprocessAllAssets 0.255ms
-			DomainReloadProcessor.OnPostprocessAllAssets 0.236ms
+	InvokePackagesCallback: 1.098ms
+	ApplyChangesToAssetFolders: 0.177ms
+	Collect global state as custom dependencies: 0.975ms
+	ProcessAssetsWithTransientArtifactChanges: 89.028ms
+	CategorizeAssets: 21.258ms
+	CompileScripts: 1.710ms
+	ImportOutOfDateAssets: 1261.896ms (1261.146ms without children)
+		UnloadImportedAssets: 0.209ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.365ms
+		ImportSchedulerStart: 0.151ms
+	PostProcessAllAssets: 307.327ms
+		PostProcessCallbackCreateDeferredMaterials 9.839ms
+		AssemblyValidation.PostprocessAllAssets 5.526ms
+		RaytracingShaderImportPostprocess 5.269ms
+		ShaderAssetModifiedCallback 4.427ms
+		ComputeShaderImportPostprocess 4.224ms
+		SpeedTreeImporter.PostprocessAllAssets 3.750ms
+		BlockShaderImporter.PostprocessAllAssets 1.555ms
+		LocalizationDatabase.AssetDatabasePostprocessCallback 1.427ms
+		XRBuildSystem.XRAssetImported 0.171ms
+		MonoPostProcessAllAssets: 188.062ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 77.469ms
+			AssetPostprocessor.OnPostprocessAllAssets 25.291ms
+			PostProcessor.OnPostprocessAllAssets 20.446ms
+			MaterialPostprocessor.OnPostprocessAllAssets 14.894ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 11.385ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 8.550ms
+			AssetChangedListener.OnPostprocessAllAssets 6.535ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.595ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 2.001ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.812ms
+			VFXGraphPreprocessor.OnPostprocessAllAssets 1.245ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.232ms
+			SyncVS.PostprocessSyncProject 0.884ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.483ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.468ms
+			CinemachineSettings.OnPostprocessAllAssets 0.268ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.263ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.242ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.224ms
 			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.220ms
-			AudioMixerPostprocessor.OnPostprocessAllAssets 0.202ms
-			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.200ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.196ms
-			AssetEvents.OnPostprocessAllAssets 0.192ms
-			SpeedTreePostProcessor.OnPostprocessAllAssets 0.192ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.166ms
-			SamplePostprocessor.OnPostprocessAllAssets 0.151ms
-			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.117ms
-			ConfigAssetsTracker.OnPostprocessAllAssets 0.092ms
-			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.088ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.088ms
-			AudioContainerPostProcessor.OnPostprocessAllAssets 0.054ms
-	PostAssetChangesProfiler: 2.476ms
-	GatherAllCurrentPrimaryImportResultRevisions: 0.103ms
-	PersistCurrentRevisions: 0.079ms
-	GenerateScriptTypeHashes: 1.312ms
-	GenerateScriptTypeSerializationHashes: 2.403ms
-	Untracked: 461.168ms
+			AssetEvents.OnPostprocessAllAssets 0.214ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.205ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.204ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.165ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.153ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.150ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.144ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.138ms
+			DomainReloadProcessor.OnPostprocessAllAssets 0.130ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.099ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.056ms
+	PostAssetChangesProfiler: 2.005ms
+	GatherAllCurrentPrimaryImportResultRevisions: 0.114ms
+	PersistCurrentRevisions: 0.140ms
+	GenerateScriptTypeHashes: 1.524ms
+	GenerateScriptTypeSerializationHashes: 2.687ms
+	Untracked: 454.459ms
 
 Loaded scene 'Temp/__Backupscenes/0.backup'
-	Deserialize:            9.930 ms
-	Integration:            78.346 ms
-	Integration of assets:  25.439 ms
-	Thread Wait Time:       19.506 ms
-	Total Operation Time:   133.221 ms
+	Deserialize:            12.933 ms
+	Integration:            77.426 ms
+	Integration of assets:  28.768 ms
+	Thread Wait Time:       3.350 ms
+	Total Operation Time:   122.478 ms
 Start Indexing on Editor startup
 [Indexing] Starting Initial Indexing for Assets
-Created GICache directory at C:/Users/manmi/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.021s, timestamps: [10.144 - 10.165]
+Created GICache directory at C:/Users/manmi/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.033s, timestamps: [8.372 - 8.405]
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully resolved entitlement details
 TrimDiskCacheJob: Current cache size 0mb
 Unloading 56 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.002600 ms
+UnloadTime: 1.927200 ms
 Loaded scene 'Assets/Scenes/Game.unity'
-	Deserialize:            8.308 ms
-	Integration:            15.085 ms
-	Integration of assets:  8.017 ms
-	Thread Wait Time:       1.663 ms
-	Total Operation Time:   33.073 ms
-Unloading 3899 unused Assets / (1.9 MB). Loaded Objects now: 5915.
-Memory consumption went from 378.1 MB to 376.2 MB.
-Total: 6.956900 ms (FindLiveObjects: 0.627000 ms CreateObjectMapping: 0.146400 ms MarkObjects: 5.325600 ms  DeleteObjects: 0.677500 ms)
+	Deserialize:            8.094 ms
+	Integration:            14.718 ms
+	Integration of assets:  7.721 ms
+	Thread Wait Time:       1.465 ms
+	Total Operation Time:   31.998 ms
+Unloading 3885 unused Assets / (1.8 MB). Loaded Objects now: 5913.
+Memory consumption went from 379.5 MB to 377.6 MB.
+Total: 6.822000 ms (FindLiveObjects: 0.585400 ms CreateObjectMapping: 0.139700 ms MarkObjects: 5.295800 ms  DeleteObjects: 0.632800 ms)
 
-PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Recovery pattern=P-long-2-25 pending=4 lookahead=7 active=7 reserved=0 nextSpawn=65,10 nextPattern=56,78 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+Cannot set the parent of the GameObject 'TargetOwnedMount' while activating or deactivating the parent GameObject 'PunchTarget'.
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Transform:SetParent (UnityEngine.Transform,bool)
+TargetMountMotion:OnDisable () (at Assets/Scripts/Gameplay/TargetMountMotion.cs:28)
+UnityEngine.GameObject:SetActive (bool)
+HitGatePlayModeChecks:Clear (TargetObject) (at Assets/Editor/HitGatePlayModeChecks.cs:37)
+HitGatePlayModeChecks:Run (System.Action`1<string>) (at Assets/Editor/HitGatePlayModeChecks.cs:105)
+DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:106)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+[Assets/Editor/HitGatePlayModeChecks.cs line 37]
+
+PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Heavy pattern=P-burst-1-32 pending=8 lookahead=7 active=1 reserved=0 nextSpawn=61,04 nextPattern=59,98 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Recovery pattern=P-long-2-25 pending=4 lookahead=7 active=7 reserved=0 nextSpawn=65,10 nextPattern=56,78 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Heavy pattern=P-burst-1-32 pending=8 lookahead=7 active=1 reserved=0 nextSpawn=61,04 nextPattern=59,98 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Recovery pattern=P-long-2-25 pending=3 lookahead=7 active=7 reserved=0 nextSpawn=65,38 nextPattern=56,78 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Heavy pattern=P-burst-1-32 pending=8 lookahead=7 active=1 reserved=0 nextSpawn=61,04 nextPattern=59,98 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Recovery pattern=P-long-2-25 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=65,94 nextPattern=56,78 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Heavy pattern=P-burst-1-32 pending=8 lookahead=7 active=1 reserved=0 nextSpawn=61,04 nextPattern=59,98 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Recovery pattern=P-micro-recovery-2-2 pending=2 lookahead=7 active=7 reserved=0 nextSpawn=65,12 nextPattern=69,71 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Heavy pattern=P-burst-1-32 pending=8 lookahead=7 active=1 reserved=0 nextSpawn=61,04 nextPattern=59,98 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Build pattern=P-conditioning-0-49 pending=49 lookahead=7 active=7 reserved=0 nextSpawn=68,75 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Heavy pattern=P-burst-1-32 pending=8 lookahead=7 active=1 reserved=0 nextSpawn=61,04 nextPattern=59,98 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Build pattern=P-conditioning-0-49 pending=49 lookahead=7 active=5 reserved=0 nextSpawn=68,75 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Heavy pattern=P-burst-1-32 pending=8 lookahead=7 active=1 reserved=0 nextSpawn=61,04 nextPattern=59,98 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Build pattern=P-conditioning-0-49 pending=49 lookahead=7 active=4 reserved=0 nextSpawn=68,75 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Heavy pattern=P-burst-1-32 pending=8 lookahead=7 active=1 reserved=0 nextSpawn=61,04 nextPattern=59,98 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Build pattern=P-conditioning-0-49 pending=47 lookahead=7 active=5 reserved=0 nextSpawn=69,11 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Burst pattern=P-burst-1-32 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=67,96 nextPattern=59,98 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Build pattern=P-conditioning-0-49 pending=44 lookahead=7 active=7 reserved=0 nextSpawn=69,65 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Burst pattern=P-burst-1-32 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=67,96 nextPattern=59,98 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Build pattern=P-conditioning-0-49 pending=43 lookahead=7 active=7 reserved=0 nextSpawn=69,83 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Conditioning pattern=P-burst-2-31 pending=30 lookahead=7 active=7 reserved=0 nextSpawn=68,85 nextPattern=71,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Build pattern=P-conditioning-0-49 pending=42 lookahead=7 active=7 reserved=0 nextSpawn=70,01 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Conditioning pattern=P-burst-2-31 pending=27 lookahead=7 active=7 reserved=0 nextSpawn=69,40 nextPattern=71,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Build pattern=P-conditioning-0-49 pending=40 lookahead=7 active=7 reserved=0 nextSpawn=70,37 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Conditioning pattern=P-burst-2-31 pending=25 lookahead=7 active=7 reserved=0 nextSpawn=69,77 nextPattern=71,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Build pattern=P-conditioning-0-49 pending=37 lookahead=7 active=7 reserved=0 nextSpawn=70,91 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Conditioning pattern=P-burst-2-31 pending=23 lookahead=7 active=7 reserved=0 nextSpawn=70,14 nextPattern=71,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Build pattern=P-conditioning-0-49 pending=34 lookahead=7 active=7 reserved=0 nextSpawn=71,45 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Conditioning pattern=P-burst-2-31 pending=20 lookahead=7 active=7 reserved=0 nextSpawn=70,69 nextPattern=71,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Build pattern=P-conditioning-0-49 pending=31 lookahead=7 active=7 reserved=0 nextSpawn=71,99 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Conditioning pattern=P-burst-2-31 pending=17 lookahead=7 active=7 reserved=0 nextSpawn=71,24 nextPattern=71,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Burst pattern=P-burst-0-8 pending=4 lookahead=4 active=4 reserved=0 nextSpawn=286,00 nextPattern=287,17 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Build pattern=P-conditioning-0-11 pending=6 lookahead=4 active=4 reserved=0 nextSpawn=295,02 nextPattern=293,47 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Burst pattern=P-burst-0-8 pending=3 lookahead=4 active=4 reserved=0 nextSpawn=286,36 nextPattern=287,17 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Build pattern=P-conditioning-0-11 pending=4 lookahead=4 active=4 reserved=0 nextSpawn=295,62 nextPattern=293,47 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Burst pattern=P-burst-0-8 pending=1 lookahead=4 active=4 reserved=0 nextSpawn=287,09 nextPattern=287,17 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Build pattern=P-conditioning-0-11 pending=3 lookahead=4 active=4 reserved=0 nextSpawn=295,92 nextPattern=293,47 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Recovery pattern=P-micro-recovery-2-2 pending=2 lookahead=4 active=4 reserved=0 nextSpawn=287,37 nextPattern=290,67 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Build pattern=P-conditioning-0-11 pending=2 lookahead=4 active=4 reserved=0 nextSpawn=296,22 nextPattern=293,47 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Recovery pattern=P-micro-recovery-1-1 pending=1 lookahead=4 active=4 reserved=0 nextSpawn=288,94 nextPattern=292,24 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Build pattern=P-long-2-8 pending=8 lookahead=4 active=4 reserved=0 nextSpawn=297,73 nextPattern=301,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Build pattern=P-normal-2-5 pending=5 lookahead=4 active=4 reserved=0 nextSpawn=290,27 nextPattern=293,20 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Build pattern=P-long-2-8 pending=7 lookahead=4 active=4 reserved=0 nextSpawn=298,19 nextPattern=301,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Build pattern=P-normal-2-5 pending=5 lookahead=4 active=3 reserved=0 nextSpawn=290,27 nextPattern=293,20 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Build pattern=P-long-2-8 pending=5 lookahead=4 active=4 reserved=0 nextSpawn=299,11 nextPattern=301,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Build pattern=P-normal-2-5 pending=4 lookahead=4 active=4 reserved=0 nextSpawn=290,75 nextPattern=293,20 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Build pattern=P-long-2-8 pending=4 lookahead=4 active=4 reserved=0 nextSpawn=299,57 nextPattern=301,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Build pattern=P-normal-2-5 pending=3 lookahead=4 active=4 reserved=0 nextSpawn=291,23 nextPattern=293,20 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Build pattern=P-long-2-8 pending=4 lookahead=4 active=4 reserved=0 nextSpawn=299,57 nextPattern=301,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Build pattern=P-normal-2-5 pending=2 lookahead=4 active=4 reserved=0 nextSpawn=291,71 nextPattern=293,20 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Build pattern=P-long-2-8 pending=3 lookahead=4 active=4 reserved=0 nextSpawn=300,03 nextPattern=301,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Build pattern=P-normal-2-5 pending=2 lookahead=4 active=4 reserved=0 nextSpawn=291,71 nextPattern=293,20 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Build pattern=P-long-2-8 pending=1 lookahead=4 active=4 reserved=0 nextSpawn=300,95 nextPattern=301,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Build pattern=P-normal-2-5 pending=1 lookahead=4 active=4 reserved=0 nextSpawn=292,19 nextPattern=293,20 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Build pattern=P-normal-1-3 pending=3 lookahead=4 active=4 reserved=0 nextSpawn=301,68 nextPattern=305,40 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Build pattern=P-normal-2-5 pending=1 lookahead=4 active=4 reserved=0 nextSpawn=292,19 nextPattern=293,20 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Build pattern=P-normal-1-3 pending=2 lookahead=4 active=4 reserved=0 nextSpawn=302,13 nextPattern=305,40 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Build pattern=P-conditioning-0-12 pending=12 lookahead=4 active=4 reserved=0 nextSpawn=293,68 nextPattern=296,05 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Build pattern=P-normal-1-3 pending=1 lookahead=4 active=4 reserved=0 nextSpawn=302,59 nextPattern=305,40 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Build pattern=P-conditioning-0-12 pending=11 lookahead=4 active=4 reserved=0 nextSpawn=293,98 nextPattern=296,05 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Build pattern=P-burst-2-9 pending=9 lookahead=4 active=4 reserved=0 nextSpawn=302,61 nextPattern=307,18 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Build pattern=P-conditioning-0-12 pending=10 lookahead=4 active=4 reserved=0 nextSpawn=294,28 nextPattern=296,05 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Build pattern=P-burst-2-9 pending=8 lookahead=4 active=4 reserved=0 nextSpawn=303,06 nextPattern=307,18 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Burst pattern=P-burst-0-17 pending=4 lookahead=5 active=5 reserved=0 nextSpawn=347,62 nextPattern=346,44 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Burst pattern=P-burst-2-19 pending=2 lookahead=5 active=5 reserved=0 nextSpawn=356,92 nextPattern=355,85 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Burst pattern=P-burst-0-17 pending=2 lookahead=5 active=5 reserved=0 nextSpawn=348,16 nextPattern=346,44 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Recovery pattern=P-micro-recovery-1-4 pending=4 lookahead=5 active=5 reserved=0 nextSpawn=357,28 nextPattern=360,89 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Recovery pattern=P-micro-recovery-2-2 pending=2 lookahead=5 active=5 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Recovery pattern=P-micro-recovery-1-4 pending=1 lookahead=5 active=5 reserved=0 nextSpawn=358,95 nextPattern=360,89 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=5 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Long pattern=P-conditioning-0-22 pending=21 lookahead=5 active=5 reserved=0 nextSpawn=359,27 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=3 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Long pattern=P-conditioning-0-22 pending=21 lookahead=5 active=5 reserved=0 nextSpawn=359,27 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=2 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Long pattern=P-conditioning-0-22 pending=20 lookahead=5 active=5 reserved=0 nextSpawn=359,49 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=1 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Long pattern=P-conditioning-0-22 pending=19 lookahead=5 active=5 reserved=0 nextSpawn=359,71 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=1 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Long pattern=P-conditioning-0-22 pending=18 lookahead=5 active=5 reserved=0 nextSpawn=359,93 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=1 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Long pattern=P-conditioning-0-22 pending=17 lookahead=5 active=5 reserved=0 nextSpawn=360,15 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=1 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Long pattern=P-conditioning-0-22 pending=16 lookahead=5 active=5 reserved=0 nextSpawn=360,37 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=1 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Long pattern=P-conditioning-0-22 pending=14 lookahead=5 active=5 reserved=0 nextSpawn=360,81 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=1 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Long pattern=P-conditioning-0-22 pending=11 lookahead=5 active=5 reserved=0 nextSpawn=361,47 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=1 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Long pattern=P-conditioning-0-22 pending=9 lookahead=5 active=5 reserved=0 nextSpawn=361,91 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Heavy pattern=P-micro-recovery-2-2 pending=1 lookahead=5 active=1 reserved=0 nextSpawn=347,87 nextPattern=351,49 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=27,49 phase=Long pattern=P-conditioning-0-22 pending=7 lookahead=5 active=5 reserved=0 nextSpawn=362,35 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Build pattern=P-conditioning-1-21 pending=19 lookahead=5 active=3 reserved=0 nextSpawn=355,49 nextPattern=357,12 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=26,99 phase=Long pattern=P-conditioning-0-22 pending=5 lookahead=5 active=5 reserved=0 nextSpawn=362,79 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Build pattern=P-conditioning-1-21 pending=17 lookahead=5 active=5 reserved=0 nextSpawn=355,93 nextPattern=357,12 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=26,49 phase=Long pattern=P-conditioning-0-22 pending=2 lookahead=5 active=5 reserved=0 nextSpawn=363,45 nextPattern=363,16 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Burst pattern=K-burst-2-10 pending=6 lookahead=7 active=7 reserved=0 nextSpawn=410,30 nextPattern=412,80 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=2 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Burst pattern=K-burst-2-10 pending=6 lookahead=7 active=7 reserved=0 nextSpawn=410,30 nextPattern=412,80 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Burst pattern=K-burst-2-10 pending=5 lookahead=7 active=7 reserved=0 nextSpawn=411,05 nextPattern=412,80 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Burst pattern=K-burst-2-10 pending=4 lookahead=7 active=7 reserved=0 nextSpawn=411,81 nextPattern=412,80 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Burst pattern=K-burst-2-10 pending=4 lookahead=7 active=7 reserved=0 nextSpawn=411,81 nextPattern=412,80 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Burst pattern=K-burst-2-10 pending=3 lookahead=7 active=7 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Burst pattern=K-burst-2-10 pending=2 lookahead=7 active=7 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=False missRecovery=False wait=heavy preview slot
+PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=7 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=7 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=6 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=5 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Heavy pattern=K-burst-1-10 pending=6 lookahead=7 active=1 reserved=0 nextSpawn=412,12 nextPattern=418,57 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=5 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Conditioning pattern=K-burst-2-10 pending=9 lookahead=7 active=7 reserved=0 nextSpawn=422,39 nextPattern=429,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=4 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Conditioning pattern=K-burst-2-10 pending=8 lookahead=7 active=7 reserved=0 nextSpawn=422,98 nextPattern=429,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=3 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Conditioning pattern=K-burst-2-10 pending=7 lookahead=7 active=7 reserved=0 nextSpawn=423,56 nextPattern=429,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=3 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Conditioning pattern=K-burst-2-10 pending=7 lookahead=7 active=7 reserved=0 nextSpawn=423,56 nextPattern=429,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Heavy pattern=K-burst-2-10 pending=2 lookahead=7 active=2 reserved=0 nextSpawn=412,56 nextPattern=412,80 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Conditioning pattern=K-burst-2-10 pending=6 lookahead=7 active=7 reserved=0 nextSpawn=424,15 nextPattern=429,51 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Heavy pattern=P-conditioning-1-44 pending=17 lookahead=7 active=1 reserved=0 nextSpawn=466,59 nextPattern=453,84 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=34,00 phase=Heavy pattern=P-burst-0-28 pending=16 lookahead=7 active=1 reserved=0 nextSpawn=473,28 nextPattern=468,27 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Heavy pattern=P-conditioning-1-44 pending=17 lookahead=7 active=1 reserved=0 nextSpawn=466,59 nextPattern=453,84 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=33,50 phase=Heavy pattern=P-burst-0-28 pending=16 lookahead=7 active=1 reserved=0 nextSpawn=473,28 nextPattern=468,27 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Heavy pattern=P-conditioning-1-44 pending=17 lookahead=7 active=1 reserved=0 nextSpawn=466,59 nextPattern=453,84 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=33,00 phase=Heavy pattern=P-burst-0-28 pending=16 lookahead=7 active=1 reserved=0 nextSpawn=473,28 nextPattern=468,27 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Heavy pattern=P-conditioning-1-44 pending=17 lookahead=7 active=1 reserved=0 nextSpawn=466,59 nextPattern=453,84 recoveryUntil=0,00 heavy=True missRecovery=False wait=heavy work
+PACING_WINDOW_DIAGNOSTIC remaining=32,50 phase=Build pattern=P-burst-0-28 pending=9 lookahead=7 active=7 reserved=0 nextSpawn=481,33 nextPattern=468,27 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Recovery pattern=P-conditioning-1-44 pending=15 lookahead=7 active=2 reserved=0 nextSpawn=473,87 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=32,00 phase=Build pattern=P-burst-0-28 pending=9 lookahead=7 active=7 reserved=0 nextSpawn=481,33 nextPattern=468,27 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Recovery pattern=P-conditioning-1-44 pending=14 lookahead=7 active=3 reserved=0 nextSpawn=474,75 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=31,50 phase=Build pattern=P-burst-0-28 pending=7 lookahead=7 active=7 reserved=0 nextSpawn=482,17 nextPattern=468,27 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Recovery pattern=P-conditioning-1-44 pending=14 lookahead=7 active=2 reserved=0 nextSpawn=474,75 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=31,00 phase=Build pattern=P-burst-0-28 pending=6 lookahead=7 active=7 reserved=0 nextSpawn=482,40 nextPattern=468,27 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Recovery pattern=P-conditioning-1-44 pending=13 lookahead=7 active=3 reserved=0 nextSpawn=475,64 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=30,50 phase=Build pattern=P-burst-0-28 pending=5 lookahead=7 active=7 reserved=0 nextSpawn=483,01 nextPattern=468,27 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Recovery pattern=P-conditioning-1-44 pending=13 lookahead=7 active=2 reserved=0 nextSpawn=475,64 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=30,00 phase=Build pattern=P-burst-0-28 pending=3 lookahead=7 active=7 reserved=0 nextSpawn=483,85 nextPattern=468,27 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Recovery pattern=P-conditioning-1-44 pending=12 lookahead=7 active=2 reserved=0 nextSpawn=476,52 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=29,50 phase=Build pattern=P-burst-0-28 pending=2 lookahead=7 active=7 reserved=0 nextSpawn=484,09 nextPattern=468,27 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Recovery pattern=P-conditioning-1-44 pending=11 lookahead=7 active=3 reserved=0 nextSpawn=476,70 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=29,00 phase=Build pattern=P-burst-0-28 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=484,70 nextPattern=468,27 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Recovery pattern=P-conditioning-1-44 pending=10 lookahead=7 active=3 reserved=0 nextSpawn=477,58 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=28,50 phase=Conditioning pattern=P-conditioning-1-45 pending=45 lookahead=7 active=7 reserved=0 nextSpawn=485,35 nextPattern=490,44 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Recovery pattern=P-conditioning-1-44 pending=10 lookahead=7 active=3 reserved=0 nextSpawn=477,58 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=28,00 phase=Conditioning pattern=P-conditioning-1-45 pending=43 lookahead=7 active=7 reserved=0 nextSpawn=485,71 nextPattern=490,44 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Recovery pattern=P-conditioning-1-44 pending=9 lookahead=7 active=3 reserved=0 nextSpawn=478,47 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=27,50 phase=Conditioning pattern=P-conditioning-1-45 pending=43 lookahead=7 active=7 reserved=0 nextSpawn=485,71 nextPattern=490,44 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Recovery pattern=P-conditioning-1-44 pending=8 lookahead=7 active=4 reserved=0 nextSpawn=479,35 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=27,00 phase=Conditioning pattern=P-conditioning-1-45 pending=42 lookahead=7 active=7 reserved=0 nextSpawn=486,29 nextPattern=490,44 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Recovery pattern=P-conditioning-1-44 pending=8 lookahead=7 active=2 reserved=0 nextSpawn=479,35 nextPattern=453,84 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PACING_WINDOW_DIAGNOSTIC remaining=26,50 phase=Conditioning pattern=P-conditioning-1-45 pending=40 lookahead=7 active=7 reserved=0 nextSpawn=487,06 nextPattern=490,44 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
 UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:101)
+TargetSpawner:Update () (at Assets/Scripts/Spawning/TargetSpawner.cs:102)
 
-(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 101)
+(Filename: Assets/Scripts/Spawning/TargetSpawner.cs Line: 102)
 
-Unloading 9 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.224500 ms
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.802100 ms
 Loaded scene 'Assets/Scenes/Results.unity'
-	Deserialize:            1.635 ms
-	Integration:            7.708 ms
+	Deserialize:            1.732 ms
+	Integration:            8.085 ms
 	Integration of assets:  0.001 ms
-	Thread Wait Time:       0.217 ms
-	Total Operation Time:   9.560 ms
-Unloading 181 unused Assets / (23.2 MB). Loaded Objects now: 5831.
-Memory consumption went from 377.1 MB to 353.9 MB.
-Total: 6.456900 ms (FindLiveObjects: 0.296400 ms CreateObjectMapping: 0.084700 ms MarkObjects: 5.701000 ms  DeleteObjects: 0.199300 ms)
+	Thread Wait Time:       0.185 ms
+	Total Operation Time:   10.002 ms
+Unloading 28 unused Assets / (22.8 MB). Loaded Objects now: 5882.
+Memory consumption went from 377.7 MB to 354.8 MB.
+Total: 7.460800 ms (FindLiveObjects: 0.564600 ms CreateObjectMapping: 0.075100 ms MarkObjects: 6.543200 ms  DeleteObjects: 0.098700 ms)
 
 DIGITAL_DOJO_CAPTURE_COMPLETE
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
@@ -1797,12 +1486,12 @@ UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOpt
 UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 UnityEngine.Debug:Log (object)
-DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:131)
+DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:130)
 UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
 
-(Filename: Assets/Editor/DigitalDojoCapture.cs Line: 131)
+(Filename: Assets/Editor/DigitalDojoCapture.cs Line: 130)
 
-MonoPathRemapper: Attempts to remap: 23785; Successful remaps: 13270
+MonoPathRemapper: Attempts to remap: 24846; Successful remaps: 13270
 Serialized file version minimum: 23, current 23
 <b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: No process found listening on port 8080
 UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
@@ -1816,12 +1505,12 @@ MCPForUnity.Editor.Services.ServerManagementService:StopLocalHttpServerInternal 
 MCPForUnity.Editor.Services.ServerManagementService:StopLocalHttpServer () (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/ServerManagementService.cs:349)
 MCPForUnity.Editor.Services.McpEditorShutdownCleanup:OnEditorQuitting () (at ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Services/McpEditorShutdownCleanup.cs:60)
 UnityEditor.EditorApplication:Internal_EditorApplicationQuit ()
-DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:132)
+DigitalDojoCapture:Tick () (at Assets/Editor/DigitalDojoCapture.cs:131)
 UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
 
 (Filename: ./Library/PackageCache/com.coplaydev.unity-mcp@13fb3ee12774/Editor/Helpers/McpLog.cs Line: 40)
 
-Killing ADB server in 2,0463092 seconds.
+Killing ADB server in 0,0356799 seconds.
 [Physics::Module] Cleanup current backend.
 [Physics::Module] Id: 0xf2b8ea05
 Input System module state changed to: ShutdownInProgress.
@@ -1838,4 +1527,4 @@ CodeReloadManager destroyed
 Checking for leaked weakptr:
   Found no leaked weakptrs.
 [Package Manager] Server process was shutdown
-##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1789602486477,"processId":68044,"allocatedMemory":15576422,"memoryLabels":[{"Default":205984},{"Permanent":15516},{"NewDelete":72239},{"Thread":4198024},{"Manager":35813},{"VertexData":968},{"Geometry":816},{"Texture":24},{"Shader":849207},{"Material":24},{"GfxDevice":56616},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":35392},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"ScriptingNativeRuntime":1307568},{"BaseObject":50448},{"Resource":1208},{"Renderer":2376},{"Transform":4685},{"File":16284},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":802434},{"StaticString":3808},{"Utility":2675350},{"Curl":2478},{"PoolAlloc":2264},{"AI":80},{"TypeTree":20997},{"ScriptManager":18960},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7440},{"WebRequest":4519},{"VR":49650},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":768},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"Gui":128},{"EditorUtility":115778},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4491233},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40465},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":260},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3600},{"Windowing":456},{"Licensing":12757},{"AssetReference":32},{"IPCStream":32}]}
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1789616525547,"processId":40580,"allocatedMemory":15237217,"memoryLabels":[{"Default":210553},{"Permanent":15516},{"NewDelete":72239},{"Thread":4198024},{"Manager":35813},{"VertexData":968},{"Geometry":816},{"Texture":24},{"Shader":849207},{"Material":24},{"GfxDevice":56616},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":35392},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"ScriptingNativeRuntime":1307568},{"BaseObject":50448},{"Resource":1208},{"Renderer":2376},{"Transform":4685},{"File":16284},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":458392},{"StaticString":3808},{"Utility":2675350},{"Curl":2478},{"PoolAlloc":2264},{"AI":80},{"TypeTree":20997},{"ScriptManager":18960},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7440},{"WebRequest":4747},{"VR":49650},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":768},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"Gui":128},{"EditorUtility":115778},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4491273},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40465},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":260},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3600},{"Windowing":456},{"Licensing":12757},{"AssetReference":32},{"IPCStream":32}]}

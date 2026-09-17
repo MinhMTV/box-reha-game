@@ -47,13 +47,13 @@ public static class HitGatePlayModeChecks
         checks.Clear();evaluator=Object.FindFirstObjectByType<HitZoneEvaluator>();gate=evaluator.GetComponent<HitZoneVisualizer>();spawner=Object.FindFirstObjectByType<TargetSpawner>();
         Require(gate!=null,"gate installed by runtime evaluator");
         ClearFlash();Refresh();
-        Require(gate.PunchState=="READY"&&gate.KickState=="READY","dormant with no target");capture("Gate-Dormant");
+        Require(gate.PunchState=="Dormant"&&gate.KickState=="Dormant","dormant with no target");capture("Gate-Dormant");
         var root=evaluator.transform.Find("HitGate");
         Require(root!=null && Mathf.Abs(root.position.z-evaluator.HitZoneZ)<.0001f,"exact logical visual plane");
         var center=(Transform)typeof(HitZoneEvaluator).GetField("hitZoneCenter",Private).GetValue(evaluator);
         if(center==null)center=evaluator.transform;
-        var original=center.position;center.position+=Vector3.forward*1.25f;Refresh();
-        Require(Mathf.Abs(root.position.z-evaluator.HitZoneZ)<.0001f,"gate follows changed evaluator plane");center.position=original;
+        var original=center.position;center.position+=new Vector3(.4f,.2f,1.25f);Refresh();
+        Require(Vector3.Distance(root.position,evaluator.HitZonePosition)<.0001f,"gate follows changed evaluator XYZ");center.position=original;
         Require(Mathf.Abs(gate.PunchHeight-2.1f)<.001f&&Mathf.Abs(gate.KickHeight-.45f)<.001f,"separate upper punch and lower kick heights");
         Require(root.GetComponentsInChildren<Collider>().Length==0,"gate has no collider");
         Require(GameObject.Find("DojoLeftArmLane")==null&&GameObject.Find("DojoRightArmLane")==null,"old longitudinal rails remain absent");
@@ -64,12 +64,17 @@ public static class HitGatePlayModeChecks
             var expected=GameplayRules.Timing(offset,.45f);
             Require(evaluator.PreviewTiming(target)==expected,type+" preview "+expected+" agrees with evaluator");
             string state=type==TargetType.Punch?gate.PunchState:gate.KickState;
-            Require(expected==HitQuality.Miss?state=="APPROACH":state.Contains(expected.ToString().ToUpperInvariant()),"label matches "+expected);
+            Require(state==(expected==HitQuality.Miss?"Approaching":expected==HitQuality.Perfect?"PerfectWindow":"Ready"),"visual state matches window "+expected);
+            foreach(var label in root.GetComponentsInChildren<TextMesh>())Require(label.text=="","no pre-action or action-identification labels");
             if(offset==0)capture(type==TargetType.Punch?"Gate-Punch-Perfect-Window":"Gate-Kick-Perfect-Window");
             if(offset==-.2f)capture("Gate-"+type+"-Good-Window");
             Action(target);
             Require(target.IsResolved==(expected!=HitQuality.Miss),"actual acceptance "+type+" "+offset);
             if(offset==0)capture("Gate-"+type+"-Perfect-Feedback");
+            if(offset==-.35f||offset==.35f)capture("Gate-"+type+"-"+expected+"-Feedback");
+            int before=GameManager.Instance.SessionStats.TotalTargets;
+            Action(target);
+            Require(GameManager.Instance.SessionStats.TotalTargets==before,"resolved target cannot count twice");
             Clear(target);
         }
         ClearFlash();var weak=Create(TargetType.Punch);Action(weak,.1f);
@@ -78,7 +83,7 @@ public static class HitGatePlayModeChecks
         foreach(var type in new[]{TargetType.ToughPunch,TargetType.ToughKick})
         {
             ClearFlash();var heavy=Create(type);heavy.LockInHitZone(evaluator.HitZoneZ);Refresh();
-            Require((heavy.IsKick?gate.KickState:gate.PunchState)=="HIT AGAIN","heavy stays actionable");capture("Gate-"+type);
+            Require((heavy.IsKick?gate.KickState:gate.PunchState)=="Ready","heavy stays actionable");capture("Gate-"+type);
             var visual=heavy.GetComponentInChildren<DigitalDojoTargetVisual>();
             Require(visual.DamageStage==0,"heavy intact stage");
             for(int i=0;i<3;i++)Action(heavy);
@@ -98,6 +103,24 @@ public static class HitGatePlayModeChecks
         Require(mount.Phase=="Deploy","normal mechanical deploy phase");
         typeof(TargetMountMotion).GetField("born",Private).SetValue(mount,Time.time-.27f);Require(mount.Phase=="Align","alignment phase");
         typeof(TargetMountMotion).GetField("born",Private).SetValue(mount,Time.time-.4f);Require(mount.Ready,"normal deploy ends at profile duration");Clear(deploy);
+        // Force missing authored visual to exercise the actual runtime fallback.
+        foreach(var type in new[]{TargetType.ToughPunch,TargetType.ToughKick})
+        {
+            string field=type==TargetType.ToughKick?"heavyKickVisualPrefab":"toughVisualPrefab";
+            var info=typeof(TargetSpawner).GetField(field,Private);var saved=info.GetValue(spawner);
+            info.SetValue(spawner,null);
+            try
+            {
+                var fallback=Create(type);
+                Require(fallback.GetComponentInChildren<DigitalDojoTargetVisual>()==null,"fallback fixture is unauthored");
+                Require(fallback.IsTough&&fallback.GetComponentInChildren<ToughTargetHealthBar>()!=null,"fallback Heavy identity and healthbar");
+                var block=new MaterialPropertyBlock();fallback.GetComponentInChildren<Renderer>().GetPropertyBlock(block);
+                Color c=block.GetColor("_Color");
+                Require(type==TargetType.ToughKick?c.b>c.r:c.r>c.b,"fallback family color");
+                Clear(fallback);
+            }
+            finally{info.SetValue(spawner,saved);}
+        }
         bool reduced=SettingsManager.ReducedMotion;
         try
         {

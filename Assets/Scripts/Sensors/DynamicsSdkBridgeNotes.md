@@ -1,6 +1,6 @@
 # Dynamics SDK bridge contract v2
 
-Status on 2026-09-14: **Android Kotlin collector and Unity C# boundary implemented in source; native compilation BLOCKED by SDK package defects; NOT VERIFIED WITH PHYSICAL HARDWARE.** See [SDK_PACKAGE_BLOCKERS_2026-09-14.md](../../../SDK_PACKAGE_BLOCKERS_2026-09-14.md) for the missing resource dependency, independently reproduced Android API metadata defect and actual host-test evidence. The intended deployment is the complete Unity game on Android, developed on Windows. There is no phone-to-PC gateway or Windows BLE port. iOS remains a forwarding scaffold.
+Status on 2026-09-17: **Android Kotlin collector and Unity C# boundary compile in the explicit COMPATIBILITY mode; physical hardware remains unverified.** The vendor-unchanged dependency blocker is retained historically in SDK_PACKAGE_BLOCKERS_2026-09-14.md. The intended deployment is the complete Unity game on Android, developed on Windows. There is no phone-to-PC gateway or Windows BLE port. iOS remains a forwarding scaffold.
 
 The authoritative SDK is `C:\dynamics-sdk-main`, version **0.25.6**. The copy under this Unity repository is not the current authority. See [SENSOR_INTEGRATION_AUDIT.md](../../../SENSOR_INTEGRATION_AUDIT.md) for repository APIs and remaining gates.
 

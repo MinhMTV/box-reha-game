@@ -1,8 +1,10 @@
-# Current gameplay — hardware feedback pass, 15 September 2026
+# Current gameplay — 17 September 2026
 
-16 September fitness update: rolling long combos replace full-pattern reservations and empty recovery waits. Hard ranges reach 30–50 conditioning punches; Endless grows logical length separately from capped speed. See GAMEPLAY_PACING.md and FITNESS_PACING_VALIDATION.md for current values and measured synthetic results.
+17 September consolidation: one authoritative spawning architecture; difficulty-specific opening/phase curves, seeded Heavy durability, segment-boundary insertion, visual-only pre-action hit gate, pooled mounts/effects and MPB materials. See SPAWNING_ARCHITECTURE.md and `artifacts/validation/unity-android-candidate-build.json`.
 
-Current hit-gate/pacing pass: the Game scene now has evaluator-driven red/blue transverse hit gates with timing labels, bounded travel-time difficulty, authored burst/recovery waves, mechanical deployment, heavy damage stages and pooled panel debris. See HIT_GATE_SYSTEM.md, GAMEPLAY_PACING.md and TARGET_ANIMATION_SYSTEM.md. This supersedes the historical statement below that all hit guides are absent; longitudinal lane rails remain removed.
+Historical 16 September fitness update: rolling long combos replace full-pattern reservations and empty recovery waits. Hard ranges reach 30–50 conditioning punches; Endless grows logical length separately from capped speed. See GAMEPLAY_PACING.md and FITNESS_PACING_VALIDATION.md for current values and measured synthetic results.
+
+Current hit-gate/pacing pass: the Game scene now has evaluator-driven red/blue transverse hit gates with visual readiness and post-action feedback, bounded travel-time difficulty, authored burst/recovery waves, mechanical deployment, heavy damage stages and pooled panel debris. See HIT_GATE_SYSTEM.md, GAMEPLAY_PACING.md and TARGET_ANIMATION_SYSTEM.md. This supersedes the historical statement below that all hit guides are absent; longitudinal lane rails remain removed.
 
 Unity 6000.6.0f1; existing Boot > MainMenu > Game > Results, Built-in renderer, Digital Dojo assets. Windows development, Android ARM64/IL2CPP target. Explicit SDK COMPATIBILITY and VENDOR-UNCHANGED modes remain. See ANDROID_STATUS.md for the actual candidate build evidence.
 
@@ -12,7 +14,7 @@ Player profile > Saved profiles creates, reopens, edits and archives local parti
 
 Calibrated physical actions use currentMeasurement/reference, dimensionless and capped at 2.5, only for matching family/side/device/quantity/unit/provenance/SDK mode. Uncalibrated events retain explicitly neutral damage. Too-weak timed matching actions show TOO LIGHT and leave the target available. Heavy accepted damage remains bounded. Keyboard F2/F3/F4 selects weak/normal/strong development values; provenance remains keyboard.
 
-The gameplay hit plane is Z=2 (formerly 5), shared by evaluator, expected hit time and heavy locking; misses still follow timing-window expiry. Targets arm destruction before terminal presentation, use an unscaled cleanup fallback and are explicitly cleaned when stopping. VisualPrimitive creates mesh-only effects and geometry, eliminating implicit CapsuleCollider creation. No bright lane rails/hit guides or persistent control manual remain. Logical left/right/center lanes remain.
+The gameplay hit plane is Z=2 (formerly 5), shared by evaluator, expected hit time and heavy locking; misses still follow timing-window expiry. Targets arm destruction before terminal presentation, use an unscaled cleanup fallback and are explicitly cleaned when stopping. VisualPrimitive creates mesh-only effects and geometry, eliminating implicit CapsuleCollider creation. No longitudinal lane rails or persistent control manual remain; the transverse hit gate is intentional. Logical left/right/center lanes remain.
 
 HUD: score, combo, time, timing accuracy, pause and contextual hit/connection feedback. Optional F1 development overlay is off by default and unavailable as a production Android control manual.
 

@@ -1,32 +1,32 @@
 [
   {
-    "exitCode": 0,
-    "timedOut": false,
-    "forcedTermination": false,
-    "startedUtc": "2026-09-16T20:16:12.4890208Z",
-    "sdkMode": "COMPATIBILITY",
-    "freshCompletionEvidence": true,
+    "pid": 75528,
+    "startedUtc": "2026-09-17T04:46:12.1221890Z",
     "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\unity-android-prepare.log",
-    "pid": 42412
-  },
-  {
-    "exitCode": 0,
     "timedOut": false,
-    "forcedTermination": false,
-    "startedUtc": "2026-09-16T20:16:21.9408401Z",
+    "exitCode": 0,
     "sdkMode": "COMPATIBILITY",
     "freshCompletionEvidence": true,
+    "forcedTermination": false
+  },
+  {
+    "pid": 18352,
+    "startedUtc": "2026-09-17T04:46:22.6002302Z",
     "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\unity-editor.log",
-    "pid": 25988
-  },
-  {
-    "exitCode": 0,
     "timedOut": false,
-    "forcedTermination": false,
-    "startedUtc": "2026-09-16T20:16:32.1694054Z",
+    "exitCode": 0,
     "sdkMode": "COMPATIBILITY",
     "freshCompletionEvidence": true,
+    "forcedTermination": false
+  },
+  {
+    "pid": 6564,
+    "startedUtc": "2026-09-17T04:46:32.9033805Z",
     "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\unity-player-build.log",
-    "pid": 72532
+    "timedOut": false,
+    "exitCode": 0,
+    "sdkMode": "COMPATIBILITY",
+    "freshCompletionEvidence": true,
+    "forcedTermination": false
   }
 ]

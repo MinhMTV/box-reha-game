@@ -16,7 +16,7 @@ public sealed class PacingRuntimeProbe
         public override ComboPlan Select(PacingSample s,GameplayPacingProfile p,TargetType[] types,LaneType[] sides,bool physical,float refractory)
         {
             var plan=base.Select(s,p,types,sides,physical,refractory);
-            if(plan!=null){plan.Length=size;plan.Generator=0;plan.Interval=plan.Type==TargetType.Kick?.6f:.18f;plan.PatternId="synthetic-alternating-"+size;}
+            if(plan!=null){plan.Length=size;plan.Interval=plan.Type==TargetType.Kick?.6f:.18f;plan.PatternId="synthetic-motifs-"+size;}
             return plan;
         }
     }
@@ -29,6 +29,8 @@ public sealed class PacingRuntimeProbe
     float caseStarted,lastArrival,lastHeavyHit,cleanupAt=-1,nextWindowSample;
     int stage,count,peak,completed,heavyHits,peakObjects,peakDebris;bool captured;string missedChain;
     float maxWindowIdle;
+    int materialBaseline,peakMaterials,peakParticles,peakMounts;bool openingCaptured;float firstVisible=-1;
+    readonly HashSet<string> phases=new HashSet<string>();
     float lastHeavyArrival=float.NegativeInfinity;
     public bool Complete { get; private set; }
     public string Failure { get; private set; }
@@ -45,6 +47,7 @@ public sealed class PacingRuntimeProbe
         seen.Clear();count=peak=completed=heavyHits=peakObjects=peakDebris=0;captured=false;cleanupAt=-1;missedChain=null;maxWindowIdle=0;
         lastArrival=lastHeavyHit=float.NegativeInfinity;
         lastHeavyArrival=float.NegativeInfinity;
+        materialBaseline=Resources.FindObjectsOfTypeAll<Material>().Length;peakMaterials=materialBaseline;peakParticles=peakMounts=0;openingCaptured=false;firstVisible=-1;phases.Clear();
         var p=new GameplayPacingProfile{Seed=73};
         level=stage==2?LevelDefinition.CreateEndless():stage==8?LevelDefinition.CreateLevel1():stage==9?LevelDefinition.CreateLevel2():LevelDefinition.CreateLevel3();
         if(stage!=11)level.RestrictToSensorFamily(stage==4||stage==6||stage==10?"Delta":"Alpha");
@@ -76,12 +79,16 @@ public sealed class PacingRuntimeProbe
                     throw new Exception("Owned object cleanup failed");
                 var pool=Object.FindFirstObjectByType<DojoDebrisPool>();
                 if(pool!=null&&pool.ActiveCount>0)throw new Exception("Active debris survived cleanup");
-                evidence.Add($"PASS {cases[stage]} heavies={spawner.HeavyEncounters} targets={count} peak={peak} objectsIncludingResolving={peakObjects} debris={peakDebris} completed={completed} logicalMax={spawner.MaxLogicalLength} maxIdle={spawner.MaxEmptyIdle:F3}s work={spawner.ActiveWorkTime:F2}s low={spawner.LowIntensityTime:F2}s idle={spawner.EmptyIdleTime:F2}s");
+                evidence.Add($"PASS {cases[stage]} heavies={spawner.HeavyEncounters} targets={count} peak={peak} objectsIncludingResolving={peakObjects} debris={peakDebris} completed={completed} logicalMax={spawner.MaxLogicalLength} maxIdle={spawner.MaxEmptyIdle:F3}s work={spawner.ActiveWorkTime:F2}s low={spawner.LowIntensityTime:F2}s idle={spawner.EmptyIdleTime:F2}s firstVisible={firstVisible:F3}s materials={materialBaseline}->{peakMaterials} effects={peakParticles} pooledMounts={peakMounts} phases={string.Join(",",phases)}");
                 File.WriteAllLines("artifacts/validation/pacing-playmode.txt",evidence);
                 Object.Destroy(level);
                 if(++stage==cases.Length){Finish();return;}BeginCase();return;
             }
             float elapsed=Time.time-caseStarted;
+            phases.Add(spawner.CurrentWave);
+            if(firstVisible<0&&spawner.ActiveTargetCount>0)firstVisible=elapsed;
+            if(elapsed>.5f&&firstVisible<0)throw new Exception("No target/telegraph within 0.5s");
+            if(stage==0&&!openingCaptured&&elapsed>=.3f){capture("Hard-Opening");openingCaptured=true;}
             if(elapsed>85)throw new Exception("Timed out "+cases[stage]+" "+spawner.Diagnostic);
             var active=evaluator.ActiveTargets;sorted.Clear();
             for(int i=0;i<active.Count;i++)if(active[i]!=null&&!active[i].IsResolved)sorted.Add(active[i]);
@@ -96,9 +103,12 @@ public sealed class PacingRuntimeProbe
                 if(seen.Add(target.TargetId))
                 {
                     count++;
+                    if(target.transform.position.z>30.01f)throw new Exception("Preview outside room");
                     if(target.IsTough)
                     {
                         if(target.ExpectedHitTime-lastHeavyArrival<spawner.Pacing.HeavyMinimumSeparation(level.LevelNumber,level.IsEndless)-.01f)throw new Exception("Heavy minimum separation");
+                        if(target.MaxHits<level.MinToughHits||target.MaxHits>level.MaxToughHits)throw new Exception("Heavy durability outside configured range");
+                        if(spawner.PatternActionIndex%(level.AllowedTargetTypes.Length==1&&level.AllowedTargetTypes[0]==TargetType.Kick?spawner.Pacing.KickWorkSegmentActions:spawner.Pacing.WorkSegmentActions)!=0)throw new Exception("Heavy injected inside segment");
                         lastHeavyArrival=target.ExpectedHitTime;
                     }
                     if(!target.IsTough&&target.ExpectedHitTime-lastArrival<(kick?.549f:.179f))throw new Exception("Arrival spacing violated");
@@ -117,6 +127,11 @@ public sealed class PacingRuntimeProbe
                 else if(evaluator.PreviewTiming(target)==HitQuality.Perfect)
                     evaluator.EvaluateHit(KeyboardActionFactory.Create(kick?ActionType.Kick:ActionType.Punch,target.Lane==LaneType.Left?BodySide.Left:BodySide.Right));
             }
+            peakMaterials=Math.Max(peakMaterials,Resources.FindObjectsOfTypeAll<Material>().Length);
+            peakParticles=Math.Max(peakParticles,HitParticleEffect.RetainedEffects);
+            peakMounts=Math.Max(peakMounts,TargetMountMotion.RetainedMounts);
+            if(peakParticles>4||peakMounts>10)throw new Exception("Presentation pool grew past bound");
+            if(peakMaterials>materialBaseline+60)throw new Exception("Material growth beyond warmup allowance");
             if(peak>8)throw new Exception("Rolling cap exceeded");
             peakObjects=Mathf.Max(peakObjects,Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None).Length);
             var livePool=Object.FindFirstObjectByType<DojoDebrisPool>();

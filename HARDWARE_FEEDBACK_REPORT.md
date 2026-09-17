@@ -1,6 +1,6 @@
-# Hardware feedback implementation — 15 September 2026
+# Hardware feedback implementation — historical record, updated 17 September 2026
 
-Continuation of the interrupted pass, using the existing separate worktree. Disk/Git were checked before continuing; the source was already mostly saved. Missing final work completed: PAUSE/KICK overlap, target-owned health bar lifecycle and orphan assertion, fresh Play Mode run, host/syntax/export/static checks, Android build and evidence/status handoff. Implementation commit: d1165f8. Build-generated version settings and final evidence are committed separately.
+This document records the earlier hardware-feedback implementation. The current source is the main checkout and has since received pacing, visual, cleanup and Android build updates. Use ANDROID_STATUS.md and SENSOR_PAIRING_FLOW.md for the current implementation boundary.
 
 ## Evidence boundaries
 

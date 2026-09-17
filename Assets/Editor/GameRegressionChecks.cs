@@ -38,8 +38,8 @@ public static class GameRegressionChecks
             throw new InvalidOperationException("Install Android Build Support for this project's exact Editor, including SDK/NDK and OpenJDK.");
         PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.boxreha.digitaldojo");
         PlayerSettings.productName = "Digital Dojo";
-        PlayerSettings.bundleVersion = "1.4";
-        PlayerSettings.Android.bundleVersionCode = 5;
+        PlayerSettings.bundleVersion = "1.5";
+        PlayerSettings.Android.bundleVersionCode = 6;
         PlayerSettings.Android.minSdkVersion = RequiredAndroidMinimum();
         PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)36;
         PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
@@ -143,11 +143,12 @@ public static class GameRegressionChecks
                 LevelDefinition.CreateLevel3(), LevelDefinition.CreateEndless() })
             {
                 Require(level.IsEndless ? level.DurationSeconds == 0f : level.DurationSeconds > 0f);
+                var profile=new GameplayPacingProfile();var planner=new GameplayPatternPlanner(73);
                 for (int i = 0; i < 250; i++)
                 {
-                    SpawnPatternData pattern = SpawnPatternGenerator.GetNextPattern(level);
-                    Require(pattern.Lane != LaneType.Center);
-                    Require(pattern.Type == TargetType.Punch ? pattern.VerticalPos == VerticalPosition.High : pattern.VerticalPos == VerticalPosition.Low);
+                    var pattern=planner.Select(profile.Sample(level.LevelNumber,level.IsEndless,i),profile,level.AllowedTargetTypes,level.AllowedLanes,false,0);
+                    Require(pattern!=null && pattern.SideAt(i)!=LaneType.Center);
+                    Require(pattern.TypeAt(i)==TargetType.Punch || pattern.TypeAt(i)==TargetType.Kick);
                 }
                 UnityEngine.Object.DestroyImmediate(level);
             }
@@ -156,9 +157,9 @@ public static class GameRegressionChecks
         {
             GameSessionStats stats = new GameSessionStats { TotalTargets = 4, PerfectHits = 1, GoodHits = 1, EarlyHits = 1, Misses = 1 };
             Require(stats.Accuracy == 0.5f && stats.CompletionRate == 0.75f);
-            stats.TrackReactionTime(2f); stats.TrackReactionTime(float.NaN); stats.TrackReactionTime(-1f);
-            Require(stats.AverageReactionTime == 2f);
-            stats.Reset(); Require(stats.TotalTargets == 0 && stats.AverageReactionTime == 0f);
+            stats.TrackTargetResolutionTime(2f); stats.TrackTargetResolutionTime(float.NaN); stats.TrackTargetResolutionTime(-1f);
+            Require(stats.AverageTargetResolutionTime == 2f);
+            stats.Reset(); Require(stats.TotalTargets == 0 && stats.AverageTargetResolutionTime == 0f);
         });
         Check("mounted assets have meshes, materials and no implicit physics", () =>
         {

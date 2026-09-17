@@ -20,13 +20,12 @@ public class HitZoneEvaluator : MonoBehaviour
     [SerializeField] private Transform hitZoneCenter;
     [SerializeField] private float minimumSensorPowerMultiplier = 0.75f;
     [SerializeField] private float maximumSensorPowerMultiplier = 1.25f;
-    [SerializeField] private float heavyMinimumPower = 0.5f;
     [SerializeField] private bool createRuntimeHitGuide = true;
     private readonly List<TargetObject> activeTargets = new List<TargetObject>();
-    private readonly List<Material> guideMaterials = new List<Material>();
     private class Chain { public int Total, Completed; public bool Failed; public LaneType Lane; public string PatternId; }
     private readonly Dictionary<string, Chain> chains = new Dictionary<string, Chain>();
-    public float HitZoneZ => hitZoneCenter != null ? hitZoneCenter.position.z : transform.position.z;
+    public Vector3 HitZonePosition => hitZoneCenter != null ? hitZoneCenter.position : transform.position;
+    public float HitZoneZ => HitZonePosition.z;
     public IReadOnlyList<TargetObject> ActiveTargets => activeTargets;
 
     public const float PlayerHitPlaneZ = 2f;
@@ -37,7 +36,6 @@ public class HitZoneEvaluator : MonoBehaviour
             gameObject.AddComponent<HitZoneVisualizer>();
         if (GetComponent<DojoGameFeel>() == null) gameObject.AddComponent<DojoGameFeel>();
     }
-    void OnDestroy() { foreach (var material in guideMaterials) if (material != null) Destroy(material); }
     public string StartRapidFireChain(LaneType lane, int totalTargets)
     {
         string id = Guid.NewGuid().ToString("N");
@@ -64,7 +62,6 @@ public class HitZoneEvaluator : MonoBehaviour
             float offset = TimingOffset(target);
             if (target.IsTough && target.transform.position.z <= HitZoneZ)
             {
-                target.HasSpawnedInHitZone = true;
                 target.LockInHitZone(HitZoneZ);
                 if (Time.time - target.LockedTime >= target.HeavyTimeoutSeconds) Miss(target, "heavy_timeout");
             }
@@ -139,10 +136,7 @@ public class HitZoneEvaluator : MonoBehaviour
             }
 
         }
-        if (!best.Resolve()) return;
-        activeTargets.Remove(best);
-        best.PlayDestroyAnimation(null, best.IsTough || quality == HitQuality.Perfect);
-        OnTargetFeedback?.Invoke(best, quality, false);
+        if (!ResolveTarget(best)) return;
         int baseScore = quality == HitQuality.Perfect ? 100 : quality == HitQuality.Good ? 50 : 25;
         if (best.IsTough) baseScore = 100;
         if (action.SourceType == InputSourceType.Sensor && action.NormalizationValid)
@@ -155,10 +149,12 @@ public class HitZoneEvaluator : MonoBehaviour
         if (best.IsTough) baseScore += 350;
 
         TrackResolution(best, true);
-        GameManager.Instance?.SessionStats?.TrackReactionTime(Mathf.Max(0f, Time.time - best.SpawnTime));
+        GameManager.Instance?.SessionStats?.TrackTargetResolutionTime(Mathf.Max(0f, Time.time - best.SpawnTime));
         ResearchSessionLog.TargetResolved(best, "hit", action.EventId, quality, timing);
         int awarded = ScoreSystem.AwardHit(baseScore, best.TargetId, action.EventId);
         TrackChain(best, true, action.EventId);
+        best.PlayDestroyAnimation(null, best.IsTough || quality == HitQuality.Perfect);
+        OnTargetFeedback?.Invoke(best, quality, false);
         OnHitEvaluated?.Invoke(quality, awarded, best.Lane);
         OnHitVisualFeedback?.Invoke(quality, best.Lane, best.transform.position);
         if(best.IsTough){OnToughTargetDestroyed?.Invoke(quality,best.Lane,best.transform.position);DojoGameFeel.Cue(DojoAudioCue.HeavyBreak,best.IsKick);}
@@ -166,31 +162,33 @@ public class HitZoneEvaluator : MonoBehaviour
         HitParticleEffect.Spawn(best.transform.position, HitParticleEffect.GetColorForTargetType(best.Type),
             HitParticleEffect.GetParticleCountForTargetType(best.Type));
         TextPopup.CreateForHitQuality(quality, best.transform.position);
-        activeTargets.Remove(best);
 
+    }
+    private bool ResolveTarget(TargetObject target)
+    {
+        if(target==null||!target.Resolve())return false;
+        activeTargets.Remove(target);
+        return true;
     }
     public void Miss(TargetObject target, string outcome)
     {
-        if (target == null || !target.Resolve()) return;
+        if (!ResolveTarget(target)) return;
         Destroy(target.gameObject);
-        activeTargets.Remove(target);
-        OnTargetFeedback?.Invoke(target, HitQuality.Miss, false);
         TrackResolution(target, false);
         TrackChain(target, false, null);
         if (outcome == "heavy_timeout" && GameManager.Instance?.SessionStats != null)
             GameManager.Instance.SessionStats.HeavyTimeouts++;
         ResearchSessionLog.TargetResolved(target, outcome);
+        OnTargetFeedback?.Invoke(target, HitQuality.Miss, false);
         OnTargetMissed?.Invoke((int)target.Lane);
         OnMissVisualFeedback?.Invoke(target.Lane, target.transform.position);
         TextPopup.CreateMiss(target.transform.position);
         AudioManager.Instance?.PlayMissSound();
-        activeTargets.Remove(target);
-        Destroy(target.gameObject);
     }
     public void AbortRemaining()
     {
         // Include objects spawned this frame whose Start has not yet run.
-        foreach (TargetObject target in FindObjectsOfType<TargetObject>())
+        foreach (TargetObject target in FindObjectsByType<TargetObject>(FindObjectsSortMode.None))
         {
             target.EnsureTrackedSpawn();
             if (!target.IsResolved && target.Resolve())
@@ -230,39 +228,5 @@ public class HitZoneEvaluator : MonoBehaviour
             }
         }
         chains.Remove(target.ChainId);
-    }
-    // Physics overlap does not define temporal scoring windows; target movement is evaluated above.
-    private void EnsureHitGuide()
-    {
-        if (transform.Find("HitGuideRoot") != null) return;
-        GameObject root = new GameObject("HitGuideRoot");
-        root.transform.SetParent(transform, false);
-        Material punchMaterial = CreateGuideMaterial(GameVisualPalette.PunchColor);
-        Material kickMaterial = CreateGuideMaterial(GameVisualPalette.KickColor);
-        // Side brackets mark the scoring plane without drawing over target faces.
-        foreach (float x in new[] { -4.35f, -1.65f, 1.65f, 4.35f })
-        {
-            CreateGuide(root.transform, new Vector3(x, -0.4f, 0f), punchMaterial);
-            CreateGuide(root.transform, new Vector3(x, -2.05f, 0f), kickMaterial);
-        }
-    }
-    private Material CreateGuideMaterial(Color color)
-    {
-        Material material = new Material(Shader.Find("Standard"));
-        material.color = color;
-        material.EnableKeyword("_EMISSION");
-        material.SetColor("_EmissionColor", color * 1.2f);
-        guideMaterials.Add(material);
-        return material;
-    }
-    private static void CreateGuide(Transform parent, Vector3 position, Material material)
-    {
-        GameObject bar = VisualPrimitive.Create(PrimitiveType.Cube);
-        bar.name = "ActionHitLine";
-        bar.transform.SetParent(parent, false);
-        bar.transform.localPosition = position;
-        bar.transform.localScale = new Vector3(0.3f, 0.055f, 0.065f);
-        Destroy(bar.GetComponent<Collider>());
-        bar.GetComponent<Renderer>().sharedMaterial = material;
     }
 }

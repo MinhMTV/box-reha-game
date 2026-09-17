@@ -5,7 +5,6 @@ using System.Collections;
 public class TargetSpawner : MonoBehaviour
 {
     public GameConfig Configuration => gameConfig;
-    [SerializeField] private GameObject targetPrefab;
     [SerializeField] private Transform spawnPointLeft,spawnPointCenter,spawnPointRight;
     [SerializeField] private float missZoneZ;
     [SerializeField] private GameConfig gameConfig;
@@ -13,7 +12,8 @@ public class TargetSpawner : MonoBehaviour
     [SerializeField] private HitZoneEvaluator hitZoneEvaluator;
     [SerializeField] private GameplayPacingProfile pacing=new GameplayPacingProfile();
     public GameplayPacingProfile Pacing=>pacing;
-    public string CurrentWave { get; private set; }="Warmup";
+    public string CurrentWave { get; private set; }="Opening";
+    public PacingPhase CurrentPhase { get; private set; }=PacingPhase.Opening;
     public string CurrentPatternId { get; private set; }="";
     public int CurrentPacingTier { get; private set; }
     public int PatternActionIndex { get; private set; }
@@ -22,6 +22,8 @@ public class TargetSpawner : MonoBehaviour
     public int SessionSeed { get; private set; }
     public int ActiveTargetCount=>hitZoneEvaluator==null?0:ActiveCount();
     public string Availability=>currentLevel==null?"none":string.Join(",",currentLevel.AllowedTargetTypes)+" / "+string.Join(",",currentLevel.AllowedLanes);
+    readonly System.Collections.Generic.Dictionary<Vector4,Material> fallbackMaterials=new System.Collections.Generic.Dictionary<Vector4,Material>();
+    void OnDestroy(){foreach(var material in fallbackMaterials.Values)if(material!=null)Destroy(material);}
     LevelDefinition currentLevel;
     GameplayPatternPlanner planner;
     bool isSpawning;
@@ -46,6 +48,7 @@ public class TargetSpawner : MonoBehaviour
         SessionSeed=pacing.Seed==0?(System.Environment.TickCount&int.MaxValue):pacing.Seed;
         planner=new GameplayPatternPlanner(SessionSeed);previousArrival=float.NegativeInfinity;
         misses=0;RecoveryRequested=false;missWindowStart=Time.time;pacingStarted=Time.time;isSpawning=true;
+        System.Array.Clear(pathPredecessors,0,pathPredecessors.Length);
         ResearchSessionLog.PacingConfiguration(JsonUtility.ToJson(pacing),SessionSeed);
         StartCoroutine(SpawnRoutine());
     }
@@ -61,7 +64,6 @@ public class TargetSpawner : MonoBehaviour
     }
     public int PendingActions { get; private set; }
     public int Lookahead { get; private set; }
-    public int ReservedCapacity=>0;
     public float NextSpawnTime { get; private set; }
     public float NextPatternTime { get; private set; }
     public float RecoveryUntil { get; private set; }
@@ -73,9 +75,8 @@ public class TargetSpawner : MonoBehaviour
     public int PeakActive { get; private set; }
     public float ComboLengthTier { get; private set; }
     public int MaxLogicalLength { get; private set; }
-    public string Diagnostic => $"remaining={Remaining:F2} phase={CurrentWave} pattern={CurrentPatternId} pending={PendingActions} lookahead={Lookahead} active={ActiveTargetCount} reserved=0 nextSpawn={NextSpawnTime:F2} nextPattern={NextPatternTime:F2} recoveryUntil={RecoveryUntil:F2} heavy={HasActiveToughTarget()} missRecovery={RecoveryRequested} wait={WaitingReason}";
+    public string Diagnostic => $"remaining={Remaining:F2} phase={CurrentPhase} pattern={CurrentPatternId} pending={PendingActions} lookahead={Lookahead} active={ActiveTargetCount} nextSpawn={NextSpawnTime:F2} nextPattern={NextPatternTime:F2} recoveryUntil={RecoveryUntil:F2} heavy={HasActiveToughTarget()} missRecovery={RecoveryRequested} wait={WaitingReason}";
     float idleFor,nextDiagnostic,missRecoveryAfter;
-    bool expedite;
     PacingActionTimeline timeline;
     float Remaining=>currentLevel==null?0:currentLevel.IsEndless?float.PositiveInfinity:currentLevel.DurationSeconds-(Time.time-pacingStarted);
     void Update()
@@ -85,7 +86,7 @@ public class TargetSpawner : MonoBehaviour
         if(active>0)
         {
             idleFor=0;
-            if(CurrentWave=="Recovery")LowIntensityTime+=Time.deltaTime;else ActiveWorkTime+=Time.deltaTime;
+            if(CurrentPhase==PacingPhase.Recovery)LowIntensityTime+=Time.deltaTime;else ActiveWorkTime+=Time.deltaTime;
         }
         else
         {
@@ -93,12 +94,16 @@ public class TargetSpawner : MonoBehaviour
             float threshold=currentLevel.LevelNumber<=1?1.3f:currentLevel.LevelNumber==2?1:.7f;
             if(idleFor>threshold&&Time.time>=RecoveryUntil&&Remaining>.3f&&CurrentPatternId!="unavailable")
             {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
                 Debug.LogWarning("PACING_IDLE_DIAGNOSTIC "+Diagnostic);
-                expedite=true;RecoveryUntil=Time.time;NextPatternTime=Time.time;idleFor=0;
+#endif
+                RecoveryUntil=Time.time;NextPatternTime=Time.time;idleFor=0;
             }
         }
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         if(Remaining<=34&&Remaining>=26&&Time.time>=nextDiagnostic)
         {nextDiagnostic=Time.time+.5f;Debug.Log("PACING_WINDOW_DIAGNOSTIC "+Diagnostic);}
+#endif
     }
     IEnumerator SpawnRoutine()
     {
@@ -110,11 +115,11 @@ public class TargetSpawner : MonoBehaviour
         while(isSpawning&&Remaining>0)
         {
             var sample=pacing.Sample(currentLevel.LevelNumber,currentLevel.IsEndless,Time.time-pacingStarted,currentLevel.DurationSeconds);
-            CurrentWave=sample.Wave;CurrentPacingTier=sample.PacingTier;ComboLengthTier=sample.ComboLengthTier;
+            CurrentWave=sample.Wave;CurrentPhase=sample.Phase;CurrentPacingTier=sample.PacingTier;ComboLengthTier=sample.ComboLengthTier;
             Lookahead=Mathf.Clamp(sample.MaxConcurrent,2,8);
             if(RecoveryRequested)
             {
-                sample.Recovery=true;sample.Phase=PacingPhase.Recovery;CurrentWave="Recovery";
+                sample.Recovery=true;sample.Phase=PacingPhase.Recovery;CurrentPhase=sample.Phase;CurrentWave="Recovery";
                 RecoveryRequested=false;misses=0;missWindowStart=Time.time;
                 missRecoveryAfter=Time.time+pacing.MissRecoveryCooldownSeconds;
             }
@@ -124,7 +129,7 @@ public class TargetSpawner : MonoBehaviour
             CurrentPatternId=plan.PatternId;PatternActionIndex=0;
             CurrentTravelSeconds=plan.TravelSeconds;
             float deploy=pacing.MountTelegraphSeconds+Mathf.Clamp(pacing.NormalDeploySeconds,.2f,.4f);
-            float sameSide=SessionInputSelection.Physical?(gameConfig!=null?gameConfig.SensorActionCooldown:.35f):0;
+            float sameSide=SessionInputSelection.Physical?Mathf.Max(.35f,gameConfig!=null?gameConfig.SensorActionCooldown:.35f):0;
             // Ordinary transitions are scheduled between actions, not added after visual cleanup and travel.
             float first=Mathf.Max(Time.time+deploy+CurrentTravelSeconds,timeline.LastAction+plan.TransitionSeconds);
             float globalMinimum=plan.Type==TargetType.Kick?Mathf.Max(.55f,pacing.MinimumSpacing):pacing.MinimumSpacing;
@@ -148,39 +153,45 @@ public class TargetSpawner : MonoBehaviour
             if(count==0){WaitingReason="round boundary";yield return null;continue;}
             MaxLogicalLength=Mathf.Max(MaxLogicalLength,count);
             string chain=count>1?hitZoneEvaluator.StartActionPattern(plan.PatternId,plan.SideAt(0),count):null;
-            float maxDistance=float.MaxValue;
-            for(int i=0;i<Mathf.Min(count,Lookahead);i++)
-            {var point=GetSpawnPoint(plan.SideAt(i));if(point!=null)maxDistance=Mathf.Min(maxDistance,point.position.z-hitZoneEvaluator.HitZoneZ);}
-            if(maxDistance==float.MaxValue||maxDistance<=0){WaitingReason="missing spawn point";yield return null;continue;}
-            float speedShared=maxDistance/(CurrentTravelSeconds+plan.Interval*(Lookahead-1));
             float requestedArrival=first;
             NextPatternTime=first;
             for(int i=0;i<count&&isSpawning&&Remaining>0;i++)
             {
                 PendingActions=count-i;PatternActionIndex=i;
                 var side=plan.SideAt(i);
-                if(requestedArrival>=nextHeavyAt && currentLevel.ToughTargetChance>0 && Remaining>4)
+                if(requestedArrival>=nextHeavyAt && plan.IsWorkBoundary(i) && currentLevel.HeavyTargetsEnabled && Remaining>4)
                 {
                     yield return SpawnHeavy(sample,plan);
-                    CurrentPatternId=plan.PatternId;
+                    CurrentPatternId=plan.PatternId;CurrentWave=sample.Wave;CurrentPhase=sample.Phase;
                     requestedArrival=Mathf.Max(requestedArrival,Time.time+deploy+CurrentTravelSeconds);
                 }
                 var actionType=plan.TypeAt(i);
+                var point=GetSpawnPoint(side);
+                if(point==null){WaitingReason="missing spawn point";yield break;}
+                float distance=point.position.z-hitZoneEvaluator.HitZoneZ;
+                if(distance<=0){WaitingReason="invalid spawn distance";yield break;}
+                float travel=Mathf.Max(.12f,CurrentTravelSeconds);
+                float actionSpeed=distance/travel;
                 float due=timeline.Next(side,requestedArrival,Mathf.Max(globalMinimum,i==0?0:plan.IntervalBefore(i)),sameSide);
+                var predecessor=pathPredecessors[(int)side];
+                float spacing=Mathf.Max(.01f,pacing.MinimumVisualSpacing);
+                // At travel start and at the earlier hit time the gap must both be legal.
+                // Linear motion then preserves the gap throughout the interval, even across speed changes.
+                if(predecessor!=null&&!predecessor.IsResolved)
+                    due=Mathf.Max(due,predecessor.ExpectedHitTime+spacing/Mathf.Min(actionSpeed,Mathf.Max(.01f,predecessor.MoveSpeed)));
                 NextExpectedActionTime=due;
-                // Rolling preview consumes only live logical slots. No full-pattern reservation.
-                NextSpawnTime=due-deploy-CurrentTravelSeconds-plan.Interval*(Lookahead-1);
+                NextSpawnTime=due-deploy-travel;
                 WaitingReason="rolling lookahead";
-                while(isSpawning&&Remaining>0&&(ActiveCount()>=Lookahead||(!expedite&&Time.time<NextSpawnTime)))yield return null;
+                while(isSpawning&&Remaining>0&&(ActiveCount()>=Lookahead||Time.time<NextSpawnTime||!PathHasRoom(side,point.position.z,spacing)))yield return null;
                 if(!isSpawning||Remaining<=0)yield break;
-                expedite=false;
-                // Slow frames/capacity pressure preserve a small honest lead, never teleport through the hit plane.
-                due=timeline.Next(side,Mathf.Max(due,Time.time+deploy+.12f),globalMinimum,sameSide);
-                float travel=Mathf.Max(.12f,due-Time.time-deploy);
-                float z=hitZoneEvaluator.HitZoneZ+speedShared*travel;
-                var target=SpawnPaced(actionType,side,z,speedShared,deploy,false,chain,i,count);
+                // Capacity pressure delays the timestamp, never increases speed or changes the spawn region.
+                due=Time.time+deploy+travel;
+                if(!currentLevel.IsEndless&&due>pacingStarted+currentLevel.DurationSeconds)break;
+                var target=SpawnPaced(actionType,side,point.position.z,actionSpeed,deploy,false,chain,i,count);
                 if(target!=null)
                 {
+                    pathPredecessors[(int)side]=target;
+                    NextExpectedActionTime=target.ExpectedHitTime;
                     timeline.Commit(side,target.ExpectedHitTime);
                     ResearchSessionLog.PacingTarget(target.TargetId,CurrentWave,sample.PacingTier,CurrentPatternId,i,
                         i==0?0:target.ExpectedHitTime-previousArrival,travel);
@@ -196,6 +207,12 @@ public class TargetSpawner : MonoBehaviour
         WaitingReason="round ended";PendingActions=0;
     }
     System.Random heavyRandom;
+    readonly TargetObject[] pathPredecessors=new TargetObject[3];
+    bool PathHasRoom(LaneType lane,float spawnZ,float spacing)
+    {
+        var previous=pathPredecessors[(int)lane];
+        return previous==null||previous.IsResolved||spawnZ>=previous.transform.position.z+spacing;
+    }
     float nextHeavyAt;
     public int HeavyEncounters { get; private set; }
     public float LastHeavyArrival { get; private set; }
@@ -204,7 +221,7 @@ public class TargetSpawner : MonoBehaviour
         WaitingReason="heavy preview slot";
         while(isSpawning&&ActiveCount()>=Lookahead)yield return null;
         if(!isSpawning)yield break;
-        bool kick=plan.Type==TargetType.Kick || (plan.Mixed&&heavyRandom.NextDouble()<.25);
+        bool kick=plan.Type==TargetType.Kick || (plan.Mixed&&heavyRandom.NextDouble()<pacing.MixedKickWeight/System.Math.Max(.001f,pacing.MixedPunchWeight+pacing.MixedKickWeight));
         var point=GetSpawnPoint(LaneType.Center);
         if(point==null){nextHeavyAt=Time.time+1;yield break;}
         float delay=pacing.MountTelegraphSeconds+Mathf.Clamp(pacing.HeavyDeploySeconds,.5f,.8f);
@@ -216,9 +233,9 @@ public class TargetSpawner : MonoBehaviour
         if(target==null)yield break;
         LastHeavyArrival=target.ExpectedHitTime;HeavyEncounters++;
         nextHeavyAt=LastHeavyArrival+pacing.HeavyInterval(currentLevel.LevelNumber,currentLevel.IsEndless,Time.time-pacingStarted,heavyRandom.NextDouble());
-        WaitingReason="heavy work";CurrentWave="Heavy";
+        WaitingReason="heavy work";CurrentWave="Heavy";CurrentPhase=PacingPhase.HeavyOpportunity;
         while(isSpawning&&!target.IsResolved&&Remaining>0)yield return null;
-        CurrentWave="Recovery";WaitingReason="resume prepared sequence";
+        CurrentWave="Recovery";CurrentPhase=PacingPhase.Recovery;WaitingReason="resume prepared sequence";
         // Continue the existing logical combo after the heavy; no cancellation, sleep or VFX gate.
     }
     int ActiveCount()
@@ -241,16 +258,17 @@ public class TargetSpawner : MonoBehaviour
         position.y=gameConfig!=null?gameConfig.GetVerticalOffset(height):height==VerticalPosition.Low?.45f:2.1f;
         var obj=CreateTargetObject(position,type);var target=obj.GetComponent<TargetObject>();
         target.Lane=lane;target.Type=type;target.VertPosition=height;target.MoveSpeed=speed;
-        target.HitWindow=currentLevel.HitWindowSeconds;target.MinPower=currentLevel.MinPower;
-        target.MaxHits=heavy?Mathf.Max(2,currentLevel.MinToughHits):1;target.ChainId=chain;
+        target.HitWindow=currentLevel.HitWindowSeconds;target.BindEvaluator(hitZoneEvaluator);
+        target.MaxHits=heavy?heavyRandom.Next(Mathf.Max(2,currentLevel.MinToughHits),Mathf.Max(2,Mathf.Max(currentLevel.MinToughHits,currentLevel.MaxToughHits))+1):1;target.ChainId=chain;
         target.SequenceIndex=index;target.SequenceLength=count;
         var mount=obj.GetComponent<TargetMountMotion>();mount.Duration=deploy;mount.TelegraphSeconds=pacing.MountTelegraphSeconds;
-        obj.GetComponent<TargetMover>().Initialize(speed,missZoneZ);target.EnsureTrackedSpawn();return target;
+        obj.GetComponent<TargetMover>().Initialize(speed,missZoneZ,hitZoneEvaluator);target.EnsureTrackedSpawn();return target;
     }
     Transform GetSpawnPoint(LaneType lane)=>lane==LaneType.Left?spawnPointLeft:lane==LaneType.Right?spawnPointRight:spawnPointCenter;
 
     private GameObject CreateTargetObject(Vector3 position, TargetType type)
     {
+        if(type==TargetType.Block||type==TargetType.Dodge)throw new System.ArgumentException("Reserved target type is not supported",nameof(type));
         GameObject target = new GameObject(type + "Target");
         target.transform.position = position;
 
@@ -262,39 +280,31 @@ public class TargetSpawner : MonoBehaviour
             case TargetType.Kick:
                 if (!TryAttachVisualPrefab(kickVisualPrefab, target.transform))
                 {
-                    BuildKickTarget(target.transform);
+                    TargetVisualFactory.BuildFallback(target.transform, type, BuildKickTarget, BuildTargetDisc);
                 }
                 collider.size = new Vector3(1.9f, 1.25f, 0.9f);
                 break;
             case TargetType.ToughKick:
-                if (!TryAttachVisualPrefab(heavyKickVisualPrefab, target.transform)) BuildKickTarget(target.transform);
+                if (!TryAttachVisualPrefab(heavyKickVisualPrefab, target.transform)) TargetVisualFactory.BuildFallback(target.transform, type, BuildKickTarget, BuildTargetDisc);
                 collider.size = new Vector3(1.8f, 1.6f, 0.65f);
-                break;
-            case TargetType.Block:
-                BuildBlockTarget(target.transform);
-                collider.size = new Vector3(1.9f, 2.1f, 0.9f);
-                break;
-            case TargetType.Dodge:
-                BuildDodgeTarget(target.transform);
-                collider.size = new Vector3(2.8f, 1.0f, 1.0f);
                 break;
             case TargetType.ToughPunch:
                 if (!TryAttachVisualPrefab(toughVisualPrefab, target.transform))
                 {
-                    BuildTargetDisc(target.transform, GameVisualPalette.GetTargetColor(TargetType.ToughPunch), true);
+                    TargetVisualFactory.BuildFallback(target.transform, type, BuildKickTarget, BuildTargetDisc);
                 }
                 collider.size = new Vector3(2.7f, 2.9f, 1.1f);
                 break;
             default: // Punch
                 if (!TryAttachVisualPrefab(punchVisualPrefab, target.transform))
                 {
-                    BuildTargetDisc(target.transform, GameVisualPalette.GetTargetColor(TargetType.Punch), false);
+                    TargetVisualFactory.BuildFallback(target.transform, type, BuildKickTarget, BuildTargetDisc);
                 }
                 collider.size = new Vector3(1.7f, 1.7f, 0.8f);
                 break;
         }
 
-        target.AddComponent<TargetObject>();
+        target.AddComponent<TargetObject>().BindEvaluator(hitZoneEvaluator);
         target.AddComponent<TargetMover>();
         target.AddComponent<TargetMountMotion>();
         Rigidbody rb = target.GetComponent<Rigidbody>();
@@ -468,48 +478,6 @@ public class TargetSpawner : MonoBehaviour
         ApplyMaterial(toeCap, new Color(0.08f, 0.34f, 0.32f, 1f), 0.6f);
     }
 
-    private void BuildBlockTarget(Transform parent)
-    {
-        GameObject shield = VisualPrimitive.Create(PrimitiveType.Cube);
-        shield.name = "Shield";
-        shield.transform.SetParent(parent, false);
-        shield.transform.localPosition = Vector3.zero;
-        shield.transform.localScale = new Vector3(1.65f, 1.95f, 0.42f);
-        ApplyMaterial(shield, GameVisualPalette.GetTargetColor(TargetType.Block), 1.7f);
-
-        GameObject core = VisualPrimitive.Create(PrimitiveType.Cube);
-        core.name = "ShieldCore";
-        core.transform.SetParent(parent, false);
-        core.transform.localPosition = new Vector3(0f, 0f, -0.08f);
-        core.transform.localScale = new Vector3(1.0f, 1.2f, 0.20f);
-        ApplyMaterial(core, new Color(0.05f, 0.14f, 0.22f, 1f), 0.4f);
-    }
-
-    private void BuildDodgeTarget(Transform parent)
-    {
-        GameObject bar = VisualPrimitive.Create(PrimitiveType.Cylinder);
-        bar.name = "DodgeBar";
-        bar.transform.SetParent(parent, false);
-        bar.transform.localPosition = Vector3.zero;
-        bar.transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
-        bar.transform.localScale = new Vector3(0.42f, 1.45f, 0.42f);
-        ApplyMaterial(bar, GameVisualPalette.GetTargetColor(TargetType.Dodge), 1.5f);
-
-        GameObject leftCap = VisualPrimitive.Create(PrimitiveType.Sphere);
-        leftCap.name = "DodgeCapLeft";
-        leftCap.transform.SetParent(parent, false);
-        leftCap.transform.localPosition = new Vector3(-1.4f, 0f, 0f);
-        leftCap.transform.localScale = Vector3.one * 0.45f;
-        ApplyMaterial(leftCap, GameVisualPalette.GetTargetHighlight(TargetType.Dodge), 1.0f);
-
-        GameObject rightCap = VisualPrimitive.Create(PrimitiveType.Sphere);
-        rightCap.name = "DodgeCapRight";
-        rightCap.transform.SetParent(parent, false);
-        rightCap.transform.localPosition = new Vector3(1.4f, 0f, 0f);
-        rightCap.transform.localScale = Vector3.one * 0.45f;
-        ApplyMaterial(rightCap, GameVisualPalette.GetTargetHighlight(TargetType.Dodge), 1.0f);
-    }
-
     private void ApplyMaterial(GameObject visual, Color color, float emissionStrength)
     {
         Collider primitiveCollider = visual.GetComponent<Collider>();
@@ -524,7 +492,10 @@ public class TargetSpawner : MonoBehaviour
             return;
         }
 
+        var key=new Vector4(color.r,color.g,color.b,emissionStrength);
+        if(fallbackMaterials.TryGetValue(key,out var cached)&&cached!=null){renderer.sharedMaterial=cached;return;}
         Material material = new Material(Shader.Find("Standard"));
+        fallbackMaterials[key]=material;
         material.color = color;
         material.SetFloat("_Metallic", 0.12f);
         material.SetFloat("_Glossiness", 0.75f);

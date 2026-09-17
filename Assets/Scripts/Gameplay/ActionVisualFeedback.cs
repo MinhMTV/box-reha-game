@@ -27,7 +27,7 @@ public class ActionVisualFeedback : MonoBehaviour
         defaultLeftColor = GameVisualPalette.GetLaneBaseColor(LaneType.Left);
         defaultCenterColor = GameVisualPalette.GetLaneBaseColor(LaneType.Center);
         defaultRightColor = GameVisualPalette.GetLaneBaseColor(LaneType.Right);
-        hitFlashColor = GameVisualPalette.DodgeColor;
+        hitFlashColor = GameVisualPalette.SuccessColor;
         missFlashColor = GameVisualPalette.MissColor;
         perfectColor = GameVisualPalette.PerfectColor;
     }
@@ -88,24 +88,22 @@ public class ActionVisualFeedback : MonoBehaviour
 
     private IEnumerator FlashCoroutine(Renderer renderer, Color flashColor, Color defaultColor)
     {
-        Material material = renderer.material;
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
         Vector3 originalScale = renderer.transform.localScale;
         float elapsed = 0f;
 
-        material.EnableKeyword("_EMISSION");
+
         while (elapsed < flashDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / flashDuration);
             float pulse = 1f + Mathf.Sin(t * Mathf.PI) * 0.08f;
             renderer.transform.localScale = originalScale * pulse;
-            material.color = Color.Lerp(flashColor, defaultColor, t);
-            material.SetColor("_EmissionColor", Color.Lerp(flashColor * 2f, defaultColor * 1.2f, t));
+            renderer.GetPropertyBlock(block);block.SetColor("_Color",Color.Lerp(flashColor,defaultColor,t));block.SetColor("_EmissionColor",Color.Lerp(flashColor*2f,defaultColor*1.2f,t));renderer.SetPropertyBlock(block);
             yield return null;
         }
 
         renderer.transform.localScale = originalScale;
-        material.color = defaultColor;
-        material.SetColor("_EmissionColor", defaultColor * 1.2f);
+        renderer.GetPropertyBlock(block);block.SetColor("_Color",defaultColor);block.SetColor("_EmissionColor",defaultColor*1.2f);renderer.SetPropertyBlock(block);
     }
 }

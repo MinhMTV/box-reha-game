@@ -5,8 +5,8 @@ using UnityEngine;
 public sealed class HitZoneVisualizer : MonoBehaviour
 {
     public float PlaneZ => evaluator.HitZoneZ;
-    public string PunchState { get; private set; } = "READY";
-    public string KickState { get; private set; } = "READY";
+    public string PunchState { get; private set; } = "Dormant";
+    public string KickState { get; private set; } = "Dormant";
     public float PunchHeight { get; private set; } = 2.1f;
     public float KickHeight { get; private set; } = .45f;
     HitZoneEvaluator evaluator;
@@ -35,7 +35,7 @@ public sealed class HitZoneVisualizer : MonoBehaviour
         {
             var group = new GameObject(row == 0 ? "PunchGate" : "KickGate").transform;
             group.SetParent(root, false);
-            group.localPosition = new Vector3(0, row == 0 ? PunchHeight : KickHeight, 0);
+            group.localPosition = new Vector3(0, (row == 0 ? PunchHeight : KickHeight)-evaluator.HitZonePosition.y, 0);
             bars[row] = new Renderer[10];
             bars[row][0] = Bar(group, new Vector3(0,-.33f,0), new Vector3(6.4f,.022f,.018f));
             int index = 1;
@@ -70,7 +70,7 @@ public sealed class HitZoneVisualizer : MonoBehaviour
     void LateUpdate()
     {
         // World coordinates follow a moved/scaled evaluator or a separate hitZoneCenter exactly.
-        root.SetPositionAndRotation(new Vector3(0,0,evaluator.HitZoneZ),Quaternion.identity);
+        root.SetPositionAndRotation(evaluator.HitZonePosition,Quaternion.identity);
         root.localScale = new Vector3(1/transform.lossyScale.x,1/transform.lossyScale.y,1/transform.lossyScale.z);
         RenderRow(0); RenderRow(1);
     }
@@ -83,18 +83,18 @@ public sealed class HitZoneVisualizer : MonoBehaviour
             var t=targets[i]; if(t==null || t.IsResolved || t.IsDeploying || t.IsKick!=(row==1)) continue;
             float d=Mathf.Abs(evaluator.TimingOffset(t)); if(d<distance) { nearest=t; distance=d; }
         }
-        string state="READY"; float brightness=.15f;
+        string state="Dormant"; float brightness=.15f;
         if(nearest!=null)
         {
             var quality=evaluator.PreviewTiming(nearest);
             brightness=Mathf.Lerp(.15f,.5f,1-Mathf.Clamp01(distance/1.3f));
             if(quality!=HitQuality.Miss)
             {
-                state=quality==HitQuality.Perfect ? "NOW • PERFECT" : quality==HitQuality.Good ? "HIT • GOOD" : quality==HitQuality.Early?"EARLY":"LATE";
+                state=quality==HitQuality.Perfect ? "PerfectWindow" : "Ready";
                 brightness=quality==HitQuality.Perfect ? 1 : .72f;
             }
-            else state="APPROACH";
-            if(nearest.IsLockedInHitZone) state="HIT AGAIN";
+            else state="Approaching";
+            if(nearest.IsLockedInHitZone) state="Ready";
         }
         if(Time.time<flashUntil[row]) { state=feedback[row]; brightness=state=="MISS" ? .15f : 1; }
         intensity[row]=brightness>intensity[row]?brightness:Mathf.MoveTowards(intensity[row],brightness,Time.deltaTime*(SettingsManager.ReducedMotion?4:10));
@@ -103,8 +103,7 @@ public sealed class HitZoneVisualizer : MonoBehaviour
         foreach(var bar in bars[row]) bar.SetPropertyBlock(block);
         bars[row][0].transform.localScale=new Vector3(6.4f,nearest!=null&&nearest.IsTough?.04f:.022f,.018f);
         labels[row].color=Color.Lerp(color,Color.white,.35f)*Mathf.Max(.3f,intensity[row]);
-        string previous=row==0?PunchState:KickState;
-        if(previous!=state || labels[row].text.Length==0) labels[row].text=(row==0?"PUNCH  ":"KICK  ")+state;
+        labels[row].text=Time.time<flashUntil[row]?feedback[row]:"";
         if(row==0) PunchState=state; else KickState=state;
     }
 }

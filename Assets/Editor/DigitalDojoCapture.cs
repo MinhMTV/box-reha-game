@@ -52,7 +52,6 @@ public static class DigitalDojoCapture
                 var spawner = UnityEngine.Object.FindFirstObjectByType<TargetSpawner>();
                 spawner.StopSpawning();
                 foreach (var target in UnityEngine.Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None)) UnityEngine.Object.Destroy(target.gameObject);
-                foreach (var warning in UnityEngine.Object.FindObjectsByType<SpawnWarningEffect>(FindObjectsSortMode.None)) UnityEngine.Object.Destroy(warning.gameObject);
                 var create = typeof(TargetSpawner).GetMethod("CreateTargetObject", BindingFlags.Instance | BindingFlags.NonPublic);
                 var types = new[] { TargetType.Punch, TargetType.Kick, TargetType.ToughPunch, TargetType.ToughKick };
                 var positions = new[] { new Vector3(-2.4f, 2.1f, 7), new Vector3(2.4f, 0.45f, 7), new Vector3(0, 2.1f, 11), new Vector3(0,.45f,15) };

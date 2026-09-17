@@ -22,7 +22,9 @@ public class GameSessionStats
     public int Misses;
     public int MaxCombo;
     public float Accuracy => TotalTargets > 0 ? (float)(PerfectHits + GoodHits) / TotalTargets : 0f;
+    // Legacy serialized research/history key. Same spawn-to-success duration, never a physiological reaction metric.
     public float AverageReactionTime;
+    public float AverageTargetResolutionTime => AverageReactionTime;
     public int Score;
     public int FinalCombo;
     public int ArmTargets;
@@ -32,15 +34,15 @@ public class GameSessionStats
     public int LegHits;
     public int LegMisses;
 
-    // Phase 2: Track reaction times for averaging
-    private float totalReactionTime;
-    private int reactionTimeCount;
-    public void TrackReactionTime(float reactionTime)
+    // Track spawn-to-successful-resolution duration.
+    private float totalTargetResolutionTime;
+    private int targetResolutionTimeCount;
+    public void TrackTargetResolutionTime(float resolutionTime)
     {
-        if (float.IsNaN(reactionTime) || float.IsInfinity(reactionTime) || reactionTime < 0f) return;
-        totalReactionTime += reactionTime;
-        reactionTimeCount++;
-        AverageReactionTime = reactionTimeCount > 0 ? totalReactionTime / reactionTimeCount : 0f;
+        if (float.IsNaN(resolutionTime) || float.IsInfinity(resolutionTime) || resolutionTime < 0f) return;
+        totalTargetResolutionTime += resolutionTime;
+        targetResolutionTimeCount++;
+        AverageReactionTime = targetResolutionTimeCount > 0 ? totalTargetResolutionTime / targetResolutionTimeCount : 0f;
     }
 
     public void TrackTargetType(TargetType targetType, bool wasHit)
@@ -88,8 +90,8 @@ public class GameSessionStats
         LegMisses = 0;
         Score = 0;
         FinalCombo = 0;
-        totalReactionTime = 0f;
-        reactionTimeCount = 0;
+        totalTargetResolutionTime = 0f;
+        targetResolutionTimeCount = 0;
     }
 
     public void TrackAction(PlayerActionEvent action)

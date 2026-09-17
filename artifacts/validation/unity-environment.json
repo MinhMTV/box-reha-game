@@ -1,10 +1,10 @@
 {
-  "status": "EDITOR CHECKS PASSED",
+  "generatedUtc": "2026-09-17T04:47:41.2313342Z",
+  "target": "Android",
+  "sourceSha256": "d77b91f35658bfa8f5a313c9fd12bc75074afc309eab7574e1ce95c8e3b71123",
   "requiredVersion": "6000.6.0f1",
-  "candidateBuild": "PASSED",
+  "status": "EDITOR CHECKS PASSED",
   "checkedPath": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.6.0f1\\Editor\\Unity.exe",
   "runtimeAndHardware": "NOT VERIFIED BY THIS SCRIPT",
-  "sourceSha256": "919fe68d4e9ecf25f255aa25580659dbe1fa9c06e6b8d427fd6292185b49e304",
-  "target": "Android",
-  "generatedUtc": "2026-09-16T20:17:03.2372369Z"
+  "candidateBuild": "PASSED"
 }
