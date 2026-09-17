@@ -102,7 +102,9 @@ public class TargetSpawner : MonoBehaviour
     }
     IEnumerator SpawnRoutine()
     {
-        int heavyCycle=-1;
+        heavyRandom=new System.Random(SessionSeed^1931);
+        nextHeavyAt=Time.time+pacing.HeavyInterval(currentLevel.LevelNumber,currentLevel.IsEndless,0,heavyRandom.NextDouble());
+        HeavyEncounters=0;LastHeavyArrival=float.NegativeInfinity;
         timeline=new PacingActionTimeline();
         ActiveWorkTime=LowIntensityTime=EmptyIdleTime=MaxEmptyIdle=idleFor=0;PeakActive=MaxLogicalLength=0;
         while(isSpawning&&Remaining>0)
@@ -119,25 +121,6 @@ public class TargetSpawner : MonoBehaviour
             var plan=planner.Select(sample,pacing,currentLevel.AllowedTargetTypes,currentLevel.AllowedLanes,
                 SessionInputSelection.Physical,gameConfig!=null?gameConfig.SensorActionCooldown:.35f);
             if(plan==null){CurrentPatternId="unavailable";WaitingReason="no supported input";yield return new WaitForSeconds(.25f);continue;}
-            bool heavy=sample.Heavy&&heavyCycle!=sample.Cycle&&currentLevel.ToughTargetChance>0&&Remaining>4;
-            if(heavy)
-            {
-                PendingActions=1;WaitingReason="draining logical targets for heavy";
-                while(isSpawning&&ActiveCount()>0)yield return null;
-                if(!isSpawning||Remaining<=0)yield break;
-                var type=plan.Type==TargetType.Kick?TargetType.ToughKick:TargetType.ToughPunch;
-                var point=GetSpawnPoint(LaneType.Center);
-                if(point==null){heavyCycle=sample.Cycle;yield return null;continue;}
-                float delay=pacing.MountTelegraphSeconds+Mathf.Clamp(pacing.HeavyDeploySeconds,.5f,.8f);
-                float speed=Mathf.Max(.01f,point.position.z-hitZoneEvaluator.HitZoneZ)/sample.TravelSeconds;
-                CurrentPatternId=type.ToString();CurrentTravelSeconds=sample.TravelSeconds;
-                var target=SpawnPaced(type,LaneType.Center,point.position.z,speed,delay,true,null,0,1);
-                PendingActions=0;heavyCycle=sample.Cycle;WaitingReason="heavy work";
-                if(target!=null)NextExpectedActionTime=target.ExpectedHitTime;
-                while(isSpawning&&HasActiveToughTarget()&&Remaining>0)yield return null;
-                // No sleep: the following low-intensity target is already visibly deploying.
-                RecoveryRequested=true;continue;
-            }
             CurrentPatternId=plan.PatternId;PatternActionIndex=0;
             CurrentTravelSeconds=plan.TravelSeconds;
             float deploy=pacing.MountTelegraphSeconds+Mathf.Clamp(pacing.NormalDeploySeconds,.2f,.4f);
@@ -155,10 +138,10 @@ public class TargetSpawner : MonoBehaviour
                 for(int i=0;i<count;i++)
                 {
                     var side=plan.SideAt(i);
-                    float due=probe.Next(side,requested,globalMinimum,sameSide);
+                    float due=probe.Next(side,requested,Mathf.Max(globalMinimum,i==0?0:plan.IntervalBefore(i)),sameSide);
                     due=timeline.Next(side,due,globalMinimum,sameSide);
                     if(due>deadline)break;
-                    fitting++;probe.Commit(side,due);requested=due+plan.Interval;
+                    fitting++;probe.Commit(side,due);requested=due+plan.IntervalBefore(i+1);
                 }
                 count=fitting;
             }
@@ -176,7 +159,14 @@ public class TargetSpawner : MonoBehaviour
             {
                 PendingActions=count-i;PatternActionIndex=i;
                 var side=plan.SideAt(i);
-                float due=timeline.Next(side,requestedArrival,globalMinimum,sameSide);
+                if(requestedArrival>=nextHeavyAt && currentLevel.ToughTargetChance>0 && Remaining>4)
+                {
+                    yield return SpawnHeavy(sample,plan);
+                    CurrentPatternId=plan.PatternId;
+                    requestedArrival=Mathf.Max(requestedArrival,Time.time+deploy+CurrentTravelSeconds);
+                }
+                var actionType=plan.TypeAt(i);
+                float due=timeline.Next(side,requestedArrival,Mathf.Max(globalMinimum,i==0?0:plan.IntervalBefore(i)),sameSide);
                 NextExpectedActionTime=due;
                 // Rolling preview consumes only live logical slots. No full-pattern reservation.
                 NextSpawnTime=due-deploy-CurrentTravelSeconds-plan.Interval*(Lookahead-1);
@@ -188,7 +178,7 @@ public class TargetSpawner : MonoBehaviour
                 due=timeline.Next(side,Mathf.Max(due,Time.time+deploy+.12f),globalMinimum,sameSide);
                 float travel=Mathf.Max(.12f,due-Time.time-deploy);
                 float z=hitZoneEvaluator.HitZoneZ+speedShared*travel;
-                var target=SpawnPaced(plan.Type,side,z,speedShared,deploy,false,chain,i,count);
+                var target=SpawnPaced(actionType,side,z,speedShared,deploy,false,chain,i,count);
                 if(target!=null)
                 {
                     timeline.Commit(side,target.ExpectedHitTime);
@@ -196,7 +186,7 @@ public class TargetSpawner : MonoBehaviour
                         i==0?0:target.ExpectedHitTime-previousArrival,travel);
                     previousArrival=target.ExpectedHitTime;
                 }
-                requestedArrival=due+plan.Interval;
+                requestedArrival=due+plan.IntervalBefore(i+1);
             }
             PendingActions=0;
             // Rolling tail stays visible while selecting the next sequence. No last-hit-window or VFX wait.
@@ -204,6 +194,32 @@ public class TargetSpawner : MonoBehaviour
             RecoveryUntil=0;
         }
         WaitingReason="round ended";PendingActions=0;
+    }
+    System.Random heavyRandom;
+    float nextHeavyAt;
+    public int HeavyEncounters { get; private set; }
+    public float LastHeavyArrival { get; private set; }
+    IEnumerator SpawnHeavy(PacingSample sample,ComboPlan plan)
+    {
+        WaitingReason="heavy preview slot";
+        while(isSpawning&&ActiveCount()>=Lookahead)yield return null;
+        if(!isSpawning)yield break;
+        bool kick=plan.Type==TargetType.Kick || (plan.Mixed&&heavyRandom.NextDouble()<.25);
+        var point=GetSpawnPoint(LaneType.Center);
+        if(point==null){nextHeavyAt=Time.time+1;yield break;}
+        float delay=pacing.MountTelegraphSeconds+Mathf.Clamp(pacing.HeavyDeploySeconds,.5f,.8f);
+        float arrival=Mathf.Max(Time.time+delay+sample.TravelSeconds,
+            timeline.LastAction+currentLevel.HitWindowSeconds*.5f+.15f);
+        arrival=Mathf.Max(arrival,LastHeavyArrival+pacing.HeavyMinimumSeparation(currentLevel.LevelNumber,currentLevel.IsEndless));
+        float speed=Mathf.Max(.01f,point.position.z-hitZoneEvaluator.HitZoneZ)/Mathf.Max(.12f,arrival-Time.time-delay);
+        var target=SpawnPaced(kick?TargetType.ToughKick:TargetType.ToughPunch,LaneType.Center,point.position.z,speed,delay,true,null,0,1);
+        if(target==null)yield break;
+        LastHeavyArrival=target.ExpectedHitTime;HeavyEncounters++;
+        nextHeavyAt=LastHeavyArrival+pacing.HeavyInterval(currentLevel.LevelNumber,currentLevel.IsEndless,Time.time-pacingStarted,heavyRandom.NextDouble());
+        WaitingReason="heavy work";CurrentWave="Heavy";
+        while(isSpawning&&!target.IsResolved&&Remaining>0)yield return null;
+        CurrentWave="Recovery";WaitingReason="resume prepared sequence";
+        // Continue the existing logical combo after the heavy; no cancellation, sleep or VFX gate.
     }
     int ActiveCount()
     {

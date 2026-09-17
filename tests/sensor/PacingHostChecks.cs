@@ -74,6 +74,28 @@ static class PacingHostChecks
         Require(new GameplayPatternPlanner(1).Select(p.Sample(3,false,20),p,new TargetType[0],new[]{LaneType.Left},false,0)==null,"empty family stays empty");
         p.AbsoluteMinimumActionSpacingSeconds=.1f;p.MinimumPhysicalActionSpacingSeconds=.1f;
         Require(p.MinimumSpacing>=.18f,"absolute safety floor");
+        var refined=new GameplayPacingProfile();int mixedPunch=0,mixedKick=0;
+        var mixPlanner=new GameplayPatternPlanner(991);
+        for(int n=0;n<1000;n++)
+        {
+            var sample=refined.Sample(3,n%2==0,n*61+12);
+            var kicks=mixPlanner.Select(sample,refined,new[]{TargetType.Kick},new[]{LaneType.Left,LaneType.Right},true,.35f);
+            Require(kicks.Length<=20&&kicks.Length<=refined.KickAbsoluteMaxLength,"Endless cannot bypass kick cap");
+            Require(kicks.Length<=15,"production rare kick bound");
+            var mix=mixPlanner.Select(refined.Sample(3,false,20),refined,new[]{TargetType.Punch,TargetType.Kick},new[]{LaneType.Left,LaneType.Right},false,0);
+            int streak=0;
+            for(int i=0;i<mix.Length;i++)
+            {
+                if(mix.TypeAt(i)==TargetType.Kick){mixedKick++;streak++;}else{mixedPunch++;streak=0;}
+                Require(streak<=refined.MaxConsecutiveKicks,"mixed kick streak bounded");
+                if(mix.TypeAt(i)==TargetType.Kick)Require(mix.IntervalBefore(i)>=.55f,"mixed kick cadence conservative");
+            }
+            foreach(int level in new[]{1,2,3})
+                Require(refined.HeavyInterval(level,false,n,n%100/100d)>=refined.HeavyMinimumSeparation(level,false),"heavy separation");
+        }
+        float share=mixedPunch/(float)(mixedPunch+mixedKick);
+        Require(share>=.70f&&share<=.85f,"mixed statistical punch dominance");
+        Console.WriteLine("MIXED_PUNCH_SHARE "+share);
         Console.WriteLine("PACING_HOST_PASS "+checks+" deterministic assertions; no hardware qualification.");
     }
 }

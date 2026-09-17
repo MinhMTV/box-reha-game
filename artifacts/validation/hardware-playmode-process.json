@@ -1,9 +1,9 @@
 {
-  "finishedUtc": "2026-09-16T20:14:43.1687711Z",
-  "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\hardware-playmode-final.log",
-  "passed": true,
-  "startedUtc": "2026-09-16T20:10:36.5303444Z",
+  "processId": 68044,
   "exitCode": 0,
-  "processId": 72760,
-  "forced": false
+  "log": "E:\\Programming Projekte\\box-reha-game\\artifacts\\validation\\hardware-playmode-final.log",
+  "finishedUtc": "2026-09-16T23:48:08.4642702Z",
+  "forced": false,
+  "passed": true,
+  "startedUtc": "2026-09-16T23:38:42.9177241Z"
 }

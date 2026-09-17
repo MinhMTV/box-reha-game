@@ -25,6 +25,20 @@ public sealed class GameplayPacingProfile
     public Tier Hard=new Tier(.55f,.85f,.22f,.30f,.18f,.22f,.3f,.7f,1,8,15,15,25,20,35,30,50,7);
     public float AbsoluteMinimumActionSpacingSeconds=.18f,MinimumPhysicalActionSpacingSeconds=.18f;
     public float KickIntervalMin=.55f,KickIntervalMax=.90f;
+    public int KickAbsoluteMaxLength=20;
+    public int KickEasyMin=2,KickEasyMax=5,KickMediumMin=3,KickMediumMax=8,KickHardMin=4,KickHardMax=12;
+    public int KickRareHardMax=15,MaxConsecutiveKicks=3;
+    public float MixedPunchWeight=.75f,MixedKickWeight=.25f;
+    public float HeavyEasyMin=18,HeavyEasyMax=25,HeavyMediumMin=12,HeavyMediumMax=18,HeavyHardMin=8,HeavyHardMax=14;
+    public float HeavyMinimumSeparationEasy=13,HeavyMinimumSeparationMedium=10,HeavyMinimumSeparationHard=7,HeavyMinimumSeparationEndless=6;
+    public float HeavyInterval(int level,bool endless,float elapsed,double randomUnit)
+    {
+        float min=level<=1?HeavyEasyMin:level==2?HeavyMediumMin:HeavyHardMin;
+        float max=level<=1?HeavyEasyMax:level==2?HeavyMediumMax:HeavyHardMax;
+        if(endless){float t=Math.Min(1,elapsed/300);min=Lerp(HeavyMediumMin,7,t);max=Lerp(HeavyMediumMax,10,t);}
+        return Math.Max(HeavyMinimumSeparation(level,endless),Lerp(min,max,(float)randomUnit));
+    }
+    public float HeavyMinimumSeparation(int level,bool endless)=>endless?HeavyMinimumSeparationEndless:level<=1?HeavyMinimumSeparationEasy:level==2?HeavyMinimumSeparationMedium:HeavyMinimumSeparationHard;
     public float NormalDeploySeconds=.20f,HeavyDeploySeconds=.50f,MountTelegraphSeconds=.08f;
     public float EndlessRampSeconds=25,EndlessCycleSeconds=60,MissRecoveryCooldownSeconds=8;
     public int MaxPacingTier=6,HeavyEveryCycles=1,Seed;
@@ -78,6 +92,20 @@ public sealed class ComboPlan
     public LaneType StartSide;
     public bool LeftAvailable,RightAvailable;
     public float Interval,TravelSeconds,TransitionSeconds;
+    public bool Mixed;
+    public uint ActionSeed;
+    public float KickWeight,KickInterval;
+    public int MaxKickStreak=3;
+    public TargetType TypeAt(int index)
+    {
+        if(!Mixed)return Type;
+        int streak=Math.Max(1,MaxKickStreak);
+        if(index%(streak+1)==0)return TargetType.Punch;
+        uint hash=unchecked((uint)index*747796405u+ActionSeed*2891336453u);
+        hash=(hash^(hash>>16))*2246822519u;hash^=hash>>13;
+        return (hash&0xffffff)/16777216f<KickWeight?TargetType.Kick:TargetType.Punch;
+    }
+    public float IntervalBefore(int index)=>TypeAt(index)==TargetType.Kick||(index>0&&TypeAt(index-1)==TargetType.Kick)?Math.Max(.55f,KickInterval):Interval;
     public LaneType SideAt(int index)
     {
         if(!LeftAvailable)return LaneType.Right;
@@ -121,22 +149,35 @@ public class GameplayPatternPlanner
         {lo=tier.BurstLengthMin;hi=tier.BurstLengthMax;category="burst";}
         else if(choice<.65){lo=tier.LongMin;hi=tier.LongMax;category="long";}
         else {lo=tier.NormalMin;hi=tier.NormalMax;category="normal";}
-        if(sample.Endless&&category!="micro-recovery")
+        if(sample.Endless&&punch&&category!="micro-recovery")
         {
             // Smoothly increasing length envelope; speed and physical target count remain bounded.
             double growth=sample.ComboLengthTier;
             lo=(int)Math.Min(int.MaxValue-1,5+5*growth);
             hi=(int)Math.Min(int.MaxValue-1,15+10*growth);
         }
+        if(!punch)
+        {
+            if(category!="micro-recovery")
+            {
+                lo=sample.Difficulty<=1?profile.KickEasyMin:sample.Difficulty==2?profile.KickMediumMin:profile.KickHardMin;
+                hi=sample.Difficulty<=1?profile.KickEasyMax:sample.Difficulty==2?profile.KickMediumMax:profile.KickHardMax;
+                if(category=="normal")hi=Math.Min(hi,6);
+                else if(sample.Difficulty>=3)hi=choice<.05?profile.KickRareHardMax:Math.Min(hi,10);
+            }
+            hi=Math.Max(1,Math.Min(20,Math.Min(profile.KickAbsoluteMaxLength,hi)));lo=Math.Min(lo,hi);
+        }
         int length=lo+(int)(random.NextDouble()*(hi-lo+1d));
         int generator=random.Next(3);if(generator==previousGenerator)generator=(generator+1)%3;previousGenerator=generator;
-        var type=punch&&(!kick||random.Next(2)==0)?TargetType.Punch:TargetType.Kick;
+        var type=punch?TargetType.Punch:TargetType.Kick;
         float interval=sample.IntervalSeconds;
         if(category=="conditioning")interval=Math.Max(profile.MinimumSpacing,tier.BurstMin);
         if(category=="micro-recovery")interval=Math.Max(interval,.6f);
         if(type==TargetType.Kick)interval=Math.Max(sample.KickIntervalSeconds,interval);
         return new ComboPlan{PatternId=(type==TargetType.Punch?"P":"K")+"-"+category+"-"+generator+"-"+length,
             Category=category,Type=type,Length=length,Generator=generator,
+            Mixed=punch&&kick,ActionSeed=(uint)random.Next(),MaxKickStreak=Math.Max(1,profile.MaxConsecutiveKicks),
+            KickWeight=profile.MixedKickWeight/Math.Max(.001f,profile.MixedPunchWeight+profile.MixedKickWeight),KickInterval=sample.KickIntervalSeconds,
             LeftAvailable=left,RightAvailable=right,StartSide=random.Next(2)==0?LaneType.Left:LaneType.Right,
             Interval=interval,TravelSeconds=sample.TravelSeconds,TransitionSeconds=sample.TransitionSeconds};
     }

@@ -24,11 +24,12 @@ public sealed class PacingRuntimeProbe
     readonly HashSet<string> seen=new HashSet<string>();
     readonly List<TargetObject> sorted=new List<TargetObject>();
     readonly List<string> evidence=new List<string>();
-    readonly string[] cases={"hard-60-seconds","alternating-50","endless-125","one-side-50","kick-10","heavy-punch","heavy-kick","miss-continuity"};
+    readonly string[] cases={"hard-60-seconds","alternating-50","endless-125","one-side-50","kick-10","heavy-punch","heavy-kick","miss-continuity","easy-60","medium-60","delta-60","mixed-60","punch-10","punch-30"};
     Action<string> capture;
     float caseStarted,lastArrival,lastHeavyHit,cleanupAt=-1,nextWindowSample;
     int stage,count,peak,completed,heavyHits,peakObjects,peakDebris;bool captured;string missedChain;
     float maxWindowIdle;
+    float lastHeavyArrival=float.NegativeInfinity;
     public bool Complete { get; private set; }
     public string Failure { get; private set; }
     public void Start(Action<string> screenshot)
@@ -43,11 +44,12 @@ public sealed class PacingRuntimeProbe
     {
         seen.Clear();count=peak=completed=heavyHits=peakObjects=peakDebris=0;captured=false;cleanupAt=-1;missedChain=null;maxWindowIdle=0;
         lastArrival=lastHeavyHit=float.NegativeInfinity;
+        lastHeavyArrival=float.NegativeInfinity;
         var p=new GameplayPacingProfile{Seed=73};
-        level=stage==2?LevelDefinition.CreateEndless():LevelDefinition.CreateLevel3();
-        level.RestrictToSensorFamily(stage==4||stage==6?"Delta":"Alpha");
+        level=stage==2?LevelDefinition.CreateEndless():stage==8?LevelDefinition.CreateLevel1():stage==9?LevelDefinition.CreateLevel2():LevelDefinition.CreateLevel3();
+        if(stage!=11)level.RestrictToSensorFamily(stage==4||stage==6||stage==10?"Delta":"Alpha");
         level.AllowedLanes=stage==3?new[]{LaneType.Right}:new[]{LaneType.Left,LaneType.Right};
-        level.DurationSeconds=stage==0?60:120;
+        level.DurationSeconds=stage==0||stage>=8&&stage<=11?60:120;
         typeof(TargetSpawner).GetField("pacing",Private).SetValue(spawner,p);
         caseStarted=Time.time;nextWindowSample=caseStarted+26;spawner.StartSpawning(level);
         if(stage==1||stage==3||stage==7)typeof(TargetSpawner).GetField("planner",Private).SetValue(spawner,new FixedPlanner(50));
@@ -57,6 +59,7 @@ public sealed class PacingRuntimeProbe
             typeof(TargetSpawner).GetField("pacingStarted",Private).SetValue(spawner,Time.time-612);
         }
         if(stage==4)typeof(TargetSpawner).GetField("planner",Private).SetValue(spawner,new FixedPlanner(10));
+        if(stage>=12)typeof(TargetSpawner).GetField("planner",Private).SetValue(spawner,new FixedPlanner(stage==12?10:30));
         if(stage==5||stage==6)typeof(TargetSpawner).GetField("pacingStarted",Private).SetValue(spawner,Time.time-98);
     }
     void Update()
@@ -73,7 +76,7 @@ public sealed class PacingRuntimeProbe
                     throw new Exception("Owned object cleanup failed");
                 var pool=Object.FindFirstObjectByType<DojoDebrisPool>();
                 if(pool!=null&&pool.ActiveCount>0)throw new Exception("Active debris survived cleanup");
-                evidence.Add($"PASS {cases[stage]} targets={count} peak={peak} objectsIncludingResolving={peakObjects} debris={peakDebris} completed={completed} logicalMax={spawner.MaxLogicalLength} maxIdle={spawner.MaxEmptyIdle:F3}s work={spawner.ActiveWorkTime:F2}s low={spawner.LowIntensityTime:F2}s idle={spawner.EmptyIdleTime:F2}s");
+                evidence.Add($"PASS {cases[stage]} heavies={spawner.HeavyEncounters} targets={count} peak={peak} objectsIncludingResolving={peakObjects} debris={peakDebris} completed={completed} logicalMax={spawner.MaxLogicalLength} maxIdle={spawner.MaxEmptyIdle:F3}s work={spawner.ActiveWorkTime:F2}s low={spawner.LowIntensityTime:F2}s idle={spawner.EmptyIdleTime:F2}s");
                 File.WriteAllLines("artifacts/validation/pacing-playmode.txt",evidence);
                 Object.Destroy(level);
                 if(++stage==cases.Length){Finish();return;}BeginCase();return;
@@ -85,12 +88,19 @@ public sealed class PacingRuntimeProbe
             sorted.Sort((a,b)=>a.ExpectedHitTime.CompareTo(b.ExpectedHitTime));peak=Mathf.Max(peak,sorted.Count);
             foreach(var target in sorted)
             {
-                bool kick=stage==4||stage==6;
-                if(target.IsKick!=kick)throw new Exception("Wrong family");
-                if(stage==3&&target.Lane!=LaneType.Right)throw new Exception("Unavailable side");
+                bool kick=target.IsKick;
+                if(stage!=11&&kick!=(stage==4||stage==6||stage==10))throw new Exception("Wrong family");
+                if(stage==3&&!target.IsTough&&target.Lane!=LaneType.Right)throw new Exception("Unavailable side");
+                if(target.GetComponentsInChildren<TextMesh>(true).Length!=0||target.transform.Find("TargetLabel")!=null)throw new Exception("Target action label survived");
+                if(stage==10&&target.SequenceLength>20)throw new Exception("Kick cap bypassed");
                 if(seen.Add(target.TargetId))
                 {
                     count++;
+                    if(target.IsTough)
+                    {
+                        if(target.ExpectedHitTime-lastHeavyArrival<spawner.Pacing.HeavyMinimumSeparation(level.LevelNumber,level.IsEndless)-.01f)throw new Exception("Heavy minimum separation");
+                        lastHeavyArrival=target.ExpectedHitTime;
+                    }
                     if(!target.IsTough&&target.ExpectedHitTime-lastArrival<(kick?.549f:.179f))throw new Exception("Arrival spacing violated");
                     lastArrival=target.ExpectedHitTime;
                 }
@@ -121,10 +131,12 @@ public sealed class PacingRuntimeProbe
             {capture("Fitness-"+cases[stage]+"-Rolling");captured=true;}
             bool done=stage==0?elapsed>=60:stage==1||stage==3?completed>=50:stage==2?completed>=125:
                 stage==4?completed>=10:stage==5||stage==6?heavyHits>=2&&!sorted.Exists(t=>t.IsTough):
-                missedChain!=null&&seen.Count>=52&&!sorted.Exists(t=>t.ChainId==missedChain);
+                stage==7?missedChain!=null&&seen.Count>=52&&!sorted.Exists(t=>t.ChainId==missedChain):stage<=11?elapsed>=60:completed>=(stage==12?10:30);
             if(done)
             {
                 if(stage==0&&(spawner.MaxLogicalLength<30||completed<20))throw new Exception("Hard did not execute long fitness sequences");
+                if((stage==0||stage==10)&&spawner.HeavyEncounters<4)throw new Exception("Hard heavy frequency below acceptance");
+                if(stage==8&&spawner.HeavyEncounters<2||stage==9&&spawner.HeavyEncounters<3)throw new Exception("Easy/Medium heavy frequency below acceptance");
                 if(stage<=3&&spawner.MaxEmptyIdle>1)throw new Exception("Unexplained idle >1 second "+spawner.Diagnostic);
                 if(stage==0&&maxWindowIdle>1)throw new Exception("30-second regression");
                 spawner.StopSpawning();evaluator.AbortRemaining();cleanupAt=Time.time+DojoDebrisPool.Lifetime+.4f;

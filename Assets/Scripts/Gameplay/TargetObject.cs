@@ -43,7 +43,6 @@ public class TargetObject : MonoBehaviour
     private bool glowEnabled;
     private Coroutine wiggle;
     private Vector3 restingScale;
-    private TextMesh labelMesh;
     private DigitalDojoTargetVisual authoredVisual;
 
     // v3: Health bar reference
@@ -158,7 +157,6 @@ public class TargetObject : MonoBehaviour
             originalColor = GameVisualPalette.GetTargetColor(Type);
             transform.rotation = Quaternion.identity;
             if (IsTough) { transform.localScale = Vector3.one * (IsKick ? 1.15f : 1.8f); CreateHealthBar(); }
-            EnsureLabel(IsTough ? (IsKick ? "HEAVY KICK" : "HEAVY") : IsKick ? "KICK" : "PUNCH", originalColor);
             return;
         }
 
@@ -204,7 +202,6 @@ public class TargetObject : MonoBehaviour
         }
 
         originalColor = cachedRenderer.material.color;
-        EnsureLabel(labelText, accentColor);
     }
 
     /// <summary>
@@ -290,8 +287,6 @@ public class TargetObject : MonoBehaviour
             }
 
         }
-
-        RefreshToughLabel();
         }
         catch(Exception error) { Debug.LogException(error); }
         // Presentation errors do not change the already accepted damage or terminal result.
@@ -360,50 +355,6 @@ public class TargetObject : MonoBehaviour
         material.SetFloat("_Glossiness", 0.72f);
         material.EnableKeyword("_EMISSION");
         material.SetColor("_EmissionColor", baseColor * emissionIntensity);
-    }
-
-    private void EnsureLabel(string actionLabel, Color accentColor)
-    {
-        if (labelMesh == null)
-        {
-            Transform existing = transform.Find("TargetLabel");
-            if (existing != null)
-            {
-                labelMesh = existing.GetComponent<TextMesh>();
-            }
-        }
-
-        if (labelMesh == null)
-        {
-            GameObject labelObject = new GameObject("TargetLabel");
-            labelObject.transform.SetParent(transform, false);
-            labelMesh = labelObject.AddComponent<TextMesh>();
-            labelMesh.alignment = TextAlignment.Center;
-            labelMesh.anchor = TextAnchor.MiddleCenter;
-            labelMesh.characterSize = authoredVisual != null ? 0.05f : 0.11f;
-            labelMesh.fontSize = 56;
-        }
-
-        string verticalLabel = VertPosition.ToString().ToUpperInvariant();
-        labelMesh.text = IsTough ? (IsKick ? "HEAVY KICK" : "HEAVY") : SequenceLength>1?(SequenceIndex+1)+"  "+actionLabel:actionLabel;
-        labelMesh.color = Color.Lerp(Color.white, accentColor, 0.2f);
-        float labelDepth = -0.42f;
-        if (cachedRenderer != null)
-        {
-            labelDepth = -Mathf.Max(0.42f, cachedRenderer.bounds.extents.z * 1.1f);
-        }
-
-        labelMesh.transform.localPosition = new Vector3(0f, authoredVisual != null ? (Type == TargetType.ToughKick ? -.76f : IsTough ? -1.13f : -1.0f) : 0f, labelDepth);
-        labelMesh.transform.localRotation = Quaternion.identity;
-        labelMesh.transform.localScale = Vector3.one;
-    }
-
-    private void RefreshToughLabel()
-    {
-        if (labelMesh != null && IsTough)
-        {
-            labelMesh.text = IsKick ? "HEAVY KICK" : "HEAVY";
-        }
     }
 
     public float GetTimeInZone()

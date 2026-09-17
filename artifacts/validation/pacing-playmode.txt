@@ -1,24 +1,30 @@
-WINDOW remaining=34,00 phase=Burst pattern=P-burst-1-21 pending=6 lookahead=7 active=7 reserved=0 nextSpawn=64,50 nextPattern=63,68 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=33,50 phase=Burst pattern=P-burst-1-21 pending=4 lookahead=7 active=7 reserved=0 nextSpawn=64,91 nextPattern=63,68 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=33,00 phase=Burst pattern=P-burst-1-21 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=65,53 nextPattern=63,68 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=32,50 phase=Recovery pattern=P-micro-recovery-2-2 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=64,31 nextPattern=68,30 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=32,00 phase=Recovery pattern=P-micro-recovery-2-2 pending=2 lookahead=7 active=7 reserved=0 nextSpawn=65,86 nextPattern=70,45 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=31,50 phase=Build pattern=P-conditioning-0-38 pending=38 lookahead=7 active=7 reserved=0 nextSpawn=69,49 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=31,00 phase=Build pattern=P-conditioning-0-38 pending=38 lookahead=7 active=6 reserved=0 nextSpawn=69,49 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=30,50 phase=Build pattern=P-conditioning-0-38 pending=38 lookahead=7 active=5 reserved=0 nextSpawn=69,49 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=30,00 phase=Build pattern=P-conditioning-0-38 pending=38 lookahead=7 active=4 reserved=0 nextSpawn=69,49 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=29,50 phase=Build pattern=P-conditioning-0-38 pending=37 lookahead=7 active=4 reserved=0 nextSpawn=69,67 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=29,00 phase=Build pattern=P-conditioning-0-38 pending=34 lookahead=7 active=6 reserved=0 nextSpawn=70,21 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=28,49 phase=Build pattern=P-conditioning-0-38 pending=32 lookahead=7 active=7 reserved=0 nextSpawn=70,57 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=27,99 phase=Build pattern=P-conditioning-0-38 pending=31 lookahead=7 active=7 reserved=0 nextSpawn=70,75 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=27,49 phase=Build pattern=P-conditioning-0-38 pending=30 lookahead=7 active=7 reserved=0 nextSpawn=70,93 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=26,99 phase=Build pattern=P-conditioning-0-38 pending=27 lookahead=7 active=7 reserved=0 nextSpawn=71,47 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-WINDOW remaining=26,49 phase=Build pattern=P-conditioning-0-38 pending=24 lookahead=7 active=7 reserved=0 nextSpawn=72,01 nextPattern=71,56 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
-PASS hard-60-seconds targets=201 peak=7 objectsIncludingResolving=9 debris=42 completed=38 logicalMax=38 maxIdle=0,289s work=58,48s low=1,23s idle=0,29s
-PASS alternating-50 targets=63 peak=7 objectsIncludingResolving=9 debris=42 completed=50 logicalMax=50 maxIdle=0,000s work=14,65s low=0,00s idle=0,00s
-PASS endless-125 targets=139 peak=8 objectsIncludingResolving=10 debris=42 completed=125 logicalMax=125 maxIdle=0,000s work=29,00s low=0,00s idle=0,00s
-PASS one-side-50 targets=63 peak=7 objectsIncludingResolving=9 debris=42 completed=50 logicalMax=50 maxIdle=0,000s work=14,65s low=0,00s idle=0,00s
-PASS kick-10 targets=24 peak=7 objectsIncludingResolving=8 debris=12 completed=10 logicalMax=10 maxIdle=0,000s work=12,23s low=0,00s idle=0,00s
-PASS heavy-punch targets=11 peak=7 objectsIncludingResolving=7 debris=12 completed=2 logicalMax=33 maxIdle=0,001s work=10,16s low=0,00s idle=0,00s
-PASS heavy-kick targets=16 peak=7 objectsIncludingResolving=8 debris=12 completed=2 logicalMax=16 maxIdle=0,001s work=11,16s low=0,00s idle=0,00s
-PASS miss-continuity targets=64 peak=7 objectsIncludingResolving=9 debris=42 completed=2 logicalMax=50 maxIdle=0,000s work=14,65s low=0,00s idle=0,00s
+WINDOW remaining=34,00 phase=Recovery pattern=P-long-2-25 pending=4 lookahead=7 active=7 reserved=0 nextSpawn=65,10 nextPattern=56,78 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=33,50 phase=Recovery pattern=P-long-2-25 pending=4 lookahead=7 active=7 reserved=0 nextSpawn=65,10 nextPattern=56,78 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=33,00 phase=Recovery pattern=P-long-2-25 pending=3 lookahead=7 active=7 reserved=0 nextSpawn=65,38 nextPattern=56,78 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=32,50 phase=Recovery pattern=P-long-2-25 pending=1 lookahead=7 active=7 reserved=0 nextSpawn=65,94 nextPattern=56,78 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=32,00 phase=Recovery pattern=P-micro-recovery-2-2 pending=2 lookahead=7 active=7 reserved=0 nextSpawn=65,12 nextPattern=69,71 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=31,50 phase=Build pattern=P-conditioning-0-49 pending=49 lookahead=7 active=7 reserved=0 nextSpawn=68,75 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=31,00 phase=Build pattern=P-conditioning-0-49 pending=49 lookahead=7 active=5 reserved=0 nextSpawn=68,75 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=30,50 phase=Build pattern=P-conditioning-0-49 pending=49 lookahead=7 active=4 reserved=0 nextSpawn=68,75 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=30,00 phase=Build pattern=P-conditioning-0-49 pending=47 lookahead=7 active=5 reserved=0 nextSpawn=69,11 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=29,50 phase=Build pattern=P-conditioning-0-49 pending=44 lookahead=7 active=7 reserved=0 nextSpawn=69,65 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=29,00 phase=Build pattern=P-conditioning-0-49 pending=43 lookahead=7 active=7 reserved=0 nextSpawn=69,83 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=28,50 phase=Build pattern=P-conditioning-0-49 pending=42 lookahead=7 active=7 reserved=0 nextSpawn=70,01 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=28,00 phase=Build pattern=P-conditioning-0-49 pending=40 lookahead=7 active=7 reserved=0 nextSpawn=70,37 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=27,50 phase=Build pattern=P-conditioning-0-49 pending=37 lookahead=7 active=7 reserved=0 nextSpawn=70,91 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=27,00 phase=Build pattern=P-conditioning-0-49 pending=34 lookahead=7 active=7 reserved=0 nextSpawn=71,45 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+WINDOW remaining=26,50 phase=Build pattern=P-conditioning-0-49 pending=31 lookahead=7 active=7 reserved=0 nextSpawn=71,99 nextPattern=70,82 recoveryUntil=0,00 heavy=False missRecovery=False wait=rolling lookahead
+PASS hard-60-seconds heavies=4 targets=151 peak=7 objectsIncludingResolving=9 debris=42 completed=49 logicalMax=49 maxIdle=0,146s work=47,66s low=12,20s idle=0,15s
+PASS alternating-50 heavies=2 targets=61 peak=7 objectsIncludingResolving=9 debris=42 completed=50 logicalMax=50 maxIdle=0,001s work=15,15s low=5,35s idle=0,00s
+PASS endless-125 heavies=4 targets=138 peak=8 objectsIncludingResolving=10 debris=42 completed=125 logicalMax=125 maxIdle=0,001s work=28,76s low=12,09s idle=0,00s
+PASS one-side-50 heavies=2 targets=61 peak=7 objectsIncludingResolving=9 debris=42 completed=50 logicalMax=50 maxIdle=0,001s work=15,14s low=5,35s idle=0,00s
+PASS kick-10 heavies=2 targets=21 peak=7 objectsIncludingResolving=8 debris=12 completed=10 logicalMax=10 maxIdle=0,001s work=18,15s low=1,78s idle=0,00s
+PASS heavy-punch heavies=1 targets=31 peak=7 objectsIncludingResolving=9 debris=30 completed=2 logicalMax=32 maxIdle=0,001s work=13,78s low=0,00s idle=0,00s
+PASS heavy-kick heavies=1 targets=19 peak=7 objectsIncludingResolving=8 debris=12 completed=2 logicalMax=8 maxIdle=0,001s work=13,41s low=0,00s idle=0,00s
+PASS miss-continuity heavies=2 targets=61 peak=7 objectsIncludingResolving=9 debris=42 completed=2 logicalMax=50 maxIdle=0,001s work=14,79s low=5,71s idle=0,00s
+PASS easy-60 heavies=2 targets=104 peak=4 objectsIncludingResolving=5 debris=24 completed=12 logicalMax=12 maxIdle=0,212s work=55,57s low=4,21s idle=0,21s
+PASS medium-60 heavies=3 targets=145 peak=5 objectsIncludingResolving=7 debris=36 completed=25 logicalMax=25 maxIdle=0,360s work=54,36s low=5,28s idle=0,36s
+PASS delta-60 heavies=5 targets=59 peak=7 objectsIncludingResolving=8 debris=12 completed=10 logicalMax=10 maxIdle=0,001s work=59,99s low=0,00s idle=0,00s
+PASS mixed-60 heavies=4 targets=94 peak=7 objectsIncludingResolving=9 debris=42 completed=44 logicalMax=44 maxIdle=0,236s work=43,15s low=16,61s idle=0,24s
+PASS punch-10 heavies=1 targets=24 peak=7 objectsIncludingResolving=9 debris=42 completed=10 logicalMax=10 maxIdle=0,000s work=7,95s low=0,00s idle=0,00s
+PASS punch-30 heavies=1 targets=45 peak=7 objectsIncludingResolving=9 debris=42 completed=30 logicalMax=30 maxIdle=0,001s work=15,15s low=1,75s idle=0,00s
