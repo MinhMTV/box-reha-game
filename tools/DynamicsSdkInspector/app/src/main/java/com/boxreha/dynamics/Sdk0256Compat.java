@@ -132,6 +132,9 @@ public final class Sdk0256Compat {
         if (p instanceof Power$Delta) return ((Power$Delta)p).getPowerIndex();
         throw new IllegalStateException("Unsupported SDK power type");
     }
+    /** Base-class quantities kept for BOTH families; DELTA's powerIndex is never renamed. */
+    public static double impactOrPowerIndex(Power p) { return p.getImpactOrPowerIndex(); }
+    public static double peakForce(Power p) { return p.getPeakForce(); }
     public static double baro(Power p) { if (!(p instanceof Power$Alpha)) throw new IllegalArgumentException("ALPHA required"); return ((Power$Alpha)p).getPeakForceBasedOnBaro(); }
     public static double durationSeconds(long packed) { return (Double)invoke(DURATION_SECONDS,null,packed,DurationUnit.SECONDS); }
     public static double punchSeconds(Speed s) { return (Double)invoke(DURATION_SECONDS,null,invoke(PUNCH_DURATION,s),DurationUnit.SECONDS); }

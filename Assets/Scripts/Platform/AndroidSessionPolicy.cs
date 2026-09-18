@@ -100,6 +100,25 @@ public static class AndroidSessionPolicy
             && (gender == "MALE" || gender == "FEMALE");
     }
 
+    /// <summary>
+    /// The single sensor family reported by the SDK for the devices that are actually connected, or
+    /// null when it is not unambiguous (nothing connected, family not yet reported, or mixed).
+    /// Never guesses and never falls back to Alpha.
+    /// </summary>
+    public static string ConnectedFamily(AndroidNativeStatus status)
+    {
+        if (status?.devices == null) return null;
+        string family = null;
+        foreach (AndroidNativeDevice device in status.devices)
+        {
+            if (device == null || device.isMock || !device.online) continue;
+            if (device.family != "Alpha" && device.family != "Delta") return null;
+            if (family == null) family = device.family;
+            else if (family != device.family) return null;
+        }
+        return family;
+    }
+
     public static bool AcceptsRunningAck(AndroidNativeStatus status, string requestId, string studyId, string family)
     {
         return !string.IsNullOrWhiteSpace(requestId) && !string.IsNullOrWhiteSpace(studyId)
@@ -133,6 +152,32 @@ public static class SessionInputSelection
     public static InputSourceType? Override;
 #endif
     public static bool Physical => Override == InputSourceType.Sensor;
-    public static string Family = "Alpha";
+
+    // The operator's explicit pick, or null while the connected hardware decides.
+    private static string explicitFamily;
+    private static string resolvedFamily = "Alpha";
+
+    /// <summary>
+    /// The family actually used. A DELTA-only setup never falls back to ALPHA: the SDK-reported family
+    /// of the connected devices wins over any earlier operator pick.
+    /// </summary>
+    public static string Family
+    {
+        get { return explicitFamily ?? resolvedFamily; }
+        set { explicitFamily = value; }
+    }
+
+    /// <summary>True while the family comes from connected hardware rather than an operator pick.</summary>
+    public static bool FamilyResolvedFromHardware => explicitFamily == null;
+
+    /// <summary>Called on every fresh native status so the selection tracks the real hardware.</summary>
+    public static void SyncFromStatus(AndroidNativeStatus status)
+    {
+        string detected = AndroidSessionPolicy.ConnectedFamily(status);
+        if (detected == null) return;
+        resolvedFamily = detected;
+        if (explicitFamily != null && explicitFamily != detected) explicitFamily = null;
+    }
+
     public static string Label => Physical ? "Android physical / " + Family : "Development keyboard / pointer";
 }

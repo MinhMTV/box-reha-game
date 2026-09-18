@@ -195,6 +195,8 @@ public class AndroidDynamicsController : MonoBehaviour
             lastStatusSequence = incoming.statusSequence;
             lastStatusReceivedAt = Time.realtimeSinceStartupAsDouble - transportAge;
             Status = incoming;
+            // The connected hardware's SDK family decides; ALPHA is never assumed for DELTA-only setups.
+            SessionInputSelection.SyncFromStatus(incoming);
             var profile=GameManager.Instance?.PlayerProfile;
             if(profile != null && incoming.profileReady && incoming.profileStudyId==profile.StudyId && incoming.profileReference!=profile.SdkProfileReference)
             { profile.SdkProfileReference=incoming.profileReference;PlayerProfileStore.Save(profile); }

@@ -81,7 +81,12 @@ fun InspectorScreen(m: DynamicsSdkManager, requestPermissions: () -> Unit) {
     var weight by remember { mutableStateOf("75") }
     var height by remember { mutableStateOf("175") }
     var gender by remember { mutableStateOf("MALE") }
-    var family by remember { mutableStateOf("ALPHA") }
+    // No hardcoded family. The SDK-reported family of the connected hardware wins; the chips are only
+    // a fallback for when nothing is connected yet.
+    var familyFallback by remember { mutableStateOf("ALPHA") }
+    val detectedFamily = state.detectedFamily
+    val familyResolved = detectedFamily == "ALPHA" || detectedFamily == "DELTA"
+    val family = if (familyResolved) detectedFamily else familyFallback
     var customMarker by remember { mutableStateOf("") }
     var showForgetAllDialog by remember { mutableStateOf(false) }
     var deleteSessionDir by remember { mutableStateOf<File?>(null) }
@@ -308,16 +313,30 @@ fun InspectorScreen(m: DynamicsSdkManager, requestPermissions: () -> Unit) {
                                                 FilterChip(selected = gender == g, onClick = { gender = g }, label = { Text(g) })
                                             }
                                         }
+                                        Text(
+                                            when {
+                                                state.familyConflict -> "Mixed ALPHA + DELTA connected \u2014 only one family may be active."
+                                                familyResolved -> "Family detected from connected hardware: $detectedFamily (${if (detectedFamily == "ALPHA") "hands" else "feet"})"
+                                                else -> "No sensor family reported yet. Connect a sensor; the SDK family will be used automatically."
+                                            },
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = if (state.familyConflict) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+                                        )
                                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                             listOf("ALPHA", "DELTA").forEach { f ->
-                                                FilterChip(selected = family == f, onClick = { family = f }, label = { Text(f) })
+                                                FilterChip(
+                                                    selected = family == f,
+                                                    enabled = !familyResolved,
+                                                    onClick = { familyFallback = f },
+                                                    label = { Text(f) }
+                                                )
                                             }
                                         }
                                         Button(
-                                            enabled = state.initialized && !state.busy && !state.rawEnabled,
+                                            enabled = state.initialized && !state.busy && !state.rawEnabled && !state.familyConflict,
                                             onClick = { m.startComputed(family, weight, height, gender) }
                                         ) {
-                                            Text("Start computed session")
+                                            Text(if (familyResolved) "Start computed $family session" else "Start computed session")
                                         }
                                     }
                                 }
@@ -497,17 +516,37 @@ fun SensorValuesView(d: DeviceState) {
         Card {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Text("RAW TELEMETRY STATUS", style = MaterialTheme.typography.titleMedium)
-                ValueRow("RAW SUBSCRIPTION", d.rawSubscriptionState)
+                ValueRow("ROLE", d.role)
                 ValueRow("CONNECTION", d.connectionStateString)
                 ValueRow("SDK OPERATIONAL STATE", d.operationalState)
-                ValueRow("RELATIVE TIME COUNTER", d.latestRelativeTimeCounter.ifBlank { "None" })
-                if (d.lastRawError.isNotBlank()) ValueRow("LAST RAW ERROR", d.lastRawError)
-                ValueRow("PACKETS", "${d.rawCount}")
-                ValueRow("PACKET RATE", "${d.rawPacketsPerSecond} packets/sec")
-                ValueRow("LAST PACKET", if (d.lastRawReceivedMonotonicMs > 0) "${SystemClock.elapsedRealtime() - d.lastRawReceivedMonotonicMs} ms ago" else "None")
+                ValueRow("RAW SUBSCRIPTION", d.rawSubscriptionState)
+                ValueRow("RAW ROUTE", d.rawRoute.ifBlank { "None" })
+                ValueRow("PACKET COUNT", "${d.rawCount}")
+                ValueRow("PACKETS/SEC", "${d.rawPacketsPerSecond}")
+                ValueRow("LAST PACKET AGE", if (d.lastRawReceivedMonotonicMs > 0) "${SystemClock.elapsedRealtime() - d.lastRawReceivedMonotonicMs} ms" else "None")
                 ValueRow("LAST PACKET MONOTONIC NS", if (d.lastRawElapsedRealtimeNanos > 0) "${d.lastRawElapsedRealtimeNanos}" else "None")
                 ValueRow("BLE COUNTER", "${d.latestBleCounter}")
+                ValueRow("RELATIVE TIME COUNTER", d.latestRelativeTimeCounter.ifBlank { "None" })
                 ValueRow("SAMPLING RATE", d.latestSamplingRate.ifBlank { "None" })
+                ValueRow("CHARGING", if (d.isCharging) "YES" else "NO")
+                ValueRow("CHARGER ATTACHED", if (d.isChargerAttached) "YES" else "NO")
+                ValueRow("BAROMETER AVAILABLE", if (d.isBaroAttached) "YES" else "NO")
+                ValueRow("LAST ERROR", d.lastRawError.ifBlank { "None" })
+                if (d.lastRawFieldError.isNotBlank()) Detail("LAST RAW FIELD ERROR", d.lastRawFieldError)
+                if (d.rawSubscriptionState == "SUBSCRIBED \u2014 NO PACKETS") {
+                    Text(
+                        "Subscribed, no packets. SDK 0.25.6 exposes no documented operation that requests a streaming operational state, so a Flow subscription alone does not start firmware streaming.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    if (d.isChargerAttached) {
+                        Text(
+                            "Sensor reports charger attached. Test off charger if raw streaming remains idle.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.tertiary
+                        )
+                    }
+                }
             }
         }
 
