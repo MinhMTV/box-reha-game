@@ -67,6 +67,8 @@ internal object DynamicsCollector {
     private var scanJob: Job? = null
     private val observers = ArrayList<Job>()
     private var gloves: List<Glove> = emptyList()
+    private var savedDevices: List<PeripheralDto> = emptyList()
+    private var scannerActive = false
     private val nearby = linkedMapOf<String, NearbyGlove>()
     private val epochs = hashMapOf<String, Epoch>()
     private val retiredDeviceEpochs = hashMapOf<String, Epoch>()
@@ -86,7 +88,7 @@ internal object DynamicsCollector {
                     emissionEnabled = false
                     policy.disarm()
                     sessionState = "error"
-                    status("error", code + "_timeout", "SDK-Aufruf ohne rechtzeitige Bestätigung. Sitzung prüfen und gegebenenfalls beenden.")
+                    status("error", if (code == "unpair" || code == "change_side") "SDK_STATE_INCONSISTENCY" else code + "_timeout", "SDK-Aufruf ohne rechtzeitige Bestätigung. Sitzung prüfen und gegebenenfalls beenden.")
                 } catch (e: CancellationException) { throw e
                 } catch (e: CollectorFailure) {
                     emissionEnabled = false
@@ -168,19 +170,19 @@ internal object DynamicsCollector {
     @JvmStatic fun startScan() = command("scan") {
         requireForeground()
         if (missingPermissions().isNotEmpty()) fail("permissions_required", "Bluetooth-Berechtigungen fehlen.")
-        if (scanJob?.isActive == true) { status("scanning", "scan_active", "Gerätesuche läuft."); return@command }
+        if (scanJob?.isActive == true) { status(if (scannerActive) "scanning" else "ready", "scan_subscription", "SDK-Scannerstatus wird beobachtet."); return@command }
         nearby.clear()
         scanJob = watch("scan") {
             pairingRepository.nearbyGloves.collect { found ->
                 val previous = nearby.entries.associate { it.value.address to it.key }
                 nearby.clear()
                 found.forEach { glove -> nearby[previous[glove.address] ?: UUID.randomUUID().toString()] = glove }
-                status("scanning", "scan_results", "Gefundene Geräte einzeln auswählen und Körperseite zuordnen.")
+                status(if (scannerActive) "scanning" else "ready", "scan_results", "Gefundene Geräte einzeln auswählen und Körperseite zuordnen.")
             }
         }
         scanJob!!.start()
         if (scanJob?.isActive != true) return@command
-        status("scanning", "scan_started", "Gerätesuche gestartet.")
+        status(if (scannerActive) "scanning" else "ready", "scan_requested", "Gerätesuche angefragt; SDK-Scannerstatus abwarten.")
     }
     private fun stopScanning() { scanJob?.cancel(); scanJob = null; nearby.clear() }
     @JvmStatic fun stopScan() = command("stop_scan") { stopScanning(); status("ready", "scan_stopped", "Gerätesuche beendet.") }
@@ -193,10 +195,21 @@ internal object DynamicsCollector {
         if (saved.size >= 2) fail("device_limit_two", "Dieser SDK-Collector unterstützt maximal ein Paar. Ein dritter Sensor ist nicht freigegeben.")
         if (saved.any { it.side == selectedSide }) fail("side_already_assigned", "Diese Körperseite ist bereits belegt. Gerät zuerst entfernen.")
         val glove = nearby[nearbyId] ?: fail("scan_selection_expired", "Gerät erneut suchen und auswählen.")
+        val existingFamily = saved.firstOrNull()?.let { dto -> gloves.firstOrNull { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(dto) }?.let(::familyOf) }
+        if (saved.isNotEmpty() && existingFamily !in listOf("Alpha", "Delta")) fail("family_unknown", "Vorhandenen Sensor zuerst verbinden und Sensorfamilie prüfen.")
         status("pairing", "pairing", "Gerät wird gekoppelt; SDK-Bestätigung abwarten.")
-        if (pairingRepository.pair(glove, glove.advertisingName ?: "Dynamics", selectedSide).getOrNull() == null)
-            fail("pair_failed", "SDK-Pairing fehlgeschlagen. Bluetooth, Entfernung und andere Verbindungen prüfen.")
+        val result = pairingRepository.pair(glove, glove.advertisingName ?: "Dynamics", selectedSide)
+        val pairedId = Sdk0256Compat.pairedUuid(result)
         stopScanning()
+        withTimeout(10000) { gloveRepository.savedPeripherals.first { list -> list.any { Sdk0256Compat.deviceUuid(it) == pairedId && it.side == selectedSide } } }
+        val current = withTimeout(15000) { gloveRepository.observeGloves().first { list -> list.any { Sdk0256Compat.deviceUuid(it.dto) == pairedId && it.dto.side == selectedSide && (saved.isEmpty() || it.data?.sensorType != null) } } }
+        val paired = current.first { Sdk0256Compat.deviceUuid(it.dto) == pairedId }
+        if (existingFamily != null && familyOf(paired) != existingFamily) {
+            SdkDeviceOperations.remove(gloveRepository, paired.dto).getOrThrow()
+            withTimeout(5000) { gloveRepository.savedPeripherals.first { list -> list.none { Sdk0256Compat.deviceUuid(it) == pairedId } } }
+            withTimeout(5000) { gloveRepository.observeGloves().first { list -> list.none { Sdk0256Compat.deviceUuid(it.dto) == pairedId } } }
+            fail("mixed_family_pair", "ALPHA/DELTA-Mischpaar nicht unterstützt. Neuer Sensor wurde wieder entfernt.")
+        }
         status("ready", "paired", "Gerät gespeichert. Identität und Sensorfamilie werden nach Verbindungsaufbau geprüft.")
     }
 
@@ -208,6 +221,7 @@ internal object DynamicsCollector {
         operationDevice = "${Sdk0256Compat.deviceUuid(dto)} / ${dto.side} / deleteGloveById-gP7SR54"
         val removedEpoch = epochs[deviceId] ?: retiredDeviceEpochs[deviceId]
         status("removing", "removing", "Gespeicherte Kopplung wird entfernt; SDK-Bestätigung abwarten.")
+        stopScanning()
         SdkDeviceOperations.remove(gloveRepository, dto).getOrThrow()
         // SDK deletion owns persistent DB removal and BLE deinitialization. Await both published views.
         withTimeout(5000) { gloveRepository.savedPeripherals.first { list -> list.none { Sdk0256Compat.deviceUuid(it) == Sdk0256Compat.deviceUuid(dto) } } }
@@ -232,12 +246,13 @@ internal object DynamicsCollector {
         operationDevice = "${Sdk0256Compat.deviceUuid(dto)} / ${dto.side} / swapGloveSideForId-gP7SR54"
         val expected = if (dto.side == Side.LEFT) Side.RIGHT else Side.LEFT
         status("changing_side", "changing_side", "Seitenwechsel wird gespeichert.")
+        stopScanning()
         SdkDeviceOperations.swap(gloveRepository, dto).getOrThrow()
         withTimeout(5000) { gloveRepository.savedPeripherals.first { list -> list.any { Sdk0256Compat.deviceUuid(it) == Sdk0256Compat.deviceUuid(dto) && it.side == expected } } }
         gloves.forEach(::retire)
         gloves = withTimeout(5000) { gloveRepository.observeGloves().first { list -> list.any { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(dto) && it.dto.side == expected } } }
         reconcileConnections()
-        status("ready", "side_changed", "Seite geändert; bei zwei Handschuhen wurden Links und Rechts getauscht. Zuordnung prüfen.")
+        status("ready", "side_changed", "Seite geändert; bei zwei Sensoren wurden Links und Rechts getauscht. Zuordnung prüfen.")
     }
 
     @JvmStatic fun setBodyProfile(studyId: String, weightKg: Double, heightCm: Double, gender: String) = command("body_profile") {
@@ -349,6 +364,12 @@ internal object DynamicsCollector {
     private fun observe() {
         if (observing) return
         observing = true
+        observers += watch("saved_devices") {
+            gloveRepository.savedPeripherals.collect { saved ->
+                savedDevices = saved
+                status(state, "saved_devices_changed", "Gespeicherte SDK-Geräte aktualisiert.")
+            }
+        }
         observers += watch("devices") {
             gloveRepository.observeGloves().collect { current ->
                 gloves.filter { old -> current.none { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(old.dto) } }.forEach(::retire)
@@ -363,9 +384,13 @@ internal object DynamicsCollector {
         }
         observers += watch("scanner_state") {
             pairingRepository.scannerState.collect { scanner ->
+                scannerActive = Sdk0256Compat.scannerActive(scanner)
                 if (Sdk0256Compat.scannerError(scanner)) {
                     val code = if (Sdk0256Compat.missingScanningRequirements(scanner)) "scanning_requirements_missing" else "scanner_error"
                     status("error", code, "Bluetooth, Berechtigungen und gegebenenfalls Android-Standortdienst prüfen.")
+                } else if (!deviceMutation) {
+                    status(if (scannerActive) "scanning" else if (state == "scanning") "ready" else state,
+                        "scanner_state", if (scannerActive) "SDK-Gerätesuche aktiv." else "SDK-Gerätesuche inaktiv.")
                 }
             }
         }
@@ -537,6 +562,11 @@ internal object DynamicsCollector {
             .put("name", displayName(glove)).put("side", sideOf(glove.dto.side)).put("family", familyOf(glove))
             .put("online", foreground && Sdk0256Compat.online(glove.bleGloveState)).put("connectionId", epochs[device]?.id ?: "")
             .put("isMock", glove.dto.isMock).put("firmwareVersion", glove.dto.firmwareVersion)) }
+        savedDevices.filter { dto -> gloves.none { Sdk0256Compat.deviceUuid(it.dto) == Sdk0256Compat.deviceUuid(dto) } }.forEach { dto ->
+            devicesJson.put(JSONObject().put("id", alias(dto)).put("name", dto.name).put("side", sideOf(dto.side))
+                .put("family", knownFamilies[alias(dto)] ?: "Unknown").put("online", false).put("connectionId", "")
+                .put("isMock", dto.isMock).put("firmwareVersion", dto.firmwareVersion))
+        }
         val nearbyJson = JSONArray()
         nearby.forEach { (id, glove) -> nearbyJson.put(JSONObject().put("id", id).put("name", glove.advertisingName ?: "Dynamics-Gerät").put("family", "Unknown")) }
         DynamicsUnityBridge.sendNativeStatus(JSONObject().put("schemaVersion", 1).put("state", newState).put("code", code).put("message", message)

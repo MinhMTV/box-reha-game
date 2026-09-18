@@ -1,14 +1,9 @@
-# SDK 0.25.6 field coverage
+# SDK 0.25.6 field coverage — schema 2
 
-Inspected actual Android class signatures in sdk-api/public-api.txt; originals remain under C:/dynamics-sdk-main. Serialization enumerates all public readable getters/fields recursively rather than a selected gameplay field list.
+- RAW: relativeTimeCounter packed Duration plus converted seconds/nanoseconds, bleCounter, samplingRate name/IMU/barometer frequencies; complete ordered accData, gyroData, magnetoData, baroData arrays. Units: m/s², degrees/second, µT, Pa. Empty channels stay empty.
+- Envelope: UTC, elapsedRealtimeNanos, global event sequence, per-subscription flowEmissionSequence, packetIndexInEmission, PeripheralId/address/SDK name/family/side/role. RAW_STATE marks subscription restart.
+- Computed: actual Punch UUID, peripheral ID, side, timestamp, validity, all Speed quantities, concrete Power fields. ALPHA impact and peakForceBasedOnBaro; DELTA powerIndex. One event per newly observed UUID.
+- Device: saved identity/name/address/side/bond, mock flag, firmware/hardware/model/manufacturer; runtime family/online/connecting/bond/error/battery/charging/barometer and operational state.
+- Session, scan, raw-state, operation results, root exceptions, phone barometer and manual annotations are recorded while recording.
 
-- SensorDataPacket: relativeTimeCounter (packed Duration long), bleCounter, samplingRate, baroData, accData, gyroData, magnetoData; every list element is serialized.
-- Punch: id, peripheralId, side, timestamp, areComputedValuesValid, speed, concrete power type.
-- Speed: punchDuration/contactDuration (original packed Duration longs), peakAcceleration, peakVelocity, displacement.
-- Power: concrete ALPHA impact/peakForceBasedOnBaro or DELTA powerIndex; additional readable fields are included automatically.
-- PeripheralDto/Glove/NearbyGlove: every readable public property, nested device metadata/state/configuration where exposed. RSSI/firmware are never synthesized when absent.
-- Session state/stats/pairs and phone barometer: every public readable property on each delivered value, preserving whole stats snapshots.
-
-Original mangled getter names are mapped in _accessors. Class names/toString are retained. Unknown objects with no readable fields preserve class/representation. Cycles/depth limit/getter failures emit explicit serializationWarning/serializationError fields. Methods requiring arguments, private fields, native handles and hidden firmware/SDK state cannot be losslessly introspected; they are not claimed captured. No model-field truncation or list cap is applied. SDK getters returning a Flow do not themselves provide that Flow's emitted history; only explicitly subscribed streams above are observed.
-
-Repeated computed snapshots are retained. Event counts are occurrences, not unique Punch counts; use original IDs to deduplicate offline. Per-device counters reset at recording start but live observation may continue after stop. Exported metadata includes start/end device metadata, latest raw packet/rates and observed counters. UTC and monotonic receipt timestamps remain separate from SDK source time.
+Explicit serializers replace recursive reflection on packet/Resource paths. Coverage is of exposed measurements, not private SDK state or all firmware configuration. UI shows latest samples and throttled previews; JSONL preserves full observed packets. Channel order is retained without invented per-sample timestamps. Counter discontinuities are not proof of packet loss. SDK body-profile demographics are not exported. Interrupted partial recordings remain exportable.

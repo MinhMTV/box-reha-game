@@ -351,6 +351,7 @@ public class DigitalDojoMenuController : MonoBehaviour
         AndroidNearbyDevice[] nearby = controller.Status?.nearby;
         if (nearby == null || nearby.Length == 0) return;
         AndroidNearbyDevice selected = Array.Find(nearby, d => d != null && d.id == selectedNearbyId);
+        if (selected == null && nearby.Length == 1) selected = nearby[0];
         if (selected != null) controller.Pair(selected.id, side);
     }
     private void RemoveSide(string side)
@@ -429,8 +430,20 @@ public class DigitalDojoMenuController : MonoBehaviour
         var status = controller.Status;
         bool initialized = status != null && status.initialized;
         bool permissions = status != null && status.permissionsGranted;
-        bool discovered = status?.nearby != null && status.nearby.Length > 0;
-        bool selectedDiscovery = discovered && Array.Exists(status.nearby, d => d != null && !string.IsNullOrEmpty(d.id) && d.id == selectedNearbyId);
+        var nearby = status?.nearby ?? Array.Empty<AndroidNearbyDevice>();
+        bool discovered = nearby.Length > 0;
+        if (discovered)
+        {
+            if (string.IsNullOrEmpty(selectedNearbyId) || !Array.Exists(nearby, d => d != null && d.id == selectedNearbyId))
+            {
+                selectedNearbyId = Array.Find(nearby, d => d != null && !string.IsNullOrEmpty(d.id))?.id;
+            }
+        }
+        else
+        {
+            selectedNearbyId = null;
+        }
+        bool selectedDiscovery = discovered && Array.Exists(nearby, d => d != null && !string.IsNullOrEmpty(d.id) && d.id == selectedNearbyId);
         bool locked = controller.Pending || (status != null && (status.deviceMutation || status.hasActiveSession));
         if(sensorNotice != null && status != null && status.hasActiveSession && sensorStartButton == null) sensorNotice.text += "\nEnd SDK session before changing sensor assignments.";
         var devices = status?.devices ?? Array.Empty<AndroidNativeDevice>();
@@ -446,8 +459,7 @@ public class DigitalDojoMenuController : MonoBehaviour
         StepState(swapButton, false, devices.Length > 0 && !locked);
         if (nearbyLabel != null)
         {
-            AndroidNearbyDevice[] nearby = controller.Status?.nearby;
-            if (nearby == null || nearby.Length == 0) nearbyLabel.text = "No discovery results. Initialize, grant permissions, then scan.";
+            if (nearby.Length == 0) nearbyLabel.text = "No discovery results. Initialize, grant permissions, then scan.";
             else
             {
                 AndroidNearbyDevice selected = Array.Find(nearby, d => d != null && d.id == selectedNearbyId);

@@ -1,56 +1,46 @@
 # Dynamics SDK Inspector
 
-**APK built:** [DynamicsSdkInspector-debug.apk](DynamicsSdkInspector-debug.apk). Open this folder in Android Studio. [Build result](BUILD_RESULT.md).
-
-Standalone Kotlin/Compose Android diagnostic app; no Unity code/assets or vendor binaries modified. Package `com.digitaldojo.sdkinspector`, min API 26, target 36. SDK Maven distribution: `C:/dynamics-sdk-main/mavenLocal` (override DYNAMICS_MAVEN_PATH or -PdynamicsMavenPath).
+Standalone Kotlin/Material 3 Android app, SDK 0.25.6 COMPATIBILITY, API 26–36. Vendor binaries unchanged.
 
 ## Build
 
-Java 17, Android SDK platform 36 and Gradle 9.1.0. Open this directory in Android Studio. Set local.properties sdk.dir for your machine. Run `gradlew.bat :app:assembleDebug` (or installed Gradle 9.1.0). APK: `app/build/outputs/apk/debug/app-debug.apk`.
+Java 17: gradlew.bat :app:assembleDebug
+Authoritative APK: app/build/outputs/apk/debug/app-debug.apk. Older copied APKs are not automatically refreshed.
 
-SDK COMPATIBILITY is explicit in app/build.gradle: resource 2.11.1 → 2.12.0, copied Sdk0256Compat Java adapter and original four SHA-256 input gates. SDK AAR/JAR files are not patched. This is a separate app/database from Digital Dojo.
+## Sensor lifecycle — ALPHA and DELTA
 
-## Connect and inspect
+Scan subscribes to nearbyGloves; Stop cancels the subscription. Actual scannerState drives the indicator. Grant Bluetooth permissions; API 26–30 also requires location services/permission.
 
-Grant Nearby Devices permissions on Android 12+, location for BLE on API 26–30; allow notifications for visible recording status. Enable Bluetooth (and location services on older Android where needed). Initialize, Scan, inspect complete discovered metadata and Add LEFT/RIGHT. Side is never assigned by discovery order. With Raw sensor stream enabled, every saved peripheral receives its own raw Flow; observed SDK state controls connected labels. Family remains UNKNOWN until reported by the SDK.
+Pair uses the real advertising name and explicit LEFT/RIGHT. The Java adapter extracts the returned PeripheralId without reflecting Resource internals. Saved and runtime flows confirm success. Occupied sides are rejected. One same-family sensor or LEFT/RIGHT pair is supported. Discovery has no authoritative family; a connected mixed-family addition is removed after SDK identification.
 
-Remove calls deleteGloveById and waits for saved/observed absence. Swap calls swapGloveSideForId and waits for a saved side change; its paired counterpart may also change. No application two-device cap is added; SDK rejections are logged. This does not establish mixed or 2+2 support.
+savedPeripherals means persisted; observeGloves supplies online/connecting/bond/error state. Missing runtime devices become SAVED/OFFLINE. Unknown families remain visible. REMOVE uses deleteGloveById and its documented BLE deinitialization semantics, then waits for absence in both flows. Confirmed FORGET ALL calls deleteAllGloves. Inconsistent removal reports SDK_STATE_INCONSISTENCY. SWAP calls swapGloveSideForId and waits for actual saved/runtime side changes, including a paired counterpart. Active training sessions block mutations. No fake disconnect-but-keep-saved button exists.
 
-The public GloveRepository inspected exposes no independent connect/disconnect API. SDK observation owns connection acquisition; Refresh/reconnect resubscribes. The Devices screen explains the restriction; physical power-off, Android Bluetooth settings or persistent Remove are available. No private manager/singleton bypass or new raw GATT connection is used.
+Roles: ALPHA LEFT_HAND/RIGHT_HAND, DELTA LEFT_FOOT/RIGHT_FOOT. SDK identity, family, side and name remain in exports. Mixed ALPHA/DELTA and simultaneous 2+2 acquisition are not qualified.
 
-Raw recording is primary. Optional computed sessions require explicitly entered SDK body fields and one selected family. SDK body values stay in its local database and are not added to recording metadata. Raw/computed coexistence is unverified: Raw sensor stream switch permits isolated experiments. Starting a computed session can be rejected by SDK pairing/session constraints.
+## Acquisition
 
-## Record and export
+Modes: IDLE, RAW, COMPUTED. RAW and COMPUTED are mutually exclusive pending hardware evidence.
 
-START creates a unique directory, metadata.json and continuously streamed events.jsonl. STOP drains the writer before marking complete. Foreground connectedDevice service, notification Stop action and partial wake lock run only during active recording. SDK background disconnect timeout is set to 86400 seconds; actual lock/background continuity still requires hardware validation. Android can kill processes; an interrupted session retains complete=false, not a false clean stop.
+RAW uses exactly one observeSensorData(peripheralId) collector per saved ID for either family. Inspected bytecode loads the saved DTO and subscribes to continuous packet observation. Each emission is List<SensorDataPacket>; every packet and all channel samples are recorded. The alternative all-device collector is not also subscribed.
 
-Sessions lists retained recordings; EXPORT uses Android CreateDocument/Storage Access Framework to save a ZIP containing metadata.json and events.jsonl (plus recording-error.txt on writer failure). Share the saved ZIP through your file provider. DELETE requires confirmation; no automatic deletion. Current recording cannot be exported/deleted. Incomplete recordings remain exportable.
+States: OFF, STARTING, SUBSCRIBED — NO PACKETS, STREAMING, ERROR. Live shows operational state, rate, packet age, counters, sampling frequency and latest samples. Subscription does not establish physical delivery. UI previews are throttled to 8 Hz/device, recording is not sampled.
 
-The writer uses a bounded 256-entry channel with suspending backpressure, not a dropping UI queue or unbounded recording list. UI retains 1000 recent previews (at most 8192 characters each) and refreshes about 10 Hz. Truncation is explicitly labelled and applies only to UI history, never JSONL. All raw packets delivered to our collectors are submitted individually; upstream SDK/OS/BLE buffering and loss are not under app control. UI counters are observed occurrences, not verified physical actions. Computed snapshots may repeat Punch IDs: all occurrences and the complete snapshot are retained for later deduplication by original ID.
+COMPUTED checks for an existing session, creates the required SDK body profile, initializes, readies ALPHA or DELTA, resumes and awaits Resumed. Finish awaits null activeTrainingSessionTime. Existing sessions may be explicitly finished/discarded; never automatically deleted. Punch snapshots are deduplicated by actual UUID. The SDK uses Punch with family-specific Power: ALPHA impact/peakForceBasedOnBaro, DELTA powerIndex. DELTA powerIndex is not force/Newtons.
 
-## JSONL schema 1 and field coverage
+## Recording
 
-Every line contains sequence, eventType, utcTimestamp, elapsedRealtimeNanos, device (peripheralId/family/side/role), sdkTimestamp or null, and payload. App-wide events have null peripheral ID/UNKNOWN role. Original SDK values are never replaced by friendly labels.
+Record runs the foreground connectedDevice service with notification and wake lock. Buffered IO consumes a bounded 256-entry suspending queue, without intentional drops. Queue depth and RECORDING_BACKLOG are visible. Upstream BLE/SDK losses cannot be excluded.
 
-Public no-argument get*/is* accessors and public instance fields are serialized recursively, including nested packet arrays, sampling rates, firmware metadata, Punch Speed/Power and concrete class. `_accessors` preserves exact mangled JVM getter names; `_representation` preserves original toString. Packed Kotlin Duration longs are retained without inventing units. Raw sdkTimestamp is the original packed relativeTimeCounter, not UTC. Complete accData/gyroData/magnetoData/baroData arrays are kept, not only last samples.
+Writes go to events.jsonl.partial, flushed periodically. Clean Stop drains/closes and finalizes events.jsonl. Partial files survive interruption and remain ZIP-exportable. Background disconnect timeout defaults to one second, extends only while recording, and restores on Stop/failure.
 
-Cycles, depth over 32, opaque classes and getter exceptions are explicitly represented; no inaccessible private field is read. No promise of recovering SDK-internal state or fields not exposed to public getters. `sdk-api/public-api.txt` records inspected signatures. See FIELD_COVERAGE.md.
+Manual MARK STRAIGHT / HOOK / UPPERCUT / KICK / CUSTOM append ANNOTATION with UTC, monotonic time and selected device identity. These labels do not classify movements.
 
-ALPHA impact/peakForceBasedOnBaro and DELTA powerIndex retain their names. **DELTA powerIndex is NOT interpreted as physical force.** No force units, clock alignment, technique recognition or packet-loss accuracy are inferred.
+Schema 2 retains full arrays, source counters, sampling frequencies, flowEmissionSequence and packetIndexInEmission. Kotlin Duration packed value and converted nanoseconds are separate. Sample order is preserved without fabricated per-sample timestamps. Counter discontinuities do not assert packet loss.
 
-Implemented observers: per-device raw packets, saved peripherals, discovered/scanner state, observed gloves/device metadata, glove pairs, active session state/stats and every observed computed Punch, plus smartphone barometer when SDK supplies it. Commands/results/errors and app/permission/Bluetooth transitions are recorded during an active recording. No firmware erase/calibration/test command is automatically invoked to discover additional streams.
+Metadata includes app/SDK/Android versions, device model, session times, sensors and acquisition mode. Body-profile demographics are excluded from research exports. See FIELD_COVERAGE.md.
 
-No physical sensor validation or screenshots were performed. Background/throughput, SDK firmware stream interaction and every multi-device combination require real hardware.
+## ABI
 
-Android foreground-service reference: https://developer.android.com/develop/background-work/services/fgs/declare
+Shipped 0.25.6 value-class methods use deleteGloveById-gP7SR54(Uuid, Continuation), swapGloveSideForId-gP7SR54(Uuid, Continuation), and observeSensorData-16HgSWs(Uuid). Pair/deleteAllGloves keep unmangled names. Some Java generic/nested metadata is stripped. Both apps use the same checked Java adapter and unchanged vendor artifacts.
 
-
-## Sensor setup fix � 18 September 2026
-
-The previous Kotlin caller emitted `deleteGloveById(PeripheralId, Continuation)` although the shipped binary only has `deleteGloveById-gP7SR54(Uuid, Continuation)`. Swap and per-device raw observation have the same value-class ABI mismatch. Both apps now use identical Sdk0256Compat.java / SdkDeviceOperations.kt adapters for those exact public descriptors, preserving the suspend continuation. Vendor binaries remain unchanged. Pair uses the existing public `PairingRepository.pair`, then confirms the returned PeripheralId in savedPeripherals; removal awaits both saved and observed-device absence; swap awaits persisted side change. No pair reconstruction is needed for public repository deletion.
-
-Discovery is subscription-driven: nearbyGloves collects SDK nearby peripherals when subscribed (verified repository constructor/l4/k4 bytecode). It exposes address/name/RSSI, not a PeripheralId or sensor family; PeripheralId is returned by pairing. Do not infer family from SG names or invent an ID before pairing. Inspector now gates Scan by SDK initialization, BLE feature, permissions, Bluetooth and legacy location services. Android settings changes are reflected by the 10 Hz state publisher. Scanner failures remain visible; stop and scan again after correcting prerequisites.
-
-Devices, Live, Log and Sessions use dark Material 3 cards. Raw stream defaults OFF and never disconnects a glove. Live renders last observed vector samples while JSONL retains every full packet and snapshot. Fresh Punch cues exclude the first historical snapshot and repeated IDs in unchanged snapshots. SDK sampling-rate enum getters are retained, including actual IMU/barometer Hz. UI status and recording counters are published at 10 Hz; the recorder is not sampled.
-
-Unity setup now uses an explicit stable discovery selection and actual SDK session-presence / mutation flags instead of treating every non-idle error label as an active session. Real active sessions still require End SDK session. Single-family and maximum-one-pair Unity gameplay guards remain; Inspector has no app two-device cap. Physical scan, pair, remove, swap and simultaneous sensor operation still require device validation.
+Build success does not prove physical pairing, raw throughput, background continuity or DELTA hardware behavior; those remain user hardware checks.

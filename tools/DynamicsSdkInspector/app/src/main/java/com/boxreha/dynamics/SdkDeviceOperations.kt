@@ -11,4 +11,7 @@ object SdkDeviceOperations {
         suspendCoroutineUninterceptedOrReturn { Sdk0256Compat.deleteDevice(repository, dto, it) }
     suspend fun swap(repository: GloveRepository, dto: PeripheralDto): Resource =
         suspendCoroutineUninterceptedOrReturn { Sdk0256Compat.swapDevice(repository, dto, it) }
+    suspend fun deleteAll(repository: GloveRepository): Resource =
+        suspendCoroutineUninterceptedOrReturn { Sdk0256Compat.deleteAllDevices(repository, it) }
 }
+
