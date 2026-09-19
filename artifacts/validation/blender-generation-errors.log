@@ -1,2 +1,0 @@
-E:\Programming Projekte\worktrees\wt-agent-root-digital-dojo\ArtSource\Blender\DigitalDojo\generate_dojo.py:25: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
-  mat=bpy.data.materials.new('M_DD_'+key); mat.diffuse_color=color; mat.use_nodes=True
