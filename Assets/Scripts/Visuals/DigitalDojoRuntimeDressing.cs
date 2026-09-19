@@ -79,10 +79,7 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
             "HeavyGateTop",
             "HeavyGateBottom",
             "HeavyGateLeft",
-            "HeavyGateRight",
-            "PunchHitLabel",
-            "KickHitLabel",
-            "HeavyGateLabel"
+            "HeavyGateRight"
         };
 
         foreach (string legacyName in legacyNames)
@@ -139,7 +136,7 @@ public class DigitalDojoRuntimeDressing : MonoBehaviour
         }
 
         Light key = null;
-        foreach(var light in FindObjectsOfType<Light>())
+        foreach(var light in FindObjectsByType<Light>())
         {
             if(light.type==LightType.Directional)key=light;
             else if(light.name.StartsWith("AccentLight_"))light.enabled=false;

@@ -114,7 +114,7 @@ public class DynamicsSdkBridge : MonoBehaviour
     }
     private bool ResolveInputProvider()
     {
-        if (sensorInputProvider == null) sensorInputProvider = FindObjectOfType<BleSensorInputProvider>();
+        if (sensorInputProvider == null) sensorInputProvider = FindAnyObjectByType<BleSensorInputProvider>();
         return sensorInputProvider != null;
     }
 }

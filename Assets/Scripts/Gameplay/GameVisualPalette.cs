@@ -79,22 +79,4 @@ public static class GameVisualPalette
                 return 22;
         }
     }
-
-    public static float GetSpawnWarningDuration(TargetType type)
-    {
-        switch (type)
-        {
-            case TargetType.ToughPunch:
-                return 0.42f;
-            case TargetType.ToughKick:
-            case TargetType.Kick:
-                return 0.26f;
-            case TargetType.Block:
-                return 0.28f;
-            case TargetType.Dodge:
-                return 0.22f;
-            default:
-                return 0.24f;
-        }
-    }
 }

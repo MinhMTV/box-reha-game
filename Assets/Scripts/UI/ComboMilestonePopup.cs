@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 /// <summary>
 /// Shows big "COMBO X!" text popup at combo milestones.
-/// Includes camera shake effect.
 /// Spawns on HUDCanvas and fades out.
 /// </summary>
 public class ComboMilestonePopup : MonoBehaviour
@@ -15,8 +13,6 @@ public class ComboMilestonePopup : MonoBehaviour
     [SerializeField] private float popupDuration = .7f;
     [SerializeField] private float scalePunch = 1.08f;
     static ComboMilestonePopup current;
-    [SerializeField] private float shakeIntensity = 0.1f;
-    [SerializeField] private float shakeDuration = 0.15f;
 
     private Text popupText;
     private float timer;
@@ -34,7 +30,7 @@ public class ComboMilestonePopup : MonoBehaviour
 
     public static void Show(int combo)
     {
-        Canvas canvas = FindObjectOfType<Canvas>();
+        Canvas canvas = FindAnyObjectByType<Canvas>();
         if (canvas == null) return;
         if(current!=null){current.gameObject.SetActive(false);Destroy(current.gameObject);}
 
@@ -69,8 +65,7 @@ public class ComboMilestonePopup : MonoBehaviour
         popup.startColor = text.color;
         popup.originalScale = Vector3.one * popup.scalePunch;
 
-        // Camera shake
-        // Shared DojoGameFeel supplies the small bounded camera impulse.
+        // Camera shake: shared DojoGameFeel supplies the small bounded camera impulse.
     }
 
     void Start()
@@ -105,53 +100,6 @@ public class ComboMilestonePopup : MonoBehaviour
             if (popupText != null)
             {
                 popupText.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
-            }
-        }
-    }
-}
-
-/// <summary>
-/// Simple camera shake utility.
-/// </summary>
-public class CameraShake : MonoBehaviour
-{
-    private static CameraShake instance;
-    private Vector3 originalPosition;
-    private float shakeIntensity;
-    private float shakeTimer;
-
-    public static void ShakeAll(float intensity, float duration)
-    {
-        Camera cam = Camera.main;
-        if (cam == null) return;
-
-        CameraShake shake = cam.GetComponent<CameraShake>();
-        if (shake == null)
-        {
-            shake = cam.gameObject.AddComponent<CameraShake>();
-        }
-        shake.Shake(intensity, duration);
-    }
-
-    public void Shake(float intensity, float duration)
-    {
-        originalPosition = transform.localPosition;
-        shakeIntensity = intensity;
-        shakeTimer = duration;
-    }
-
-    void Update()
-    {
-        if (shakeTimer > 0f)
-        {
-            shakeTimer -= Time.deltaTime;
-            float x = Random.Range(-1f, 1f) * shakeIntensity;
-            float y = Random.Range(-1f, 1f) * shakeIntensity;
-            transform.localPosition = originalPosition + new Vector3(x, y, 0f);
-
-            if (shakeTimer <= 0f)
-            {
-                transform.localPosition = originalPosition;
             }
         }
     }

@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         {
             CurrentState = GameState.Paused;
             ResearchSessionLog.State("pause");
-            InputProviderRouter router = FindObjectOfType<InputProviderRouter>();
+            InputProviderRouter router = FindAnyObjectByType<InputProviderRouter>();
             if (router != null) router.IsEnabled = false;
             Time.timeScale = 0f;
             AndroidDynamicsController.Instance?.PauseSession();
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
             CurrentState = GameState.Playing;
             Time.timeScale = 1f;
             ResearchSessionLog.State("resume");
-            InputProviderRouter router = FindObjectOfType<InputProviderRouter>();
+            InputProviderRouter router = FindAnyObjectByType<InputProviderRouter>();
             if (router != null) router.IsEnabled = true;
         }
     }

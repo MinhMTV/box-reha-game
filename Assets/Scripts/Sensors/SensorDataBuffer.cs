@@ -59,7 +59,6 @@ public class SensorDataBuffer
         }
     }
 
-    public SensorReading[] GetAll() { lock (gate) return GetLatest(count); }
     public void Clear() { lock (gate) { Array.Clear(buffer, 0, Capacity); head = count = 0; } }
     public float GetAverageAccelerationMagnitude(int lastN)
     {
@@ -67,11 +66,5 @@ public class SensorDataBuffer
         float sum = 0f;
         foreach (SensorReading reading in readings) sum += reading.Acceleration.magnitude;
         return readings.Length == 0 ? 0f : sum / readings.Length;
-    }
-    public float GetPeakAccelerationMagnitude(int lastN)
-    {
-        float peak = 0f;
-        foreach (SensorReading reading in GetLatest(lastN)) peak = Mathf.Max(peak, reading.Acceleration.magnitude);
-        return peak;
     }
 }

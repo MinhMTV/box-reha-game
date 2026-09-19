@@ -19,9 +19,9 @@ public static class HitGatePlayModeChecks
     static TargetObject Create(TargetType type,float offset=0,LaneType lane=LaneType.Left)
     {
         // Independent visual fixtures: previous-case transient feedback is not part of this scenario.
-        foreach(var popup in Object.FindObjectsByType<TextPopup>(FindObjectsSortMode.None))Object.DestroyImmediate(popup.gameObject);
-        foreach(var popup in Object.FindObjectsByType<ComboMilestonePopup>(FindObjectsSortMode.None))Object.DestroyImmediate(popup.gameObject);
-        var oldPool=Object.FindFirstObjectByType<DojoDebrisPool>();
+        foreach(var popup in Object.FindObjectsByType<TextPopup>())Object.DestroyImmediate(popup.gameObject);
+        foreach(var popup in Object.FindObjectsByType<ComboMilestonePopup>())Object.DestroyImmediate(popup.gameObject);
+        var oldPool=Object.FindAnyObjectByType<DojoDebrisPool>();
         if(oldPool!=null)typeof(DojoDebrisPool).GetMethod("Advance",Private).Invoke(oldPool,new object[]{DojoDebrisPool.Lifetime});
         bool kick=type==TargetType.Kick||type==TargetType.ToughKick;
         bool heavy=type==TargetType.ToughPunch||type==TargetType.ToughKick;
@@ -44,7 +44,7 @@ public static class HitGatePlayModeChecks
     }
     public static void Run(Action<string> capture)
     {
-        checks.Clear();evaluator=Object.FindFirstObjectByType<HitZoneEvaluator>();gate=evaluator.GetComponent<HitZoneVisualizer>();spawner=Object.FindFirstObjectByType<TargetSpawner>();
+        checks.Clear();evaluator=Object.FindAnyObjectByType<HitZoneEvaluator>();gate=evaluator.GetComponent<HitZoneVisualizer>();spawner=Object.FindAnyObjectByType<TargetSpawner>();
         Require(gate!=null,"gate installed by runtime evaluator");
         ClearFlash();Refresh();
         Require(gate.PunchState=="Dormant"&&gate.KickState=="Dormant","dormant with no target");capture("Gate-Dormant");
@@ -92,7 +92,7 @@ public static class HitGatePlayModeChecks
             Require(visual.DamageStage==2&&!heavy.IsResolved,"heavy 40 percent stage");capture("Damage-40-"+type);
             for(int i=0;i<4;i++)Action(heavy);
             Require(visual.DamageStage==3&&heavy.IsResolved,"heavy zero health breaks");
-            var pool=Object.FindFirstObjectByType<DojoDebrisPool>();
+            var pool=Object.FindAnyObjectByType<DojoDebrisPool>();
             Require(SettingsManager.ReducedMotion||pool!=null&&pool.ActiveCount<=DojoDebrisPool.Capacity,"bounded authored fracture pool");
             if(pool!=null){Require(pool.GetComponentsInChildren<Collider>().Length==0,"debris has no implicit collider");for(int i=0;i<12;i++)typeof(DojoDebrisPool).GetMethod("Advance",Private).Invoke(pool,new object[]{.02f});}
             capture("Break-"+type);Clear(heavy);

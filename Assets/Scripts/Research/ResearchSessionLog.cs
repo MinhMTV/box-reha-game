@@ -121,10 +121,14 @@ public static class ResearchSessionLog
         record.healthDamage = damage;
         Write(record);
     }
+    private static HitZoneEvaluator cachedEvaluator;
     private static Record TargetRecord(string kind, TargetObject target)
     {
-        HitZoneEvaluator evaluator = UnityEngine.Object.FindObjectOfType<HitZoneEvaluator>();
-        float zone = evaluator != null ? evaluator.HitZoneZ : 5f;
+        // Cached across calls: this runs once per target spawn/resolution/impact, which can be
+        // several times per second during a fast combo. Unity's overloaded null-check re-finds it
+        // if the cached instance was destroyed (e.g. a scene reload).
+        if (cachedEvaluator == null) cachedEvaluator = UnityEngine.Object.FindAnyObjectByType<HitZoneEvaluator>();
+        float zone = cachedEvaluator != null ? cachedEvaluator.HitZoneZ : 5f;
         return new Record { kind = kind, targetId = target.TargetId, targetType = target.Type.ToString(),
             lane = target.Lane.ToString(), spawnGameplaySeconds = target.SpawnTime - startTime,
             hitWindowSeconds = target.HitWindow, targetSpeed = target.MoveSpeed, hitZoneZ = zone,

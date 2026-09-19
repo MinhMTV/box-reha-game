@@ -155,7 +155,7 @@ public static class SessionInputSelection
 
     // The operator's explicit pick, or null while the connected hardware decides.
     private static string explicitFamily;
-    private static string resolvedFamily = "Alpha";
+    private static string resolvedFamily;
 
     /// <summary>
     /// The family actually used. A DELTA-only setup never falls back to ALPHA: the SDK-reported family

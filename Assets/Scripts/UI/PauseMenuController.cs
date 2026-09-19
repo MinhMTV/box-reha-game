@@ -94,7 +94,7 @@ public class PauseMenuController : MonoBehaviour
     public void OnResume() { Resume(); }
     public void OnQuitToMenu()
     {
-        GameRoundController round = FindObjectOfType<GameRoundController>();
+        GameRoundController round = FindAnyObjectByType<GameRoundController>();
         if (round != null) round.FinishRound("player_stop");
         else GameManager.Instance?.LoadMainMenu();
     }

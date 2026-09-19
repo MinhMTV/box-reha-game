@@ -1,6 +1,6 @@
 # Project structure — 17 September 2026
 
-Main checkout: `E:/Programming Projekte/box-reha-game`, source baseline `3f99b17`. Unity 6000.6.0f1. Enabled scenes: Boot, MainMenu, Game, Results. Do not use the historical detached worktree as current authority.
+Main checkout: `E:/Programming Projekte/box-reha-game`, source baseline `3f99b17`. Unity 6000.6.1f1 (later patch of the originally targeted 6000.6.0f1 stream; see [ANDROID_STATUS.md](ANDROID_STATUS.md)). Enabled scenes: Boot, MainMenu, Game, Results. Do not use the historical detached worktree as current authority.
 
 | Location | Responsibility |
 |---|---|

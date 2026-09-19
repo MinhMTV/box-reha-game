@@ -22,7 +22,7 @@ public sealed class HitZoneVisualizer : MonoBehaviour
     {
         block = new MaterialPropertyBlock();
         evaluator = GetComponent<HitZoneEvaluator>();
-        var spawner = FindFirstObjectByType<TargetSpawner>();
+        var spawner = FindAnyObjectByType<TargetSpawner>();
         if (spawner != null && spawner.Configuration != null)
         {
             PunchHeight = spawner.Configuration.GetVerticalOffset(VerticalPosition.High);

@@ -40,7 +40,18 @@ public static class SessionHistoryStore
         if (Error != null) return;
         if (entries.Exists(s => s != null && s.SessionId == stats.SessionId)) return;
         entries.Insert(0, JsonUtility.FromJson<GameSessionStats>(JsonUtility.ToJson(stats)));
-        if (entries.Count > 200) entries.RemoveRange(200, entries.Count - 200);
+        // Cap per study/participant, not globally: a shared 200-entry cap across all participants would
+        // silently evict an earlier participant's sessions once a multi-participant study's combined
+        // total passed 200, even though each participant is individually far below that limit.
+        Dictionary<string, int> perStudyCount = new Dictionary<string, int>();
+        for (int i = 0; i < entries.Count; i++)
+        {
+            string id = entries[i]?.StudyId;
+            if (id == null) continue;
+            perStudyCount.TryGetValue(id, out int count);
+            perStudyCount[id] = ++count;
+            if (count > 200) { entries.RemoveAt(i); i--; }
+        }
         try
         {
             Directory.CreateDirectory(Application.persistentDataPath);

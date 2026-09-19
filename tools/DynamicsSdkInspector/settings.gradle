@@ -2,7 +2,9 @@ pluginManagement { repositories { google(); mavenCentral(); gradlePluginPortal()
 dependencyResolutionManagement {
  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
  repositories {
-  maven { url = uri(providers.gradleProperty('dynamicsMavenPath').orElse(providers.environmentVariable('DYNAMICS_MAVEN_PATH')).getOrElse('C:/dynamics-sdk-main/mavenLocal')) }
+  def sdkRepo = providers.gradleProperty('dynamicsMavenPath').orElse(providers.environmentVariable('DYNAMICS_MAVEN_PATH'))
+  if (!sdkRepo.isPresent()) throw new GradleException('Set DYNAMICS_MAVEN_PATH or -PdynamicsMavenPath to the supplied SDK mavenLocal directory.')
+  maven { url = uri(sdkRepo.get()) }
   google(); mavenCentral()
  }
 }

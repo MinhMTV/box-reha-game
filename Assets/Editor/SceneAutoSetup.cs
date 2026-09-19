@@ -357,12 +357,7 @@ public static class SceneAutoSetup
         Text comboText = CreateHudText(hudCanvas.transform, "ComboText", string.Empty, 28, new Vector2(0f, -30f), new Vector2(240f, 40f), TextAnchor.MiddleCenter);
         Text timerText = CreateHudText(hudCanvas.transform, "TimerText", "01:00", 32, new Vector2(-120f, -30f), new Vector2(220f, 40f), TextAnchor.MiddleRight, rightAnchor: true);
         Text accuracyText = CreateHudText(hudCanvas.transform, "AccuracyText", "0%", 20, new Vector2(120f, -65f), new Vector2(220f, 30f), TextAnchor.MiddleLeft);
-        Text debugText = CreateHudText(hudCanvas.transform, "DebugText", string.Empty, 16, new Vector2(120f, -110f), new Vector2(260f, 70f), TextAnchor.UpperLeft);
-        Text inputStateText = CreateHudText(hudCanvas.transform, "InputStateText", string.Empty, 16, new Vector2(120f, -180f), new Vector2(260f, 40f), TextAnchor.UpperLeft);
         Text feedbackText = CreateHudText(hudCanvas.transform, "FeedbackText", string.Empty, 28, new Vector2(0f, -90f), new Vector2(520f, 40f), TextAnchor.MiddleCenter);
-
-        debugText.gameObject.SetActive(false);
-        inputStateText.gameObject.SetActive(false);
 
         GameObject pausePanelObject = CreateUiObject("PausePanel", hudCanvas.transform);
         Image pausePanelImage = pausePanelObject.AddComponent<Image>();
@@ -381,8 +376,10 @@ public static class SceneAutoSetup
         GameObject debugCanvasObject = new GameObject("DebugCanvas");
         debugCanvasObject.transform.SetParent(hudCanvas.transform, false);
         DebugUI debugUi = debugCanvasObject.AddComponent<DebugUI>();
+        // DebugUI owns a dedicated Text object; it must never share HUDController's gameplay labels.
+        Text debugText = CreateHudText(debugCanvasObject.transform, "DebugText", string.Empty, 16, new Vector2(120f, -110f), new Vector2(260f, 70f), TextAnchor.UpperLeft);
+        debugText.gameObject.SetActive(false);
 
-        SetPrivateField(mouseInputProvider, "gameConfig", config);
         SetPrivateField(bleSensorInputProvider, "gameConfig", config);
         SetPrivateField(inputProvider, "gameConfig", config);
         SetPrivateField(inputProvider, "mouseTouchInputProvider", mouseInputProvider);
@@ -406,8 +403,6 @@ public static class SceneAutoSetup
         SetPrivateField(hudController, "comboText", comboText);
         SetPrivateField(hudController, "timerText", timerText);
         SetPrivateField(hudController, "accuracyText", accuracyText);
-        SetPrivateField(hudController, "debugText", debugText);
-        SetPrivateField(hudController, "inputStateText", inputStateText);
         SetPrivateField(hudController, "feedbackText", feedbackText);
 
         SetPrivateField(pauseController, "resumeButton", resumeButton);
@@ -524,7 +519,7 @@ public static class SceneAutoSetup
 
     private static void EnsureEventSystem()
     {
-        if (Object.FindObjectOfType<EventSystem>() != null)
+        if (Object.FindAnyObjectByType<EventSystem>() != null)
         {
             return;
         }

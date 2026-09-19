@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
@@ -36,13 +37,13 @@ public static class GameRegressionChecks
         if (!Application.isBatchMode) throw new InvalidOperationException("Run in a dedicated Unity batch process.");
         if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android))
             throw new InvalidOperationException("Install Android Build Support for this project's exact Editor, including SDK/NDK and OpenJDK.");
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.boxreha.digitaldojo");
+        PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, "com.boxreha.digitaldojo");
         PlayerSettings.productName = "Digital Dojo";
         PlayerSettings.bundleVersion = "1.5";
         PlayerSettings.Android.bundleVersionCode = 6;
         PlayerSettings.Android.minSdkVersion = RequiredAndroidMinimum();
         PlayerSettings.Android.targetSdkVersion = (AndroidSdkVersions)36;
-        PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
+        PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
         PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
         PlayerSettings.defaultInterfaceOrientation = UIOrientation.LandscapeLeft;
         PlayerSettings.allowedAutorotateToPortrait = false;
@@ -60,10 +61,10 @@ public static class GameRegressionChecks
 
     public static void BuildAndroidCandidate()
     {
-        if (PlayerSettings.GetApplicationIdentifier(BuildTargetGroup.Android) != "com.boxreha.digitaldojo"
+        if (PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Android) != "com.boxreha.digitaldojo"
             || PlayerSettings.Android.minSdkVersion != RequiredAndroidMinimum()
             || (int)PlayerSettings.Android.targetSdkVersion != 36
-            || PlayerSettings.GetScriptingBackend(BuildTargetGroup.Android) != ScriptingImplementation.IL2CPP
+            || PlayerSettings.GetScriptingBackend(NamedBuildTarget.Android) != ScriptingImplementation.IL2CPP
             || PlayerSettings.Android.targetArchitectures != AndroidArchitecture.ARM64
             || PlayerSettings.defaultInterfaceOrientation != UIOrientation.LandscapeLeft
             || EditorUserBuildSettings.buildAppBundle)
@@ -206,12 +207,12 @@ public static class GameRegressionChecks
             foreach (Transform child in root.GetComponentsInChildren<Transform>(true))
                 Require(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(child.gameObject) == 0);
         if (scene.name != "Game") return;
-        GameRoundController round = UnityEngine.Object.FindObjectOfType<GameRoundController>();
+        GameRoundController round = UnityEngine.Object.FindAnyObjectByType<GameRoundController>();
         Require(round != null);
         SerializedObject serialized = new SerializedObject(round);
         foreach (string field in new[] { "targetSpawner", "sessionTimer", "scoreSystem", "comboSystem", "hitZoneEvaluator", "inputProvider", "hudController" })
             Require(serialized.FindProperty(field).objectReferenceValue != null);
-        Require(UnityEngine.Object.FindObjectOfType<PauseMenuController>() != null);
+        Require(UnityEngine.Object.FindAnyObjectByType<PauseMenuController>() != null);
     }
     private static void Check(string name, Action action)
     {

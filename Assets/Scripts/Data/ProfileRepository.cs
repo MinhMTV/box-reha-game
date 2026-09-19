@@ -79,3 +79,37 @@ public sealed class FileProfileRepository : IProfileRepository
         catch { data=File.Exists(path)?JsonUtility.FromJson<Database>(File.ReadAllText(path)):new Database();throw; }
     }
 }
+
+/// <summary>Unsaved fallback used only when the on-disk profile database refuses to load (corrupt/unreadable).
+/// Never touches the original file, so the corrupt data stays available for inspection instead of being overwritten.</summary>
+public sealed class TransientProfileRepository : IProfileRepository
+{
+    private readonly List<PlayerProfile> profiles = new List<PlayerProfile>();
+    public string ActiveId { get; private set; }
+    public TransientProfileRepository() { Create("Player"); }
+    private static PlayerProfile Copy(PlayerProfile p) => p == null ? null : JsonUtility.FromJson<PlayerProfile>(JsonUtility.ToJson(p));
+    public PlayerProfile Get(string id) => Copy(profiles.Find(p => p.StudyId == id));
+    public List<PlayerProfile> GetAll() => profiles.FindAll(p => !p.Archived).ConvertAll(Copy);
+    public PlayerProfile Create(string name)
+    {
+        var p = new PlayerProfile { Name = name, CreatedUtc = DateTime.UtcNow.ToString("O") };
+        p.UpdatedUtc = p.CreatedUtc;
+        profiles.Add(p);
+        if (ActiveId == null) ActiveId = p.StudyId;
+        return Get(p.StudyId);
+    }
+    public void Update(PlayerProfile profile)
+    {
+        if (profile == null || string.IsNullOrWhiteSpace(profile.StudyId)) throw new ArgumentException("Stable profile ID required");
+        var p = Copy(profile); p.UpdatedUtc = DateTime.UtcNow.ToString("O");
+        int index = profiles.FindIndex(x => x.StudyId == p.StudyId);
+        if (index < 0) profiles.Add(p); else profiles[index] = p;
+    }
+    public void SetActive(string id) { if (!profiles.Exists(p => p.StudyId == id && !p.Archived)) throw new ArgumentException("Profile unavailable"); ActiveId = id; }
+    public void Archive(string id)
+    {
+        if (ActiveId == id) throw new InvalidOperationException("Select a different profile before archiving this one.");
+        var p = profiles.Find(x => x.StudyId == id); if (p == null) throw new ArgumentException("Profile not found"); p.Archived = true;
+    }
+    public void Migrate(PlayerProfile legacy) { /* Refused database; nothing to migrate into an unsaved fallback. */ }
+}

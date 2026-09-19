@@ -1,11 +1,8 @@
 {
   "dependencies": {
     "com.coplaydev.unity-mcp": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#b92c05a25820cfc9f59ce4094eb46aaec8632ea2",
-    "com.unity.cinemachine": "6.6.0",
     "com.unity.multiplayer.center": "2.0.1",
-    "com.unity.probuilder": "6.1.2",
     "com.unity.ugui": "2.6.0",
-    "com.unity.visualeffectgraph": "17.6.0",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.adaptiveperformance": "1.0.0",
     "com.unity.modules.ai": "1.0.0",

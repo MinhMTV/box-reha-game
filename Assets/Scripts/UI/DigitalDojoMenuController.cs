@@ -270,6 +270,11 @@ public class DigitalDojoMenuController : MonoBehaviour
     {
         Page("Profiles", "Saved on this device");
         var repo=PlayerProfileStore.Repository; var profiles=repo.GetAll();
+        if(!string.IsNullOrEmpty(PlayerProfileStore.Error))
+        {
+            Body("ProfileError","Saved profile data could not be read.\n"+PlayerProfileStore.Error+
+                "\n\nA temporary, unsaved profile is in use for this session.",210f,260f,23);
+        }
         profilePage=Mathf.Clamp(profilePage,0,Mathf.Max(0,(profiles.Count-1)/4));
         Body("ProfileHelp","Select a saved profile. Each profile has its own history and references.\nMatching display names do not merge identities.",175,80,21);
         for(int i=profilePage*4;i<Math.Min(profiles.Count,profilePage*4+4);i++)

@@ -1,15 +1,6 @@
 using System;
 using UnityEngine;
 
-public interface ISensorDataProvider
-{
-    event Action<SensorReading> OnDataReceived;
-    bool IsConnected { get; }
-    void Connect();
-    void Disconnect();
-    SensorReading GetLatestReading();
-}
-
 /// <summary>Contract v2. Missing identity, validity or clock is not a measurement.</summary>
 [Serializable]
 public struct SensorReading

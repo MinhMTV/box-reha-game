@@ -12,7 +12,6 @@ public class MouseTouchInputProvider : MonoBehaviour, IPlayerActionInputProvider
     public InputSourceType SourceType => InputSourceType.Mouse;
     public bool IsReady => true;
     public string Status => IsEnabled ? "Arrows: punch | A/D: kick | mouse/touch active" : "Keyboard / mouse / touch standby";
-    [SerializeField] private GameConfig gameConfig;
     private bool isEnabled;
     private int lastInputFrame = -1;
     private Vector2 downPosition;

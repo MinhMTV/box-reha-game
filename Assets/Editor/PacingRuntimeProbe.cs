@@ -36,8 +36,8 @@ public sealed class PacingRuntimeProbe
     public string Failure { get; private set; }
     public void Start(Action<string> screenshot)
     {
-        capture=screenshot;spawner=Object.FindFirstObjectByType<TargetSpawner>();evaluator=Object.FindFirstObjectByType<HitZoneEvaluator>();
-        Object.FindFirstObjectByType<SessionTimer>()?.StopTimer();
+        capture=screenshot;spawner=Object.FindAnyObjectByType<TargetSpawner>();evaluator=Object.FindAnyObjectByType<HitZoneEvaluator>();
+        Object.FindAnyObjectByType<SessionTimer>()?.StopTimer();
         original=spawner.Pacing;HitZoneEvaluator.OnPatternComplete+=PatternComplete;
         BeginCase();UnityEditor.EditorApplication.update+=Update;
     }
@@ -73,11 +73,11 @@ public sealed class PacingRuntimeProbe
             if(cleanupAt>=0)
             {
                 if(Time.time<cleanupAt)return;
-                if(Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None).Length!=0||
-                    Object.FindObjectsByType<TargetMountMotion>(FindObjectsSortMode.None).Length!=0||
-                    Object.FindObjectsByType<ToughTargetHealthBar>(FindObjectsSortMode.None).Length!=0)
+                if(Object.FindObjectsByType<TargetObject>().Length!=0||
+                    Object.FindObjectsByType<TargetMountMotion>().Length!=0||
+                    Object.FindObjectsByType<ToughTargetHealthBar>().Length!=0)
                     throw new Exception("Owned object cleanup failed");
-                var pool=Object.FindFirstObjectByType<DojoDebrisPool>();
+                var pool=Object.FindAnyObjectByType<DojoDebrisPool>();
                 if(pool!=null&&pool.ActiveCount>0)throw new Exception("Active debris survived cleanup");
                 evidence.Add($"PASS {cases[stage]} heavies={spawner.HeavyEncounters} targets={count} peak={peak} objectsIncludingResolving={peakObjects} debris={peakDebris} completed={completed} logicalMax={spawner.MaxLogicalLength} maxIdle={spawner.MaxEmptyIdle:F3}s work={spawner.ActiveWorkTime:F2}s low={spawner.LowIntensityTime:F2}s idle={spawner.EmptyIdleTime:F2}s firstVisible={firstVisible:F3}s materials={materialBaseline}->{peakMaterials} effects={peakParticles} pooledMounts={peakMounts} phases={string.Join(",",phases)}");
                 File.WriteAllLines("artifacts/validation/pacing-playmode.txt",evidence);
@@ -133,8 +133,8 @@ public sealed class PacingRuntimeProbe
             if(peakParticles>4||peakMounts>10)throw new Exception("Presentation pool grew past bound");
             if(peakMaterials>materialBaseline+60)throw new Exception("Material growth beyond warmup allowance");
             if(peak>8)throw new Exception("Rolling cap exceeded");
-            peakObjects=Mathf.Max(peakObjects,Object.FindObjectsByType<TargetObject>(FindObjectsSortMode.None).Length);
-            var livePool=Object.FindFirstObjectByType<DojoDebrisPool>();
+            peakObjects=Mathf.Max(peakObjects,Object.FindObjectsByType<TargetObject>().Length);
+            var livePool=Object.FindAnyObjectByType<DojoDebrisPool>();
             if(livePool!=null)peakDebris=Mathf.Max(peakDebris,livePool.ActiveCount);
             if(peakObjects>11||peakDebris>DojoDebrisPool.Capacity)throw new Exception("Presentation object bound exceeded");
             if(stage==0&&elapsed>=26&&elapsed<=34&&Time.time>=nextWindowSample)

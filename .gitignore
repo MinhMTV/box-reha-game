@@ -41,5 +41,7 @@ tools/android/build/
 tools/android/.unity-stub/
 .DS_Store
 Thumbs.db
+*.rar
+ExternalAssets/
 
 tools/android/.qualification.lock

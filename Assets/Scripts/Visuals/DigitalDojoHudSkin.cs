@@ -7,8 +7,6 @@ public class DigitalDojoHudSkin : MonoBehaviour
 {
     private const string RootName = "DigitalDojoHudSkin";
     private Font font;
-    private Text inputStatus;
-    private float refreshTimer;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Install()
     {
@@ -19,7 +17,7 @@ public class DigitalDojoHudSkin : MonoBehaviour
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode) { TryCreate(scene); }
     private static void TryCreate(Scene scene)
     {
-        if (scene.name == "Game" && FindObjectOfType<DigitalDojoHudSkin>() == null)
+        if (scene.name == "Game" && FindAnyObjectByType<DigitalDojoHudSkin>() == null)
             new GameObject(RootName).AddComponent<DigitalDojoHudSkin>();
     }
     private IEnumerator Start()
@@ -65,16 +63,13 @@ public class DigitalDojoHudSkin : MonoBehaviour
         }
         GameObject oldInput = GameObject.Find("InputStateText");
         if (oldInput != null) oldInput.SetActive(false);
-        inputStatus = Label(canvas, "OptionalDebugOverlay", "", 16);
-        Anchor(inputStatus.rectTransform, .79f, .81f, 550f, 100f);
-        inputStatus.gameObject.SetActive(false);
         RectTransform pause = Panel(canvas, "TouchPauseButton");
         Anchor(pause, 0.5f, 0.06f, 230f, 72f);
         pause.GetComponent<UnityEngine.UI.Image>().raycastTarget = true;
         UnityEngine.UI.Button pauseButton = pause.gameObject.AddComponent<UnityEngine.UI.Button>();
         pauseButton.targetGraphic = pause.GetComponent<UnityEngine.UI.Image>();
         DojoUiStyle.Style(pauseButton);
-        pauseButton.onClick.AddListener(() => FindObjectOfType<PauseMenuController>()?.Pause());
+        pauseButton.onClick.AddListener(() => FindAnyObjectByType<PauseMenuController>()?.Pause());
         Text pauseLabel = Label(pause, "Label", "PAUSE", 25);
         Anchor(pauseLabel.rectTransform, 0.5f, 0.5f, 220f, 60f);
         yield return null;
@@ -85,15 +80,7 @@ public class DigitalDojoHudSkin : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F2))KeyboardActionFactory.DevelopmentPower=.2f;
         if(Input.GetKeyDown(KeyCode.F3))KeyboardActionFactory.DevelopmentPower=1f;
         if(Input.GetKeyDown(KeyCode.F4))KeyboardActionFactory.DevelopmentPower=2f;
-        if(inputStatus != null && Input.GetKeyDown(KeyCode.F1)) inputStatus.gameObject.SetActive(!inputStatus.gameObject.activeSelf);
 #endif
-        refreshTimer += Time.unscaledDeltaTime;
-        if (refreshTimer < 0.5f || inputStatus == null) return;
-        refreshTimer = 0f;
-        InputProviderRouter router = FindObjectOfType<InputProviderRouter>();
-        inputStatus.text = ResearchSessionLog.Error ?? (SessionInputSelection.Physical
-            ? AndroidDynamicsController.EnsureInstance().Notice : router != null ? router.GetStatusLine() : "No input provider");
-        inputStatus.color = ResearchSessionLog.Error != null ? new Color(1f, 0.45f, 0.35f) : new Color(0.82f, 0.84f, 0.83f);
     }
     private RectTransform Panel(Transform parent, string name)
     {

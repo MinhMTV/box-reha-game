@@ -965,13 +965,6 @@ class DynamicsSdkManager(val app: Application) {
         message = "Raw observation: $rawEnabled"
     }
 
-    fun reconnect() = command("refresh_subscriptions") {
-        check(initialized)
-        rawJobs.values.forEach { it.cancelAndJoin() }
-        rawJobs.clear()
-        observe()
-    }
-
     /**
      * [requestedFamily] is only a UI hint. The family actually used is the TrainingSessionSensorType the
      * SDK reports for the connected devices, so DELTA-only hardware can never start an ALPHA session.

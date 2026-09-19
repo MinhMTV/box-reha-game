@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum DojoAudioCue { TargetDeploy, TargetTravel, PunchImpact, KickImpact, TooLight, Perfect, HeavyDamage, HeavyBreak, ComboTier, SessionStart, SessionEnd }
+public enum DojoAudioCue { TargetDeploy, PunchImpact, KickImpact, TooLight, Perfect, HeavyDamage, HeavyBreak, ComboTier, SessionStart, SessionEnd }
 
 /// <summary>One scene-owned controller, six inexpensive trim meshes, no new realtime lights.</summary>
 public sealed class DojoGameFeel : MonoBehaviour

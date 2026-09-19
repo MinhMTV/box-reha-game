@@ -2,7 +2,7 @@
 
 Historical decisions retained in docs/history/pre-hardware-feedback/GAME_DECISIONS.md.
 
-- Preserve Unity 6000.6.0f1, four scenes, art, Android ARM64/IL2CPP and explicit compatibility overlay. No vendor files modified.
+- Preserve Unity 6000.6.x (now built on 6000.6.1f1; see [ANDROID_STATUS.md](ANDROID_STATUS.md)), four scenes, art, Android ARM64/IL2CPP and explicit compatibility overlay. No vendor files modified.
 - Use actual SDK deleteGloveById and swapGloveSideForId, with persistent-state acknowledgement; do not simulate removal only in the UI.
 - Display all paired states including Unknown and use actual device names. Only SDK-reported family can establish identity. Keep mixed-family protection.
 - Use a versioned atomic local file repository instead of adding an unqualified SQLite Android dependency. Retain legacy preferences and logs during idempotent migration. Archive rather than destructive deletion.

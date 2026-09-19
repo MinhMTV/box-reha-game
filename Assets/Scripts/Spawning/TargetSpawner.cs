@@ -43,7 +43,7 @@ public class TargetSpawner : MonoBehaviour
     public void StartSpawning(LevelDefinition level)
     {
         StopAllCoroutines();EnsureGeneratedVisualPrefabs();currentLevel=level;
-        if(hitZoneEvaluator==null)hitZoneEvaluator=FindFirstObjectByType<HitZoneEvaluator>();
+        if(hitZoneEvaluator==null)hitZoneEvaluator=FindAnyObjectByType<HitZoneEvaluator>();
         if(hitZoneEvaluator==null)return;
         SessionSeed=pacing.Seed==0?(System.Environment.TickCount&int.MaxValue):pacing.Seed;
         planner=new GameplayPatternPlanner(SessionSeed);previousArrival=float.NegativeInfinity;
@@ -94,16 +94,12 @@ public class TargetSpawner : MonoBehaviour
             float threshold=currentLevel.LevelNumber<=1?1.3f:currentLevel.LevelNumber==2?1:.7f;
             if(idleFor>threshold&&Time.time>=RecoveryUntil&&Remaining>.3f&&CurrentPatternId!="unavailable")
             {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-                Debug.LogWarning("PACING_IDLE_DIAGNOSTIC "+Diagnostic);
-#endif
+                if(Debug.isDebugBuild)Debug.LogWarning("PACING_IDLE_DIAGNOSTIC "+Diagnostic);
                 RecoveryUntil=Time.time;NextPatternTime=Time.time;idleFor=0;
             }
         }
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        if(Remaining<=34&&Remaining>=26&&Time.time>=nextDiagnostic)
+        if(Debug.isDebugBuild&&Remaining<=34&&Remaining>=26&&Time.time>=nextDiagnostic)
         {nextDiagnostic=Time.time+.5f;Debug.Log("PACING_WINDOW_DIAGNOSTIC "+Diagnostic);}
-#endif
     }
     IEnumerator SpawnRoutine()
     {
@@ -255,7 +251,7 @@ public class TargetSpawner : MonoBehaviour
         var point=GetSpawnPoint(lane);if(point==null)return null;
         var position=point.position;position.z=z;
         var height=type==TargetType.Kick||type==TargetType.ToughKick?VerticalPosition.Low:VerticalPosition.High;
-        position.y=gameConfig!=null?gameConfig.GetVerticalOffset(height):height==VerticalPosition.Low?.45f:2.1f;
+        position.y=gameConfig!=null?gameConfig.GetVerticalOffset(height):height==VerticalPosition.Low?.45f:2.6f;
         var obj=CreateTargetObject(position,type);var target=obj.GetComponent<TargetObject>();
         target.Lane=lane;target.Type=type;target.VertPosition=height;target.MoveSpeed=speed;
         target.HitWindow=currentLevel.HitWindowSeconds;target.BindEvaluator(hitZoneEvaluator);

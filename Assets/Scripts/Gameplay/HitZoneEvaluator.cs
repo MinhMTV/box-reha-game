@@ -188,7 +188,7 @@ public class HitZoneEvaluator : MonoBehaviour
     public void AbortRemaining()
     {
         // Include objects spawned this frame whose Start has not yet run.
-        foreach (TargetObject target in FindObjectsByType<TargetObject>(FindObjectsSortMode.None))
+        foreach (TargetObject target in FindObjectsByType<TargetObject>())
         {
             target.EnsureTrackedSpawn();
             if (!target.IsResolved && target.Resolve())

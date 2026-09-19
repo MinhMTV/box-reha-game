@@ -53,11 +53,6 @@ public class GameRoundController : MonoBehaviour
             return;
         }
 
-        if (hudController != null && inputProvider != null)
-        {
-            hudController.UpdateInputState(inputProvider.GetStatusLine());
-        }
-
         if (currentLevel.IsEndless && Input.GetKeyDown(KeyCode.Return))
         {
             EndRound();

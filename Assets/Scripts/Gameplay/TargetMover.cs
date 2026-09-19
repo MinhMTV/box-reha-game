@@ -31,13 +31,11 @@ public class TargetMover : MonoBehaviour
         }
         else transform.Translate(Vector3.back * Speed * Time.deltaTime, Space.World);
         // A fixed Z cutoff would truncate the Late window at higher travel speeds.
-        // Registered gameplay targets are expired/locked by the evaluator's temporal rule only.
+        // Registered gameplay targets (targetObject and evaluator both set) are expired/locked by
+        // the evaluator's temporal rule only and already returned above; this fallback only ever
+        // runs for an unregistered mover (no evaluator, or no TargetObject at all), so it just
+        // cleans itself up rather than reporting a gameplay miss.
         if (targetObject != null && evaluator != null) return;
-        if (transform.position.z < missZoneZ)
-        {
-            if (targetObject != null && !targetObject.IsResolved && evaluator != null)
-                evaluator.Miss(targetObject, "miss");
-            else Destroy(gameObject);
-        }
+        if (transform.position.z < missZoneZ) Destroy(gameObject);
     }
 }

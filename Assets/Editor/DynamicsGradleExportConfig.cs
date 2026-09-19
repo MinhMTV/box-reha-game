@@ -31,13 +31,22 @@ public static class DynamicsGradleExportConfig
         Version agp = ReadAgpVersion(build);
         if (agp < new Version(8, 2, 2) || agp > new Version(9, 0, 99))
             throw new InvalidOperationException("SDK Kotlin 2.3.21 requires a compatible Android build toolchain. Generated AGP " + agp + " is outside this configuration guard's range 8.2.2–9.0.x. Use the intended Unity 6.6 Android toolchain; this guard is not build qualification and never replaces Unity's AGP or Gradle.");
-        if (build.Contains("org.jetbrains.kotlin") && !build.Contains(KotlinVersion))
+        // AGP 9's decorated LibraryExtension cannot be cast to the legacy BaseExtension the classic
+        // external Kotlin Gradle plugin (verified through 2.3.21) still expects, so the external plugin
+        // fails with a ClassCastException on apply. AGP 9 ships its own built-in Kotlin support instead;
+        // for AGP 9+ this configuration relies on that built-in support and never applies the external
+        // plugin. Verified empirically: AGP 8.x keeps the classic external-plugin path below unchanged.
+        bool builtInKotlin = agp.Major >= 9;
+        if (!builtInKotlin && build.Contains("org.jetbrains.kotlin") && !build.Contains(KotlinVersion))
             throw new InvalidOperationException("Existing Kotlin plugin configuration conflicts with SDK Kotlin " + KotlinVersion + ". Resolve it explicitly before building.");
 
         string repositoryUri = new Uri(repo + Path.DirectorySeparatorChar).AbsoluteUri.Replace("'", "\\'");
         string repositoryLine = "maven { url = uri('" + repositoryUri + "'); content { includeGroupByRegex 'com\\\\.riseworld.*'; includeGroupByRegex 'com\\\\.launchpad.*' } }";
-        string kotlin = Start + "\nbuildscript {\n    repositories { google(); mavenCentral() }\n    dependencies { classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:" + KotlinVersion + "' }\n}\n" + End + "\n";
-        build = kotlin + build;
+        if (!builtInKotlin)
+        {
+            string kotlin = Start + "\nbuildscript {\n    repositories { google(); mavenCentral() }\n    dependencies { classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:" + KotlinVersion + "' }\n}\n" + End + "\n";
+            build = kotlin + build;
+        }
         if (sdkMode == "COMPATIBILITY")
             build += "\n" + Start + "\nallprojects { configurations.configureEach { resolutionStrategy.eachDependency { d -> if (d.requested.group == 'com.riseworld.launchpad.resource' && d.requested.name in ['resource', 'resource-android'] && d.requested.version == '2.11.1') { d.useVersion('2.12.0'); d.because('Local SDK 0.25.6 compatibility overlay') } } } }\n" + End + "\n";
         // Settings repositories cover modern Unity exports. Existing project repositories are extended
@@ -56,18 +65,29 @@ public static class DynamicsGradleExportConfig
             if (!forbidProjectRepos) moduleBuild = ExtendRepositories(moduleBuild, repositoryLine);
             File.WriteAllText(moduleFile, moduleBuild, Utf8);
         }
+        if (builtInKotlin)
+        {
+            string androidlibFile = Path.Combine(root, "unityLibrary", "DynamicsSdkUnityBridge.androidlib", "build.gradle");
+            if (!File.Exists(androidlibFile)) throw new InvalidOperationException("Generated DynamicsSdkUnityBridge.androidlib/build.gradle is missing.");
+            string androidlibBuild = File.ReadAllText(androidlibFile);
+            // The shared source file (also used by the AGP 8.x tools/android qualification project)
+            // still declares the classic external Kotlin plugin; only the AGP 9 export copy drops it
+            // in favor of AGP 9's built-in Kotlin support, which honors the existing compileOptions.
+            androidlibBuild = Regex.Replace(androidlibBuild, @"(?m)^\s*id\s*['""]org\.jetbrains\.kotlin\.android['""].*\r?\n?", "");
+            androidlibBuild = Regex.Replace(androidlibBuild, @"(?m)^\s*kotlinOptions\s*\{[^\r\n}]*\}\s*\r?\n?", "");
+            File.WriteAllText(androidlibFile, androidlibBuild, Utf8);
+        }
         File.WriteAllText(buildFile, build, Utf8);
         File.WriteAllText(settingsFile, settings, Utf8);
 
         string propertiesFile = Path.Combine(root, "gradle.properties");
         string properties = File.Exists(propertiesFile) ? File.ReadAllText(propertiesFile) : "";
         properties = SetProperty(properties, "dynamicsSdkMode", sdkMode);
-        // Official AGP 9 migration opt-out while the external Kotlin 2.3.21 plugin is used.
-        if (agp.Major == 9)
-        {
-            properties = SetProperty(properties, "android.builtInKotlin", "false");
-            properties = SetProperty(properties, "android.newDsl", "false");
-        }
+        // AGP 8.x: keep the classic external Kotlin plugin, so its built-in Kotlin default must stay off.
+        // AGP 9+: use AGP's own built-in Kotlin support (see androidlibBuild rewrite above); Unity's own
+        // generated gradle.properties currently defaults this to false regardless of AGP major version,
+        // so it must be explicitly forced to true here or the .androidlib's Kotlin sources never compile.
+        properties = SetProperty(properties, "android.builtInKotlin", builtInKotlin ? "true" : "false");
         File.WriteAllText(propertiesFile, properties, Utf8);
     }
 

@@ -57,26 +57,6 @@ public class AudioManager : MonoBehaviour
         Play("Combo", 1f);
     }
 
-    public void PlayBlockSound()
-    {
-        Play("Block", 0.95f);
-    }
-
-    public void PlayDodgeSound()
-    {
-        Play("Dodge", 0.9f);
-    }
-
-    public void PlayMenuClick()
-    {
-        Play("MenuClick", 0.75f);
-    }
-
-    public void PlayCountdownTick()
-    {
-        Play("Countdown", 0.8f);
-    }
-
     /// <summary>
     /// v3: Sound when hitting a tough target (not destroyed yet).
     /// </summary>
@@ -123,10 +103,6 @@ public class AudioManager : MonoBehaviour
         clips["Kick"] = CreateImpactClip("Kick", 76f, 145f, 0.15f, 0.18f, 0.34f);
         clips["Miss"] = CreateSweepClip("Miss", 280f, 140f, 0.14f, 0.07f, 0.12f);
         clips["Combo"] = CreateArpeggioClip("Combo", new float[] { 440f, 554f, 659f }, 0.23f, 0.06f);
-        clips["Block"] = CreateImpactClip("Block", 220f, 120f, 0.10f, 0.03f, 0.22f);
-        clips["Dodge"] = CreateSweepClip("Dodge", 620f, 980f, 0.11f, 0.02f, 0.08f);
-        clips["MenuClick"] = CreateSweepClip("MenuClick", 520f, 700f, 0.07f, 0.02f, 0.03f);
-        clips["Countdown"] = CreateImpactClip("Countdown", 760f, 620f, 0.09f, 0.01f, 0.02f);
         clips["ToughHit"] = CreateImpactClip("ToughHit", 86f, 122f, 0.18f, 0.20f, 0.35f);
         clips["ToughBreak"] = CreateArpeggioClip("ToughBreak", new float[] { 120f, 180f, 280f, 420f }, 0.34f, 0.09f);
     }

@@ -158,7 +158,7 @@ public static class DigitalDojoSceneGenerator
         RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
         RenderSettings.ambientLight = new Color(0.50f, 0.42f, 0.33f, 1f);
 
-        Light light = Object.FindObjectOfType<Light>();
+        Light light = Object.FindAnyObjectByType<Light>();
         if (light == null)
         {
             light = new GameObject("Key Light").AddComponent<Light>();
@@ -337,7 +337,7 @@ public static class DigitalDojoSceneGenerator
 
     private static void EnsureEventSystem()
     {
-        if (Object.FindObjectOfType<EventSystem>() != null)
+        if (Object.FindAnyObjectByType<EventSystem>() != null)
         {
             return;
         }

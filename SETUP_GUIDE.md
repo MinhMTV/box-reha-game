@@ -1,6 +1,6 @@
 # Setup and qualification — 17 September 2026
 
-Open the existing `E:/Programming Projekte/box-reha-game` with Unity **6000.6.0f1** and matching Android Build Support/SDK/NDK/OpenJDK. Do not regenerate scenes or create a replacement project. Windows is the development host; the complete Unity game and SDK run on Android without a relay.
+Open the existing `E:/Programming Projekte/box-reha-game` with Unity **6000.6.1f1** (the originally targeted 6000.6.0f1 is superseded; see [ANDROID_STATUS.md](ANDROID_STATUS.md)) and matching Android Build Support/SDK/NDK/OpenJDK. Do not regenerate scenes or create a replacement project. Windows is the development host; the complete Unity game and SDK run on Android without a relay.
 
 ## Development
 Open `Assets/Scenes/Boot.unity`. Runtime MainMenu replaces historical serialized concept UI. Development keys: Left/Right arrows = punches; A/D = kicks; ESC or touch PAUSE; Finish & Results ends a round. Profiles, references and history use actual local state. See [CURRENT_GAMEPLAY.md](CURRENT_GAMEPLAY.md).
@@ -12,7 +12,7 @@ These are instructions for future execution; this documentation pass ran none of
 dotnet run --project tests/sensor/SensorHostChecks.csproj --configuration Release
 dotnet run --project tests/syntax/SyntaxChecks.csproj -- .
 python tests/check_scene_assets.py
-.\scripts\verify-unity.ps1 -UnityPath "C:\Program Files\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe" -SdkMode COMPATIBILITY -BuildCandidate
+.\scripts\verify-unity.ps1 -UnityPath "C:\Program Files\Unity\Hub\Editor\6000.6.1f1\Editor\Unity.exe" -SdkMode COMPATIBILITY -BuildCandidate
 ```
 
 Use the actual installed Editor path. Host fixtures are synthetic and use narrow Unity stubs. The Unity wrapper prepares settings, records source identity and performs checks/build; it does not qualify BLE or human performance. Default SDK mode is VENDOR-UNCHANGED and still hits the missing resource 2.11.1 dependency; choose COMPATIBILITY explicitly for the existing successful path. It uses resource 2.12.0 plus the pinned Java/reflection adapter. [SDK_COMPATIBILITY_REPORT.md](SDK_COMPATIBILITY_REPORT.md).

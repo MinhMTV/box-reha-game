@@ -16,6 +16,8 @@ Same-family single or uniquely sided Left/Right pair is allowed by tested applic
 ## Integrity, setup and lifecycle
 Actual advertised names, SDK-reported family, side and observed state remain visible. Unknown family blocks preparation without hiding the device. Persistent removal is confirmed; side changes use pair-aware swapGloveSideForId. Profile/session acknowledgements, connection epochs, freshness and duplicate rejection guard input. Identity, family, side, quantity/unit, provenance and source/transport timestamps survive into accepted-action evidence.
 
+18 September fix: the C# `SessionInputSelection.Family` used to default to a hardcoded ALPHA before any hardware reported in, so a DELTA-only glove connecting first could attempt an ALPHA session and be refused by the native `family_downgrade_refused` guard. It now defaults to `null` (no assumed family) until `AndroidSessionPolicy.ConnectedFamily` resolves a real one from the connected devices, so DELTA-only hardware is no longer forced through an ALPHA path. See [SDK_COMPATIBILITY_REPORT.md](SDK_COMPATIBILITY_REPORT.md).
+
 Computed events are collected; raw streams are not simultaneously forwarded by the native production collector. The Unity contract has raw telemetry fields and an explicitly unvalidated opt-in acceleration heuristic, disabled by default. SDK raw APIs exist per peripheral/all-gloves; availability in the API does not prove a supported mixed binding or reliable recording route.
 
 ## Raw data and future classification

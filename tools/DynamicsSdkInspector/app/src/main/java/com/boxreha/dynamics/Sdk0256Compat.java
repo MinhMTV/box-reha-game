@@ -5,11 +5,7 @@ import com.riseworld.dynamics.models.PeripheralId;
 import com.riseworld.dynamics.models.domain.punch.*;
 import com.riseworld.dynamics.models.domain.profile.body.*;
 import com.riseworld.dynamics.models.domain.session.*;
-import com.riseworld.dynamics.composite.ble.BleGloveState$Online;
-import com.riseworld.dynamics.composite.ble.Glove;
-import com.riseworld.dynamics.composite.ble.GloveKt;
 import com.riseworld.launchpad.ble.multiplex.models.domain.ScannerState$Error;
-import com.riseworld.launchpad.ble.multiplex.models.exception.ScannerError$MissingScanningRequirements;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import com.riseworld.dynamics.multiplatform.repository.GloveRepository;
@@ -40,14 +36,7 @@ public final class Sdk0256Compat {
         catch (ReflectiveOperationException e) { throw new IllegalStateException("SDK 0.25.6 ABI invocation failed: " + m.getName(), e); }
     }
     private static final Method DEVICE_ID = method(PeripheralDto.class, "getId-WPD2SKI", Uuid.class);
-    private static final Method BOX_ID = method(PeripheralId.class, "box-impl", PeripheralId.class, Uuid.class);
     private static final Method UNBOX_ID = method(PeripheralId.class, "unbox-impl", Uuid.class);
-    public static Object resourceGetOrThrow(Object res) {
-        if (res instanceof com.riseworld.launchpad.resource.Resource) {
-            return ((com.riseworld.launchpad.resource.Resource)res).getOrThrow();
-        }
-        return res;
-    }
     public static Uuid pairedUuid(Object id) {
         if (id instanceof com.riseworld.launchpad.resource.Resource) {
             id = ((com.riseworld.launchpad.resource.Resource)id).getOrThrow();
@@ -59,7 +48,6 @@ public final class Sdk0256Compat {
     private static final Method PUNCH_ID = method(Punch.class, "getId-x1nF_Dg", Uuid.class);
     private static final Method PUNCH_DEVICE = method(Punch.class, "getPeripheralId-WPD2SKI", Uuid.class);
     private static final Method PACKET_TIME = method(SensorDataPacket.class, "getRelativeTimeCounter-UwyO8pc", long.class);
-    private static final Method PROFILE_ID = method(BodyProfile.class, "getId-vSVUwiQ", Uuid.class);
     private static final Method PUNCH_DURATION = method(Speed.class, "getPunchDuration-UwyO8pc", long.class);
     private static final Method CONTACT_DURATION = method(Speed.class, "getContactDuration-UwyO8pc", long.class);
     private static final Method DURATION_SECONDS = method(Duration.class, "toDouble-impl", double.class, long.class, DurationUnit.class);
@@ -86,35 +74,19 @@ public final class Sdk0256Compat {
     }
     public static void verifyAbi() { /* Initialization resolves every required reflective descriptor. */ }
     public static Uuid deviceUuid(PeripheralDto dto) { return (Uuid)invoke(DEVICE_ID, dto); }
-    public static PeripheralId peripheralId(PeripheralDto dto) { return (PeripheralId)invoke(BOX_ID, null, deviceUuid(dto)); }
     public static String punchId(Punch p) { return invoke(PUNCH_ID, p).toString(); }
     public static Uuid punchPeripheralUuid(Punch p) { return (Uuid)invoke(PUNCH_DEVICE, p); }
     public static double packetSeconds(SensorDataPacket p) { return (Double)invoke(DURATION_SECONDS, null, invoke(PACKET_TIME, p), DurationUnit.SECONDS); }
     public static long packetRelativeNanos(SensorDataPacket p) { return (Long)invoke(DURATION_LONG, null, invoke(PACKET_TIME, p), DurationUnit.NANOSECONDS); }
     public static long packetRelativePacked(SensorDataPacket p) { return (Long)invoke(PACKET_TIME, p); }
-    public static boolean belongsTo(Punch p, PeripheralDto d) { return invoke(PUNCH_DEVICE,p).equals(deviceUuid(d)); }
-    public static Uuid profileId(BodyProfile p) { return (Uuid)invoke(PROFILE_ID,p); }
     public static BodyProfile body(Uuid id, String name, double kg, double cm, Gender gender) { return new BodyProfile(id,name,kg,cm,gender,null); }
-    public static boolean validName(String name) { return BodyProfileValidation.Companion.getNameNumberOfCharactersRange().contains(name.length()); }
     @SuppressWarnings("unchecked")
     public static boolean validBody(double kg, double cm) { return BodyProfileValidation.Companion.getWeightRange().contains(kg) && BodyProfileValidation.Companion.getHeightRange().contains(cm); }
     public static TrainingSessionSettings freeSession() { return new TrainingSessionSettings$Free(false); }
-    public static boolean online(Object state) { return state instanceof BleGloveState$Online; }
-    public static boolean isGloveOnline(Glove glove) { return GloveKt.isOnline(glove); }
-    public static boolean isGloveConnecting(Glove glove) { return GloveKt.isConnecting(glove); }
-    public static boolean isGloveBonded(Glove glove) { return GloveKt.isBonded(glove); }
-    public static boolean isGloveNotBonded(Glove glove) { return GloveKt.isNotBonded(glove); }
-    public static boolean isGloveOfflineError(Glove glove) { return GloveKt.isOfflineError(glove); }
-    public static boolean isGloveOfflineOutOfRange(Glove glove) { return GloveKt.isOfflineOutOfRange(glove); }
-    public static boolean isGloveBatteryLow(Glove glove) { return GloveKt.isBatteryLow(glove); }
-    public static boolean isGloveCharging(Glove glove) { return GloveKt.isCharging(glove); }
-    public static boolean isGloveChargerAttached(Glove glove) { return GloveKt.isChargerAttached(glove); }
-    public static boolean isGloveBaroAttached(Glove glove) { return GloveKt.isBaroAttached(glove); }
     public static boolean scannerActive(Object state) {
         return state instanceof com.riseworld.launchpad.ble.multiplex.models.domain.ScannerState$Active;
     }
     public static boolean scannerError(Object state) { return state instanceof ScannerState$Error; }
-    public static boolean missingScanningRequirements(Object state) { return state instanceof ScannerState$Error && ((ScannerState$Error)state).getScannerError() instanceof ScannerError$MissingScanningRequirements; }
     public static String sessionState(Object state) {
         if (state instanceof TrainingSessionExtendedState$Resumed) return "Resumed";
         if (state instanceof TrainingSessionExtendedState$Ready) return "Ready";
@@ -136,7 +108,6 @@ public final class Sdk0256Compat {
     public static double impactOrPowerIndex(Power p) { return p.getImpactOrPowerIndex(); }
     public static double peakForce(Power p) { return p.getPeakForce(); }
     public static double baro(Power p) { if (!(p instanceof Power$Alpha)) throw new IllegalArgumentException("ALPHA required"); return ((Power$Alpha)p).getPeakForceBasedOnBaro(); }
-    public static double durationSeconds(long packed) { return (Double)invoke(DURATION_SECONDS,null,packed,DurationUnit.SECONDS); }
     public static double punchSeconds(Speed s) { return (Double)invoke(DURATION_SECONDS,null,invoke(PUNCH_DURATION,s),DurationUnit.SECONDS); }
     public static double contactSeconds(Speed s) { return (Double)invoke(DURATION_SECONDS,null,invoke(CONTACT_DURATION,s),DurationUnit.SECONDS); }
     public static double vecX(Object v) {

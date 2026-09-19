@@ -6,4 +6,8 @@
 -keep class com.riseworld.dynamics.models.domain.punch.Punch { public *; }
 -keep class com.riseworld.dynamics.models.domain.punch.Speed { public *; }
 -keep class com.riseworld.dynamics.models.domain.profile.body.BodyProfile { public *; }
+-keep class com.riseworld.dynamics.models.ble.data.SensorDataPacket { public *; }
+-keep class com.riseworld.dynamics.multiplatform.repository.GloveRepository { public *; }
+-keep class com.riseworld.dynamics.multiplatform.repository.SensorDataRepository { public *; }
+-keep class com.riseworld.dynamics.multiplatform.repository.PairingRepository { public *; }
 -keep class kotlin.time.Duration { public *; }

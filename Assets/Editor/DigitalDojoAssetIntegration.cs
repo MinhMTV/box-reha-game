@@ -74,7 +74,7 @@ public static class DigitalDojoAssetIntegration
         }
         if(!mountedOnly)BuildRoom();
         var scene=EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
-        foreach(var spawner in UnityEngine.Object.FindObjectsByType<TargetSpawner>(FindObjectsSortMode.None))
+        foreach(var spawner in UnityEngine.Object.FindObjectsByType<TargetSpawner>())
         {
             var so=new SerializedObject(spawner);
             string[] fields={"punchVisualPrefab","kickVisualPrefab","toughVisualPrefab","heavyKickVisualPrefab"};
@@ -99,7 +99,7 @@ public static class DigitalDojoAssetIntegration
         room.name="DigitalDojoAuthoredRoom";
         var camera=Camera.main; if(camera!=null){camera.transform.position=new Vector3(1.5f,2.2f,-6);camera.transform.LookAt(new Vector3(0,1.8f,12));camera.fieldOfView=42;}
         RenderSettings.ambientLight=new Color(.28f,.25f,.22f);
-        foreach(var light in UnityEngine.Object.FindObjectsByType<Light>(FindObjectsSortMode.None)){light.intensity=1.1f;light.color=new Color(1,.86f,.71f);}
+        foreach(var light in UnityEngine.Object.FindObjectsByType<Light>()){light.intensity=1.1f;light.color=new Color(1,.86f,.71f);}
         EditorSceneManager.SaveScene(scene);
         AssetDatabase.SaveAssets(); Debug.Log("DIGITAL_DOJO_INTEGRATION_COMPLETE");
     }

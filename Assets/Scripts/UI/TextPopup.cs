@@ -54,7 +54,7 @@ public class TextPopup : MonoBehaviour
     public static void Create(Vector3 worldPosition, string text, Color color, Transform parent = null)
     {
         // Create a UI canvas overlay if needed
-        Canvas canvas = FindObjectOfType<Canvas>();
+        Canvas canvas = FindAnyObjectByType<Canvas>();
         if (canvas == null) return;
 
         GameObject popupObj = new GameObject("TextPopup");

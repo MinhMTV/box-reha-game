@@ -1,6 +1,6 @@
 # Open decisions — 17 September 2026
 
-Implementation tasks belong to [TODO.md](TODO.md). Windows development + Android runtime, Unity 6000.6.0f1, current compatibility candidate and same-family acquisition restrictions are already decided.
+Implementation tasks belong to [TODO.md](TODO.md). Windows development + Android runtime, Unity 6000.6.1f1 (later patch of the originally targeted 6000.6.0f1 stream; see [ANDROID_STATUS.md](ANDROID_STATUS.md)), current compatibility candidate and same-family acquisition restrictions are already decided.
 
 - Which minimum feature set will the study evaluate: single-family sessions, or is simultaneous ALPHA/DELTA essential enough to justify vendor/lower-level work?
 - Are technique recognition, dedicated training modes and HR design-only/future work, or required empirical conditions? They are not currently working features.

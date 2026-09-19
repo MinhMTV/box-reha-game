@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Phase 2: Shows accuracy. Phase 4: Debug toggle with F1 key.
-/// v3: Tough target and rapid fire chain feedback display.
+/// Player-facing gameplay HUD only (score, combo, timer, accuracy, feedback). Diagnostics/debug
+/// overlays are owned by DebugUI; do not add debug-only fields or F1 handling back here.
 /// </summary>
 public class HUDController : MonoBehaviour
 {
@@ -11,14 +11,11 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Text comboText;
     [SerializeField] private Text timerText;
     [SerializeField] private Text accuracyText;
-    [SerializeField] private Text debugText;
-    [SerializeField] private Text inputStateText;
     // v3: Tough target and rapid fire feedback
     [SerializeField] private Text feedbackText;
 
     private int totalHits;
     private int goodOrBetterHits;
-    private bool debugVisible;
 
     // v3: Feedback text timer
     private float feedbackTimer = 0f;
@@ -58,20 +55,6 @@ public class HUDController : MonoBehaviour
 
     void Update()
     {
-        // Phase 4: Debug toggle
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            debugVisible = !debugVisible;
-            if (debugText != null) debugText.gameObject.SetActive(debugVisible);
-        }
-
-        // Phase 4: Show FPS in debug mode
-        if (debugVisible && debugText != null)
-        {
-            float fps = 1f / Time.unscaledDeltaTime;
-            debugText.text = $"FPS: {fps:F0}\nHits: {totalHits} | Good+: {goodOrBetterHits}";
-        }
-
         // v3: Auto-hide feedback text
         if (feedbackTimer > 0f)
         {
@@ -213,18 +196,6 @@ public class HUDController : MonoBehaviour
         }
 
         feedbackTimer = FeedbackDuration;
-    }
-
-    public void UpdateDebug(string message)
-    {
-        if (debugText != null)
-            debugText.text = message;
-    }
-
-    public void UpdateInputState(string state)
-    {
-        if (inputStateText != null)
-            inputStateText.text = state;
     }
 
     private void ShowComboMilestone(int combo)

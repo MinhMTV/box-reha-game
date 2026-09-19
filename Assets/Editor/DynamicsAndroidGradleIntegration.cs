@@ -10,7 +10,7 @@ public sealed class DynamicsAndroidGradleIntegration : IPostGenerateGradleAndroi
     public void OnPostGenerateGradleAndroidProject(string path)
     {
         string repository = Environment.GetEnvironmentVariable("DYNAMICS_MAVEN_PATH");
-        if (string.IsNullOrWhiteSpace(repository)) repository = @"C:\dynamics-sdk-main\mavenLocal";
+        if (string.IsNullOrWhiteSpace(repository)) throw new InvalidOperationException("Set DYNAMICS_MAVEN_PATH to the supplied SDK mavenLocal directory.");
         string mode = Environment.GetEnvironmentVariable("DYNAMICS_SDK_MODE") ?? "VENDOR-UNCHANGED";
         DynamicsGradleExportConfig.Configure(path, repository, mode);
         Debug.Log("[Dynamics] SDK build mode: " + mode);

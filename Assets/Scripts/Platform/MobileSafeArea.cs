@@ -15,6 +15,7 @@ public class MobileSafeArea : MonoBehaviour
         if (area == lastArea && size == lastSize) return;
         lastArea = area; lastSize = size;
         RectTransform rect = GetComponent<RectTransform>();
+        if (rect == null) return; // Component requires a RectTransform-backed GameObject (see Create()).
         rect.anchorMin = new Vector2(area.xMin / size.x, area.yMin / size.y);
         rect.anchorMax = new Vector2(area.xMax / size.x, area.yMax / size.y);
         rect.offsetMin = rect.offsetMax = Vector2.zero;
